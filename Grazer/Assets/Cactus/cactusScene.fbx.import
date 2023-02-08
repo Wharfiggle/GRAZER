@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/cactusScene.fbx-4b34e9f0232a895c19a8edaa29ca36ab.scn"
+path="res://.import/cactusScene.fbx-cd2bd442fa5ee32c45aff2dedb667c39.scn"
 
 [deps]
 
-source_file="res://Cactus/cactusScene.fbx"
-dest_files=[ "res://.import/cactusScene.fbx-4b34e9f0232a895c19a8edaa29ca36ab.scn" ]
+source_file="res://Assets/Cactus/cactusScene.fbx"
+dest_files=[ "res://.import/cactusScene.fbx-cd2bd442fa5ee32c45aff2dedb667c39.scn" ]
 
 [params]
 
