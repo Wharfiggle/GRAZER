@@ -110,12 +110,13 @@ shader_param/Pizelisation = 512.0
 
 [sub_resource type="CubeMesh" id=2]
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 15, 0.05, 15 )
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=16]
+size = Vector3( 30, 0.1, 30 )
 
-[sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0.882353, 0.760784, 0.431373, 1 )
+[sub_resource type="Skin" id=17]
 
 [node name="Level" type="Spatial"]
 
@@ -134,11 +135,6 @@ scale = Vector2( 1.42222, -0.800333 )
 z_index = -1
 texture = ExtResource( 5 )
 centered = false
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.707107, -0.298836, 0.640856, 0, 0.906308, 0.422618, -0.707107, -0.298836, 0.640856, 30, 20, 30 )
-projection = 1
-size = 12.0
 
 [node name="Box" type="RigidBody" parent="."]
 transform = Transform( 0.887019, 0.412126, -0.208207, -0.461733, 0.791719, -0.399978, 0, 0.450924, 0.892562, 0, 128.291, 0 )
@@ -167,61 +163,6 @@ shape = SubResource( 1 )
 [node name="MeshInstance" type="MeshInstance" parent="Box3"]
 mesh = SubResource( 2 )
 
-[node name="Floor" type="StaticBody" parent="."]
-
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
-
-[node name="Floor4" type="StaticBody" parent="."]
-transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Floor4"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Floor4"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-mesh = SubResource( 4 )
-
-[node name="Floor5" type="StaticBody" parent="."]
-transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Floor5"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Floor5"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-mesh = SubResource( 4 )
-
-[node name="Floor2" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Floor2"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Floor2"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-mesh = SubResource( 4 )
-
-[node name="Floor3" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Floor3"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Floor3"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
-mesh = SubResource( 4 )
-
 [node name="Cactus" type="MeshInstance" parent="."]
 transform = Transform( 0.0170801, -0.0104053, 1.24082e-10, 0, 2.38498e-10, 0.02, -0.0104053, -0.0170801, 2.03678e-10, -3.99982, 0, 6.69969 )
 mesh = ExtResource( 1 )
@@ -245,4 +186,24 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 3.67148, -1.68636, -0.182909 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729 )
 
 [node name="KinematicBody" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12305, 5.06419, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+
+[node name="CamFollow" type="Spatial" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 30, 20 )
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 16 )
+skin = SubResource( 17 )
+
+[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 35, 20 )
+projection = 1
+size = 30.0
+target = NodePath("../KinematicBody/CamFollow")
+enabled = true
