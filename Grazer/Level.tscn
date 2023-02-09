@@ -180,15 +180,15 @@ shadow_bias = 0.0
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -5.30052, -0.420078, -0.411954 )
 
 [node name="cactusScene2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 3.67148, -1.68636, -0.182909 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.21648, -0.311238, -0.182909 )
 
 [node name="cactusScene" parent="." instance=ExtResource( 2 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729 )
 
-[node name="KinematicBody" parent="." instance=ExtResource( 7 )]
+[node name="Ball" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
-[node name="CamFollow" type="Spatial" parent="KinematicBody"]
+[node name="CamFollow" type="Spatial" parent="Ball"]
 transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 30, 20 )
 
 [node name="Floor" type="StaticBody" parent="."]
@@ -205,5 +205,5 @@ skin = SubResource( 17 )
 transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 35, 20 )
 projection = 1
 size = 30.0
-target = NodePath("../KinematicBody/CamFollow")
+target = NodePath("../Ball/CamFollow")
 enabled = true
