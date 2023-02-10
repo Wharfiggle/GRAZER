@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Cactus/10436_Cactus_v1_max2010_it2.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://cactusSceneNoBase.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://empress of bostonia.png" type="Texture" id=5]
 [ext_resource path="res://FPSCounter.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Ball.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/terrainController.gd" type="Script" id=8]
 
 [sub_resource type="VisualShaderNodeInput" id=6]
 output_port_for_preview = 0
@@ -128,6 +129,7 @@ background_mode = 2
 background_sky = SubResource( 18 )
 
 [node name="Level" type="Spatial"]
+script = ExtResource( 8 )
 
 [node name="FPS Counter" type="Label" parent="."]
 margin_top = 0.00012207
