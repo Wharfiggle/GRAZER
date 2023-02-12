@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Cactus/10436_Cactus_v1_max2010_it2.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Assets/Cactus/cactusSceneNoBase.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Ball.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/terrainController.gd" type="Script" id=8]
 [ext_resource path="res://Assets/FloorTiles/basicFloorTile.tscn" type="PackedScene" id=9]
+[ext_resource path="res://PixelCameraFollow.gd" type="Script" id=10]
 
 [sub_resource type="VisualShaderNodeInput" id=6]
 output_port_for_preview = 0
@@ -112,15 +113,6 @@ shader_param/Pizelisation = 512.0
 
 [sub_resource type="CubeMesh" id=2]
 
-[sub_resource type="ProceduralSky" id=18]
-radiance_size = 0
-sky_top_color = Color( 1, 0.788235, 0.223529, 1 )
-sky_horizon_color = Color( 0.635294, 0.219608, 0.176471, 1 )
-
-[sub_resource type="Environment" id=19]
-background_mode = 2
-background_sky = SubResource( 18 )
-
 [node name="Level" type="Spatial"]
 
 [node name="FPS Counter" type="Label" parent="."]
@@ -138,6 +130,13 @@ scale = Vector2( 1.42222, -0.800333 )
 z_index = -1
 texture = ExtResource( 5 )
 centered = false
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 35, 20 )
+projection = 1
+size = 30.0
+script = ExtResource( 10 )
+targetNodePath = NodePath("../Ball/CamFollow")
 
 [node name="Box" type="RigidBody" parent="."]
 transform = Transform( 0.887019, 0.412126, -0.208207, -0.461733, 0.791719, -0.399978, 0, 0.450924, 0.892562, 0, 128.291, 0 )
@@ -191,16 +190,6 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
 [node name="CamFollow" type="Spatial" parent="Ball"]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 30, 20 )
-
-[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 35, 20 )
-environment = SubResource( 19 )
-projection = 1
-size = 30.0
-target = NodePath("../Ball/CamFollow")
-speed = 2.0
-enabled = true
 
 [node name="AllTerrain" type="Spatial" parent="."]
 script = ExtResource( 8 )
