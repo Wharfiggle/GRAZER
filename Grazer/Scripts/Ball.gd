@@ -34,7 +34,7 @@ func _process(delta):
 		velocity.z = lerp(velocity.z,0,0.1)
 
 	if(transform.origin.y < -20.0):
-		transform.origin = Vector3(0,1,0)
+		transform.origin = Vector3(0,6,0)
 
 func _physics_process(delta):
 	velocity.y -= GRAVITY * delta
