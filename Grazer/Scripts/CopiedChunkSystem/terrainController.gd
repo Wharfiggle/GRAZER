@@ -7,8 +7,6 @@ var player
 onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 onready var basicTile = preload("res://Assets/FloorTiles/basicFloorTile.tscn")
 
-
-
 export (int) var renderDistance = 3
 export (float) var tileWidth = 32.0
 var currentChunk = Vector3()
@@ -23,8 +21,9 @@ onready var activeChunks = []
 
 func _ready(): 
 	player = get_node(playerPath)
+	print("player" + str(player))
 	currentChunk = getPlayerChunk(player.transform.origin)
-	#qloadChunk()
+	loadChunk()
 
 func _process(delta):
 	#checks if player has left their current chunk and loads if they have

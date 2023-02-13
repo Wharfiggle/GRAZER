@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "tileNode",
 "language": "GDScript",
 "path": "res://Scripts/tileNode.gd"
+}, {
+"base": "Node",
+"class": "worldsave",
+"language": "GDScript",
+"path": "res://Scripts/CopiedChunkSystem/WorldSave.gd"
 } ]
 _global_script_class_icons={
-"tileNode": ""
+"tileNode": "",
+"worldsave": ""
 }
 
 [application]
@@ -23,6 +29,10 @@ _global_script_class_icons={
 config/name="Grazer"
 run/main_scene="res://Level.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+WorldSave="*res://Scripts/CopiedChunkSystem/WorldSave.gd"
 
 [display]
 

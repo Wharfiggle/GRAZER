@@ -11,10 +11,14 @@ var cow = preload("res://Assets/Cow.tscn")
 func _ready():
 	print("Test") # Replace with function body.
 
+	
+	
+
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print("frame")
+
 	if(Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_left")):
 		velocity.x = 0
 	elif(Input.is_action_pressed("ui_right")):
