@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/FloorTiles/basicFloorTile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/CopiedChunkSystem/ChunkNode.gd" type="Script" id=2]
 
 [node name="ChunkNode" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="BasicFloor" parent="." instance=ExtResource( 1 )]
 script = null

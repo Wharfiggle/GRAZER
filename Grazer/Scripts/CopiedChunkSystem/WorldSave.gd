@@ -1,7 +1,7 @@
 extends Node
 
-var loadedCoords = []
-var dataInChunk = []
+onready var loadedCoords = []
+onready var dataInChunk = []
 
 func addChunk(coords):
 	loadedCoords.append(coords)
@@ -13,3 +13,6 @@ func saveChunk(coords,data):
 func retriveData(coords):
 	var data = dataInChunk[loadedCoords.find(coords)]
 	return data
+
+func test():
+	print("test accessed")

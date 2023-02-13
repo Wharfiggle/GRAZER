@@ -1,14 +1,28 @@
 extends Spatial
+export (NodePath) var WorldSavePath = "/Level/AllTerrain/WorldSave"
+var worldSave 
+
 
 var chunkCoords = Vector3()
 var chunkData = []
 
-func start(_chunkCoords):
-	chunkCoords = _chunkCoords
+func _ready():
+	worldSave = get_node(WorldSavePath)
 	
-	if(WorldSave.loadedCoords.find(_chunkCoords) == -1):
-		WorldSave.addChunk(_chunkCoords)
-	else:
-		chunk_data = worldSave.retriveData(chunkCoords)
-		modulate = chunkData[0]
 
+func start(_chunkCoords):
+	print(WorldSavePath)
+	print("t:" + str(worldSave))
+	
+	chunkCoords = _chunkCoords
+	print("_chunkCoords is " + str(_chunkCoords))
+	print(worldSave.loadedCoords)
+	if(worldSave.loadedCoords.find(_chunkCoords) == -1):
+		worldSave.addChunk(_chunkCoords)
+	else:
+		chunkData = worldSave.retriveData(chunkCoords)
+		#modulate = chunkData[0]
+
+func save():
+	worldSave.saveChunk(chunkCoords, chunkData)
+	queue_free()

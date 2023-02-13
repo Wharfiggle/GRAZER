@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Cactus/10436_Cactus_v1_max2010_it2.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Assets/Cactus/cactusSceneNoBase.tscn" type="PackedScene" id=2]
@@ -11,7 +11,8 @@
 [ext_resource path="res://Assets/FloorTiles/basicFloorTile.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/PixelCameraFollow.gd" type="Script" id=10]
 [ext_resource path="res://Pallette.gdshader" type="Shader" id=11]
-[ext_resource path="res://Cow.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Cow.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/WorldSave.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CanvasItemMaterial" id=14]
 
@@ -149,3 +150,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -16 )
 
 [node name="OriginFloorTile4" parent="AllTerrain" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -16 )
+
+[node name="WorldSave" parent="AllTerrain" instance=ExtResource( 13 )]

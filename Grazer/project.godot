@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "tileNode",
 "language": "GDScript",
-"path": "res://tileNode.gd"
+"path": "res://Scripts/tileNode.gd"
 } ]
 _global_script_class_icons={
 "tileNode": ""

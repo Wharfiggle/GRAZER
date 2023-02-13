@@ -7,14 +7,16 @@ var player
 onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 onready var basicTile = preload("res://Assets/FloorTiles/basicFloorTile.tscn")
 
+
+
 export (int) var renderDistance = 3
-export (float) var tileWidth = 32
+export (float) var tileWidth = 32.0
 var currentChunk = Vector3()
 var previousChunk = Vector3()
 var chunkLoaded = false
 
 export (bool) var circumnavigation = false
-export (float) var revolution_distance = 8
+export (float) var revolution_distance = 8.0
 
 onready var activeCoord = []
 onready var activeChunks = []
@@ -22,7 +24,7 @@ onready var activeChunks = []
 func _ready(): 
 	player = get_node(playerPath)
 	currentChunk = getPlayerChunk(player.transform.origin)
-	#loadChunk()
+	#qloadChunk()
 
 func _process(delta):
 	#checks if player has left their current chunk and loads if they have
@@ -46,7 +48,7 @@ func getPlayerChunk(pos):
 		chunkPos.z -= 1
 	return chunkPos
 
-func load_chunk():
+func loadChunk():
 	var renderBounds = (float(renderDistance)*2.0)+1.0
 	var loadingCoord = []
 	#if x = 0, then x+1 = 1
@@ -67,7 +69,7 @@ func load_chunk():
 			#this if statement makes sure that only the coords that are not already active are loaded
 			if activeCoord.find(chunkCoords) == -1:
 				var chunk = chunkNode.instance()
-				chunk.position = chunkCoords * tileWidth
+				chunk.transform.origin = chunkCoords * tileWidth
 				activeChunks.append(chunk)
 				activeCoord.append(chunkCoords)
 				chunk.start(chunkKey)
@@ -87,7 +89,7 @@ func load_chunk():
 	
 	chunkLoaded = true
 
-func _get_chunk_key(coords : Vector2):
+func _get_chunk_key(coords : Vector3):
 	var key = coords
 	if !circumnavigation:
 		return key
