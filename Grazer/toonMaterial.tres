@@ -1,0 +1,8 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+params_diffuse_mode = 4
+params_specular_mode = 3
+metallic = 0.5
+metallic_specular = 0.0
+roughness = 0.0

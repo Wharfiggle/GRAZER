@@ -22,7 +22,7 @@ func _process(delta):
 		velocity.x = -SPEED
 	else:
 		velocity.x = lerp(velocity.x, 0, 0.1)
-
+	
 	if(Input.is_action_pressed("ui_down") and 
 	Input.is_action_pressed("ui_up")):
 		velocity.z = 0
