@@ -51,7 +51,7 @@ margin_bottom = 14.0001
 text = "FPS: "
 script = ExtResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="PostProcessing" type="Sprite" parent="."]
 material = SubResource( 13 )
 position = Vector2( 0, 720 )
 scale = Vector2( 1.42222, -0.800333 )
@@ -69,9 +69,6 @@ targetNodePath = NodePath("../Ball/CamFollow")
 [node name="Cow" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 5 )
 script = ExtResource( 12 )
-targetNodePath = NodePath("../Ball/CowFollow")
-speed = 100.0
-lookSpeed = 3.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Cow"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )

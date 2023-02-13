@@ -5,6 +5,7 @@ var velocity = Vector3(0,0,0)
 const GRAVITY = 30
 const SPEED = 10
 const JUMP = 15
+var cow = preload("res://Assets/Cow.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,6 +36,10 @@ func _process(delta):
 
 	if(transform.origin.y < -20.0):
 		transform.origin = Vector3(0,6,0)
+
+	if(Input.is_action_just_pressed("debug1")):
+		var instance = cow.instance()
+		get_parent().add_child(instance)
 
 func _physics_process(delta):
 	velocity.y -= GRAVITY * delta
