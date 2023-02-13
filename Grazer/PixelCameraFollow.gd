@@ -24,5 +24,5 @@ func _process(delta):
 		fmod(self.translation.x * screenWidth / 42.0, 1) * 42.0 / screenWidth,
 		fmod(self.translation.y * screenWidth / 42.0, 1) * 42.0 / screenWidth,
 		fmod(self.translation.z * screenWidth / 42.0, 1) * 42.0 / screenWidth)
-	print(self.translation)
+	#print(self.translation)
 	#self.translation = followTarget.global_translation + camOffset
