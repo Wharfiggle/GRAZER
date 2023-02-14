@@ -10,7 +10,7 @@
 [ext_resource path="res://Scripts/CopiedChunkSystem/terrainController.gd" type="Script" id=8]
 [ext_resource path="res://Assets/FloorTiles/basicFloorTile.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/PixelCameraFollow.gd" type="Script" id=10]
-[ext_resource path="res://Pallette.gdshader" type="Shader" id=11]
+[ext_resource path="res://Scripts/Pallette.gdshader" type="Shader" id=11]
 [ext_resource path="res://Scripts/Cow.gd" type="Script" id=12]
 
 [sub_resource type="CanvasItemMaterial" id=14]

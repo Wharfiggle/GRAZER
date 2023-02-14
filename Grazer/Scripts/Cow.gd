@@ -25,6 +25,9 @@ func _process(delta):
 	if(sqrt(pow(targetVector.x, 2) + pow(targetVector.y, 2)) > followDistance):
 		velocity.x = -sin(rotation.y) * speed
 		velocity.z = -cos(rotation.y) * speed
+	else:
+		velocity.x = 0
+		velocity.z = 0
 	velocity.y -= 30 * delta
 	if(is_on_floor()):
 		velocity.y = -0.1
