@@ -1,8 +1,5 @@
 extends Spatial
 
-
-
-
 var chunkCoords = Vector3()
 var chunkData = []
 
