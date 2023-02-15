@@ -1,8 +1,8 @@
 extends Camera
 
 # Declare member variables here.
-export (int) var screenWidth = 640
-export (int) var screenHeight = 360
+export (float) var screenWidth = 640
+export (float) var unitWidth = 42
 export (float) var lerpSpeed = 3
 export (bool) var incrementalCamera = true
 export (NodePath) var targetNodePath
@@ -13,6 +13,8 @@ var pos
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	followTarget = get_node(targetNodePath)
+	if(followTarget == null):
+		followTarget = get_parent()
 	camOffset = self.translation
 	pos = self.translation
 
@@ -23,8 +25,8 @@ func _process(delta):
 	if(incrementalCamera):
 		self.translation -= Vector3(
 		#42 units accross the screen horizontally with camera size 30
-			fmod(self.translation.x * screenWidth / 42.0, 1) * 42.0 / screenWidth,
-			fmod(self.translation.y * screenWidth / 42.0, 1) * 42.0 / screenWidth,
-			fmod(self.translation.z * screenWidth / 42.0, 1) * 42.0 / screenWidth)
+			fmod(self.translation.x * screenWidth / unitWidth, 1) * unitWidth / screenWidth,
+			fmod(self.translation.y * screenWidth / unitWidth, 1) * unitWidth / screenWidth,
+			fmod(self.translation.z * screenWidth / unitWidth, 1) * unitWidth / screenWidth)
 	#print(self.translation)
 	#self.translation = followTarget.global_translation + camOffset
