@@ -21,7 +21,6 @@ onready var activeChunks = []
 
 func _ready(): 
 	player = get_node(playerPath)
-	print("player" + str(player))
 	currentChunk = getPlayerChunk(player.transform.origin)
 	loadChunk()
 
@@ -30,8 +29,7 @@ func _process(delta):
 	currentChunk = getPlayerChunk(player.transform.origin)
 	if(currentChunk != previousChunk):
 		if(!chunkLoaded):
-			print("loading chunks")
-			#loadChunk()
+			loadChunk()
 	else:
 		chunkLoaded = false;
 	previousChunk = currentChunk
@@ -40,6 +38,7 @@ func _process(delta):
 func getPlayerChunk(pos):
 	var chunkPos = Vector3()
 	chunkPos.x = int(pos.x / tileWidth)
+	chunkPos.y = int(0)
 	chunkPos.z = int(pos.z / tileWidth)
 	if(pos.x < 0):
 		chunkPos.x -= 1
@@ -84,12 +83,13 @@ func loadChunk():
 		var index = activeCoord.find(x)
 		activeChunks[index].save()
 		activeChunks.remove(index)
-		activeChunks.remove(index)
+		activeCoord.remove(index)
 	
 	chunkLoaded = true
 
 func _get_chunk_key(coords : Vector3):
 	var key = coords
+	key.y = 0
 	if !circumnavigation:
 		return key
 	key.x = wrapf(coords.x, -revolution_distance, revolution_distance+1)
