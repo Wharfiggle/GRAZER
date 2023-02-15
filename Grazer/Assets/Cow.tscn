@@ -2,7 +2,6 @@
 
 [ext_resource path="res://Scripts/Cow.gd" type="Script" id=1]
 
-
 [sub_resource type="CylinderShape" id=17]
 
 [sub_resource type="CylinderMesh" id=15]
@@ -13,7 +12,6 @@ albedo_color = Color( 0.054902, 1, 0, 1 )
 [node name="Cow" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 5 )
 script = ExtResource( 1 )
-targetNodePath = NodePath("../Ball/CowFollow")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )

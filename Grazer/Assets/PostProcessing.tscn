@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Cactus/empress of bostonia.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Pallette.gdshader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = ExtResource( 2 )
+shader_param/color_1 = Plane( 0.88, 0.98, 0.89, 1 )
+shader_param/color_2 = Plane( 0.2, 0.89, 0.35, 1 )
+shader_param/color_3 = Plane( 0.19, 0.66, 0.37, 1 )
+shader_param/color_4 = Plane( 0.07, 0.41, 0.21, 1 )
+shader_param/color_5 = Plane( 0.26, 0.08, 0.17, 1 )
+shader_param/color_6 = Plane( 0.13, 0.05, 0.13, 1 )
+shader_param/color_7 = Plane( 0.99, 0.71, 0.01, 1 )
+shader_param/color_8 = Plane( 0.74, 0.24, 0.15, 1 )
+shader_param/color_9 = Plane( 0.47, 0.11, 0.16, 1 )
+shader_param/color_10 = Plane( 0.19, 0.66, 0.37, 1 )
+shader_param/color_11 = Plane( 0.19, 0.66, 0.37, 1 )
+
+[node name="PostProcessing" type="Sprite"]
+material = SubResource( 13 )
+position = Vector2( 0, 720 )
+scale = Vector2( 1.42222, -0.800333 )
+z_index = -1
+texture = ExtResource( 1 )
+centered = false
