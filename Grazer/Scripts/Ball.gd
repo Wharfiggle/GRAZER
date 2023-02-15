@@ -8,9 +8,7 @@ const JUMP = 15
 var cow = preload("res://Assets/Cow.tscn")
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	print("Test") # Replace with function body.
-
+#func _ready():
 	
 	
 
@@ -18,26 +16,36 @@ func _ready():
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print("frame")
-
+	var toAdd = Vector3()
 	if(Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_left")):
-		velocity.x = 0
+		toAdd.x += 0
+		toAdd.z += 0
 	elif(Input.is_action_pressed("ui_right")):
-		velocity.x = SPEED
+		toAdd.x += 1
+		toAdd.z += -1
 	elif(Input.is_action_pressed("ui_left")):
-		velocity.x = -SPEED
-	else:
-		velocity.x = lerp(velocity.x, 0, 0.1)
+		toAdd.x += -1
+		toAdd.z += 1
 	
 	if(Input.is_action_pressed("ui_down") and 
 	Input.is_action_pressed("ui_up")):
-		velocity.z = 0
+		toAdd.x += 0
+		toAdd.z += 0
 	elif(Input.is_action_pressed("ui_down")):
-		velocity.z = SPEED
+		toAdd.x += 1
+		toAdd.z += 1
 	elif(Input.is_action_pressed("ui_up")):
-		velocity.z = -SPEED
-	else:
+		toAdd.x += -1
+		toAdd.z += -1
+	
+	toAdd = toAdd.normalized() * SPEED
+	if(toAdd.x == 0 and toAdd.z == 0):
+		velocity.x = lerp(velocity.x,0,0.1)
 		velocity.z = lerp(velocity.z,0,0.1)
-
+	else:
+		velocity.x = toAdd.x
+		velocity.z = toAdd.z
+	
 	if(transform.origin.y < -20.0):
 		transform.origin = Vector3(0,6,0)
 

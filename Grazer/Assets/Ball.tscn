@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Ball.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/Cowboy_V1.fbx" type="PackedScene" id=2]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="SphereShape" id=1]
 
 [node name="KinematicBody" type="KinematicBody"]
 script = ExtResource( 1 )
