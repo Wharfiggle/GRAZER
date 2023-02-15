@@ -51,6 +51,7 @@ func _process(delta):
 
 	if(Input.is_action_just_pressed("debug1")):
 		var instance = cow.instance()
+		instance.transform.origin = Vector3(0,10,0)
 		get_parent().add_child(instance)
 
 func _physics_process(delta):
