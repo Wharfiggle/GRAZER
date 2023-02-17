@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/FloorTiles/basicFloorTile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Camera.tscn" type="PackedScene" id=4]
+
+[sub_resource type="SphereShape" id=1]
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="Skin" id=3]
+
+[node name="bullet" type="Spatial"]
+
+[node name="StaticBody" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.312, 0, -30.288 )
+
+[node name="StaticBody2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.395, 0, -41.286 )
+
+[node name="StaticBody3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.644, 0, -9.628 )
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.825, 4, -32.196 )
+
+[node name="Position3D" type="Position3D" parent="Ball"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+
+[node name="Camera" parent="." instance=ExtResource( 4 )]
+targetNodePath = NodePath("../Ball")
+
+[node name="StaticBody4" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.341, 0, -8.455 )
+
+[node name="Bullet" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.00559, 0 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Bullet"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Bullet"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -1 )
+mesh = SubResource( 2 )
+skin = SubResource( 3 )

@@ -1,6 +1,7 @@
 extends KinematicBody
 
 # Declare member variables here. Examples:
+export (PackedScene) var Bullet
 var velocity = Vector3(0,0,0)
 const GRAVITY = 30
 const SPEED = 10
@@ -65,4 +66,11 @@ func _physics_process(delta):
 		velocity.y = -0.1
 
 	move_and_slide(velocity, Vector3.UP)
+	
+	if Input.is_action_just_pressed("shoot"):
+			var b =Bullet.instance()
+
+
+
+	
 
