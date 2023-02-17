@@ -5,7 +5,8 @@ var velocity = Vector3(0,0,0)
 const GRAVITY = 30
 const SPEED = 10
 const JUMP = 15
-var cow = preload("res://Assets/Cow.tscn")
+var cow = preload("res://Prefabs/Cow.tscn")
+export (NodePath) var cowCounter = "/root/Level/Cow Counter"
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -53,6 +54,7 @@ func _process(delta):
 		var instance = cow.instance()
 		instance.transform.origin = Vector3(0,10,0)
 		get_parent().add_child(instance)
+		get_node(cowCounter).cows += 1
 
 func _physics_process(delta):
 	velocity.y -= GRAVITY * delta

@@ -1,6 +1,6 @@
 extends KinematicBody
 
-export (NodePath) var targetNodePath = "../Ball"
+export (NodePath) var targetNodePath = "/root/Level/Ball"
 export (float) var speed = 8
 export (float) var lookSpeed = 3
 export (float) var followDistance = 5
@@ -14,7 +14,7 @@ func _ready():
 		print(targetNodePath)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if(target != null):
 		var targetVector = Vector2(
 			translation.x - target.global_translation.x,

@@ -3,8 +3,7 @@
 [ext_resource path="res://Scripts/PixelCameraFollow.gd" type="Script" id=1]
 
 [node name="Camera" type="Camera"]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 35, 20 )
+transform = Transform( 0.707107, -0.541675, 0.454519, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.454519, 15, 22, 15 )
 projection = 1
 size = 30.0
 script = ExtResource( 1 )
-targetNodePath = NodePath("../Ball/CamFollow")

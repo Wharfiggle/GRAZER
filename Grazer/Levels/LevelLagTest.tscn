@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/FPSCounter.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Cow Counter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/DirectionalLight.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/PostProcessing.tscn" type="PackedScene" id=6]
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 15, 0.05, 15 )
+
+[sub_resource type="CubeMesh" id=16]
+size = Vector3( 30, 0.1, 30 )
+
+[sub_resource type="Skin" id=17]
+
+[node name="Level" type="Spatial"]
+
+[node name="FPS Counter" type="Label" parent="."]
+margin_top = 0.00012207
+margin_right = 40.0
+margin_bottom = 14.0001
+text = "FPS: "
+script = ExtResource( 1 )
+
+[node name="Cow Counter" parent="." instance=ExtResource( 3 )]
+
+[node name="PostProcessing" parent="." instance=ExtResource( 6 )]
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+
+[node name="Camera" parent="." instance=ExtResource( 4 )]
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 5 )]
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 16 )
+skin = SubResource( 17 )

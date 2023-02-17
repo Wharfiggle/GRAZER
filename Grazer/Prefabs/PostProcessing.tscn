@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Cactus/empress of bostonia.png" type="Texture" id=1]
+[ext_resource path="res://empress of bostonia.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Pallette.gdshader" type="Shader" id=2]
 
 [sub_resource type="ShaderMaterial" id=13]
@@ -16,6 +16,22 @@ shader_param/color_8 = Plane( 0.74, 0.24, 0.15, 1 )
 shader_param/color_9 = Plane( 0.47, 0.11, 0.16, 1 )
 shader_param/color_10 = Plane( 0.19, 0.66, 0.37, 1 )
 shader_param/color_11 = Plane( 0.19, 0.66, 0.37, 1 )
+shader_param/color_12 = Plane( 0.44, 0.47, 0.19, 1 )
+shader_param/color_13 = Plane( 0.32, 0.32, 0.21, 1 )
+shader_param/color_14 = Plane( 0.2, 0.2, 0.18, 1 )
+shader_param/color_15 = Plane( 0.15, 0.15, 0.18, 1 )
+shader_param/color_16 = Plane( 0.55, 0.13, 0.09, 1 )
+shader_param/color_17 = Plane( 0.49, 0.09, 0.09, 1 )
+shader_param/color_18 = Plane( 0.42, 0.07, 0.09, 1 )
+shader_param/color_19 = Plane( 0.31, 0.04, 0.09, 1 )
+shader_param/color_20 = Plane( 0.17, 0.03, 0.11, 1 )
+shader_param/color_21 = Plane( 0.09, 0.02, 0.07, 1 )
+shader_param/color_22 = Plane( 0.53, 0.3, 0.11, 1 )
+shader_param/color_23 = Plane( 0.38, 0.24, 0.08, 1 )
+shader_param/color_24 = Plane( 0.29, 0.18, 0.11, 1 )
+shader_param/color_25 = Plane( 0.21, 0.13, 0.13, 1 )
+shader_param/color_26 = Plane( 0.13, 0.08, 0.11, 1 )
+shader_param/color_27 = Plane( 0.1, 0.06, 0.11, 1 )
 
 [node name="PostProcessing" type="Sprite"]
 material = SubResource( 13 )
