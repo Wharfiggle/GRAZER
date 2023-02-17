@@ -1,9 +1,9 @@
 extends Camera
 
 # Declare member variables here.
-export (float) var screenWidth = 640
-export (float) var unitWidth = 42
-export (float) var lerpSpeed = 3
+export (float) var screenWidth = 640.0
+export (float) var unitWidth = 42.0
+export (float) var lerpSpeed = 3.0
 export (bool) var incrementalCamera = true
 export (NodePath) var targetNodePath
 var followTarget
