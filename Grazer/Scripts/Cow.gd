@@ -1,9 +1,9 @@
 extends KinematicBody
 
-export (NodePath) var targetNodePath = "/root/Level/Ball"
-export (float) var speed = 8
-export (float) var lookSpeed = 3
-export (float) var followDistance = 5
+export (NodePath) var targetNodePath = NodePath("/root/Level/Ball")
+export (float) var speed = 8.0
+export (float) var lookSpeed = 3.0
+export (float) var followDistance = 5.0
 var target
 var velocity = Vector3(0, 0, 0)
 
