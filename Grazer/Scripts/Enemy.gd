@@ -1,6 +1,6 @@
 extends KinematicBody
 
-export (NodePath) var targetNodePath = "../Ball/EnemyCircle"
+export (NodePath) var targetNodePath = "../Ball"
 export (float) var circleSpeed = 3
 export (float) var lookSpeed = 1
 export (float) var followDistance = 10

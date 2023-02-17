@@ -14,7 +14,6 @@ export (NodePath) var cowCounter = "/root/Level/Cow Counter"
 	
 	
 
-
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print("frame")
@@ -58,8 +57,6 @@ func _process(delta):
 		instance.add_to_group("herd")
 		get_parent().add_child(instance)
 		get_node(cowCounter).cows += 1
-		findHerdCenter()
-	
 	
 
 func _physics_process(delta):

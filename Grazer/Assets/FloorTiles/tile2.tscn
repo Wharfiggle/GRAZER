@@ -14,6 +14,9 @@ albedo_color = Color( 0.992157, 1, 0, 1 )
 [node name="StaticBody" type="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16 )
 
+[node name="cactusScene4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7269, 0.0499992, 9.9059 )
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
@@ -22,4 +25,10 @@ mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="cactusScene" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102626, -0.218258, 0.0174809 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.40833, -0.218258, 0.0174809 )
+
+[node name="cactusScene2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -1.24644, 0.0499992, -9.07148 )
+
+[node name="cactusScene3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 12.1651, 0.0500002, -1.68764 )

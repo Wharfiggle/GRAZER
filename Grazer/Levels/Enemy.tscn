@@ -88,7 +88,6 @@ transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0
 [node name="Enemy" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5322, 0 )
 script = ExtResource( 13 )
-targetNodePath = NodePath("../Ball")
 
 [node name="MeshInstance" type="MeshInstance" parent="Enemy"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
