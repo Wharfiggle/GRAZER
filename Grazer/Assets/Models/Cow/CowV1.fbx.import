@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Cowboy_V2.fbx-7caa7d4efff092133178f01b03c413e8.scn"
+path="res://.import/CowV1.fbx-2d0c2f40dd9522ba93d3f12d6eabe143.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Cowboy_V2.fbx"
-dest_files=[ "res://.import/Cowboy_V2.fbx-7caa7d4efff092133178f01b03c413e8.scn" ]
+source_file="res://Assets/Models/Cow/CowV1.fbx"
+dest_files=[ "res://.import/CowV1.fbx-2d0c2f40dd9522ba93d3f12d6eabe143.scn" ]
 
 [params]
 

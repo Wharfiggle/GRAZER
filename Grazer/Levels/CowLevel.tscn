@@ -46,14 +46,12 @@ visible = false
 
 [node name="DirectionalLight" parent="." instance=ExtResource( 3 )]
 
-[node name="sandstone" parent="." instance=ExtResource( 8 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -6, 0, 4 )
-
 [node name="Ball" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 15, 22, 15 )
+transform = Transform( 0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 20, 24, 20 )
+size = 30.0
 targetNodePath = NodePath("../Ball")
 
 [node name="Floor" type="StaticBody" parent="."]
@@ -76,6 +74,15 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Wall"]
+shape = SubResource( 2 )
+
+[node name="Sandstone" type="StaticBody" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -10, -0.5, 10 )
+
+[node name="sandstone" parent="Sandstone" instance=ExtResource( 8 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="Sandstone"]
+transform = Transform( 1.75, 0, 0, 0, 2, 0, 0, 0, 3, 0, 2, -1.25 )
 shape = SubResource( 2 )
 
 [node name="Wall2" type="StaticBody" parent="."]
