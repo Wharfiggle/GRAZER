@@ -22,4 +22,10 @@ mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="cactusScene" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102626, -0.218258, 0.0174809 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.19015, -0.218258, 0.0174809 )
+
+[node name="cactusScene2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.69554, 0.0499992, 7.84324 )
+
+[node name="cactusScene3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1651, 0.0500002, -1.68764 )
