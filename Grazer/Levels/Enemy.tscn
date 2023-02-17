@@ -1,0 +1,151 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/Cactus/cactusSceneNoBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/PixelCameraFollow.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/FPSCounter.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/CopiedChunkSystem/terrainController.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Cactus/10436_Cactus_v1_max2010_it2.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://Assets/Cactus/cactusSceneColor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Cactus/cactusSceneGreenTest.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/FloorTiles/basicFloorTile.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=9]
+[ext_resource path="res://empress of bostonia.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/Pallette.gdshader" type="Shader" id=11]
+[ext_resource path="res://Prefabs/Cow Counter.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=13]
+
+[sub_resource type="CanvasItemMaterial" id=14]
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = ExtResource( 11 )
+shader_param/color_1 = Plane( 0.88, 0.98, 0.89, 1 )
+shader_param/color_2 = Plane( 0.2, 0.89, 0.35, 1 )
+shader_param/color_3 = Plane( 0.19, 0.66, 0.37, 1 )
+shader_param/color_4 = Plane( 0.07, 0.41, 0.21, 1 )
+shader_param/color_5 = Plane( 0.26, 0.08, 0.17, 1 )
+shader_param/color_6 = Plane( 0.13, 0.05, 0.13, 1 )
+shader_param/color_7 = Plane( 0.99, 0.71, 0.01, 1 )
+shader_param/color_8 = Plane( 0.74, 0.24, 0.15, 1 )
+shader_param/color_9 = Plane( 0.47, 0.11, 0.16, 1 )
+shader_param/color_10 = Plane( 0.19, 0.66, 0.37, 1 )
+shader_param/color_11 = Plane( 0.19, 0.66, 0.37, 1 )
+shader_param/color_12 = Plane( 0.44, 0.47, 0.19, 1 )
+shader_param/color_13 = Plane( 0.32, 0.32, 0.21, 1 )
+shader_param/color_14 = Plane( 0.2, 0.2, 0.18, 1 )
+shader_param/color_15 = Plane( 0.15, 0.15, 0.18, 1 )
+shader_param/color_16 = Plane( 0.55, 0.13, 0.09, 1 )
+shader_param/color_17 = Plane( 0.49, 0.09, 0.09, 1 )
+shader_param/color_18 = Plane( 0.42, 0.07, 0.09, 1 )
+shader_param/color_19 = Plane( 0.31, 0.04, 0.09, 1 )
+shader_param/color_20 = Plane( 0.17, 0.03, 0.11, 1 )
+shader_param/color_21 = Plane( 0.09, 0.02, 0.07, 1 )
+shader_param/color_22 = Plane( 0.53, 0.3, 0.11, 1 )
+shader_param/color_23 = Plane( 0.38, 0.24, 0.08, 1 )
+shader_param/color_24 = Plane( 0.29, 0.18, 0.11, 1 )
+shader_param/color_25 = Plane( 0.21, 0.13, 0.13, 1 )
+shader_param/color_26 = Plane( 0.13, 0.08, 0.11, 1 )
+shader_param/color_27 = Plane( 0.1, 0.06, 0.11, 1 )
+
+[sub_resource type="CapsuleMesh" id=15]
+
+[sub_resource type="CapsuleShape" id=16]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Level" type="Spatial"]
+
+[node name="FPS Counter" type="Label" parent="."]
+material = SubResource( 14 )
+margin_top = 0.00012207
+margin_right = 40.0
+margin_bottom = 14.0001
+text = "FPS: "
+script = ExtResource( 3 )
+
+[node name="Cow Counter" parent="." instance=ExtResource( 12 )]
+
+[node name="PostProcessing" type="Sprite" parent="."]
+material = SubResource( 13 )
+position = Vector2( 0, 720 )
+scale = Vector2( 1.42222, -0.800333 )
+z_index = -1
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.707107, -0.541675, 0.454519, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.454519, 15, 22, 15 )
+projection = 1
+current = true
+size = 30.0
+script = ExtResource( 2 )
+targetNodePath = NodePath("../Ball")
+
+[node name="Ball" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 5, 0 )
+
+[node name="Enemy" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5322, 0 )
+script = ExtResource( 13 )
+targetNodePath = NodePath("../Ball")
+
+[node name="MeshInstance" type="MeshInstance" parent="Enemy"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Enemy"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 16 )
+
+[node name="Box" type="RigidBody" parent="."]
+transform = Transform( 0.887019, 0.412126, -0.208207, -0.461733, 0.791719, -0.399978, 0, 0.450924, 0.892562, 0, 128.291, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Box"]
+mesh = SubResource( 2 )
+
+[node name="Box2" type="RigidBody" parent="."]
+transform = Transform( 0.331454, -0.829889, 0.4488, -0.449242, 0.279478, 0.848571, -0.82965, -0.482882, -0.280187, 0, 134.133, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Box2"]
+mesh = SubResource( 2 )
+
+[node name="Box3" type="RigidBody" parent="."]
+transform = Transform( 0.996828, -0.0342426, -0.0718482, 0.0793445, 0.498524, 0.863237, 0.0062587, -0.866199, 0.49966, 0, 142.557, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box3"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Box3"]
+mesh = SubResource( 2 )
+
+[node name="Cactus" type="MeshInstance" parent="."]
+transform = Transform( 0.0170801, -0.0104053, 1.24082e-10, 0, 2.38498e-10, 0.02, -0.0104053, -0.0170801, 2.03678e-10, -3.99982, 0, 6.69969 )
+mesh = ExtResource( 5 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1.10681e-07, 0.766044, 0.642788, -5.61943e-08, -0.642788, 0.766044, 1, -1.20908e-07, -2.80971e-08, 0, 0, 0 )
+light_color = Color( 1, 0.784314, 0.588235, 1 )
+light_bake_mode = 2
+shadow_enabled = true
+
+[node name="cactusScene3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -5.30052, -0.420078, -0.411954 )
+
+[node name="cactusScene2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.21648, -0.311238, -0.182909 )
+
+[node name="cactusScene" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729 )
+
+[node name="AllTerrain" type="Spatial" parent="."]
+script = ExtResource( 4 )
+
+[node name="StartPlatform" parent="AllTerrain" instance=ExtResource( 8 )]
+transform = Transform( 0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0, 2.45393, 0 )
