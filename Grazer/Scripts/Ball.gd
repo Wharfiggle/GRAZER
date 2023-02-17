@@ -52,10 +52,15 @@ func _process(delta):
 		transform.origin = Vector3(0,6,0)
 
 	if(Input.is_action_just_pressed("debug1")):
+		findHerdCenter()
 		var instance = cow.instance()
 		instance.transform.origin = Vector3(0,10,0)
+		instance.add_to_group("herd")
 		get_parent().add_child(instance)
 		get_node(cowCounter).cows += 1
+		findHerdCenter()
+	
+	
 
 func _physics_process(delta):
 	velocity.y -= GRAVITY * delta
@@ -70,7 +75,14 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("shoot"):
 			var b =Bullet.instance()
 
-
-
-	
-
+func findHerdCenter() -> Vector3:
+	var herd = get_tree().get_nodes_in_group("herd")
+	var loc = Vector3(0,0,0)
+	var numCows = 0
+	for x in herd:
+		numCows += 1
+		loc += x.transform.origin
+	loc /= numCows
+	print("numCows: " + str(numCows))
+	print(str(loc))
+	return loc
