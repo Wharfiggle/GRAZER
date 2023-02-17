@@ -1,7 +1,8 @@
 extends KinematicBody
 
 # Declare member variables here. Examples:
-export (PackedScene) var Bullet
+#export (PackedScene) var Bullet
+var Bullet = preload("res://Prefabs/Bullet.tscn")
 var velocity = Vector3(0,0,0)
 const GRAVITY = 30
 const SPEED = 10
@@ -68,7 +69,11 @@ func _physics_process(delta):
 	move_and_slide(velocity, Vector3.UP)
 	
 	if Input.is_action_just_pressed("shoot"):
-			var b =Bullet.instance()
+			var b = Bullet.instance()
+			owner.add_child(b)
+			b.transform = $Position3D.global_transform
+			b.velocity = b.transform.basis.z * b.muzzle_velocity
+			print("BangBang")
 
 
 
