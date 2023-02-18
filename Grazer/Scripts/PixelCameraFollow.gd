@@ -5,7 +5,7 @@ export (float) var screenWidth = 640.0
 export (float) var unitWidth = 42.0
 export (float) var lerpSpeed = 3.0
 export (bool) var incrementalCamera = true
-export (NodePath) var targetNodePath
+export (NodePath) var targetNodePath = NodePath("/root/Level/Ball")
 var followTarget
 var camOffset
 var pos
