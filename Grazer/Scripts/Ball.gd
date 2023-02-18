@@ -3,6 +3,11 @@ extends KinematicBody
 # Declare member variables here. Examples:
 #export (PackedScene) var Bullet
 var Bullet = preload("res://Prefabs/Bullet.tscn")
+
+#export (PackedScene) var Smoke = null
+
+var Smoke = preload("res://Prefabs/Smoke.tscn")
+
 var velocity = Vector3(0,0,0)
 const GRAVITY = 30
 const SPEED = 10
@@ -76,6 +81,7 @@ func _physics_process(delta):
 			b.transform = $Position3D.global_transform
 			b.velocity = b.transform.basis.z * b.muzzle_velocity
 			print("BangBang")
+			_emit_smoke()
 
 func findHerdCenter() -> Vector3:
 	var herd = get_tree().get_nodes_in_group("herd")
@@ -88,3 +94,10 @@ func findHerdCenter() -> Vector3:
 	print("numCows: " + str(numCows))
 	print(str(loc))
 	return loc
+
+func _emit_smoke():
+	var newSmoke = Smoke.instance()
+	newSmoke.transform = $smokeSpawn.global_transform
+	
+	owner.add_child(newSmoke)
+

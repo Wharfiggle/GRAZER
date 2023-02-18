@@ -3,7 +3,7 @@ extends Area
 signal exploded
 # Declare member variables
 
-export var muzzle_velocity = 25
+export var muzzle_velocity = 35
 
 var lifespan = 10
 
