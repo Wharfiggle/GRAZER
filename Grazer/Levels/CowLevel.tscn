@@ -11,19 +11,19 @@
 
 [sub_resource type="CubeMesh" id=1]
 
-[sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.286275, 0.196078, 0.0666667, 1 )
+[sub_resource type="SpatialMaterial" id=12]
+albedo_color = Color( 0.109804, 0.113725, 0.0352941, 1 )
 
 [sub_resource type="BoxShape" id=2]
 
 [sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 0.745098, 0.301961, 0.0862745, 1 )
+albedo_color = Color( 0.745098, 0.133333, 0.0862745, 1 )
 
 [sub_resource type="SpatialMaterial" id=9]
-albedo_color = Color( 0.745098, 0.301961, 0.0862745, 1 )
+albedo_color = Color( 0.745098, 0.133333, 0.0862745, 1 )
 
 [sub_resource type="SpatialMaterial" id=10]
-albedo_color = Color( 0.745098, 0.301961, 0.0862745, 1 )
+albedo_color = Color( 0.745098, 0.133333, 0.0862745, 1 )
 
 [sub_resource type="BoxShape" id=6]
 
@@ -45,24 +45,24 @@ albedo_texture = ExtResource( 7 )
 visible = false
 
 [node name="DirectionalLight" parent="." instance=ExtResource( 3 )]
+light_energy = 0.2
 
 [node name="Ball" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 20, 24, 20 )
 targetNodePath = NodePath("../Ball")
 
-[node name="Floor" type="StaticBody" parent="."]
-transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.05, 0 )
+[node name="Floor15x15" type="StaticBody" parent="."]
+transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
+[node name="MeshInstance" type="MeshInstance" parent="Floor15x15"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 mesh = SubResource( 1 )
-material/0 = SubResource( 7 )
+material/0 = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0 )
+[node name="CollisionShape" type="CollisionShape" parent="Floor15x15"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
 [node name="Wall" type="StaticBody" parent="."]

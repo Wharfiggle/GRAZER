@@ -19,8 +19,9 @@ func _ready():
 	pos = self.translation
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	pos = lerp(pos, followTarget.global_translation, lerpSpeed * delta)
+	#pos = followTarget.global_translation
 	self.translation = pos + camOffset
 	if(incrementalCamera):
 		self.translation -= Vector3(

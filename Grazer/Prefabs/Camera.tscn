@@ -3,8 +3,9 @@
 [ext_resource path="res://Scripts/PixelCameraFollow.gd" type="Script" id=1]
 
 [node name="Camera" type="Camera"]
-transform = Transform( 0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 20, 24, 20 )
+transform = Transform( 0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 30, 36, 30 )
 projection = 1
 size = 30.0
+far = 120.0
 script = ExtResource( 1 )
 incrementalCamera = false
