@@ -2,8 +2,8 @@ extends KinematicBody
 
 export (NodePath) var targetNodePath = NodePath("/root/Level/Ball")
 export (float) var targetSpeed = 8.0
-export (float) var accelerationModifier = 0.25
-export (float) var accelerationDampening = 5.0
+export (float) var accelerationModifier = 0.1
+export (float) var accelerationDampening = 30
 export (float) var lookSpeed = 3.0
 export (float) var followDistance = 5.0
 var target
@@ -15,7 +15,7 @@ var acceleration = 0.0
 func _ready():
 	target = get_node(targetNodePath)
 	if(target == null):
-		print(targetNodePath)
+		print("Cow.gd: " + targetNodePath + " is an invalid NodePath")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -36,9 +36,9 @@ func _physics_process(delta):
 		var prevAcc = acceleration
 		acceleration = accelerationModifier * (dist - followDistance)
 		if(acceleration < 0 && speed > 0):
-			acceleration = min(acceleration * accelerationDampening, speed)
-		if(acceleration > 0 && speed < 0):
 			acceleration = max(acceleration * accelerationDampening, -speed)
+		if(acceleration > 0 && speed < 0):
+			acceleration = min(acceleration * accelerationDampening, -speed)
 		speed += acceleration
 		speed = max(min(speed, targetSpeed), -targetSpeed)
 		velocity.x = -sin(rotation.y) * speed
