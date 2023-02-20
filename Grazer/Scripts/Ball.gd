@@ -9,6 +9,9 @@ var Bullet = preload("res://Prefabs/Bullet.tscn")
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 
 var velocity = Vector3(0,0,0)
+
+var Dodge = Vector3(0,0,0)
+
 const GRAVITY = 30
 const SPEED = 10
 const JUMP = 15
@@ -67,6 +70,31 @@ func _process(delta):
 	if(Input.is_action_just_pressed("debug2")):
 		follow = !follow
 	
+	if(Input.is_action_just_pressed("dodge") and Input.is_action_pressed("ui_left")):
+		toAdd.x += -3
+		toAdd.z += 3
+	
+	if(Input.is_action_just_pressed("dodge") and Input.is_action_pressed("ui_right")):
+		toAdd.x += 3
+		toAdd.z += -3
+	
+	if(Input.is_action_just_pressed("dodge") and Input.is_action_pressed("ui_up")):
+		toAdd.x += -3
+		toAdd.z += -3
+	
+	if(Input.is_action_just_pressed("dodge") and Input.is_action_pressed("ui_down")):
+		toAdd.x += 3
+		toAdd.z += 3
+		
+	Dodge.x = toAdd.x
+	Dodge.z = toAdd.z
+	
+	
+	
+
+
+
+
 
 func _physics_process(delta):
 	velocity.y -= GRAVITY * delta
@@ -76,7 +104,7 @@ func _physics_process(delta):
 	elif(is_on_floor()):
 		velocity.y = -0.1
 
-	move_and_slide(velocity, Vector3.UP)
+	move_and_slide(velocity+Dodge, Vector3.UP)
 	
 	if Input.is_action_just_pressed("shoot"):
 			var b = Bullet.instance()
@@ -84,7 +112,7 @@ func _physics_process(delta):
 			b.transform = $Position3D.global_transform
 			b.velocity = b.transform.basis.z * b.muzzle_velocity
 			print("BangBang")
-			_emit_smoke()
+			_emit_smoke(b)
 
 func findHerdCenter() -> Vector3:
 	var herd = get_tree().get_nodes_in_group("herd")
@@ -101,9 +129,9 @@ func findHerdCenter() -> Vector3:
 	print(str(loc))
 	return loc
 
-func _emit_smoke():
+func _emit_smoke(bullet):
 	var newSmoke = Smoke.instance()
-	newSmoke.transform = $smokeSpawn.global_transform
-	
-	owner.add_child(newSmoke)
+	bullet.add_child(newSmoke)
 
+	
+	
