@@ -3,16 +3,22 @@ extends KinematicBody
 export (NodePath) var targetNodePath = NodePath("/root/Level/Ball")
 export (float) var targetSpeed = 8.0
 export (float) var accelerationModifier = 0.1
-export (float) var accelerationDampening = 30
+export (float) var accelerationDampening = 30.0
+export (float) var accDampRandOffset = 10.0
 export (float) var lookSpeed = 3.0
 export (float) var followDistance = 5.0
 var target
 var velocity = Vector3(0, 0, 0)
 var speed = 0.0
 var acceleration = 0.0
+var rng = RandomNumberGenerator.new()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng.randomize()
+	accelerationDampening = rng.randf_range(accelerationDampening - accDampRandOffset, accelerationDampening + accDampRandOffset)
+	#accelerationModifier = rng.randf_range(accelerationModifier - 0.05, accelerationDampening + 0.05)
 	target = get_node(targetNodePath)
 	if(target == null):
 		print("Cow.gd: " + targetNodePath + " is an invalid NodePath")
