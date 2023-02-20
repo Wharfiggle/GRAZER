@@ -36,6 +36,7 @@ window/size/height=720
 window/vsync/use_vsync=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+window/stretch/shrink=2.0
 
 [gui]
 
