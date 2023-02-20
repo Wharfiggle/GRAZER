@@ -9,7 +9,7 @@ export (float) var d = 0 #counter for _process
 var target
 var velocity = Vector3(0, 0, 0)
 
-var currentMode = "Idle"
+var currentMode = "idle"
 var marauderType #thief or gunman
 
 # Called when the node enters the scene tree for the first time.
@@ -18,9 +18,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#TODO call the respective path setting function depending on
-	#what mode the marauder is in currently.
-	
+
 	
 	d += delta
 	
@@ -37,16 +35,25 @@ func _process(delta):
 		velocity.y = -0.1
 	move_and_slide(velocity, Vector3.UP)
 
+#Called at set time intervals, delta is time elapsed since last call
+func _physics_process(delta):
+	#TODO call the respective path setting function depending on
+	#what mode the marauder is in currently.
+	match[currentMode]: #Essentially a switch statement
+		["idle"]:
+			[idle()]
+		["circle"]:
+			[circle()]
+		["pursuit"]:
+			[pursuit()]
+		["cowPursuit"]:
+			[cowPursuit()]
+		["flee"]:
+			[flee()]
+
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
 	print("Idle mode")
-	
-
-func pursuit():
-	#Marauder runs directly at cowboy.
-	#Once close enough,
-	#If marauderType is gunman, they attempt to shoot the cowboy. 
-	print("Pursuit mode")
 	
 
 func circle():
@@ -54,6 +61,13 @@ func circle():
 	#try to avoid the cowboy. If marauderType is gunman, it should(?) switch to pursuit
 	#when the cowboy gets close.
 	print("Circle mode")
+	
+
+func pursuit():
+	#Marauder runs directly at cowboy.
+	#Once close enough,
+	#If marauderType is gunman, they attempt to shoot the cowboy. 
+	print("Pursuit mode")
 	
 
 func cowPursuit():
