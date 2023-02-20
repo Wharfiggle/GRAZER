@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Cactus/cactusScene.fbx" type="PackedScene" id=1]
 
@@ -13,6 +13,9 @@ albedo_color = Color( 0.619608, 0.243137, 0.12549, 1 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.619608, 0.243137, 0.12549, 1 )
+
+[sub_resource type="CylinderShape" id=5]
+radius = 0.3
 
 [node name="cactusScene" instance=ExtResource( 1 )]
 
@@ -72,3 +75,10 @@ material/0 = SubResource( 3 )
 transform = Transform( 10.3677, 6.34715, 7.67125, -4.08018, 12.8108, -5.08521, -9.08221, 1.49027, 11.0415, 0.478134, -15.0247, -0.749082 )
 visible = false
 material/0 = SubResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="." index="1"]
+transform = Transform( -8.24003, -14.5795, -1.79483, 7.85288, -6.11121, 13.5892, -12.4143, 5.81142, 9.7874, -0.706954, -15.0247, 0.342265 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
+transform = Transform( -0.0290468, 0.0276821, -0.0437616, -0.0513939, -0.0215425, 0.0204858, -0.00632693, 0.0479031, 0.0345015, 0.441913, -0.391571, 0.758052 )
+shape = SubResource( 5 )
