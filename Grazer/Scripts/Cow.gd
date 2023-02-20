@@ -7,8 +7,8 @@ export (float) var accelerationDampening = 30.0
 export (float) var accDampRandOffset = 20.0
 export (float) var lookSpeed = 3.0
 export (float) var followDistance = 5.0
-export (float) var pushStrength = 1.0
-export (float) var pushDistanceThreshold = 1.0
+export (float) var pushStrength = 2.0
+export (float) var pushDistanceThreshold = 1.5
 var target
 var velocity = Vector3(0, 0, 0)
 var speed = 0.0
@@ -59,23 +59,21 @@ func _physics_process(delta):
 	
 	var herd = get_tree().get_nodes_in_group("herd")
 	var avgDirVec = Vector2(0, 0)
-	var avgDist = 0
+	var avgDist = 0.0
 	var cowNum = 0
 	for i in herd:
 		var cowDirVec = Vector2(translation.x - i.translation.x, translation.z - i.translation.z)
-		print("cowDirVec: " + str(cowDirVec))
-		var dist = -min(pushDistanceThreshold, sqrt(pow(cowDirVec.x, 2) + pow(cowDirVec.y, 2)))
-		dist += pushDistanceThreshold
-		avgDist += dist
-		if(dist > 0):
+		var dist = sqrt(pow(cowDirVec.x, 2) + pow(cowDirVec.y, 2))
+		if(dist < pushDistanceThreshold):
+			dist = -min(pushDistanceThreshold, dist) + pushDistanceThreshold
+			dist = pow(dist, 2)
+			avgDist += dist
 			cowNum += 1
-		print("dist: " + str(dist))
-		avgDirVec += cowDirVec
-	avgDirVec = avgDirVec.normalized()
+			avgDirVec += cowDirVec
 	if(cowNum != 0):
+		avgDirVec = avgDirVec.normalized()
 		avgDist /= cowNum
 	pushVel = avgDirVec * avgDist * pushStrength
-	print("pushVel: " + str(pushVel))
 	
 	velocity.y -= 30 * delta
 	if(is_on_floor()):

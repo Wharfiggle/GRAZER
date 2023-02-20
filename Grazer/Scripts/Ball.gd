@@ -14,6 +14,7 @@ var Dodge = Vector3(0,0,0)
 
 const GRAVITY = 30
 const SPEED = 10
+const DODGESPEED = 15
 const JUMP = 15
 var cow = preload("res://Prefabs/Cow.tscn")
 export (NodePath) var cowCounter = "/root/Level/Cow Counter"
@@ -62,39 +63,21 @@ func _process(delta):
 
 	if(Input.is_action_just_pressed("debug1")):
 		var instance = cow.instance()
-		instance.transform.origin = findHerdCenter()
-		instance.add_to_group("Herd")
+		instance.transform.origin = Vector3(0, 10, 0)
+		instance.add_to_group("herd")
 		get_parent().add_child(instance)
 		get_node(cowCounter).cows += 1
 		
 	if(Input.is_action_just_pressed("debug2")):
 		follow = !follow
+		var herd = get_tree().get_nodes_in_group("herd")
+		for i in herd:
+			i.follow = follow
 	
-	if(Input.is_action_just_pressed("dodge") and Input.is_action_pressed("ui_left")):
-		toAdd.x += -3
-		toAdd.z += 3
-	
-	if(Input.is_action_just_pressed("dodge") and Input.is_action_pressed("ui_right")):
-		toAdd.x += 3
-		toAdd.z += -3
-	
-	if(Input.is_action_just_pressed("dodge") and Input.is_action_pressed("ui_up")):
-		toAdd.x += -3
-		toAdd.z += -3
-	
-	if(Input.is_action_just_pressed("dodge") and Input.is_action_pressed("ui_down")):
-		toAdd.x += 3
-		toAdd.z += 3
-		
-	Dodge.x = toAdd.x
-	Dodge.z = toAdd.z
-	
-	
-	
-
-
-
-
+	if(Input.is_action_pressed("dodge")):
+		Dodge = toAdd.normalized() * DODGESPEED
+	else:
+		Dodge = Vector3(0, 0, 0)
 
 func _physics_process(delta):
 	velocity.y -= GRAVITY * delta
@@ -104,7 +87,7 @@ func _physics_process(delta):
 	elif(is_on_floor()):
 		velocity.y = -0.1
 
-	move_and_slide(velocity+Dodge, Vector3.UP)
+	move_and_slide(velocity + Dodge, Vector3.UP)
 	
 	if Input.is_action_just_pressed("shoot"):
 			var b = Bullet.instance()
