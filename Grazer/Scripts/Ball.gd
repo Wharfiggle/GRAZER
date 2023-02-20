@@ -14,6 +14,7 @@ const SPEED = 10
 const JUMP = 15
 var cow = preload("res://Prefabs/Cow.tscn")
 export (NodePath) var cowCounter = "/root/Level/Cow Counter"
+var follow = true
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -57,12 +58,14 @@ func _process(delta):
 		transform.origin = Vector3(0,6,0)
 
 	if(Input.is_action_just_pressed("debug1")):
-		findHerdCenter()
 		var instance = cow.instance()
-		instance.transform.origin = Vector3(0,10,0)
-		instance.add_to_group("herd")
+		instance.transform.origin = findHerdCenter()
+		instance.add_to_group("Herd")
 		get_parent().add_child(instance)
 		get_node(cowCounter).cows += 1
+		
+	if(Input.is_action_just_pressed("debug2")):
+		follow = !follow
 	
 
 func _physics_process(delta):
@@ -90,7 +93,10 @@ func findHerdCenter() -> Vector3:
 	for x in herd:
 		numCows += 1
 		loc += x.transform.origin
-	loc /= numCows
+	if(numCows > 0):
+		loc /= numCows
+	else:
+		loc = Vector3(0, 10, 0)
 	print("numCows: " + str(numCows))
 	print(str(loc))
 	return loc
