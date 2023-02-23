@@ -2,7 +2,7 @@ extends KinematicBody
 
 # Declare member variables here. Examples:
 #export (PackedScene) var Bullet
-var Bullet = preload("res://Prefabs/Bullet.tscn")
+var Bullet = preload("res://Prefabs/bullet.tscn")
 
 #export (PackedScene) var Smoke = null
 
@@ -13,48 +13,45 @@ var velocity = Vector3(0,0,0)
 var Dodge = Vector3(0,0,0)
 
 const GRAVITY = 30
-const SPEED = 10
-const DODGESPEED = 15
+const SPEED = 7
+const DODGESPEED = 10
 const JUMP = 15
-var cow = preload("res://Prefabs/Cow.tscn")
-export (NodePath) var cowCounter = "/root/Level/Cow Counter"
-var follow = true
+var herdPrefab = preload("res://Prefabs/Herd.tscn")
+var herd
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
-	
-	
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print("frame")
+	if(herd == null):
+		herd = herdPrefab.instance()
+		get_node(NodePath("/root/Level")).add_child(herd)
+		
 	var toAdd = Vector3()
-	if(Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_left")):
-		toAdd.x += 0
-		toAdd.z += 0
-	elif(Input.is_action_pressed("ui_right")):
-		toAdd.x += 1
-		toAdd.z += -1
-	elif(Input.is_action_pressed("ui_left")):
-		toAdd.x += -1
-		toAdd.z += 1
-	
-	if(Input.is_action_pressed("ui_down") and 
-	Input.is_action_pressed("ui_up")):
-		toAdd.x += 0
-		toAdd.z += 0
-	elif(Input.is_action_pressed("ui_down")):
-		toAdd.x += 1
-		toAdd.z += 1
-	elif(Input.is_action_pressed("ui_up")):
-		toAdd.x += -1
-		toAdd.z += -1
+	if(!(Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_left"))):	
+		if(Input.is_action_pressed("ui_right")):
+			toAdd.x += 1
+			toAdd.z += -1
+		elif(Input.is_action_pressed("ui_left")):
+			toAdd.x += -1
+			toAdd.z += 1
+	if(!(Input.is_action_pressed("ui_down") and Input.is_action_pressed("ui_up"))):
+		if(Input.is_action_pressed("ui_down")):
+			toAdd.x += 1
+			toAdd.z += 1
+		elif(Input.is_action_pressed("ui_up")):
+			toAdd.x += -1
+			toAdd.z += -1
 	
 	toAdd = toAdd.normalized() * SPEED
 	if(toAdd.x == 0 and toAdd.z == 0):
 		velocity.x = lerp(velocity.x,0,0.1)
 		velocity.z = lerp(velocity.z,0,0.1)
+		herd.canHuddle = true
 	else:
+		herd.clearHuddle()
+		herd.canHuddle = false
 		velocity.x = toAdd.x
 		velocity.z = toAdd.z
 	
@@ -62,17 +59,13 @@ func _process(delta):
 		transform.origin = Vector3(0,6,0)
 
 	if(Input.is_action_just_pressed("debug1")):
-		var instance = cow.instance()
-		instance.transform.origin = Vector3(0, 10, 0)
-		instance.add_to_group("herd")
-		get_parent().add_child(instance)
-		get_node(cowCounter).cows += 1
-		
+		if(herd != null):
+			herd.spawnCow()
+		else:
+			print("fuck there is no herd")
+	
 	if(Input.is_action_just_pressed("debug2")):
-		follow = !follow
-		var herd = get_tree().get_nodes_in_group("herd")
-		for i in herd:
-			i.follow = follow
+		herd.follow()
 	
 	if(Input.is_action_pressed("dodge")):
 		Dodge = toAdd.normalized() * DODGESPEED
@@ -98,19 +91,7 @@ func _physics_process(delta):
 			_emit_smoke(b)
 
 func findHerdCenter() -> Vector3:
-	var herd = get_tree().get_nodes_in_group("herd")
-	var loc = Vector3(0,0,0)
-	var numCows = 0
-	for x in herd:
-		numCows += 1
-		loc += x.transform.origin
-	if(numCows > 0):
-		loc /= numCows
-	else:
-		loc = Vector3(0, 10, 0)
-	print("numCows: " + str(numCows))
-	print(str(loc))
-	return loc
+	return herd.findHerdCenter()
 
 func _emit_smoke(bullet):
 	var newSmoke = Smoke.instance()

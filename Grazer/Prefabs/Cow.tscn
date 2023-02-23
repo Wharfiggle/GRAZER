@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Cow.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Models/Cow/muumuu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Models/Cow/CowV1.fbx" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
@@ -11,12 +10,8 @@ collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0.9, 0.05 )
+transform = Transform( 0.5, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0.9, 0 )
 shape = SubResource( 1 )
 
 [node name="CowV1" parent="." instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1.2, 0, 1, 0, -4.37114e-08, 0.075, 0, 0.25 )
-
-[node name="mumu" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
-visible = false
+transform = Transform( -3.93403e-08, 0, -1, 0, 1.2, 0, 0.9, 0, -4.37114e-08, 0.075, 0, 0.15 )
