@@ -9,7 +9,14 @@ export (float) var d = 0 #counter for _process
 var target
 var velocity = Vector3(0, 0, 0)
 
-var currentMode = "idle"
+
+var path = []
+var pathNode = 0
+var speed = 20
+#onready var nav = get_parent()
+onready var nav = get_node("/root/Level/Navigation")
+
+var currentMode = "pursuit"
 var marauderType #thief or gunman
 
 # Called when the node enters the scene tree for the first time.
@@ -17,23 +24,8 @@ func _ready():
 	target = get_node(targetNodePath)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+#func _process(delta):
 
-	
-	d += delta
-	
-	var targetVector = Vector2(
-		translation.x - target.global_translation.x,
-		translation.z - target.global_translation.z)
-	
-	velocity.x = sin(d * circleSpeed) * radius
-	velocity.z = cos(d * circleSpeed) * radius
-	
-	
-	velocity.y -= 30 * delta
-	if(is_on_floor()):
-		velocity.y = -0.1
-	move_and_slide(velocity, Vector3.UP)
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
@@ -50,6 +42,11 @@ func _physics_process(delta):
 			[cowPursuit()]
 		["flee"]:
 			[flee()]
+	
+	if(Input.is_action_just_pressed("debug2")):
+		moveTo(target.global_transform.origin)
+		#nav.bake_navigation_region()
+	
 
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
@@ -68,7 +65,18 @@ func pursuit():
 	#Once close enough,
 	#If marauderType is gunman, they attempt to shoot the cowboy. 
 	print("Pursuit mode")
+	target = get_node(targetNodePath)
 	
+	if(pathNode < path.size()):
+		var direction = (path[pathNode] - global_transform.origin)
+		if(direction.length() < 1):
+			pathNode += 1
+		else:
+			move_and_slide(direction.normalized() * speed, Vector3.UP)
+	
+	
+	
+
 
 func cowPursuit():
 	#Marauder runs towards closest cow and attempts to lasso when in range
@@ -82,3 +90,11 @@ func flee():
 	#If health gets too low, sever lasso and attempt to escape.
 	print("Flee mode")
 	
+
+#navigation function
+func moveTo(targetPos):
+	path = nav.get_simple_path(global_transform.origin, targetPos)
+	pathNode = 0
+
+func _on_Timer_timeout():
+	moveTo(target.global_transform.origin)

@@ -4,6 +4,8 @@ extends KinematicBody
 #export (PackedScene) var Bullet
 var Bullet = preload("res://Prefabs/bullet.tscn")
 
+onready var hitBox = $knockbox
+
 #export (PackedScene) var Smoke = null
 
 var Smoke = preload("res://Prefabs/Smoke.tscn")
@@ -27,6 +29,7 @@ func _process(delta):
 	if(herd == null):
 		herd = herdPrefab.instance()
 		get_node(NodePath("/root/Level")).add_child(herd)
+		#get_node(NodePath("root/StaticBody")).add_child(herd)
 		
 	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_left"))):	
@@ -62,13 +65,15 @@ func _process(delta):
 		if(herd != null):
 			herd.spawnCow()
 		else:
-			print("fuck there is no herd")
+			print("fuck there is no herd") #yeah
 	
 	if(Input.is_action_just_pressed("debug2")):
 		herd.follow()
 	
 	if(Input.is_action_pressed("dodge")):
 		Dodge = toAdd.normalized() * DODGESPEED
+		knock()
+		
 	else:
 		Dodge = Vector3(0, 0, 0)
 
@@ -97,5 +102,10 @@ func _emit_smoke(bullet):
 	var newSmoke = Smoke.instance()
 	bullet.add_child(newSmoke)
 
+
+func knock():
+	var enemies = hitBox.get_overlapping_bodies()
 	
-	
+	for enemy in enemies:
+		if enemy.has_method("knockback"):
+			enemy.knockback()

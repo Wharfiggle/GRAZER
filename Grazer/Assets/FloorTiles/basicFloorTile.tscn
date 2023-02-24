@@ -8,7 +8,6 @@ extents = Vector3( 16, 0.05, 16 )
 [sub_resource type="NavigationMesh" id=4]
 vertices = PoolVector3Array( -8, 0.433919, -16, -16, 0.433919, -16, -16, 0.433919, -8, -16, 0.433919, 0, -0.75, 0.433919, 0, 0, 0.433919, -0.25, 0, 0.433919, -16, -8, 0.433919, -16, -16, 0.433919, -8, 16, 0.433919, -8.25, 16, 0.433919, -16, 8, 0.433919, -16, 0, 0.433919, -0.25, 0.5, 0.433919, 0, 16, 0.433919, -0.25, 16, 0.433919, -8.25, 8, 0.433919, -16, 0, 0.433919, -16, -2, -14.8161, -2, -2, -14.8161, 2, 2, -14.8161, 2, 2, -14.8161, -2, -0.75, 1.93392, -0.25, -0.75, 1.93392, 0.25, 0.25, 2.18392, 0.25, 0.25, 2.18392, -0.25, 8, 0.433919, 16, 16, 0.433919, 16, 16, 0.433919, 7.75, 0.5, 0.433919, 0, -0.25, 0.433919, 0.75, 0, 0.433919, 16, 8, 0.433919, 16, 16, 0.433919, 7.75, 16, 0.433919, -0.25, -16, 0.433919, 8, -16, 0.433919, 16, -8, 0.433919, 16, -0.25, 0.433919, 0.75, -0.75, 0.433919, 0, -16, 0.433919, 0, -16, 0.433919, 8, -8, 0.433919, 16, 0, 0.433919, 16 )
 polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 4, 3, 5 ), PoolIntArray( 5, 3, 8 ), PoolIntArray( 5, 8, 7 ), PoolIntArray( 5, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 13, 12, 14 ), PoolIntArray( 14, 12, 15 ), PoolIntArray( 15, 12, 16 ), PoolIntArray( 16, 12, 17 ), PoolIntArray( 21, 20, 18 ), PoolIntArray( 18, 20, 19 ), PoolIntArray( 25, 24, 22 ), PoolIntArray( 22, 24, 23 ), PoolIntArray( 28, 27, 26 ), PoolIntArray( 30, 29, 31 ), PoolIntArray( 31, 29, 32 ), PoolIntArray( 32, 29, 33 ), PoolIntArray( 33, 29, 34 ), PoolIntArray( 37, 36, 35 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 41, 38, 42 ), PoolIntArray( 42, 38, 43 ) ]
-agent_radius = 0.0
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 32, 0.1, 32 )
@@ -22,18 +21,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
-[node name="Navigation" type="Navigation" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102626, -0.218258, 0.0174809 )
-
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102626, 0.218258, -0.0174809 )
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 4 )
 navigation_layers = 7
 
-[node name="FloorMesh" type="MeshInstance" parent="Navigation/NavigationMeshInstance"]
+[node name="FloorMesh" type="MeshInstance" parent="NavigationMeshInstance"]
 mesh = SubResource( 2 )
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 material/0 = SubResource( 3 )
 
-[node name="cactusScene" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 2 )]
+[node name="cactusScene" parent="NavigationMeshInstance" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102626, -0.218258, 0.0174809 )
