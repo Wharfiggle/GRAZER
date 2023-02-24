@@ -1,14 +1,15 @@
 extends KinematicBody
 
-export (float) var maxSpeed = 6.0
+export (float) var maxSpeed = 9.0
 export (float) var accelerationModifier = 0.1
 export (float) var accelerationDampening = 40.0
 export (float) var accDampRandOffset = 20.0
 export (float) var lookSpeed = 3.0
-export (float) var followDistance = 5.0
+export (float) var followDistance = 3.0
 export (float) var pushStrength = 30.0
 export (float) var pushDistanceThreshold = 1.5
-export (float) var minPushPercent = 0.0 # :(
+export (float) var minPushDistance = 0.0
+export (float) var minPushPercent = 0.0
 var herd
 var velocity = Vector3(0, 0, 0)
 var speed = 0.0
@@ -57,11 +58,14 @@ func _physics_process(delta):
 				#	acceleration = min(acceleration * accelerationDampening, -speed)
 				#speed += acceleration
 				#speed = max(min(speed, maxSpeed), -maxSpeed)
-				speed = maxSpeed
-				if(dist < followDistance - maxSpeed * 0.3):
-					speed = -maxSpeed
-				elif(dist < followDistance && dist >= followDistance - maxSpeed * 0.5):
-					speed = 0
+				
+				#speed = maxSpeed
+				#if(dist < followDistance - maxSpeed * 0.3):
+				#	speed = -maxSpeed
+				#elif(dist < followDistance && dist >= followDistance - maxSpeed * 0.5):
+				#	speed = 0
+				
+				speed = max(min(dist - followDistance, 1), -1) * maxSpeed
 				velocity.x = -sin(rotation.y) * speed
 				velocity.z = -cos(rotation.y) * speed
 			else:
@@ -78,11 +82,11 @@ func _physics_process(delta):
 				var cowDirVec = Vector2(translation.x - i.translation.x, translation.z - i.translation.z)
 				var dist = sqrt(pow(cowDirVec.x, 2) + pow(cowDirVec.y, 2))
 				if(dist < pushDistanceThreshold):
-					var t = (-min(pushDistanceThreshold, dist) + pushDistanceThreshold) / pushDistanceThreshold
-					#t = pow(t, 3)
+					var t = min(max((pushDistanceThreshold + minPushDistance - dist) / pushDistanceThreshold, -1), 1)
 					#makes t go from minPushPercent to 1 instead of 0 to 1
 					if(minPushPercent > 0):
 						t = t * ( 1.0 - minPushPercent ) + minPushPercent
+					#t = pow(t, 3)
 					#dist = smoothstep(0, 1, dist)
 					numInside += 1
 					avgVec += cowDirVec.normalized() * t

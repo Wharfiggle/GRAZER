@@ -13,8 +13,8 @@ var velocity = Vector3(0,0,0)
 var Dodge = Vector3(0,0,0)
 
 const GRAVITY = 30
-const SPEED = 7
-const DODGESPEED = 10
+const SPEED = 9
+const DODGESPEED = 12
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
