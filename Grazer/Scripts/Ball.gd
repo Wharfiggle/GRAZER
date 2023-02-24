@@ -27,6 +27,7 @@ func _process(delta):
 	if(herd == null):
 		herd = herdPrefab.instance()
 		get_node(NodePath("/root/Level")).add_child(herd)
+		#get_node(NodePath("root/StaticBody")).add_child(herd)
 		
 	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_left"))):	
@@ -62,7 +63,7 @@ func _process(delta):
 		if(herd != null):
 			herd.spawnCow()
 		else:
-			print("fuck there is no herd")
+			print("fuck there is no herd") #yeah
 	
 	if(Input.is_action_just_pressed("debug2")):
 		herd.follow()
