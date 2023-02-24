@@ -13,5 +13,5 @@ script = ExtResource( 1 )
 transform = Transform( 0.5, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0.9, 0 )
 shape = SubResource( 1 )
 
-[node name="CowV1" parent="." instance=ExtResource( 3 )]
+[node name="Model" parent="." instance=ExtResource( 3 )]
 transform = Transform( -3.93403e-08, 0, -1, 0, 1.2, 0, 0.9, 0, -4.37114e-08, 0.075, 0, 0.15 )

@@ -1,21 +1,29 @@
 extends KinematicBody
 
 export (float) var maxSpeed = 9.0
-export (float) var accelerationModifier = 0.1
-export (float) var accelerationDampening = 40.0
-export (float) var accDampRandOffset = 20.0
-export (float) var lookSpeed = 3.0
+#export (float) var accelerationModifier = 0.1
+#export (float) var accelerationDampening = 40.0
+#export (float) var accDampRandOffset = 20.0
+export (float) var lookSpeed = 2.0
 export (float) var followDistance = 3.0
-export (float) var pushStrength = 30.0
-export (float) var pushDistanceThreshold = 1.5
+export (float) var pushStrength = 60.0
+export (float) var pushDistanceThreshold = 1.75
 export (float) var minPushDistance = 0.0
 export (float) var minPushPercent = 0.0
+export (int) var shuffleFrames = 40
+export (int) var shuffleFramesRandOffset = 30
+export (int) var shuffleFrameCounter = 0
+export (float) var shuffleStrength = 0.75
+export (float) var shuffleSpeed = 3.0
+onready var model = get_node(NodePath("./Model"))
+var shuffleTime = 0
 var herd
 var velocity = Vector3(0, 0, 0)
 var speed = 0.0
 var acceleration = 0.0
 var rng = RandomNumberGenerator.new()
 var follow = true
+var followingHerd = false
 var pushVel = Vector2(0, 0)
 var huddling = false
 var target
@@ -23,11 +31,13 @@ var target
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
-	accelerationDampening = rng.randf_range(accelerationDampening - accDampRandOffset, accelerationDampening + accDampRandOffset)
+	#accelerationDampening = rng.randf_range(accelerationDampening - accDampRandOffset, accelerationDampening + accDampRandOffset)
 	#accelerationModifier = rng.randf_range(accelerationModifier - 0.05, accelerationDampening + 0.05)
+	shuffleFrames = rng.randf_range(shuffleFrames - shuffleFramesRandOffset, shuffleFrames + shuffleFramesRandOffset)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	shuffleTime += delta
 	if(herd != null):
 		if(target != null):
 			var targetVector = Vector2(
@@ -41,17 +51,20 @@ func _physics_process(delta):
 					rotation.y, 
 					atan2(targetVector.x, targetVector.y), 
 					lookSpeed * delta)
-			
+			var targetDistance = followDistance
+			if(followingHerd):
+				#radius of herd
+				targetDistance = sqrt(pow(pushDistanceThreshold, 2) * herd.numCows)
 			var dist = sqrt(pow(targetVector.x, 2) + pow(targetVector.y, 2))
-			if(herd.canHuddle && dist < followDistance && huddling == false):
+			if(herd.canHuddle && dist < targetDistance && huddling == false):
 				huddling = true
 				herd.addHuddler(self)
-			#elif(dist > followDistance * 2 && huddling == true):
+			#elif(dist > targetDistance * 2 && huddling == true):
 				#huddling = false
 				#herd.removeHuddler(self)
 			if(huddling == false && follow):
 				#var prevAcc = acceleration
-				#acceleration = accelerationModifier * (dist - followDistance)
+				#acceleration = accelerationModifier * (dist - targetDistance)
 				#if(acceleration < 0 && speed > 0):
 				#	acceleration = max(acceleration * accelerationDampening, -speed)
 				#if(acceleration > 0 && speed < 0):
@@ -59,18 +72,22 @@ func _physics_process(delta):
 				#speed += acceleration
 				#speed = max(min(speed, maxSpeed), -maxSpeed)
 				
-				#speed = maxSpeed
-				#if(dist < followDistance - maxSpeed * 0.3):
-				#	speed = -maxSpeed
-				#elif(dist < followDistance && dist >= followDistance - maxSpeed * 0.5):
-				#	speed = 0
-				
-				speed = max(min(dist - followDistance, 1), -1) * maxSpeed
+				#1 meter farther than targetDistance or more: speed
+				#1 meter closer than targetDistance or more: -speed
+				#interpolates between the two for all values in between 
+				speed = max(min((dist - targetDistance) / 2, 1), -1) * maxSpeed
 				velocity.x = -sin(rotation.y) * speed
 				velocity.z = -cos(rotation.y) * speed
+				model.translation.z = lerp(model.translation.z, 0, 0.1)
 			else:
-				velocity.x = 0
-				velocity.z = 0
+				if(velocity.x != 0 || velocity.z != 0):
+					velocity.x = 0
+					velocity.z = 0
+					shuffleTime = 0
+					shuffleFrameCounter = shuffleFrames
+				if(shuffleFrameCounter > 0):
+					shuffleFrameCounter -= 1
+					model.translation.z = -sin(shuffleTime * shuffleSpeed) * shuffleStrength * (shuffleFrameCounter as float / shuffleFrames)
 		else:
 			print("Cow.gd: target is null")
 		
@@ -82,6 +99,7 @@ func _physics_process(delta):
 				var cowDirVec = Vector2(translation.x - i.translation.x, translation.z - i.translation.z)
 				var dist = sqrt(pow(cowDirVec.x, 2) + pow(cowDirVec.y, 2))
 				if(dist < pushDistanceThreshold):
+					#minPushDistance makes maximum push strength come at a distance of minPushDistance instead of 0
 					var t = min(max((pushDistanceThreshold + minPushDistance - dist) / pushDistanceThreshold, -1), 1)
 					#makes t go from minPushPercent to 1 instead of 0 to 1
 					if(minPushPercent > 0):
