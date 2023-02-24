@@ -13,8 +13,8 @@ var velocity = Vector3(0, 0, 0)
 var path = []
 var pathNode = 0
 var speed = 20
-onready var nav = get_parent()
-
+#onready var nav = get_parent()
+onready var nav = get_node("/root/Level/Navigation")
 
 var currentMode = "pursuit"
 var marauderType #thief or gunman
@@ -26,21 +26,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 
-#
-#	d += delta
-#
-#	var targetVector = Vector2(
-#		translation.x - target.global_translation.x,
-#		translation.z - target.global_translation.z)
-#
-#	velocity.x = sin(d * circleSpeed) * radius
-#	velocity.z = cos(d * circleSpeed) * radius
-#
-	#move_and_slide(Vector3(0,-1,0),Vector3.UP)
-#	velocity.y -= 30 * delta
-#	if(is_on_floor()):
-#		velocity.y = -0.1
-	#move_and_slide(velocity, Vector3.UP)
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
@@ -60,6 +45,7 @@ func _physics_process(delta):
 	
 	if(Input.is_action_just_pressed("debug2")):
 		moveTo(target.global_transform.origin)
+		#nav.bake_navigation_region()
 	
 
 func idle():
