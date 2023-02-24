@@ -25,7 +25,7 @@ var herd
 #func _ready():
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(herd == null):
 		herd = herdPrefab.instance()
 		get_node(NodePath("/root/Level")).add_child(herd)
@@ -68,7 +68,7 @@ func _process(delta):
 			print("fuck there is no herd") #yeah
 	
 	if(Input.is_action_just_pressed("debug2")):
-		herd.follow()
+		herd.toggleFollow()
 	
 	if(Input.is_action_pressed("dodge")):
 		Dodge = toAdd.normalized() * DODGESPEED

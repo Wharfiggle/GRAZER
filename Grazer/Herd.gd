@@ -24,7 +24,7 @@ func _ready():
 	if(cowCounter == null):
 		print("Herd.gd: error getting counter node")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(numHuddle == 0):
 		for i in cows:
 			i.target = getTarget()
@@ -34,7 +34,7 @@ func _physics_process(delta):
 			i.target = Vector2(player.translation.x, player.translation.z)
 			i.followingHerd = false
 
-func follow():
+func toggleFollow():
 	follow = !follow
 	for i in cows:
 		i.follow = follow

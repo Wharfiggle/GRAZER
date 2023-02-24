@@ -5,7 +5,7 @@ export (float) var maxSpeed = 9.0
 #export (float) var accelerationDampening = 40.0
 #export (float) var accDampRandOffset = 20.0
 export (float) var lookSpeed = 2.0
-export (float) var lookMoveDissonance = 0
+#export (float) var lookMoveDissonance = 0.0
 export (float) var followDistance = 3.0
 export (float) var pushStrength = 60.0
 export (float) var pushDistanceThreshold = 1.75
@@ -135,7 +135,24 @@ func _physics_process(delta):
 	#apply velocity and move cow
 	var totalVelocity = velocity + Vector3(pushVel.x, 0, pushVel.y)
 	move_and_slide(totalVelocity, Vector3.UP)
-	if(totalVelocity != Vector3.ZERO && lookMoveDissonance != 0):
-		var moveDirection = atan2(totalVelocity.x, totalVelocity.z)
-		var dissRad = lookMoveDissonance * 180.0 / PI
-		rotation.y = moveDirection + min(max(moveDirection - rotation.y, -dissRad), dissRad)
+	
+	if((totalVelocity.x > 0.01 || totalVelocity.x < -0.01 
+	|| totalVelocity.z > 0.01 || totalVelocity.z < -0.01)
+	&& !huddling):
+		var moveDirection = atan2(totalVelocity.x, totalVelocity.z) + PI
+		#print(str(model.rotation.y) + " and " + str(rotation.y))
+		model.rotation.y = lerp_angle(
+			model.rotation.y, 
+			moveDirection - rotation.y, 
+			lookSpeed * delta)
+	else:
+		model.rotation.y = lerp_angle(
+			model.rotation.y, 
+			0, 
+			lookSpeed * delta)
+	
+	#UNUSED
+	#if(totalVelocity != Vector3.ZERO && lookMoveDissonance != 0):
+	#	var moveDirection = atan2(totalVelocity.x, totalVelocity.z)
+	#	var dissRad = lookMoveDissonance * 180.0 / PI
+	#	rotation.y = moveDirection + min(max(moveDirection - rotation.y, -dissRad), dissRad)
