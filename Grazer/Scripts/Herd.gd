@@ -88,6 +88,7 @@ func addHuddler(huddler):
 	huddler.target = Vector2(player.translation.x, player.translation.z)
 	huddler.followingHerd = false
 	huddler.huddling = true
+	huddler.disableRayCasts()
 	var target = getTarget()
 	for i in cows:
 		if(i.huddling == false):
@@ -101,6 +102,7 @@ func removeHuddler(huddler):
 		huddler.target = getTarget()
 		huddler.followingHerd = followingHerd
 		huddler.huddling = false
+		huddler.enableRayCasts()
 	
 func clearHuddle():
 	numHuddle = 0
@@ -108,6 +110,7 @@ func clearHuddle():
 		i.huddling = false
 		i.target = getTarget()
 		i.followingHerd = followingHerd
+		i.enableRayCasts()
 	huddle.clear()
 
 func findHerdCenter() -> Vector3:

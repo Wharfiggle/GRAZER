@@ -1,9 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Cow.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/Cow/CowV1.fbx" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends RayCast
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [node name="Cow" type="KinematicBody"]
 collision_layer = 2
@@ -17,3 +35,16 @@ shape = SubResource( 1 )
 
 [node name="CowV1" parent="Model" instance=ExtResource( 3 )]
 transform = Transform( -3.93403e-08, 0, -1, 0, 1.2, 0, 0.9, 0, -4.37114e-08, 0.075, 0, 0.15 )
+
+[node name="RayCastMiddle" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, -1 )
+enabled = true
+
+[node name="RayCastRight" type="RayCast" parent="."]
+transform = Transform( 0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0.25, 0.9, -1 )
+enabled = true
+
+[node name="RayCastLeft" type="RayCast" parent="."]
+transform = Transform( 0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, 0.866025, -3.78552e-08, -0.25, 0.9, -1 )
+enabled = true
+script = SubResource( 2 )
