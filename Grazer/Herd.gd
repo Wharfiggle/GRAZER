@@ -18,11 +18,8 @@ var followingHerd = false
 func _ready():
 	if(player == null):
 		print("Herd.gd: error getting player node")
-		player = get_node(playerNodePath)
-		if(player == null):
-			print("Herd.gd: yup still broken")
 	if(cowCounter == null):
-		print("Herd.gd: error getting counter node")
+		print("Herd.gd: error getting cow counter node")
 
 func _physics_process(_delta):
 	if(numHuddle == 0):
@@ -44,6 +41,9 @@ func getCow(index) -> Node:
 	
 func getCows() -> Array:
 	return cows
+	
+func getNumCows() -> int:
+	return numCows
 
 func addCow(cow):
 	cows.append(cow)
@@ -87,6 +87,7 @@ func addHuddler(huddler):
 	numHuddle += 1
 	huddler.target = Vector2(player.translation.x, player.translation.z)
 	huddler.followingHerd = false
+	huddler.huddling = true
 	var target = getTarget()
 	for i in cows:
 		if(i.huddling == false):
@@ -94,10 +95,12 @@ func addHuddler(huddler):
 			i.followingHerd = followingHerd
 			
 func removeHuddler(huddler):
-	huddle.erase(huddler)
-	numHuddle -= 1
-	huddler.target = getTarget()
-	huddler.followingHerd = followingHerd
+	if(huddle.has(huddler)):
+		huddle.erase(huddler)
+		numHuddle -= 1
+		huddler.target = getTarget()
+		huddler.followingHerd = followingHerd
+		huddler.huddling = false
 	
 func clearHuddle():
 	numHuddle = 0

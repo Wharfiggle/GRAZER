@@ -19,6 +19,11 @@ onready var nav = get_node("/root/Level/Navigation")
 var currentMode = "pursuit"
 var marauderType #thief or gunman
 
+var rng = RandomNumberGenerator.new()
+onready var herd = get_node(NodePath("/root/Level/Herd"))
+var draggedCow = null
+export (float) var dragRange = 4.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target = get_node(targetNodePath)
@@ -46,7 +51,34 @@ func _physics_process(delta):
 	if(Input.is_action_just_pressed("debug2")):
 		moveTo(target.global_transform.origin)
 		#nav.bake_navigation_region()
-	
+		
+	#Basic cow dragging test
+	#drag a random cow
+	if(Input.is_action_just_pressed("debug3")):
+		if(herd == null):
+			herd = get_node(NodePath("/root/Level/Herd"))
+		if(herd.getNumCows() > 0):
+			if(draggedCow == null):
+				rng.randomize()
+				var rn = rng.randi_range(0, herd.getNumCows() - 1)
+				draggedCow = herd.getCow(rn)
+				draggedCow.startDragging(self)
+			else:
+				draggedCow.stopDragging()
+				draggedCow = null
+	#stay within dragRange of dragged cow
+	if(draggedCow != null):
+		var cowVector = Vector2(
+			draggedCow.translation.x - translation.x, 
+			draggedCow.translation.z - translation.z)
+		var dist = sqrt( pow(cowVector.x, 2) + pow(cowVector.y, 2) )
+		if(dist > dragRange):
+			cowVector = cowVector.normalized() * dragRange
+			translation = Vector3(
+				draggedCow.translation.x - cowVector.x,
+				translation.y,
+				draggedCow.translation.z - cowVector.y)
+
 
 func idle():
 	#Marauder sits still, maybe makes occasional random movements

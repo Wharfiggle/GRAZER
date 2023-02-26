@@ -2,11 +2,11 @@
 
 extends KinematicBody
 
-export (float) var maxSpeed = 9.0
+export (float) var normalSpeed = 9.0
 #export (float) var accelerationModifier = 0.1
 #export (float) var accelerationDampening = 40.0
 #export (float) var accDampRandOffset = 20.0
-export (float) var lookSpeed = 2.0
+export (float) var normalLookSpeed = 2.0
 #export (float) var lookMoveDissonance = 0.0
 export (float) var followDistance = 3.0
 export (float) var pushStrength = 60.0
@@ -18,18 +18,25 @@ export (float) var shuffleTime = 0.7
 export (float) var shuffleTimeRandOffset = 0.5
 export (float) var shuffleStrength = 0.75
 export (float) var shuffleSpeed = 3.0
+export (float) var dragSpeed = 5.0
+export (float) var dragLookSpeed = 1.0
+export (float) var dragShake = 0.1
 var shuffleTimeCounter = 0
 onready var model = get_node(NodePath("./Model"))
 var herd
 var velocity = Vector3(0, 0, 0)
 var speed = 0.0
-var acceleration = 0.0
+#var acceleration = 0.0
 var rng = RandomNumberGenerator.new()
 var follow = true
 var followingHerd = false
 var pushVel = Vector2(0, 0)
 var huddling = false
 var target
+var dragger = null
+var maxSpeed = normalSpeed
+var lookSpeed = normalLookSpeed
+var dragShakeOffset = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,14 +47,28 @@ func _ready():
 		shuffleTime - shuffleTimeRandOffset, 
 		shuffleTime + shuffleTimeRandOffset)
 
-#func dragCow(marauder) -> Node:
+func startDragging(marauder):
+	dragger = marauder
+	maxSpeed = dragSpeed
+	lookSpeed = dragLookSpeed
+	herd.removeHuddler(self)
 	
+func stopDragging():
+	dragger = null
+	maxSpeed = normalSpeed
+	lookSpeed = normalLookSpeed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if(herd != null):
-		if(target != null):
-			var targetVector = Vector2(translation.x - target.x, translation.z - target.y)
+		if(target != null || dragger != null):
+			var targetVector
+			if(dragger != null):
+				targetVector = Vector2(
+					translation.x - dragger.translation.x, 
+					translation.z - dragger.translation.z)
+			elif(target != null):
+				targetVector = Vector2(translation.x - target.x, translation.z - target.y)
 			
 			if(Input.is_action_pressed("cowParty")):
 				rotate_y(maxSpeed)
@@ -58,12 +79,11 @@ func _physics_process(delta):
 					atan2(targetVector.x, targetVector.y), 
 					lookSpeed * delta)
 			var targetDistance = followDistance
-			if(followingHerd):
+			if(followingHerd && dragger == null):
 				#radius of herd
 				targetDistance = sqrt( pow(pushDistanceThreshold, 2) * herd.numCows )
 			var dist = sqrt( pow(targetVector.x, 2) + pow(targetVector.y, 2) )
-			if(herd.canHuddle && dist < targetDistance && huddling == false):
-				huddling = true
+			if(dragger == null && herd.canHuddle && dist < targetDistance && huddling == false):
 				herd.addHuddler(self)
 			if(huddling == false && follow):
 				#speedTransitionRadius meters FARTHER than targetDistance or more: speed
@@ -149,18 +169,24 @@ func _physics_process(delta):
 	if((totalVelocity.x > 0.01 || totalVelocity.x < -0.01 
 	|| totalVelocity.z > 0.01 || totalVelocity.z < -0.01)
 	&& !huddling):
+		model.rotation.y -= dragShakeOffset
 		var moveDirection = atan2(totalVelocity.x, totalVelocity.z) + PI
 		#print(str(model.rotation.y) + " and " + str(rotation.y))
 		model.rotation.y = lerp_angle(
 			model.rotation.y, 
 			moveDirection - rotation.y, 
 			lookSpeed * delta)
+		if(dragger != null):
+			dragShakeOffset = rng.randf_range(-dragShake, dragShake)
+			model.rotation.y += dragShakeOffset
+		else:
+			dragShakeOffset = 0
+		
 	else: #make cow model's rotation go back to 0
 		model.rotation.y = lerp_angle(
 			model.rotation.y, 
 			0, 
 			lookSpeed * delta)
-	
 	#old attempt to make cows look where they're moving
 	#if(totalVelocity != Vector3.ZERO && lookMoveDissonance != 0):
 	#	var moveDirection = atan2(totalVelocity.x, totalVelocity.z)

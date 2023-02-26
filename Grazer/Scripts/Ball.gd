@@ -67,7 +67,7 @@ func _process(_delta):
 		else:
 			print("fuck there is no herd") #yeah
 	
-	if(Input.is_action_just_pressed("debug2")):
+	if(Input.is_action_just_pressed("Follow Wait")):
 		herd.toggleFollow()
 	
 	if(Input.is_action_pressed("dodge")):
