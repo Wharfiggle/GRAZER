@@ -98,12 +98,12 @@ func _physics_process(delta):
 						var t = (i.global_translation - collision).length()
 						rayMagnitudes[rayInd] = t
 					rayInd += 1
-				if(rayMagnitudes[0] != 0):
+				if(rayMagnitudes[1] != 0):
+					maneuverOffset = rayMagnitudes[1] * maneuverTurnSpeed * delta
+				elif(rayMagnitudes[0] != 0):
 					maneuverOffset = -rayMagnitudes[0] * maneuverTurnSpeed * delta
 				elif(rayMagnitudes[2] != 0):
 					maneuverOffset = rayMagnitudes[2] * maneuverTurnSpeed * delta
-				elif(rayMagnitudes[1] != 0):
-					maneuverOffset = rayMagnitudes[1] * maneuverTurnSpeed * delta
 				else:
 					maneuverOffset = 0
 				rotation.y += maneuverOffset

@@ -41,10 +41,10 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9,
 enabled = true
 
 [node name="RayCastRight" type="RayCast" parent="."]
-transform = Transform( 0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0.25, 0.9, -1 )
+transform = Transform( 0.707106, -0.707106, 3.09086e-08, 0, -4.37114e-08, -1, 0.707106, 0.707106, -3.09086e-08, 0.5, 0.9, -1 )
 enabled = true
 
 [node name="RayCastLeft" type="RayCast" parent="."]
-transform = Transform( 0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, 0.866025, -3.78552e-08, -0.25, 0.9, -1 )
+transform = Transform( 0.707106, 0.707106, -3.09086e-08, 0, -4.37114e-08, -1, -0.707106, 0.707106, -3.09086e-08, -0.5, 0.9, -1 )
 enabled = true
 script = SubResource( 2 )
