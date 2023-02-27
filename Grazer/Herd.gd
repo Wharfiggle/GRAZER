@@ -45,6 +45,19 @@ func getCow(index) -> Node:
 func getCows() -> Array:
 	return cows
 
+#Returns the cow closest to parameter translation 
+func getClosestCow(loc) -> Node:
+	var closestCow
+	var distance = 100000.0
+	if(numCows <= 0):
+		return null
+	for c in cows:
+		if(closestCow.translation.distanceTo(loc) < distance):
+			closestCow = c
+			distance = closestCow.translation.distanceTo(loc)
+			
+	return closestCow
+
 func addCow(cow):
 	cows.append(cow)
 	numCows += 1

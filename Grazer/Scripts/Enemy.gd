@@ -1,20 +1,18 @@
 extends KinematicBody
 
-export (NodePath) var targetNodePath = "../Ball"
-export (float) var followDistance = 10
-var targetPos = Vector3(0,0,0)
-var player
-var velocity = Vector3(0, 0, 0)
+onready var player = get_node("../Ball")
+onready var nav = get_node("/root/Level/Navigation")
 
 var maxHealth = 10.0
 var health = maxHealth
 
+var targetPos = Vector3(0,0,0)
+var targetCow
 var path = []
 var pathNode = 0
-var baseSpeed = 3
+var baseSpeed = 4
 var speed = 1.0
-#onready var nav = get_parent()
-onready var nav = get_node("/root/Level/Navigation")
+var followDistance = 10
 
 var currentMode = "pursuit"
 var marauderType = "gunman" #thief or gunman
@@ -25,12 +23,10 @@ var draggedCow = null
 export (float) var dragRange = 4.0
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	player = get_node(targetNodePath)
+#func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
-
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
@@ -42,9 +38,6 @@ func _physics_process(delta):
 			currentMode = "flee"
 		elif(currentMode == "flee"):
 			currentMode = "idle"
-		
-	
-	
 	
 	match[currentMode]: #Essentially a switch statement
 		["idle"]:
@@ -79,6 +72,7 @@ func _physics_process(delta):
 			else:
 				draggedCow.stopDragging()
 				draggedCow = null
+	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
 		var cowVector = Vector2(
@@ -95,8 +89,7 @@ func _physics_process(delta):
 
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
-	print("Idle mode")
-	
+	targetPos = translation
 
 func circle():
 	#Marauder circles around the herd. If marauderType is theif, it should 
@@ -111,6 +104,9 @@ func pursuit():
 	#If marauderType is gunman, they attempt to shoot the cowboy. 
 	targetPos = player.global_transform.origin
 	
+	#Slows down when getting close to follow distance
+	#If closer than follow distance, back up
+	#If closer than half of follow distance, panic and flee
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
 	if(spacing < followDistance + 3 and spacing > followDistance):
 		#Slowing down when getting close
@@ -137,11 +133,19 @@ func pursuit():
 	elif(speed < 1):
 		speed = 1
 
-
 func cowPursuit():
 	#Marauder runs towards closest cow and attempts to lasso when in range
 	#If successful, or cowboy gets too close, the marauder switches to flee mode.
-	print("Cow pursuit mode")
+	if(herd == null):
+			herd = get_node(NodePath("/root/Level/Herd"))
+			if(herd == null):
+				return
+	
+	#TODO figure out how to call getClosestCow
+#	if(targetCow == null):
+#		targetCow = herd.getClosestCow(translation)
+	
+	targetPos = targetCow.translation
 	
 
 func flee():
