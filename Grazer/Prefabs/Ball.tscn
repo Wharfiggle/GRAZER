@@ -6,6 +6,7 @@
 [sub_resource type="CylinderShape" id=1]
 
 [node name="KinematicBody" type="KinematicBody"]
+collision_layer = 4
 script = ExtResource( 1 )
 
 [node name="Cowboy_V2" parent="." instance=ExtResource( 2 )]

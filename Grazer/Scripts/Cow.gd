@@ -13,15 +13,24 @@ export (float) var pushStrength = 60.0
 export (float) var pushDistanceThreshold = 1.75
 #export (float) var minPushDistance = 0.0
 #export (float) var minPushPercent = 0.0
+var pushVel = Vector2(0, 0)
 export (float) var speedTransitionRadius = 1.5
 export (float) var shuffleTime = 0.7
 export (float) var shuffleTimeRandOffset = 0.5
 export (float) var shuffleStrength = 0.75
 export (float) var shuffleSpeed = 3.0
+var shuffleTimeCounter = 0
 export (float) var dragSpeed = 5.0
 export (float) var dragLookSpeed = 1.0
 export (float) var dragShake = 0.1
-var shuffleTimeCounter = 0
+var dragger = null
+var dragShakeOffset = 0
+export (float) var maneuverTurnSpeed = 5.0
+onready var rayCasts = [
+	get_node(NodePath("./RayCastLeft")), 
+	get_node(NodePath("./RayCastMiddle")), 
+	get_node(NodePath("./RayCastRight"))]
+var maneuverOffset = 0
 onready var model = get_node(NodePath("./Model"))
 var herd
 var velocity = Vector3(0, 0, 0)
@@ -30,13 +39,10 @@ var speed = 0.0
 var rng = RandomNumberGenerator.new()
 var follow = true
 var followingHerd = false
-var pushVel = Vector2(0, 0)
 var huddling = false
 var target
-var dragger = null
 var maxSpeed = normalSpeed
 var lookSpeed = normalLookSpeed
-var dragShakeOffset = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,6 +63,14 @@ func stopDragging():
 	dragger = null
 	maxSpeed = normalSpeed
 	lookSpeed = normalLookSpeed
+	
+func enableRayCasts():
+	for i in rayCasts:
+		i.enabled = true
+	
+func disableRayCasts():
+	for i in rayCasts:
+		i.enabled = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -72,12 +86,34 @@ func _physics_process(delta):
 			
 			if(Input.is_action_pressed("cowParty")):
 				rotate_y(maxSpeed)
-			else:
-				#look at target
-				rotation.y = lerp_angle(
-					rotation.y, 
-					atan2(targetVector.x, targetVector.y), 
-					lookSpeed * delta)
+			elif(follow || (dragger != null)):
+				#rotate away from objects detected in raycasts
+				var rayInd = 0
+				var rayMagnitudes = [0, 0, 0]
+				for i in rayCasts:
+					if(i == null):
+						printerr("Cow.gd: null raycasts oggofosodfodofsdfo!")
+					elif(i.is_colliding()):
+						var collision = i.get_collision_point()
+						var t = (i.global_translation - collision).length()
+						rayMagnitudes[rayInd] = t
+					rayInd += 1
+				if(rayMagnitudes[1] != 0):
+					maneuverOffset = rayMagnitudes[1] * maneuverTurnSpeed * delta
+				elif(rayMagnitudes[0] != 0):
+					maneuverOffset = -rayMagnitudes[0] * maneuverTurnSpeed * delta
+				elif(rayMagnitudes[2] != 0):
+					maneuverOffset = rayMagnitudes[2] * maneuverTurnSpeed * delta
+				else:
+					maneuverOffset = 0
+				rotation.y += maneuverOffset
+				
+				if(maneuverOffset == 0):
+					#look at target
+					rotation.y = lerp_angle(
+						rotation.y,
+						atan2(targetVector.x, targetVector.y), 
+						lookSpeed * delta)
 			var targetDistance = followDistance
 			if(followingHerd && dragger == null):
 				#radius of herd
@@ -85,7 +121,9 @@ func _physics_process(delta):
 			var dist = sqrt( pow(targetVector.x, 2) + pow(targetVector.y, 2) )
 			if(dragger == null && herd.canHuddle && dist < targetDistance && huddling == false):
 				herd.addHuddler(self)
-			if(huddling == false && follow):
+				disableRayCasts()
+				
+			if(huddling == false && (follow || dragger != null)):
 				#speedTransitionRadius meters FARTHER than targetDistance or more: speed
 				#speedTransitionRadius meters CLOSER than targetDistance or more: -speed
 				#interpolates between the two for all values in between
