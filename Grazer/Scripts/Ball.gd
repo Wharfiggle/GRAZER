@@ -70,9 +70,9 @@ func _process(_delta):
 	if(Input.is_action_just_pressed("Follow Wait")):
 		herd.toggleFollow()
 	
-	if(Input.is_action_pressed("dodge")):
+	if(Input.is_action_just_pressed("dodge")):
 		Dodge = toAdd.normalized() * DODGESPEED
-		knock()
+		knock(toAdd, DODGESPEED)
 		
 	else:
 		Dodge = Vector3(0, 0, 0)
@@ -103,9 +103,9 @@ func _emit_smoke(bullet):
 	bullet.add_child(newSmoke)
 
 
-func knock():
+func knock(direction, speed):
 	var enemies = hitBox.get_overlapping_bodies()
 	
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
-			enemy.knockback()
+			enemy.knockback(direction, speed)
