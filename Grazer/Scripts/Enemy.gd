@@ -1,23 +1,23 @@
 extends KinematicBody
 
 export (NodePath) var targetNodePath = "../Ball"
-export (float) var circleSpeed = 3
-export (float) var lookSpeed = 1
 export (float) var followDistance = 10
-export (float) var radius = 30
-export (float) var d = 0 #counter for _process
-var target
+var targetPos = Vector3(0,0,0)
+var player
 var velocity = Vector3(0, 0, 0)
 
+var maxHealth = 10.0
+var health = maxHealth
 
 var path = []
 var pathNode = 0
-var speed = 20
+var baseSpeed = 3
+var speed = 1.0
 #onready var nav = get_parent()
 onready var nav = get_node("/root/Level/Navigation")
 
 var currentMode = "pursuit"
-var marauderType #thief or gunman
+var marauderType = "gunman" #thief or gunman
 
 var rng = RandomNumberGenerator.new()
 onready var herd = get_node(NodePath("/root/Level/Herd"))
@@ -26,7 +26,7 @@ export (float) var dragRange = 4.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	target = get_node(targetNodePath)
+	player = get_node(targetNodePath)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -34,8 +34,18 @@ func _ready():
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
-	#TODO call the respective path setting function depending on
-	#what mode the marauder is in currently.
+	
+	if(Input.is_action_just_pressed("Debug4")):
+		if(currentMode == "idle"):
+			currentMode = "pursuit"
+		elif(currentMode == "pursuit"):
+			currentMode = "flee"
+		elif(currentMode == "flee"):
+			currentMode = "idle"
+		
+	
+	
+	
 	match[currentMode]: #Essentially a switch statement
 		["idle"]:
 			[idle()]
@@ -48,10 +58,13 @@ func _physics_process(delta):
 		["flee"]:
 			[flee()]
 	
-	if(Input.is_action_just_pressed("debug2")):
-		moveTo(target.global_transform.origin)
-		#nav.bake_navigation_region()
-		
+	if(pathNode < path.size()):
+		var direction = (path[pathNode] - global_transform.origin)
+		if(direction.length() < 1):
+			pathNode += 1
+		else:
+			move_and_slide(direction.normalized() * baseSpeed * speed, Vector3.UP)
+	
 	#Basic cow dragging test
 	#drag a random cow
 	if(Input.is_action_just_pressed("debug3")):
@@ -96,18 +109,33 @@ func pursuit():
 	#Marauder runs directly at cowboy.
 	#Once close enough,
 	#If marauderType is gunman, they attempt to shoot the cowboy. 
-	print("Pursuit mode")
-	target = get_node(targetNodePath)
+	targetPos = player.global_transform.origin
 	
-	if(pathNode < path.size()):
-		var direction = (path[pathNode] - global_transform.origin)
-		if(direction.length() < 1):
-			pathNode += 1
-		else:
-			move_and_slide(direction.normalized() * speed, Vector3.UP)
-	
-	
-	
+	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
+	if(spacing < followDistance + 3 and spacing > followDistance):
+		#Slowing down when getting close
+		if(speed > 0):
+			speed = (spacing - followDistance) / 3.0
+	elif(spacing < followDistance and spacing > followDistance / 2.0):
+		#Backing up
+		print("Too close")
+		if(speed < 1):
+			speed *= followDistance / spacing
+		if(speed > 1):
+			speed = 1
+		
+		var fleeVector = Vector3(0,0,0)
+		fleeVector = global_transform.origin - player.global_transform.origin
+		fleeVector.y = 0
+		fleeVector = fleeVector.normalized()
+		targetPos = global_transform.origin + fleeVector * 5
+		
+	elif(spacing < followDistance / 2.0):
+		print("Panic!")
+		currentMode = "flee"
+		
+	elif(speed < 1):
+		speed = 1
 
 
 func cowPursuit():
@@ -120,7 +148,23 @@ func flee():
 	#Marauder runs away from cowboy towards offscreen until it despawns.
 	#If is currently lassoed to a cow, move speed is slowed.
 	#If health gets too low, sever lasso and attempt to escape.
-	print("Flee mode")
+	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
+	
+	#TODO change both to currentMode == "circle"
+	if(spacing > 3 * followDistance && health > 0.3 * maxHealth):
+		if(marauderType == "gunman"):
+			currentMode = "pursuit"
+			#currentMode = "circle"
+		elif(marauderType == "thief"):
+			currentMode = "idle"
+			#currentMode = "circle"
+	
+	speed = 1.5
+	var fleeVector = Vector3(0,0,0)
+	fleeVector = global_transform.origin - player.global_transform.origin
+	fleeVector.y = 0
+	fleeVector = fleeVector.normalized()
+	targetPos = global_transform.origin + fleeVector * 5
 	
 
 #navigation function
@@ -129,4 +173,4 @@ func moveTo(targetPos):
 	pathNode = 0
 
 func _on_Timer_timeout():
-	moveTo(target.global_transform.origin)
+	moveTo(targetPos)
