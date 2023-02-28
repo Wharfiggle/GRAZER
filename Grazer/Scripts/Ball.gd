@@ -6,6 +6,9 @@ var Bullet = preload("res://Prefabs/bullet.tscn")
 
 onready var hitBox = $knockbox
 
+var maxHitpoints = 10
+
+var hitpoints = maxHitpoints
 #export (PackedScene) var Smoke = null
 
 var Smoke = preload("res://Prefabs/Smoke.tscn")
@@ -109,3 +112,17 @@ func knock(direction, speed):
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
 			enemy.knockback(direction, speed)
+			
+			
+
+
+func damage_taken(damage):
+	hitpoints -= damage
+
+func death():
+	if hitpoints <= 0:
+		print("Wasted")
+
+
+
+
