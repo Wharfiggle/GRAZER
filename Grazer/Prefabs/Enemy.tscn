@@ -18,4 +18,10 @@ mesh = SubResource( 15 )
 wait_time = 0.25
 autostart = true
 
+[node name="Position3D" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.861337, 0.406698 )
+
+[node name="smokeSpawn" type="Spatial" parent="."]
+transform = Transform( 1, -2.33058e-12, 0, 1.08969e-10, 1, -8.73115e-10, 0, 0, 1, 0.00101471, 0.826897, 0.392393 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

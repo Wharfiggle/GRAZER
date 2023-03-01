@@ -3,6 +3,10 @@ extends KinematicBody
 onready var player = get_node("../Ball")
 onready var nav = get_node("/root/Level/Navigation")
 
+var Bullet = preload("res://Prefabs/BulletE.tscn")
+
+var Smoke = preload("res://Prefabs/Smoke.tscn")
+
 var maxHealth = 10.0
 var health = maxHealth
 
@@ -59,6 +63,8 @@ func _physics_process(_delta):
 #			[cowPursuit()]
 		["flee"]:
 			[flee()]
+		["attack"]:
+			[attack()]
 	
 	if(pathNode < path.size()):
 		var direction = (path[pathNode] - global_transform.origin)
@@ -195,3 +201,24 @@ func moveTo(targetPos):
 
 func _on_Timer_timeout():
 	moveTo(targetPos)
+
+func attack():
+		var b = Bullet.instance()
+		owner.add_child(b)
+		b.transform = $Position3D.global_transform
+		b.velocity = b.transform.basis.z * b.muzzle_velocity
+		print("enemy fire")
+		_emit_smoke(b)
+	
+
+func _emit_smoke(bullet):
+	var newSmoke = Smoke.instance()
+	bullet.add_child(newSmoke)
+
+
+func damage_taken(damage):
+	health -= damage
+	
+	if health <= 0:
+		print("Wasted")
+
