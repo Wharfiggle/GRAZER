@@ -49,6 +49,7 @@ func getCows() -> Array:
 func getClosestCow(loc) -> Node:
 	var closestCow
 	var distance = 100000.0
+	print("getClosestCow()")
 	if(numCows <= 0):
 		return null
 	for c in cows:
@@ -119,9 +120,10 @@ func clearHuddle():
 		i.target = getTarget()
 		i.followingHerd = followingHerd
 	huddle.clear()
-
+	
 func findHerdCenter() -> Vector3:
 	var loc = Vector3(0,0,0)
+	print("Found herd center")
 	if(numCows > 0):
 		for i in cows:
 			loc += i.transform.origin

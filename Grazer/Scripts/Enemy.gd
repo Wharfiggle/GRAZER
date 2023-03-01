@@ -7,18 +7,18 @@ var maxHealth = 10.0
 var health = maxHealth
 
 var targetPos = Vector3(0,0,0)
-var targetCow
+var targetCow = null
 var path = []
 var pathNode = 0
 var baseSpeed = 4
 var speed = 1.0
-var followDistance = 10
+var followDistance = 7.0
 
 var currentMode = "pursuit"
 var marauderType = "gunman" #thief or gunman
 
 var rng = RandomNumberGenerator.new()
-onready var herd = get_node(NodePath("/root/Level/Herd"))
+onready var herd = null#get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
 export (float) var dragRange = 4.0
 
@@ -29,15 +29,24 @@ export (float) var dragRange = 4.0
 #func _process(delta):
 
 #Called at set time intervals, delta is time elapsed since last call
-func _physics_process(delta):
+func _physics_process(_delta):
 	
-	if(Input.is_action_just_pressed("Debug4")):
+	if(herd != null):
+		var blah = null
+	else:
+		herd = get_node(NodePath("/root/Level/Herd"))
+	
+	if(Input.is_action_just_pressed("debug4")):
 		if(currentMode == "idle"):
 			currentMode = "pursuit"
 		elif(currentMode == "pursuit"):
 			currentMode = "flee"
 		elif(currentMode == "flee"):
 			currentMode = "idle"
+	
+	if(Input.is_action_just_pressed("debug3")):
+		print("debug3")
+		#currentMode = "cowPursuit"
 	
 	match[currentMode]: #Essentially a switch statement
 		["idle"]:
@@ -46,8 +55,8 @@ func _physics_process(delta):
 			[circle()]
 		["pursuit"]:
 			[pursuit()]
-		["cowPursuit"]:
-			[cowPursuit()]
+#		["cowPursuit"]:
+#			[cowPursuit()]
 		["flee"]:
 			[flee()]
 	
@@ -57,6 +66,12 @@ func _physics_process(delta):
 			pathNode += 1
 		else:
 			move_and_slide(direction.normalized() * baseSpeed * speed, Vector3.UP)
+	
+
+	#TODO figure out how to call getClosestCow
+#	if(herd != null and targetCow == null):
+#		targetCow = herd.getClosestCow(translation)
+
 	
 	#Basic cow dragging test
 	#drag a random cow
@@ -114,7 +129,7 @@ func pursuit():
 			speed = (spacing - followDistance) / 3.0
 	elif(spacing < followDistance and spacing > followDistance / 2.0):
 		#Backing up
-		print("Too close")
+		#print("Too close")
 		if(speed < 1):
 			speed *= followDistance / spacing
 		if(speed > 1):
@@ -142,11 +157,13 @@ func cowPursuit():
 				return
 	
 	#TODO figure out how to call getClosestCow
-#	if(targetCow == null):
-#		targetCow = herd.getClosestCow(translation)
+	if(targetCow == null):
+		print(herd.findHerdCenter())
+		herd.getClosestCow(translation)
+		#targetCow = herd.getClosestCow(translation)
 	
 	targetPos = targetCow.translation
-	
+	print("CWWOP")
 
 func flee():
 	#Marauder runs away from cowboy towards offscreen until it despawns.

@@ -57,6 +57,17 @@ func getCows() -> Array:
 func getNumCows() -> int:
 	return numCows
 
+#returns the cow closest to the given translation
+func getClosestCow(loc) -> Node:
+	var closestCow = null
+	var distance = 1000000
+	for c in cows:
+		if(c.translation.distance(loc) < distance):
+			closestCow = c
+			distance = c.translation.distance(loc)
+	return closestCow
+
+
 #add cow to player's herd
 func addCow(cow):
 	cows.append(cow)
