@@ -26,7 +26,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.644, 0, -9.628 )
 transform = Transform( 0.5, -4.46707e-05, 0.000163792, 4.47944e-05, 0.5, -0.000401941, -0.000163759, 0.000401955, 0.5, -22.825, 100, -32.196 )
 
 [node name="Position3D" type="Position3D" parent="Ball"]
-transform = Transform( 1, -3.04112e-12, 0, 1.13687e-13, 1, -2.32831e-10, 0, 0, 1, 0.000114441, 4.11491, 0.2491 )
+transform = Transform( 1, -2.33058e-12, 0, 1.43814e-11, 1, -3.49246e-10, 0, 0, 1, -5.34058e-05, 2.1613, 0.250671 )
 
 [node name="smokeSpawn" type="Spatial" parent="Ball"]
 transform = Transform( 1, -2.33058e-12, 0, 1.08969e-10, 1, -8.73115e-10, 0, 0, 1, 0.00101471, 4.1227, 0.260017 )
@@ -52,10 +52,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8271, 102.047, -32.0673 )
 
 [node name="enemycube" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.05408, 0, 0, 0, 1, -20.8408, 92.337, -15.1301 )
-input_ray_pickable = false
+collision/safe_margin = 0.003
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="enemycube"]
+transform = Transform( 1.09742, 0, 0, 0, 1.02215, 0, 0, 0, 1.35869, 0, 0, 0 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="enemycube"]

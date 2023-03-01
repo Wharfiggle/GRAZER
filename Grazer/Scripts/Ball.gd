@@ -2,7 +2,7 @@ extends KinematicBody
 
 # Declare member variables here. Examples:
 #export (PackedScene) var Bullet
-var Bullet = preload("res://Prefabs/bullet.tscn")
+var Bullet = preload("res://Prefabs/Bullet.tscn")
 
 onready var hitBox = $knockbox
 
@@ -79,6 +79,9 @@ func _process(_delta):
 		
 	else:
 		Dodge = Vector3(0, 0, 0)
+		
+		
+	death()
 
 func _physics_process(delta):
 	velocity.y -= GRAVITY * delta
@@ -97,6 +100,7 @@ func _physics_process(delta):
 			b.velocity = b.transform.basis.z * b.muzzle_velocity
 			print("BangBang")
 			_emit_smoke(b)
+	
 
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()
@@ -113,11 +117,14 @@ func knock(direction, speed):
 		if enemy.has_method("knockback"):
 			enemy.knockback(direction, speed)
 			
-			
+	
 
 
 func damage_taken(damage):
 	hitpoints -= damage
+	
+	if hitpoints <= 0:
+		print("Wasted")
 
 func death():
 	if hitpoints <= 0:

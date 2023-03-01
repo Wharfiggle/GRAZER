@@ -6,6 +6,10 @@ var gravity = 30
 var speed = velocity
 var knock = Vector3(0,0,0)
 var lifespan = 10
+
+var maxHP = 10
+
+var HP = maxHP
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -35,4 +39,10 @@ func _physics_process(delta):
 	speed = move_and_slide(speed)
 	
 
+
+func damage_taken(damage):
+	HP -= damage
+	
+	if HP <= 0:
+		print("Wasted")
 	
