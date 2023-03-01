@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Prefabs/PostProcessing.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Camera.tscn" type="PackedScene" id=2]
@@ -8,13 +8,15 @@
 [ext_resource path="res://Prefabs/Cow Counter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://empress of bostonia.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Models/sandstonecolor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Models/Cacti/Cactus1.fbx" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Models/Cacti/Cactus2.fbx" type="PackedScene" id=10]
+
+[sub_resource type="BoxShape" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 
 [sub_resource type="SpatialMaterial" id=12]
 albedo_color = Color( 0.109804, 0.113725, 0.0352941, 1 )
-
-[sub_resource type="BoxShape" id=2]
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0.745098, 0.133333, 0.0862745, 1 )
@@ -54,8 +56,40 @@ collision_mask = 3
 [node name="Camera" parent="." instance=ExtResource( 2 )]
 targetNodePath = NodePath("../Ball")
 
+[node name="Wall4" type="StaticBody" parent="."]
+transform = Transform( -7.86805e-07, 0, 1, 0, 5, 0, -18, 0, -4.37114e-08, -3, 5, 48 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall4"]
+shape = SubResource( 2 )
+
+[node name="Wall6" type="StaticBody" parent="."]
+transform = Transform( 15, 0, 0, 0, 5, 0, 0, 0, 1, 13, 5, 65 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall6"]
+shape = SubResource( 2 )
+
+[node name="Wall5" type="StaticBody" parent="."]
+transform = Transform( -6.55671e-07, 0, 1, 0, 5, 0, -15, 0, -4.37114e-08, 3, 5, 45 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5"]
+shape = SubResource( 2 )
+
+[node name="Wall7" type="StaticBody" parent="."]
+transform = Transform( 13, 0, 0, 0, 5, 0, 0, 0, 1, 15, 5, 59 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall7"]
+shape = SubResource( 2 )
+
 [node name="Floor15x15" type="StaticBody" parent="."]
-transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
+transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor15x15"]
 transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
@@ -63,6 +97,78 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 12 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor15x15"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+shape = SubResource( 2 )
+
+[node name="Floor15x18" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 62 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor15x18"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor15x18"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+shape = SubResource( 2 )
+
+[node name="Floor15x16" type="StaticBody" parent="."]
+transform = Transform( 0.15, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor15x16"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor15x16"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+shape = SubResource( 2 )
+
+[node name="Floor15x19" type="StaticBody" parent="."]
+transform = Transform( -1.31134e-08, 0, 1, 0, 1, 0, -0.3, 0, -4.37114e-08, 60, 0, 25 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor15x19"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor15x19"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+shape = SubResource( 2 )
+
+[node name="Floor15x20" type="StaticBody" parent="."]
+transform = Transform( -0.0776457, 0, 0.965926, 0, 1, 0, -0.289778, 0, -0.258819, 68, 0, 50 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor15x20"]
+transform = Transform( 15, 0, 2.27374e-13, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor15x20"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+shape = SubResource( 2 )
+
+[node name="Floor15x21" type="StaticBody" parent="."]
+transform = Transform( 0.3, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 36 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor15x21"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor15x21"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+shape = SubResource( 2 )
+
+[node name="Floor15x17" type="StaticBody" parent="."]
+transform = Transform( -6.55671e-09, 0, 1, 0, 1, 0, -0.15, 0, -4.37114e-08, 13, 0, 62 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor15x17"]
+transform = Transform( 15, 0, 0, 0, 0.1, 0, 7.10543e-15, 0, 15, 0, -0.1, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor15x17"]
 transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
@@ -118,3 +224,9 @@ shape = SubResource( 6 )
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
+
+[node name="Cactus2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.04132, 2.14577e-05, 10.0024 )
+
+[node name="Cactus1" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.71561, -0.227094, 12.2079 )
