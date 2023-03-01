@@ -107,6 +107,8 @@ shape = SubResource( 2 )
 
 [node name="Empress of Bostonia" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
+collision_layer = 4
+collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Empress of Bostonia"]
 transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
