@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Cow.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/Cow/CowV1.fbx" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
+
+[sub_resource type="PrismMesh" id=2]
 
 [node name="Cow" type="KinematicBody"]
 collision_layer = 2
@@ -19,10 +21,14 @@ shape = SubResource( 1 )
 transform = Transform( -3.93403e-08, 0, -1, 0, 1.2, 0, 0.9, 0, -4.37114e-08, 0.075, 0, 0.15 )
 
 [node name="RayCastLeft" type="RayCast" parent="."]
-transform = Transform( 0.939692, 0, 0.34202, 0, 0.999999, 0, -0.34202, 0, 0.939693, -0.3, 0.9, -0.8 )
+transform = Transform( 0.707106, 0, 0.707107, 0, 0.999999, 0, -0.707106, 0, 0.707107, -0.3, 0.9, -0.8 )
 enabled = true
 cast_to = Vector3( 0, 0, -1 )
 collision_mask = 9
+
+[node name="MeshInstance" type="MeshInstance" parent="RayCastLeft"]
+transform = Transform( 0.1, -1.3411e-07, 0, 0, 5.96243e-09, 0.0999998, 0, -0.5, 1.19249e-09, 0, 0, -0.5 )
+mesh = SubResource( 2 )
 
 [node name="RayCastMiddle" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.8 )
@@ -30,11 +36,19 @@ enabled = true
 cast_to = Vector3( 0, 0, -3 )
 collision_mask = 9
 
+[node name="MeshInstance" type="MeshInstance" parent="RayCastMiddle"]
+transform = Transform( 0.1, 0, 0, 0, -6.55671e-08, 0.1, 0, -1.5, -4.37114e-09, 0, 0, -1.5 )
+mesh = SubResource( 2 )
+
 [node name="RayCastRight" type="RayCast" parent="."]
-transform = Transform( 0.939692, 0, -0.34202, 0, 0.999999, 0, 0.34202, 0, 0.939693, 0.3, 0.9, -0.8 )
+transform = Transform( 0.707106, 0, -0.707107, 0, 0.999999, 0, 0.707106, 0, 0.707107, 0.3, 0.9, -0.8 )
 enabled = true
 cast_to = Vector3( 0, 0, -1 )
 collision_mask = 9
+
+[node name="MeshInstance" type="MeshInstance" parent="RayCastRight"]
+transform = Transform( 0.1, -1.3411e-07, 0, 0, 5.96243e-09, 0.0999998, 0, -0.5, 1.19249e-09, 0, 0, -0.5 )
+mesh = SubResource( 2 )
 
 [node name="RayCastDirect" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.8 )

@@ -103,10 +103,10 @@ func _physics_process(delta):
 							rayMags[3] = 1
 						else:
 							var t = 1.0 - (i.get_collision_point() - i.global_translation).length() / raySize[rayInd]
-							rayMags[rayInd] = 1 + pow(t, 2)
+							rayMags[rayInd] = pow(t, 2)
 					rayInd += 1
+				print(rayMags)
 				if(rayMags[3] != 0): #direct
-					print(rayMags)
 					maneuvering = true
 					if(rayMags[0] > 0.01 && rayMags[2] > 0.01): #left and right
 						maneuverTurnOffset = (rayMags[0] + rayMags[2]) / 2.0 * maneuverTurnSpeed * delta
@@ -126,14 +126,14 @@ func _physics_process(delta):
 					maneuverTurnOffset = lerp_angle(
 						maneuverTurnOffset,
 						0,
-						lookSpeed * delta)
+						0.3)
 				rotation.y += maneuverTurnOffset
 				
 				if(maneuvering == false):
 					#look at target
 					rotation.y = lerp_angle(
 						rotation.y,
-						atan2(targetVector.x, targetVector.y), 
+						atan2(targetVector.x, targetVector.y) + PI, 
 						lookSpeed * delta)
 			var targetDistance = followDistance
 			if(followingHerd && dragger == null):
@@ -157,8 +157,8 @@ func _physics_process(delta):
 					mmoTargetValue,
 					0.3)
 				speed *= maneuverMoveModifier
-				velocity.x = sin(rotation.y) * speed
-				velocity.z = cos(rotation.y) * speed
+				velocity.x = -sin(rotation.y) * speed
+				velocity.z = -cos(rotation.y) * speed
 				model.translation.z = lerp(model.translation.z, 0, 0.1)
 				
 				#old shuffle algorithm
@@ -240,7 +240,7 @@ func _physics_process(delta):
 		var moveDirection = atan2(totalVelocity.x, totalVelocity.z) + PI
 		#print(str(model.rotation.y) + " and " + str(rotation.y))
 		model.rotation.y = lerp_angle(
-			model.rotation.y, 
+			model.rotation.y,
 			moveDirection - rotation.y, 
 			lookSpeed * delta)
 		if(dragger != null):
