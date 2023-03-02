@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Revolver_lambert1_Normal.png-75aff3a61b573464a0d22cf90ba02ae8.s3tc.stex"
-path.etc2="res://.import/Revolver_lambert1_Normal.png-75aff3a61b573464a0d22cf90ba02ae8.etc2.stex"
+path.s3tc="res://.import/Revolver_lambert1_Metallic.png-68549c471f39d161dd7a7b9319d43b3f.s3tc.stex"
+path.etc2="res://.import/Revolver_lambert1_Metallic.png-68549c471f39d161dd7a7b9319d43b3f.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Normal.png"
-dest_files=[ "res://.import/Revolver_lambert1_Normal.png-75aff3a61b573464a0d22cf90ba02ae8.s3tc.stex", "res://.import/Revolver_lambert1_Normal.png-75aff3a61b573464a0d22cf90ba02ae8.etc2.stex" ]
+source_file="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Metallic.png"
+dest_files=[ "res://.import/Revolver_lambert1_Metallic.png-68549c471f39d161dd7a7b9319d43b3f.s3tc.stex", "res://.import/Revolver_lambert1_Metallic.png-68549c471f39d161dd7a7b9319d43b3f.etc2.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=0
 flags/repeat=true
 flags/filter=true
 flags/mipmaps=true

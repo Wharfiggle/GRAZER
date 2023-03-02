@@ -25,13 +25,15 @@ export (float) var dragLookSpeed = 1.0
 export (float) var dragShake = 0.1
 var dragger = null
 var dragShakeOffset = 0
-export (float) var maneuverTurnSpeed = 2.0
+export (float) var maneuverTurnSpeed = 4.0
+export (float) var maneuverMoveSpeed = 0.5
 onready var rayCasts = [
 	get_node(NodePath("./RayCastLeft")), 
 	get_node(NodePath("./RayCastMiddle")), 
 	get_node(NodePath("./RayCastRight"))]
-var raySize = [2.0, 4.0, 2.0]
-var maneuverOffset = 0
+var raySize = [1.0, 3.0, 1.0]
+var maneuverTurnOffset = 0
+var maneuverMoveModifier = 0
 var maneuvering = false
 onready var model = get_node(NodePath("./Model"))
 var herd
@@ -91,10 +93,10 @@ func _physics_process(delta):
 			elif(follow || (dragger != null)):
 				var targetAngle = atan2(targetVector.x, targetVector.y)
 				#counter clockwise
-				var targetAngleDir = 1
-				if(targetAngle + PI < rotation.y + PI):
+				#var targetAngleDir = 1
+				#if(targetAngle + PI < rotation.y + PI):
 					#clockwise
-					targetAngleDir = -1
+				#	targetAngleDir = -1
 				
 				#rotate away from objects detected in raycasts
 				var rayInd = 0
@@ -110,21 +112,21 @@ func _physics_process(delta):
 				if(rayMags[1] != 0 || maneuvering): #middle
 					maneuvering = true
 					if(rayMags[0] != 0 && rayMags[2] != 0): #left and right
-						maneuverOffset = (rayMags[0] + rayMags[2]) / 2.0 * maneuverTurnSpeed * delta
+						maneuverTurnOffset = (rayMags[0] + rayMags[2]) / 2.0 * maneuverTurnSpeed * delta
 					elif(rayMags[0] != 0): #left
-						maneuverOffset = -rayMags[0] * maneuverTurnSpeed * delta
+						maneuverTurnOffset = -rayMags[0] * maneuverTurnSpeed * delta
 					elif(rayMags[2] != 0): #right
-						maneuverOffset = rayMags[2] * maneuverTurnSpeed * delta
+						maneuverTurnOffset = rayMags[2] * maneuverTurnSpeed * delta
 					elif(rayMags[1] != 0): #just middle
-						maneuverOffset = rayMags[1] * maneuverTurnSpeed * delta * targetAngleDir
+						maneuverTurnOffset = rayMags[1] * maneuverTurnSpeed * delta
 					else: #none
 						maneuvering = false
 				if(maneuvering == false):
-					maneuverOffset = lerp_angle(
-						maneuverOffset,
+					maneuverTurnOffset = lerp_angle(
+						maneuverTurnOffset,
 						0,
 						lookSpeed * delta)
-				rotation.y += maneuverOffset
+				rotation.y += maneuverTurnOffset
 				
 				if(maneuvering == false):
 					#look at target
@@ -146,6 +148,14 @@ func _physics_process(delta):
 				#speedTransitionRadius meters CLOSER than targetDistance or more: -speed
 				#interpolates between the two for all values in between
 				speed = min( max( (dist - targetDistance) / speedTransitionRadius, -1 ), 1 ) * maxSpeed
+				var mmoTargetValue = 1
+				if(maneuvering):
+					mmoTargetValue = maneuverMoveSpeed
+				maneuverMoveModifier = lerp(
+					maneuverMoveModifier,
+					mmoTargetValue,
+					0.3)
+				speed *= maneuverMoveModifier
 				velocity.x = -sin(rotation.y) * speed
 				velocity.z = -cos(rotation.y) * speed
 				model.translation.z = lerp(model.translation.z, 0, 0.1)

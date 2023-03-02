@@ -21,17 +21,14 @@ transform = Transform( -3.93403e-08, 0, -1, 0, 1.2, 0, 0.9, 0, -4.37114e-08, 0.0
 [node name="RayCastMiddle" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, -0.8 )
 enabled = true
-cast_to = Vector3( 0, -4, 0 )
 collision_mask = 9
 
 [node name="RayCastRight" type="RayCast" parent="."]
 transform = Transform( 0.939692, -0.34202, 1.49502e-08, 0, -4.37113e-08, -1, 0.34202, 0.939692, -4.10753e-08, 0.3, 0.9, -0.8 )
 enabled = true
-cast_to = Vector3( 0, -2, 0 )
 collision_mask = 9
 
 [node name="RayCastLeft" type="RayCast" parent="."]
 transform = Transform( 0.939692, 0.34202, -1.49502e-08, 0, -4.37113e-08, -1, -0.34202, 0.939692, -4.10753e-08, -0.3, 0.9, -0.8 )
 enabled = true
-cast_to = Vector3( 0, -2, 0 )
 collision_mask = 9
