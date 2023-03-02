@@ -20,6 +20,17 @@ shape = SubResource( 1 )
 [node name="CowV1" parent="Model" instance=ExtResource( 3 )]
 transform = Transform( -3.93403e-08, 0, -1, 0, 1.2, 0, 0.9, 0, -4.37114e-08, 0.075, 0, 0.15 )
 
+[node name="RayCastSideLeft" type="RayCast" parent="."]
+transform = Transform( -4.37113e-08, 0, 1, 0, 0.999999, 0, -0.999999, 0, -4.37114e-08, -0.3, 0.9, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.5 )
+collision_mask = 9
+
+[node name="MeshInstance" type="MeshInstance" parent="RayCastSideLeft"]
+transform = Transform( 0.1, 2.66454e-15, 3.97047e-23, 0, -1.09278e-08, 0.1, -4.44089e-16, -0.25, -4.37114e-09, 0, 0, -0.25 )
+visible = false
+mesh = SubResource( 2 )
+
 [node name="RayCastLeft" type="RayCast" parent="."]
 transform = Transform( 0.707106, 0, 0.707107, 0, 0.999999, 0, -0.707106, 0, 0.707107, -0.3, 0.9, -0.8 )
 enabled = true
@@ -28,6 +39,7 @@ collision_mask = 9
 
 [node name="MeshInstance" type="MeshInstance" parent="RayCastLeft"]
 transform = Transform( 0.1, -1.3411e-07, 0, 0, 5.96243e-09, 0.0999998, 0, -0.5, 1.19249e-09, 0, 0, -0.5 )
+visible = false
 mesh = SubResource( 2 )
 
 [node name="RayCastMiddle" type="RayCast" parent="."]
@@ -38,6 +50,7 @@ collision_mask = 9
 
 [node name="MeshInstance" type="MeshInstance" parent="RayCastMiddle"]
 transform = Transform( 0.1, 0, 0, 0, -6.55671e-08, 0.1, 0, -1.5, -4.37114e-09, 0, 0, -1.5 )
+visible = false
 mesh = SubResource( 2 )
 
 [node name="RayCastRight" type="RayCast" parent="."]
@@ -48,6 +61,18 @@ collision_mask = 9
 
 [node name="MeshInstance" type="MeshInstance" parent="RayCastRight"]
 transform = Transform( 0.1, -1.3411e-07, 0, 0, 5.96243e-09, 0.0999998, 0, -0.5, 1.19249e-09, 0, 0, -0.5 )
+visible = false
+mesh = SubResource( 2 )
+
+[node name="RayCastSideRight" type="RayCast" parent="."]
+transform = Transform( 1.19249e-08, 0, -1, 0, 0.999999, 0, 0.999999, 0, 1.19249e-08, 0.3, 0.9, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.5 )
+collision_mask = 9
+
+[node name="MeshInstance" type="MeshInstance" parent="RayCastSideRight"]
+transform = Transform( 0.1, 2.66454e-15, 3.97047e-23, 0, -1.09278e-08, 0.1, -4.44089e-16, -0.25, -4.37114e-09, 0, 0, -0.25 )
+visible = false
 mesh = SubResource( 2 )
 
 [node name="RayCastDirect" type="RayCast" parent="."]
