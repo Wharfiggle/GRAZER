@@ -30,8 +30,9 @@ export (float) var maneuverMoveSpeed = 0.5
 onready var rayCasts = [
 	get_node(NodePath("./RayCastLeft")), 
 	get_node(NodePath("./RayCastMiddle")), 
-	get_node(NodePath("./RayCastRight"))]
-var raySize = [1.0, 3.0, 1.0]
+	get_node(NodePath("./RayCastRight")),
+	get_node(NodePath("./RayCastDirect"))]
+var raySize = [1.0, 3.0, 1.0, 1.0]
 var maneuverTurnOffset = 0
 var maneuverMoveModifier = 0
 var maneuvering = false
@@ -83,44 +84,44 @@ func _physics_process(delta):
 			var targetVector
 			if(dragger != null):
 				targetVector = Vector2(
-					translation.x - dragger.translation.x, 
-					translation.z - dragger.translation.z)
+					dragger.translation.x - translation.x, 
+					dragger.translation.z - translation.z)
 			elif(target != null):
-				targetVector = Vector2(translation.x - target.x, translation.z - target.y)
+				targetVector = Vector2(target.x - translation.x, target.y - translation.z)
 			
 			if(Input.is_action_pressed("cowParty")):
 				rotate_y(maxSpeed)
 			elif(follow || (dragger != null)):
-				var targetAngle = atan2(targetVector.x, targetVector.y)
-				#counter clockwise
-				#var targetAngleDir = 1
-				#if(targetAngle + PI < rotation.y + PI):
-					#clockwise
-				#	targetAngleDir = -1
-				
 				#rotate away from objects detected in raycasts
 				var rayInd = 0
-				var rayMags = [0, 0, 0]
+				var rayMags = [0, 0, 0, 0]
 				for i in rayCasts:
 					if(i == null):
-						printerr("Cow.gd: null raycasts oggofosodfodofsdfo!")
+						printerr("Cow.gd: null raycasts oggofosodfodofsdfo!") #you heard me
 					elif(i.is_colliding()):
-						var collision = i.get_collision_point()
-						var t = 1.0 - (collision - i.global_translation).length() / raySize[rayInd] #divide by length of rayCast
-						rayMags[rayInd] = 1 + pow(t, 2)
+						if(rayInd == 3):
+							rayMags[3] = 1
+						else:
+							var t = 1.0 - (i.get_collision_point() - i.global_translation).length() / raySize[rayInd]
+							rayMags[rayInd] = 1 + pow(t, 2)
 					rayInd += 1
-				if(rayMags[1] != 0 || maneuvering): #middle
+				if(rayMags[3] != 0): #direct
+					print(rayMags)
 					maneuvering = true
-					if(rayMags[0] != 0 && rayMags[2] != 0): #left and right
+					if(rayMags[0] > 0.01 && rayMags[2] > 0.01): #left and right
 						maneuverTurnOffset = (rayMags[0] + rayMags[2]) / 2.0 * maneuverTurnSpeed * delta
-					elif(rayMags[0] != 0): #left
+					elif(rayMags[0] > 0.01): #left
 						maneuverTurnOffset = -rayMags[0] * maneuverTurnSpeed * delta
-					elif(rayMags[2] != 0): #right
+					elif(rayMags[2] > 0.01): #right
 						maneuverTurnOffset = rayMags[2] * maneuverTurnSpeed * delta
-					elif(rayMags[1] != 0): #just middle
+					elif(rayMags[1] > 0.01): #middle
 						maneuverTurnOffset = rayMags[1] * maneuverTurnSpeed * delta
-					else: #none
+					else:
 						maneuvering = false
+				else:
+					maneuvering = false
+				rayCasts[3].global_rotation = Vector3(0, 0, 0)
+				rayCasts[3].cast_to = Vector3(targetVector.x, 0, targetVector.y)
 				if(maneuvering == false):
 					maneuverTurnOffset = lerp_angle(
 						maneuverTurnOffset,
@@ -132,7 +133,7 @@ func _physics_process(delta):
 					#look at target
 					rotation.y = lerp_angle(
 						rotation.y,
-						targetAngle, 
+						atan2(targetVector.x, targetVector.y), 
 						lookSpeed * delta)
 			var targetDistance = followDistance
 			if(followingHerd && dragger == null):
@@ -156,8 +157,8 @@ func _physics_process(delta):
 					mmoTargetValue,
 					0.3)
 				speed *= maneuverMoveModifier
-				velocity.x = -sin(rotation.y) * speed
-				velocity.z = -cos(rotation.y) * speed
+				velocity.x = sin(rotation.y) * speed
+				velocity.z = cos(rotation.y) * speed
 				model.translation.z = lerp(model.translation.z, 0, 0.1)
 				
 				#old shuffle algorithm
