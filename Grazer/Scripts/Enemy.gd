@@ -18,6 +18,12 @@ var baseSpeed = 4
 var speed = 1.0
 var followDistance = 7.0
 
+var canFire=true
+
+var fireDirection
+
+#var playerPosition
+
 var currentMode = "pursuit"
 var marauderType = "gunman" #thief or gunman
 
@@ -133,6 +139,7 @@ func pursuit():
 		#Slowing down when getting close
 		if(speed > 0):
 			speed = (spacing - followDistance) / 3.0
+			#attack()
 	elif(spacing < followDistance and spacing > followDistance / 2.0):
 		#Backing up
 		#print("Too close")
@@ -153,6 +160,7 @@ func pursuit():
 		
 	elif(speed < 1):
 		speed = 1
+		#attack()
 
 func cowPursuit():
 	#Marauder runs towards closest cow and attempts to lasso when in range
@@ -203,12 +211,13 @@ func _on_Timer_timeout():
 	moveTo(targetPos)
 
 func attack():
-		var b = Bullet.instance()
-		owner.add_child(b)
-		b.transform = $Position3D.global_transform
-		b.velocity = b.transform.basis.z * b.muzzle_velocity
-		print("enemy fire")
-		_emit_smoke(b)
+		for x in 6:
+			var b = Bullet.instance()
+			owner.add_child(b)
+			b.transform = $Position3D.global_transform
+			b.velocity = b.transform.basis.z * b.muzzle_velocity
+			print("enemy fire")
+			_emit_smoke(b)
 	
 
 func _emit_smoke(bullet):
