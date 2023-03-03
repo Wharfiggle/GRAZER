@@ -6,7 +6,7 @@
 [ext_resource path="res://Prefabs/FPS Counter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Cow Counter.tscn" type="PackedScene" id=6]
-[ext_resource path="res://empress of bostonia.png" type="Texture" id=7]
+[ext_resource path="res://the creature.jpg" type="Texture" id=7]
 [ext_resource path="res://Assets/Models/sandstonecolor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Models/Cacti/Cactus1.fbx" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Models/Cacti/Cactus2.fbx" type="PackedScene" id=10]
@@ -52,7 +52,6 @@ light_energy = 0.2
 
 [node name="Ball" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-collision_mask = 3
 
 [node name="Revolver" parent="Ball" instance=ExtResource( 11 )]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0.887569, 1.72387, -0.377501 )
@@ -339,16 +338,16 @@ material/0 = SubResource( 10 )
 [node name="CollisionShape" type="CollisionShape" parent="Wall3"]
 shape = SubResource( 2 )
 
-[node name="Empress of Bostonia" type="RigidBody" parent="."]
+[node name="Dead Empress" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
 collision_layer = 4
 collision_mask = 7
 
-[node name="CollisionShape" type="CollisionShape" parent="Empress of Bostonia"]
+[node name="CollisionShape" type="CollisionShape" parent="Dead Empress"]
 transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
 shape = SubResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Empress of Bostonia"]
+[node name="MeshInstance" type="MeshInstance" parent="Dead Empress"]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
