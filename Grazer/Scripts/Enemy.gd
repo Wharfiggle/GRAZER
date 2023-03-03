@@ -139,7 +139,13 @@ func pursuit():
 		#Slowing down when getting close
 		if(speed > 0):
 			speed = (spacing - followDistance) / 3.0
-			#attack()
+			if canFire:
+				var direction = transform.origin - player.transform.origin
+				direction = direction.normalized()
+				var angle_to = direction.dot(transform.basis.z)
+				if angle_to > 0:
+					print("facing player")
+				attack()
 	elif(spacing < followDistance and spacing > followDistance / 2.0):
 		#Backing up
 		#print("Too close")
@@ -160,7 +166,7 @@ func pursuit():
 		
 	elif(speed < 1):
 		speed = 1
-		#attack()
+		attack()
 
 func cowPursuit():
 	#Marauder runs towards closest cow and attempts to lasso when in range
@@ -211,7 +217,7 @@ func _on_Timer_timeout():
 	moveTo(targetPos)
 
 func attack():
-		for x in 6:
+		for x in 2:
 			var b = Bullet.instance()
 			owner.add_child(b)
 			b.transform = $Position3D.global_transform
