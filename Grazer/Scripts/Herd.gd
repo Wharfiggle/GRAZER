@@ -62,9 +62,9 @@ func getClosestCow(loc) -> Node:
 	var closestCow = null
 	var distance = 1000000
 	for c in cows:
-		if(c.translation.distance(loc) < distance):
+		if(c.translation.distance_to(loc) < distance):
 			closestCow = c
-			distance = c.translation.distance(loc)
+			distance = c.translation.distance_to(loc)
 	return closestCow
 
 

@@ -25,7 +25,7 @@ var fireDirection
 #var playerPosition
 
 var currentMode = "pursuit"
-var marauderType = "gunman" #thief or gunman
+var marauderType = "thief" #thief or gunman
 
 var rng = RandomNumberGenerator.new()
 onready var herd = null#get_node(NodePath("/root/Level/Herd"))
@@ -56,7 +56,7 @@ func _physics_process(_delta):
 	
 	if(Input.is_action_just_pressed("debug3")):
 		print("debug3")
-		#currentMode = "cowPursuit"
+		currentMode = "cowPursuit"
 	
 	match[currentMode]: #Essentially a switch statement
 		["idle"]:
@@ -65,8 +65,8 @@ func _physics_process(_delta):
 			[circle()]
 		["pursuit"]:
 			[pursuit()]
-#		["cowPursuit"]:
-#			[cowPursuit()]
+		["cowPursuit"]:
+			[cowPursuit()]
 		["flee"]:
 			[flee()]
 		["attack"]:
@@ -79,26 +79,21 @@ func _physics_process(_delta):
 		else:
 			move_and_slide(direction.normalized() * baseSpeed * speed, Vector3.UP)
 	
-
-	#TODO figure out how to call getClosestCow
-#	if(herd != null and targetCow == null):
-#		targetCow = herd.getClosestCow(translation)
-
 	
 	#Basic cow dragging test
 	#drag a random cow
-	if(Input.is_action_just_pressed("debug3")):
-		if(herd == null):
-			herd = get_node(NodePath("/root/Level/Herd"))
-		if(herd.getNumCows() > 0):
-			if(draggedCow == null):
-				rng.randomize()
-				var rn = rng.randi_range(0, herd.getNumCows() - 1)
-				draggedCow = herd.getCow(rn)
-				draggedCow.startDragging(self)
-			else:
-				draggedCow.stopDragging()
-				draggedCow = null
+#	if(Input.is_action_just_pressed("debug3")):
+#		if(herd == null):
+#			herd = get_node(NodePath("/root/Level/Herd"))
+#		if(herd.getNumCows() > 0):
+#			if(draggedCow == null):
+#				rng.randomize()
+#				var rn = rng.randi_range(0, herd.getNumCows() - 1)
+#				draggedCow = herd.getCow(rn)
+#				draggedCow.startDragging(self)
+#			else:
+#				draggedCow.stopDragging()
+#				draggedCow = null
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
@@ -171,6 +166,7 @@ func pursuit():
 func cowPursuit():
 	#Marauder runs towards closest cow and attempts to lasso when in range
 	#If successful, or cowboy gets too close, the marauder switches to flee mode.
+	speed = 1
 	if(herd == null):
 			herd = get_node(NodePath("/root/Level/Herd"))
 			if(herd == null):
@@ -178,12 +174,19 @@ func cowPursuit():
 	
 	#TODO figure out how to call getClosestCow
 	if(targetCow == null):
-		print(herd.findHerdCenter())
 		herd.getClosestCow(translation)
-		#targetCow = herd.getClosestCow(translation)
+		
+		targetCow = herd.getClosestCow(translation)
 	
-	targetPos = targetCow.translation
-	print("CWWOP")
+	if(herd.numCows <= 0):
+		return
+	
+	if(translation.distance_to(targetCow.translation) > 2):
+		targetPos = targetCow.translation
+	elif(draggedCow == null):
+		draggedCow = targetCow
+		draggedCow.startDragging(self)
+		currentMode = "flee"
 
 func flee():
 	#Marauder runs away from cowboy towards offscreen until it despawns.
@@ -197,7 +200,13 @@ func flee():
 			currentMode = "pursuit"
 			#currentMode = "circle"
 		elif(marauderType == "thief"):
-			currentMode = "idle"
+			if(draggedCow != null):
+				herd.removeCow(draggedCow)
+				targetCow = null
+				draggedCow.queue_free()
+				draggedCow = null
+				
+			currentMode = "pursuit"
 			#currentMode = "circle"
 	
 	speed = 1.5
