@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Models/sandstonecolor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Models/Cacti/Cactus1.fbx" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Models/Cacti/Cactus2.fbx" type="PackedScene" id=10]
-[ext_resource path="res://Assets/Models/Revolver/Revolver.fbx" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Models/Revolver/RevolverTextured.tscn" type="PackedScene" id=11]
 
 [sub_resource type="BoxShape" id=2]
 
@@ -55,7 +55,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 collision_mask = 3
 
 [node name="Revolver" parent="Ball" instance=ExtResource( 11 )]
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0.873521, 1.75446, -0.383945 )
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0.887569, 1.72387, -0.377501 )
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
 targetNodePath = NodePath("../Ball")
@@ -229,7 +229,7 @@ transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
 [node name="Floor2" type="StaticBody" parent="Floors"]
-transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 45 )
+transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 45 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floors/Floor2"]
 transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.1, 0 )
@@ -241,7 +241,7 @@ transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
 [node name="Floor3" type="StaticBody" parent="Floors"]
-transform = Transform( -8.74228e-08, 0, 15, 0, 1, 0, -2, 0, -6.55671e-07, 13, 0, 62 )
+transform = Transform( -1.74846e-07, 0, 17, 0, 1, 0, -4, 0, -7.43094e-07, 13, 0, 62 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floors/Floor3"]
 transform = Transform( 1, 0, -4.73695e-16, 0, 0.1, 0, 4.73695e-16, 0, 1, 0, -0.1, 0 )

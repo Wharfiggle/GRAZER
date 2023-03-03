@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Models/Revolver/Revolver.fbx" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Normal.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_BaseMap.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Metallic.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Roughness.png" type="Texture" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 3 )
 metallic = 1.0
 metallic_texture = ExtResource( 4 )
+roughness_texture = ExtResource( 5 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 2 )
