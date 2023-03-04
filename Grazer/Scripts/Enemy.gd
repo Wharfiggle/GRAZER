@@ -24,11 +24,13 @@ var fireDirection
 
 #var playerPosition
 
-var currentMode = "pursuit"
-var marauderType = "thief" #thief or gunman
+enum behaviors {idle, pursuit, flee, circle, attack, cowPursuit}
+var currentMode = behaviors.pursuit
+enum enemyTypes {thief, gunman}
+var marauderType = enemyTypes.thief #thief or gunman
 
 var rng = RandomNumberGenerator.new()
-onready var herd = null#get_node(NodePath("/root/Level/Herd"))
+onready var herd = get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
 export (float) var dragRange = 4.0
 
@@ -40,36 +42,33 @@ export (float) var dragRange = 4.0
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(_delta):
-	
-	if(herd != null):
-		var blah = null
-	else:
+	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
 	
 	if(Input.is_action_just_pressed("debug4")):
-		if(currentMode == "idle"):
-			currentMode = "pursuit"
-		elif(currentMode == "pursuit"):
-			currentMode = "flee"
-		elif(currentMode == "flee"):
-			currentMode = "idle"
+		if(currentMode == behaviors.idle):
+			currentMode = behaviors.pursuit
+		elif(currentMode == behaviors.pursuit):
+			currentMode = behaviors.flee
+		elif(currentMode == behaviors.flee):
+			currentMode = behaviors.idle
 	
 	if(Input.is_action_just_pressed("debug3")):
 		print("debug3")
-		currentMode = "cowPursuit"
+		currentMode = behaviors.cowPursuit
 	
 	match[currentMode]: #Essentially a switch statement
-		["idle"]:
+		[behaviors.idle]:
 			[idle()]
-		["circle"]:
+		[behaviors.circle]:
 			[circle()]
-		["pursuit"]:
+		[behaviors.pursuit]:
 			[pursuit()]
-		["cowPursuit"]:
+		[behaviors.cowPursuit]:
 			[cowPursuit()]
-		["flee"]:
+		[behaviors.flee]:
 			[flee()]
-		["attack"]:
+		[behaviors.attack]:
 			[attack()]
 	
 	if(pathNode < path.size()):
@@ -157,7 +156,7 @@ func pursuit():
 		
 	elif(spacing < followDistance / 2.0):
 		print("Panic!")
-		currentMode = "flee"
+		currentMode = behaviors.flee
 		
 	elif(speed < 1):
 		speed = 1
@@ -186,7 +185,7 @@ func cowPursuit():
 	elif(draggedCow == null):
 		draggedCow = targetCow
 		draggedCow.startDragging(self)
-		currentMode = "flee"
+		currentMode = behaviors.flee
 
 func flee():
 	#Marauder runs away from cowboy towards offscreen until it despawns.
@@ -194,20 +193,20 @@ func flee():
 	#If health gets too low, sever lasso and attempt to escape.
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
 	
-	#TODO change both to currentMode == "circle"
+	#TODO change both to currentMode == behaviors.circle
 	if(spacing > 3 * followDistance && health > 0.3 * maxHealth):
-		if(marauderType == "gunman"):
-			currentMode = "pursuit"
-			#currentMode = "circle"
-		elif(marauderType == "thief"):
+		if(marauderType == enemyTypes.gunman):
+			currentMode = behaviors.pursuit
+			#currentMode = behaviors.circle
+		elif(marauderType == enemyTypes.thief):
 			if(draggedCow != null):
 				herd.removeCow(draggedCow)
 				targetCow = null
 				draggedCow.queue_free()
 				draggedCow = null
 				
-			currentMode = "pursuit"
-			#currentMode = "circle"
+			currentMode = behaviors.pursuit
+			#currentMode = behaviors.circle
 	
 	speed = 1.5
 	var fleeVector = Vector3(0,0,0)

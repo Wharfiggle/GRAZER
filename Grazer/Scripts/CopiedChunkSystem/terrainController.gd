@@ -1,7 +1,7 @@
 extends Spatial
 #taken from https://github.com/NesiAwesomeneess/ChunkLoader/blob/main/ChunkLoading/World.gd
 
-export (NodePath) var playerPath = "/root/Level/Ball"
+export (NodePath) var playerPath = NodePath("/root/Level/Ball")
 var player
 
 onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
@@ -24,7 +24,7 @@ func _ready():
 	currentChunk = getPlayerChunk(player.transform.origin)
 	loadChunk()
 
-func _process(delta):
+func _process(_delta):
 	#checks if player has left their current chunk and loads if they have
 	currentChunk = getPlayerChunk(player.transform.origin)
 	if(currentChunk != previousChunk):

@@ -2,7 +2,7 @@ extends KinematicBody
 
 # Declare member variables here. Examples:
 #export (PackedScene) var Bullet
-var Bullet = preload("res://Prefabs/Bullet.tscn")
+var Bullet = preload("res://Prefabs/bullet.tscn")
 
 onready var hitBox = $knockbox
 

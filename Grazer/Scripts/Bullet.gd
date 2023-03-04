@@ -41,14 +41,15 @@ func _on_body_enter(body):
 	queue_free()
 	#print("tink")
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-	pass # Replace with function body.
+func _ready():
+	self.connect("area_entered", self, "_on_body_enter")
+	#pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	self.connect("area_entered", self, "_on_body_enter")
+	#self.connect("area_entered", self, "_on_body_enter")
 	
 	#_on_body_entered()
-#	pass
+	pass
