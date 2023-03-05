@@ -24,6 +24,8 @@ const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 
+var force = 2
+
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 
@@ -75,7 +77,7 @@ func _process(_delta):
 	
 	if(Input.is_action_just_pressed("dodge")):
 		Dodge = toAdd.normalized() * DODGESPEED
-		knock(toAdd, DODGESPEED)
+		knock(Dodge, force)
 		
 	else:
 		Dodge = Vector3(0, 0, 0)
