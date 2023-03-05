@@ -2,25 +2,25 @@
 
 extends CharacterBody3D
 
-@export (float) var normalSpeed = 9.0
-@export (float) var normalLookSpeed = 3.0
-@export (float) var followDistance = 3.0
-@export (float) var pushStrength = 60.0
-@export (float) var pushDistanceThreshold = 2.0
+var normalSpeed = 9.0
+var normalLookSpeed = 3.0
+@export var followDistance = 3.0
+@export var pushStrength = 60.0
+@export var pushDistanceThreshold = 2.0
 var pushVel = Vector2(0, 0)
-@export (float) var speedTransitionRadius = 1.5
-@export (float) var shuffleTime = 0.7
-@export (float) var shuffleTimeRandOffset = 0.5
-@export (float) var shuffleStrength = 0.75
-@export (float) var shuffleSpeed = 3.0
+@export var speedTransitionRadius = 1.5
+@export var shuffleTime = 0.7
+@export var shuffleTimeRandOffset = 0.5
+@export var shuffleStrength = 0.75
+@export var shuffleSpeed = 3.0
 var shuffleTimeCounter = 0
-@export (float) var dragSpeed = 5.0
-@export (float) var dragLookSpeed = 1.0
-@export (float) var dragShake = 0.05
+@export var dragSpeed = 5.0
+@export var dragLookSpeed = 1.0
+@export var dragShake = 0.05
 var dragger = null
 var dragShakeOffset = 0
-@export (float) var maneuverTurnSpeed = 5.0
-@export (float) var maneuverMoveSpeed = 0.7
+@export var maneuverTurnSpeed = 5.0
+@export var maneuverMoveSpeed = 0.7
 var maneuverTurnOffset = 0
 var maneuverMoveModifier = 0
 var maneuvering = false
@@ -35,7 +35,7 @@ var maneuverTurnDir = 1
 var raySize = [2.0, 2.0]
 @onready var model = get_node(NodePath("./Model"))
 var herd
-var velocity = Vector3(0, 0, 0)
+var tVelocity = Vector3(0, 0, 0)
 var speed = 0.0
 var rng = RandomNumberGenerator.new()
 var follow = true
@@ -121,7 +121,7 @@ func _physics_process(delta):
 						#	rayMags[rayInd] = 1
 						#else:
 							#from 0 to raySize[ind], 0: raySize[ind] meters away, 1: 0 meters away
-							var t = 1 - (i.get_collision_point() - i.global_translation).length() / raySize[rayInd]
+							var t = 1 - (i.get_collision_point() - i.global_transform.origin).length() / raySize[rayInd]
 							rayMags[rayInd] = pow(t, 2)
 					rayInd += 1
 				#if(rayMags[5] != 0): #direct
@@ -179,13 +179,13 @@ func _physics_process(delta):
 				if(maneuverTurnOffset > 0.01 || maneuverTurnOffset < -0.01):
 					mmoTargetValue = maneuverMoveSpeed
 				maneuverMoveModifier = lerp(
-					maneuverMoveModifier,
-					mmoTargetValue,
+					float(maneuverMoveModifier),
+					float(mmoTargetValue),
 					0.3)
 				speed *= maneuverMoveModifier
-				velocity.x = -sin(rotation.y) * speed
-				velocity.z = -cos(rotation.y) * speed
-				model.position.z = lerp(model.position.z, 0, 0.1)
+				tVelocity.x = -sin(rotation.y) * speed
+				tVelocity.z = -cos(rotation.y) * speed
+				model.position.z = lerp(model.position.z, 0.0, 0.1)
 				
 				#old shuffle algorithm
 				#var prevAcc = acceleration
@@ -198,9 +198,9 @@ func _physics_process(delta):
 				#speed = max(min(speed, maxSpeed), -maxSpeed)
 			else:
 				#cow's model shuffles before coming to a stop
-				if(velocity.x != 0 || velocity.z != 0):
-					velocity.x = 0
-					velocity.z = 0
+				if(tVelocity.x != 0 || tVelocity.z != 0):
+					tVelocity.x = 0
+					tVelocity.z = 0
 					shuffleTimeCounter = 0
 				elif(shuffleTimeCounter < shuffleTime):
 					shuffleTimeCounter += delta
@@ -243,17 +243,17 @@ func _physics_process(delta):
 		print("Cow.gd: herd is null")
 		
 	#limit total velocity to not go past maxSpeed
-	var totalVelocity = velocity + Vector3(pushVel.x, 0, pushVel.y)
+	var totalVelocity = tVelocity + Vector3(pushVel.x, 0, pushVel.y)
 	if(totalVelocity.length() > maxSpeed):
 		totalVelocity = totalVelocity.normalized() * maxSpeed
 	
 	#gravity, unnaffected by maxSpeed limit
-	velocity.y -= 30 * delta
+	tVelocity.y -= 30 * delta
 	if(is_on_floor()):
-		velocity.y = -0.1
+		tVelocity.y = -0.1
 	elif(transform.origin.y < -20.0):
 		transform.origin = Vector3(0, 10, 0)
-	totalVelocity.y = velocity.y
+	totalVelocity.y = tVelocity.y
 	
 	#apply velocity and move
 	set_velocity(totalVelocity)
