@@ -1,20 +1,20 @@
 extends Node3D
 #taken from https://github.com/NesiAwesomeneess/ChunkLoader/blob/main/ChunkLoading/World.gd
 
-@export (NodePath) var playerPath = NodePath("/root/Level/Ball")
+var playerPath = NodePath("/root/Level/Ball")
 var player
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 @onready var basicTile = preload("res://Assets/FloorTiles/basicFloorTile.tscn")
 
-@export (int) var renderDistance = 3
-@export (float) var tileWidth = 32.0
+var renderDistance = 3
+var tileWidth = 32.0
 var currentChunk = Vector3()
 var previousChunk = Vector3()
 var chunkLoaded = false
 
-@export (bool) var circumnavigation = false
-@export (float) var revolution_distance = 8.0
+var circumnavigation = false
+var revolution_distance = 8.0
 
 @onready var activeCoord = []
 @onready var activeChunks = []
@@ -82,8 +82,8 @@ func loadChunk():
 	for x in deletingChunks:
 		var index = activeCoord.find(x)
 		activeChunks[index].save()
-		activeChunks.remove(index)
-		activeCoord.remove(index)
+		activeChunks.remove_at(index)
+		activeCoord.remove_at(index)
 	
 	chunkLoaded = true
 

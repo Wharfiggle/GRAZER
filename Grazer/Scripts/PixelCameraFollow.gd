@@ -1,11 +1,11 @@
 extends Camera3D
 
 # Declare member variables here.
-@export (float) var screenWidth = 640.0
-@export (float) var unitWidth = 42.0
-@export (float) var lerpSpeed = 3.0
-@export (bool) var incrementalCamera = true
-@export (NodePath) var targetNodePath = NodePath("/root/Level/Ball")
+var screenWidth = 640.0
+var unitWidth = 42.0
+var lerpSpeed = 3.0
+var incrementalCamera = true
+var targetNodePath = NodePath("/root/Level/Ball")
 var followTarget
 var camOffset
 var pos
@@ -20,7 +20,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	pos = lerp(pos, followTarget.global_translation, lerpSpeed * delta)
+	pos = lerp(pos, followTarget.global_transform.origin, lerpSpeed * delta)
 	#pos = followTarget.global_translation
 	self.position = pos + camOffset
 	if(incrementalCamera):
