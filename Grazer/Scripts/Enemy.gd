@@ -202,7 +202,7 @@ func flee():
 			if(draggedCow != null):
 				herd.removeCow(draggedCow)
 				targetCow = null
-				#draggedCow.queue_free()
+				draggedCow.queue_free()
 				draggedCow = null
 				
 			currentMode = behaviors.pursuit
