@@ -221,7 +221,7 @@ func flee():
 #navigation function
 func moveTo(targetPos):
 	path = NavigationServer3D.map_get_path(get_world_3d().get_navigation_map(),
-global_transform.origin, targetPos, false)
+global_transform.origin, targetPos, true)
 	#global_transform.origin, targetPos)
 	pathNode = 0
 
