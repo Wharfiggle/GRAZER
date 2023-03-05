@@ -1,63 +1,56 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://b74n3r15kx4b"]
 
-[ext_resource path="res://Scripts/knockback.gd" type="Script" id=1]
-[ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/FloorTiles/basicFloorTile.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/Camera.tscn" type="PackedScene" id=4]
+[ext_resource type="Script" path="res://Scripts/knockback.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Ball.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://w4p6jdet4qw4" path="res://Assets/FloorTiles/basicFloorTile.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="4"]
 
-[sub_resource type="SphereShape3D" id=1]
+[sub_resource type="BoxShape3D" id="4"]
 
-[sub_resource type="BoxShape3D" id=4]
-
-[sub_resource type="BoxMesh" id=5]
+[sub_resource type="BoxMesh" id="5"]
 
 [node name="Level" type="Node3D"]
 
-[node name="StaticBody3D" parent="." instance=ExtResource( 3 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.312, 0, -30.288 )
+[node name="StaticBody3D" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.312, 0, -30.288)
 
-[node name="StaticBody2" parent="." instance=ExtResource( 3 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.395, 0, -41.286 )
+[node name="StaticBody2" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.395, 0, -41.286)
 
-[node name="StaticBody3" parent="." instance=ExtResource( 3 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.644, 0, -9.628 )
+[node name="StaticBody3" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.644, 0, -9.628)
 
-[node name="Ball" parent="." instance=ExtResource( 2 )]
-transform = Transform3D( 0.5, -4.46707e-05, 0.000163792, 4.47944e-05, 0.5, -0.000401941, -0.000163759, 0.000401955, 0.5, -22.825, 100, -32.196 )
+[node name="Ball" parent="." instance=ExtResource("2")]
+transform = Transform3D(0.5, -4.46707e-05, 0.000163792, 4.47944e-05, 0.5, -0.000401941, -0.000163759, 0.000401955, 0.5, -22.825, 100, -32.196)
 
 [node name="Marker3D" type="Marker3D" parent="Ball"]
-transform = Transform3D( 1, -2.33058e-12, 0, 1.43814e-11, 1, -3.49246e-10, 0, 0, 1, -5.34058e-05, 2.1613, 0.250671 )
+transform = Transform3D(1, -2.33058e-12, 0, 1.43814e-11, 1, -3.49246e-10, 0, 0, 1, -5.34058e-05, 2.1613, 0.250671)
 
 [node name="smokeSpawn" type="Node3D" parent="Ball"]
-transform = Transform3D( 1, -2.33058e-12, 0, 1.08969e-10, 1, -8.73115e-10, 0, 0, 1, 0.00101471, 4.1227, 0.260017 )
+transform = Transform3D(1, -2.33058e-12, 0, 1.08969e-10, 1, -8.73115e-10, 0, 0, 1, 0.00101471, 4.1227, 0.260017)
 
 [node name="knockbox" type="Area3D" parent="Ball"]
-transform = Transform3D( 6, -2.18279e-10, 0, 1.59162e-10, 6, 0, 0, 1.86265e-09, 6, 8.39233e-05, 1.03004, -0.000831604 )
+transform = Transform3D(6, -2.18279e-10, 0, 1.59162e-10, 6, 0, 0, 1.86265e-09, 6, 8.39233e-05, 1.03004, -0.000831604)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball/knockbox"]
-transform = Transform3D( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
-shape = SubResource( 1 )
-
-[node name="Camera3D" parent="." instance=ExtResource( 4 )]
+[node name="Camera3D" parent="." instance=ExtResource("4")]
 targetNodePath = NodePath("../Ball")
 
-[node name="StaticBody4" parent="." instance=ExtResource( 3 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.341, 0, -8.455 )
+[node name="StaticBody4" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.341, 0, -8.455)
 
-[node name="StaticBody5" parent="." instance=ExtResource( 3 )]
-transform = Transform3D( 0.499077, -0.000138236, -0.0607215, 4.47944e-05, 1, -0.000803881, 0.0303608, 0.000796958, 0.998154, -22.2258, 90, -19.78 )
+[node name="StaticBody5" parent="." instance=ExtResource("3")]
+transform = Transform3D(0.499077, -0.000138236, -0.0607215, 4.47944e-05, 1, -0.000803881, 0.0303608, 0.000796958, 0.998154, -22.2258, 90, -19.78)
 
 [node name="spawn" type="Node3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8271, 102.047, -32.0673 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8271, 102.047, -32.0673)
 
 [node name="enemycube" type="CharacterBody3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1.05408, 0, 0, 0, 1, -20.8408, 92.337, -15.1301 )
-collision/safe_margin = 0.003
-script = ExtResource( 1 )
+transform = Transform3D(1, 0, 0, 0, 1.05408, 0, 0, 0, 1, -20.8408, 92.337, -15.1301)
+script = ExtResource("1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemycube"]
-transform = Transform3D( 1.09742, 0, 0, 0, 1.02215, 0, 0, 0, 1.35869, 0, 0, 0 )
-shape = SubResource( 4 )
+transform = Transform3D(1.09742, 0, 0, 0, 1.02215, 0, 0, 0, 1.35869, 0, 0, 0)
+shape = SubResource("4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enemycube"]
-mesh = SubResource( 5 )
+mesh = SubResource("5")

@@ -1,11 +1,16 @@
 extends CharacterBody3D
  ##This needs to be added to an enemy
-var velocity = Vector3(0,0,0)
+var vel = Vector3(0,0,0)
 
 var gravity = 30
 var speed = velocity
 var knock = Vector3(0,0,0)
 var lifespan = 10
+
+@export var knockable = true
+
+@export var knockbackMod = 0.1
+
 
 var maxHP = 10
 
@@ -19,8 +24,15 @@ var HP = maxHP
 func _ready():
 	pass # Replace with function body.
 
-func knockback(push, zoom):
-	speed = push * zoom
+func knockback(damageSourcePos:Vector3, recivedDamage:int):
+	#speed = push * zoom
+	
+	if knockable:
+		var knockbackDirection = damageSourcePos.direction_to(self.global_position)
+		var knockbackStrength = recivedDamage * knockbackMod
+		var knockB = knockbackDirection * knockbackStrength
+		
+		global_position += knockB
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
