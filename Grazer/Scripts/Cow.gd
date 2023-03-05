@@ -66,6 +66,7 @@ func startDragging(marauder):
 	maxSpeed = dragSpeed
 	lookSpeed = dragLookSpeed
 	herd.removeHuddler(self)
+	enableRayCasts()
 	
 func stopDragging():
 	dragger = null
@@ -79,6 +80,13 @@ func enableRayCasts():
 func disableRayCasts():
 	for i in rayCasts:
 		i.enabled = false
+
+#called by herd when cow is removed from herd
+func idle():
+	disableRayCasts()
+	follow = false
+	target = null
+	followingHerd = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

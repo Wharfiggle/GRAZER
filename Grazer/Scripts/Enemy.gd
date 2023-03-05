@@ -200,9 +200,9 @@ func flee():
 			#currentMode = behaviors.circle
 		elif(marauderType == enemyTypes.thief):
 			if(draggedCow != null):
-				herd.deleteCow(draggedCow)
+				herd.removeCow(draggedCow)
 				targetCow = null
-				draggedCow.queue_free()
+				#draggedCow.queue_free()
 				draggedCow = null
 				
 			currentMode = behaviors.pursuit

@@ -86,13 +86,7 @@ func removeCow(cow):
 	cowCounter.updateCowNum(numCows)
 	remove_child(cow)
 	get_node(NodePath("/root/Level")).add_child(cow)
-	cow.follow = false
-	cow.target = null
-	cow.followingHerd = false
-
-func deleteCow(cow):
-	removeCow(cow)
-	cow.queue_free()
+	cow.idle()
 
 #spawn a cow in center of world
 func spawnCow() -> Node:
