@@ -180,7 +180,7 @@ func cowPursuit():
 	if(herd.numCows <= 0):
 		return
 	
-	if(translation.distance_to(targetCow.translation) > 2):
+	if(translation.distance_to(targetCow.translation) > dragRange):
 		targetPos = targetCow.translation
 	elif(draggedCow == null):
 		draggedCow = targetCow
@@ -200,7 +200,7 @@ func flee():
 			#currentMode = behaviors.circle
 		elif(marauderType == enemyTypes.thief):
 			if(draggedCow != null):
-				herd.removeCow(draggedCow)
+				herd.deleteCow(draggedCow)
 				targetCow = null
 				draggedCow.queue_free()
 				draggedCow = null

@@ -72,6 +72,7 @@ func getClosestCow(loc) -> Node:
 func addCow(cow):
 	cows.append(cow)
 	numCows += 1
+	cowCounter.updateCowNum(numCows)
 	add_child(cow)
 	cow.follow = follow
 	cow.target = getTarget()
@@ -82,18 +83,22 @@ func addCow(cow):
 func removeCow(cow):
 	cows.erase(cow)
 	numCows -= 1
+	cowCounter.updateCowNum(numCows)
 	remove_child(cow)
 	get_node(NodePath("/root/Level")).add_child(cow)
 	cow.follow = false
 	cow.target = null
 	cow.followingHerd = false
 
+func deleteCow(cow):
+	removeCow(cow)
+	cow.queue_free()
+
 #spawn a cow in center of world
 func spawnCow() -> Node:
 	var cow = cowPrefab.instance()
 	cow.translation = Vector3(0, 10, 0)
 	addCow(cow)
-	cowCounter.updateCowNum(numCows)
 	return cow
 
 #get target for cows to follow, either player's position or center of huddle
