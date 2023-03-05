@@ -1,10 +1,9 @@
-extends KinematicBody
+extends CharacterBody3D
 
-onready var player = get_node("../Ball")
-onready var nav = get_node("/root/Level/Navigation")
+@onready var player = get_node("../Ball")
+@onready var nav = get_node("/root/Level/Navigation")
 
 var Bullet = preload("res://Prefabs/BulletE.tscn")
-
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 
 var maxHealth = 10.0
@@ -12,6 +11,7 @@ var health = maxHealth
 
 var targetPos = Vector3(0,0,0)
 var targetCow = null
+@onready var navAgent = get_node("NavigationAgent3D")
 var path = []
 var pathNode = 0
 var baseSpeed = 4
@@ -30,9 +30,9 @@ enum enemyTypes {thief, gunman}
 var marauderType = enemyTypes.thief #thief or gunman
 
 var rng = RandomNumberGenerator.new()
-onready var herd = get_node(NodePath("/root/Level/Herd"))
+@onready var herd = get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
-export (float) var dragRange = 4.0
+var dragRange = 4.0
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -76,7 +76,9 @@ func _physics_process(_delta):
 		if(direction.length() < 1):
 			pathNode += 1
 		else:
-			move_and_slide(direction.normalized() * baseSpeed * speed, Vector3.UP)
+			set_velocity(direction.normalized() * baseSpeed * speed)
+			set_up_direction(Vector3.UP)
+			move_and_slide()
 	
 	
 	#Basic cow dragging test
@@ -97,20 +99,20 @@ func _physics_process(_delta):
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
 		var cowVector = Vector2(
-			draggedCow.translation.x - translation.x, 
-			draggedCow.translation.z - translation.z)
+			draggedCow.position.x - position.x, 
+			draggedCow.position.z - position.z)
 		var dist = sqrt( pow(cowVector.x, 2) + pow(cowVector.y, 2) )
 		if(dist > dragRange):
 			cowVector = cowVector.normalized() * dragRange
-			translation = Vector3(
-				draggedCow.translation.x - cowVector.x,
-				translation.y,
-				draggedCow.translation.z - cowVector.y)
+			position = Vector3(
+				draggedCow.position.x - cowVector.x,
+				position.y,
+				draggedCow.position.z - cowVector.y)
 
 
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
-	targetPos = translation
+	targetPos = position
 
 func circle():
 	#Marauder circles around the herd. If marauderType is theif, it should 
@@ -173,15 +175,15 @@ func cowPursuit():
 	
 	#TODO figure out how to call getClosestCow
 	if(targetCow == null):
-		herd.getClosestCow(translation)
+		herd.getClosestCow(position)
 		
-		targetCow = herd.getClosestCow(translation)
+		targetCow = herd.getClosestCow(position)
 	
 	if(herd.numCows <= 0):
 		return
 	
-	if(translation.distance_to(targetCow.translation) > dragRange):
-		targetPos = targetCow.translation
+	if(position.distance_to(targetCow.position) > dragRange):
+		targetPos = targetCow.position
 	elif(draggedCow == null):
 		draggedCow = targetCow
 		draggedCow.startDragging(self)
@@ -218,7 +220,9 @@ func flee():
 
 #navigation function
 func moveTo(targetPos):
-	path = nav.get_simple_path(global_transform.origin, targetPos)
+	path = NavigationServer3D.map_get_path(get_world_3d().get_navigation_map(),
+global_transform.origin, targetPos, false)
+	#global_transform.origin, targetPos)
 	pathNode = 0
 
 func _on_Timer_timeout():
@@ -226,16 +230,16 @@ func _on_Timer_timeout():
 
 func attack():
 		for x in 2:
-			var b = Bullet.instance()
+			var b = Bullet.instantiate()
 			owner.add_child(b)
-			b.transform = $Position3D.global_transform
+			b.transform = $Marker3D.global_transform
 			b.velocity = b.transform.basis.z * b.muzzle_velocity
 			print("enemy fire")
 			_emit_smoke(b)
 	
 
 func _emit_smoke(bullet):
-	var newSmoke = Smoke.instance()
+	var newSmoke = Smoke.instantiate()
 	bullet.add_child(newSmoke)
 
 

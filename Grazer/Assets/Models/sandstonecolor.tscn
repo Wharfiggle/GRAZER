@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Models/sandstone.fbx" type="PackedScene" id=1]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 albedo_color = Color( 0.631373, 0.227451, 0.0705882, 1 )
 
 [node name="sandstone" instance=ExtResource( 1 )]

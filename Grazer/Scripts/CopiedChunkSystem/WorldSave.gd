@@ -1,7 +1,7 @@
 class_name worldsave extends Node
 
-onready var loadedCoords = []
-onready var dataInChunk = []
+@onready var loadedCoords = []
+@onready var dataInChunk = []
 
 func addChunk(coords):
 	loadedCoords.append(coords)

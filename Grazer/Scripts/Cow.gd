@@ -1,31 +1,31 @@
 #Elijah Southman
 
-extends KinematicBody
+extends CharacterBody3D
 
-export (float) var normalSpeed = 9.0
-export (float) var normalLookSpeed = 3.0
-export (float) var followDistance = 3.0
-export (float) var pushStrength = 60.0
-export (float) var pushDistanceThreshold = 2.0
+@export (float) var normalSpeed = 9.0
+@export (float) var normalLookSpeed = 3.0
+@export (float) var followDistance = 3.0
+@export (float) var pushStrength = 60.0
+@export (float) var pushDistanceThreshold = 2.0
 var pushVel = Vector2(0, 0)
-export (float) var speedTransitionRadius = 1.5
-export (float) var shuffleTime = 0.7
-export (float) var shuffleTimeRandOffset = 0.5
-export (float) var shuffleStrength = 0.75
-export (float) var shuffleSpeed = 3.0
+@export (float) var speedTransitionRadius = 1.5
+@export (float) var shuffleTime = 0.7
+@export (float) var shuffleTimeRandOffset = 0.5
+@export (float) var shuffleStrength = 0.75
+@export (float) var shuffleSpeed = 3.0
 var shuffleTimeCounter = 0
-export (float) var dragSpeed = 5.0
-export (float) var dragLookSpeed = 1.0
-export (float) var dragShake = 0.05
+@export (float) var dragSpeed = 5.0
+@export (float) var dragLookSpeed = 1.0
+@export (float) var dragShake = 0.05
 var dragger = null
 var dragShakeOffset = 0
-export (float) var maneuverTurnSpeed = 5.0
-export (float) var maneuverMoveSpeed = 0.7
+@export (float) var maneuverTurnSpeed = 5.0
+@export (float) var maneuverMoveSpeed = 0.7
 var maneuverTurnOffset = 0
 var maneuverMoveModifier = 0
 var maneuvering = false
 var maneuverTurnDir = 1
-onready var rayCasts = [
+@onready var rayCasts = [
 	#get_node(NodePath("./RayCastSideLeft")),
 	get_node(NodePath("./RayCastLeft")), 
 	#get_node(NodePath("./RayCastMiddle")), 
@@ -33,7 +33,7 @@ onready var rayCasts = [
 	#get_node(NodePath("./RayCastSideRight")),
 	#get_node(NodePath("./RayCastDirect"))]
 var raySize = [2.0, 2.0]
-onready var model = get_node(NodePath("./Model"))
+@onready var model = get_node(NodePath("./Model"))
 var herd
 var velocity = Vector3(0, 0, 0)
 var speed = 0.0
@@ -95,10 +95,10 @@ func _physics_process(delta):
 			var targetVector
 			if(dragger != null):
 				targetVector = Vector2(
-					dragger.translation.x - translation.x, 
-					dragger.translation.z - translation.z)
+					dragger.position.x - position.x, 
+					dragger.position.z - position.z)
 			elif(target != null):
-				targetVector = Vector2(target.x - translation.x, target.y - translation.z)
+				targetVector = Vector2(target.x - position.x, target.y - position.z)
 			
 			if(Input.is_action_pressed("cowParty")):
 				rotate_y(maxSpeed)
@@ -147,7 +147,7 @@ func _physics_process(delta):
 				#else:
 				#	maneuvering = false
 				#rayCasts[5].global_rotation = Vector3(0, 0, 0)
-				#rayCasts[5].cast_to = Vector3(targetVector.x, 0, targetVector.y)
+				#rayCasts[5].target_position = Vector3(targetVector.x, 0, targetVector.y)
 				if(maneuvering == false):
 					maneuverTurnOffset = lerp_angle(
 						maneuverTurnOffset,
@@ -185,7 +185,7 @@ func _physics_process(delta):
 				speed *= maneuverMoveModifier
 				velocity.x = -sin(rotation.y) * speed
 				velocity.z = -cos(rotation.y) * speed
-				model.translation.z = lerp(model.translation.z, 0, 0.1)
+				model.position.z = lerp(model.position.z, 0, 0.1)
 				
 				#old shuffle algorithm
 				#var prevAcc = acceleration
@@ -204,7 +204,7 @@ func _physics_process(delta):
 					shuffleTimeCounter = 0
 				elif(shuffleTimeCounter < shuffleTime):
 					shuffleTimeCounter += delta
-					model.translation.z = -sin(shuffleTimeCounter * shuffleSpeed) * shuffleStrength * ((shuffleTime - shuffleTimeCounter) / shuffleTime)
+					model.position.z = -sin(shuffleTimeCounter * shuffleSpeed) * shuffleStrength * ((shuffleTime - shuffleTimeCounter) / shuffleTime)
 		else:
 			print("Cow.gd: target is null")
 		
@@ -216,8 +216,8 @@ func _physics_process(delta):
 			if(i != self):
 				#direction to other cow
 				var cowDirVec = Vector2(
-					translation.x - i.translation.x, 
-					translation.z - i.translation.z)
+					position.x - i.position.x, 
+					position.z - i.position.z)
 				#distance to other cow
 				var dist = sqrt(pow(cowDirVec.x, 2) + pow(cowDirVec.y, 2))
 				if(dist < pushDistanceThreshold):
@@ -256,7 +256,9 @@ func _physics_process(delta):
 	totalVelocity.y = velocity.y
 	
 	#apply velocity and move
-	move_and_slide(totalVelocity, Vector3.UP)
+	set_velocity(totalVelocity)
+	set_up_direction(Vector3.UP)
+	move_and_slide()
 	
 	#make cow's model look in the direction it's moving
 	if((totalVelocity.x > 0.01 || totalVelocity.x < -0.01 

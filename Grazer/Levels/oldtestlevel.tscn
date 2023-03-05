@@ -4,89 +4,89 @@
 [ext_resource path="res://Assets/Cactus/cactusScene.fbx" type="PackedScene" id=3]
 
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="BoxMesh" id=1]
 size = Vector3( 30, 2, 30 )
 
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 15, 1, 15 )
+[sub_resource type="BoxShape3D" id=2]
+size = Vector3( 15, 1, 15 )
 
-[sub_resource type="CylinderShape" id=3]
+[sub_resource type="CylinderShape3D" id=3]
 
 [sub_resource type="CylinderMesh" id=4]
 
-[sub_resource type="CylinderShape" id=6]
+[sub_resource type="CylinderShape3D" id=6]
 
 [sub_resource type="PhysicsMaterial" id=5]
 friction = 400000.0
 
-[node name="Level" type="Spatial"]
+[node name="Level" type="Node3D"]
 
-[node name="Floor" type="RigidBody" parent="."]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+[node name="Floor" type="RigidBody3D" parent="."]
+transform = Transform3D( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
 mode = 1
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource( 1 )
-skeleton = NodePath("../CollisionShape")
+skeleton = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource( 2 )
 
-[node name="BlueLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51574, 11.1257, 26.4164 )
+[node name="BlueLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51574, 11.1257, 26.4164 )
 light_color = Color( 0.180392, 0.443137, 1, 1 )
 light_specular = 0.0
 
-[node name="KinematicBody" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48712, 0 )
+[node name="CharacterBody3D" parent="." instance=ExtResource( 1 )]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48712, 0 )
 
-[node name="CamFollow" type="Spatial" parent="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 20, 20 )
+[node name="CamFollow" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 20, 20 )
 
-[node name="RedLight" type="DirectionalLight" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9089, 10.3043, 0 )
+[node name="RedLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9089, 10.3043, 0 )
 light_color = Color( 0.929412, 0.0666667, 0.0666667, 1 )
 
-[node name="Cylinder" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.644609, 3.65218, -15.6359 )
+[node name="Cylinder" type="RigidBody3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.644609, 3.65218, -15.6359 )
 mass = 4.01122
 
-[node name="CollisionShape" type="CollisionShape" parent="Cylinder"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder"]
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Cylinder"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder"]
 mesh = SubResource( 4 )
 
-[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]
 projection = 1
 size = 50.0
-target = NodePath("../KinematicBody/CamFollow")
+target = NodePath("../CharacterBody3D/CamFollow")
 speed = 3.0
 enabled = true
 
-[node name="RigidBody" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74883, 2.00675, 9.26767 )
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74883, 2.00675, 9.26767 )
 
-[node name="cactusScene" parent="RigidBody" instance=ExtResource( 3 )]
+[node name="cactusScene" parent="RigidBody3D" instance=ExtResource( 3 )]
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-transform = Transform( 0.277395, 0, 0, 0, 1.97437, 0, 0, 0, 0.277395, 0, 0, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D( 0.277395, 0, 0, 0, 1.97437, 0, 0, 0, 0.277395, 0, 0, 0 )
 shape = SubResource( 6 )
 
-[node name="Cylinder2" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.644609, 3.65218, 12.8373 )
+[node name="Cylinder2" type="RigidBody3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.644609, 3.65218, 12.8373 )
 mass = 19179.3
 physics_material_override = SubResource( 5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Cylinder2"]
-transform = Transform( 2.66579, 0, 0, 0, 1, 0, 0, 0, 5.04703, 0, 0, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder2"]
+transform = Transform3D( 2.66579, 0, 0, 0, 1, 0, 0, 0, 5.04703, 0, 0, 0 )
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Cylinder2"]
-transform = Transform( 4.66153, 0, 0, 0, 1, 0, 0, 0, 4.66153, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder2"]
+transform = Transform3D( 4.66153, 0, 0, 0, 1, 0, 0, 0, 4.66153, 0, 0, 0 )
 mesh = SubResource( 4 )
 
-[node name="GreenLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 53.9063, 0 )
+[node name="GreenLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 53.9063, 0 )
 light_color = Color( 0.356863, 0.752941, 0.380392, 1 )
 shadow_enabled = true

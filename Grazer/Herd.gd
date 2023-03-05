@@ -1,10 +1,10 @@
-extends Spatial
+extends Node3D
 
 # Declare member variables here.
-export (NodePath) var playerNodePath = NodePath("/root/Level/Ball")
-export (NodePath) var cowCounterNodePath = NodePath("/root/Level/Cow Counter")
-onready var player = get_node(playerNodePath)
-onready var cowCounter = get_node(cowCounterNodePath)
+@export (NodePath) var playerNodePath = NodePath("/root/Level/Ball")
+@export (NodePath) var cowCounterNodePath = NodePath("/root/Level/Cow Counter")
+@onready var player = get_node(playerNodePath)
+@onready var cowCounter = get_node(cowCounterNodePath)
 var cowPrefab = preload("res://Prefabs/Cow.tscn")
 var cows = []
 var numCows = 0
@@ -31,7 +31,7 @@ func _physics_process(delta):
 			i.followingHerd = followingHerd
 	else:
 		for i in huddle:
-			i.target = Vector2(player.translation.x, player.translation.z)
+			i.target = Vector2(player.position.x, player.position.z)
 			i.followingHerd = false
 
 func follow():
@@ -45,7 +45,7 @@ func getCow(index) -> Node:
 func getCows() -> Array:
 	return cows
 
-#Returns the cow closest to parameter translation 
+#Returns the cow closest to parameter position 
 func getClosestCow(loc) -> Node:
 	var closestCow
 	var distance = 100000.0
@@ -53,9 +53,9 @@ func getClosestCow(loc) -> Node:
 	if(numCows <= 0):
 		return null
 	for c in cows:
-		if(closestCow.translation.distanceTo(loc) < distance):
+		if(closestCow.position.distanceTo(loc) < distance):
 			closestCow = c
-			distance = closestCow.translation.distanceTo(loc)
+			distance = closestCow.position.distanceTo(loc)
 			
 	return closestCow
 
@@ -78,8 +78,8 @@ func removeCow(cow):
 	cow.followingHerd = false
 
 func spawnCow() -> Node:
-	var cow = cowPrefab.instance()
-	cow.translation = Vector3(0, 10, 0)
+	var cow = cowPrefab.instantiate()
+	cow.position = Vector3(0, 10, 0)
 	addCow(cow)
 	cowCounter.updateCowNum(numCows)
 	return cow
@@ -87,11 +87,11 @@ func spawnCow() -> Node:
 func getTarget() -> Vector2:
 	if(numHuddle == 0):
 		followingHerd = false
-		return Vector2(player.translation.x, player.translation.z)
+		return Vector2(player.position.x, player.position.z)
 	else:
-		var loc = Vector2(player.translation.x, player.translation.z)
+		var loc = Vector2(player.position.x, player.position.z)
 		for i in huddle:
-			loc += Vector2(i.translation.x, i.translation.z)
+			loc += Vector2(i.position.x, i.position.z)
 		loc /= numHuddle + 1
 		followingHerd = true
 		return loc
@@ -99,7 +99,7 @@ func getTarget() -> Vector2:
 func addHuddler(huddler):
 	huddle.append(huddler)
 	numHuddle += 1
-	huddler.target = Vector2(player.translation.x, player.translation.z)
+	huddler.target = Vector2(player.position.x, player.position.z)
 	huddler.followingHerd = false
 	var target = getTarget()
 	for i in cows:

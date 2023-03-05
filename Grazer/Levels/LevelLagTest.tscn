@@ -7,20 +7,20 @@
 [ext_resource path="res://Prefabs/DirectionalLight.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/PostProcessing.tscn" type="PackedScene" id=6]
 
-[sub_resource type="BoxShape" id=15]
-extents = Vector3( 15, 0.05, 15 )
+[sub_resource type="BoxShape3D" id=15]
+size = Vector3( 15, 0.05, 15 )
 
-[sub_resource type="CubeMesh" id=16]
+[sub_resource type="BoxMesh" id=16]
 size = Vector3( 30, 0.1, 30 )
 
 [sub_resource type="Skin" id=17]
 
-[node name="Level" type="Spatial"]
+[node name="Level" type="Node3D"]
 
 [node name="FPS Counter" type="Label" parent="."]
-margin_top = 0.00012207
-margin_right = 40.0
-margin_bottom = 14.0001
+offset_top = 0.00012207
+offset_right = 40.0
+offset_bottom = 14.0001
 text = "FPS: "
 script = ExtResource( 1 )
 
@@ -30,18 +30,18 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="Ball" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
-[node name="Camera" parent="." instance=ExtResource( 4 )]
+[node name="Camera3D" parent="." instance=ExtResource( 4 )]
 
-[node name="DirectionalLight" parent="." instance=ExtResource( 5 )]
+[node name="DirectionalLight3D" parent="." instance=ExtResource( 5 )]
 
-[node name="Floor" type="StaticBody" parent="."]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource( 15 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource( 16 )
 skin = SubResource( 17 )

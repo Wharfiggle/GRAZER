@@ -1,23 +1,23 @@
-extends Spatial
+extends Node3D
 #taken from https://github.com/NesiAwesomeneess/ChunkLoader/blob/main/ChunkLoading/World.gd
 
-export (NodePath) var playerPath = NodePath("/root/Level/Ball")
+@export (NodePath) var playerPath = NodePath("/root/Level/Ball")
 var player
 
-onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
-onready var basicTile = preload("res://Assets/FloorTiles/basicFloorTile.tscn")
+@onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
+@onready var basicTile = preload("res://Assets/FloorTiles/basicFloorTile.tscn")
 
-export (int) var renderDistance = 3
-export (float) var tileWidth = 32.0
+@export (int) var renderDistance = 3
+@export (float) var tileWidth = 32.0
 var currentChunk = Vector3()
 var previousChunk = Vector3()
 var chunkLoaded = false
 
-export (bool) var circumnavigation = false
-export (float) var revolution_distance = 8.0
+@export (bool) var circumnavigation = false
+@export (float) var revolution_distance = 8.0
 
-onready var activeCoord = []
-onready var activeChunks = []
+@onready var activeCoord = []
+@onready var activeChunks = []
 
 func _ready(): 
 	player = get_node(playerPath)
@@ -66,7 +66,7 @@ func loadChunk():
 			#loading chunks stores the coords that are in the new render chunk
 			#this if statement makes sure that only the coords that are not already active are loaded
 			if activeCoord.find(chunkCoords) == -1:
-				var chunk = chunkNode.instance()
+				var chunk = chunkNode.instantiate()
 				chunk.transform.origin = chunkCoords * tileWidth
 				activeChunks.append(chunk)
 				activeCoord.append(chunkCoords)

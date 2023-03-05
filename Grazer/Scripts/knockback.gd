@@ -1,4 +1,4 @@
-extends KinematicBody
+extends CharacterBody3D
  ##This needs to be added to an enemy
 var velocity = Vector3(0,0,0)
 
@@ -36,7 +36,9 @@ func _physics_process(delta):
 	if is_on_floor():
 		speed.y = -0.1
 	
-	speed = move_and_slide(speed)
+	set_velocity(speed)
+	move_and_slide()
+	speed = velocity
 	
 
 

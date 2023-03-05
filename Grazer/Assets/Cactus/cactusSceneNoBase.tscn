@@ -2,19 +2,19 @@
 
 [ext_resource path="res://Assets/Cactus/cactusScene.fbx" type="PackedScene" id=1]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 albedo_color = Color( 0.392157, 0.533333, 0.00392157, 1 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="StandardMaterial3D" id=2]
 albedo_color = Color( 0.733333, 0.494118, 0.282353, 1 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="StandardMaterial3D" id=4]
 albedo_color = Color( 0.619608, 0.243137, 0.12549, 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="StandardMaterial3D" id=3]
 albedo_color = Color( 0.619608, 0.243137, 0.12549, 1 )
 
-[sub_resource type="CylinderShape" id=5]
+[sub_resource type="CylinderShape3D" id=5]
 radius = 0.3
 
 [node name="cactusScene" instance=ExtResource( 1 )]
@@ -32,53 +32,53 @@ material/0 = SubResource( 1 )
 material/0 = SubResource( 1 )
 
 [node name="ground" parent="RootNode/ground_HI" index="1"]
-transform = Transform( 378.375, 0, 0, 0, 8.61312, 0, 0, 0, 378.375, 0, -14.9917, 0 )
+transform = Transform3D( 378.375, 0, 0, 0, 8.61312, 0, 0, 0, 378.375, 0, -14.9917, 0 )
 visible = false
 material/0 = SubResource( 2 )
 
 [node name="firstRock" parent="RootNode/ground_HI" index="2"]
-transform = Transform( 22.1385, 0, 0, 0, 22.1385, 0, 0, 0, 22.1385, 0.600633, -14.9233, 0.575086 )
+transform = Transform3D( 22.1385, 0, 0, 0, 22.1385, 0, 0, 0, 22.1385, 0.600633, -14.9233, 0.575086 )
 visible = false
 material/0 = SubResource( 4 )
 
 [node name="pCube3" parent="RootNode/ground_HI" index="3"]
-transform = Transform( 9.55649, -19.424, 4.63631, 7.24802, 8.16312, 19.2599, -18.6079, -6.79598, 9.88307, 0.218467, -15.0247, 0.575086 )
+transform = Transform3D( 9.55649, -19.424, 4.63631, 7.24802, 8.16312, 19.2599, -18.6079, -6.79598, 9.88307, 0.218467, -15.0247, 0.575086 )
 visible = false
 material/0 = SubResource( 3 )
 
 [node name="pCube4" parent="RootNode/ground_HI" index="4"]
-transform = Transform( -21.0401, 3.58301, 5.88139, 6.38683, 17.2243, 12.355, -2.57626, 13.4388, -17.4034, -0.693166, -15.0247, -0.795644 )
+transform = Transform3D( -21.0401, 3.58301, 5.88139, 6.38683, 17.2243, 12.355, -2.57626, 13.4388, -17.4034, -0.693166, -15.0247, -0.795644 )
 visible = false
 material/0 = SubResource( 3 )
 
 [node name="pCube5" parent="RootNode/ground_HI" index="5"]
-transform = Transform( 16.5606, 9.3369, 11.3438, 6.41246, -19.9725, 7.07762, 13.2189, -2.00863, -17.6448, -0.819575, -14.9268, 0.707367 )
+transform = Transform3D( 16.5606, 9.3369, 11.3438, 6.41246, -19.9725, 7.07762, 13.2189, -2.00863, -17.6448, -0.819575, -14.9268, 0.707367 )
 visible = false
 material/0 = SubResource( 3 )
 
 [node name="lastRock" parent="RootNode/ground_HI" index="6"]
-transform = Transform( -8.24003, -14.5795, -1.79483, 7.85288, -6.11121, 13.5892, -12.4143, 5.81142, 9.7874, -0.706954, -15.0247, 0.342265 )
+transform = Transform3D( -8.24003, -14.5795, -1.79483, 7.85288, -6.11121, 13.5892, -12.4143, 5.81142, 9.7874, -0.706954, -15.0247, 0.342265 )
 visible = false
 material/0 = SubResource( 3 )
 
 [node name="lastRock1" parent="RootNode/ground_HI" index="7"]
-transform = Transform( -12.0578, 5.60729, 5.45809, -7.62943, -6.19604, -10.4892, -1.73903, -11.6957, 8.17364, 0.644352, -15.0247, 0.0433757 )
+transform = Transform3D( -12.0578, 5.60729, 5.45809, -7.62943, -6.19604, -10.4892, -1.73903, -11.6957, 8.17364, 0.644352, -15.0247, 0.0433757 )
 visible = false
 material/0 = SubResource( 3 )
 
 [node name="lastRock2" parent="RootNode/ground_HI" index="8"]
-transform = Transform( -7.18565, 10.2544, -7.05954, 3.82908, -5.93554, -12.5192, -11.846, -8.13879, 0.235549, 0.807353, -15.0247, -0.904641 )
+transform = Transform3D( -7.18565, 10.2544, -7.05954, 3.82908, -5.93554, -12.5192, -11.846, -8.13879, 0.235549, 0.807353, -15.0247, -0.904641 )
 visible = false
 material/0 = SubResource( 3 )
 
 [node name="lastRock3" parent="RootNode/ground_HI" index="9"]
-transform = Transform( 10.3677, 6.34715, 7.67125, -4.08018, 12.8108, -5.08521, -9.08221, 1.49027, 11.0415, 0.478134, -15.0247, -0.749082 )
+transform = Transform3D( 10.3677, 6.34715, 7.67125, -4.08018, 12.8108, -5.08521, -9.08221, 1.49027, 11.0415, 0.478134, -15.0247, -0.749082 )
 visible = false
 material/0 = SubResource( 3 )
 
-[node name="StaticBody" type="StaticBody" parent="." index="1"]
-transform = Transform( -8.24003, -14.5795, -1.79483, 7.85288, -6.11121, 13.5892, -12.4143, 5.81142, 9.7874, -0.706954, -15.0247, 0.342265 )
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+transform = Transform3D( -8.24003, -14.5795, -1.79483, 7.85288, -6.11121, 13.5892, -12.4143, 5.81142, 9.7874, -0.706954, -15.0247, 0.342265 )
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
-transform = Transform( -0.0290468, 0.0276821, -0.0437616, -0.0513939, -0.0215425, 0.0204858, -0.00632693, 0.0479031, 0.0345015, 0.441913, -0.391571, 0.758052 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D( -0.0290468, 0.0276821, -0.0437616, -0.0513939, -0.0215425, 0.0204858, -0.00632693, 0.0479031, 0.0345015, 0.441913, -0.391571, 0.758052 )
 shape = SubResource( 5 )

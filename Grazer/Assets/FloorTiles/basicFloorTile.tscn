@@ -1,34 +1,30 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://w4p6jdet4qw4"]
 
-[ext_resource path="res://Assets/Cactus/cactusSceneNoBase.tscn" type="PackedScene" id=2]
+[ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="2"]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 16, 0.05, 16 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(16, 0.05, 16)
 
-[sub_resource type="NavigationMesh" id=4]
-vertices = PoolVector3Array( -8, 0.433919, -16, -16, 0.433919, -16, -16, 0.433919, -8, -16, 0.433919, 0, -0.75, 0.433919, 0, 0, 0.433919, -0.25, 0, 0.433919, -16, -8, 0.433919, -16, -16, 0.433919, -8, 16, 0.433919, -8.25, 16, 0.433919, -16, 8, 0.433919, -16, 0, 0.433919, -0.25, 0.5, 0.433919, 0, 16, 0.433919, -0.25, 16, 0.433919, -8.25, 8, 0.433919, -16, 0, 0.433919, -16, -2, -14.8161, -2, -2, -14.8161, 2, 2, -14.8161, 2, 2, -14.8161, -2, -0.75, 1.93392, -0.25, -0.75, 1.93392, 0.25, 0.25, 2.18392, 0.25, 0.25, 2.18392, -0.25, 8, 0.433919, 16, 16, 0.433919, 16, 16, 0.433919, 7.75, 0.5, 0.433919, 0, -0.25, 0.433919, 0.75, 0, 0.433919, 16, 8, 0.433919, 16, 16, 0.433919, 7.75, 16, 0.433919, -0.25, -16, 0.433919, 8, -16, 0.433919, 16, -8, 0.433919, 16, -0.25, 0.433919, 0.75, -0.75, 0.433919, 0, -16, 0.433919, 0, -16, 0.433919, 8, -8, 0.433919, 16, 0, 0.433919, 16 )
-polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 4, 3, 5 ), PoolIntArray( 5, 3, 8 ), PoolIntArray( 5, 8, 7 ), PoolIntArray( 5, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 13, 12, 14 ), PoolIntArray( 14, 12, 15 ), PoolIntArray( 15, 12, 16 ), PoolIntArray( 16, 12, 17 ), PoolIntArray( 21, 20, 18 ), PoolIntArray( 18, 20, 19 ), PoolIntArray( 25, 24, 22 ), PoolIntArray( 22, 24, 23 ), PoolIntArray( 28, 27, 26 ), PoolIntArray( 30, 29, 31 ), PoolIntArray( 31, 29, 32 ), PoolIntArray( 32, 29, 33 ), PoolIntArray( 33, 29, 34 ), PoolIntArray( 37, 36, 35 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 41, 38, 42 ), PoolIntArray( 42, 38, 43 ) ]
+[sub_resource type="NavigationMesh" id="4"]
+vertices = PackedVector3Array(-8, 0.433919, -16, -16, 0.433919, -16, -16, 0.433919, -8, -16, 0.433919, 0, -0.75, 0.433919, 0, 0, 0.433919, -0.25, 0, 0.433919, -16, -8, 0.433919, -16, -16, 0.433919, -8, 16, 0.433919, -8.25, 16, 0.433919, -16, 8, 0.433919, -16, 0, 0.433919, -0.25, 0.5, 0.433919, 0, 16, 0.433919, -0.25, 16, 0.433919, -8.25, 8, 0.433919, -16, 0, 0.433919, -16, -2, -14.8161, -2, -2, -14.8161, 2, 2, -14.8161, 2, 2, -14.8161, -2, -0.75, 1.93392, -0.25, -0.75, 1.93392, 0.25, 0.25, 2.18392, 0.25, 0.25, 2.18392, -0.25, 8, 0.433919, 16, 16, 0.433919, 16, 16, 0.433919, 7.75, 0.5, 0.433919, 0, -0.25, 0.433919, 0.75, 0, 0.433919, 16, 8, 0.433919, 16, 16, 0.433919, 7.75, 16, 0.433919, -0.25, -16, 0.433919, 8, -16, 0.433919, 16, -8, 0.433919, 16, -0.25, 0.433919, 0.75, -0.75, 0.433919, 0, -16, 0.433919, 0, -16, 0.433919, 8, -8, 0.433919, 16, 0, 0.433919, 16)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 8), PackedInt32Array(5, 8, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 16), PackedInt32Array(16, 12, 17), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(28, 27, 26), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 32), PackedInt32Array(32, 29, 33), PackedInt32Array(33, 29, 34), PackedInt32Array(37, 36, 35), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 41), PackedInt32Array(41, 38, 42), PackedInt32Array(42, 38, 43)]
 
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 32, 0.1, 32 )
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(32, 0.1, 32)
 
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.992157, 1, 0, 1 )
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
 
-[node name="StaticBody" type="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
-
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
-navmesh = SubResource( 4 )
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("4")
 navigation_layers = 7
 
-[node name="FloorMesh" type="MeshInstance" parent="NavigationMeshInstance"]
-mesh = SubResource( 2 )
+[node name="FloorMesh" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("2")
 skeleton = NodePath("../..")
-material/0 = SubResource( 3 )
 
-[node name="cactusScene" parent="NavigationMeshInstance" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102626, -0.218258, 0.0174809 )
+[node name="cactusScene" parent="NavigationRegion3D" instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102626, -0.218258, 0.0174809)

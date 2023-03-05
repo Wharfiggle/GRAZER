@@ -1,13 +1,13 @@
-extends KinematicBody
+extends CharacterBody3D
 
-var lasso: MeshInstance
+var lasso: MeshInstance3D
 var target
 var lassoSpeed: float = 5.0
 var lassoRange: float = 5.0
 var lassoHead: Vector3
 
 func _ready():
-	#lasso = $MeshInstance
+	#lasso = $MeshInstance3D
 	lasso.visible = false
 
 func _process(delta: float):
@@ -16,7 +16,8 @@ func _process(delta: float):
 		var distance = (target.global_transform.origin - global_transform.origin).length()
 		if distance <= lassoRange:
 			lassoHead = (target.global_transform.origin - global_transform.origin).normalized()
-			move_and_slide(lassoHead * lassoSpeed)
+			set_velocity(lassoHead * lassoSpeed)
+			move_and_slide()
 		else:
 			target = null
 			lasso.visible = false

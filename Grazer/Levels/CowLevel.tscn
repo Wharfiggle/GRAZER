@@ -6,39 +6,39 @@
 [ext_resource path="res://Prefabs/FPS Counter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Cow Counter.tscn" type="PackedScene" id=6]
-[ext_resource path="res://the creature.jpg" type="Texture" id=7]
+[ext_resource path="res://the creature.jpg" type="Texture2D" id=7]
 [ext_resource path="res://Assets/Models/sandstonecolor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Models/Cacti/Cactus1.fbx" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Models/Cacti/Cactus2.fbx" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Models/Revolver/RevolverTextured.tscn" type="PackedScene" id=11]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape3D" id=2]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="BoxMesh" id=1]
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="StandardMaterial3D" id=12]
 albedo_color = Color( 0.109804, 0.113725, 0.0352941, 1 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="StandardMaterial3D" id=8]
 albedo_color = Color( 0.745098, 0.133333, 0.0862745, 1 )
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="StandardMaterial3D" id=9]
 albedo_color = Color( 0.745098, 0.133333, 0.0862745, 1 )
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="StandardMaterial3D" id=10]
 albedo_color = Color( 0.745098, 0.133333, 0.0862745, 1 )
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape3D" id=6]
 
 [sub_resource type="QuadMesh" id=4]
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="StandardMaterial3D" id=5]
 flags_unshaded = true
 params_billboard_mode = 1
 params_billboard_keep_scale = true
 albedo_texture = ExtResource( 7 )
 
-[node name="Level" type="Spatial"]
+[node name="Level" type="Node3D"]
 
 [node name="FPS Counter" parent="." instance=ExtResource( 4 )]
 
@@ -47,313 +47,313 @@ albedo_texture = ExtResource( 7 )
 [node name="PostProcessing" parent="." instance=ExtResource( 1 )]
 visible = false
 
-[node name="DirectionalLight" parent="." instance=ExtResource( 3 )]
+[node name="DirectionalLight3D" parent="." instance=ExtResource( 3 )]
 light_energy = 0.2
 
 [node name="Ball" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
 [node name="Revolver" parent="Ball" instance=ExtResource( 11 )]
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0.887569, 1.72387, -0.377501 )
+transform = Transform3D( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0.887569, 1.72387, -0.377501 )
 
-[node name="Camera" parent="." instance=ExtResource( 2 )]
+[node name="Camera3D" parent="." instance=ExtResource( 2 )]
 targetNodePath = NodePath("../Ball")
 
-[node name="Ledges" type="Spatial" parent="."]
+[node name="Ledges" type="Node3D" parent="."]
 
-[node name="Ledge" type="StaticBody" parent="Ledges"]
-transform = Transform( -7.86805e-07, 0, 1, 0, 5, 0, -18, 0, -4.37114e-08, -3, 5, 48 )
+[node name="Ledge" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -7.86805e-07, 0, 1, 0, 5, 0, -18, 0, -4.37114e-08, -3, 5, 48 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge"]
 shape = SubResource( 2 )
 
-[node name="Ledge2" type="StaticBody" parent="Ledges"]
-transform = Transform( 15, 0, 0, 0, 5, 0, 0, 0, 1, 13, 5, 65 )
+[node name="Ledge2" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 15, 0, 0, 0, 5, 0, 0, 0, 1, 13, 5, 65 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge2"]
 shape = SubResource( 2 )
 
-[node name="Ledge3" type="StaticBody" parent="Ledges"]
-transform = Transform( -6.55671e-07, 0, 1, 0, 5, 0, -15, 0, -4.37114e-08, 3, 5, 45 )
+[node name="Ledge3" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -6.55671e-07, 0, 1, 0, 5, 0, -15, 0, -4.37114e-08, 3, 5, 45 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge3"]
 shape = SubResource( 2 )
 
-[node name="Ledge4" type="StaticBody" parent="Ledges"]
-transform = Transform( 13, 0, 0, 0, 5, 0, 0, 0, 1, 15, 5, 59 )
+[node name="Ledge4" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 13, 0, 0, 0, 5, 0, 0, 0, 1, 15, 5, 59 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge4"]
 shape = SubResource( 2 )
 
-[node name="Ledge5" type="StaticBody" parent="Ledges"]
-transform = Transform( 35, 0, 0, 0, 5, 0, 0, 0, 1, 39, 5, 31 )
+[node name="Ledge5" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 35, 0, 0, 0, 5, 0, 0, 0, 1, 39, 5, 31 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge5"]
 shape = SubResource( 2 )
 
-[node name="Ledge6" type="StaticBody" parent="Ledges"]
-transform = Transform( 45, 0, 0, 0, 5, 0, 0, 0, 1, 0, 5, -31 )
+[node name="Ledge6" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 45, 0, 0, 0, 5, 0, 0, 0, 1, 0, 5, -31 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge6"]
 shape = SubResource( 2 )
 
-[node name="Ledge7" type="StaticBody" parent="Ledges"]
-transform = Transform( -1.39876e-06, 0, 1, 0, 5, 0, -32, 0, -4.37114e-08, -46, 5, 0 )
+[node name="Ledge7" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -1.39876e-06, 0, 1, 0, 5, 0, -32, 0, -4.37114e-08, -46, 5, 0 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge7"]
 shape = SubResource( 2 )
 
-[node name="Ledge8" type="StaticBody" parent="Ledges"]
-transform = Transform( -1.1365e-06, 0, 1, 0, 5, 0, -26, 0, -4.37114e-08, 46, 5, -6 )
+[node name="Ledge8" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -1.1365e-06, 0, 1, 0, 5, 0, -26, 0, -4.37114e-08, 46, 5, -6 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge8"]
 shape = SubResource( 2 )
 
-[node name="Ledge9" type="StaticBody" parent="Ledges"]
-transform = Transform( 21, 0, 0, 0, 5, 0, 0, 0, 1, -25, 5, 31 )
+[node name="Ledge9" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 21, 0, 0, 0, 5, 0, 0, 0, 1, -25, 5, 31 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge9"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge9"]
 shape = SubResource( 2 )
 
-[node name="Ledge10" type="StaticBody" parent="Ledges"]
-transform = Transform( 18, 0, 0, 0, 5, 0, 0, 0, 1, 65, 5, 19 )
+[node name="Ledge10" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 18, 0, 0, 0, 5, 0, 0, 0, 1, 65, 5, 19 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge10"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge10"]
 shape = SubResource( 2 )
 
-[node name="Ledge11" type="StaticBody" parent="Ledges"]
-transform = Transform( -7.43094e-07, 0, 1, 0, 5, 0, -17, 0, -4.37114e-08, 84, 5, 35 )
+[node name="Ledge11" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -7.43094e-07, 0, 1, 0, 5, 0, -17, 0, -4.37114e-08, 84, 5, 35 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge11"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge11"]
 shape = SubResource( 2 )
 
-[node name="Ledge12" type="StaticBody" parent="Ledges"]
-transform = Transform( -3.0598e-07, 0, 1, 0, 5, 0, -7, 0, -4.37114e-08, 73, 5, 37 )
+[node name="Ledge12" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -3.0598e-07, 0, 1, 0, 5, 0, -7, 0, -4.37114e-08, 73, 5, 37 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge12"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge12"]
 shape = SubResource( 2 )
 
-[node name="Ledge13" type="StaticBody" parent="Ledges"]
-transform = Transform( 7.72741, 0, 0.258819, 0, 5, 0, -2.07055, 0, 0.965926, 66, 5, 45 )
+[node name="Ledge13" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 7.72741, 0, 0.258819, 0, 5, 0, -2.07055, 0, 0.965926, 66, 5, 45 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge13"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge13"]
 shape = SubResource( 2 )
 
-[node name="Ledge14" type="StaticBody" parent="Ledges"]
-transform = Transform( 13.523, 0, 0.258819, 0, 5, 0, -3.62347, 0, 0.965926, 71, 5, 55 )
+[node name="Ledge14" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 13.523, 0, 0.258819, 0, 5, 0, -3.62347, 0, 0.965926, 71, 5, 55 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge14"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge14"]
 shape = SubResource( 2 )
 
-[node name="Ledge15" type="StaticBody" parent="Ledges"]
-transform = Transform( -3.0598e-07, 0, 1, 0, 5, 0, -7, 0, -4.37114e-08, 27, 5, 52 )
+[node name="Ledge15" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -3.0598e-07, 0, 1, 0, 5, 0, -7, 0, -4.37114e-08, 27, 5, 52 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge15"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge15"]
 shape = SubResource( 2 )
 
-[node name="Ledge16" type="StaticBody" parent="Ledges"]
-transform = Transform( -3.0598e-07, 0, 1, 0, 5, 0, -7, 0, -4.37114e-08, 27, 5, 72 )
+[node name="Ledge16" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -3.0598e-07, 0, 1, 0, 5, 0, -7, 0, -4.37114e-08, 27, 5, 72 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge16"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge16"]
 shape = SubResource( 2 )
 
-[node name="Ledge17" type="StaticBody" parent="Ledges"]
-transform = Transform( -4.37114e-07, 0, 1, 0, 5, 0, -10, 0, -4.37114e-08, 59, 5, 69 )
+[node name="Ledge17" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( -4.37114e-07, 0, 1, 0, 5, 0, -10, 0, -4.37114e-08, 59, 5, 69 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge17"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge17"]
 shape = SubResource( 2 )
 
-[node name="Ledge18" type="StaticBody" parent="Ledges"]
-transform = Transform( 15, 0, 0, 0, 5, 0, 0, 0, 1, 43, 5, 78 )
+[node name="Ledge18" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 15, 0, 0, 0, 5, 0, 0, 0, 1, 43, 5, 78 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge18"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge18"]
 shape = SubResource( 2 )
 
-[node name="Ledge19" type="StaticBody" parent="Ledges"]
-transform = Transform( 15, 0, 0, 0, 5, 0, 0, 0, 1, 43, 5, 46 )
+[node name="Ledge19" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D( 15, 0, 0, 0, 5, 0, 0, 0, 1, 43, 5, 46 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ledges/Ledge19"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge19"]
 shape = SubResource( 2 )
 
-[node name="Floors" type="Spatial" parent="."]
+[node name="Floors" type="Node3D" parent="."]
 
-[node name="Floor15x15" type="StaticBody" parent="Floors"]
-transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+[node name="Floor15x15" type="StaticBody3D" parent="Floors"]
+transform = Transform3D( 3, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floors/Floor15x15"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor15x15"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floors/Floor15x15"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor15x15"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
-[node name="Floor2" type="StaticBody" parent="Floors"]
-transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 45 )
+[node name="Floor2" type="StaticBody3D" parent="Floors"]
+transform = Transform3D( 4, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 45 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floors/Floor2"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.1, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor2"]
+transform = Transform3D( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.1, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floors/Floor2"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor2"]
+transform = Transform3D( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
-[node name="Floor3" type="StaticBody" parent="Floors"]
-transform = Transform( -1.74846e-07, 0, 17, 0, 1, 0, -4, 0, -7.43094e-07, 13, 0, 62 )
+[node name="Floor3" type="StaticBody3D" parent="Floors"]
+transform = Transform3D( -1.74846e-07, 0, 17, 0, 1, 0, -4, 0, -7.43094e-07, 13, 0, 62 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floors/Floor3"]
-transform = Transform( 1, 0, -4.73695e-16, 0, 0.1, 0, 4.73695e-16, 0, 1, 0, -0.1, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3"]
+transform = Transform3D( 1, 0, -4.73695e-16, 0, 0.1, 0, 4.73695e-16, 0, 1, 0, -0.1, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floors/Floor3"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3"]
+transform = Transform3D( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
-[node name="Floor4" type="StaticBody" parent="Floors"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 62 )
+[node name="Floor4" type="StaticBody3D" parent="Floors"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 62 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floors/Floor4"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor4"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floors/Floor4"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor4"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
-[node name="Floor5" type="StaticBody" parent="Floors"]
-transform = Transform( -1.31134e-08, 0, 1, 0, 1, 0, -0.3, 0, -4.37114e-08, 60, 0, 25 )
+[node name="Floor5" type="StaticBody3D" parent="Floors"]
+transform = Transform3D( -1.31134e-08, 0, 1, 0, 1, 0, -0.3, 0, -4.37114e-08, 60, 0, 25 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floors/Floor5"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor5"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floors/Floor5"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor5"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
-[node name="Floor6" type="StaticBody" parent="Floors"]
-transform = Transform( -0.0776457, 0, 0.965926, 0, 1, 0, -0.289778, 0, -0.258819, 68, 0, 50 )
+[node name="Floor6" type="StaticBody3D" parent="Floors"]
+transform = Transform3D( -0.0776457, 0, 0.965926, 0, 1, 0, -0.289778, 0, -0.258819, 68, 0, 50 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floors/Floor6"]
-transform = Transform( 15, 0, 2.27374e-13, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor6"]
+transform = Transform3D( 15, 0, 2.27374e-13, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floors/Floor6"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor6"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
-[node name="Floor7" type="StaticBody" parent="Floors"]
-transform = Transform( 0.3, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 36 )
+[node name="Floor7" type="StaticBody3D" parent="Floors"]
+transform = Transform3D( 0.3, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 36 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floors/Floor7"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floors/Floor7"]
-transform = Transform( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7"]
+transform = Transform3D( 15, 0, 0, 0, 0.1, 0, 0, 0, 15, 0, -0.1, 0 )
 shape = SubResource( 2 )
 
-[node name="Sandstone" type="StaticBody" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -10, -0.5, 10 )
+[node name="Sandstone" type="StaticBody3D" parent="."]
+transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 2, -10, -0.5, 10 )
 
 [node name="sandstone" parent="Sandstone" instance=ExtResource( 8 )]
 
-[node name="CollisionShape" type="CollisionShape" parent="Sandstone"]
-transform = Transform( 1.75, 0, 0, 0, 2, 0, 0, 0, 3, 0, 2, -1.25 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sandstone"]
+transform = Transform3D( 1.75, 0, 0, 0, 2, 0, 0, 0, 3, 0, 2, -1.25 )
 shape = SubResource( 2 )
 
-[node name="Wall" type="StaticBody" parent="."]
-transform = Transform( 10, 0, 0, 0, 5, 0, 0, 0, 1, 0, 5, -20 )
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D( 10, 0, 0, 0, 5, 0, 0, 0, 1, 0, 5, -20 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Wall"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 8 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Wall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
 shape = SubResource( 2 )
 
-[node name="Wall2" type="StaticBody" parent="."]
-transform = Transform( -9.17939e-07, 0, 1, 0, 5, 0, -21, 0, -4.37114e-08, -20, 5, 0 )
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D( -9.17939e-07, 0, 1, 0, 5, 0, -21, 0, -4.37114e-08, -20, 5, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Wall2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 9 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Wall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
 shape = SubResource( 2 )
 
-[node name="Wall3" type="StaticBody" parent="."]
-transform = Transform( -4.80825e-07, 0, 1, 0, 5, 0, -11, 0, -4.37114e-08, 15, 5, -10 )
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D( -4.80825e-07, 0, 1, 0, 5, 0, -11, 0, -4.37114e-08, 15, 5, -10 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Wall3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall3"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 10 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Wall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
 shape = SubResource( 2 )
 
-[node name="Dead Empress" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
+[node name="Dead Empress" type="RigidBody3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
 collision_layer = 4
 collision_mask = 7
 
-[node name="CollisionShape" type="CollisionShape" parent="Dead Empress"]
-transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dead Empress"]
+transform = Transform3D( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
 shape = SubResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Dead Empress"]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dead Empress"]
+transform = Transform3D( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 
 [node name="Cactus2" parent="." instance=ExtResource( 10 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.04132, 2.14577e-05, 10.0024 )
+transform = Transform3D( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.04132, 2.14577e-05, 10.0024 )
 
 [node name="Cactus1" parent="." instance=ExtResource( 9 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.71561, -0.227094, 12.2079 )
+transform = Transform3D( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.71561, -0.227094, 12.2079 )

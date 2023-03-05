@@ -1,9 +1,9 @@
-extends Area
+extends Area3D
 
 signal exploded
 # Declare member variables
 
-export var muzzle_velocity = 35
+@export var muzzle_velocity = 35
 
 var lifespan = 8
 
@@ -11,7 +11,7 @@ var velocity = Vector3.ZERO
 
 var damage = 2
 
-onready var bullet = self
+@onready var bullet = self
 
 func _physics_process(delta):
 	look_at(transform.origin + velocity.normalized(), Vector3.UP)
@@ -42,14 +42,14 @@ func _on_body_enter(body):
 	#print("tink")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.connect("area_entered", self, "_on_body_enter")
+	self.connect("area_entered",Callable(self,"_on_body_enter"))
 	#pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	#self.connect("area_entered", self, "_on_body_enter")
+	#self.connect("area_entered",Callable(self,"_on_body_enter"))
 	
 	#_on_body_entered()
 	pass

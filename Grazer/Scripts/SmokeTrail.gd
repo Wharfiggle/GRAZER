@@ -1,6 +1,6 @@
-extends Area
+extends Area3D
 
-export var limitedLifetime:= false
+@export var limitedLifetime:= false
 
 var lifetime := [1.0, 2.0]
 
@@ -10,7 +10,7 @@ var tick := 0.0
 
 #var gravity := Vector3.UP
 
-onready var tween := $Decay
+@onready var tween := $Decay
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -19,7 +19,7 @@ onready var tween := $Decay
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 	#if limitedLifetime:
-		#tween.interpolate_property(self, "modulate:a", 1.0, 0.0, rand_range(lifetime[0], lifetime[1]), Tween.TRANS_CIRC, Tween.EASE_OUT)
+		#tween.interpolate_property(self, "modulate:a", 1.0, 0.0, randf_range(lifetime[0], lifetime[1]), Tween.TRANS_CIRC, Tween.EASE_OUT)
 
 #func _process(delta):
 	#if tick > tickSpeed:

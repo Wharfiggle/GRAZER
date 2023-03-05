@@ -6,8 +6,8 @@
 
 [node name="FPS Counter" type="Label"]
 material = SubResource( 14 )
-margin_top = 0.00012207
-margin_right = 40.0
-margin_bottom = 14.0001
+offset_top = 0.00012207
+offset_right = 40.0
+offset_bottom = 14.0001
 text = "FPS: "
 script = ExtResource( 1 )
