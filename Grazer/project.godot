@@ -87,7 +87,9 @@ Debug4={
 
 3d_physics/layer_1="Everything"
 3d_physics/layer_2="Walls"
-3d_physics/layer_3="Cows"
+3d_physics/layer_3="Character"
+3d_physics/layer_4="Cow"
+3d_physics/layer_5="Cows Run From Me"
 
 [mono]
 
