@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://pdev6ruq80mp"]
 
-[ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="Script" path="res://Scripts/FPSCounter.gd" id="3"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
@@ -57,9 +57,11 @@ shadow_enabled = true
 
 [node name="cactusScene3" parent="." instance=ExtResource("6")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.30052, -0.420078, -0.411954)
+visible = false
 
 [node name="cactusScene2" parent="." instance=ExtResource("7")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.21648, -0.311238, -0.182909)
+visible = false
 
 [node name="cactusScene" parent="." instance=ExtResource("1")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729)

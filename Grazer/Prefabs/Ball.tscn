@@ -24,14 +24,13 @@ shadow_enabled = true
 omni_range = 20.0
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44732, 0.406698)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.5)
 
 [node name="smokeSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, -2.33058e-12, 0, 1.08969e-10, 1, -8.73115e-10, 0, 0, 1, 0.00101471, 4.1227, 0.260017)
 
 [node name="knockbox" type="Area3D" parent="."]
-transform = Transform3D(6, -2.18279e-10, 0, 1.59162e-10, 6, 0, 0, 1.86265e-09, 6, 8.39233e-05, 1.03004, -0.000831604)
+transform = Transform3D(1.5, -3.97905e-11, 1.23526e-20, 3.97905e-11, 1.5, -4.65663e-10, 0, 4.65663e-10, 1.5, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="knockbox"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 shape = SubResource("2")
