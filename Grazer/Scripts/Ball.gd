@@ -101,7 +101,7 @@ func _physics_process(delta):
 			var b = Bullet.instantiate()
 			owner.add_child(b)
 			b.transform = $Marker3D.global_transform
-			b.tVelocity = b.transform.basis.z * b.muzzle_velocity
+			b.velocity = b.transform.basis.z * b.muzzle_velocity
 			print("BangBang")
 			_emit_smoke(b)
 	
