@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://w4p6jdet4qw4"]
+[gd_scene load_steps=5 format=3 uid="uid://w4p6jdet4qw4"]
 
-[ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="2"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(32, 0.05, 32)
@@ -12,12 +12,8 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Arr
 [sub_resource type="BoxMesh" id="2"]
 size = Vector3(32, 0.1, 32)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jhdf"]
-albedo_color = Color(1, 0.678431, 0, 1)
-
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
-collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("1")
@@ -29,7 +25,6 @@ navigation_layers = 7
 [node name="FloorMesh" type="MeshInstance3D" parent="NavigationRegion3D"]
 mesh = SubResource("2")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_7jhdf")
 
 [node name="cactusScene" parent="NavigationRegion3D" instance=ExtResource("2")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.102626, -0.218258, 0.0174809)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102626, -0.218258, 0.0174809)

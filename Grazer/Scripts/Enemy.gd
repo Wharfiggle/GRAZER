@@ -17,15 +17,13 @@ var pathNode = 0
 var baseSpeed = 4
 var speed = 1.0
 var followDistance = 7.0
+var currentCircle = 1
 
-var canFire=true
-
+var canFire = true
 var fireDirection
 
-#var playerPosition
-
 enum behaviors {idle, pursuit, flee, circle, attack, cowPursuit}
-var currentMode = behaviors.pursuit
+var currentMode = behaviors.circle
 enum enemyTypes {thief, gunman}
 var marauderType = enemyTypes.thief #thief or gunman
 
@@ -33,12 +31,6 @@ var rng = RandomNumberGenerator.new()
 @onready var herd = get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
 var dragRange = 4.0
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(_delta):
@@ -80,22 +72,6 @@ func _physics_process(_delta):
 			set_up_direction(Vector3.UP)
 			move_and_slide()
 	
-	
-	#Basic cow dragging test
-	#drag a random cow
-#	if(Input.is_action_just_pressed("debug3")):
-#		if(herd == null):
-#			herd = get_node(NodePath("/root/Level/Herd"))
-#		if(herd.getNumCows() > 0):
-#			if(draggedCow == null):
-#				rng.randomize()
-#				var rn = rng.randi_range(0, herd.getNumCows() - 1)
-#				draggedCow = herd.getCow(rn)
-#				draggedCow.startDragging(self)
-#			else:
-#				draggedCow.stopDragging()
-#				draggedCow = null
-	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
 		var cowVector = Vector2(
@@ -109,7 +85,6 @@ func _physics_process(_delta):
 				position.y,
 				draggedCow.position.z - cowVector.y)
 
-
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
 	targetPos = position
@@ -118,7 +93,69 @@ func circle():
 	#Marauder circles around the herd. If marauderType is theif, it should 
 	#try to avoid the cowboy. If marauderType is gunman, it should(?) switch to pursuit
 	#when the cowboy gets close.
-	print("Circle mode")
+	if(herd == null or herd.numCows <= 0):
+		targetPos = player.position
+		return
+		
+	var circleSpeed = 2
+	var herdRadius = 10
+	
+	var herdCenter = herd.findHerdCenter()
+	var rVec = herdRadius * ((position - herdCenter).normalized())
+	
+	var baseA
+	if((rVec.x > 0 and rVec.z > 0) or (rVec.x < 0 and rVec.z > 0)):
+		baseA = -1
+	else:
+		baseA = 1
+	
+	var baseB = (-rVec.x * baseA) / rVec.z
+	var baseV = Vector3(baseA, 0, baseB)
+	
+	var relate = position - player.position
+	var scaler = ((relate.x * baseV.x) + (relate.z * baseV.z))
+	
+	#TODO Check if scaler is small, but relate is small, this means the player is running from the herd directly
+	
+	var lerpSpeed = 0.1
+	#if player is far too close (Break Circle)
+	if(relate.length() < followDistance - 2):
+		lerp(speed, 1.2, lerpSpeed)
+		var fleeVector = Vector3(0,0,0)
+		fleeVector = position - player.position
+		fleeVector.y = 0
+		fleeVector = fleeVector.normalized()
+		targetPos = position + fleeVector * 5
+		return
+	#If enemy is too far away from the herd (Enter Circle)
+	elif((herdCenter - position).length() > (2 * followDistance)):
+		lerp(speed, 1.0, lerpSpeed)
+#	#If enemy is far enough from the player (Slowdown in Circle)
+#	elif(relate.length() > followDistance):
+#		lerp(speed, 0.2, lerpSpeed)
+#	#If the enemy is almost far enough (Flee in circle)
+#	elif(relate.length() > followDistance - 1):
+#		lerp(speed, 0.6, lerpSpeed)
+
+#	#If enemy feels too close (Flee in circle)
+	else:
+		lerp(speed, 1.0, lerpSpeed)
+		
+	if(scaler > 0):
+		scaler = 1
+	else:
+		scaler = -1
+		
+	if(relate.length() < (herdCenter - position).length()):
+		currentCircle = scaler
+
+	
+	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
+	
+	
+	
+	
+	
 	
 
 func pursuit():
@@ -222,7 +259,6 @@ func flee():
 func moveTo(targetPos):
 	path = NavigationServer3D.map_get_path(get_world_3d().get_navigation_map(),
 global_transform.origin, targetPos, true)
-	#global_transform.origin, targetPos)
 	pathNode = 0
 
 func _on_Timer_timeout():
@@ -241,7 +277,6 @@ func attack():
 func _emit_smoke(bullet):
 	var newSmoke = Smoke.instantiate()
 	bullet.add_child(newSmoke)
-
 
 func damage_taken(damage):
 	health -= damage
