@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://bd14s300f60jx"]
+
+[ext_resource type="PackedScene" uid="uid://babn7be8yp1u1" path="res://Assets/Models/Cow/CowV1.fbx" id="1_ck51a"]
+[ext_resource type="Material" path="res://Assets/Models/Cow/Cow Legs.material" id="2_ga4pn"]
+[ext_resource type="Material" path="res://Assets/Models/Cow/Cow Tail.material" id="3_vabw0"]
+[ext_resource type="Material" path="res://Assets/Models/Cow/Cow Horn.material" id="4_bjxbv"]
+[ext_resource type="Material" path="res://Assets/Models/Cow/Cow Ears.material" id="5_hdklp"]
+
+[node name="CowV1" instance=ExtResource("1_ck51a")]
+
+[node name="CowV2" parent="RootNode" index="0"]
+surface_material_override/0 = ExtResource("2_ga4pn")
+surface_material_override/1 = ExtResource("3_vabw0")
+surface_material_override/2 = ExtResource("4_bjxbv")
+surface_material_override/3 = ExtResource("5_hdklp")
