@@ -3,29 +3,21 @@ extends CharacterBody3D
 # Declare member variables here. Examples:
 #export (PackedScene) var Bullet
 var Bullet = preload("res://Prefabs/bullet.tscn")
-
 @onready var hitBox = $knockbox
-
 var maxHitpoints = 10
-
 var hitpoints = maxHitpoints
 #export (PackedScene) var Smoke = null
-
 var Smoke = preload("res://Prefabs/Smoke.tscn")
-
 var tVelocity = Vector3(0,0,0)
-
 var Dodge = Vector3(0,0,0)
-
 @onready var sound = $"practice sound item/AudioStreamPlayer3D"
-
 const GRAVITY = 30
 const SPEED = 9
 const DODGESPEED = 12
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
-
+var aimDir = 0
 var force = 2
 
 # Called when the node enters the scene tree for the first time.
@@ -37,7 +29,7 @@ func _process(_delta):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
 		#get_node(NodePath("root/StaticBody3D")).add_child(herd)
-		
+	
 	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_left"))):	
 		if(Input.is_action_pressed("ui_right")):

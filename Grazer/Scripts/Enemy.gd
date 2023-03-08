@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var player = get_node("../Ball")
+@onready var player = get_node("/root/Level/Ball")
 @onready var nav = get_node("/root/Level/Navigation")
 
 var Bullet = preload("res://Prefabs/BulletE.tscn")
@@ -31,6 +31,7 @@ var rng = RandomNumberGenerator.new()
 @onready var herd = get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
 var dragRange = 4.0
+var escapeRange = 16
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(_delta):
@@ -226,14 +227,25 @@ func flee():
 	fleeVector = fleeVector.normalized()
 	targetPos = global_transform.origin + fleeVector * 5
 	
-	#Despawn self and cow
-	if(spacing > 4 * followDistance):
-		if(draggedCow != null):
-			herd.removeCow(draggedCow)
-			targetCow = null
-			draggedCow.queue_free()
-			draggedCow = null
-		queue_free()
+	#Despawn self and cow when successfully stealing cow, free other draggers
+	if(draggedCow != null):
+		print(draggedCow)
+		var distPlayer = sqrt(pow(player.position.x - position.x, 2) + pow(player.position.y - position.y, 2))
+		var centerHerd = herd.findHerdCenter()
+		var distCenterHerd = sqrt(pow(player.position.x - centerHerd.x, 2) + pow(player.position.y - centerHerd.y, 2))
+		if(distPlayer > escapeRange && distCenterHerd > escapeRange):
+			var leadDragger = null
+			var cowTemp = draggedCow
+			for i in draggedCow.draggers:
+				if(leadDragger == null):
+					leadDragger = i
+				else:
+					i.currentMode = behaviors.circle
+				i.targetCow = null
+				i.draggedCow = null
+			herd.removeCow(cowTemp)
+			cowTemp.queue_free()
+			leadDragger.queue_free()
 
 #Temporarily retreat
 func retreat():
