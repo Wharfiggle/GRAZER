@@ -12,6 +12,7 @@ var maxHealth = 10.0
 var health = maxHealth
 var clipSize = 3
 var clip = 3
+var attackTime = 3
 var attackCooldown = 0
 var reloadTime = 3
 var reloadCooldown = 0
@@ -200,14 +201,13 @@ func pursuit():
 				if(attackCooldown <= 0):
 					attack()
 					attackCooldown = 3
-				
-				clip -= 1
-				print("Bullets left: " + str(clip))
-				if(clip <= 0):
-					print("Reloading")
-					clip = clipSize
-					reloadCooldown = reloadTime 
-					currentMode = behaviors.circle
+					clip -= 1
+					print("Bullets left: " + str(clip))
+					if(clip <= 0):
+						print("Reloading")
+						clip = clipSize
+						reloadCooldown = reloadTime 
+						currentMode = behaviors.circle
 		
 		
 	elif(spacing < followDistance and spacing > followDistance / 2.0):
