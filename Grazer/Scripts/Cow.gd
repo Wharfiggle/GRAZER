@@ -2,8 +2,8 @@
 
 extends CharacterBody3D
 
-var normalSpeed = 9.0
-var normalLookSpeed = 3.0
+@export var normalSpeed = 9.0
+@export var normalLookSpeed = 3.0
 @export var followDistance = 3.0
 @export var pushStrength = 60.0
 @export var pushDistanceThreshold = 2.0
@@ -17,7 +17,7 @@ var shuffleTimeCounter = 0
 @export var dragSpeed = 5.0
 @export var dragLookSpeed = 1.0
 @export var dragShake = 0.05
-var dragger = null
+var draggers = []
 var dragShakeOffset = 0
 @export var maneuverTurnSpeed = 5.0
 @export var maneuverMoveSpeed = 0.7
@@ -28,11 +28,11 @@ var maneuverTurnDir = 1
 @onready var rayCasts = [
 	#get_node(NodePath("./RayCastSideLeft")),
 	get_node(NodePath("./RayCastLeft")), 
-	#get_node(NodePath("./RayCastMiddle")), 
+	get_node(NodePath("./RayCastMiddle")), 
 	get_node(NodePath("./RayCastRight"))]
 	#get_node(NodePath("./RayCastSideRight")),
 	#get_node(NodePath("./RayCastDirect"))]
-var raySize = [2.0, 2.0]
+var raySize = [2.0, 1.0, 2.0]
 @onready var model = get_node(NodePath("./Model"))
 var herd
 var tVelocity = Vector3(0, 0, 0)
@@ -62,14 +62,14 @@ func _ready():
 		shuffleTime + shuffleTimeRandOffset)
 
 func startDragging(marauder):
-	dragger = marauder
-	maxSpeed = dragSpeed
-	lookSpeed = dragLookSpeed
+	draggers.append(marauder)
+	maxSpeed = dragSpeed * draggers.size()
+	lookSpeed = dragLookSpeed * draggers.size()
 	herd.removeHuddler(self)
 	enableRayCasts()
 	
 func stopDragging():
-	dragger = null
+	draggers.clear()
 	maxSpeed = normalSpeed
 	lookSpeed = normalLookSpeed
 	
@@ -91,18 +91,21 @@ func idle():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if(herd != null):
-		if(target != null || dragger != null):
+		if(target != null || !draggers.is_empty()):
 			var targetVector
-			if(dragger != null):
-				targetVector = Vector2(
-					dragger.position.x - position.x, 
-					dragger.position.z - position.z)
+			if(!draggers.is_empty()):
+				targetVector = Vector2.ZERO
+				for i in draggers:
+					targetVector += Vector2(
+						i.position.x - position.x, 
+						i.position.z - position.z)
+				targetVector /= draggers.size()
 			elif(target != null):
 				targetVector = Vector2(target.x - position.x, target.y - position.z)
 			
 			if(Input.is_action_pressed("cowParty")):
 				rotate_y(maxSpeed)
-			elif(follow || (dragger != null)):
+			elif(follow || !draggers.is_empty()):
 				var targetAngle = atan2(targetVector.x, targetVector.y) + PI
 				#var angDiff = abs(fmod((rotation.y + 2 * PI), 2 * PI) - targetAngle)
 				#print(str(fmod((rotation.y + 2 * PI), 2 * PI)) + " and " + str(targetAngle))
@@ -112,7 +115,7 @@ func _physics_process(delta):
 				#	targetDir = -1 #clockwise
 				#rotate away from objects detected in raycasts
 				var rayInd = 0
-				var rayMags = [0, 0]
+				var rayMags = [0, 0, 0]
 				for i in rayCasts:
 					if(i == null):
 						printerr("Cow.gd: null raycasts oggofosodfodofsdfo!") #you heard me
@@ -126,17 +129,17 @@ func _physics_process(delta):
 					rayInd += 1
 				#if(rayMags[5] != 0): #direct
 				maneuvering = true
-				if(rayMags[0] > 0.01 && rayMags[1] > 0.01): #left and right
-					maneuverTurnOffset = -maneuverTurnDir * (rayMags[0] + rayMags[1]) / 2.0 * maneuverTurnSpeed * delta
+				if(rayMags[0] > 0.01 && rayMags[2] > 0.01): #left and right
+					maneuverTurnOffset = -maneuverTurnDir * (rayMags[0] + rayMags[2]) / 2.0 * maneuverTurnSpeed * delta
 					#maneuverMoveModifier = -abs(maneuverMoveModifier)
 				elif(rayMags[0] > 0.01): #left
 					maneuverTurnOffset = -rayMags[0] * maneuverTurnSpeed * delta
 					maneuverTurnDir = -1
-				elif(rayMags[1] > 0.01): #right
-					maneuverTurnOffset = rayMags[1] * maneuverTurnSpeed * delta
+				elif(rayMags[2] > 0.01): #right
+					maneuverTurnOffset = rayMags[2] * maneuverTurnSpeed * delta
 					maneuverTurnDir = 1
-				#elif(rayMags[2] > 0.01): #middle
-				#	maneuverTurnOffset = rayMags[2] * maneuverTurnSpeed * delta
+				elif(rayMags[1] > 0.01): #middle
+					maneuverTurnOffset = rayMags[1] * maneuverTurnSpeed * delta
 				else:
 					#maneuverMoveModifier = abs(maneuverMoveModifier)
 					maneuvering = false
@@ -162,15 +165,15 @@ func _physics_process(delta):
 						targetAngle, 
 						lookSpeed * delta)
 			var targetDistance = followDistance
-			if(followingHerd && dragger == null):
+			if(followingHerd && draggers.is_empty()):
 				#radius of herd
 				targetDistance = sqrt( pow(pushDistanceThreshold, 2) * herd.numCows )
 			var dist = sqrt( pow(targetVector.x, 2) + pow(targetVector.y, 2) )
-			if(dragger == null && herd.canHuddle && dist < targetDistance && huddling == false):
+			if(draggers.is_empty() && herd.canHuddle && dist < targetDistance && huddling == false):
 				herd.addHuddler(self)
 				disableRayCasts()
 				
-			if(huddling == false && (follow || dragger != null)):
+			if(huddling == false && (follow || !draggers.is_empty())):
 				#speedTransitionRadius meters FARTHER than targetDistance or more: speed
 				#speedTransitionRadius meters CLOSER than targetDistance or more: -speed
 				#interpolates between the two for all values in between
@@ -271,7 +274,7 @@ func _physics_process(delta):
 			model.rotation.y,
 			moveDirection - rotation.y, 
 			lookSpeed * delta)
-		if(dragger != null):
+		if(!draggers.is_empty()):
 			dragShakeOffset = rng.randf_range(-dragShake, dragShake)
 			model.rotation.y += dragShakeOffset
 		else:
