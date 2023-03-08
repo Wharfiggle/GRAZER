@@ -3,6 +3,7 @@ extends Node3D
 
 var playerPath = NodePath("/root/Level/Ball")
 var player
+@onready var enemyPrefab = preload("res://Prefabs/Enemy.tscn")
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 @onready var basicTile = preload("res://Assets/FloorTiles/basicFloorTile.tscn")
@@ -33,6 +34,12 @@ func _process(_delta):
 	else:
 		chunkLoaded = false;
 	previousChunk = currentChunk
+	
+	
+	if(Input.is_action_just_pressed("debug5")):
+		var enemy = enemyPrefab.instantiate()
+		enemy.position = player.position + Vector3(randf_range(-1,1), 0 , randf_range(-1,1)).normalized() * 10
+		get_node(NodePath("/root/Level")).add_child(enemy)
 
 #converts the parameter coordinates into an smaller coord, 32,32 -> 1,1
 func getPlayerChunk(pos):

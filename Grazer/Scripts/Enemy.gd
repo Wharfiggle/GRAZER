@@ -22,7 +22,7 @@ var currentCircle = 1
 var canFire = true
 var fireDirection
 
-enum behaviors {idle, pursuit, flee, circle, attack, cowPursuit}
+enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
 var currentMode = behaviors.circle
 enum enemyTypes {thief, gunman}
 var marauderType = enemyTypes.thief #thief or gunman
@@ -60,6 +60,8 @@ func _physics_process(_delta):
 			[cowPursuit()]
 		[behaviors.flee]:
 			[flee()]
+		[behaviors.retreat]:
+			[retreat()]
 		[behaviors.attack]:
 			[attack()]
 	
@@ -96,7 +98,7 @@ func circle():
 	if(herd == null or herd.numCows <= 0):
 		targetPos = player.position
 		return
-		
+	
 	var circleSpeed = 2
 	var herdRadius = 10
 	
@@ -115,11 +117,10 @@ func circle():
 	var relate = position - player.position
 	var scaler = ((relate.x * baseV.x) + (relate.z * baseV.z))
 	
-	#TODO Check if scaler is small, but relate is small, this means the player is running from the herd directly
-	
 	var lerpSpeed = 0.1
-	#if player is far too close (Break Circle)
-	if(relate.length() < followDistance - 2):
+	
+	#if player is far too close to thief (Break Circle)
+	if(marauderType == enemyTypes.thief and relate.length() < followDistance - 2):
 		lerp(speed, 1.2, lerpSpeed)
 		var fleeVector = Vector3(0,0,0)
 		fleeVector = position - player.position
@@ -127,36 +128,26 @@ func circle():
 		fleeVector = fleeVector.normalized()
 		targetPos = position + fleeVector * 5
 		return
+	
+	#If player is close enough to gunman, (Puruist)
+	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 2):
+		currentMode = behaviors.pursuit
+		return
+	
 	#If enemy is too far away from the herd (Enter Circle)
 	elif((herdCenter - position).length() > (2 * followDistance)):
 		lerp(speed, 1.0, lerpSpeed)
-#	#If enemy is far enough from the player (Slowdown in Circle)
-#	elif(relate.length() > followDistance):
-#		lerp(speed, 0.2, lerpSpeed)
-#	#If the enemy is almost far enough (Flee in circle)
-#	elif(relate.length() > followDistance - 1):
-#		lerp(speed, 0.6, lerpSpeed)
-
-#	#If enemy feels too close (Flee in circle)
+	
+	#If enemy feels too close (Flee in circle)
 	else:
 		lerp(speed, 1.0, lerpSpeed)
-		
 	if(scaler > 0):
 		scaler = 1
 	else:
 		scaler = -1
-		
 	if(relate.length() < (herdCenter - position).length()):
 		currentCircle = scaler
-
-	
 	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
-	
-	
-	
-	
-	
-	
 
 func pursuit():
 	#Marauder runs directly at cowboy.
@@ -179,9 +170,9 @@ func pursuit():
 				if angle_to > 0:
 					print("facing player")
 				attack()
+		
 	elif(spacing < followDistance and spacing > followDistance / 2.0):
 		#Backing up
-		#print("Too close")
 		if(speed < 1):
 			speed *= followDistance / spacing
 		if(speed > 1):
@@ -210,10 +201,8 @@ func cowPursuit():
 			if(herd == null):
 				return
 	
-	#TODO figure out how to call getClosestCow
 	if(targetCow == null):
 		herd.getClosestCow(position)
-		
 		targetCow = herd.getClosestCow(position)
 	
 	if(herd.numCows <= 0):
@@ -226,34 +215,40 @@ func cowPursuit():
 		draggedCow.startDragging(self)
 		currentMode = behaviors.flee
 
+#Running away to despawn
 func flee():
 	#Marauder runs away from cowboy towards offscreen until it despawns.
 	#If is currently lassoed to a cow, move speed is slowed.
 	#If health gets too low, sever lasso and attempt to escape.
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
-	
-	#TODO change both to currentMode == behaviors.circle
-	if(spacing > 3 * followDistance && health > 0.3 * maxHealth):
-		if(marauderType == enemyTypes.gunman):
-			currentMode = behaviors.pursuit
-			#currentMode = behaviors.circle
-		elif(marauderType == enemyTypes.thief):
-			if(draggedCow != null):
-				herd.removeCow(draggedCow)
-				targetCow = null
-				draggedCow.queue_free()
-				draggedCow = null
-				
-			currentMode = behaviors.pursuit
-			#currentMode = behaviors.circle
-	
 	speed = 1.5
-	var fleeVector = Vector3(0,0,0)
-	fleeVector = global_transform.origin - player.global_transform.origin
-	fleeVector.y = 0
+	var fleeVector = position - player.position
 	fleeVector = fleeVector.normalized()
 	targetPos = global_transform.origin + fleeVector * 5
 	
+	#Despawn self and cow
+	if(spacing > 4 * followDistance):
+		if(draggedCow != null):
+			herd.removeCow(draggedCow)
+			targetCow = null
+			draggedCow.queue_free()
+			draggedCow = null
+		queue_free()
+
+#Temporarily retreat
+func retreat():
+	#Switching to fleeing
+	if(draggedCow != null or health < 0.3 * maxHealth):
+		currentMode = behaviors.flee
+		return
+	
+	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
+	speed = 1.5
+	var fleeVector = position - player.position
+	fleeVector = fleeVector.normalized()
+	targetPos = global_transform.origin + fleeVector * 5
+	if(spacing > 3 * followDistance && health > 0.3 * maxHealth):
+			currentMode = behaviors.circle
 
 #navigation function
 func moveTo(targetPos):
@@ -272,7 +267,6 @@ func attack():
 			b.velocity = b.transform.basis.z * b.muzzle_velocity
 			print("enemy fire")
 			_emit_smoke(b)
-	
 
 func _emit_smoke(bullet):
 	var newSmoke = Smoke.instantiate()
@@ -280,7 +274,6 @@ func _emit_smoke(bullet):
 
 func damage_taken(damage):
 	health -= damage
-	
 	if health <= 0:
 		print("Wasted")
 
