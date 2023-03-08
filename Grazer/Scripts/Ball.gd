@@ -17,6 +17,8 @@ var tVelocity = Vector3(0,0,0)
 
 var Dodge = Vector3(0,0,0)
 
+@onready var sound = $"practice sound item/AudioStreamPlayer3D"
+
 const GRAVITY = 30
 const SPEED = 9
 const DODGESPEED = 12
@@ -103,6 +105,7 @@ func _physics_process(delta):
 			b.transform = $Marker3D.global_transform
 			b.velocity = b.transform.basis.z * b.muzzle_velocity
 			print("BangBang")
+			sound.play()
 			_emit_smoke(b)
 	
 

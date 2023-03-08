@@ -1,39 +1,47 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://1v2pntpf64kq"]
 
-[ext_resource path="res://smoke_01.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://cqpain2a1wsu5" path="res://smoke_01.png" id="1"]
 
-[sub_resource type="Gradient" id=5]
-colors = PackedColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="5"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture2D" id="6"]
+gradient = SubResource("5")
 
-[sub_resource type="ParticleProcessMaterial" id=1]
-gravity = Vector3( 0, 0.2, 0 )
-color_ramp = SubResource( 6 )
+[sub_resource type="ParticleProcessMaterial" id="1"]
+spread = 149.16
+flatness = 0.29
+gravity = Vector3(5, 5, 5)
+scale_max = 34.71
+color = Color(0.909804, 1, 1, 1)
+color_ramp = SubResource("6")
+hue_variation_max = 1.0
 
-[sub_resource type="StandardMaterial3D" id=2]
-flags_transparent = true
-flags_unshaded = true
+[sub_resource type="StandardMaterial3D" id="2"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
-params_billboard_mode = 3
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("1")
+billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_color = Color( 1, 0, 0, 1 )
-albedo_texture = ExtResource( 1 )
 
-[sub_resource type="QuadMesh" id=3]
-material = SubResource( 2 )
-size = Vector2( 0.5, 0.5 )
+[sub_resource type="QuadMesh" id="3"]
+material = SubResource("2")
+size = Vector2(0.5, 0.5)
 
 [node name="Smoke" type="Node3D"]
 
-[node name="Particles" type="Particles" parent="."]
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 amount = 5000
-lifetime = 0.5
-visibility_aabb = AABB( -0.25, -0.25, -0.25, 0.5, 0.5, 10 )
-local_coords = false
-process_material = SubResource( 1 )
-draw_pass_1 = SubResource( 3 )
+lifetime = 0.75
+preprocess = 0.05
+fixed_fps = 90
+visibility_aabb = AABB(-0.25, -0.25, -0.25, 0.5, 0.5, 10)
+trail_lifetime = 0.75
+process_material = SubResource("1")
+draw_pass_1 = SubResource("3")
