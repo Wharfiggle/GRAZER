@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3wojcv4sw6nq"]
 
 [ext_resource type="Script" path="res://Scripts/Cow.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://bd14s300f60jx" path="res://Assets/Models/Cow/CowV1Color.tscn" id="2_lirgs"]
+[ext_resource type="PackedScene" uid="uid://babn7be8yp1u1" path="res://Assets/Models/Cow/CowV1.fbx" id="3"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(0.5, 1.8, 1.4)
@@ -18,7 +18,7 @@ shape = SubResource("1")
 
 [node name="Model" type="Node3D" parent="."]
 
-[node name="CowV1Color" parent="Model" instance=ExtResource("2_lirgs")]
+[node name="CowV1" parent="Model" instance=ExtResource("3")]
 transform = Transform3D(-3.93403e-08, 0, -1, 0, 1.2, 0, 0.9, 0, -4.37114e-08, 0.075, 0, 0.15)
 
 [node name="RayCastSideLeft" type="RayCast3D" parent="."]
@@ -43,12 +43,13 @@ visible = false
 mesh = SubResource("2")
 
 [node name="RayCastMiddle" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.5)
-target_position = Vector3(0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.8)
+visible = false
+target_position = Vector3(0, 0, -3)
 collision_mask = 9
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RayCastMiddle"]
-transform = Transform3D(0.1, 0, 0, 0, -8.74228e-08, 0.1, 0, -2, -4.37114e-09, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, -6.55671e-08, 0.1, 0, -1.5, -4.37114e-09, 0, 0, -1.5)
 visible = false
 mesh = SubResource("2")
 

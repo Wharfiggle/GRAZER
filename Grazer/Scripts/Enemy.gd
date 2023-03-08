@@ -1,13 +1,21 @@
 extends CharacterBody3D
 
+
 @onready var player = get_node("/root/Level/Ball")
 @onready var nav = get_node("/root/Level/Navigation")
-
+@onready var level = get_tree().root.get_child(0)
 var Bullet = preload("res://Prefabs/BulletE.tscn")
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 
+
 var maxHealth = 10.0
 var health = maxHealth
+var clipSize = 3
+var clip = 3
+var attackCooldown = 0
+var reloadTime = 3
+var reloadCooldown = 0
+
 
 var targetPos = Vector3(0,0,0)
 var targetCow = null
@@ -16,7 +24,8 @@ var path = []
 var pathNode = 0
 var baseSpeed = 4
 var speed = 1.0
-var followDistance = 7.0
+var followDistance = 7.0 + randf_range(-1,1)
+var herdRadius = 10 + randf_range(-2,2)
 var currentCircle = 1
 
 var canFire = true
@@ -33,6 +42,15 @@ var draggedCow = null
 var dragRange = 4.0
 var escapeRange = 16
 
+func _ready():
+	#Setting enemy type
+	if(randi_range(0,1) == 0):
+		marauderType = enemyTypes.thief
+	else:
+		marauderType = enemyTypes.gunman
+		$Mesh.scale = Vector3(1,0.7,1)
+
+
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(_delta):
 	if(herd == null):
@@ -47,8 +65,13 @@ func _physics_process(_delta):
 			currentMode = behaviors.idle
 	
 	if(Input.is_action_just_pressed("debug3")):
-		print("debug3")
-		currentMode = behaviors.cowPursuit
+		if(marauderType == enemyTypes.thief):
+			currentMode = behaviors.cowPursuit
+	
+	if(reloadCooldown > 0):
+		reloadCooldown -= _delta
+	if(attackCooldown > 0):
+		attackCooldown -= _delta
 	
 	match[currentMode]: #Essentially a switch statement
 		[behaviors.idle]:
@@ -100,8 +123,8 @@ func circle():
 		targetPos = player.position
 		return
 	
+	#variable for determining how far away to place next naviagation point from current position
 	var circleSpeed = 2
-	var herdRadius = 10
 	
 	var herdCenter = herd.findHerdCenter()
 	var rVec = herdRadius * ((position - herdCenter).normalized())
@@ -130,8 +153,9 @@ func circle():
 		targetPos = position + fleeVector * 5
 		return
 	
-	#If player is close enough to gunman, (Puruist)
-	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 2):
+	#If player is close enough to gunman, (Pursuit)
+	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 2 and 
+	reloadCooldown <= 0):
 		currentMode = behaviors.pursuit
 		return
 	
@@ -142,10 +166,12 @@ func circle():
 	#If enemy feels too close (Flee in circle)
 	else:
 		lerp(speed, 1.0, lerpSpeed)
+		
 	if(scaler > 0):
 		scaler = 1
 	else:
 		scaler = -1
+		
 	if(relate.length() < (herdCenter - position).length()):
 		currentCircle = scaler
 	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
@@ -170,7 +196,19 @@ func pursuit():
 				var angle_to = direction.dot(transform.basis.z)
 				if angle_to > 0:
 					print("facing player")
-				attack()
+				
+				if(attackCooldown <= 0):
+					attack()
+					attackCooldown = 3
+				
+				clip -= 1
+				print("Bullets left: " + str(clip))
+				if(clip <= 0):
+					print("Reloading")
+					clip = clipSize
+					reloadCooldown = reloadTime 
+					currentMode = behaviors.circle
+		
 		
 	elif(spacing < followDistance and spacing > followDistance / 2.0):
 		#Backing up
@@ -185,13 +223,19 @@ func pursuit():
 		fleeVector = fleeVector.normalized()
 		targetPos = global_transform.origin + fleeVector * 5
 		
-	elif(spacing < followDistance / 2.0):
+	elif(marauderType == enemyTypes.thief and spacing < followDistance / 2.0):
 		print("Panic!")
 		currentMode = behaviors.flee
-		
+	elif(marauderType == enemyTypes.gunman and spacing < followDistance / 2.0):
+		var fleeVector = Vector3(0,0,0)
+		fleeVector = global_transform.origin - player.global_transform.origin
+		fleeVector.y = 0
+		fleeVector = fleeVector.normalized()
+		targetPos = global_transform.origin + fleeVector * 5
+	
 	elif(speed < 1):
 		speed = 1
-		attack()
+		#attack()
 
 func cowPursuit():
 	#Marauder runs towards closest cow and attempts to lasso when in range
@@ -230,9 +274,9 @@ func flee():
 	#Despawn self and cow when successfully stealing cow, free other draggers
 	if(draggedCow != null):
 		print(draggedCow)
-		var distPlayer = sqrt(pow(player.position.x - position.x, 2) + pow(player.position.y - position.y, 2))
+		var distPlayer = spacing #sqrt(pow(player.position.x - position.x, 2) + pow(player.position.y - position.y, 2))
 		var centerHerd = herd.findHerdCenter()
-		var distCenterHerd = sqrt(pow(player.position.x - centerHerd.x, 2) + pow(player.position.y - centerHerd.y, 2))
+		var distCenterHerd = centerHerd.distance_to(player.position) #sqrt(pow(player.position.x - centerHerd.x, 2) + pow(player.position.y - centerHerd.y, 2))
 		if(distPlayer > escapeRange && distCenterHerd > escapeRange):
 			var leadDragger = null
 			var cowTemp = draggedCow
@@ -272,9 +316,10 @@ func _on_Timer_timeout():
 	moveTo(targetPos)
 
 func attack():
-		for x in 2:
+		for x in 1:
 			var b = Bullet.instantiate()
-			owner.add_child(b)
+			
+			level.add_child(b) #self? 
 			b.transform = $Marker3D.global_transform
 			b.velocity = b.transform.basis.z * b.muzzle_velocity
 			print("enemy fire")

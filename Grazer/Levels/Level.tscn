@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://pdev6ruq80mp"]
 
-[ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="Script" path="res://Scripts/FPSCounter.gd" id="3"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
