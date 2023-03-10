@@ -23,8 +23,14 @@ func _physics_process(delta):
 		
 		queue_free()
 
+func _on_collision():
+	var enemies = bullet.get_overlapping_bodies()
+	for enemy in enemies:
+		print("enemy found2")
+		if enemy.has_method("damage_taken"):
+				enemy.damage_taken(damage)
 	
-	
+	queue_free()
 
 func _on_body_enter(body):
 	

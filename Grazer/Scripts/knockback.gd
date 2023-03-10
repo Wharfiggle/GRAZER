@@ -9,8 +9,9 @@ var lifespan = 10
 
 @export var knockable = true
 
-@export var knockbackMod = 0.1
+@export var knockbackMod = 5
 
+var hit = 2
 
 var maxHP = 10
 
@@ -29,10 +30,12 @@ func knockback(damageSourcePos:Vector3, recivedDamage:int):
 	
 	if knockable:
 		var knockbackDirection = self.position.direction_to(damageSourcePos)
-		var knockbackStrength = recivedDamage * knockbackMod * 10
+		var knockbackStrength = recivedDamage * knockbackMod 
 		var knockB = knockbackDirection * knockbackStrength
 		
 		global_position += knockB
+	
+	damage_taken(hit)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,4 +59,5 @@ func damage_taken(damage):
 	
 	if HP <= 0:
 		print("Wasted")
+		queue_free()
 	
