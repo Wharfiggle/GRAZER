@@ -155,7 +155,7 @@ func circle():
 		return
 	
 	#If player is close enough to gunman, (Pursuit)
-	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 2 and 
+	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 4 and 
 	reloadCooldown <= 0):
 		currentMode = behaviors.pursuit
 		return
@@ -167,7 +167,6 @@ func circle():
 	#If enemy feels too close (Flee in circle)
 	else:
 		lerp(speed, 1.0, lerpSpeed)
-		
 	if(scaler > 0):
 		scaler = 1
 	else:
@@ -188,7 +187,7 @@ func pursuit():
 	#If closer than half of follow distance, panic and flee
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
 	if(spacing < followDistance + 3 and spacing > followDistance):
-		#Slowing down when getting close
+		#Slowing down in desired range
 		if(speed > 0):
 			speed = (spacing - followDistance) / 3.0
 			if canFire:
@@ -197,7 +196,6 @@ func pursuit():
 				var angle_to = direction.dot(transform.basis.z)
 				if angle_to > 0:
 					print("facing player")
-				
 				if(attackCooldown <= 0):
 					attack()
 					attackCooldown = 3
@@ -208,8 +206,8 @@ func pursuit():
 						clip = clipSize
 						reloadCooldown = reloadTime 
 						currentMode = behaviors.circle
-		
-		
+						speed = 1.0
+	
 	elif(spacing < followDistance and spacing > followDistance / 2.0):
 		#Backing up
 		if(speed < 1):
@@ -222,20 +220,20 @@ func pursuit():
 		fleeVector.y = 0
 		fleeVector = fleeVector.normalized()
 		targetPos = global_transform.origin + fleeVector * 5
-		
+	#If thief gets too close
 	elif(marauderType == enemyTypes.thief and spacing < followDistance / 2.0):
 		print("Panic!")
 		currentMode = behaviors.flee
+	#If gunman is too close, back up
 	elif(marauderType == enemyTypes.gunman and spacing < followDistance / 2.0):
 		var fleeVector = Vector3(0,0,0)
 		fleeVector = global_transform.origin - player.global_transform.origin
 		fleeVector.y = 0
 		fleeVector = fleeVector.normalized()
 		targetPos = global_transform.origin + fleeVector * 5
-	
+
 	elif(speed < 1):
 		speed = 1
-		#attack()
 
 func cowPursuit():
 	#Marauder runs towards closest cow and attempts to lasso when in range

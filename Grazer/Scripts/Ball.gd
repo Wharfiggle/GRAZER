@@ -13,7 +13,7 @@ var Dodge = Vector3(0,0,0)
 @onready var sound = $"practice sound item/AudioStreamPlayer3D"
 const GRAVITY = 30
 const SPEED = 9
-const DODGESPEED = 12
+const DODGESPEED = 120
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
@@ -77,7 +77,7 @@ func _process(_delta):
 		Dodge = Vector3(0, 0, 0)
 		
 		
-	death()
+
 
 func _physics_process(delta):
 	tVelocity.y -= GRAVITY * delta

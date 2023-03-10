@@ -28,8 +28,8 @@ func knockback(damageSourcePos:Vector3, recivedDamage:int):
 	#speed = push * zoom
 	
 	if knockable:
-		var knockbackDirection = damageSourcePos.direction_to(self.global_position)
-		var knockbackStrength = recivedDamage * knockbackMod
+		var knockbackDirection = self.position.direction_to(damageSourcePos)
+		var knockbackStrength = recivedDamage * knockbackMod * 10
 		var knockB = knockbackDirection * knockbackStrength
 		
 		global_position += knockB
@@ -39,11 +39,8 @@ func knockback(damageSourcePos:Vector3, recivedDamage:int):
 #func _process(delta):
 #	pass
 func _physics_process(delta):
-	
-	
 	speed = speed.move_toward(velocity, 100 * delta)
 	
-
 	speed.y = speed.y - gravity*delta
 	if is_on_floor():
 		speed.y = -0.1
