@@ -6,7 +6,7 @@
 [ext_resource type="Material" path="res://Assets/Models/Cow/Cow Horn.material" id="4_bjxbv"]
 [ext_resource type="Material" path="res://Assets/Models/Cow/Cow Ears.material" id="5_hdklp"]
 
-[node name="CowV1" instance=ExtResource("1_ck51a")]
+[node name="CowV1Color" instance=ExtResource("1_ck51a")]
 
 [node name="CowV2" parent="RootNode" index="0"]
 surface_material_override/0 = ExtResource("2_ga4pn")

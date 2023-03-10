@@ -19,6 +19,7 @@ var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 var aimDir = 0
 var force = 2
+@onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -76,6 +77,25 @@ func _process(_delta):
 	else:
 		Dodge = Vector3(0, 0, 0)
 		
+	#player looks where mouse is pointed but projected to isometric view
+	if(camera != null):
+		var mouse_pos = get_viewport().get_mouse_position()
+		var ray_length = 100
+		var from = camera.project_ray_origin(mouse_pos)
+		var to = from + camera.project_ray_normal(mouse_pos) * ray_length
+		var space = get_world_3d().direct_space_state
+		var ray_query = PhysicsRayQueryParameters3D.new()
+		ray_query.from = from
+		ray_query.to = to
+		ray_query.collide_with_areas = true
+		var aimAt = space.intersect_ray(ray_query).get("position", Vector3(0, 0, 0))
+		print("mouse_pos: " + str(mouse_pos) + " aimAt: " + str(position - aimAt))
+		rotation.y = lerp_angle(
+			rotation.y,
+			atan2(position.x - aimAt.x, position.z - aimAt.z) + PI,
+			0.3)
+	else:
+		camera = get_node(NodePath("/root/Level/Camera3D"))
 		
 
 
