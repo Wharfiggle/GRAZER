@@ -32,18 +32,18 @@ func _process(_delta):
 		#get_node(NodePath("root/StaticBody3D")).add_child(herd)
 	
 	var toAdd = Vector3()
-	if(!(Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_left"))):	
-		if(Input.is_action_pressed("ui_right")):
+	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):	
+		if(Input.is_action_pressed("moveRight")):
 			toAdd.x += 1
 			toAdd.z += -1
-		elif(Input.is_action_pressed("ui_left")):
+		elif(Input.is_action_pressed("moveLeft")):
 			toAdd.x += -1
 			toAdd.z += 1
-	if(!(Input.is_action_pressed("ui_down") and Input.is_action_pressed("ui_up"))):
-		if(Input.is_action_pressed("ui_down")):
+	if(!(Input.is_action_pressed("moveDown") and Input.is_action_pressed("moveUp"))):
+		if(Input.is_action_pressed("moveDown")):
 			toAdd.x += 1
 			toAdd.z += 1
-		elif(Input.is_action_pressed("ui_up")):
+		elif(Input.is_action_pressed("moveUp")):
 			toAdd.x += -1
 			toAdd.z += -1
 	
