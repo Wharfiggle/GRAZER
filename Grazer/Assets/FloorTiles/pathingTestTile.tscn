@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3]
 
-[ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Cactus/cactusSceneNoBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/Camera.tscn" type="PackedScene" id=4]
+[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bt4lngso7hdhn" path="res://Prefabs/Enemy.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="4"]
+
 
 [sub_resource type="BoxShape3D" id=1]
 size = Vector3( 16, 0.05, 16 )

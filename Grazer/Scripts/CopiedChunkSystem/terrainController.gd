@@ -1,7 +1,7 @@
 extends Node3D
 #taken from https://github.com/NesiAwesomeneess/ChunkLoader/blob/main/ChunkLoading/World.gd
 
-var playerPath = NodePath("/root/Level/Ball")
+var playerPath = NodePath("/root/Level/Player")
 var player
 @onready var enemyPrefab = preload("res://Prefabs/Enemy.tscn")
 

@@ -3,7 +3,7 @@
 extends Node3D
 
 # Declare member variables here.
-var playerNodePath = NodePath("/root/Level/Ball")
+var playerNodePath = NodePath("/root/Level/Player")
 var cowCounterNodePath = NodePath("/root/Level/Cow Counter")
 @onready var player = get_node(playerNodePath)
 @onready var cowCounter = get_node(cowCounterNodePath)

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-@onready var player = get_node("/root/Level/Ball")
+@onready var player = get_node("/root/Level/Player")
 @onready var nav = get_node("/root/Level/Navigation")
 @onready var level = get_tree().root.get_child(0)
 var Bullet = preload("res://Prefabs/BulletE.tscn")

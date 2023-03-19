@@ -5,7 +5,7 @@ var screenWidth = 640.0
 var unitWidth = 42.0
 var lerpSpeed = 3.0
 var incrementalCamera = true
-var targetNodePath = NodePath("/root/Level/Ball")
+var targetNodePath = NodePath("/root/Level/Player")
 var followTarget
 var camOffset
 var pos

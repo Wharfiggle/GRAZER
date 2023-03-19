@@ -1,17 +1,21 @@
-[gd_scene load_steps=51 format=3 uid="uid://bb6gifdpke8f4"]
+[gd_scene load_steps=50 format=3 uid="uid://bvfskou7dofnm"]
 
 [ext_resource type="PackedScene" uid="uid://41uisg7wyiip" path="res://Prefabs/PostProcessing.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://Prefabs/DirectionalLight.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Prefabs/FPS Counter.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Ball.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://Prefabs/Cow Counter.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c3u0x1pb8a3ab" path="res://Assets/Models/sandstonecolor.tscn" id="8"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="8_r4t7c"]
 [ext_resource type="PackedScene" uid="uid://bys685gdc2t57" path="res://Assets/Models/Cacti/Cactus1.fbx" id="9"]
 [ext_resource type="PackedScene" uid="uid://bimxjrrxdhwqq" path="res://Assets/Models/Cacti/Cactus2.fbx" id="10"]
 [ext_resource type="Texture2D" uid="uid://g8t38bvfxx7q" path="res://handsomestaringeagle.jpg" id="10_eu7f5"]
-[ext_resource type="PackedScene" uid="uid://gvknd5ipu3h5" path="res://Assets/Models/Revolver/RevolverTextured.tscn" id="11"]
+
+[sub_resource type="BoxMesh" id="1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnn74"]
+albedo_color = Color(0.647059, 0.14902, 0.00392157, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqmfa"]
 size = Vector3(18, 5, 1)
@@ -70,8 +74,6 @@ size = Vector3(15, 5, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_w2cjx"]
 size = Vector3(15, 5, 1)
 
-[sub_resource type="BoxMesh" id="1"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxs7i"]
 albedo_color = Color(0, 0.0980392, 0.0392157, 1)
 
@@ -98,9 +100,6 @@ size = Vector3(5, 0.1, 15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_geljr"]
 size = Vector3(3.5, 4, 6)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnn74"]
-albedo_color = Color(0.647059, 0.14902, 0.00392157, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwp52"]
 size = Vector3(10, 5, 1)
@@ -141,15 +140,19 @@ visible = false
 shadow_opacity = 0.5
 shadow_blur = 10.0
 
-[node name="Ball" parent="." instance=ExtResource("5")]
+[node name="Player" parent="." instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 collision_layer = 1
 
-[node name="Revolver" parent="Ball" instance=ExtResource("11")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.887569, 1.72387, -0.377501)
-
 [node name="Camera3D" parent="." instance=ExtResource("2")]
 environment = ExtResource("8_r4t7c")
+
+[node name="screenSize" type="MeshInstance3D" parent="."]
+transform = Transform3D(18.8557, -6.0837, 0.579228, 0, 12.2873, 0.573576, -18.8557, -6.0837, 0.579228, 10, 10, 10)
+visible = false
+mesh = SubResource("1")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_lnn74")
 
 [node name="Ledges" type="Node3D" parent="."]
 
@@ -438,16 +441,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j6yjh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
 shape = SubResource("BoxShape3D_w2p8f")
 
-[node name="the creature" type="RigidBody3D" parent="."]
+[node name="look at me" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 3)
 collision_layer = 5
 lock_rotation = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="the creature"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="look at me"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="the creature"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="look at me"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("4")
 surface_material_override/0 = SubResource("StandardMaterial3D_3keew")

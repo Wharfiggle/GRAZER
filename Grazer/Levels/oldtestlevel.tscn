@@ -1,92 +1,86 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://btxawajh5wrbu"]
 
-[ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Cactus/cactusScene.fbx" type="PackedScene" id=3]
+[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b0i2n40sl0i51" path="res://Assets/Cactus/cactusScene.fbx" id="3"]
 
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(30, 2, 30)
 
-[sub_resource type="BoxMesh" id=1]
-size = Vector3( 30, 2, 30 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(15, 1, 15)
 
-[sub_resource type="BoxShape3D" id=2]
-size = Vector3( 15, 1, 15 )
+[sub_resource type="CylinderShape3D" id="3"]
 
-[sub_resource type="CylinderShape3D" id=3]
+[sub_resource type="CylinderMesh" id="4"]
 
-[sub_resource type="CylinderMesh" id=4]
+[sub_resource type="CylinderShape3D" id="6"]
 
-[sub_resource type="CylinderShape3D" id=6]
-
-[sub_resource type="PhysicsMaterial" id=5]
+[sub_resource type="PhysicsMaterial" id="5"]
 friction = 400000.0
 
 [node name="Level" type="Node3D"]
 
 [node name="Floor" type="RigidBody3D" parent="."]
-transform = Transform3D( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
-mode = 1
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource( 1 )
+mesh = SubResource("1")
 skeleton = NodePath("../CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource( 2 )
+shape = SubResource("2")
 
 [node name="BlueLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51574, 11.1257, 26.4164 )
-light_color = Color( 0.180392, 0.443137, 1, 1 )
-light_specular = 0.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51574, 11.1257, 26.4164)
+light_color = Color(0.180392, 0.443137, 1, 1)
 
-[node name="CharacterBody3D" parent="." instance=ExtResource( 1 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48712, 0 )
+[node name="Player" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48712, 0)
 
-[node name="CamFollow" type="Node3D" parent="CharacterBody3D"]
-transform = Transform3D( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 20, 20 )
+[node name="CamFollow" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 20, 20)
 
 [node name="RedLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9089, 10.3043, 0 )
-light_color = Color( 0.929412, 0.0666667, 0.0666667, 1 )
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9089, 10.3043, 0)
+light_color = Color(0.929412, 0.0666667, 0.0666667, 1)
 
 [node name="Cylinder" type="RigidBody3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.644609, 3.65218, -15.6359 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.644609, 3.65218, -15.6359)
 mass = 4.01122
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder"]
-shape = SubResource( 3 )
+shape = SubResource("3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder"]
-mesh = SubResource( 4 )
+mesh = SubResource("4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 projection = 1
 size = 50.0
-target = NodePath("../CharacterBody3D/CamFollow")
-speed = 3.0
-enabled = true
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74883, 2.00675, 9.26767 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74883, 2.00675, 9.26767)
 
-[node name="cactusScene" parent="RigidBody3D" instance=ExtResource( 3 )]
+[node name="cactusScene" parent="RigidBody3D" instance=ExtResource("3")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D( 0.277395, 0, 0, 0, 1.97437, 0, 0, 0, 0.277395, 0, 0, 0 )
-shape = SubResource( 6 )
+transform = Transform3D(0.277395, 0, 0, 0, 1.97437, 0, 0, 0, 0.277395, 0, 0, 0)
+shape = SubResource("6")
 
 [node name="Cylinder2" type="RigidBody3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.644609, 3.65218, 12.8373 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.644609, 3.65218, 12.8373)
 mass = 19179.3
-physics_material_override = SubResource( 5 )
+physics_material_override = SubResource("5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder2"]
-transform = Transform3D( 2.66579, 0, 0, 0, 1, 0, 0, 0, 5.04703, 0, 0, 0 )
-shape = SubResource( 3 )
+transform = Transform3D(2.66579, 0, 0, 0, 1, 0, 0, 0, 5.04703, 0, 0, 0)
+shape = SubResource("3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder2"]
-transform = Transform3D( 4.66153, 0, 0, 0, 1, 0, 0, 0, 4.66153, 0, 0, 0 )
-mesh = SubResource( 4 )
+transform = Transform3D(4.66153, 0, 0, 0, 1, 0, 0, 0, 4.66153, 0, 0, 0)
+mesh = SubResource("4")
 
 [node name="GreenLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 53.9063, 0 )
-light_color = Color( 0.356863, 0.752941, 0.380392, 1 )
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 53.9063, 0)
+light_color = Color(0.356863, 0.752941, 0.380392, 1)
 shadow_enabled = true

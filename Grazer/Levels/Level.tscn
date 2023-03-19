@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://pdev6ruq80mp"]
+[gd_scene load_steps=14 format=3 uid="uid://b55cpkrkaor1e"]
 
-[ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="Script" path="res://Scripts/FPSCounter.gd" id="3"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneColor.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneGreenTest.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://w4p6jdet4qw4" path="res://Assets/FloorTiles/basicFloorTile.tscn" id="8"]
-[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Ball.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://empress of bostonia.png" id="10"]
 [ext_resource type="PackedScene" path="res://Prefabs/Cow Counter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bt4lngso7hdhn" path="res://Prefabs/Enemy.tscn" id="13"]
@@ -38,7 +38,7 @@ centered = false
 
 [node name="Camera3D" parent="." instance=ExtResource("2")]
 
-[node name="Ball" parent="." instance=ExtResource("9")]
+[node name="Player" parent="." instance=ExtResource("9")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.12615, 5.07116, 1.45165)
 
 [node name="Cactus" type="MeshInstance3D" parent="."]

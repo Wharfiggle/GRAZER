@@ -1,150 +1,123 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://tjckk87y8pps"]
 
-[ext_resource path="res://Assets/Cactus/cactusSceneNoBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/PixelCameraFollow.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/FPSCounter.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/CopiedChunkSystem/terrainController.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Cactus/10436_Cactus_v1_max2010_it2.obj" type="ArrayMesh" id=5]
-[ext_resource path="res://Assets/Cactus/cactusSceneColor.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Cactus/cactusSceneGreenTest.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/FloorTiles/basicFloorTile.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Prefabs/Ball.tscn" type="PackedScene" id=9]
-[ext_resource path="res://empress of bostonia.png" type="Texture2D" id=10]
-[ext_resource path="res://Scripts/Pallette.gdshader" type="Shader" id=11]
-[ext_resource path="res://Prefabs/Cow Counter.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=13]
+[ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="1"]
+[ext_resource type="Script" path="res://Scripts/PixelCameraFollow.gd" id="2"]
+[ext_resource type="Script" path="res://Scripts/FPSCounter.gd" id="3"]
+[ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
+[ext_resource type="ArrayMesh" uid="uid://dx1bco56p7ok5" path="res://Assets/Cactus/10436_Cactus_v1_max2010_it2.obj" id="5"]
+[ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneColor.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneGreenTest.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://w4p6jdet4qw4" path="res://Assets/FloorTiles/basicFloorTile.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="9"]
+[ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://empress of bostonia.png" id="10"]
+[ext_resource type="Shader" path="res://Scripts/Pallette.gdshader" id="11"]
+[ext_resource type="PackedScene" path="res://Prefabs/Cow Counter.tscn" id="12"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="13"]
 
-[sub_resource type="CanvasItemMaterial" id=14]
+[sub_resource type="CanvasItemMaterial" id="14"]
 
-[sub_resource type="ShaderMaterial" id=13]
-shader = ExtResource( 11 )
-shader_param/color_1 = Plane( 0.88, 0.98, 0.89, 1 )
-shader_param/color_2 = Plane( 0.2, 0.89, 0.35, 1 )
-shader_param/color_3 = Plane( 0.19, 0.66, 0.37, 1 )
-shader_param/color_4 = Plane( 0.07, 0.41, 0.21, 1 )
-shader_param/color_5 = Plane( 0.26, 0.08, 0.17, 1 )
-shader_param/color_6 = Plane( 0.13, 0.05, 0.13, 1 )
-shader_param/color_7 = Plane( 0.99, 0.71, 0.01, 1 )
-shader_param/color_8 = Plane( 0.74, 0.24, 0.15, 1 )
-shader_param/color_9 = Plane( 0.47, 0.11, 0.16, 1 )
-shader_param/color_10 = Plane( 0.19, 0.66, 0.37, 1 )
-shader_param/color_11 = Plane( 0.19, 0.66, 0.37, 1 )
-shader_param/color_12 = Plane( 0.44, 0.47, 0.19, 1 )
-shader_param/color_13 = Plane( 0.32, 0.32, 0.21, 1 )
-shader_param/color_14 = Plane( 0.2, 0.2, 0.18, 1 )
-shader_param/color_15 = Plane( 0.15, 0.15, 0.18, 1 )
-shader_param/color_16 = Plane( 0.55, 0.13, 0.09, 1 )
-shader_param/color_17 = Plane( 0.49, 0.09, 0.09, 1 )
-shader_param/color_18 = Plane( 0.42, 0.07, 0.09, 1 )
-shader_param/color_19 = Plane( 0.31, 0.04, 0.09, 1 )
-shader_param/color_20 = Plane( 0.17, 0.03, 0.11, 1 )
-shader_param/color_21 = Plane( 0.09, 0.02, 0.07, 1 )
-shader_param/color_22 = Plane( 0.53, 0.3, 0.11, 1 )
-shader_param/color_23 = Plane( 0.38, 0.24, 0.08, 1 )
-shader_param/color_24 = Plane( 0.29, 0.18, 0.11, 1 )
-shader_param/color_25 = Plane( 0.21, 0.13, 0.13, 1 )
-shader_param/color_26 = Plane( 0.13, 0.08, 0.11, 1 )
-shader_param/color_27 = Plane( 0.1, 0.06, 0.11, 1 )
+[sub_resource type="ShaderMaterial" id="13"]
+shader = ExtResource("11")
 
-[sub_resource type="CapsuleMesh" id=15]
+[sub_resource type="CapsuleMesh" id="15"]
 
-[sub_resource type="CapsuleShape3D" id=16]
+[sub_resource type="CapsuleShape3D" id="16"]
 
-[sub_resource type="BoxShape3D" id=1]
+[sub_resource type="BoxShape3D" id="1"]
 
-[sub_resource type="BoxMesh" id=2]
+[sub_resource type="BoxMesh" id="2"]
 
 [node name="Level" type="Node3D"]
 
 [node name="FPS Counter" type="Label" parent="."]
-material = SubResource( 14 )
+material = SubResource("14")
 offset_top = 0.00012207
 offset_right = 40.0
 offset_bottom = 14.0001
 text = "FPS: "
-script = ExtResource( 3 )
+script = ExtResource("3")
 
-[node name="Cow Counter" parent="." instance=ExtResource( 12 )]
+[node name="Cow Counter" parent="." instance=ExtResource("12")]
+anchors_preset = -1
 
 [node name="PostProcessing" type="Sprite2D" parent="."]
-material = SubResource( 13 )
-position = Vector2( 0, 720 )
-scale = Vector2( 1.42222, -0.800333 )
+visible = false
 z_index = -1
-texture = ExtResource( 10 )
+material = SubResource("13")
+position = Vector2(0, 720)
+scale = Vector2(1.42222, -0.800333)
+texture = ExtResource("10")
 centered = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D( 0.707107, -0.541675, 0.454519, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.454519, 15, 22, 15 )
+transform = Transform3D(0.707107, -0.541675, 0.454519, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.454519, 15, 22, 15)
 projection = 1
 current = true
 size = 30.0
-script = ExtResource( 2 )
-targetNodePath = NodePath("../Ball")
+script = ExtResource("2")
 
-[node name="Ball" parent="." instance=ExtResource( 9 )]
-transform = Transform3D( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 5, 0 )
+[node name="Player" parent="." instance=ExtResource("9")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 5, 0)
 
 [node name="Enemy" type="CharacterBody3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5322, 0 )
-script = ExtResource( 13 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5322, 0)
+script = ExtResource("13")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
-transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 15 )
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("15")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
-transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 16 )
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("16")
 
 [node name="Box" type="RigidBody3D" parent="."]
-transform = Transform3D( 0.887019, 0.412126, -0.208207, -0.461733, 0.791719, -0.399978, 0, 0.450924, 0.892562, 0, 128.291, 0 )
+transform = Transform3D(0.887019, 0.412126, -0.208207, -0.461733, 0.791719, -0.399978, 0, 0.450924, 0.892562, 0, 128.291, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
-mesh = SubResource( 2 )
+mesh = SubResource("2")
 
 [node name="Box2" type="RigidBody3D" parent="."]
-transform = Transform3D( 0.331454, -0.829889, 0.4488, -0.449242, 0.279478, 0.848571, -0.82965, -0.482882, -0.280187, 0, 134.133, 0 )
+transform = Transform3D(0.331454, -0.829889, 0.4488, -0.449242, 0.279478, 0.848571, -0.82965, -0.482882, -0.280187, 0, 134.133, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box2"]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box2"]
-mesh = SubResource( 2 )
+mesh = SubResource("2")
 
 [node name="Box3" type="RigidBody3D" parent="."]
-transform = Transform3D( 0.996828, -0.0342426, -0.0718482, 0.0793445, 0.498524, 0.863237, 0.0062587, -0.866199, 0.49966, 0, 142.557, 0 )
+transform = Transform3D(0.996828, -0.0342426, -0.0718482, 0.0793445, 0.498524, 0.863237, 0.0062587, -0.866199, 0.49966, 0, 142.557, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box3"]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box3"]
-mesh = SubResource( 2 )
+mesh = SubResource("2")
 
 [node name="Cactus" type="MeshInstance3D" parent="."]
-transform = Transform3D( 0.0170801, -0.0104053, 1.24082e-10, 0, 2.38498e-10, 0.02, -0.0104053, -0.0170801, 2.03678e-10, -3.99982, 0, 6.69969 )
-mesh = ExtResource( 5 )
+transform = Transform3D(0.0170801, -0.0104053, 1.24082e-10, 0, 2.38498e-10, 0.02, -0.0104053, -0.0170801, 2.03678e-10, -3.99982, 0, 6.69969)
+mesh = ExtResource("5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D( 1.10681e-07, 0.766044, 0.642788, -5.61943e-08, -0.642788, 0.766044, 1, -1.20908e-07, -2.80971e-08, 0, 0, 0 )
-light_color = Color( 1, 0.784314, 0.588235, 1 )
-light_bake_mode = 2
+transform = Transform3D(1.10681e-07, 0.766044, 0.642788, -5.61943e-08, -0.642788, 0.766044, 1, -1.20908e-07, -2.80971e-08, 0, 0, 0)
+light_color = Color(1, 0.784314, 0.588235, 1)
 shadow_enabled = true
 
-[node name="cactusScene3" parent="." instance=ExtResource( 6 )]
-transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 2, -5.30052, -0.420078, -0.411954 )
+[node name="cactusScene3" parent="." instance=ExtResource("6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.30052, -0.420078, -0.411954)
 
-[node name="cactusScene2" parent="." instance=ExtResource( 7 )]
-transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.21648, -0.311238, -0.182909 )
+[node name="cactusScene2" parent="." instance=ExtResource("7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.21648, -0.311238, -0.182909)
 
-[node name="cactusScene" parent="." instance=ExtResource( 1 )]
-transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729 )
+[node name="cactusScene" parent="." instance=ExtResource("1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729)
 
 [node name="AllTerrain" type="Node3D" parent="."]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
-[node name="StartPlatform" parent="AllTerrain" instance=ExtResource( 8 )]
-transform = Transform3D( 0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0, 2.45393, 0 )
+[node name="StartPlatform" parent="AllTerrain" instance=ExtResource("8")]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0, 2.45393, 0)
