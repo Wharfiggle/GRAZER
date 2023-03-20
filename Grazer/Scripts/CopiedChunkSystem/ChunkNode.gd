@@ -11,26 +11,38 @@ func start(_chunkCoords):
 	chunkCoords = _chunkCoords
 	#If this chunk has not been loaded before
 	if(WorldSave.loadedCoords.find(_chunkCoords) == -1):
-		chunkData.append(randi_range(1,1000))
-		#var chunkPath = calcChunk(chunkCoords)
-		#TODO: add a way to save the chunkPath to the chunkData
+		chunkData.append(calcChunk(chunkCoords))
+		
 		#chunkData is the data variable for everything in a chunk, so it'll need to
 		#save the chunk path and anything else
 		
 		#Adding this chunk node to the world save array
 		WorldSave.addChunk(_chunkCoords)
-		
+	
 	#else it has been loaded before
 	else:
 		chunkData = WorldSave.retriveData(chunkCoords)
-		#modulate = chunkData[0] #Used for setting the color of a 2d sprite (irrelevent)
-	print("Chunk data" + str(chunkCoords) + ": " + str(chunkData[0]))
+	#print("Chunk data" + str(chunkCoords) + ": " + str(chunkData[0]))
+	
+	var chunk = load(chunkData[0])
+	var instance = chunk.instantiate()
+	add_child(instance)
+	print("Start on " + str(chunkCoords))
 
 func save():
 	WorldSave.saveChunk(chunkCoords, chunkData)
 	queue_free()
 
 #custom function for choosing a chunk from our library based on the coordinates
-func calcChunk(chunkCoords) -> void:
+func calcChunk(chunkCoords) -> String:
 	#system for choosing a chunk from the list
-	print("Calculate a chunk path")
+	match [randi_range(1,4)]:
+		[1]:
+			return "res://Assets/FloorTiles/basicFloorTile.tscn"
+		[2]:
+			return "res://Assets/FloorTiles/tile1.tscn"
+		[3]:
+			return "res://Assets/FloorTiles/tile2.tscn"
+		[4]:
+			return "res://Assets/FloorTiles/pathingTestTile.tscn"
+	return "res://Assets/FloorTiles/basicFloorTile.tscn"
