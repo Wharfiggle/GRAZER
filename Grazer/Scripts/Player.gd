@@ -9,15 +9,19 @@ var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
 var Dodge = Vector3(0,0,0)
+var CanDodge = true
+var Dodgetime =0
+
 @onready var sound = $"practice sound item/AudioStreamPlayer3D"
 const GRAVITY = 30
 const SPEED = 9
-const DODGESPEED = 120
+const DODGESPEED = 20
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 var aimDir = 0
 var force = 2
+var toAdd = Vector3()
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 
 # Called when the node enters the scene tree for the first time.
@@ -31,7 +35,7 @@ func _process(_delta):
 		get_node(NodePath("/root/Level")).add_child(herd)
 		#get_node(NodePath("root/StaticBody3D")).add_child(herd)
 	
-	var toAdd = Vector3()
+	toAdd = Vector3()
 	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):	
 		if(Input.is_action_pressed("moveRight")):
 			toAdd.x += 1
@@ -70,12 +74,20 @@ func _process(_delta):
 	if(Input.is_action_just_pressed("Follow Wait")):
 		herd.toggleFollow()
 	
-	if(Input.is_action_just_pressed("dodge")):
-		Dodge = toAdd.normalized() * DODGESPEED
-		knock(Dodge, force)
-		
-	else:
-		Dodge = Vector3(0, 0, 0)
+	#if(Input.is_action_pressed("dodge")&& CanDodge):
+	#	CanDodge = false
+	#	var Dodgetime = 20
+	#	Dodge = toAdd.normalized() * DODGESPEED	
+	#if Dodgetime > 0		#Dodge = toAdd.normalized() * DODGESPEED
+	#	knock(Dodge, force)
+			
+				
+			
+		print_debug("done")
+	
+#	else:
+#		Dodge = Vector3(0, 0, 0)
+	
 		
 	#player looks where mouse is pointed but projected to isometric view
 	if(camera != null):
@@ -146,7 +158,17 @@ func _physics_process(delta):
 		b.rotation = rotation
 		_emit_smoke(b)
 		#sound.play()
-
+	if(Input.is_action_just_pressed("dodge")):
+		#CanDodge = false
+		Dodgetime = 0.6
+		#Dodge = toAdd.normalized() * DODGESPEED	
+	if Dodgetime > 0:	
+		Dodge = toAdd.normalized() * DODGESPEED	
+		#Dodge = toAdd.normalized() * DODGESPEED
+		knock(Dodge, force*delta)
+		Dodgetime -= delta
+	else:
+		Dodge = Vector3(0, 0, 0)
 
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()

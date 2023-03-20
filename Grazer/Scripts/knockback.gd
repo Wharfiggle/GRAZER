@@ -34,8 +34,9 @@ func knockback(damageSourcePos:Vector3, recivedDamage:int):
 		var knockB = knockbackDirection * knockbackStrength
 		
 		global_position += knockB
+		damage_taken(hit, knockbackDirection)
 	
-	damage_taken(hit)
+
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,10 +55,11 @@ func _physics_process(delta):
 	
 
 
-func damage_taken(damage):
-	HP -= damage
+func damage_taken(damage, from)-> bool:
 	
-	if HP <= 0:
-		print("Wasted")
-		queue_free()
+		HP -= damage
+		if HP <= 0:
+			queue_free()
+		return true
+	
 	
