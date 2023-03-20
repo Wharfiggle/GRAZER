@@ -29,6 +29,7 @@ mesh = SubResource("PrismMesh_i3pdl")
 surface_material_override/0 = SubResource("StandardMaterial3D_8b760")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
 autostart = true
 
 [node name="Marker3D" type="Marker3D" parent="."]

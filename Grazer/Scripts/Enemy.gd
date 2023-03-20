@@ -19,6 +19,8 @@ var reloadCooldown = 0
 
 
 var targetPos = Vector3(0,0,0)
+var dynamicMov = Vector3(0,0,0)
+var dynamicCooldown = 0.0;
 var targetCow = null
 @onready var navAgent = get_node("NavigationAgent3D")
 var path = []
@@ -54,6 +56,11 @@ func _ready():
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(_delta):
+	if(dynamicCooldown > 0):
+		dynamicCooldown -= _delta
+	lerp(dynamicMov.x,0.0,0.1)
+	lerp(dynamicMov.z,0.0,0.1)
+	
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
 	
@@ -101,9 +108,11 @@ func _physics_process(_delta):
 		if(direction.length() < 1):
 			pathNode += 1
 		else:
-			set_velocity(direction.normalized() * baseSpeed * speed)
+			set_velocity(direction.normalized() * baseSpeed * speed + dynamicMov)
 			set_up_direction(Vector3.UP)
 			move_and_slide()
+
+
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
@@ -124,34 +133,34 @@ func _physics_process(_delta):
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
 	targetPos = position
+	genDynamicMov()
 
 func circle():
-	#Marauder circles around the herd. If marauderType is theif, it should 
-	#try to avoid the cowboy. If marauderType is gunman, it should(?) switch to pursuit
+	#Marauder circles around the herd. If marauderType is thief, it should 
+	#try to avoid the cowboy. If marauderType is gunman, it switches to pursuit
 	#when the cowboy gets close.
 	if(herd == null or herd.numCows <= 0):
 		targetPos = player.position
 		return
-	
+	genDynamicMov()
 	#variable for determining how far away to place next naviagation point from current position
 	var circleSpeed = 2
-	
+	var lerpSpeed = 0.1
 	var herdCenter = herd.findHerdCenter()
+	#Desired position vector based on desired radius
 	var rVec = herdRadius * ((position - herdCenter).normalized())
 	
+	#Dot product math and scaler projection math
 	var baseA
 	if((rVec.x > 0 and rVec.z > 0) or (rVec.x < 0 and rVec.z > 0)):
 		baseA = -1
 	else:
 		baseA = 1
-	
 	var baseB = (-rVec.x * baseA) / rVec.z
 	var baseV = Vector3(baseA, 0, baseB)
 	
 	var relate = position - player.position
 	var scaler = ((relate.x * baseV.x) + (relate.z * baseV.z))
-	
-	var lerpSpeed = 0.1
 	
 	#if player is far too close to thief (Break Circle)
 	if(marauderType == enemyTypes.thief and relate.length() < followDistance - 2):
@@ -199,23 +208,27 @@ func pursuit():
 		#Slowing down in desired range
 		if(speed > 0):
 			speed = (spacing - followDistance) / 3.0
-			if canFire:
-				var direction = transform.origin - player.transform.origin
-				direction = direction.normalized()
-				var angle_to = direction.dot(transform.basis.z)
-				if angle_to > 0:
-					print("facing player")
-				if(attackCooldown <= 0):
-					attack()
-					attackCooldown = 3
-					clip -= 1
-					print("Bullets left: " + str(clip))
-					if(clip <= 0):
-						print("Reloading")
-						clip = clipSize
-						reloadCooldown = reloadTime 
-						currentMode = behaviors.circle
-						speed = 1.0
+		
+		genDynamicMov()
+		
+		if (canFire):
+			var direction = transform.origin - player.transform.origin
+			direction = direction.normalized()
+			var angle_to = direction.dot(transform.basis.z)
+			if angle_to > 0:
+				#print("facing player")
+				pass
+			if(attackCooldown <= 0):
+				attack()
+				attackCooldown = 3
+				clip -= 1
+				print("Bullets left: " + str(clip))
+				if(clip <= 0):
+					print("Reloading")
+					clip = clipSize
+					reloadCooldown = reloadTime 
+					currentMode = behaviors.circle
+					speed = 1.0
 	
 	elif(spacing < followDistance and spacing > followDistance / 2.0):
 		#Backing up
@@ -313,6 +326,21 @@ func retreat():
 	if(spacing > 3 * followDistance && health > 0.3 * maxHealth):
 			currentMode = behaviors.circle
 
+#Function for setting a random direction to add variety to marauder movement
+func genDynamicMov():
+	if(dynamicCooldown <= 0):
+		dynamicMov = Vector3(dynamicMov.x + randf_range(-1.0, 1.0), 0, 
+dynamicMov.z + randf_range(-1.0, 1.0))
+	else:
+		return
+	var maxOff = 1.5
+	if(dynamicMov.x > maxOff):
+		dynamicMov.x = maxOff
+	if(dynamicMov.z > maxOff):
+		dynamicMov.z = maxOff
+	print(dynamicMov)
+	dynamicCooldown = randf_range(1.0,3.0)
+
 #navigation function
 func moveTo(targetPos):
 	path = NavigationServer3D.map_get_path(get_world_3d().get_navigation_map(),
@@ -323,6 +351,7 @@ func _on_Timer_timeout():
 	moveTo(targetPos)
 
 func attack():
+
 	for x in 1:
 		var b = Bullet.instantiate()
 		level.add_child(b)
@@ -331,6 +360,16 @@ func attack():
 		b.rotation = rotation
 		_emit_smoke(b)
 		print("enemy fire")
+
+#		for x in 1:
+#			var b = Bullet.instantiate()
+#
+#			level.add_child(b) 
+#			b.transform = $Marker3D.global_transform
+#			b.velocity = b.transform.basis.z * b.muzzle_velocity
+#			print("enemy fire")
+#			_emit_smoke(b)
+
 
 func _emit_smoke(bullet):
 	var newSmoke = Smoke.instantiate()

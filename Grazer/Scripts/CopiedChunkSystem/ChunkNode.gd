@@ -9,22 +9,28 @@ var chunkData = []
 
 func start(_chunkCoords):
 	chunkCoords = _chunkCoords
-	#print("_chunkCoords is " + str(_chunkCoords))
+	#If this chunk has not been loaded before
 	if(WorldSave.loadedCoords.find(_chunkCoords) == -1):
-		#chunkData.append()
+		chunkData.append(randi_range(1,1000))
 		#var chunkPath = calcChunk(chunkCoords)
 		#TODO: add a way to save the chunkPath to the chunkData
-		#I think chunkData can be treated as an array of arrays
-		#which is why it says chunkData[0] down there.
+		#chunkData is the data variable for everything in a chunk, so it'll need to
+		#save the chunk path and anything else
+		
+		#Adding this chunk node to the world save array
 		WorldSave.addChunk(_chunkCoords)
+		
+	#else it has been loaded before
 	else:
 		chunkData = WorldSave.retriveData(chunkCoords)
-		#modulate = chunkData[0]
+		#modulate = chunkData[0] #Used for setting the color of a 2d sprite (irrelevent)
+	print("Chunk data" + str(chunkCoords) + ": " + str(chunkData[0]))
 
 func save():
 	WorldSave.saveChunk(chunkCoords, chunkData)
 	queue_free()
 
+#custom function for choosing a chunk from our library based on the coordinates
 func calcChunk(chunkCoords) -> void:
 	#system for choosing a chunk from the list
 	print("Calculate a chunk path")
