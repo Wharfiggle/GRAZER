@@ -9,7 +9,7 @@ size = Vector3(0.5, 1.8, 1.4)
 [sub_resource type="PrismMesh" id="2"]
 
 [node name="Cow" type="CharacterBody3D"]
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

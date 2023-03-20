@@ -3,6 +3,10 @@ extends CharacterBody3D
 # Declare member variables here. Examples:
 @onready var shootingPoint = get_node(NodePath("Revolver/ShootingPoint"))
 var Bullet = preload("res://Prefabs/bullet.tscn")
+@export var shootTime = 0.2
+var shootTimer = 0.0
+@export var shootBufferTime = 0.1
+var shootBufferTimer = 0.0
 @onready var hitBox = $knockbox
 var maxHitpoints = 10
 var hitpoints = maxHitpoints
@@ -31,15 +35,37 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	if(herd == null):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
 		#get_node(NodePath("root/StaticBody3D")).add_child(herd)
 	
-	toAdd = Vector3()
+	if(shootTimer > 0):
+		shootTimer -= delta
+		if(shootTimer < 0):
+			shootTimer = 0
+	if(shootBufferTimer > 0):
+		shootBufferTimer -= delta
+		if(shootBufferTimer < 0):
+			shootBufferTimer = 0
+		
+	if(Input.is_action_just_pressed("shoot")):
+		shootBufferTimer = shootBufferTime
+		
+	if(shootBufferTimer > 0 && shootTimer == 0):
+		var b = Bullet.instantiate()
+		owner.add_child(b)
+		b.from = "player"
+		b.global_position = shootingPoint.global_position
+		b.rotation = rotation
+		_emit_smoke(b)
+		#sound.play()
+		shootTimer = shootTime
+	
+	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):	
-		if(Input.is_action_pressed("moveRight") ):
+		if(Input.is_action_pressed("moveRight")):
 			toAdd.x += 1
 			toAdd.z += -1
 		elif(Input.is_action_pressed("moveLeft")):
@@ -76,21 +102,6 @@ func _process(_delta):
 	if(Input.is_action_just_pressed("Follow Wait")):
 		herd.toggleFollow()
 	
-	#if(Input.is_action_pressed("dodge")&& CanDodge):
-	#	CanDodge = false
-	#	var Dodgetime = 20
-	#	Dodge = toAdd.normalized() * DODGESPEED	
-	#if Dodgetime > 0		#Dodge = toAdd.normalized() * DODGESPEED
-	#	knock(Dodge, force)
-			
-				
-			
-		print_debug("done")
-	
-#	else:
-#		Dodge = Vector3(0, 0, 0)
-	
-		
 	#player looks where mouse is pointed but projected to isometric view
 	if(camera != null):
 		var viewport = get_viewport()
@@ -126,6 +137,7 @@ func _process(_delta):
 			0,
 			sin(-PI/4.0) * mousePos.x + cos(-PI/4.0) * mousePos.y * angMod)
 		aimAt *= unitHei / viewHei #convert from pixels to units
+		aimAt.y = 1.0
 		aimAt += camera.global_position - camera.camOffset #offset to position camera is aiming at
 		
 		var worldCursor = get_node(NodePath("WorldCursor"))
@@ -152,25 +164,16 @@ func _physics_process(delta):
 	set_up_direction(Vector3.UP)
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("shoot"):
-		var b = Bullet.instantiate()
-		owner.add_child(b)
-		b.from = "player"
-		b.global_position = shootingPoint.global_position
-		b.rotation = rotation
-		_emit_smoke(b)
-		#sound.play()
 	if(Input.is_action_just_pressed("dodge")&& CanDodge):
 		#CanDodge = false
 		Dodgetime = 0.3
 		cooldownTime = 2.0
-		#Dodge = toAdd.normalized() * DODGESPEED	
+		#Dodge = toAdd.normalized() * DODGESPEED
 	if Dodgetime > 0:	
-		Dodge = toAdd.normalized() * DODGESPEED	
+		Dodge = toAdd.normalized() * DODGESPEED
 		#Dodge = toAdd.normalized() * DODGESPEED
 		knock(Dodge, force*delta)
 		Dodgetime -= delta
-		
 	else:
 		Dodge = Vector3(0, 0, 0)
 	
@@ -179,7 +182,6 @@ func _physics_process(delta):
 #	elif cooldownTime == 0:
 #		CanDodge = true
 #		print_debug("done")
-
 
 
 func findHerdCenter() -> Vector3:
