@@ -1,12 +1,11 @@
 extends CharacterBody3D
 
 # Declare member variables here. Examples:
-#export (PackedScene) var Bullet
+@onready var shootingPoint = get_node(NodePath("Revolver/ShootingPoint"))
 var Bullet = preload("res://Prefabs/bullet.tscn")
 @onready var hitBox = $knockbox
 var maxHitpoints = 10
 var hitpoints = maxHitpoints
-#export (PackedScene) var Smoke = null
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
 var Dodge = Vector3(0,0,0)
@@ -140,14 +139,14 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("shoot"):
-			var b = Bullet.instantiate()
-			owner.add_child(b)
-			b.transform = $Marker3D.global_transform
-			b.velocity = b.transform.basis.z * b.muzzle_velocity
-			print("BangBang")
-			sound.play()
-			_emit_smoke(b)
-	
+		var b = Bullet.instantiate()
+		owner.add_child(b)
+		b.from = "player"
+		b.global_position = shootingPoint.global_position
+		b.rotation = rotation
+		_emit_smoke(b)
+		#sound.play()
+
 
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()
@@ -167,16 +166,11 @@ func knock(direction, speed):
 	
 
 
-func damage_taken(damage):
-	hitpoints -= damage
-	
-	if hitpoints <= 0:
-		print("Wasted")
-
-func death():
-	if hitpoints <= 0:
-		print("Wasted")
-
-
-
-
+func damage_taken(damage, from) -> bool:
+	if(from != "player"):
+		hitpoints -= damage
+		if hitpoints <= 0:
+			queue_free()
+		return true
+	else:
+		return false

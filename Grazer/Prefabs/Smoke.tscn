@@ -1,47 +1,55 @@
-[gd_scene load_steps=7 format=3 uid="uid://1v2pntpf64kq"]
+[gd_scene load_steps=8 format=3 uid="uid://1v2pntpf64kq"]
 
 [ext_resource type="Texture2D" uid="uid://cqpain2a1wsu5" path="res://smoke_01.png" id="1"]
 
-[sub_resource type="Gradient" id="5"]
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_0laf2"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="6"]
-gradient = SubResource("5")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_exuch"]
+gradient = SubResource("Gradient_0laf2")
 
 [sub_resource type="ParticleProcessMaterial" id="1"]
-spread = 149.16
-flatness = 0.29
-gravity = Vector3(5, 5, 5)
-scale_max = 34.71
-color = Color(0.909804, 1, 1, 1)
-color_ramp = SubResource("6")
-hue_variation_max = 1.0
+lifetime_randomness = 0.1
+gravity = Vector3(0, 20, 0)
+angular_velocity_min = 200.0
+angular_velocity_max = 500.0
+angle_max = 180.0
+scale_min = 0.1
+scale_max = 2.0
+color = Color(0.294118, 0.294118, 0.294118, 1)
+color_ramp = SubResource("GradientTexture1D_exuch")
 
 [sub_resource type="StandardMaterial3D" id="2"]
 transparency = 1
-blend_mode = 1
 shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
 albedo_texture = ExtResource("1")
 billboard_mode = 3
+billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+grow_amount = 1.524
 
 [sub_resource type="QuadMesh" id="3"]
 material = SubResource("2")
-size = Vector2(0.5, 0.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_5yh1b"]
 
 [node name="Smoke" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-amount = 7000
-lifetime = 0.75
-preprocess = 0.05
-fixed_fps = 90
-visibility_aabb = AABB(-0.25, -0.25, -0.25, 0.5, 0.5, 10)
-trail_lifetime = 0.75
+amount = 100
+lifetime = 0.5
+randomness = 1.0
+fixed_fps = 120
+visibility_aabb = AABB(-0.5, -0.5, -0.5, 500, 1, 1)
 process_material = SubResource("1")
 draw_pass_1 = SubResource("3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+visible = false
+mesh = SubResource("PrismMesh_5yh1b")

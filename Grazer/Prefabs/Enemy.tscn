@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt4lngso7hdhn"]
+[gd_scene load_steps=7 format=3 uid="uid://bt4lngso7hdhn"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1"]
 
@@ -7,10 +7,15 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82qvi"]
 albedo_color = Color(1, 0, 0, 1)
 
+[sub_resource type="PrismMesh" id="PrismMesh_i3pdl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8b760"]
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="CapsuleShape3D" id="16"]
 
 [node name="Enemy" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76394, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 5
 script = ExtResource("1")
 
@@ -18,12 +23,16 @@ script = ExtResource("1")
 mesh = SubResource("CapsuleMesh_hrbv8")
 surface_material_override/0 = SubResource("StandardMaterial3D_82qvi")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 1, 0)
+mesh = SubResource("PrismMesh_i3pdl")
+surface_material_override/0 = SubResource("StandardMaterial3D_8b760")
+
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.25
 autostart = true
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="smokeSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, -2.33058e-12, 0, 1.08969e-10, 1, -8.73115e-10, 0, 0, 1, 0.00101471, 0.826897, 0.392393)

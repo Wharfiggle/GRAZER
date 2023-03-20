@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneColor.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneGreenTest.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://w4p6jdet4qw4" path="res://Assets/FloorTiles/basicFloorTile.tscn" id="8"]
-[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://empress of bostonia.png" id="10"]
 [ext_resource type="PackedScene" path="res://Prefabs/Cow Counter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bt4lngso7hdhn" path="res://Prefabs/Enemy.tscn" id="13"]

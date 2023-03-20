@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cyucfa21gs774"]
 
-[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="1_ivg21"]
+[ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="1_ivg21"]
 [ext_resource type="AudioStream" uid="uid://d3r5nge88xesw" path="res://Sounds/desert-eagle-gunshot-14622.wav" id="2_pbwo8"]
 [ext_resource type="Script" path="res://Scripts/knockback.gd" id="3_6qkwa"]
 [ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="4_t1n1m"]

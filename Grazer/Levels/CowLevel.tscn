@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://Prefabs/DirectionalLight.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Prefabs/FPS Counter.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://Prefabs/Cow Counter.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c3u0x1pb8a3ab" path="res://Assets/Models/sandstonecolor.tscn" id="8"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="8_r4t7c"]

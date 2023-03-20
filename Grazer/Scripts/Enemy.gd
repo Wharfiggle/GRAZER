@@ -57,6 +57,12 @@ func _physics_process(_delta):
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
 	
+	rotation.y = lerp_angle(
+		rotation.y,
+		atan2(position.x - targetPos.x, position.z - targetPos.z) + PI,
+		0.1
+	)
+	
 	if(Input.is_action_just_pressed("debug4")):
 		if(currentMode == behaviors.idle):
 			currentMode = behaviors.pursuit
@@ -111,6 +117,9 @@ func _physics_process(_delta):
 				draggedCow.position.x - cowVector.x,
 				position.y,
 				draggedCow.position.z - cowVector.y)
+				
+	if(health <= 4.0):
+		currentMode = behaviors.flee
 
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
@@ -314,21 +323,25 @@ func _on_Timer_timeout():
 	moveTo(targetPos)
 
 func attack():
-		for x in 1:
-			var b = Bullet.instantiate()
-			
-			level.add_child(b) #self? 
-			b.transform = $Marker3D.global_transform
-			b.velocity = b.transform.basis.z * b.muzzle_velocity
-			print("enemy fire")
-			_emit_smoke(b)
+	for x in 1:
+		var b = Bullet.instantiate()
+		level.add_child(b)
+		b.from = "enemy"
+		b.global_position = $Marker3D.global_position
+		b.rotation = rotation
+		_emit_smoke(b)
+		print("enemy fire")
 
 func _emit_smoke(bullet):
 	var newSmoke = Smoke.instantiate()
 	bullet.add_child(newSmoke)
 
-func damage_taken(damage):
-	health -= damage
-	if health <= 0:
-		print("Wasted")
+func damage_taken(damage, from) -> bool:
+	if(from != "enemy"):
+		health -= damage
+		if health <= 0:
+			queue_free()
+		return true
+	else:
+		return false
 

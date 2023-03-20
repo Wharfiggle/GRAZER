@@ -1,61 +1,35 @@
 extends Area3D
 
 signal exploded
-# Declare member variables
-
-@export var muzzle_velocity = 35
-
-var lifespan = 8
-
+@export var muzzle_velocity = 80
+@export var lifespan = 8
 var velocity = Vector3.ZERO
+@export var damage = 2
+var from = ""
 
-var damage = 2
+# Called when the node enters the scene tree for the first time.
+#func _ready():
+	#self.connect("area_entered",Callable(self,"_on_body_enter"))
 
-@onready var bullet = self
-
-func _physics_process(delta):
-	look_at(transform.origin + velocity.normalized(), Vector3.UP)
-	transform.origin += velocity * delta
+func _process(delta):
+	if(velocity == Vector3.ZERO):
+		velocity = Vector3(sin(rotation.y) * muzzle_velocity, 0, cos(rotation.y) * muzzle_velocity)
+	position += velocity * delta
 	
 	lifespan -= delta
 	
 	if lifespan <= 0:
-		
 		queue_free()
 
-func _on_collision():
-	var enemies = bullet.get_overlapping_bodies()
-	for enemy in enemies:
-		print("enemy found2")
-		if enemy.has_method("damage_taken"):
-				enemy.damage_taken(damage)
-	
-	queue_free()
-
-func _on_body_enter(body):
-	
-	
+func _on_body_entered(body):
 	#emit_signal("exploded", transform.origin)
-	var enemies = bullet.get_overlapping_bodies()
-	
-	
+	var enemies = self.get_overlapping_bodies()
+	var despawn = true
 	for enemy in enemies:
-		print("enemy found")
 		if enemy.has_method("damage_taken"):
-				enemy.damage_taken(damage)
-	
-	queue_free()
-	#print("tink")
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	self.connect("area_entered",Callable(self,"_on_body_enter"))
-	#pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	#self.connect("area_entered",Callable(self,"_on_body_enter"))
-	
-	#_on_body_entered()
-	pass
+			despawn = enemy.damage_taken(damage, from)
+	if(despawn):
+		get_node(NodePath("CollisionShape3D")).disabled = true
+		get_node(NodePath("MeshInstance3D")).visible = false
+		muzzle_velocity = 0
+		get_node(NodePath("Smoke/Particles")).emitting = false
