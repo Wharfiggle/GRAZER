@@ -11,6 +11,8 @@ var tVelocity = Vector3(0,0,0)
 var Dodge = Vector3(0,0,0)
 var CanDodge = true
 var Dodgetime =0
+var cooldown = false
+var cooldownTime = 0
 
 @onready var sound = $"practice sound item/AudioStreamPlayer3D"
 const GRAVITY = 30
@@ -37,7 +39,7 @@ func _process(_delta):
 	
 	toAdd = Vector3()
 	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):	
-		if(Input.is_action_pressed("moveRight")):
+		if(Input.is_action_pressed("moveRight") ):
 			toAdd.x += 1
 			toAdd.z += -1
 		elif(Input.is_action_pressed("moveLeft")):
@@ -158,17 +160,27 @@ func _physics_process(delta):
 		b.rotation = rotation
 		_emit_smoke(b)
 		#sound.play()
-	if(Input.is_action_just_pressed("dodge")):
+	if(Input.is_action_just_pressed("dodge")&& CanDodge):
 		#CanDodge = false
-		Dodgetime = 0.6
+		Dodgetime = 0.3
+		cooldownTime = 2.0
 		#Dodge = toAdd.normalized() * DODGESPEED	
 	if Dodgetime > 0:	
 		Dodge = toAdd.normalized() * DODGESPEED	
 		#Dodge = toAdd.normalized() * DODGESPEED
 		knock(Dodge, force*delta)
 		Dodgetime -= delta
+		
 	else:
 		Dodge = Vector3(0, 0, 0)
+	
+#	if cooldownTime > 0:
+#		cooldownTime -=delta
+#	elif cooldownTime == 0:
+#		CanDodge = true
+#		print_debug("done")
+
+
 
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()
