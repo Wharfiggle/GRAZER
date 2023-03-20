@@ -27,7 +27,7 @@ func start(_chunkCoords):
 	var chunk = load(chunkData[0])
 	var instance = chunk.instantiate()
 	add_child(instance)
-	print("Start on " + str(chunkCoords))
+	#print("Start on " + str(chunkCoords))
 
 func save():
 	WorldSave.saveChunk(chunkCoords, chunkData)

@@ -27,4 +27,4 @@ mesh = SubResource("2")
 skeleton = NodePath("../..")
 
 [node name="cactusScene" parent="NavigationRegion3D" instance=ExtResource("2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102626, -0.218258, 0.0174809)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04124, -0.218258, 1.2278)
