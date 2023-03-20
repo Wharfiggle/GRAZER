@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://btpok61kv2brx"]
+
+[ext_resource type="PackedScene" uid="uid://w4p6jdet4qw4" path="res://Assets/FloorTiles/basicFloorTile.tscn" id="1"]
+[ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/ChunkNode.gd" id="2"]
+
+[node name="ChunkNode" type="Node3D"]
+script = ExtResource("2")
+
+[node name="BasicFloor" parent="." instance=ExtResource("1")]
