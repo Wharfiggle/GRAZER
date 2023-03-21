@@ -18,6 +18,8 @@ var dodgeVel = Vector3(0,0,0)
 var dodgeTimer = 0.0
 @export var dodgeCooldownTime = 1.0
 var dodgeCooldownTimer = 0.0
+@export var dodgeBufferTime = 0.1
+var dodgeBufferTimer = 0.0
 
 @onready var sound = $"practice sound item/AudioStreamPlayer3D"
 const GRAVITY = 30
@@ -170,7 +172,14 @@ func _physics_process(delta):
 	set_up_direction(Vector3.UP)
 	move_and_slide()
 	
-	if(Input.is_action_just_pressed("dodge") && dodgeCooldownTimer == 0):
+	if(Input.is_action_just_pressed("dodge")):
+		dodgeBufferTimer = dodgeBufferTime
+	elif(dodgeBufferTimer > 0):
+		dodgeBufferTimer -= delta
+		if(dodgeBufferTimer < 0):
+			dodgeBufferTimer = 0
+	
+	if(dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		dodgeCooldownTimer = dodgeCooldownTime
 		dodgeTimer = dodgeTime
 		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed
@@ -205,8 +214,6 @@ func knock(direction, speed):
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
 			enemy.knockback(direction, speed)
-			
-	
 
 
 func damage_taken(damage, from) -> bool:
