@@ -12,11 +12,12 @@ var maxHitpoints = 10
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
-var Dodge = Vector3(0,0,0)
-var CanDodge = true
-var Dodgetime =0
-var cooldown = false
-var cooldownTime = 0
+@export var dodgeSpeed = 40.0
+var dodgeVel = Vector3(0,0,0)
+@export var dodgeTime = 0.3
+var dodgeTimer = 0.0
+@export var dodgeCooldownTime = 1.0
+var dodgeCooldownTimer = 0.0
 
 @onready var sound = $"practice sound item/AudioStreamPlayer3D"
 const GRAVITY = 30
@@ -25,10 +26,10 @@ const DODGESPEED = 20
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
-var aimDir = 0
 var force = 2
 var toAdd = Vector3()
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
+var moveDir = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,7 +65,7 @@ func _process(delta):
 		shootTimer = shootTime
 	
 	var toAdd = Vector3()
-	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):	
+	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):
 		if(Input.is_action_pressed("moveRight")):
 			toAdd.x += 1
 			toAdd.z += -1
@@ -78,6 +79,9 @@ func _process(delta):
 		elif(Input.is_action_pressed("moveUp")):
 			toAdd.x += -1
 			toAdd.z += -1
+	
+	if(toAdd != Vector3.ZERO):
+		moveDir = atan2(toAdd.x, toAdd.z)
 	
 	toAdd = toAdd.normalized() * SPEED
 	if(toAdd.x == 0 and toAdd.z == 0):
@@ -160,28 +164,31 @@ func _physics_process(delta):
 	elif(is_on_floor()):
 		tVelocity.y = -0.1
 
-	set_velocity(tVelocity + Dodge)
+	set_velocity(tVelocity)
+	if(dodgeVel != Vector3.ZERO):
+		set_velocity(dodgeVel)
 	set_up_direction(Vector3.UP)
 	move_and_slide()
 	
-	if(Input.is_action_just_pressed("dodge")&& CanDodge):
-		#CanDodge = false
-		Dodgetime = 0.3
-		cooldownTime = 2.0
-		#Dodge = toAdd.normalized() * DODGESPEED
-	if Dodgetime > 0:	
-		Dodge = toAdd.normalized() * DODGESPEED
-		#Dodge = toAdd.normalized() * DODGESPEED
-		knock(Dodge, force*delta)
-		Dodgetime -= delta
-	else:
-		Dodge = Vector3(0, 0, 0)
-	
-#	if cooldownTime > 0:
-#		cooldownTime -=delta
-#	elif cooldownTime == 0:
-#		CanDodge = true
-#		print_debug("done")
+	if(Input.is_action_just_pressed("dodge") && dodgeCooldownTimer == 0):
+		dodgeCooldownTimer = dodgeCooldownTime
+		dodgeTimer = dodgeTime
+		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed
+	if(dodgeTimer > 0):
+		dodgeTimer -= delta
+		if(dodgeTimer < 0):
+			dodgeTimer = 0
+			dodgeVel = Vector3.ZERO
+			tVelocity = Vector3.ZERO
+		else:
+			var t = dodgeTimer / dodgeTime
+			t = pow(t, 2)
+			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t
+		knock(dodgeVel, force * delta)
+	elif(dodgeCooldownTimer > 0):
+		dodgeCooldownTimer -= delta
+		if(dodgeCooldownTimer < 0):
+			dodgeCooldownTimer = 0
 
 
 func findHerdCenter() -> Vector3:
