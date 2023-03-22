@@ -29,6 +29,8 @@ var speed = 1.0
 var followDistance = 7.0 + randf_range(-1,1)
 var herdRadius = 10 + randf_range(-2,2)
 var currentCircle = 1
+var tVelocity = Vector3.ZERO
+var GRAVITY = 30
 
 var canFire = true
 var fireDirection
@@ -109,17 +111,26 @@ func _physics_process(delta):
 		[behaviors.attack]:
 			[attack()]
 	
+	#gravity
+	tVelocity.y -= GRAVITY * delta
+	if(is_on_floor()):
+		tVelocity.y = -0.1
+	
 	if(pathNode < path.size()):
 		var direction = (path[pathNode] - global_transform.origin)
 		if(direction.length() < 1):
 			pathNode += 1
 		else:
-			#changes the change in direction to a change in velocity if knockback has happened
-			set_velocity(direction.normalized() * baseSpeed * speed + dynamicMov)
-			if(knockbackVel != Vector3.ZERO):
-				set_velocity(knockbackVel)
-			set_up_direction(Vector3.UP)
-			move_and_slide()
+			#set velocity to account for changes in direction but leave gravity alone
+			var tempVel = direction.normalized() * baseSpeed * speed + dynamicMov
+			tVelocity.x = tempVel.x
+			tVelocity.z = tempVel.z
+	
+	set_velocity(tVelocity)
+	if(knockbackVel != Vector3.ZERO):
+		set_velocity(Vector3(knockbackVel.x, tVelocity.y, knockbackVel.z))
+	set_up_direction(Vector3.UP)
+	move_and_slide()
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):

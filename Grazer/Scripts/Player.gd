@@ -12,9 +12,9 @@ var maxHitpoints = 10
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
-@export var dodgeSpeed = 40.0
+@export var dodgeSpeed = 20.0
 var dodgeVel = Vector3(0,0,0)
-@export var dodgeTime = 0.3
+@export var dodgeTime = 0.5
 var dodgeTimer = 0.0
 @export var dodgeCooldownTime = 1.0
 var dodgeCooldownTimer = 0.0
@@ -154,7 +154,6 @@ func _process(delta):
 
 func _physics_process(delta):
 	tVelocity.y -= GRAVITY * delta
-	
 	if(Input.is_action_just_pressed("jump") and is_on_floor()):
 		tVelocity.y += JUMP
 	elif(is_on_floor()):
@@ -162,7 +161,7 @@ func _physics_process(delta):
 
 	set_velocity(tVelocity)
 	if(dodgeVel != Vector3.ZERO):
-		set_velocity(dodgeVel)
+		set_velocity(Vector3(dodgeVel.x, tVelocity.y, dodgeVel.z))
 	set_up_direction(Vector3.UP)
 	move_and_slide()
 	
