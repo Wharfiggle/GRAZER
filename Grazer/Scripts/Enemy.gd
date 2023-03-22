@@ -112,9 +112,12 @@ func _physics_process(_delta):
 		if(direction.length() < 1):
 			pathNode += 1
 		else:
+			#changes the change in direction to a change in velocity if knockback has happened
 			if(kIFrames > 0):
 				set_velocity(knockbackDirection * 30)
+				
 			else:
+				#if velocity if knockback has not been implemented
 				set_velocity(direction.normalized() * baseSpeed * speed + dynamicMov)
 			set_up_direction(Vector3.UP)
 			move_and_slide()
@@ -134,6 +137,8 @@ func _physics_process(_delta):
 				
 	if(health <= 4.0):
 		currentMode = behaviors.flee
+	
+	#count down for enemy to be able to be knocked again
 	if(kIFrames > 0):
 		kIFrames -= _delta
 		if(kIFrames < 0):
@@ -362,6 +367,7 @@ func _on_Timer_timeout():
 
 func attack():
 	for x in 1:
+		#spawns bullet in the direction the muzzle is facing 
 		var b = Bullet.instantiate()
 		level.add_child(b)
 		b.from = "enemy"
@@ -370,18 +376,32 @@ func attack():
 		_emit_smoke(b)
 
 func _emit_smoke(bullet):
+	#spawns the smoke and attaches it to the bullet
 	var newSmoke = Smoke.instantiate()
 	bullet.add_child(newSmoke)
 	
 func knockback(damageSourcePos:Vector3, kSpeed:int):
+	#stops knockback until kIFrames is zero
 	if(kIFrames > 0):
 		return
+	
+	#sets kIFrames so that knockback cant over build
 	kIFrames = 0.3
+	
 	if knockable:
+		
+		#finds the distance between the enemy and the source of the knockback 
+		#for direction the enemy will go
 		knockbackDirection = damageSourcePos.direction_to(self.position)
-		print(knockbackDirection)
+		#print(knockbackDirection)
+		
+		#removes the y direction
 		knockbackDirection.y = 0
+		
+		#finds the strangth that the knockback will place on enemy
 		var knockbackStrength = kSpeed * knockbackMod 
+		
+		#implments the direction and strangth for full knockback distance
 		var knockB = knockbackDirection * knockbackStrength
 		#print(knockB)
 		#position += knockB
