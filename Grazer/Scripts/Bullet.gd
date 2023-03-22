@@ -8,6 +8,7 @@ var velocity = Vector3.ZERO
 var from = ""
 var source
 var active = true
+var smoke = preload("res://Prefabs/Smoke.tscn")
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -29,6 +30,8 @@ func shoot(source, from, position, rotation):
 	self.position = position
 	self.rotation = rotation
 	source.owner.add_child(self)
+	var smokeInstance = smoke.instantiate()
+	add_child(smokeInstance)
 
 #todo:
 #add ray cast to see if the bullet will enter an object next frame,

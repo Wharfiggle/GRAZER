@@ -59,7 +59,6 @@ func _process(delta):
 	if(shootBufferTimer > 0 && shootTimer == 0):
 		var b = Bullet.instantiate()
 		b.shoot(self, "player", shootingPoint.global_position, rotation)
-		_emit_smoke(b)
 		#sound.play()
 		shootTimer = shootTime
 	
@@ -199,11 +198,6 @@ func _physics_process(delta):
 
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()
-
-func _emit_smoke(bullet):
-	var newSmoke = Smoke.instantiate()
-	bullet.add_child(newSmoke)
-
 
 func knock(direction, speed):
 	var enemies = hitBox.get_overlapping_bodies()

@@ -5,7 +5,6 @@ extends CharacterBody3D
 @onready var nav = get_node("/root/Level/Navigation")
 @onready var level = get_tree().root.get_child(0)
 var Bullet = preload("res://Prefabs/BulletE.tscn")
-var Smoke = preload("res://Prefabs/Smoke.tscn")
 
 
 var maxHealth = 10.0
@@ -370,12 +369,6 @@ func attack():
 		#spawns bullet in the direction the muzzle is facing 
 		var b = Bullet.instantiate()
 		b.shoot(self, "enemy", $Marker3D.global_position, rotation)
-		_emit_smoke(b)
-
-func _emit_smoke(bullet):
-	#spawns the smoke and attaches it to the bullet
-	var newSmoke = Smoke.instantiate()
-	bullet.add_child(newSmoke)
 	
 func knockback(damageSourcePos:Vector3, kSpeed:int):
 	#stops knockback until kIFrames is zero
