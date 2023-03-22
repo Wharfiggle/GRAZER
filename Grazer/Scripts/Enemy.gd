@@ -32,10 +32,13 @@ var currentCircle = 1
 
 var canFire = true
 var fireDirection
-@export var knockable = true
-@export var knockbackMod = 5
-var kIFrames = 0
-var knockbackDirection = Vector3(0,0,0)
+@export var knockbackMod = 1.0
+#@export var knockbackIFrames = 0.3
+#var knockbackIFramesTimer = 0.0
+@export var knockbackTime = 0.3
+var knockbackTimer = 0.0
+var knockbackVel = Vector3(0,0,0)
+var knockbackStrength = 0
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
 var currentMode = behaviors.circle
@@ -58,9 +61,9 @@ func _ready():
 
 
 #Called at set time intervals, delta is time elapsed since last call
-func _physics_process(_delta):
+func _physics_process(delta):
 	if(dynamicCooldown > 0):
-		dynamicCooldown -= _delta
+		dynamicCooldown -= delta
 	lerp(dynamicMov.x,0.0,0.1)
 	lerp(dynamicMov.z,0.0,0.1)
 	
@@ -86,9 +89,9 @@ func _physics_process(_delta):
 			currentMode = behaviors.cowPursuit
 	
 	if(reloadCooldown > 0):
-		reloadCooldown -= _delta
+		reloadCooldown -= delta
 	if(attackCooldown > 0):
-		attackCooldown -= _delta
+		attackCooldown -= delta
 	
 	match[currentMode]: #Essentially a switch statement
 		[behaviors.idle]:
@@ -112,12 +115,9 @@ func _physics_process(_delta):
 			pathNode += 1
 		else:
 			#changes the change in direction to a change in velocity if knockback has happened
-			if(kIFrames > 0):
-				set_velocity(knockbackDirection * 30)
-				
-			else:
-				#if velocity if knockback has not been implemented
-				set_velocity(direction.normalized() * baseSpeed * speed + dynamicMov)
+			set_velocity(direction.normalized() * baseSpeed * speed + dynamicMov)
+			if(knockbackVel != Vector3.ZERO):
+				set_velocity(knockbackVel)
 			set_up_direction(Vector3.UP)
 			move_and_slide()
 	
@@ -137,12 +137,22 @@ func _physics_process(_delta):
 	if(health <= 4.0):
 		currentMode = behaviors.flee
 	
-	#count down for enemy to be able to be knocked again
-	if(kIFrames > 0):
-		kIFrames -= _delta
-		if(kIFrames < 0):
-			kIFrames = 0
-	
+	#knockback timer
+	if(knockbackTimer > 0):
+		knockbackTimer -= delta
+		if(knockbackTimer < 0):
+			knockbackTimer = 0
+			knockbackStrength = 0
+		#lerp speed towards 0 on a square root curve
+		var t = knockbackTimer / knockbackTime
+		t = pow(t, 2)
+		knockbackVel = knockbackVel.normalized() * t * knockbackStrength
+	#knockback iframes timer
+#	elif(knockbackIFramesTimer > 0):
+#		knockbackIFramesTimer -= delta
+#		if(knockbackIFramesTimer < 0):
+#			knockbackIFramesTimer = 0
+
 
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
@@ -370,31 +380,18 @@ func attack():
 		var b = Bullet.instantiate()
 		b.shoot(self, "enemy", $Marker3D.global_position, rotation)
 	
-func knockback(damageSourcePos:Vector3, kSpeed:int):
-	#stops knockback until kIFrames is zero
-	if(kIFrames > 0):
-		return
-	
-	#sets kIFrames so that knockback cant over build
-	kIFrames = 0.3
-	
-	if knockable:
-		
-		#finds the distance between the enemy and the source of the knockback 
-		#for direction the enemy will go
-		knockbackDirection = damageSourcePos.direction_to(self.position)
-		#print(knockbackDirection)
-		
-		#removes the y direction
-		knockbackDirection.y = 0
-		
-		#finds the strangth that the knockback will place on enemy
-		var knockbackStrength = kSpeed * knockbackMod 
-		
-		#implments the direction and strangth for full knockback distance
-		var knockB = knockbackDirection * knockbackStrength
-		#print(knockB)
-		#position += knockB
+func knockback(damageSourcePos:Vector3, kSpeed:float):
+	#prevents knockback until knockbackIFramesTimer is zero
+#	if(knockbackIFramesTimer > 0):
+#		return
+#	#activate knockback and IFrames timers
+#	knockbackIFramesTimer = knockbackIFrames
+	knockbackTimer = knockbackTime
+	#set knockbackVel to the direction vector * speed
+	knockbackVel = damageSourcePos.direction_to(self.position)
+	knockbackVel.y = 0
+	knockbackStrength = kSpeed * knockbackMod
+	knockbackVel *= knockbackStrength
 
 func damage_taken(damage, from) -> bool:
 	if(from != "enemy"):

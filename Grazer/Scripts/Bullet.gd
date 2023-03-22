@@ -24,7 +24,7 @@ func _process(delta):
 	if lifespan <= 0:
 		queue_free()
 
-func shoot(source, from, position, rotation):
+func shoot(source:Node3D, from:String, position:Vector3, rotation:Vector3):
 	self.source = source
 	self.from = from
 	self.position = position

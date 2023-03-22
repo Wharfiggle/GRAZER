@@ -24,11 +24,9 @@ var dodgeBufferTimer = 0.0
 @onready var sound = $"practice sound item/AudioStreamPlayer3D"
 const GRAVITY = 30
 const SPEED = 9
-const DODGESPEED = 20
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
-var force = 2
 var toAdd = Vector3()
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 var moveDir = 0
@@ -187,9 +185,9 @@ func _physics_process(delta):
 			tVelocity = Vector3.ZERO
 		else:
 			var t = dodgeTimer / dodgeTime
-			t = pow(t, 2)
+			t = sqrt(t)
 			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t
-		knock(dodgeVel, force * delta)
+		knock()
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
 		if(dodgeCooldownTimer < 0):
@@ -199,12 +197,11 @@ func _physics_process(delta):
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()
 
-func knock(direction, speed):
+func knock():
 	var enemies = hitBox.get_overlapping_bodies()
-	
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
-			enemy.knockback(position, speed * 40)
+			enemy.knockback(position, dodgeVel.length())
 
 
 func damage_taken(damage, from) -> bool:
