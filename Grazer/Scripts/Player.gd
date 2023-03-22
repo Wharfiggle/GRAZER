@@ -58,10 +58,7 @@ func _process(delta):
 		
 	if(shootBufferTimer > 0 && shootTimer == 0):
 		var b = Bullet.instantiate()
-		owner.add_child(b)
-		b.from = "player"
-		b.global_position = shootingPoint.global_position
-		b.rotation = rotation
+		b.shoot(self, "player", shootingPoint.global_position, rotation)
 		_emit_smoke(b)
 		#sound.play()
 		shootTimer = shootTime
