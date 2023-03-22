@@ -35,6 +35,8 @@ var canFire = true
 var fireDirection
 @export var knockable = true
 @export var knockbackMod = 5
+var kIFrames = 0
+var knockbackDirection = Vector3(0,0,0)
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
 var currentMode = behaviors.circle
@@ -110,7 +112,10 @@ func _physics_process(_delta):
 		if(direction.length() < 1):
 			pathNode += 1
 		else:
-			set_velocity(direction.normalized() * baseSpeed * speed + dynamicMov)
+			if(kIFrames > 0):
+				set_velocity(knockbackDirection * 30)
+			else:
+				set_velocity(direction.normalized() * baseSpeed * speed + dynamicMov)
 			set_up_direction(Vector3.UP)
 			move_and_slide()
 	
@@ -129,6 +134,11 @@ func _physics_process(_delta):
 				
 	if(health <= 4.0):
 		currentMode = behaviors.flee
+	if(kIFrames > 0):
+		kIFrames -= _delta
+		if(kIFrames < 0):
+			kIFrames = 0
+	
 
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
@@ -363,14 +373,18 @@ func _emit_smoke(bullet):
 	var newSmoke = Smoke.instantiate()
 	bullet.add_child(newSmoke)
 	
-func knockback(damageSourcePos:Vector3, speed:int):
-	print("knock")
+func knockback(damageSourcePos:Vector3, kSpeed:int):
+	if(kIFrames > 0):
+		return
+	kIFrames = 0.3
 	if knockable:
-		var knockbackDirection = damageSourcePos.direction_to(self.position)
-		var knockbackStrength = speed * knockbackMod 
+		knockbackDirection = damageSourcePos.direction_to(self.position)
+		print(knockbackDirection)
+		knockbackDirection.y = 0
+		var knockbackStrength = kSpeed * knockbackMod 
 		var knockB = knockbackDirection * knockbackStrength
-		print(knockB)
-		position += knockB
+		#print(knockB)
+		#position += knockB
 
 func damage_taken(damage, from) -> bool:
 	if(from != "enemy"):
