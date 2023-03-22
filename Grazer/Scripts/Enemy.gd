@@ -369,10 +369,7 @@ func attack():
 	for x in 1:
 		#spawns bullet in the direction the muzzle is facing 
 		var b = Bullet.instantiate()
-		level.add_child(b)
-		b.from = "enemy"
-		b.global_position = $Marker3D.global_position
-		b.rotation = rotation
+		b.shoot(self, "enemy", $Marker3D.global_position, rotation)
 		_emit_smoke(b)
 
 func _emit_smoke(bullet):
