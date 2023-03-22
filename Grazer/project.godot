@@ -24,6 +24,7 @@ GlobalScript="*res://Scripts/globalScript.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/vsync/vsync_mode=false
 
 [gui]
 
@@ -121,7 +122,7 @@ project/assembly_name="Grazer"
 
 [navigation]
 
-3d/default_edge_connection_margin=0.5
+3d/default_edge_connection_margin=1.0
 
 [physics]
 
