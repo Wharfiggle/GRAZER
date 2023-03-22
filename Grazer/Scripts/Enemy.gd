@@ -111,8 +111,6 @@ func _physics_process(_delta):
 			set_velocity(direction.normalized() * baseSpeed * speed + dynamicMov)
 			set_up_direction(Vector3.UP)
 			move_and_slide()
-
-
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
@@ -342,16 +340,15 @@ dynamicMov.z + randf_range(-1.0, 1.0))
 	dynamicCooldown = randf_range(1.0,3.0)
 
 #navigation function
-func moveTo(targetPos):
+func moveTo(_targetPos):
 	path = NavigationServer3D.map_get_path(get_world_3d().get_navigation_map(),
-global_transform.origin, targetPos, true)
+global_transform.origin, _targetPos, true)
 	pathNode = 0
 
 func _on_Timer_timeout():
 	moveTo(targetPos)
 
 func attack():
-
 	for x in 1:
 		var b = Bullet.instantiate()
 		level.add_child(b)
@@ -359,17 +356,6 @@ func attack():
 		b.global_position = $Marker3D.global_position
 		b.rotation = rotation
 		_emit_smoke(b)
-		print("enemy fire")
-
-#		for x in 1:
-#			var b = Bullet.instantiate()
-#
-#			level.add_child(b) 
-#			b.transform = $Marker3D.global_transform
-#			b.velocity = b.transform.basis.z * b.muzzle_velocity
-#			print("enemy fire")
-#			_emit_smoke(b)
-
 
 func _emit_smoke(bullet):
 	var newSmoke = Smoke.instantiate()

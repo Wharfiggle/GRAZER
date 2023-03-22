@@ -27,14 +27,13 @@ func start(_chunkCoords):
 	var chunk = load(chunkData[0])
 	var instance = chunk.instantiate()
 	add_child(instance)
-	#print("Start on " + str(chunkCoords))
 
 func save():
 	WorldSave.saveChunk(chunkCoords, chunkData)
 	queue_free()
 
 #custom function for choosing a chunk from our library based on the coordinates
-func calcChunk(chunkCoords) -> String:
+func calcChunk(_chunkCoords) -> String:
 	#system for choosing a chunk from the list
 	match [randi_range(1,4)]:
 		[1]:

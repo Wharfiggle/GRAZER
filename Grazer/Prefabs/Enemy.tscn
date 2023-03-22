@@ -13,7 +13,6 @@ albedo_color = Color(1, 0, 0, 1)
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="16"]
-height = 3.0
 
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -40,10 +39,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 transform = Transform3D(1, -2.33058e-12, 0, 1.08969e-10, 1, -8.73115e-10, 0, 0, 1, 0.00101471, 0.826897, 0.392393)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("16")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 

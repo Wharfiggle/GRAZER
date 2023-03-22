@@ -119,6 +119,10 @@ moveRight={
 
 project/assembly_name="Grazer"
 
+[navigation]
+
+3d/default_edge_connection_margin=0.5
+
 [physics]
 
 common/enable_pause_aware_picking=true
