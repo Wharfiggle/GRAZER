@@ -8,7 +8,6 @@ var knock = Vector3(0,0,0)
 var lifespan = 10
 
 @export var knockable = true
-
 @export var knockbackMod = 5
 
 var hit = 2

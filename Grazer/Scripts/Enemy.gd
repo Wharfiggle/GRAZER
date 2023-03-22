@@ -33,6 +33,8 @@ var currentCircle = 1
 
 var canFire = true
 var fireDirection
+@export var knockable = true
+@export var knockbackMod = 5
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
 var currentMode = behaviors.circle
@@ -360,6 +362,15 @@ func attack():
 func _emit_smoke(bullet):
 	var newSmoke = Smoke.instantiate()
 	bullet.add_child(newSmoke)
+	
+func knockback(damageSourcePos:Vector3, speed:int):
+	print("knock")
+	if knockable:
+		var knockbackDirection = damageSourcePos.direction_to(self.position)
+		var knockbackStrength = speed * knockbackMod 
+		var knockB = knockbackDirection * knockbackStrength
+		print(knockB)
+		position += knockB
 
 func damage_taken(damage, from) -> bool:
 	if(from != "enemy"):
@@ -369,4 +380,3 @@ func damage_taken(damage, from) -> bool:
 		return true
 	else:
 		return false
-

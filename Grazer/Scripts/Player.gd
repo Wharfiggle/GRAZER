@@ -213,7 +213,7 @@ func knock(direction, speed):
 	
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
-			enemy.knockback(direction, speed)
+			enemy.knockback(direction, speed * 100)
 
 
 func damage_taken(damage, from) -> bool:
