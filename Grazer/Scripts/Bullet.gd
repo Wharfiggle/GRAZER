@@ -29,7 +29,7 @@ func shoot(source:Node3D, from:String, position:Vector3, rotation:Vector3):
 	self.from = from
 	self.position = position
 	self.rotation = rotation
-	source.owner.add_child(self)
+	source.get_parent().add_child(self)
 	var smokeInstance = smoke.instantiate()
 	add_child(smokeInstance)
 

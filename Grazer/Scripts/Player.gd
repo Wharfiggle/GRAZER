@@ -7,7 +7,7 @@ var Bullet = preload("res://Prefabs/bullet.tscn")
 var shootTimer = 0.0
 @export var shootBufferTime = 0.1
 var shootBufferTimer = 0.0
-@onready var hitBox = $knockbox
+@onready var knockbox = $knockbox
 var maxHitpoints = 10
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
@@ -197,7 +197,7 @@ func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()
 
 func knock():
-	var enemies = hitBox.get_overlapping_bodies()
+	var enemies = knockbox.get_overlapping_bodies()
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
 			enemy.knockback(position, dodgeVel.length())

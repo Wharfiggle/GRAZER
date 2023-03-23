@@ -41,6 +41,7 @@ var fireDirection
 var knockbackTimer = 0.0
 var knockbackVel = Vector3(0,0,0)
 var knockbackStrength = 0
+@onready var knockbox = $knockbox
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
 var currentMode = behaviors.circle
@@ -158,6 +159,7 @@ func _physics_process(delta):
 		var t = knockbackTimer / knockbackTime
 		t = pow(t, 2)
 		knockbackVel = knockbackVel.normalized() * t * knockbackStrength
+		knock()
 	#knockback iframes timer
 #	elif(knockbackIFramesTimer > 0):
 #		knockbackIFramesTimer -= delta
@@ -390,13 +392,21 @@ func attack():
 		#spawns bullet in the direction the muzzle is facing 
 		var b = Bullet.instantiate()
 		b.shoot(self, "enemy", $Marker3D.global_position, rotation)
-	
+
+func knock():
+	var enemies = knockbox.get_overlapping_bodies()
+	for enemy in enemies:
+		if(enemy != self && enemy.has_method("knockback")):
+			enemy.knockback(position, knockbackVel.length())
+
 func knockback(damageSourcePos:Vector3, kSpeed:float):
 	#prevents knockback until knockbackIFramesTimer is zero
 #	if(knockbackIFramesTimer > 0):
 #		return
 #	#activate knockback and IFrames timers
 #	knockbackIFramesTimer = knockbackIFrames
+	if(knockbackTimer > 0 || kSpeed < 0.1):
+		return
 	knockbackTimer = knockbackTime
 	#set knockbackVel to the direction vector * speed
 	knockbackVel = damageSourcePos.direction_to(self.position)

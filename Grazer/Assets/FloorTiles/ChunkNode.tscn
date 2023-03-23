@@ -13,39 +13,11 @@ material = SubResource("StandardMaterial3D_3butp")
 script = ExtResource("2")
 
 [node name="DataIndicator" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.75, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.795, 16)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DataIndicator"]
 mesh = SubResource("BoxMesh_35wjo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DataIndicator"]
 shape = SubResource("BoxShape3D_bt7b6")
-
-[node name="DataIndicator2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.75, 31)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DataIndicator2"]
-mesh = SubResource("BoxMesh_35wjo")
-skeleton = NodePath("../../DataIndicator2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DataIndicator2"]
-shape = SubResource("BoxShape3D_bt7b6")
-
-[node name="DataIndicator3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0.75, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DataIndicator3"]
-mesh = SubResource("BoxMesh_35wjo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DataIndicator3"]
-shape = SubResource("BoxShape3D_bt7b6")
-
-[node name="DataIndicator4" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0.75, 31)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DataIndicator4"]
-mesh = SubResource("BoxMesh_35wjo")
-skeleton = NodePath("../../DataIndicator4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DataIndicator4"]
-shape = SubResource("BoxShape3D_bt7b6")
+disabled = true
