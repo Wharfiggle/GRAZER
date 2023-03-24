@@ -21,13 +21,12 @@ var dodgeCooldownTimer = 0.0
 @export var dodgeBufferTime = 0.1
 var dodgeBufferTimer = 0.0
 
-@onready var sound = $"practice sound item/AudioStreamPlayer3D"
+#@onready var sound = $"practice sound item/AudioStreamPlayer3D"
 const GRAVITY = 30
 const SPEED = 9
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
-var toAdd = Vector3()
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 var moveDir = 0
 var active = true

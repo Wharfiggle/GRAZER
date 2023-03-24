@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 @onready var player = get_node("/root/Level/Player")
-@onready var nav = get_node("/root/Level/Navigation")
+#@onready var nav = get_node("/root/Level/Navigation")
 @onready var level = get_tree().root.get_child(0)
 var Bullet = preload("res://Prefabs/bullet.tscn")
 
@@ -99,19 +99,19 @@ func _physics_process(delta):
 	
 	match[currentMode]: #Essentially a switch statement
 		[behaviors.idle]:
-			[idle()]
+			idle()
 		[behaviors.circle]:
-			[circle()]
+			circle()
 		[behaviors.pursuit]:
-			[pursuit()]
+			pursuit()
 		[behaviors.cowPursuit]:
-			[cowPursuit()]
+			cowPursuit()
 		[behaviors.flee]:
-			[flee()]
+			flee()
 		[behaviors.retreat]:
-			[retreat()]
+			retreat()
 		#[behaviors.attack]:
-		#	[attack()]
+		#	attack()
 	
 	#gravity
 	tVelocity.y -= GRAVITY * delta
@@ -195,6 +195,8 @@ func circle():
 	else:
 		baseA = 1
 	var baseB = (-rVec.x * baseA) / rVec.z
+	if(rVec.z == 0):
+		baseB = 0
 	var baseV = Vector3(baseA, 0, baseB)
 	
 	var relate = position - player.position
@@ -272,6 +274,8 @@ func pursuit():
 		#Backing up
 		if(speed < 1):
 			speed *= followDistance / spacing
+			if(spacing == 0):
+				speed = 0
 		if(speed > 1):
 			speed = 1
 		

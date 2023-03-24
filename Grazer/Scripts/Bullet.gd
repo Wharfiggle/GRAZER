@@ -24,17 +24,17 @@ func _process(delta):
 	if lifespan <= 0:
 		queue_free()
 
-func shoot(source:Node3D, from:String, position:Vector3, rotation:Vector3, damage:float):
-	self.source = source
-	self.from = from
+func shoot(inSource:Node3D, inFrom:String, inPosition:Vector3, inRotation:Vector3, inDamage:float):
+	source = inSource
+	from = inFrom
 	source.get_parent().add_child(self)
-	self.rotation = rotation
-	self.global_position = position
+	rotation = inRotation
+	global_position = inPosition
 	var smokeInstance = smoke.instantiate()
 	smokeInstance.rotation = Vector3.ZERO
 	add_child(smokeInstance)
 	smokeInstance.global_position = global_position
-	self.damage = damage
+	damage = inDamage
 
 #todo:
 #add ray cast to see if the bullet will enter an object next frame,
@@ -50,7 +50,6 @@ func _on_body_entered(body):
 			despawn = body.damage_taken(damage, from)
 		
 		if(despawn):
-			get_node(NodePath("CollisionShape3D")).disabled = true
 			get_node(NodePath("MeshInstance3D")).visible = false
 			get_node(NodePath("Smoke/Particles")).emitting = false
 			active = false

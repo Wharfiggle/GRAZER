@@ -1,7 +1,7 @@
 extends Node
 func findHerdCenter() -> Vector3:
-	var nodePath = "/Level"
-	var level = get_node(nodePath)
+	#var nodePath = "/Level"
+	#var level = get_node(nodePath)
 	
 	var herd = get_tree().get_nodes_in_group("herd")
 	var loc = Vector3(0,0,0)
