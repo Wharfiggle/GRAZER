@@ -4,7 +4,7 @@ signal exploded
 @export var muzzle_velocity = 150
 @export var lifespan = 8
 var velocity = Vector3.ZERO
-@export var damage = 2
+var damage
 var from = ""
 var source
 var active = true
@@ -24,14 +24,17 @@ func _process(delta):
 	if lifespan <= 0:
 		queue_free()
 
-func shoot(source:Node3D, from:String, position:Vector3, rotation:Vector3):
+func shoot(source:Node3D, from:String, position:Vector3, rotation:Vector3, damage:float):
 	self.source = source
 	self.from = from
-	self.position = position
-	self.rotation = rotation
 	source.get_parent().add_child(self)
+	self.rotation = rotation
+	self.global_position = position
 	var smokeInstance = smoke.instantiate()
+	smokeInstance.rotation = Vector3.ZERO
 	add_child(smokeInstance)
+	smokeInstance.global_position = global_position
+	self.damage = damage
 
 #todo:
 #add ray cast to see if the bullet will enter an object next frame,

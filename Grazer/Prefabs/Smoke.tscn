@@ -10,7 +10,7 @@ gradient = SubResource("Gradient_7rn6k")
 
 [sub_resource type="ParticleProcessMaterial" id="1"]
 lifetime_randomness = 0.1
-gravity = Vector3(0, 20, 0)
+gravity = Vector3(0, 0, 0)
 angular_velocity_min = 200.0
 angular_velocity_max = 500.0
 angle_max = 180.0
@@ -22,21 +22,21 @@ color_ramp = SubResource("GradientTexture1D_ocnga")
 material = ExtResource("1_ag1rt")
 
 [sub_resource type="PrismMesh" id="PrismMesh_5yh1b"]
+size = Vector3(1, 2, 1)
 
 [node name="Smoke" type="Node3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Particles" type="GPUParticles3D" parent="."]
-amount = 100
+amount = 200
 lifetime = 0.5
 randomness = 1.0
-fixed_fps = 120
-visibility_aabb = AABB(-0.5, -0.5, -0.5, 500, 1, 1)
-trail_enabled = true
+fixed_fps = 200
+interpolate = false
+visibility_aabb = AABB(-0.5, -0.5, 0.5, 1, 1, -100)
 process_material = SubResource("1")
 draw_pass_1 = SubResource("QuadMesh_a2rbb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+[node name="directionDebug" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -3)
 visible = false
 mesh = SubResource("PrismMesh_5yh1b")

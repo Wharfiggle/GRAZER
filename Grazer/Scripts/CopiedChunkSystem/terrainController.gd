@@ -26,6 +26,24 @@ func _ready():
 	loadChunk()
 
 func _process(_delta):
+	if(Input.is_action_just_pressed("debug4") || Input.is_action_just_pressed("debug5")):
+		#screen height and width in units, equal to camera size
+		var scrHei = 15.0
+		var scrWid = scrHei / 9.0 * 16.0 #only works with 16:9 aspect ratio
+		var enemy = enemyPrefab.instantiate()
+		var type = enemy.enemyTypes.gunman
+		if(Input.is_action_pressed("debug5")):
+			type = enemy.enemyTypes.thief
+		enemy.marauderType = type
+		var horOrVert = randi_range(0, 1)
+		var topOrBot = randi_range(0, 1)
+		if(topOrBot == 0): topOrBot = -1
+		if(horOrVert == 0):
+			enemy.position = player.position + Vector3(topOrBot * (scrWid / 2.0 + 5), 1, randf_range(-scrHei / 2.0, scrHei / 2.0))
+		else:
+			enemy.position = player.position + Vector3(randf_range(-scrWid / 2.0, scrWid / 2.0), 1, topOrBot * (scrHei / 2.0 + 5))
+		get_node(NodePath("/root/Level")).add_child(enemy)
+	
 	#checks if player has left their current chunk and loads if they have
 	currentChunk = getPlayerChunk(player.transform.origin)
 	if(currentChunk != previousChunk):
@@ -93,21 +111,6 @@ func loadChunk():
 		activeCoord.remove_at(index)
 	
 	chunkLoaded = true
-	
-	var scrHei = 15.0
-	var scrWid = scrHei / 9.0 * 16.0
-	var numEnemies = randi_range(0, 3)
-	while numEnemies > 0:
-		var enemy = enemyPrefab.instantiate()
-		var horOrVert = randi_range(0, 1)
-		var topOrBot = randi_range(0, 1)
-		if(topOrBot == 0): topOrBot = -1
-		if(horOrVert == 0):
-			enemy.position = player.position + Vector3(topOrBot * (scrWid / 2.0 + 5), 1, randf_range(-scrHei / 2.0, scrHei / 2.0))
-		else:
-			enemy.position = player.position + Vector3(randf_range(-scrWid / 2.0, scrWid / 2.0), 1, topOrBot * (scrHei / 2.0 + 5))
-		get_node(NodePath("/root/Level")).add_child(enemy)
-		numEnemies -= 1
 
 func _get_chunk_key(coords : Vector3):
 	var key = coords

@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var player = get_node("/root/Level/Player")
 @onready var nav = get_node("/root/Level/Navigation")
 @onready var level = get_tree().root.get_child(0)
-var Bullet = preload("res://Prefabs/BulletE.tscn")
+var Bullet = preload("res://Prefabs/bullet.tscn")
 
 
 var maxHealth = 10.0
@@ -46,20 +46,22 @@ var knockbackStrength = 0
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
 var currentMode = behaviors.circle
 enum enemyTypes {thief, gunman}
-var marauderType = enemyTypes.thief #thief or gunman
+var marauderType
 
 var rng = RandomNumberGenerator.new()
 @onready var herd = get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
-var dragRange = 4.0
+var dragRange = 3.0
 var escapeRange = 16
 
 func _ready():
 	#Setting enemy type
-	if(randi_range(0,1) == 0):
-		marauderType = enemyTypes.thief
-	else:
-		marauderType = enemyTypes.gunman
+	if(marauderType == null):
+		if(randi_range(0,1) == 0):
+			marauderType = enemyTypes.thief
+		else:
+			marauderType = enemyTypes.gunman
+	if(marauderType == enemyTypes.gunman):
 		$Mesh.scale = Vector3(1,0.7,1)
 
 
@@ -72,12 +74,11 @@ func _physics_process(delta):
 	
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
-	
+		
 	rotation.y = lerp_angle(
 		rotation.y,
 		atan2(position.x - targetPos.x, position.z - targetPos.z) + PI,
-		0.1
-	)
+		0.1)
 	
 	if(Input.is_action_just_pressed("debug4")):
 		if(currentMode == behaviors.idle):
@@ -109,8 +110,8 @@ func _physics_process(delta):
 			[flee()]
 		[behaviors.retreat]:
 			[retreat()]
-		[behaviors.attack]:
-			[attack()]
+		#[behaviors.attack]:
+		#	[attack()]
 	
 	#gravity
 	tVelocity.y -= GRAVITY * delta
@@ -256,7 +257,7 @@ func pursuit():
 				#print("facing player")
 				pass
 			if(attackCooldown <= 0):
-				attack()
+				attack(direction)
 				attackCooldown = 3
 				clip -= 1
 				print("Bullets left: " + str(clip))
@@ -375,7 +376,7 @@ dynamicMov.z + randf_range(-1.0, 1.0))
 		dynamicMov.x = maxOff
 	if(dynamicMov.z > maxOff):
 		dynamicMov.z = maxOff
-	print(dynamicMov)
+	#print(dynamicMov)
 	dynamicCooldown = randf_range(1.0,3.0)
 
 #navigation function
@@ -387,11 +388,12 @@ global_transform.origin, _targetPos, true)
 func _on_Timer_timeout():
 	moveTo(targetPos)
 
-func attack():
-	for x in 1:
+func attack(direction:Vector3):
+	for x in 1: #lmao
 		#spawns bullet in the direction the muzzle is facing 
 		var b = Bullet.instantiate()
-		b.shoot(self, "enemy", $Marker3D.global_position, rotation)
+		var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
+		b.shoot(self, "enemy", $Marker3D.global_position, bulletRotation, 2.0)
 
 func knock():
 	var enemies = knockbox.get_overlapping_bodies()

@@ -4,7 +4,9 @@ extends CharacterBody3D
 
 @export var normalSpeed = 9.0
 @export var normalLookSpeed = 3.0
-@export var followDistance = 3.0
+@export var normalFollowDistance = 3.0
+@export var dragFollowDistance = 1.0
+var followDistance = normalFollowDistance
 @export var pushStrength = 60.0
 @export var pushDistanceThreshold = 2.0
 var pushVel = Vector2(0, 0)
@@ -65,6 +67,7 @@ func startDragging(marauder):
 	draggers.append(marauder)
 	maxSpeed = dragSpeed * draggers.size()
 	lookSpeed = dragLookSpeed * draggers.size()
+	followDistance = dragFollowDistance
 	herd.removeHuddler(self)
 	enableRayCasts()
 	
@@ -72,6 +75,7 @@ func stopDragging():
 	draggers.clear()
 	maxSpeed = normalSpeed
 	lookSpeed = normalLookSpeed
+	followDistance = normalFollowDistance
 	
 func enableRayCasts():
 	for i in rayCasts:

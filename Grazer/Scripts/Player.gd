@@ -30,6 +30,7 @@ var herd
 var toAdd = Vector3()
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 var moveDir = 0
+var active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,7 +41,11 @@ func _process(delta):
 	if(herd == null):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
-		#get_node(NodePath("root/StaticBody3D")).add_child(herd)
+		herd.spawnCow()
+		herd.spawnCow()
+		
+	if(herd.getNumCows() < 1):
+		die()
 	
 	if(shootTimer > 0):
 		shootTimer -= delta
@@ -53,10 +58,9 @@ func _process(delta):
 		
 	if(Input.is_action_just_pressed("shoot")):
 		shootBufferTimer = shootBufferTime
-		
-	if(shootBufferTimer > 0 && shootTimer == 0):
+	if(active && shootBufferTimer > 0 && shootTimer == 0):
 		var b = Bullet.instantiate()
-		b.shoot(self, "player", shootingPoint.global_position, rotation)
+		b.shoot(self, "player", shootingPoint.global_position, rotation, 4.0)
 		#sound.play()
 		shootTimer = shootTime
 	
@@ -75,7 +79,6 @@ func _process(delta):
 		elif(Input.is_action_pressed("moveUp")):
 			toAdd.x += -1
 			toAdd.z += -1
-	
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
 	
@@ -99,11 +102,11 @@ func _process(delta):
 		else:
 			print("fuck there is no herd") #yeah
 	
-	if(Input.is_action_just_pressed("Follow Wait")):
+	if(Input.is_action_just_pressed("Follow Wait") && active):
 		herd.toggleFollow()
 	
 	#player looks where mouse is pointed but projected to isometric view
-	if(camera != null):
+	if(camera != null && active):
 		var viewport = get_viewport()
 		var mousePos = viewport.get_mouse_position()
 		#old method involving raycasts. expensive and collided with non-ground objects
@@ -163,7 +166,8 @@ func _physics_process(delta):
 	if(dodgeVel != Vector3.ZERO):
 		set_velocity(Vector3(dodgeVel.x, tVelocity.y, dodgeVel.z))
 	set_up_direction(Vector3.UP)
-	move_and_slide()
+	if(active):
+		move_and_slide()
 	
 	if(Input.is_action_just_pressed("dodge")):
 		dodgeBufferTimer = dodgeBufferTime
@@ -172,7 +176,7 @@ func _physics_process(delta):
 		if(dodgeBufferTimer < 0):
 			dodgeBufferTimer = 0
 	
-	if(dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
+	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		dodgeCooldownTimer = dodgeCooldownTime
 		dodgeTimer = dodgeTime
 		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed
@@ -202,12 +206,16 @@ func knock():
 		if enemy.has_method("knockback"):
 			enemy.knockback(position, dodgeVel.length())
 
-
 func damage_taken(damage, from) -> bool:
 	if(from != "player"):
+		print("player damaged")
 		hitpoints -= damage
 		if hitpoints <= 0:
-			queue_free()
+			die()
 		return true
 	else:
 		return false
+		
+func die():
+	active = false
+	rotation.x = PI / 2.0

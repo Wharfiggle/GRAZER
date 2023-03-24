@@ -39,7 +39,7 @@ centered = false
 [node name="Camera3D" parent="." instance=ExtResource("2")]
 
 [node name="Player" parent="." instance=ExtResource("9")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.12615, 5.07116, 1.45165)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 5, 0)
 
 [node name="Cactus" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0170801, -0.0104053, 1.24082e-10, 0, 2.38498e-10, 0.02, -0.0104053, -0.0170801, 2.03678e-10, -3.99982, 0, 6.69969)
@@ -65,7 +65,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729)
 script = ExtResource("4")
 
 [node name="StartPlatform" parent="AllTerrain" instance=ExtResource("8")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.45393, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("13")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6807, 1.54161, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, 0)

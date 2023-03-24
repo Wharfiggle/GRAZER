@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_hrbv8")
 surface_material_override/0 = SubResource("StandardMaterial3D_82qvi")
 
-[node name="Direction" type="MeshInstance3D" parent="Mesh"]
+[node name="directionDebug" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 1, 0)
 mesh = SubResource("PrismMesh_i3pdl")
 surface_material_override/0 = SubResource("StandardMaterial3D_8b760")
@@ -35,7 +35,7 @@ wait_time = 0.25
 autostart = true
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
