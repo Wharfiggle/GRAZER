@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b55cpkrkaor1e"]
+[gd_scene load_steps=12 format=3 uid="uid://b55cpkrkaor1e"]
 
 [ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="2"]
@@ -7,11 +7,9 @@
 [ext_resource type="ArrayMesh" uid="uid://dx1bco56p7ok5" path="res://Assets/Cactus/10436_Cactus_v1_max2010_it2.obj" id="5"]
 [ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneColor.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Assets/Cactus/cactusSceneGreenTest.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://w4p6jdet4qw4" path="res://Assets/FloorTiles/basicFloorTile.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://empress of bostonia.png" id="10"]
 [ext_resource type="PackedScene" path="res://Prefabs/Cow Counter.tscn" id="12"]
-[ext_resource type="PackedScene" uid="uid://bt4lngso7hdhn" path="res://Prefabs/Enemy.tscn" id="13"]
 
 [sub_resource type="CanvasItemMaterial" id="14"]
 
@@ -63,9 +61,3 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729)
 
 [node name="AllTerrain" type="Node3D" parent="."]
 script = ExtResource("4")
-
-[node name="StartPlatform" parent="AllTerrain" instance=ExtResource("8")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -1, 0)
-
-[node name="Enemy" parent="." instance=ExtResource("13")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, 0)

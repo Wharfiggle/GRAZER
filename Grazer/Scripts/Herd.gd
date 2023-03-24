@@ -62,7 +62,7 @@ func getClosestCow(loc) -> Node:
 	var closestCow = null
 	var distance = 1000000
 	for c in cows:
-		if(c.position.distance_to(loc) < distance):
+		if(c.position.distance_to(loc) < distance and c.getNumDraggers() < 3):
 			closestCow = c
 			distance = c.position.distance_to(loc)
 	return closestCow

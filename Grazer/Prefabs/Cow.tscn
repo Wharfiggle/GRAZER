@@ -35,7 +35,7 @@ visible = false
 mesh = SubResource("2")
 
 [node name="RayCastLeft" type="RayCast3D" parent="."]
-transform = Transform3D(0.819151, 0, 0.573577, 0, 0.999999, 0, -0.573576, 0, 0.819152, 0, 0.1, -0.5)
+transform = Transform3D(0.819151, 0, 0.573577, 0, 0.999999, 0, -0.573576, 0, 0.819152, 0, 0.9, -0.5)
 target_position = Vector3(0, 0, -2)
 collision_mask = 16
 
@@ -45,7 +45,7 @@ visible = false
 mesh = SubResource("2")
 
 [node name="RayCastMiddle" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.5)
 target_position = Vector3(0, 0, -1)
 collision_mask = 16
 
@@ -55,7 +55,7 @@ visible = false
 mesh = SubResource("2")
 
 [node name="RayCastRight" type="RayCast3D" parent="."]
-transform = Transform3D(0.819151, 0, -0.573577, 0, 0.999999, 0, 0.573576, 0, 0.819152, 0, 0.1, -0.5)
+transform = Transform3D(0.819151, 0, -0.573577, 0, 0.999999, 0, 0.573576, 0, 0.819152, 0, 0.9, -0.5)
 target_position = Vector3(0, 0, -2)
 collision_mask = 16
 

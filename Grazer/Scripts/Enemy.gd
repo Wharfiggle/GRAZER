@@ -80,13 +80,13 @@ func _physics_process(delta):
 		atan2(position.x - targetPos.x, position.z - targetPos.z) + PI,
 		0.1)
 	
-	if(Input.is_action_just_pressed("debug4")):
-		if(currentMode == behaviors.idle):
-			currentMode = behaviors.pursuit
-		elif(currentMode == behaviors.pursuit):
-			currentMode = behaviors.flee
-		elif(currentMode == behaviors.flee):
-			currentMode = behaviors.idle
+#	if(Input.is_action_just_pressed("debug4")):
+#		if(currentMode == behaviors.idle):
+#			currentMode = behaviors.pursuit
+#		elif(currentMode == behaviors.pursuit):
+#			currentMode = behaviors.flee
+#		elif(currentMode == behaviors.flee):
+#			currentMode = behaviors.idle
 	
 	if(Input.is_action_just_pressed("debug3")):
 		if(marauderType == enemyTypes.thief):
@@ -233,6 +233,10 @@ func circle():
 	if(relate.length() < (herdCenter - position).length()):
 		currentCircle = scaler
 	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
+	
+	if(marauderType == enemyTypes.thief and randi_range(1,1000) <= 1):
+		print("toCowPursuit")
+		currentMode = behaviors.cowPursuit
 
 func pursuit():
 	#Marauder runs directly at cowboy.
@@ -309,8 +313,9 @@ func cowPursuit():
 				return
 	
 	if(targetCow == null):
-		herd.getClosestCow(position)
 		targetCow = herd.getClosestCow(position)
+		if(targetCow == null):
+			currentMode = behaviors.circle
 	
 	if(herd.numCows <= 0):
 		return
@@ -320,6 +325,7 @@ func cowPursuit():
 	elif(draggedCow == null):
 		draggedCow = targetCow
 		draggedCow.startDragging(self)
+		print("toFlee")
 		currentMode = behaviors.flee
 
 #Running away to despawn
@@ -346,6 +352,7 @@ func flee():
 				if(leadDragger == null):
 					leadDragger = i
 				else:
+					print("toCircle")
 					i.currentMode = behaviors.circle
 				i.targetCow = null
 				i.draggedCow = null
@@ -357,6 +364,7 @@ func flee():
 func retreat():
 	#Switching to fleeing
 	if(draggedCow != null or health < 0.3 * maxHealth):
+		print("toFlee")
 		currentMode = behaviors.flee
 		return
 	
@@ -370,6 +378,7 @@ func retreat():
 
 #Function for setting a random direction to add variety to marauder movement
 func genDynamicMov():
+	return
 	if(dynamicCooldown <= 0):
 		dynamicMov = Vector3(dynamicMov.x + randf_range(-1.0, 1.0), 0, 
 dynamicMov.z + randf_range(-1.0, 1.0))

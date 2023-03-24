@@ -19,7 +19,8 @@ var shuffleTimeCounter = 0
 @export var dragSpeed = 5.0
 @export var dragLookSpeed = 1.0
 @export var dragShake = 0.05
-var draggers = []
+@export var draggers = []
+func getNumDraggers(): return draggers.size() #Used in Herd.getClosestCow()
 var dragShakeOffset = 0
 @export var maneuverTurnSpeed = 5.0
 @export var maneuverMoveSpeed = 0.7
