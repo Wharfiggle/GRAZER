@@ -80,8 +80,12 @@ func _physics_process(delta):
 		atan2(position.x - targetPos.x, position.z - targetPos.z) + PI,
 		0.1)
 	
-	if(Input.is_action_just_pressed("debug3")):
-		if(marauderType == enemyTypes.thief):
+#	if(Input.is_action_just_pressed("debug3")):
+#		if(marauderType == enemyTypes.thief):
+#			currentMode = behaviors.cowPursuit
+	if(marauderType == enemyTypes.thief && currentMode == behaviors.circle):
+		var rn = randi_range(1, 60)
+		if(rn == 1):
 			currentMode = behaviors.cowPursuit
 	
 	if(reloadCooldown > 0):
