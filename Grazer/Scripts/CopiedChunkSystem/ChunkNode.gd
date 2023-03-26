@@ -3,8 +3,7 @@ extends Node3D
 var chunkCoords = Vector3()
 var chunkData = []
 
-#chunkNode has basicFloor attached to it, which technically means that it has no base data
-#needs to have a function to instance its own chunk tile.
+var mapWidth = 5
 
 
 func start(_chunkCoords):
@@ -36,8 +35,19 @@ func save():
 func calcChunk(_chunkCoords) -> String:
 	#system for choosing a chunk from the list
 	var pathName = "res://Assets/FloorTiles/TilePool/"
-	pathName += "BasicTiles/basic"
-	pathName += str(randi_range(1,4))
-	pathName += ".tscn"
+	if(chunkCoords.x == mapWidth):
+		pathName += "WallTiles/wall1d"
+	elif(chunkCoords.x == -mapWidth):
+		pathName += "WallTiles/wall1b"
 	
+	
+	else:
+	
+		pathName += "BasicTiles/basic"
+		pathName += str(randi_range(1,4))
+	
+	
+	
+	
+	pathName += ".tscn"
 	return pathName

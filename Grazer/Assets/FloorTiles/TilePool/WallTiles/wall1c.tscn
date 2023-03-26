@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlcdosm4jqv8s"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="NavigationMesh" id="4"]
+vertices = PackedVector3Array(-7.5, 8.45, -7.5, -7.5, 8.45, -0.5, 0, 8.45, -0.5, 0, 8.45, -7.5, 7.5, 8.45, -7.5, 0, 8.45, -7.5, 0, 8.45, -0.5, 7.5, 8.45, -0.5, -7.25, 0.45, -7.25, -7.25, 0.45, -0.5, 0, 0.45, -0.5, 0, 0.45, -7.25, 0, 0.45, -0.5, 7.5, 0.45, -0.5, 7.5, 0.45, -7.25, 0, 0.45, -7.25, -7.5, 0.45, 0.75, -7.5, 0.45, 7.5, 0, 0.45, 7.5, 0, 0.45, 0.75, 7.5, 0.45, 0.75, 0, 0.45, 0.75, 0, 0.45, 7.5, 7.5, 0.45, 7.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21)]
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nl1s2"]
+size = Vector3(16, 8, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rpoul"]
+size = Vector3(16, 8, 8)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("4")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("2")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -4)
+mesh = SubResource("BoxMesh_nl1s2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -4)
+shape = SubResource("BoxShape3D_rpoul")
