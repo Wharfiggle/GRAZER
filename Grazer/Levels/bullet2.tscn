@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://brupvnaw6trw1"]
 
+[ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="1_8i0en"]
 [ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="1_ivg21"]
+[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="1_vgu4d"]
 [ext_resource type="AudioStream" uid="uid://d3r5nge88xesw" path="res://sounds/desert-eagle-gunshot-14622.wav" id="2_pbwo8"]
 [ext_resource type="Script" path="res://Scripts/knockback.gd" id="3_6qkwa"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="4_t1n1m"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="5_8ncmt"]
-
+[ext_resource type="PackedScene" uid="uid://6sd6li3j1d2r" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="5_8ncmt"]
 
 [sub_resource type="BoxShape3D" id="4"]
 
@@ -18,6 +19,11 @@
 [sub_resource type="BoxMesh" id="BoxMesh_ymssc"]
 
 [node name="Level" type="Node3D"]
+
+[node name="Cow Counter" parent="." instance=ExtResource("1_vgu4d")]
+
+[node name="Health Counter" parent="." instance=ExtResource("1_8i0en")]
+offset_right = 70.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.6526, 2.51784, -28.4305)
@@ -66,10 +72,10 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.271, 0, -30.288)
 
 [node name="StaticBody3D" parent="." instance=ExtResource("5_8ncmt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.644, 0, -9.628)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3404, 0, -14.2815)
 
 [node name="StaticBody3D3" parent="." instance=ExtResource("5_8ncmt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.341, 0, -8.455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.341, 0, -14.2749)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -28.9174, 201.724, -6.39079)
@@ -92,3 +98,5 @@ shape = SubResource("BoxShape3D_duc3a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enemy2"]
 mesh = SubResource("BoxMesh_ymssc")
+
+[node name="TestPlayer3D" type="AudioStreamPlayer3D" parent="enemy2"]

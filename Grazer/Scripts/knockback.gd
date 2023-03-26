@@ -10,6 +10,11 @@ var lifespan = 10
 @export var knockable = true
 @export var knockbackMod = 5
 
+@onready var sound = $"../enemy2/TestPlayer3D"
+
+var walk = preload("res://sounds/desert-eagle-gunshot-14622.wav")
+var mar = preload("res://sounds/VOX-marauder01.wav")
+var soundtime = 0.0
 var hit = 2
 
 var maxHP = 10
@@ -22,6 +27,8 @@ var HP = maxHP
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	sound.stream = mar
+	sound.play()
 	pass # Replace with function body.
 
 func knockback(damageSourcePos:Vector3, recivedDamage:int):
@@ -55,10 +62,21 @@ func _physics_process(delta):
 
 
 func damage_taken(damage, from)-> bool:
-	
+		soundtime = 3.0
+		sound.stream= walk
 		HP -= damage
+		
 		if HP <= 0:
 			queue_free()
 		return true
 	
 	
+
+func _process(delta):
+	
+		if soundtime > 0:
+			print("im in")
+			if !sound.playing:
+				sound.play()
+			soundtime -=delta
+		
