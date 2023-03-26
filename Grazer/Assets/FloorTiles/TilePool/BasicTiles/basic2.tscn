@@ -22,7 +22,6 @@ shape = SubResource("1")
 navigation_mesh = SubResource("4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0255432, 0.0955811, -0.0921059)
 mesh = SubResource("2")
 skeleton = NodePath("../..")
 
