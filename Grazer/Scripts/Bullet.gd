@@ -1,7 +1,7 @@
 extends Area3D
 
 signal exploded
-@export var muzzle_velocity = 2.5
+@export var muzzle_velocity = 150
 @export var lifespan = 8
 var velocity = Vector3.ZERO
 var damage
@@ -18,6 +18,11 @@ var hitBody = null
 	#self.connect("area_entered",Callable(self,"_on_body_enter"))
 
 func _process(delta):
+	if(velocity == Vector3.ZERO):
+		velocity = Vector3(sin(rotation.y) * muzzle_velocity, 0, cos(rotation.y) * muzzle_velocity)
+	if(active && hitBody == null):
+		position += velocity * delta
+	
 	lifespan -= delta
 	if lifespan <= 0:
 		queue_free()
@@ -50,11 +55,6 @@ func _physics_process(delta):
 				hitBody = null
 			else:
 				position = raycast.get_collision_point()
-	
-	if(velocity == Vector3.ZERO):
-		velocity = Vector3(sin(rotation.y) * muzzle_velocity, 0, cos(rotation.y) * muzzle_velocity)
-	if(active && hitBody == null):
-		position += velocity
 
 func hit(body):
 	if(hitBody.has_method("damage_taken")):
