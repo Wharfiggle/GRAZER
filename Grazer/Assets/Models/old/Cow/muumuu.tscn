@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource path="res://Assets/Models/Cow/mumu.fbx" type="PackedScene" id=1]
+[ext_resource type="PackedScene" uid="uid://clrm1rqxf7eis" path="res://Assets/Models/old/Cow/mumu.fbx" id="1"]
+
 
 [sub_resource type="StandardMaterial3D" id=1]
 

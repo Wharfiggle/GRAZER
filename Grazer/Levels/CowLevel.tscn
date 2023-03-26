@@ -1,12 +1,12 @@
-[gd_scene load_steps=50 format=3 uid="uid://bvfskou7dofnm"]
+[gd_scene load_steps=50 format=3 uid="uid://b4epsaehlq4a1"]
 
 [ext_resource type="PackedScene" uid="uid://41uisg7wyiip" path="res://Prefabs/PostProcessing.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://Prefabs/DirectionalLight.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://Prefabs/FPS Counter.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://Prefabs/Cow Counter.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://c3u0x1pb8a3ab" path="res://Assets/Models/sandstonecolor.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://Prefabs/FPSCounter.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bwnj7f6uj01nb" path="res://Prefabs/Player.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://Assets/Models/old/sandstonecolor.tscn" id="8"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="8_r4t7c"]
 [ext_resource type="PackedScene" uid="uid://bys685gdc2t57" path="res://Assets/Models/Cacti/Cactus1.fbx" id="9"]
 [ext_resource type="PackedScene" uid="uid://bimxjrrxdhwqq" path="res://Assets/Models/Cacti/Cactus2.fbx" id="10"]
@@ -24,10 +24,10 @@ size = Vector3(18, 5, 1)
 size = Vector3(15, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_io7qc"]
-size = Vector3(15, 5, 1)
+size = Vector3(14, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nkti5"]
-size = Vector3(13, 5, 1)
+size = Vector3(12, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rxot7"]
 size = Vector3(35, 5, 1)
@@ -131,7 +131,6 @@ billboard_keep_scale = true
 [node name="FPS Counter" parent="." instance=ExtResource("4")]
 
 [node name="Cow Counter" parent="." instance=ExtResource("6")]
-anchors_preset = -1
 
 [node name="PostProcessing" parent="." instance=ExtResource("1")]
 visible = false
@@ -157,7 +156,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lnn74")
 [node name="Ledges" type="Node3D" parent="."]
 
 [node name="Ledge" type="StaticBody3D" parent="Ledges"]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -3, 5, 48)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -4, 5, 48)
 collision_layer = 24
 collision_mask = 0
 
@@ -165,7 +164,7 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_uqmfa")
 
 [node name="Ledge2" type="StaticBody3D" parent="Ledges"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13, 5, 65)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11, 5, 67)
 collision_layer = 24
 collision_mask = 0
 
@@ -173,11 +172,12 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_p3mxx")
 
 [node name="Ledge3" type="StaticBody3D" parent="Ledges"]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 3, 5, 45)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 5, 5, 45)
 collision_layer = 24
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 shape = SubResource("BoxShape3D_io7qc")
 
 [node name="Ledge4" type="StaticBody3D" parent="Ledges"]
@@ -186,6 +186,7 @@ collision_layer = 24
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -1)
 shape = SubResource("BoxShape3D_nkti5")
 
 [node name="Ledge5" type="StaticBody3D" parent="Ledges"]
@@ -269,7 +270,7 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_2s5qo")
 
 [node name="Ledge15" type="StaticBody3D" parent="Ledges"]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 27, 5, 52)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 27, 5, 51)
 collision_layer = 24
 collision_mask = 0
 
@@ -277,7 +278,7 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_5b47u")
 
 [node name="Ledge16" type="StaticBody3D" parent="Ledges"]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 27, 5, 72)
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 27, 5, 73)
 collision_layer = 24
 collision_mask = 0
 

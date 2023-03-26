@@ -16,14 +16,15 @@ var tVelocity = Vector3(0,0,0)
 var dodgeVel = Vector3(0,0,0)
 @export var dodgeTime = 0.5
 var dodgeTimer = 0.0
-@export var dodgeCooldownTime = 1.0
+@export var dodgeCooldownTime = 0.3
 var dodgeCooldownTimer = 0.0
 @export var dodgeBufferTime = 0.1
 var dodgeBufferTimer = 0.0
+@onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 
 #@onready var sound = $"practice sound item/AudioStreamPlayer3D"
 const GRAVITY = 30
-const SPEED = 9
+@export var speed = 7
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
@@ -34,6 +35,7 @@ var active = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	healthCounter.updateHealth(hitpoints)
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -81,7 +83,7 @@ func _process(delta):
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
 	
-	toAdd = toAdd.normalized() * SPEED
+	toAdd = toAdd.normalized() * speed
 	if(toAdd.x == 0 and toAdd.z == 0):
 		tVelocity.x = lerp(tVelocity.x,0.0,0.1)
 		tVelocity.z = lerp(tVelocity.z,0.0,0.1)
@@ -209,6 +211,7 @@ func damage_taken(damage, from) -> bool:
 	if(from != "player"):
 		print("player damaged")
 		hitpoints -= damage
+		healthCounter.updateHealth(hitpoints)
 		if hitpoints <= 0:
 			die()
 		return true

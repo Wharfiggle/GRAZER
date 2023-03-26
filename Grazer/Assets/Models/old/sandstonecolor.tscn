@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3u0x1pb8a3ab"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://b5d81787hmbac" path="res://Assets/Models/sandstone.fbx" id="1"]
+[ext_resource type="PackedScene" uid="uid://b5d81787hmbac" path="res://Assets/Models/old/sandstone.fbx" id="1"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18l7c"]
 albedo_color = Color(0.647059, 0.14902, 0.00392157, 1)

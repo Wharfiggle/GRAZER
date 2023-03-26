@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b5d81787hmbac"
-path="res://.godot/imported/sandstone.fbx-1c27e6caee5ee2c6810586d2c31db43a.scn"
+uid="uid://babn7be8yp1u1"
+path="res://.godot/imported/CowV1.fbx-ee2b989a5c33050a8755b1d3e1a10db2.scn"
 
 [deps]
 
-source_file="res://Assets/Models/sandstone.fbx"
-dest_files=["res://.godot/imported/sandstone.fbx-1c27e6caee5ee2c6810586d2c31db43a.scn"]
+source_file="res://Assets/Models/old/Cow/CowV1.fbx"
+dest_files=["res://.godot/imported/CowV1.fbx-ee2b989a5c33050a8755b1d3e1a10db2.scn"]
 
 [params]
 

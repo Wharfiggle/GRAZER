@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bprg6yvkjjtrl"
-path.s3tc="res://.godot/imported/10436_Cactus_v1_Diffuse.jpg-1c8b2c3977f011b9c4afcd91bdfaafb5.s3tc.ctex"
+path.s3tc="res://.godot/imported/10436_Cactus_v1_Diffuse.jpg-2903e93e855f667c2d95711d908a294a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Cactus/10436_Cactus_v1_Diffuse.jpg"
-dest_files=["res://.godot/imported/10436_Cactus_v1_Diffuse.jpg-1c8b2c3977f011b9c4afcd91bdfaafb5.s3tc.ctex"]
+source_file="res://Assets/Models/old/CactusOld/10436_Cactus_v1_Diffuse.jpg"
+dest_files=["res://.godot/imported/10436_Cactus_v1_Diffuse.jpg-2903e93e855f667c2d95711d908a294a.s3tc.ctex"]
 
 [params]
 

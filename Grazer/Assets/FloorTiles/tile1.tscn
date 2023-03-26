@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://daieawebrg5er"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="2"]
+
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(32, 0.05, 32)

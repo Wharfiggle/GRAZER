@@ -1,7 +1,7 @@
 extends Area3D
 
 signal exploded
-@export var muzzle_velocity = 150
+@export var muzzle_velocity = 2.5
 @export var lifespan = 8
 var velocity = Vector3.ZERO
 var damage
@@ -9,17 +9,15 @@ var from = ""
 var source
 var active = true
 var smoke = preload("res://Prefabs/Smoke.tscn")
+var waitForSmoke = 0
+var hitBody = null
+@onready var raycast = get_node(NodePath("./RayCast3D"))
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 	#self.connect("area_entered",Callable(self,"_on_body_enter"))
 
 func _process(delta):
-	if(velocity == Vector3.ZERO):
-		velocity = Vector3(sin(rotation.y) * muzzle_velocity, 0, cos(rotation.y) * muzzle_velocity)
-	if(active):
-		position += velocity * delta
-	
 	lifespan -= delta
 	if lifespan <= 0:
 		queue_free()
@@ -30,26 +28,39 @@ func shoot(inSource:Node3D, inFrom:String, inPosition:Vector3, inRotation:Vector
 	source.get_parent().add_child(self)
 	rotation = inRotation
 	global_position = inPosition
-	var smokeInstance = smoke.instantiate()
-	smokeInstance.rotation = Vector3.ZERO
-	add_child(smokeInstance)
-	smokeInstance.global_position = global_position
 	damage = inDamage
 
-#todo:
-#add ray cast to see if the bullet will enter an object next frame,
-#then next frame make bullet stop at intersection,
-#then next frame make bulet despawn
-func _on_body_entered(body):
+func _physics_process(delta):
+	if(waitForSmoke == 0):
+		var smokeInstance = smoke.instantiate()
+		smokeInstance.rotation = Vector3.ZERO
+		add_child(smokeInstance)
+		smokeInstance.global_position = global_position
+		waitForSmoke += 1
+	
 	if(active):
-		#emit_signal("exploded", transform.origin)
-		#var enemies = self.get_overlapping_bodies()
-		var despawn = true
-		#for enemy in enemies:
-		if body.has_method("damage_taken"):
-			despawn = body.damage_taken(damage, from)
-		
-		if(despawn):
-			get_node(NodePath("MeshInstance3D")).visible = false
-			get_node(NodePath("Smoke/Particles")).emitting = false
-			active = false
+		if(hitBody != null):
+			hit(hitBody)
+		if(raycast.is_colliding()):
+			hitBody = raycast.get_collider()
+			var canHit = true
+			if(hitBody.has_method("damage_taken")):
+				canHit = hitBody.damage_taken(0, from)
+			if(!canHit):
+				hitBody = null
+			else:
+				position = raycast.get_collision_point()
+	
+	if(velocity == Vector3.ZERO):
+		velocity = Vector3(sin(rotation.y) * muzzle_velocity, 0, cos(rotation.y) * muzzle_velocity)
+	if(active && hitBody == null):
+		position += velocity
+
+func hit(body):
+	if(hitBody.has_method("damage_taken")):
+		body.damage_taken(damage, from)
+	get_node(NodePath("./MeshInstance3D")).visible = false
+	var particles = get_node(NodePath("./Smoke")).get_children()
+	for i in particles:
+		i.emitting = false
+	active = false

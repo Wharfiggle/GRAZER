@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://btxawajh5wrbu"]
+[gd_scene load_steps=9 format=3]
 
-[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://b0i2n40sl0i51" path="res://Assets/Cactus/cactusScene.fbx" id="3"]
+[ext_resource type="PackedScene" path="res://Prefabs/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b0i2n40sl0i51" path="res://Assets/Models/old/CactusOld/cactusScene.fbx" id="3"]
 
 [sub_resource type="BoxMesh" id="1"]
 size = Vector3(30, 2, 30)

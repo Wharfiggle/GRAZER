@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://kgdgcjap15jf"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="PackedScene" uid="uid://ddiq435swvkg7" path="res://Assets/Cactus/cactusSceneNoBase.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="4"]
+
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(32, 0.05, 32)

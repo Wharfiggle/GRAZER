@@ -3,10 +3,8 @@
 extends Node3D
 
 # Declare member variables here.
-var playerNodePath = NodePath("/root/Level/Player")
-var cowCounterNodePath = NodePath("/root/Level/Cow Counter")
-@onready var player = get_node(playerNodePath)
-@onready var cowCounter = get_node(cowCounterNodePath)
+@onready var player = get_node(NodePath("/root/Level/Player"))
+@onready var cowCounter = get_node(NodePath("/root/Level/Cow Counter"))
 var cowPrefab = preload("res://Prefabs/Cow.tscn")
 var cows = []
 #number of total cows

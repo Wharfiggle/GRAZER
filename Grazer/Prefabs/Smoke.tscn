@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://1v2pntpf64kq"]
+[gd_scene load_steps=8 format=3 uid="uid://1v2pntpf64kq"]
 
 [ext_resource type="Material" uid="uid://bp50lvfbjug2t" path="res://Assets/Materials/ParticleMaterial.tres" id="1_ag1rt"]
 
@@ -8,35 +8,80 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ocnga"]
 gradient = SubResource("Gradient_7rn6k")
 
+[sub_resource type="Curve" id="Curve_odaah"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xtotx"]
+curve = SubResource("Curve_odaah")
+
 [sub_resource type="ParticleProcessMaterial" id="1"]
 lifetime_randomness = 0.1
 gravity = Vector3(0, 0, 0)
-angular_velocity_min = 200.0
+angular_velocity_min = -500.0
 angular_velocity_max = 500.0
+angle_min = -180.0
 angle_max = 180.0
-scale_min = 0.1
-scale_max = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_xtotx")
 color_ramp = SubResource("GradientTexture1D_ocnga")
 
 [sub_resource type="QuadMesh" id="QuadMesh_a2rbb"]
 material = ExtResource("1_ag1rt")
 
-[sub_resource type="PrismMesh" id="PrismMesh_5yh1b"]
-size = Vector3(1, 2, 1)
-
 [node name="Smoke" type="Node3D"]
 
 [node name="Particles" type="GPUParticles3D" parent="."]
-amount = 200
+amount = 60
 lifetime = 0.5
+preprocess = 0.01
 randomness = 1.0
-fixed_fps = 200
-interpolate = false
+fixed_fps = 60
+fract_delta = false
 visibility_aabb = AABB(-0.5, -0.5, 0.5, 1, 1, -100)
 process_material = SubResource("1")
 draw_pass_1 = SubResource("QuadMesh_a2rbb")
 
-[node name="directionDebug" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -3)
-visible = false
-mesh = SubResource("PrismMesh_5yh1b")
+[node name="Particles2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+amount = 60
+lifetime = 0.5
+preprocess = 0.01
+randomness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-0.5, -0.5, 0.5, 1, 1, -100)
+process_material = SubResource("1")
+draw_pass_1 = SubResource("QuadMesh_a2rbb")
+
+[node name="Particles3" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+amount = 60
+lifetime = 0.5
+preprocess = 0.01
+randomness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-0.5, -0.5, 0.5, 1, 1, -100)
+process_material = SubResource("1")
+draw_pass_1 = SubResource("QuadMesh_a2rbb")
+
+[node name="Particles4" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+amount = 60
+lifetime = 0.5
+preprocess = 0.01
+randomness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-0.5, -0.5, 0.5, 1, 1, -100)
+process_material = SubResource("1")
+draw_pass_1 = SubResource("QuadMesh_a2rbb")
+
+[node name="Particles5" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+amount = 60
+lifetime = 0.5
+preprocess = 0.01
+randomness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-0.5, -0.5, 0.5, 1, 1, -100)
+process_material = SubResource("1")
+draw_pass_1 = SubResource("QuadMesh_a2rbb")

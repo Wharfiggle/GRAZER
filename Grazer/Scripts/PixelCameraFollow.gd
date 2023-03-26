@@ -1,10 +1,10 @@
 extends Camera3D
 
 # Declare member variables here.
-var screenWidth = 640.0
-var unitWidth = 42.0
-var lerpSpeed = 3.0
-var incrementalCamera = true
+@export var screenWidth = 640.0
+@export var unitWidth = 42.0
+@export var lerpSpeed = 3.0
+@export var incrementalCamera = false
 var targetNodePath = NodePath("/root/Level/Player")
 var followTarget
 var camOffset

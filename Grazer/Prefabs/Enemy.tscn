@@ -13,6 +13,7 @@ albedo_color = Color(1, 0, 0, 1)
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="16"]
+radius = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ho5wn"]
 
@@ -46,7 +47,7 @@ avoidance_enabled = true
 debug_enabled = true
 
 [node name="knockbox" type="Area3D" parent="."]
-transform = Transform3D(1.5, -3.97905e-11, 1.23526e-20, 3.97905e-11, 1.5, -4.65663e-10, 0, 4.65663e-10, 1.5, 0, 1, 0)
+transform = Transform3D(2, -5.3054e-11, 1.64702e-20, 5.3054e-11, 2, -6.20884e-10, -1.61559e-27, 6.20884e-10, 2, 0, 1, 0)
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="knockbox"]

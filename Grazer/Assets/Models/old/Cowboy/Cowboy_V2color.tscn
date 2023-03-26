@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctkcc5y6chwgr"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" uid="uid://bvk734skq01m4" path="res://Assets/Models/Cowboy/Cowboy_V2.fbx" id="1"]
+[ext_resource type="PackedScene" uid="uid://bvk734skq01m4" path="res://Assets/Models/old/Cowboy/Cowboy_V2.fbx" id="1"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8x40"]
 albedo_color = Color(0, 0, 0, 1)

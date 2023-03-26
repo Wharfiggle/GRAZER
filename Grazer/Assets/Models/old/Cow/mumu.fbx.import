@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dlbwrklb4wcej"
-path="res://.godot/imported/Cowboy_V1.fbx-ab7fc6b7ecca6540579cfcf0a8de6960.scn"
+uid="uid://clrm1rqxf7eis"
+path="res://.godot/imported/mumu.fbx-e131083fcf19558c422ad6507c0656fc.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Cowboy/Cowboy_V1.fbx"
-dest_files=["res://.godot/imported/Cowboy_V1.fbx-ab7fc6b7ecca6540579cfcf0a8de6960.scn"]
+source_file="res://Assets/Models/old/Cow/mumu.fbx"
+dest_files=["res://.godot/imported/mumu.fbx-e131083fcf19558c422ad6507c0656fc.scn"]
 
 [params]
 

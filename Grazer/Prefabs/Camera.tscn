@@ -1,11 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://d371hc6ubydla"]
 
-[ext_resource path="res://Scripts/PixelCameraFollow.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://Scripts/PixelCameraFollow.gd" id="1"]
 
 [node name="Camera3D" type="Camera3D"]
-transform = Transform3D( 0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 30, 33, 30 )
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 30, 30, 30)
 projection = 1
 size = 15.0
 far = 150.0
-script = ExtResource( 1 )
-incrementalCamera = false
+script = ExtResource("1")

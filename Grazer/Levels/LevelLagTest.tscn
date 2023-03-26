@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://di6u1mwt2em0l"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://Scripts/FPSCounter.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://b4ehxyhjct1td" path="res://Prefabs/Player.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Prefabs/Cow Counter.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://Prefabs/Camera.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Prefabs/Player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://Prefabs/DirectionalLight.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://41uisg7wyiip" path="res://Prefabs/PostProcessing.tscn" id="6"]
 

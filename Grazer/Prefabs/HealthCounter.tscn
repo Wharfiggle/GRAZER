@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cldod6x8jvoco"]
+
+[ext_resource type="Script" path="res://Scripts/HealthCounter.gd" id="1_nje7d"]
+
+[node name="Health Counter" type="Label"]
+offset_top = 60.0
+offset_right = 59.0
+offset_bottom = 86.0
+text = "Health: 0"
+script = ExtResource("1_nje7d")

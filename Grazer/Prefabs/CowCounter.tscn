@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpwcq3fdlqicu"]
+
+[sub_resource type="GDScript" id="GDScript_nc177"]
+script/source = "extends Label
+
+var cows = 0
+
+func _ready():
+	set(\"custom_colors/font_color\", Color(0,1,1))
+
+func updateCowNum(cowNum):
+	cows = cowNum
+	set_text(\"Cows: \" + str(cows))
+"
+
+[node name="Cow Counter" type="Label"]
+offset_top = 30.0
+offset_right = 59.0
+offset_bottom = 56.0
+text = "Cows: 0"
+script = SubResource("GDScript_nc177")

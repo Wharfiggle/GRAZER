@@ -2,13 +2,13 @@
 
 extends CharacterBody3D
 
-@export var normalSpeed = 9.0
+@export var normalSpeed = 7.0
 @export var normalLookSpeed = 3.0
-@export var normalFollowDistance = 3.0
+@export var normalFollowDistance = 5.0
 @export var dragFollowDistance = 1.0
 var followDistance = normalFollowDistance
 @export var pushStrength = 60.0
-@export var pushDistanceThreshold = 2.0
+@export var pushDistanceThreshold = 1.5
 var pushVel = Vector2(0, 0)
 @export var speedTransitionRadius = 1.5
 @export var shuffleTime = 0.7

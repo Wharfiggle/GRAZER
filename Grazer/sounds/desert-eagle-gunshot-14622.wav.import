@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://d3r5nge88xesw"
-path="res://.godot/imported/desert-eagle-gunshot-14622.wav-90068c6b9ce0d8ef411fd82c3f7b115d.sample"
+path="res://.godot/imported/desert-eagle-gunshot-14622.wav-15567745c2b805549e83665812632a42.sample"
 
 [deps]
 
-source_file="res://sounds/desert-eagle-gunshot-14622.wav"
-dest_files=["res://.godot/imported/desert-eagle-gunshot-14622.wav-90068c6b9ce0d8ef411fd82c3f7b115d.sample"]
+source_file="res://Sounds/desert-eagle-gunshot-14622.wav"
+dest_files=["res://.godot/imported/desert-eagle-gunshot-14622.wav-15567745c2b805549e83665812632a42.sample"]
 
 [params]
 
