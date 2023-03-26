@@ -11,6 +11,7 @@ material = SubResource("StandardMaterial3D_3butp")
 
 [node name="ChunkNode" type="Node3D"]
 script = ExtResource("2")
+mapWidth = 1
 
 [node name="DataIndicator" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.795, 8)

@@ -19,10 +19,40 @@ var revolution_distance = 8.0
 @onready var activeCoord = []
 @onready var activeChunks = []
 
+var counter = 0
+var mutex
+var semaphore
+var thread
+var exit_thread = false
+
 func _ready(): 
+#	mutex = Mutex.new()
+#	semaphore = Semaphore.new()
+#	exit_thread = false
+#	thread = Thread.new()
+#	thread.start(_thread_function)
+	
+	
 	player = get_node(playerPath)
 	currentChunk = getPlayerChunk(player.transform.origin)
 	loadChunk()
+
+#func _thread_function():
+#	print("test")
+#	while true:
+#		semaphore.wait() #Wait until posted.
+#		print("thread loop")
+#		mutex.lock()
+#		loadChunk()
+#		mutex.unlock()
+##		mutex.lock()
+##		var should_exit = exit_thread #Protect with Mutex.
+##		mutex.unlock()
+##		if should_exit:
+##			break
+##		mutex.lock()
+##		counter += 1 #Increment counter, protect with Mutex.
+##		mutex.unlock()
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("debug4") || Input.is_action_just_pressed("debug5")):
@@ -47,6 +77,7 @@ func _process(_delta):
 	currentChunk = getPlayerChunk(player.transform.origin)
 	if(currentChunk != previousChunk):
 		if(!chunkLoaded):
+			#semaphore.post()
 			loadChunk()
 	else:
 		chunkLoaded = false;
@@ -58,7 +89,7 @@ func _process(_delta):
 #		get_node(NodePath("/root/Level")).add_child(enemy)
 	
 
-#converts the parameter coordinates into an smaller coord, 32,32 -> 1,1
+#converts the parameter coordinates into an smaller coord, 16,16 -> 1,1
 func getPlayerChunk(pos):
 	var chunkPos = Vector3()
 	chunkPos.x = int(pos.x / tileWidth)

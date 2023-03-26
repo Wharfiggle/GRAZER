@@ -3,8 +3,9 @@ extends Node3D
 var chunkCoords = Vector3()
 var chunkData = []
 
-var mapWidth = 5
+var loading = false
 
+@export var mapWidth = 5
 
 func start(_chunkCoords):
 	chunkCoords = _chunkCoords
@@ -23,9 +24,31 @@ func start(_chunkCoords):
 		chunkData = WorldSave.retriveData(chunkCoords)
 	#print("Chunk data" + str(chunkCoords) + ": " + str(chunkData[0]))
 	
-	var chunk = load(chunkData[0])
-	var instance = chunk.instantiate()
-	add_child(instance)
+	#Theoretically this doesn't need to be called if its already been loaded before
+	ResourceLoader.load_threaded_request(chunkData[0],"",false)
+	
+	#This function returns 1 if in progress or 3 if done
+	#It needs to be used to pause this script until 3 is returned, possibly using a semaphore
+	print(ResourceLoader.load_threaded_get_status(chunkData[0]))
+	loading = true
+	
+
+func _process(delta):
+	
+	
+	#Because if we try instantiate the scene while its not done it freezes the game
+	#Instead this function tries to check every frame if its done before attempting
+	
+	if(loading):
+		print(ResourceLoader.load_threaded_get_status(chunkData[0]))
+		if(ResourceLoader.load_threaded_get_status(chunkData[0]) == 3):
+			#This function will freeze the game until the scene is fully loaded
+			#But once loaded, it does return the reference to the scene that we need
+			var chunk = ResourceLoader.load_threaded_get(chunkData[0])
+			var instance = chunk.instantiate()
+			add_child(instance)
+			loading = false
+
 
 func save():
 	WorldSave.saveChunk(chunkCoords, chunkData)
@@ -35,6 +58,7 @@ func save():
 func calcChunk(_chunkCoords) -> String:
 	#system for choosing a chunk from the list
 	var pathName = "res://Assets/FloorTiles/TilePool/"
+	
 	if(chunkCoords.x == mapWidth):
 		pathName += "WallTiles/wall1d"
 	elif(chunkCoords.x == -mapWidth):
