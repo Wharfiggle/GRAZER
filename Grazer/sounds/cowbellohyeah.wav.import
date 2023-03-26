@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://w7f7ji58rill"
-path="res://.godot/imported/cowbellohyeah.wav-7cd674c775c13261e6b8719d8e880d20.sample"
+path="res://.godot/imported/cowbellohyeah.wav-d466495e72392ee1409fb3accb17fd58.sample"
 
 [deps]
 
-source_file="res://Sounds/cowbellohyeah.wav"
-dest_files=["res://.godot/imported/cowbellohyeah.wav-7cd674c775c13261e6b8719d8e880d20.sample"]
+source_file="res://sounds/cowbellohyeah.wav"
+dest_files=["res://.godot/imported/cowbellohyeah.wav-d466495e72392ee1409fb3accb17fd58.sample"]
 
 [params]
 

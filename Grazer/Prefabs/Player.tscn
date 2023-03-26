@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwnj7f6uj01nb"]
+[gd_scene load_steps=8 format=3 uid="uid://dtnkj4oqx5k11"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_h6u35"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/Cowboy/Cowboy_V2color.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Assets/Models/Revolver/RevolverTextured.tscn" id="3_2k36g"]
+[ext_resource type="PackedScene" uid="uid://gvknd5ipu3h5" path="res://Assets/Models/Revolver/RevolverTextured.tscn" id="3_2k36g"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vl5hc"]
 

@@ -1,16 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwxjff4l3qur8"]
+[gd_scene load_steps=13 format=3 uid="uid://b55cpkrkaor1e"]
 
 [ext_resource type="PackedScene" uid="uid://b8oadb1xmdu5t" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="Script" path="res://Scripts/FPSCounter.gd" id="3"]
-[ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
+[ext_resource type="PackedScene" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
 [ext_resource type="ArrayMesh" uid="uid://dx1bco56p7ok5" path="res://Assets/Models/old/CactusOld/10436_Cactus_v1_max2010_it2.obj" id="5"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneColor.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneGreenTest.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://bwnj7f6uj01nb" path="res://Prefabs/Player.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://empress of bostonia.png" id="10"]
-[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://Prefabs/CowCounter.tscn" id="12"]
 
 [sub_resource type="CanvasItemMaterial" id="14"]
 
@@ -37,9 +37,10 @@ texture = ExtResource("10")
 centered = false
 
 [node name="Camera3D" parent="." instance=ExtResource("2")]
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
 
 [node name="Player" parent="." instance=ExtResource("9")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 5, 0)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 16, 5, 16)
 
 [node name="Cactus" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0170801, -0.0104053, 1.24082e-10, 0, 2.38498e-10, 0.02, -0.0104053, -0.0170801, 2.03678e-10, -3.99982, 0, 6.69969)

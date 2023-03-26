@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://egpdrlbead5c"]
+[gd_scene load_steps=5 format=3 uid="uid://c3wojcv4sw6nq"]
 
 [ext_resource type="Script" path="res://Scripts/Cow.gd" id="1"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/Cow/CowV1Color.tscn" id="2_1jevw"]
