@@ -8,7 +8,7 @@ var player
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 
 var renderDistance = 3
-var tileWidth = 32.0
+var tileWidth = 16.0
 var currentChunk = Vector3()
 var previousChunk = Vector3()
 var chunkLoaded = false
