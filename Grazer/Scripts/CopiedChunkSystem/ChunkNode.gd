@@ -35,13 +35,9 @@ func save():
 #custom function for choosing a chunk from our library based on the coordinates
 func calcChunk(_chunkCoords) -> String:
 	#system for choosing a chunk from the list
-	match [randi_range(1,4)]:
-		[1]:
-			return "res://Assets/FloorTiles/basicFloorTile.tscn"
-		[2]:
-			return "res://Assets/FloorTiles/tile1.tscn"
-		[3]:
-			return "res://Assets/FloorTiles/tile2.tscn"
-		[4]:
-			return "res://Assets/FloorTiles/pathingTestTile.tscn"
-	return "res://Assets/FloorTiles/basicFloorTile.tscn"
+	var pathName = "res://Assets/FloorTiles/TilePool/"
+	pathName += "BasicTiles/basic"
+	pathName += str(randi_range(1,4))
+	pathName += ".tscn"
+	
+	return pathName

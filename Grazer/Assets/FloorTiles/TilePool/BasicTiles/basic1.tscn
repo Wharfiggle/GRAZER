@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://6sd6li3j1d2r"]
 
-[ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="2"]
-
+[ext_resource type="PackedScene" uid="uid://b8oadb1xmdu5t" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="1_s2jtu"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(32, 0.05, 32)
@@ -26,5 +25,5 @@ navigation_mesh = SubResource("4")
 mesh = SubResource("2")
 skeleton = NodePath("../..")
 
-[node name="cactusScene" parent="NavigationRegion3D" instance=ExtResource("2")]
+[node name="cactusScene" parent="NavigationRegion3D" instance=ExtResource("1_s2jtu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04124, -0.218258, 1.2278)

@@ -6,7 +6,6 @@ var player
 @onready var enemyPrefab = preload("res://Prefabs/Enemy.tscn")
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
-@onready var basicTile = preload("res://Assets/FloorTiles/basicFloorTile.tscn")
 
 var renderDistance = 3
 var tileWidth = 32.0
