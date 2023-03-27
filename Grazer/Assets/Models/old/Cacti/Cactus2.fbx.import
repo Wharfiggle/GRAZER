@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bys685gdc2t57"
-path="res://.godot/imported/Cactus1.fbx-6c8983df80f5178543366134ee1dbe78.scn"
+uid="uid://bimxjrrxdhwqq"
+path="res://.godot/imported/Cactus2.fbx-ad998d1e0c3d61db70619ef7d6de9e73.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Cacti/Cactus1.fbx"
-dest_files=["res://.godot/imported/Cactus1.fbx-6c8983df80f5178543366134ee1dbe78.scn"]
+source_file="res://Assets/Models/old/Cacti/Cactus2.fbx"
+dest_files=["res://.godot/imported/Cactus2.fbx-ad998d1e0c3d61db70619ef7d6de9e73.scn"]
 
 [params]
 

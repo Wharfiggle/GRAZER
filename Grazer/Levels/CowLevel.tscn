@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b4epsaehlq4a1"]
+[gd_scene load_steps=51 format=3]
 
 [ext_resource type="PackedScene" uid="uid://41uisg7wyiip" path="res://Prefabs/PostProcessing.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="1_dsluj"]
@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/sandstonecolor.tscn" id="8"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="8_r4t7c"]
-[ext_resource type="PackedScene" uid="uid://bys685gdc2t57" path="res://Assets/Models/Cacti/Cactus1.fbx" id="9"]
-[ext_resource type="PackedScene" uid="uid://bimxjrrxdhwqq" path="res://Assets/Models/Cacti/Cactus2.fbx" id="10"]
+[ext_resource type="PackedScene" uid="uid://bys685gdc2t57" path="res://Assets/Models/old/Cacti/Cactus1.fbx" id="9"]
+[ext_resource type="PackedScene" uid="uid://bimxjrrxdhwqq" path="res://Assets/Models/old/Cacti/Cactus2.fbx" id="10"]
 [ext_resource type="Texture2D" uid="uid://g8t38bvfxx7q" path="res://handsomestaringeagle.jpg" id="10_eu7f5"]
+
 
 [sub_resource type="BoxMesh" id="1"]
 

@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://chdckisfnoo5q"]
+
+[ext_resource type="PackedScene" path="res://Prefabs/DirectionalLight.tscn" id="1_reu56"]
+[ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2_6cmid"]
+[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="3_c15ja"]
+[ext_resource type="PackedScene" path="res://Prefabs/FPSCounter.tscn" id="4_22bo5"]
+[ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="5_5umnj"]
+[ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="6_55euo"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Silo/silo_v_2.tscn" id="7_edmva"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dgoof"]
+size = Vector3(1, 5, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w53vf"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
+size = Vector3(16, 0.1, 16)
+
+[node name="Level" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="DirectionalLight3D" parent="." instance=ExtResource("1_reu56")]
+
+[node name="Camera3D" parent="." instance=ExtResource("2_6cmid")]
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 37.9975, 30)
+
+[node name="Cow Counter" parent="." instance=ExtResource("3_c15ja")]
+
+[node name="FPS Counter" parent="." instance=ExtResource("4_22bo5")]
+
+[node name="Health Counter" parent="." instance=ExtResource("5_5umnj")]
+
+[node name="Player" parent="." instance=ExtResource("6_55euo")]
+
+[node name="Ledges" type="Node3D" parent="."]
+
+[node name="Ledge1" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 2.5, 0)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge1"]
+shape = SubResource("BoxShape3D_dgoof")
+
+[node name="Ledge2" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, -8.5)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge2"]
+shape = SubResource("BoxShape3D_dgoof")
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Floor"]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Floor"]
+mesh = SubResource("BoxMesh_bh6h6")
+
+[node name="Floor2" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor2"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Floor2"]
+mesh = SubResource("BoxMesh_bh6h6")
+
+[node name="Floor3" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor3"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Floor3"]
+mesh = SubResource("BoxMesh_bh6h6")
+
+[node name="Floor4" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor4"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Floor4"]
+mesh = SubResource("BoxMesh_bh6h6")
+
+[node name="Silo_V2" parent="." instance=ExtResource("7_edmva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8667, 0.0499992, -1.47631)

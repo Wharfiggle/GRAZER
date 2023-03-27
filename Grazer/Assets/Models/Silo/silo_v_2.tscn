@@ -1,0 +1,27 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="PackedScene" uid="uid://rnwa5lq7sar6" path="res://Assets/Models/Silo/Silo_V2.fbx" id="1_xc05y"]
+[ext_resource type="Texture2D" uid="uid://n3j2vt45anh1" path="res://Assets/Models/Silo/Silo_V2_lambert1_BaseColor.png" id="2_j1h1o"]
+[ext_resource type="Texture2D" uid="uid://cdja61h84u3bo" path="res://Assets/Models/Silo/Silo_V2_lambert1_Height.png" id="3_y6dkn"]
+[ext_resource type="Texture2D" uid="uid://dbx6ttw0p0enc" path="res://Assets/Models/Silo/Silo_V2_lambert1_Metallic.png" id="4_7ap5r"]
+[ext_resource type="Texture2D" uid="uid://n5vp5re8inoa" path="res://Assets/Models/Silo/Silo_V2_lambert1_Normal.png" id="5_4r4wr"]
+[ext_resource type="Texture2D" uid="uid://m05vyxikj27v" path="res://Assets/Models/Silo/Silo_V2_lambert1_Roughness.png" id="6_gw4k4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rkyg"]
+albedo_texture = ExtResource("2_j1h1o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kstb7"]
+albedo_texture = ExtResource("2_j1h1o")
+metallic = 1.0
+metallic_texture = ExtResource("4_7ap5r")
+roughness_texture = ExtResource("6_gw4k4")
+normal_enabled = true
+normal_texture = ExtResource("5_4r4wr")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_y6dkn")
+
+[node name="Silo_V2" instance=ExtResource("1_xc05y")]
+
+[node name="Silo_V2" parent="RootNode" index="0"]
+material_override = SubResource("StandardMaterial3D_3rkyg")
+surface_material_override/0 = SubResource("StandardMaterial3D_kstb7")

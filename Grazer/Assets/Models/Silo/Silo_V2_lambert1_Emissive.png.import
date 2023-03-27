@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0i7v0w5osepc"
-path="res://.godot/imported/Silo_V2_lambert1_Emissive.png-289021a40f3f09579da6b7ac612a767e.ctex"
+path="res://.godot/imported/Silo_V2_lambert1_Emissive.png-5154ac0d2844f8ec23afce9082b4ad59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Models/Silo v2 Textures/Silo_V2_lambert1_Emissive.png"
-dest_files=["res://.godot/imported/Silo_V2_lambert1_Emissive.png-289021a40f3f09579da6b7ac612a767e.ctex"]
+source_file="res://Assets/Models/Silo/Silo_V2_lambert1_Emissive.png"
+dest_files=["res://.godot/imported/Silo_V2_lambert1_Emissive.png-5154ac0d2844f8ec23afce9082b4ad59.ctex"]
 
 [params]
 

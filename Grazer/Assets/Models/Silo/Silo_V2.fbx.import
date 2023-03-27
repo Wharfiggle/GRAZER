@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dyxicxdyjmqbw"
-path="res://.godot/imported/Nopal.fbx-3110e277a9543edc2c9e673bb1b2a762.scn"
+uid="uid://rnwa5lq7sar6"
+path="res://.godot/imported/Silo_V2.fbx-4447deab08476f994c8d14357bbbcb94.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Cacti/Nopal.fbx"
-dest_files=["res://.godot/imported/Nopal.fbx-3110e277a9543edc2c9e673bb1b2a762.scn"]
+source_file="res://Assets/Models/Silo/Silo_V2.fbx"
+dest_files=["res://.godot/imported/Silo_V2.fbx-4447deab08476f994c8d14357bbbcb94.scn"]
 
 [params]
 
@@ -20,11 +20,11 @@ nodes/root_scale=1.0
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=0
-meshes/lightmap_texel_size=0.1
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
 skins/use_named_skins=true
 animation/import=true
-animation/fps=15
+animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
