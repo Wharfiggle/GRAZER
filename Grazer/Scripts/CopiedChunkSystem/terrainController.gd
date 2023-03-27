@@ -7,7 +7,7 @@ var player
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 
-var renderDistance = 3
+var renderDistance = 2
 var tileWidth = 16.0
 var currentChunk = Vector3()
 var previousChunk = Vector3()
@@ -26,33 +26,9 @@ var thread
 var exit_thread = false
 
 func _ready(): 
-#	mutex = Mutex.new()
-#	semaphore = Semaphore.new()
-#	exit_thread = false
-#	thread = Thread.new()
-#	thread.start(_thread_function)
-	
-	
 	player = get_node(playerPath)
 	currentChunk = getPlayerChunk(player.transform.origin)
 	loadChunk()
-
-#func _thread_function():
-#	print("test")
-#	while true:
-#		semaphore.wait() #Wait until posted.
-#		print("thread loop")
-#		mutex.lock()
-#		loadChunk()
-#		mutex.unlock()
-##		mutex.lock()
-##		var should_exit = exit_thread #Protect with Mutex.
-##		mutex.unlock()
-##		if should_exit:
-##			break
-##		mutex.lock()
-##		counter += 1 #Increment counter, protect with Mutex.
-##		mutex.unlock()
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("debug4") || Input.is_action_just_pressed("debug5")):
@@ -82,12 +58,7 @@ func _process(_delta):
 	else:
 		chunkLoaded = false;
 	previousChunk = currentChunk
-	
-#	if(Input.is_action_just_pressed("debug5")):
-#		var enemy = enemyPrefab.instantiate()
-#		enemy.position = player.position + Vector3(0,5,0)
-#		get_node(NodePath("/root/Level")).add_child(enemy)
-	
+
 
 #converts the parameter coordinates into an smaller coord, 16,16 -> 1,1
 func getPlayerChunk(pos):
@@ -125,8 +96,9 @@ func loadChunk():
 				chunk.transform.origin = chunkCoords * tileWidth
 				activeChunks.append(chunk)
 				activeCoord.append(chunkCoords)
-				chunk.start(chunkKey)
 				add_child(chunk)
+				chunk.start(chunkKey)
+
 	#deleting the chunks just makes an array of chunks that are in active chunks and not in the
 	#chunks that are being loaded (loading coords), deleting chunks then deletes them from 
 	#both the active chunk and coords array
