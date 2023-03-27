@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3]
+[gd_scene load_steps=51 format=3 uid="uid://ogghtn3biy3x"]
 
 [ext_resource type="PackedScene" uid="uid://41uisg7wyiip" path="res://Prefabs/PostProcessing.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="1_dsluj"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bys685gdc2t57" path="res://Assets/Models/old/Cacti/Cactus1.fbx" id="9"]
 [ext_resource type="PackedScene" uid="uid://bimxjrrxdhwqq" path="res://Assets/Models/old/Cacti/Cactus2.fbx" id="10"]
 [ext_resource type="Texture2D" uid="uid://g8t38bvfxx7q" path="res://handsomestaringeagle.jpg" id="10_eu7f5"]
-
 
 [sub_resource type="BoxMesh" id="1"]
 

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://krx02obblnpl"]
+
+[ext_resource type="PackedScene" uid="uid://bocv55v51ex5k" path="res://Assets/Models/Rocks/stoneArch.fbx" id="1_xlj6c"]
+
+[node name="stoneArch" instance=ExtResource("1_xlj6c")]

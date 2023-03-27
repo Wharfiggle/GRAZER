@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dt8kfeus1ibyl"]
+
+[ext_resource type="Texture2D" uid="uid://b1qgxegfxysgg" path="res://Assets/Models/Windmill/Windmill_lambert1_BaseColor.png" id="1_s83do"]
+[ext_resource type="Texture2D" uid="uid://dip17ujy7qxqa" path="res://Assets/Models/Windmill/Windmill_lambert1_Height.png" id="2_gukns"]
+[ext_resource type="Texture2D" uid="uid://bbcpox8jc8g1t" path="res://Assets/Models/Windmill/Windmill_lambert1_Metallic.png" id="3_acje7"]
+[ext_resource type="Texture2D" uid="uid://b7qjg6ugqd45d" path="res://Assets/Models/Windmill/Windmill_lambert1_Normal.png" id="4_f5nqh"]
+[ext_resource type="Texture2D" uid="uid://dgrm6tqw4p86n" path="res://Assets/Models/Windmill/Windmill_lambert1_Roughness.png" id="5_xymsf"]
+
+[resource]
+cull_mode = 2
+albedo_texture = ExtResource("1_s83do")
+metallic = 1.0
+metallic_texture = ExtResource("3_acje7")
+roughness_texture = ExtResource("5_xymsf")
+normal_enabled = true
+normal_texture = ExtResource("4_f5nqh")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_gukns")

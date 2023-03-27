@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://chtqv7je6cqta"]
+
+[ext_resource type="Texture2D" uid="uid://beg8kkos32pma" path="res://Assets/Materials/Karl Ground.png" id="1_5qiui"]
+
+[resource]
+albedo_texture = ExtResource("1_5qiui")
+uv1_scale = Vector3(2, 2, 2)
