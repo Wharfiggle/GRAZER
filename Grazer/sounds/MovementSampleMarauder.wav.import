@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://x7pgqtakuhmu"
-path="res://.godot/imported/MovementSampleMarauder.wav-c09113ed508348ada8d6dd56f466c80d.sample"
+path="res://.godot/imported/MovementSampleMarauder.wav-be125c63f5d969f765d4b2aee2d01772.sample"
 
 [deps]
 
-source_file="res://sounds/MovementSampleMarauder.wav"
-dest_files=["res://.godot/imported/MovementSampleMarauder.wav-c09113ed508348ada8d6dd56f466c80d.sample"]
+source_file="res://Sounds/MovementSampleMarauder.wav"
+dest_files=["res://.godot/imported/MovementSampleMarauder.wav-be125c63f5d969f765d4b2aee2d01772.sample"]
 
 [params]
 

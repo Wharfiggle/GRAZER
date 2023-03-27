@@ -406,7 +406,7 @@ func attack(direction:Vector3):
 		#spawns bullet in the direction the muzzle is facing 
 		var b = Bullet.instantiate()
 		var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
-		b.shoot(self, "enemy", $Marker3D.global_position, bulletRotation, 2.0)
+		b.shoot(self, "enemy", $Marker3D.global_position, bulletRotation, 15.0, 2.0)
 
 func knock():
 	var enemies = knockbox.get_overlapping_bodies()
