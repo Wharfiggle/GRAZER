@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dcnn8eg8esstr"
-path="res://.godot/imported/VOX-marauder01.wav-f8e7ae72a41e73efb8b3fe4a0fb1eb21.sample"
+path="res://.godot/imported/VOX-marauder01.wav-7a2ff28505a0475aef5f4e8cab198b27.sample"
 
 [deps]
 
-source_file="res://sounds/VOX-marauder01.wav"
-dest_files=["res://.godot/imported/VOX-marauder01.wav-f8e7ae72a41e73efb8b3fe4a0fb1eb21.sample"]
+source_file="res://Sounds/VOX-marauder01.wav"
+dest_files=["res://.godot/imported/VOX-marauder01.wav-7a2ff28505a0475aef5f4e8cab198b27.sample"]
 
 [params]
 

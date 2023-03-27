@@ -72,11 +72,12 @@ func startDragging(marauder):
 	herd.removeHuddler(self)
 	enableRayCasts()
 	
-func stopDragging():
-	draggers.clear()
-	maxSpeed = normalSpeed
-	lookSpeed = normalLookSpeed
-	followDistance = normalFollowDistance
+func stopDragging(marauder):
+	draggers.erase(marauder)
+	if(draggers.size() == 0):
+		maxSpeed = normalSpeed
+		lookSpeed = normalLookSpeed
+		followDistance = normalFollowDistance
 	
 func enableRayCasts():
 	for i in rayCasts:

@@ -163,7 +163,6 @@ func _physics_process(delta):
 #		if(knockbackIFramesTimer < 0):
 #			knockbackIFramesTimer = 0
 
-
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
 	targetPos = position
@@ -216,7 +215,7 @@ func circle():
 	
 	#If enemy is too far away from the herd (Enter Circle)
 	elif((herdCenter - position).length() > (2 * followDistance)):
-		lerp(speed, 1.0, lerpSpeed)
+		lerp(speed, 1.0, lerpSpeed) # got an error here. "cannot convert argument 2 from float to Nil"
 	
 	#If enemy feels too close (Flee in circle)
 	else:
@@ -429,6 +428,8 @@ func damage_taken(damage, from) -> bool:
 	if(from != "enemy"):
 		health -= damage
 		if health <= 0:
+			if(draggedCow != null):
+				draggedCow.stopDragging(self)
 			queue_free()
 		return true
 	else:
