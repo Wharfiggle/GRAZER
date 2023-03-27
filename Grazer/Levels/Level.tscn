@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b55cpkrkaor1e"]
+[gd_scene load_steps=14 format=3 uid="uid://b55cpkrkaor1e"]
 
 [ext_resource type="PackedScene" uid="uid://b8oadb1xmdu5t" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="1"]
+[ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="Script" path="res://Scripts/FPSCounter.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
@@ -15,6 +16,7 @@
 [sub_resource type="CanvasItemMaterial" id="14"]
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_ilocr")
 
 [node name="FPS Counter" type="Label" parent="."]
 material = SubResource("14")
@@ -64,3 +66,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729)
 
 [node name="AllTerrain" type="Node3D" parent="."]
 script = ExtResource("4")
+
+[node name="BackgroundPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 1.874
+bus = &"background "

@@ -8,13 +8,21 @@ var damage
 var from = ""
 var source
 var active = true
+
+@onready var GunShot = $Boom
+var GSSound = preload("res://sounds/desert-eagle-gunshot-14622.wav")
+
 var smoke = preload("res://Prefabs/Smoke.tscn")
 var waitForSmoke = 0
 var hitBody = null
 @onready var raycast = get_node(NodePath("./RayCast3D"))
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
+func _ready():
+	#selecting sound
+	GunShot.stream = GSSound
+	#begining sound play
+	GunShot.play()
 	#self.connect("area_entered",Callable(self,"_on_body_enter"))
 
 func _process(delta):

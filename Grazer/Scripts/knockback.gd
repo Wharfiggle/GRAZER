@@ -28,7 +28,7 @@ var HP = maxHP
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sound.stream = mar
-	sound.play()
+	#sound.play()
 	pass # Replace with function body.
 
 func knockback(damageSourcePos:Vector3, recivedDamage:int):

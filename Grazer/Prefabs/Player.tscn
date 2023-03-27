@@ -48,3 +48,13 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.3, 0.25)
 
 [node name="ShootingPoint" type="Marker3D" parent="Revolver"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.000588231, 0.0664502, 0.28775)
+
+[node name="footsteps" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0685701, 0.103706)
+bus = &"soundFXMain"
+
+[node name="Voice" type="AudioStreamPlayer3D" parent="."]
+bus = &"soundFXMain"
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70047, 0.0811439)

@@ -100,3 +100,5 @@ shape = SubResource("BoxShape3D_duc3a")
 mesh = SubResource("BoxMesh_ymssc")
 
 [node name="TestPlayer3D" type="AudioStreamPlayer3D" parent="enemy2"]
+volume_db = -0.193
+max_db = -1.054

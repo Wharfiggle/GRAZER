@@ -55,6 +55,11 @@ var lookSpeed = normalLookSpeed
 #export (float) var minPushPercent = 0.0
 #export (float) var lookMoveDissonance = 0.0
 
+#AudioStreams
+@onready var Steps = $walking
+@onready var Vocal = $moo
+#SoundFiles PreLoad
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()

@@ -6,6 +6,11 @@ extends CharacterBody3D
 @onready var level = get_tree().root.get_child(0)
 var Bullet = preload("res://Prefabs/bullet.tscn")
 
+#audioStream
+@onready var Steps = $EFootsteps
+@onready var Vocal = $EVoice
+#soundFile Preload
+
 
 var maxHealth = 10.0
 var health = maxHealth

@@ -21,8 +21,12 @@ var dodgeCooldownTimer = 0.0
 @export var dodgeBufferTime = 0.1
 var dodgeBufferTimer = 0.0
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
+#audioStreams
+@onready var Steps = $footsteps
+@onready var Vocal = $Voice
+#preloading sound files
 
-#@onready var sound = $"practice sound item/AudioStreamPlayer3D"
+
 const GRAVITY = 30
 @export var speed = 7
 const JUMP = 15
