@@ -27,6 +27,7 @@ shape = SubResource("1")
 disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("2")
 skin = SubResource("3")
 skeleton = NodePath("")

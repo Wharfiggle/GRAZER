@@ -65,7 +65,7 @@ func _process(delta):
 		shootBufferTimer = shootBufferTime
 	if(active && shootBufferTimer > 0 && shootTimer == 0):
 		var b = Bullet.instantiate()
-		b.shoot(self, "player", shootingPoint.global_position, rotation, 5.0, 4.0)
+		b.shoot(self, "player", shootingPoint.global_position, rotation, 15.0, 4.0)
 		#sound.play()
 		shootTimer = shootTime
 	
