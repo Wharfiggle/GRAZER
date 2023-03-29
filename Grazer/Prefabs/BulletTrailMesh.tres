@@ -1,0 +1,7 @@
+[gd_resource type="ImmediateMesh" script_class="BulletGlow" load_steps=2 format=3 uid="uid://minsb71e27x5"]
+
+[ext_resource type="Script" path="res://Scripts/BulletTrail.gd" id="1_q8asu"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_q8asu")

@@ -141,7 +141,7 @@ func _physics_process(delta):
 				#if(rayMags[5] != 0): #direct
 				maneuvering = true
 				if(rayMags[0] > 0.01 && rayMags[2] > 0.01): #left and right
-					maneuverTurnOffset = -maneuverTurnDir * (rayMags[0] + rayMags[2]) / 2.0 * maneuverTurnSpeed * delta
+					maneuverTurnOffset = maneuverTurnDir * (rayMags[0] + rayMags[2]) / 2.0 * maneuverTurnSpeed * delta
 					#maneuverMoveModifier = -abs(maneuverMoveModifier)
 				elif(rayMags[0] > 0.01): #left
 					maneuverTurnOffset = -rayMags[0] * maneuverTurnSpeed * delta
@@ -150,7 +150,7 @@ func _physics_process(delta):
 					maneuverTurnOffset = rayMags[2] * maneuverTurnSpeed * delta
 					maneuverTurnDir = 1
 				elif(rayMags[1] > 0.01): #middle
-					maneuverTurnOffset = rayMags[1] * maneuverTurnSpeed * delta
+					maneuverTurnOffset = maneuverTurnDir * rayMags[1] * maneuverTurnSpeed * delta
 				else:
 					#maneuverMoveModifier = abs(maneuverMoveModifier)
 					maneuvering = false
