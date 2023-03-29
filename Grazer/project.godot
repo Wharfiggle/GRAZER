@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 WorldSave="*res://Scripts/CopiedChunkSystem/WorldSave.gd"
 GlobalScript="*res://Scripts/globalScript.gd"
+Structures="*res://Assets/FloorTiles/Structures.gd"
 
 [display]
 
