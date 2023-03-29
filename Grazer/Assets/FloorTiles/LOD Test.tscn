@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" path="res://Prefabs/DirectionalLight.tscn" id="1_reu56"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2_6cmid"]
-[ext_resource type="Material" path="res://Assets/Materials/Karl Ground.tres" id="2_67tc5"]
-[ext_resource type="PackedScene" path="res://Prefabs/CowCounter.tscn" id="3_c15ja"]
+[ext_resource type="Material" uid="uid://chtqv7je6cqta" path="res://Assets/Materials/Karl Ground.tres" id="2_67tc5"]
+[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="3_c15ja"]
 [ext_resource type="PackedScene" path="res://Prefabs/FPSCounter.tscn" id="4_22bo5"]
-[ext_resource type="PackedScene" path="res://Prefabs/HealthCounter.tscn" id="5_5umnj"]
+[ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="5_5umnj"]
 [ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/Models/Prefabs/Rocks/big_stone.tscn" id="5_wwndl"]
 [ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="6_55euo"]
 [ext_resource type="PackedScene" uid="uid://cuhafupfjhmjv" path="res://Assets/Models/Prefabs/Rocks/big_stone_2.tscn" id="6_r32ba"]
@@ -42,7 +42,9 @@ transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.56569, 0, 7.30398)
 
 [node name="DirectionalLight3D" parent="." instance=ExtResource("1_reu56")]
-transform = Transform3D(0.794086, 0.465606, 0.39069, -5.61943e-08, -0.642788, 0.766044, 0.607806, -0.608305, -0.510429, 0, 0, 0)
+transform = Transform3D(0.882743, 0.181593, 0.433347, -4.47035e-08, -0.922296, 0.386485, 0.469857, -0.341167, -0.814149, 0, 0, 0)
+light_color = Color(0.960784, 0.4, 0.192157, 1)
+shadow_blur = 0.0
 
 [node name="^ Remove Above When Finished ^" type="Node3D" parent="."]
 
