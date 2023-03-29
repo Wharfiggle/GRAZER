@@ -121,3 +121,18 @@ func _get_chunk_key(coords : Vector3):
 		return key
 	key.x = wrapf(coords.x, -revolution_distance, revolution_distance+1)
 	return key
+
+#Decides where to place structures and reserves empty space for them
+#Places the sturcture nodes in the game
+func generateStructures():
+	
+	pass
+	
+
+func setEmptyChunk(coords : Vector3):
+	if(WorldSave.loadedCoords.find(coords) != -1):
+		return
+	WorldSave.addChunk(coords)
+	var data = []
+	data.append("")
+	WorldSave.saveChunk(coords,data)
