@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8ju2f67q6p3t"
+path="res://.godot/imported/VOX-marauder_301.wav-a577dab470301736011f5305ac4baa58.sample"
+
+[deps]
+
+source_file="res://sounds/old sounds/VOX-marauder_301.wav"
+dest_files=["res://.godot/imported/VOX-marauder_301.wav-a577dab470301736011f5305ac4baa58.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

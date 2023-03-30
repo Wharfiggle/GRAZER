@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d1do1fp3afye"
+path="res://.godot/imported/Music#10.wav-c72d0514d06b723e91f667b20681a9fa.sample"
+
+[deps]
+
+source_file="res://sounds/Foley files/Foley files (Raw)/Music#10.wav"
+dest_files=["res://.godot/imported/Music#10.wav-c72d0514d06b723e91f667b20681a9fa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

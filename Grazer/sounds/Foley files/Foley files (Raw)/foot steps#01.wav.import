@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cv4lp7dvepbgn"
+path="res://.godot/imported/foot steps#01.wav-03dec370a87e72cee6c2fb9cd8da3b5a.sample"
+
+[deps]
+
+source_file="res://sounds/Foley files/Foley files (Raw)/foot steps#01.wav"
+dest_files=["res://.godot/imported/foot steps#01.wav-03dec370a87e72cee6c2fb9cd8da3b5a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

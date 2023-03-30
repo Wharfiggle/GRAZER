@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cuk30y4yirjpn"
+path="res://.godot/imported/Copy of revolverfire.wav-a33eb40f0228e7de1372c3c53cc5f737.sample"
+
+[deps]
+
+source_file="res://sounds/gunsounds/Copy of revolverfire.wav"
+dest_files=["res://.godot/imported/Copy of revolverfire.wav-a33eb40f0228e7de1372c3c53cc5f737.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

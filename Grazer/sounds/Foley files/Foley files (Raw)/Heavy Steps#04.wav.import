@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bo15ml7s4itjo"
+path="res://.godot/imported/Heavy Steps#04.wav-9a5497b4d378641aace6e6624696007f.sample"
+
+[deps]
+
+source_file="res://sounds/Foley files/Foley files (Raw)/Heavy Steps#04.wav"
+dest_files=["res://.godot/imported/Heavy Steps#04.wav-9a5497b4d378641aace6e6624696007f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

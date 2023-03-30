@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hf2rswf0jiyu"
+path="res://.godot/imported/FT_Steps01.wav-543d7ae99abc4bee06eaf172e7ab3ad2.sample"
+
+[deps]
+
+source_file="res://sounds/old sounds/FT_Steps01.wav"
+dest_files=["res://.godot/imported/FT_Steps01.wav-543d7ae99abc4bee06eaf172e7ab3ad2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

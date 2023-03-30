@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cy2uty8v72t5q"
+path="res://.godot/imported/Shoe Step variety Pack#01.wav-f28f0c8574c742e23efd3ae8d587f436.sample"
+
+[deps]
+
+source_file="res://sounds/Foley files/Foley files (Raw)/Shoe Step variety Pack#01.wav"
+dest_files=["res://.godot/imported/Shoe Step variety Pack#01.wav-f28f0c8574c742e23efd3ae8d587f436.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

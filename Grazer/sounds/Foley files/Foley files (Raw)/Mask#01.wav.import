@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://crxm51wxa7708"
+path="res://.godot/imported/Mask#01.wav-c4901cbe595f82006d15043f162b733c.sample"
+
+[deps]
+
+source_file="res://sounds/Foley files/Foley files (Raw)/Mask#01.wav"
+dest_files=["res://.godot/imported/Mask#01.wav-c4901cbe595f82006d15043f162b733c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

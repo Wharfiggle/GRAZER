@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d1vwwk1qa0wl6"
+path="res://.godot/imported/VOX-marauder 3#01.wav-f4977d21814ada5356d7e9a3f47b61aa.sample"
+
+[deps]
+
+source_file="res://sounds/Foley files/Foley files (Raw)/VOX-marauder 3#01.wav"
+dest_files=["res://.godot/imported/VOX-marauder 3#01.wav-f4977d21814ada5356d7e9a3f47b61aa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

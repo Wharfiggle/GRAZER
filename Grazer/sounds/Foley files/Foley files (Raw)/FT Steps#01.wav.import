@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cq3tj682kbpkp"
+path="res://.godot/imported/FT Steps#01.wav-3636a9c4679b675b62aa51c6c355e34d.sample"
+
+[deps]
+
+source_file="res://sounds/Foley files/Foley files (Raw)/FT Steps#01.wav"
+dest_files=["res://.godot/imported/FT Steps#01.wav-3636a9c4679b675b62aa51c6c355e34d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
