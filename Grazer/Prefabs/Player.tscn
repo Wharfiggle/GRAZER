@@ -27,7 +27,6 @@ shape = SubResource("CylinderShape3D_vl5hc")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 light_color = Color(1, 0.631373, 0, 1)
-shadow_enabled = true
 omni_range = 20.0
 
 [node name="knockbox" type="Area3D" parent="."]

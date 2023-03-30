@@ -3,6 +3,7 @@ extends Node3D
 
 var playerPath = NodePath("/root/Level/Player")
 var player
+@onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 @onready var enemyPrefab = preload("res://Prefabs/Enemy.tscn")
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
@@ -31,10 +32,15 @@ func _ready():
 	loadChunk()
 
 func _process(_delta):
+	if(camera == null):
+		camera = get_node(NodePath("/root/Level/Camera3D"))
 	if(Input.is_action_just_pressed("debug4") || Input.is_action_just_pressed("debug5")):
-		#screen height and width in units, equal to camera size
-		var scrHei = 15.0
-		var scrWid = scrHei / 9.0 * 16.0 #only works with 16:9 aspect ratio
+		#screen height and width in units, 15.0 = camera.size()
+		var camSize = 15.0
+		if(camera != null):
+			camSize = camera.size
+		var scrHei = camSize / cos(55.0 * PI / 180.0)
+		var scrWid = camSize / 9.0 * 16.0 #only works with 16:9 aspect ratio
 		var enemy = enemyPrefab.instantiate()
 		var type = enemy.enemyTypes.gunman
 		if(Input.is_action_pressed("debug5")):
@@ -44,9 +50,16 @@ func _process(_delta):
 		var topOrBot = randi_range(0, 1)
 		if(topOrBot == 0): topOrBot = -1
 		if(horOrVert == 0):
-			enemy.position = player.position + Vector3(topOrBot * (scrWid / 2.0 + 5), 1, randf_range(-scrHei / 2.0, scrHei / 2.0))
+			enemy.position = Vector3(
+				topOrBot * (scrWid / 2.0), 1, 
+				randf_range(-scrHei / 2.0, scrHei / 2.0))
 		else:
-			enemy.position = player.position + Vector3(randf_range(-scrWid / 2.0, scrWid / 2.0), 1, topOrBot * (scrHei / 2.0 + 5))
+			enemy.position = Vector3(
+				randf_range(-scrWid / 2.0, scrWid / 2.0), 1, 
+				topOrBot * (scrHei / 2.0))
+		enemy.position = player.position + Vector3(
+			cos(-PI/4.0) * enemy.position.x - sin(-PI/4.0) * enemy.position.z, 0,
+			sin(-PI/4.0) * enemy.position.x + cos(-PI/4.0) * enemy.position.z)
 		get_node(NodePath("/root/Level")).add_child(enemy)
 	
 	#checks if player has left their current chunk and loads if they have

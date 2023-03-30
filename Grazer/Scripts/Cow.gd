@@ -100,8 +100,8 @@ func idle():
 	followingHerd = false
 
 #equation for diagonal length of screen
-#var rectWid = 15 / cos(55 * PI / 180)
-#var rectHei = 15 / 9 * 16
+#var rectWid = 15.0 / 9.0 * 16.0
+#var rectHei = 15.0 / cos(55.0 * PI / 180.0)
 #var rectDiag = rectWid / sin( arctan( rectWid / rectHei )
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

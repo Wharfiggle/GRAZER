@@ -97,10 +97,11 @@ func _process(delta):
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
 	#rotate towards where player is moving
-	rotation.y = lerp_angle(
-		rotation.y,
-		moveDir,
-		0.1)
+	if(active):
+		rotation.y = lerp_angle(
+			rotation.y,
+			moveDir,
+			0.1)
 	
 	toAdd = toAdd.normalized() * speed
 	if(toAdd.x == 0 and toAdd.z == 0):
@@ -156,8 +157,7 @@ func _process(delta):
 		mousePos.y -= (camera.camOffset.y - camera.camOffset.x) / unitHei * viewHei - unitHei
 		#rotate to compensate for isometric 45 degree angle
 		var aimAt = Vector3(
-			cos(-PI/4.0) * mousePos.x - sin(-PI/4.0) * mousePos.y * angMod,
-			0,
+			cos(-PI/4.0) * mousePos.x - sin(-PI/4.0) * mousePos.y * angMod, 0,
 			sin(-PI/4.0) * mousePos.x + cos(-PI/4.0) * mousePos.y * angMod)
 		aimAt *= unitHei / viewHei #convert from pixels to units
 		aimAt.y = 1.0
