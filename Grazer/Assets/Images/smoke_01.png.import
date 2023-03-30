@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmnydcahtsgtv"
-path.s3tc="res://.godot/imported/the creature.jpg-9abf41b8763ec3559509d9d67c61b054.s3tc.ctex"
+uid="uid://cqpain2a1wsu5"
+path.s3tc="res://.godot/imported/smoke_01.png-765c63c8e5020ddb4f6191a4d9c14f14.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://the creature.jpg"
-dest_files=["res://.godot/imported/the creature.jpg-9abf41b8763ec3559509d9d67c61b054.s3tc.ctex"]
+source_file="res://Assets/Images/smoke_01.png"
+dest_files=["res://.godot/imported/smoke_01.png-765c63c8e5020ddb4f6191a4d9c14f14.s3tc.ctex"]
 
 [params]
 

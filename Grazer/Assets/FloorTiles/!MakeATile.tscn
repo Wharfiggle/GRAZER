@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://nrk63jo3n4js"]
+[gd_scene load_steps=5 format=3 uid="uid://cgdi3sn4f3hgn"]
 
-[ext_resource type="Material" uid="uid://chtqv7je6cqta" path="res://Assets/Materials/Karl Ground.tres" id="7_7kbtf"]
+[ext_resource type="Material" path="res://Assets/Materials/Karl Ground.tres" id="7_7kbtf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w53vf"]
 size = Vector3(16, 0.1, 16)

@@ -18,8 +18,8 @@ var GSSound = preload("res://sounds/desert-eagle-gunshot-14622.wav")
 var range
 var startPos
 var trailPoints
-@export var trailLength = 5.0
-var trailEnd
+@export var trailLength = 3.0
+var trailEnd = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,14 +67,13 @@ func _process(delta):
 			stop()
 			
 		trailEnd = min(travelled, trailLength)
-		trailPoints = [Vector3.ZERO, Vector3(0, 0, -trailEnd)]
 	else:
 		trailLength -= muzzle_velocity * delta
 		trailLength = max(trailLength, 0)
 		trailEnd = min(trailEnd, trailLength)
-		trailPoints = [Vector3.ZERO, Vector3(0, 0, -trailEnd)]
 	
 	if(bulletTrail != null):
+		trailPoints = [Vector3.ZERO, Vector3(0, 0, -trailEnd)]
 		bulletTrail.updateTrail(trailPoints)
 
 func _physics_process(delta):

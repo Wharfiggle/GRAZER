@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmjms8gqi1go3"
-path.s3tc="res://.godot/imported/empress of bostonia.png-e3ccd79cb30b8a3d47dbb28f2832a6b2.s3tc.ctex"
+uid="uid://cfjn3knqbrpj6"
+path="res://.godot/imported/icon.png-2eacc55a38331c0ecff8f120a4ee2e34.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://empress of bostonia.png"
-dest_files=["res://.godot/imported/empress of bostonia.png-e3ccd79cb30b8a3d47dbb28f2832a6b2.s3tc.ctex"]
+source_file="res://Assets/Images/icon.png"
+dest_files=["res://.godot/imported/icon.png-2eacc55a38331c0ecff8f120a4ee2e34.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

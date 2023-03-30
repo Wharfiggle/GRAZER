@@ -12,7 +12,7 @@ var maxHitpoints = 10
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
-@export var dodgeSpeed = 20.0
+@export var dodgeSpeed = 15.0
 var dodgeVel = Vector3(0,0,0)
 @export var dodgeTime = 0.5
 var dodgeTimer = 0.0
@@ -65,7 +65,7 @@ func _process(delta):
 		shootBufferTimer = shootBufferTime
 	if(active && shootBufferTimer > 0 && shootTimer == 0):
 		var b = Bullet.instantiate()
-		b.shoot(self, "player", shootingPoint.global_position, rotation, 15.0, 4.0)
+		b.shoot(self, "player", shootingPoint.global_position, rotation, 18.0, 4.0)
 		#sound.play()
 		shootTimer = shootTime
 	

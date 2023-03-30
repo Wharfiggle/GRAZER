@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://1v2pntpf64kq"]
+[gd_scene load_steps=10 format=3 uid="uid://b8e30njhbrf0t"]
 
-[ext_resource type="Material" uid="uid://bp50lvfbjug2t" path="res://Assets/Materials/ParticleMaterial.tres" id="1_ag1rt"]
-[ext_resource type="Texture2D" uid="uid://en0sdx86kloa" path="res://muzzle flash.png" id="2_0vscx"]
+[ext_resource type="Material" uid="uid://d0dtwgj6q1kj3" path="res://Assets/Materials/ParticleMaterial.tres" id="1_ag1rt"]
+[ext_resource type="Texture2D" uid="uid://en0sdx86kloa" path="res://Assets/Images/muzzle flash.png" id="2_2180d"]
 
 [sub_resource type="Gradient" id="Gradient_7rn6k"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -37,7 +37,7 @@ color_ramp = SubResource("GradientTexture1D_ocnga")
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_0vscx")
+albedo_texture = ExtResource("2_2180d")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -55,7 +55,7 @@ emitting = false
 amount = 20
 lifetime = 0.5
 one_shot = true
-speed_scale = 2.0
+speed_scale = 0.5
 explosiveness = 0.75
 randomness = 1.0
 fixed_fps = 60

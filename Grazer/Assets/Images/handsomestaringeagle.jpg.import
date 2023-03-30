@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://en0sdx86kloa"
-path.s3tc="res://.godot/imported/muzzle flash.png-6d85ab9df05e55178d8be7e014e78332.s3tc.ctex"
+uid="uid://g8t38bvfxx7q"
+path.s3tc="res://.godot/imported/handsomestaringeagle.jpg-ebf4e11fbfc7d63d90984cf39bdd172f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://muzzle flash.png"
-dest_files=["res://.godot/imported/muzzle flash.png-6d85ab9df05e55178d8be7e014e78332.s3tc.ctex"]
+source_file="res://Assets/Images/handsomestaringeagle.jpg"
+dest_files=["res://.godot/imported/handsomestaringeagle.jpg-ebf4e11fbfc7d63d90984cf39bdd172f.s3tc.ctex"]
 
 [params]
 
