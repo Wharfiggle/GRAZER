@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 # Declare member variables here. Examples:
-@onready var shootingPoint = get_node(NodePath("Revolver/ShootingPoint"))
-var Bullet = preload("res://Prefabs/bullet.tscn")
+var bullet = preload("res://Prefabs/Bullet.tscn")
+var smoke = preload("res://Prefabs/Smoke.tscn")
 @export var shootTime = 0.2
 var shootTimer = 0.0
 @export var shootBufferTime = 0.1
@@ -26,14 +26,20 @@ var dodgeBufferTimer = 0.0
 @onready var Vocal = $Voice
 #preloading sound files
 
-
 const GRAVITY = 30
 @export var speed = 7
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
-var moveDir = 0
+var moveDir = 0.0
+var aimDir = 0.0
+var aimSwivel = 0.0
+@export var revolverPath:NodePath
+@onready var revolver = get_node(revolverPath)
+#@export var shotgunPath:NodePath
+#var shotgun
+@onready var shootingPoint = revolver.find_child("ShootingPoint")
 var active = true
 
 # Called when the node enters the scene tree for the first time.
@@ -61,12 +67,16 @@ func _process(delta):
 		if(shootBufferTimer < 0):
 			shootBufferTimer = 0
 		
-	if(Input.is_action_just_pressed("shoot")):
+	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0):
 		shootBufferTimer = shootBufferTime
 	if(active && shootBufferTimer > 0 && shootTimer == 0):
-		var b = Bullet.instantiate()
-		b.shoot(self, "player", shootingPoint.global_position, rotation, 18.0, 4.0)
-		#sound.play()
+		var b = bullet.instantiate()
+		b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), 18.0, 4.0)
+		var smokeInstance = smoke.instantiate()
+		shootingPoint.add_child(smokeInstance)
+		smokeInstance.position = Vector3.ZERO
+		smokeInstance.get_child(0).emitting = true
+		smokeInstance.get_child(1).emitting = true
 		shootTimer = shootTime
 	
 	var toAdd = Vector3()
@@ -86,6 +96,11 @@ func _process(delta):
 			toAdd.z += -1
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
+	#rotate towards where player is moving
+	rotation.y = lerp_angle(
+		rotation.y,
+		moveDir,
+		0.1)
 	
 	toAdd = toAdd.normalized() * speed
 	if(toAdd.x == 0 and toAdd.z == 0):
@@ -151,10 +166,14 @@ func _process(delta):
 		var worldCursor = get_node(NodePath("WorldCursor"))
 		if(worldCursor != null):
 			worldCursor.global_position = aimAt
-		rotation.y = lerp_angle(
-			rotation.y,
-			atan2(position.x - aimAt.x, position.z - aimAt.z) + PI,
-			0.1)
+#		rotation.y = lerp_angle(
+#			rotation.y,
+#			atan2(position.x - aimAt.x, position.z - aimAt.z) + PI,
+#			0.1)
+		aimDir = atan2(position.x - aimAt.x, position.z - aimAt.z) + PI
+		#revolver.rotation.y = aimDir - rotation.y
+		#0 - 0.5 is right hand, 0.5 - 1.0 is left hand
+		aimSwivel = fmod(aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
 	else:
 		camera = get_node(NodePath("/root/Level/Camera3D"))
 		

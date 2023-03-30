@@ -4,7 +4,11 @@ extends CharacterBody3D
 @onready var player = get_node("/root/Level/Player")
 #@onready var nav = get_node("/root/Level/Navigation")
 @onready var level = get_tree().root.get_child(0)
-var Bullet = preload("res://Prefabs/bullet.tscn")
+var bullet = preload("res://Prefabs/Bullet.tscn")
+var smoke = preload("res://Prefabs/Smoke.tscn")
+@export var revolverPath:NodePath
+@onready var revolver = get_node(revolverPath)
+@onready var shootingPoint = revolver.find_child("ShootingPoint")
 
 #audioStream
 @onready var Steps = $EFootsteps
@@ -404,9 +408,14 @@ func _on_Timer_timeout():
 func attack(direction:Vector3):
 	for x in 1: #lmao
 		#spawns bullet in the direction the muzzle is facing 
-		var b = Bullet.instantiate()
+		var b = bullet.instantiate()
 		var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
-		b.shoot(self, "enemy", $Marker3D.global_position, bulletRotation, 15.0, 2.0)
+		b.shoot(self, "enemy", shootingPoint.global_position, bulletRotation, 15.0, 2.0)
+		var smokeInstance = smoke.instantiate()
+		shootingPoint.add_child(smokeInstance)
+		smokeInstance.position = Vector3.ZERO
+		smokeInstance.get_child(0).emitting = true
+		smokeInstance.get_child(1).emitting = true
 
 func knock():
 	var enemies = knockbox.get_overlapping_bodies()

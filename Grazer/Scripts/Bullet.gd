@@ -7,7 +7,6 @@ var damage
 var from = ""
 var source
 var active = false
-var smoke = preload("res://Prefabs/Smoke.tscn")
 var hitBody = null
 var hitPoint = null
 @onready var raycast = get_node(NodePath("./RayCast3D"))
@@ -43,15 +42,9 @@ inRange:float, inDamage:float):
 	active = true
 	
 	trailPoints = [Vector3.ZERO, Vector3.ZERO]
-	#necessary to make the mesh independent from other bullet's trail meshes
+	#necessary to make the mesh independent from other bullets' trail meshes
 	bulletTrail = bulletTrailMesh.duplicate()
 	get_node(NodePath("./BulletTrail")).set_mesh(bulletTrail)
-	
-	var smokeInstance = smoke.instantiate()
-	source.add_child(smokeInstance)
-	smokeInstance.global_position = inPosition
-	smokeInstance.get_child(0).emitting = true
-	smokeInstance.get_child(1).emitting = true
 	
 func _process(delta):
 	lifespan -= delta
@@ -62,7 +55,7 @@ func _process(delta):
 		position += velocity * delta
 		
 	if(active):
-		var travelled = abs((position - startPos).length())
+		var travelled = (position - startPos).length()
 		if(travelled >= range - 0.5):
 			stop()
 			

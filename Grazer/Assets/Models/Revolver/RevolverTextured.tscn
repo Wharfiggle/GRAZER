@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://cy6xi4epix5ju"]
 
 [ext_resource type="PackedScene" uid="uid://dlln33d6nvy05" path="res://Assets/Models/Revolver/Revolver.fbx" id="1"]
 [ext_resource type="Texture2D" uid="uid://gvv13xkum2eo" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Normal.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b6lw1m41xx8s6" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_BaseMap.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://gbuep861ce8d" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Metallic.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://n08lli06401e" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Roughness.png" id="5"]
-
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ge4k"]
 albedo_texture = ExtResource("3")
