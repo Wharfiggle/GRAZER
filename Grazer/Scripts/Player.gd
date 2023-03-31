@@ -20,11 +20,13 @@ var dodgeTimer = 0.0
 var dodgeCooldownTimer = 0.0
 @export var dodgeBufferTime = 0.1
 var dodgeBufferTimer = 0.0
+var dodging = false
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
 @onready var Steps = $footsteps
 @onready var Vocal = $Voice
-#preloading sound files
+#preloading sound file
+var run = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
 
 const GRAVITY = 30
 @export var speed = 7
@@ -79,21 +81,32 @@ func _process(delta):
 		smokeInstance.get_child(1).emitting = true
 		shootTimer = shootTime
 	
+	#setting sound 
+	Steps.stream = run
 	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):
 		if(Input.is_action_pressed("moveRight")):
 			toAdd.x += 1
 			toAdd.z += -1
+			#if (!dodging):
+				#Steps.play()
 		elif(Input.is_action_pressed("moveLeft")):
 			toAdd.x += -1
 			toAdd.z += 1
+			#if (!dodging):
+				#Steps.play()
 	if(!(Input.is_action_pressed("moveDown") and Input.is_action_pressed("moveUp"))):
 		if(Input.is_action_pressed("moveDown")):
 			toAdd.x += 1
 			toAdd.z += 1
+			#if (!dodging):
+				#Steps.play()
+				
 		elif(Input.is_action_pressed("moveUp")):
 			toAdd.x += -1
 			toAdd.z += -1
+			#if (!dodging):
+				#Steps.play()
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
 	#rotate towards where player is moving
@@ -199,6 +212,7 @@ func _physics_process(delta):
 		dodgeBufferTimer -= delta
 		if(dodgeBufferTimer < 0):
 			dodgeBufferTimer = 0
+			dodging = true
 	
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		dodgeCooldownTimer = dodgeCooldownTime
@@ -208,6 +222,7 @@ func _physics_process(delta):
 		dodgeTimer -= delta
 		if(dodgeTimer < 0):
 			dodgeTimer = 0
+			dodging = false
 			dodgeVel = Vector3.ZERO
 			tVelocity = Vector3.ZERO
 		else:
@@ -218,7 +233,8 @@ func _physics_process(delta):
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
 		if(dodgeCooldownTimer < 0):
-			dodgeCooldownTimer = 0
+			dodgeCooldownTimer = 0 
+			
 
 
 func findHerdCenter() -> Vector3:

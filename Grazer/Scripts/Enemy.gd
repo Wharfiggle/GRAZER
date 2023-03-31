@@ -13,8 +13,9 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 #audioStream
 @onready var Steps = $EFootsteps
 @onready var Vocal = $EVoice
+@onready var SoundFX = $ESoundFX
 #soundFile Preload
-
+var reloadSound = preload("res://sounds/gunsounds/Reload.wav")
 
 var maxHealth = 10.0
 var health = maxHealth
@@ -272,6 +273,9 @@ func pursuit():
 				clip -= 1
 				print("Bullets left: " + str(clip))
 				if(clip <= 0):
+					#setting sound to reload
+					SoundFX.stream = reloadSound
+					#SoundFX.play()
 					print("Reloading")
 					clip = clipSize
 					reloadCooldown = reloadTime 

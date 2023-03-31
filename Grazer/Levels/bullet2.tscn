@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://38whuxvfq1oj"]
+[gd_scene load_steps=12 format=3 uid="uid://38whuxvfq1oj"]
 
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="1_8i0en"]
 [ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="1_ivg21"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="1_vgu4d"]
 [ext_resource type="Script" path="res://Scripts/knockback.gd" id="3_6qkwa"]
-[ext_resource type="AudioStream" uid="uid://d3r5nge88xesw" path="res://sounds/old sounds/desert-eagle-gunshot-14622.wav" id="4_srdex"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="4_t1n1m"]
 [ext_resource type="PackedScene" uid="uid://6sd6li3j1d2r" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="5_8ncmt"]
 
@@ -42,18 +41,14 @@ directional_shadow_pancake_size = 6.3
 [node name="Player" parent="." instance=ExtResource("1_ivg21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.3782, 1.91388, -33.1452)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85323, 0.634247, -0.42664)
-visible = false
-stream = ExtResource("4_srdex")
-volume_db = 2.162
-
 [node name="spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8271, 102.047, -32.0673)
 
 [node name="enemycube" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.0975, 7.23129, -23.2195)
 script = ExtResource("3_6qkwa")
+knockable = null
+knockbackMod = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemycube"]
 shape = SubResource("4")
@@ -92,6 +87,8 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -31.8324, 8.43322, -20.3087)
 collision_layer = 15
 collision_mask = 15
 script = ExtResource("3_6qkwa")
+knockable = null
+knockbackMod = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy2"]
 shape = SubResource("BoxShape3D_duc3a")

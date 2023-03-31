@@ -59,6 +59,7 @@ var lookSpeed = normalLookSpeed
 @onready var Steps = $walking
 @onready var Vocal = $moo
 #SoundFiles PreLoad
+var moo = preload("res://sounds/Foley files/Foley files (Raw)/Cow sound#01.wav")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -106,6 +107,10 @@ func idle():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	
+	if(!Vocal.playing):
+		Vocal.play()
+	
 	if(herd != null):
 		if(target != null || !draggers.is_empty()):
 			var targetVector

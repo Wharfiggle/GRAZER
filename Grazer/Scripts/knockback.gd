@@ -12,8 +12,9 @@ var lifespan = 10
 
 @onready var sound = $"../enemy2/TestPlayer3D"
 
-var walk = preload("res://sounds/desert-eagle-gunshot-14622.wav")
-var mar = preload("res://sounds/VOX-marauder01.wav")
+#var walk = preload("res://sounds/desert-eagle-gunshot-14622.wav")
+
+#var mar = preload("res://sounds/VOX-marauder01.wav")
 var soundtime = 0.0
 var hit = 2
 
@@ -27,7 +28,7 @@ var HP = maxHP
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sound.stream = mar
+#	sound.stream = mar
 	#sound.play()
 	pass # Replace with function body.
 
@@ -63,7 +64,7 @@ func _physics_process(delta):
 
 func damage_taken(damage, from)-> bool:
 		soundtime = 3.0
-		sound.stream= walk
+		#sound.stream= walk
 		HP -= damage
 		
 		if HP <= 0:
@@ -74,9 +75,4 @@ func damage_taken(damage, from)-> bool:
 
 func _process(delta):
 	
-		if soundtime > 0:
-			print("im in")
-			if !sound.playing:
-				sound.play()
-			soundtime -=delta
 		

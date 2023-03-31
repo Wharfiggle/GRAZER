@@ -14,5 +14,20 @@ layout_mode = 2
 [node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
+[node name="bar" type="HBoxContainer" parent="HBoxContainer/Bars"]
+layout_mode = 2
+
+[node name="count" type="MarginContainer" parent="HBoxContainer/Bars/bar"]
+layout_mode = 2
+
+[node name="Background" type="NinePatchRect" parent="HBoxContainer/Bars/bar/count"]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="HBoxContainer/Bars/bar/count"]
+layout_mode = 2
+
+[node name="number" type="Label" parent="HBoxContainer/Bars/bar/count"]
+layout_mode = 2
+
 [node name="counters" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

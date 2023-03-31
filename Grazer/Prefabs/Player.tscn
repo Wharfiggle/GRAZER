@@ -49,6 +49,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.000588231, 0.0664502,
 
 [node name="footsteps" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0685701, 0.103706)
+max_db = 4.622
 bus = &"soundFXMain"
 
 [node name="Voice" type="AudioStreamPlayer3D" parent="."]

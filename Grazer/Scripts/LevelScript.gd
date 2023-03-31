@@ -4,15 +4,15 @@ extends Node3D
 @onready var music = $BackgroundPlayer
 
 #music
-#var testsound = preload("res://sounds/old sounds/cowbellohyeah.wav")
+var sound = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#selecting sound to play
-	#music.stream = testsound
+	music.stream = sound
 	#Starting sound
-	#music.play()
+	music.play(5.37)
 	
 	pass # Replace with function body.
 

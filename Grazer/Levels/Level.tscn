@@ -4,14 +4,14 @@
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://Prefabs/FPSCounter.tscn" id="2_c6l00"]
-[ext_resource type="PackedScene" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
+[ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
 [ext_resource type="ArrayMesh" uid="uid://dx1bco56p7ok5" path="res://Assets/Models/old/CactusOld/10436_Cactus_v1_max2010_it2.obj" id="5"]
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://Assets/Images/empress of bostonia.png" id="5_hc5au"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneColor.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneGreenTest.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="9"]
-[ext_resource type="PackedScene" path="res://Prefabs/CowCounter.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_ilocr")
