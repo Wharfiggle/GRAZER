@@ -1,4 +1,7 @@
 extends Node3D
+
+class_name tileStructures
+
 @onready var player = get_node("/root/Level/Player")
 
 var pathname = ""
@@ -31,3 +34,25 @@ func _process(delta):
 	elif(distance > renderRange + 1 and scene != null):
 		scene.queue_free()
 		
+
+#Returns the 
+static func retrieveStructureInfo(id):
+	
+	var pathname = ""
+	var width = 0
+	var depth = 0
+	
+	match[id]:
+		[1]: #Checkpoint
+			pathname = ""
+			width = 3
+			depth = 4
+			
+		[2]:
+			pass
+	
+	
+	
+	
+	return [pathname, width, depth]
+

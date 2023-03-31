@@ -1,12 +1,12 @@
 extends Node3D
 
-var vParent
+@onready var vParent = get_node("AllTerrain")
 var chunkCoords = Vector3()
 var chunkData = []
 
 var loading = false
 
-@export var mapWidth = 5
+var mapWidth = 5
 
 func start(_chunkCoords):
 	chunkCoords = _chunkCoords

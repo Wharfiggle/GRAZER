@@ -20,13 +20,17 @@ var revolution_distance = 8.0
 @onready var activeCoord = []
 @onready var activeChunks = []
 
-var counter = 0
-var mutex
-var semaphore
-var thread
-var exit_thread = false
+var numLevels
+#var mapWidth is set in ChunkNode.gd
+@export var levelLength = 15 #How many tiles until a checkpoint is set
+var structures = []
+var structPerLevel = 5
+var checkLength = null
+var checkWidth = null
 
 func _ready(): 
+	checkLength = tileStructures.retrieveStructureInfo(1)[1] #Gets length of checkpoints
+	checkLength = tileStructures.retrieveStructureInfo(1)[2] #Gets width
 	player = get_node(playerPath)
 	currentChunk = getPlayerChunk(player.transform.origin)
 	loadChunk()
@@ -71,7 +75,6 @@ func _process(_delta):
 	else:
 		chunkLoaded = false;
 	previousChunk = currentChunk
-
 
 #converts the parameter coordinates into an smaller coord, 16,16 -> 1,1
 func getPlayerChunk(pos):
@@ -135,14 +138,92 @@ func _get_chunk_key(coords : Vector3):
 	key.x = wrapf(coords.x, -revolution_distance, revolution_distance+1)
 	return key
 
-#Decides where to place structures and reserves empty space for them
-#Places the sturcture nodes in the game
+#Function that is called once at game start to pick locations for structures,
+#reserve empty space in the regular chunk system for them (so they don't overlap normal tiles)
+#and places the StructureNodes that load in the structure when the play gets close enough
 func generateStructures():
+	#Loop for levels
+	for l in numLevels:
+		#Generate the check points
+		if(l < numLevels):
+			var placed = false
+			var failed = false
+			var loops = 20
+			var origin = Vector3()
+			#TODO Maybe turn below loop into a function?
+			while(!placed and !failed):
+				origin.x = -1 + checkWidth / 2 
+				origin.y = 0
+				origin.z = levelLength * (l + 1) - checkLength
+				placed = checkPlacement(1, _get_chunk_key(origin))
+				#Only loops limited time to prevent 
+				loops -= 1
+				if(loops <= 0):
+					print("Failed to place structure id: " + str(1))
+					failed = true
+			
+			#If it found valid coordinates, proceed to adding the structure
+			if(!failed):
+				addStructure(1, _get_chunk_key(origin))
+			
+		else:
+			#For the last level, generates the final pasture, instead of a checkpoint
+			#TODO ADD FINAL PASTURE 
+			pass
+		
+		for c in structPerLevel:
+			#Generate normal structures:
+			#Pick a random origin point and id
+			#Check if the placement would work
+			#If it does, place it and reserve empty space
+			#If not, try a few more times
+			
+			#TODO ADD NORMAL STRUCTURE GENERATION
+			
+			
+			pass
+	
 	
 	pass
+
+#Loop through all generated structures and checks if the 
+#new structure would overlap
+func checkPlacement(id, coords) -> bool:
+	#coords are in tile coordinates
+	for c in structures:
+		if(checkOverlap(id, coords, c[0], c[1])):
+			return false
+	return true
+
+#Helper function to check if two structures would overlap
+func checkOverlap(idA, coordsA, idB, coordsB) -> bool:
+	
+	#TODO ADD MATH TO CHECK STRUCTURE OVERLAP
+	
+	return false
+
+#Adds valid structure to the structure array, reserves the empty space, and places the node
+func addStructure(id, coords):
+	var data = tileStructures.retrieveStructureInfo(id)
+	
+	#Add structure to structure array
+	structures.append([id, coords, data[1], data[2]])
+	#[id, coordinates, width, depth]
+	
+	#Reserve empty chunks
+	for x in data[1]:
+		for z in data[2]:
+			var tVec = Vector3(coords.x + x, 0, coords.z + z)
+			setEmptyChunk(tVec)
+	
+	#Places structure node in correct place on map
+	
+	#TODO ADD STRUCTURE NODE PLACEMENT
 	
 
+#Sets a chunk as empty
 func setEmptyChunk(coords : Vector3):
+	#coords are in tile coordinates
 	if(WorldSave.loadedCoords.find(coords) != -1):
 		return
 	WorldSave.addChunk(coords)
