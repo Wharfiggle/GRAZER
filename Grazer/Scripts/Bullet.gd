@@ -13,7 +13,7 @@ var hitPoint = null
 var bulletTrailMesh = preload("res://Prefabs/BulletTrailMesh.tres")
 var bulletTrail
 @onready var GunShot = $Boom
-var GSSound = preload("res://sounds/desert-eagle-gunshot-14622.wav")
+#var GSSound = preload("res://sounds/desert-eagle-gunshot-14622.wav")
 var range
 var startPos
 var trailPoints
@@ -23,7 +23,7 @@ var trailEnd = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#selecting sound
-	GunShot.stream = GSSound
+	#GunShot.stream = GSSound
 	#begining sound play
 	GunShot.play()
 	raycast.target_position = Vector3(0, -muzzle_velocity / 60.0, 0)
