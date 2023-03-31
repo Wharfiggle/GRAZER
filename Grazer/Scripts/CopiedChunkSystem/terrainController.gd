@@ -43,7 +43,7 @@ func _process(_delta):
 		var scrWid = camSize / 9.0 * 16.0 #only works with 16:9 aspect ratio
 		var enemy = enemyPrefab.instantiate()
 		var type = enemy.enemyTypes.gunman
-		if(Input.is_action_pressed("debug5")):
+		if(Input.is_action_just_pressed("debug5")):
 			type = enemy.enemyTypes.thief
 		enemy.marauderType = type
 		var horOrVert = randi_range(0, 1)
@@ -51,12 +51,12 @@ func _process(_delta):
 		if(topOrBot == 0): topOrBot = -1
 		if(horOrVert == 0):
 			enemy.position = Vector3(
-				topOrBot * (scrWid / 2.0), 1, 
+				topOrBot * (scrWid / 2.0 + 2), 1, 
 				randf_range(-scrHei / 2.0, scrHei / 2.0))
 		else:
 			enemy.position = Vector3(
 				randf_range(-scrWid / 2.0, scrWid / 2.0), 1, 
-				topOrBot * (scrHei / 2.0))
+				topOrBot * (scrHei / 2.0 + 2))
 		enemy.position = player.position + Vector3(
 			cos(-PI/4.0) * enemy.position.x - sin(-PI/4.0) * enemy.position.z, 0,
 			sin(-PI/4.0) * enemy.position.x + cos(-PI/4.0) * enemy.position.z)

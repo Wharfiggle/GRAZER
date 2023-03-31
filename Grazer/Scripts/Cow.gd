@@ -100,6 +100,12 @@ func idle():
 	target = null
 	followingHerd = false
 
+func damage_taken(damage, from) -> bool:
+	if(from == "player" && !draggers.is_empty()):
+		return false
+	else:
+		return true
+
 #equation for diagonal length of screen
 #var rectWid = 15.0 / 9.0 * 16.0
 #var rectHei = 15.0 / cos(55.0 * PI / 180.0)

@@ -44,9 +44,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tc7lh")
 [node name="Revolver" parent="." instance=ExtResource("3_2k36g")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.3, 0.75)
 
-[node name="ShootingPoint" type="Marker3D" parent="Revolver"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.000588231, 0.0664502, 0.28775)
-
 [node name="footsteps" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0685701, 0.103706)
 max_db = 4.622

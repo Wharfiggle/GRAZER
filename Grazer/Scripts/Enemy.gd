@@ -449,6 +449,7 @@ func damage_taken(damage, from) -> bool:
 			if(draggedCow != null):
 				draggedCow.stopDragging(self)
 			queue_free()
+			print("dead")
 		return true
 	else:
 		return false
