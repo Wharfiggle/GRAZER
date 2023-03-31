@@ -38,7 +38,7 @@ func _process(delta):
 	#Instead this function tries to check every frame if its done before attempting
 	
 	if(loading):
-		print(ResourceLoader.load_threaded_get_status(chunkData[0]))
+		#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
 		if(ResourceLoader.load_threaded_get_status(chunkData[0]) == 3):
 			#This function will freeze the game until the scene is fully loaded
 			#But once loaded, it does return the reference to the scene that we need
@@ -65,7 +65,7 @@ func calcChunk(_chunkCoords) -> String:
 		pathName += "WallTiles/wall1b"
 	else:
 		pathName += "BasicTiles/basic"
-		pathName += str(randi_range(4,4))
+		pathName += str(randi_range(1,4))
 	pathName += ".tscn"
 	return pathName
 
