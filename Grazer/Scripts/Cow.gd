@@ -68,6 +68,15 @@ func _ready():
 	shuffleTime = rng.randf_range(
 		shuffleTime - shuffleTimeRandOffset, 
 		shuffleTime + shuffleTimeRandOffset)
+		
+	var rigidbody = model.get_node("RigidBody3D")
+	var speed = rigidbody.get_linear_velocity().length()
+	
+	$Model/AnimationTree.set("parameters/conditions/Drag", false)
+	$Model/AnimationTree.set("parameters/conditions/Not_Drag", true)
+	$Model/AnimationTree.set("parameters/conditions/Graze", false)
+	$Model/AnimationTree.set("parameters/conditions/Not_Graze", true)
+
 
 func startDragging(marauder):
 	draggers.append(marauder)
@@ -76,6 +85,8 @@ func startDragging(marauder):
 	followDistance = dragFollowDistance
 	herd.removeHuddler(self)
 	enableRayCasts()
+	$Model/AnimationTree.set("parameters/conditions/Drag", true)
+	$Model/AnimationTree.set("parameters/conditions/Not_Drag", false)
 	
 func stopDragging(marauder):
 	draggers.erase(marauder)
@@ -83,6 +94,8 @@ func stopDragging(marauder):
 		maxSpeed = normalSpeed
 		lookSpeed = normalLookSpeed
 		followDistance = normalFollowDistance
+	$Model/AnimationTree.set("parameters/conditions/Drag", false)
+	$Model/AnimationTree.set("parameters/conditions/Not_Drag", true)
 	
 func enableRayCasts():
 	for i in rayCasts:
@@ -98,7 +111,7 @@ func idle():
 	follow = false
 	target = null
 	followingHerd = false
-
+	$Model/AnimationTree.set("parameters/Movement/BlendMove/blend_amount", -1)
 #equation for diagonal length of screen
 #var rectWid = 15 / cos(55 * PI / 180)
 #var rectHei = 15 / 9 * 16
@@ -107,6 +120,17 @@ func idle():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if(herd != null):
+		
+		
+		# Get current velocity value
+		#var velocity = get_current_velocity()
+		#var velocity = $Cow.linear_velocity
+
+		#Normalize Speed to range between -1 and 1
+		var speedClamp = (speed - 0) / (normalSpeed - 0) * 2 - 1
+		$Model/AnimationTree.set("parameters/Movement/BlendMove/blend_amount", speedClamp)
+	
+	
 		if(target != null || !draggers.is_empty()):
 			var targetVector
 			if(!draggers.is_empty()):
