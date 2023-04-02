@@ -74,6 +74,7 @@ func _ready():
 	animation.set("parameters/conditions/Not_Drag", true)
 	animation.set("parameters/conditions/Graze", false)
 	animation.set("parameters/conditions/Not_Graze", true)
+	#get_node(NodePath("./Model/AnimationPlayer")).set_speed(10.0)
 
 func startDragging(marauder):
 	draggers.append(marauder)
@@ -206,7 +207,7 @@ func _physics_process(delta):
 				#speedTransitionRadius meters FARTHER than targetDistance or more: speed
 				#speedTransitionRadius meters CLOSER than targetDistance or more: -speed
 				#interpolates between the two for all values in between
-				speed = min( max( (dist - targetDistance) / speedTransitionRadius, -1 ), 1 ) * maxSpeed
+				speed = min( max( (dist - targetDistance) / speedTransitionRadius, 0 ), 1 ) * maxSpeed
 				var mmoTargetValue = 1
 				if(maneuverTurnOffset > 0.01 || maneuverTurnOffset < -0.01):
 					mmoTargetValue = maneuverMoveSpeed
@@ -220,6 +221,7 @@ func _physics_process(delta):
 				model.position.z = lerp(model.position.z, 0.0, 0.1)
 				
 				#Normalize Speed to range between -1 and 1
+				#Make negative for goblin mode
 				var speedClamp = speed / maxSpeed * 2 - 1
 				animation.set("parameters/Movement/BlendMove/blend_amount", speedClamp)
 				
