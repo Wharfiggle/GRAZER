@@ -6,7 +6,7 @@ extends Node3D
 #music
 var sound = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
 @onready var invitory = $invitory
-@onready var player = get_node(NodePath("/root/Level/PLayer"))
+@onready var player = get_node(NodePath("/root/Level/Player"))
 #levels 1, 2, 3 for capacity, damage, reload for revolver, shotgun
 var gunStats = [ [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0] ]
 var itemTextures = [

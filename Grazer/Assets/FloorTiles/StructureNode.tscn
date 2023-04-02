@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Assets/FloorTiles/StructureNode.gd" id="1_64jmv"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3butp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7m1o"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_35wjo"]
-material = SubResource("StandardMaterial3D_3butp")
+material = SubResource("StandardMaterial3D_g7m1o")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bt7b6"]
 
@@ -13,7 +13,7 @@ material = SubResource("StandardMaterial3D_3butp")
 script = ExtResource("1_64jmv")
 
 [node name="DataIndicator" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.795, 8)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8, 0.795, 8)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DataIndicator"]
 mesh = SubResource("BoxMesh_35wjo")

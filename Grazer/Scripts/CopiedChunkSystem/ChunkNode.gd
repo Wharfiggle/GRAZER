@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var vParent = get_node("AllTerrain")
+@onready var vParent = get_node("/root/Level/AllTerrain")
 var chunkCoords = Vector3()
 var chunkData = []
 
@@ -14,9 +14,6 @@ func start(_chunkCoords):
 	if(WorldSave.loadedCoords.find(_chunkCoords) == -1):
 		chunkData.append(calcChunk(chunkCoords))
 		
-		#chunkData is the data variable for everything in a chunk, so it'll need to
-		#save the chunk path and anything else
-		
 		#Adding this chunk node to the world save array
 		WorldSave.addChunk(_chunkCoords)
 	
@@ -24,12 +21,16 @@ func start(_chunkCoords):
 	else:
 		chunkData = WorldSave.retriveData(chunkCoords)
 	
+	if(chunkData[0] == ""):
+		print("Chunk " + str(position) + " is empty")
+		return
+	
 	#Theoretically this doesn't need to be called if its already been loaded before
 	ResourceLoader.load_threaded_request(chunkData[0],"",false, ResourceLoader.CACHE_MODE_REUSE)
 	
 	#This function returns 1 if in progress or 3 if done
 	#It needs to be used to pause this script until 3 is returned, possibly using a semaphore
-	print(ResourceLoader.load_threaded_get_status(chunkData[0]))
+	#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
 	loading = true
 	
 
@@ -38,8 +39,10 @@ func _process(delta):
 	#Instead this function tries to check every frame if its done before attempting
 	
 	if(loading):
+		if(chunkData[0] == ""):
+			loading = false
 		#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
-		if(ResourceLoader.load_threaded_get_status(chunkData[0]) == 3):
+		elif(ResourceLoader.load_threaded_get_status(chunkData[0]) == 3):
 			#This function will freeze the game until the scene is fully loaded
 			#But once loaded, it does return the reference to the scene that we need
 			var chunk = ResourceLoader.load_threaded_get(chunkData[0])

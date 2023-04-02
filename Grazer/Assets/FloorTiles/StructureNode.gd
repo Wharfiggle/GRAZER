@@ -4,12 +4,18 @@ class_name tileStructures
 
 @onready var player = get_node("/root/Level/Player")
 
+var tileId = 0
+
 var pathname = ""
 var width = 1
 var depth = 1
 var renderRange = 3
+var alwaysRendered = false
+
 var scene
+
 var loading = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -35,6 +41,13 @@ func _process(delta):
 		scene.queue_free()
 		
 
+func setStructureData(id):
+	tileId = id
+	var info = retrieveStructureInfo(tileId)
+	pathname = info[0]
+	width = info[1]
+	depth = info[2]
+
 #Returns the 
 static func retrieveStructureInfo(id):
 	
@@ -44,11 +57,14 @@ static func retrieveStructureInfo(id):
 	
 	match[id]:
 		[1]: #Checkpoint
-			pathname = ""
+			pathname = "res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn"
 			width = 3
 			depth = 4
 			
 		[2]:
+			pathname = "res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn"
+			width = 2
+			depth = 1
 			pass
 	
 	

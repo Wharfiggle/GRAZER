@@ -7,6 +7,7 @@ var player
 @onready var enemyPrefab = preload("res://Prefabs/Enemy.tscn")
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
+@onready var structureNode = preload("res://Assets/FloorTiles/StructureNode.tscn")
 
 var renderDistance = 2
 var tileWidth = 16.0
@@ -20,17 +21,19 @@ var revolution_distance = 8.0
 @onready var activeCoord = []
 @onready var activeChunks = []
 
-var numLevels
-#var mapWidth is set in ChunkNode.gd
+var numLevels = 3
+var mapWidth = 5 #NEEDS TO BE MANUALLY SYNCED WITH mapWidth IN CHUNKNODE.GD
 @export var levelLength = 15 #How many tiles until a checkpoint is set
 var structures = []
-var structPerLevel = 5
-var checkLength = null
-var checkWidth = null
+var structPerLevel = 8
+var checkLength = 4
+var checkWidth = 3
 
 func _ready(): 
 	checkLength = tileStructures.retrieveStructureInfo(1)[1] #Gets length of checkpoints
 	checkLength = tileStructures.retrieveStructureInfo(1)[2] #Gets width
+	#generateStructures()
+	
 	player = get_node(playerPath)
 	currentChunk = getPlayerChunk(player.transform.origin)
 	loadChunk()
@@ -130,12 +133,13 @@ func loadChunk():
 	
 	chunkLoaded = true
 
+#Does essentially nothing because circumnavigation is disabled
 func _get_chunk_key(coords : Vector3):
 	var key = coords
 	key.y = 0
 	if !circumnavigation:
 		return key
-	key.x = wrapf(coords.x, -revolution_distance, revolution_distance+1)
+	#key.x = wrapf(coords.x, -revolution_distance, revolution_distance+1)
 	return key
 
 #Function that is called once at game start to pick locations for structures,
@@ -150,21 +154,20 @@ func generateStructures():
 			var failed = false
 			var loops = 20
 			var origin = Vector3()
-			#TODO Maybe turn below loop into a function?
 			while(!placed and !failed):
-				origin.x = -1 + checkWidth / 2 
+				origin.x = -checkWidth / 2 
 				origin.y = 0
-				origin.z = levelLength * (l + 1) - checkLength
-				placed = checkPlacement(1, _get_chunk_key(origin))
+				origin.z = -(levelLength * (l + 1) - checkLength)
+				origin *= tileWidth
+				placed = checkPlacement(1, origin)
 				#Only loops limited time to prevent 
 				loops -= 1
 				if(loops <= 0):
 					print("Failed to place structure id: " + str(1))
 					failed = true
-			
 			#If it found valid coordinates, proceed to adding the structure
 			if(!failed):
-				addStructure(1, _get_chunk_key(origin))
+				addStructure(1, origin)
 			
 		else:
 			#For the last level, generates the final pasture, instead of a checkpoint
@@ -178,13 +181,31 @@ func generateStructures():
 			#If it does, place it and reserve empty space
 			#If not, try a few more times
 			
-			#TODO ADD NORMAL STRUCTURE GENERATION
+			var placed = false
+			var failed = false
+			var loops = 20
+			var origin = Vector3()
+			#TODO Maybe change from complete random to a more balenced spread of structures?
+			var id = randi_range(2,2)
+			var structureInfo = tileStructures.retrieveStructureInfo(id)
+			while(!placed and !failed):
+				origin.x = randi_range(-mapWidth + 1 , mapWidth - structureInfo[1])
+				origin.y = 0
+				#-2 is in hopes of preventing overlap with the checkpoints
+				origin.z = randi_range(-l * levelLength,
+				-(((l + 1) * levelLength) - 2))
+				origin *= tileWidth
+				placed = checkPlacement(id, origin)
+				
+				#Only loops limited time to prevent infinite looping
+				loops -= 1
+				if(loops <= 0):
+					print("Failed to place structure id: " + str(id))
+					failed = true
+			#If it found valid coordinates, proceed to adding the structure
+			if(!failed):
+				addStructure(id, origin)
 			
-			
-			pass
-	
-	
-	pass
 
 #Loop through all generated structures and checks if the 
 #new structure would overlap
@@ -195,38 +216,63 @@ func checkPlacement(id, coords) -> bool:
 			return false
 	return true
 
-#Helper function to check if two structures would overlap
+#Helper function to check if two structures would overlap. Returns false, if they don't.
 func checkOverlap(idA, coordsA, idB, coordsB) -> bool:
+	var structureA = tileStructures.retrieveStructureInfo(idA)
+	var structureB = tileStructures.retrieveStructureInfo(idB)
+	var widthA = structureA[1]
+	var depthA = structureA[2]
+	var widthB = structureB[1]
+	var depthB = structureB[2]
 	
-	#TODO ADD MATH TO CHECK STRUCTURE OVERLAP
-	
-	return false
+	var extraTiles = 0 #Variable for adding extra spaces around structures
+	if(coordsA.x > coordsB.x + widthB + extraTiles):
+		return false
+	if(extraTiles + coordsA.x + widthA < coordsB.x):
+		return false
+	if(coordsA.z < coordsB.z - depthB - extraTiles):
+		return false
+	if(-extraTiles + coordsA.z - depthA < coordsB.z):
+		return false
+	return true
 
 #Adds valid structure to the structure array, reserves the empty space, and places the node
 func addStructure(id, coords):
 	var data = tileStructures.retrieveStructureInfo(id)
-	
+	print("Total structures placed: " + str(structures.size()))
+	print("Adding structure " + str(id) + " at " + str(coords))
 	#Add structure to structure array
 	structures.append([id, coords, data[1], data[2]])
 	#[id, coordinates, width, depth]
-	
+
 	#Reserve empty chunks
 	for x in data[1]:
 		for z in data[2]:
-			var tVec = Vector3(coords.x + x, 0, coords.z + z)
+			var tVec = Vector3(coords.x + (x * tileWidth), 0, coords.z - (z * tileWidth))
+			#print("Set empty: " + str(tVec))
 			setEmptyChunk(tVec)
 	
 	#Places structure node in correct place on map
 	
-	#TODO ADD STRUCTURE NODE PLACEMENT
+	var instance = structureNode.instantiate()
+	instance.position = coords
+	instance.setStructureData(id)
 	
 
 #Sets a chunk as empty
 func setEmptyChunk(coords : Vector3):
 	#coords are in tile coordinates
 	if(WorldSave.loadedCoords.find(coords) != -1):
+		print("Tried to set " + str(coords) + " to empty, but its already loaded!")
+		if(WorldSave.retriveData(coords)[0] == ""):
+			print("but its already set to empty?")
 		return
 	WorldSave.addChunk(coords)
 	var data = []
 	data.append("")
 	WorldSave.saveChunk(coords,data)
+
+func printStructureList():
+	print("Sructures:")
+	for s in structures:
+		print("id: " + str(s[0]) + " coords: " + str(s[1]))

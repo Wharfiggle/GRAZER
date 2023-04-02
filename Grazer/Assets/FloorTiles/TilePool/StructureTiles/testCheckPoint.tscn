@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://btgqdxu7cr58d"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="NavigationMesh" id="4"]
+vertices = PackedVector3Array(39.5, 0.45, -47.75, 39.5, 0.45, -55.5, 27.75, 0.45, -55.5, 4.25, 0.45, -55.5, -7.5, 0.45, -55.5, -7.5, 0.45, -47.75, -7.5, 0.45, -0.5, -7.5, 0.45, 7.5, 4.25, 0.45, 7.5, 27.75, 0.45, 7.5, 39.5, 0.45, 7.5, 39.5, 0.45, -0.5, -7.5, 0.45, -8.25, -7.5, 0.45, -0.5, 4.25, 0.45, 7.5, 27.75, 0.45, 7.5, 39.5, 0.45, -0.5, 39.5, 0.45, -8.25, 39.5, 0.45, -39.75, 39.5, 0.45, -47.75, 27.75, 0.45, -55.5, 4.25, 0.45, -55.5, -7.5, 0.45, -47.75, -7.5, 0.45, -39.75, 39.5, 0.45, -32, 39.5, 0.45, -39.75, 27.75, 0.45, -55.5, 4.25, 0.45, -55.5, -7.5, 0.45, -39.75, -7.5, 0.45, -32, -7.5, 0.45, -16.25, -7.5, 0.45, -8.25, 4.25, 0.45, 7.5, 16, 0.45, 7.5, 27.75, 0.45, 7.5, 39.5, 0.45, -8.25, 39.5, 0.45, -16.25, 16, 0.45, 7.5, 39.5, 0.45, -32, 27.75, 0.45, -55.5, 16, 0.45, -55.5, 39.5, 0.45, -24, 16, 0.45, -55.5, 4.25, 0.45, -55.5, -7.5, 0.45, -32, -7.5, 0.45, -24, 39.5, 0.45, -24, 16, 0.45, -55.5, -7.5, 0.45, -24, -7.5, 0.45, -16.25, 16, 0.45, 7.5, 39.5, 0.45, -16.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(23, 22, 21), PackedInt32Array(24, 26, 25), PackedInt32Array(29, 28, 27), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(35, 34, 36), PackedInt32Array(36, 34, 37), PackedInt32Array(38, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 42), PackedInt32Array(51, 50, 46), PackedInt32Array(46, 50, 49), PackedInt32Array(46, 49, 48), PackedInt32Array(46, 48, 47)]
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6wcr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j4h6g"]
+material = SubResource("StandardMaterial3D_g6wcr")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qlfr2"]
+
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 4, 16, 0, -24)
+shape = SubResource("1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("4")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 4, 16, 0, -24)
+mesh = SubResource("2")
+skeleton = NodePath("../..")
+
+[node name="DataIndicator" type="StaticBody3D" parent="."]
+transform = Transform3D(24, 0, 0, 0, 10, 0, 0, 0, 40, 16, 1.163, -24)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DataIndicator"]
+mesh = SubResource("BoxMesh_j4h6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DataIndicator"]
+shape = SubResource("BoxShape3D_qlfr2")
+disabled = true
