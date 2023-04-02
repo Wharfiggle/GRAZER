@@ -14,6 +14,7 @@ var bulletTrailMesh = preload("res://Prefabs/BulletTrailMesh.tres")
 var bulletTrail
 @onready var GunShot = $Boom
 var GSSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
+var critSound = preload("res://sounds/gunsounds/crit shot.wav")
 var range
 var startPos
 var trailPoints
@@ -22,14 +23,10 @@ var trailEnd = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#selecting sound
-	GunShot.stream = GSSound
-	#begining sound play
-	GunShot.play(.55)
 	raycast.target_position = Vector3(0, -muzzle_velocity / 60.0, 0)
 
 func shoot(inSource:Node3D, inFrom:String, inPosition:Vector3, inRotation:Vector3, 
-inRange:float, inDamage:float):
+inRange:float, inDamage:float, crit:bool):
 	source = inSource
 	source.get_parent().add_child(self)
 	from = inFrom
@@ -45,6 +42,14 @@ inRange:float, inDamage:float):
 	#necessary to make the mesh independent from other bullets' trail meshes
 	bulletTrail = bulletTrailMesh.duplicate()
 	get_node(NodePath("./BulletTrail")).set_mesh(bulletTrail)
+	
+	#selecting sound
+	if(!crit):
+		GunShot.stream = GSSound
+		GunShot.play(.55)
+	else:
+		GunShot.stream = critSound
+		GunShot.play()
 	
 func _process(delta):
 	lifespan -= delta
@@ -90,6 +95,8 @@ func _physics_process(delta):
 func hit(body):
 	if(hitBody.has_method("damage_taken")):
 		body.damage_taken(damage, from)
+	if(source.has_method("healFromBullet")):
+		source.healFromBullet(damage)
 	stop()
 
 func stop():

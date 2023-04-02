@@ -8,7 +8,7 @@ var shootTimer = 0.0
 @export var shootBufferTime = 0.1
 var shootBufferTimer = 0.0
 @onready var knockbox = $knockbox
-var maxHitpoints = 10
+var maxHitpoints = 10.0
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
@@ -28,6 +28,18 @@ var dodging = false
 #preloading sound file
 var run = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
 
+#revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
+@export var gunStats = [0, 0, 0, 0, 0, 0]
+@export var potionTime = 30.0
+var potionTimer = 0.0
+var potion
+var infiniteAmmo = false
+var lifeLeach = 0.0
+var potionSpeedup = 1.0
+var alwaysCrit = false
+
+var critChance = 0.1
+
 const GRAVITY = 30
 @export var speed = 7
 const JUMP = 15
@@ -42,6 +54,7 @@ var aimSwivel = 0.0
 #@export var shotgunPath:NodePath
 #var shotgun
 @onready var shootingPoint = revolver.find_child("ShootingPoint")
+var onRevolver = true
 var active = true
 
 # Called when the node enters the scene tree for the first time.
@@ -68,17 +81,32 @@ func _process(delta):
 		shootBufferTimer -= delta
 		if(shootBufferTimer < 0):
 			shootBufferTimer = 0
+			
+	if(potionTimer > 0):
+		potionTimer -= delta
+		if(potionTimer < 0):
+			potionTimer = 0
+			potion.use(false)
+			potion = null
 		
 	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0):
 		shootBufferTimer = shootBufferTime
 	if(active && shootBufferTimer > 0 && shootTimer == 0):
-		var b = bullet.instantiate()
-		b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), 18.0, 4.0)
 		var smokeInstance = smoke.instantiate()
 		shootingPoint.add_child(smokeInstance)
 		smokeInstance.position = Vector3.ZERO
 		smokeInstance.get_child(0).emitting = true
 		smokeInstance.get_child(1).emitting = true
+		var critMult = 1.0
+		if(alwaysCrit || randf_range(0, 1) <= critChance):
+			critMult = 2.0
+			#crit particle
+			#smokeInstance.get_child(2).emitting = true
+		if(onRevolver):
+			var b = bullet.instantiate()
+			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), 18.0, 2.0 * critMult, (critMult == 2.0))
+		else:
+			print("shotgun shoot")
 		shootTimer = shootTime
 	
 	#setting sound 
@@ -116,7 +144,7 @@ func _process(delta):
 			moveDir,
 			0.1)
 	
-	toAdd = toAdd.normalized() * speed
+	toAdd = toAdd.normalized() * speed * potionSpeedup
 	if(toAdd.x == 0 and toAdd.z == 0):
 		tVelocity.x = lerp(tVelocity.x,0.0,0.1)
 		tVelocity.z = lerp(tVelocity.z,0.0,0.1)
@@ -256,6 +284,11 @@ func damage_taken(damage, from) -> bool:
 		return true
 	else:
 		return false
+		
+func healFromBullet(damageDone):
+	hitpoints += damageDone * lifeLeach
+	if(hitpoints >= maxHitpoints):
+		hitpoints = maxHitpoints
 		
 func die():
 	active = false
