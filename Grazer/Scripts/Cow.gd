@@ -37,6 +37,7 @@ var maneuverTurnDir = 1
 	#get_node(NodePath("./RayCastDirect"))]
 var raySize = [2.0, 1.0, 2.0]
 @onready var model = get_node(NodePath("./Model"))
+@onready var animation = model.find_child("AnimationTree")
 var herd
 var tVelocity = Vector3(0, 0, 0)
 var speed = 0.0
@@ -59,7 +60,6 @@ var lookSpeed = normalLookSpeed
 @onready var Steps = $walking
 @onready var Vocal = $moo
 #SoundFiles PreLoad
-var moo = preload("res://sounds/Foley files/Foley files (Raw)/Cow sound#01.wav")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,6 +69,11 @@ func _ready():
 	shuffleTime = rng.randf_range(
 		shuffleTime - shuffleTimeRandOffset, 
 		shuffleTime + shuffleTimeRandOffset)
+	
+	animation.set("parameters/conditions/Drag", false)
+	animation.set("parameters/conditions/Not_Drag", true)
+	animation.set("parameters/conditions/Graze", false)
+	animation.set("parameters/conditions/Not_Graze", true)
 
 func startDragging(marauder):
 	draggers.append(marauder)
@@ -77,6 +82,8 @@ func startDragging(marauder):
 	followDistance = dragFollowDistance
 	herd.removeHuddler(self)
 	enableRayCasts()
+	animation.set("parameters/conditions/Drag", true)
+	animation.set("parameters/conditions/Not_Drag", false)
 	
 func stopDragging(marauder):
 	draggers.erase(marauder)
@@ -84,6 +91,8 @@ func stopDragging(marauder):
 		maxSpeed = normalSpeed
 		lookSpeed = normalLookSpeed
 		followDistance = normalFollowDistance
+	animation.set("parameters/conditions/Drag", false)
+	animation.set("parameters/conditions/Not_Drag", true)
 	
 func enableRayCasts():
 	for i in rayCasts:
@@ -99,24 +108,14 @@ func idle():
 	follow = false
 	target = null
 	followingHerd = false
-
-func damage_taken(damage, from) -> bool:
-	if(from == "player" && !draggers.is_empty()):
-		return false
-	else:
-		return true
-
+	animation.set("parameters/Movement/BlendMove/blend_amount", -1)
 #equation for diagonal length of screen
-#var rectWid = 15.0 / 9.0 * 16.0
-#var rectHei = 15.0 / cos(55.0 * PI / 180.0)
+#var rectWid = 15 / cos(55 * PI / 180)
+#var rectHei = 15 / 9 * 16
 #var rectDiag = rectWid / sin( arctan( rectWid / rectHei )
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	
-	if(!Vocal.playing):
-		Vocal.play()
-	
 	if(herd != null):
 		if(target != null || !draggers.is_empty()):
 			var targetVector
@@ -220,6 +219,10 @@ func _physics_process(delta):
 				tVelocity.z = -cos(rotation.y) * speed
 				model.position.z = lerp(model.position.z, 0.0, 0.1)
 				
+				#Normalize Speed to range between -1 and 1
+				var speedClamp = speed / maxSpeed * 2 - 1
+				animation.set("parameters/Movement/BlendMove/blend_amount", speedClamp)
+				
 				#old shuffle algorithm
 				#var prevAcc = acceleration
 				#acceleration = accelerationModifier * (dist - targetDistance)
@@ -237,7 +240,12 @@ func _physics_process(delta):
 					shuffleTimeCounter = 0
 				elif(shuffleTimeCounter < shuffleTime):
 					shuffleTimeCounter += delta
+					var prevModelZ = model.position.z
 					model.position.z = -sin(shuffleTimeCounter * shuffleSpeed) * shuffleStrength * ((shuffleTime - shuffleTimeCounter) / shuffleTime)
+					
+					#Normalize Speed to range between -1 and 1
+					var t = (shuffleTime - shuffleTimeCounter) / shuffleTime - 1
+					animation.set("parameters/Movement/BlendMove/blend_amount", t)
 		else:
 			print("Cow.gd: target is null")
 		
