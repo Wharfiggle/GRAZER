@@ -414,7 +414,7 @@ func attack(direction:Vector3):
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
 		var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
-		b.shoot(self, "enemy", shootingPoint.global_position, bulletRotation, 15.0, 2.0)
+		b.shoot(self, "enemy", shootingPoint.global_position, bulletRotation, 15.0, 2.0, false)
 		var smokeInstance = smoke.instantiate()
 		shootingPoint.add_child(smokeInstance)
 		smokeInstance.position = Vector3.ZERO
