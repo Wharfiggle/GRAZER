@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://fn54vf75rioo"]
+
+[ext_resource type="Texture2D" uid="uid://d3gg3acqo3w0f" path="res://Assets/Models/Russel/Russel_Body_BaseColor.png" id="1_yfsin"]
+[ext_resource type="Texture2D" uid="uid://mr7783b6w3ul" path="res://Assets/Models/Russel/Russel_Body_Metallic.png" id="2_ovolo"]
+[ext_resource type="Texture2D" uid="uid://dlny1g100iuqc" path="res://Assets/Models/Russel/Russel_Body_Normal.png" id="3_qdode"]
+[ext_resource type="Texture2D" uid="uid://bwwkeuo6fj3jb" path="res://Assets/Models/Russel/Russel_Body_Roughness.png" id="4_vl3cj"]
+
+[resource]
+albedo_texture = ExtResource("1_yfsin")
+metallic = 1.0
+metallic_texture = ExtResource("2_ovolo")
+roughness_texture = ExtResource("4_vl3cj")
+normal_enabled = true
+normal_texture = ExtResource("3_qdode")
+heightmap_enabled = true

@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://db86surtvq6n"]
+
+[ext_resource type="Texture2D" uid="uid://c5s58kr37t6hi" path="res://Assets/Models/Russel/Russel_Cloth_BaseColor.png" id="1_ivoun"]
+[ext_resource type="Texture2D" uid="uid://nwg0dw1im2uj" path="res://Assets/Models/Russel/Russel_Cloth_Metallic.png" id="2_cwmcq"]
+[ext_resource type="Texture2D" uid="uid://cyn2j2p1ncsuj" path="res://Assets/Models/Russel/Russel_Cloth_Normal.png" id="3_nilkm"]
+[ext_resource type="Texture2D" uid="uid://s4tjpwj4bh5l" path="res://Assets/Models/Russel/Russel_Cloth_Roughness.png" id="4_wltqx"]
+
+[resource]
+albedo_texture = ExtResource("1_ivoun")
+metallic = 1.0
+metallic_texture = ExtResource("2_cwmcq")
+roughness_texture = ExtResource("4_wltqx")
+normal_enabled = true
+normal_texture = ExtResource("3_nilkm")
