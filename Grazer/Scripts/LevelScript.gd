@@ -65,7 +65,7 @@ class Item:
 		if(!useOrUndo): undoMod = -1
 		if(id >= 0 && id <= 5):
 			player.gunStats[id] = gunStats[id][level - 1]
-			#also broadcast description
+			#todo: also broadcast description
 		elif(id == 6): #health
 			player.hitpoints += 0.5 * player.hitpoints
 			if(player.hitpoints > player.maxHitpoints):
@@ -126,10 +126,6 @@ func _ready():
 	music.stream = sound
 	#Starting sound
 	music.play(5.37)
-	
-	
-	
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -137,11 +133,7 @@ func _process(delta):
 	if(player == null):
 		player = get_node(NodePath("/root/Level/Player"))
 		
-		
-	
 	if(Input.is_action_pressed("openInvi")):
 		invitory.visible = true 
 	else:
 		invitory.visible = false
-
-	pass

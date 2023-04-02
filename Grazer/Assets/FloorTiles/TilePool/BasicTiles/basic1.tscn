@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://6sd6li3j1d2r"]
+[gd_scene load_steps=7 format=3 uid="uid://6sd6li3j1d2r"]
 
+[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_gbb6s"]
 [ext_resource type="PackedScene" uid="uid://b8oadb1xmdu5t" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="1_s2jtu"]
 
 [sub_resource type="BoxShape3D" id="1"]
@@ -11,6 +12,10 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 
 [sub_resource type="BoxMesh" id="2"]
 size = Vector3(16, 0.1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig5f3"]
+albedo_texture = ExtResource("1_gbb6s")
+uv1_scale = Vector3(3.5, 3.5, 3.5)
 
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
@@ -24,6 +29,7 @@ navigation_mesh = SubResource("4")
 [node name="FloorMesh" type="MeshInstance3D" parent="NavigationRegion3D"]
 mesh = SubResource("2")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ig5f3")
 
 [node name="cactusScene" parent="NavigationRegion3D" instance=ExtResource("1_s2jtu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04124, -0.218258, 1.2278)

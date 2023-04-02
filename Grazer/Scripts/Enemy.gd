@@ -328,9 +328,9 @@ func cowPursuit():
 	if(herd.numCows <= 0):
 		return
 	
-	if(position.distance_to(targetCow.position) > dragRange):
+	if(targetCow != null && position.distance_to(targetCow.position) > dragRange):
 		targetPos = targetCow.position
-	elif(draggedCow == null):
+	elif(targetCow != null && draggedCow == null):
 		draggedCow = targetCow
 		draggedCow.startDragging(self)
 		print("toFlee")
