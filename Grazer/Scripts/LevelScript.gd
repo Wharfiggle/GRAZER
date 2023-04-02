@@ -5,7 +5,7 @@ extends Node3D
 
 #music
 var sound = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
-
+@onready var invitory = $invitory
 @onready var player = get_node(NodePath("/root/Level/PLayer"))
 #levels 1, 2, 3 for capacity, damage, reload for revolver, shotgun
 var gunStats = [ [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0] ]
@@ -127,6 +127,8 @@ func _ready():
 	#Starting sound
 	music.play(5.37)
 	
+	
+	
 	pass # Replace with function body.
 
 
@@ -134,4 +136,12 @@ func _ready():
 func _process(delta):
 	if(player == null):
 		player = get_node(NodePath("/root/Level/Player"))
+		
+		
+	
+	if(Input.is_action_pressed("openInvi")):
+		invitory.visible = true 
+	else:
+		invitory.visible = false
+
 	pass

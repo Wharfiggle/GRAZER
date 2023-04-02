@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://38whuxvfq1oj"]
+[gd_scene load_steps=13 format=3 uid="uid://38whuxvfq1oj"]
 
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="1_8i0en"]
 [ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="1_ivg21"]
+[ext_resource type="PackedScene" uid="uid://i3q5n1j7uql6" path="res://Prefabs/ItemWheelUI.tscn" id="1_ths6l"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="1_vgu4d"]
 [ext_resource type="Script" path="res://Scripts/knockback.gd" id="3_6qkwa"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="4_t1n1m"]
@@ -18,6 +19,12 @@
 [sub_resource type="BoxMesh" id="BoxMesh_ymssc"]
 
 [node name="Level" type="Node3D"]
+
+[node name="Control" parent="." instance=ExtResource("1_ths6l")]
+offset_left = 459.288
+offset_top = 627.121
+offset_right = 459.288
+offset_bottom = 627.121
 
 [node name="Cow Counter" parent="." instance=ExtResource("1_vgu4d")]
 
