@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=20 format=3 uid="uid://sylivcwtv4jy"]
 
 [ext_resource type="PackedScene" uid="uid://b8oadb1xmdu5t" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="1"]
 [ext_resource type="Script" path="res://Scripts/PixelCameraFollow.gd" id="2"]
@@ -13,8 +13,6 @@
 [ext_resource type="Shader" path="res://Scripts/Pallette.gdshader" id="11"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="13"]
-
-
 
 [sub_resource type="CanvasItemMaterial" id="14"]
 
@@ -40,7 +38,6 @@ text = "FPS: "
 script = ExtResource("3")
 
 [node name="Cow Counter" parent="." instance=ExtResource("12")]
-anchors_preset = -1
 
 [node name="PostProcessing" type="Sprite2D" parent="."]
 visible = false

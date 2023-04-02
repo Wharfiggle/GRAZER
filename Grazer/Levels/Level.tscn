@@ -35,6 +35,7 @@ centered = false
 [node name="Camera3D" parent="." instance=ExtResource("2")]
 transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
 current = true
+size = 17.0
 
 [node name="Player" parent="." instance=ExtResource("9")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 16, 5, 16)
@@ -45,7 +46,7 @@ mesh = ExtResource("5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1.10681e-07, 0.766044, 0.642788, -5.61943e-08, -0.642788, 0.766044, 1, -1.20908e-07, -2.80971e-08, 0, 0, 0)
-light_color = Color(1, 0.784314, 0.588235, 1)
+light_color = Color(0.905882, 0.435294, 0.25098, 1)
 shadow_enabled = true
 
 [node name="cactusScene3" parent="." instance=ExtResource("6")]
