@@ -86,10 +86,16 @@ func removeCow(cow):
 	get_node(NodePath("/root/Level")).add_child(cow)
 	cow.idle()
 
-#spawn a cow in center of world
+#spawn a cow in center of herd
 func spawnCow() -> Node:
 	var cow = cowPrefab.instantiate()
-	cow.position = Vector3(0, 10, 0)
+	cow.position = findHerdCenter()
+	addCow(cow)
+	return cow
+#spawn cow at given position
+func spawnCowAtPos(pos:Vector3) -> Node:
+	var cow = cowPrefab.instantiate()
+	cow.position = pos
 	addCow(cow)
 	return cow
 

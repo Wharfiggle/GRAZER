@@ -67,8 +67,8 @@ func _process(delta):
 	if(herd == null):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
-		herd.spawnCow()
-		herd.spawnCow()
+		herd.spawnCowAtPos(Vector3(position.x, position.y, position.z - 2))
+		herd.spawnCowAtPos(Vector3(position.x - 1, position.y, position.z - 3))
 		
 	if(herd.getNumCows() < 1):
 		die()
