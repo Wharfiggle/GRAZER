@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cipr2va7r4qmj"]
+
+[ext_resource type="Texture2D" uid="uid://cgjinvd05axn4" path="res://Assets/Models/Ray/Ray_Cloth_BaseColor.png" id="1_eajbb"]
+[ext_resource type="Texture2D" uid="uid://ch0wrr2kwv436" path="res://Assets/Models/Ray/Ray_Cloth_Metallic.png" id="2_wnt40"]
+[ext_resource type="Texture2D" uid="uid://cetk7p8kgw10l" path="res://Assets/Models/Ray/Ray_Cloth_Normal.png" id="3_fasbw"]
+[ext_resource type="Texture2D" uid="uid://vci1ldij7k6v" path="res://Assets/Models/Ray/Ray_Cloth_Roughness.png" id="4_rtpia"]
+
+[resource]
+albedo_texture = ExtResource("1_eajbb")
+metallic = 1.0
+metallic_texture = ExtResource("2_wnt40")
+roughness_texture = ExtResource("4_rtpia")
+normal_enabled = true
+normal_texture = ExtResource("3_fasbw")
