@@ -2,7 +2,7 @@
 
 extends CharacterBody3D
 
-@export var normalSpeed = 7.0
+@export var normalSpeed = 8.0
 @export var normalLookSpeed = 3.0
 @export var normalFollowDistance = 5.0
 @export var dragFollowDistance = 1.0
@@ -227,11 +227,6 @@ func _physics_process(delta):
 				tVelocity.z = -cos(rotation.y) * speed
 				model.position.z = lerp(model.position.z, 0.0, 0.1)
 				
-				#Normalize animationBlend to range between -1 and 1
-				#Make negative for goblin mode
-				animationBlend = speed / maxSpeed * 2 - 1
-				animation.set("parameters/Movement/BlendMove/blend_amount", animationBlend)
-				
 				#old shuffle algorithm
 				#var prevAcc = acceleration
 				#acceleration = accelerationModifier * (dist - targetDistance)
@@ -260,9 +255,6 @@ func _physics_process(delta):
 					t = t * (animationBlend + 1) - 1
 					if(t == -1):
 						animationBlend = -1
-					#animationBlend = lerpf(animationBlend, -1, 0.1)
-					#if(animationBlend < -0.9):
-					#	animationBlend = -1
 					animation.set("parameters/Movement/BlendMove/blend_amount", t)
 		else:
 			print("Cow.gd: target is null")
@@ -313,6 +305,12 @@ func _physics_process(delta):
 	elif(transform.origin.y < -20.0):
 		transform.origin = Vector3(0, 10, 0)
 	totalVelocity.y = tVelocity.y
+	
+	#Normalize animationBlend to range between -1 and 1
+	#Make negative for goblin mode
+	animationBlend = Vector3(tVelocity.x, 0, tVelocity.z).length() / maxSpeed * 2 - 1
+	animationBlend = min(max(animationBlend, -1), 1)
+	animation.set("parameters/Movement/BlendMove/blend_amount", animationBlend)
 	
 	#apply velocity and move
 	set_velocity(totalVelocity)

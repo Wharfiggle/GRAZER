@@ -18,7 +18,6 @@ disable_receive_shadows = true
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 5
 script = ExtResource("1_h6u35")
-speed = 8
 revolverPath = NodePath("Revolver")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

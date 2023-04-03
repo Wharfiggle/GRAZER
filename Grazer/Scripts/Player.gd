@@ -41,7 +41,7 @@ var alwaysCrit = false
 var critChance = 0.1
 
 const GRAVITY = 30
-@export var speed = 7
+@export var speed = 8.0
 const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
