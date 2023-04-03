@@ -51,7 +51,7 @@ nodes/walk/node = SubResource("AnimationNodeAnimation_2678m")
 nodes/walk/position = Vector2(-40, 0)
 nodes/walkShoot/node = SubResource("AnimationNodeBlend2_40ywp")
 nodes/walkShoot/position = Vector2(300, 20)
-node_connections = [&"output", 0, &"idleWalk", &"TimeScale", 0, &"walk", &"idleWalk", 0, &"Animation 2", &"idleWalk", 1, &"walkShoot", &"walkShoot", 0, &"TimeScale", &"walkShoot", 1, &"shootAngle"]
+node_connections = [&"output", 0, &"idleWalk", &"idleWalk", 0, &"Animation 2", &"idleWalk", 1, &"walkShoot", &"walkShoot", 0, &"TimeScale", &"walkShoot", 1, &"shootAngle", &"TimeScale", 0, &"walk"]
 
 [node name="Russel" instance=ExtResource("1_mysin")]
 
@@ -163,7 +163,7 @@ material_override = ExtResource("2_s1b86")
 material_override = ExtResource("3_bsnhw")
 
 [node name="GunRight" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(-0.0484105, -0.176401, 0.983127, 0.210774, 0.960313, 0.182686, -0.976336, 0.216061, -0.00930849, -22.7755, 77.5612, -148.96)
+transform = Transform3D(-0.0484114, -0.176402, 0.983127, 0.210774, 0.960313, 0.182687, -0.976336, 0.216061, -0.00930905, -22.7756, 77.5611, -148.96)
 bone_name = "RightHand"
 bone_idx = 22
 
@@ -171,7 +171,7 @@ bone_idx = 22
 transform = Transform3D(-7.64949e-06, 175, 7.64949e-06, 0, -7.64949e-06, 175, 175, 7.64949e-06, 3.3437e-13, 2.5, 14.5, 2.5)
 
 [node name="GunLeft" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="10"]
-transform = Transform3D(0.531837, 0.00473148, -0.846833, -0.455057, 0.84494, -0.281068, 0.714194, 0.53484, 0.451523, 35.9385, 12.5308, -132.425)
+transform = Transform3D(0.531836, 0.00473045, -0.846834, -0.455056, 0.844941, -0.281068, 0.714195, 0.534839, 0.451522, 35.9386, 12.5308, -132.425)
 bone_name = "LeftHand"
 bone_idx = 9
 
