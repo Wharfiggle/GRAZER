@@ -24,6 +24,8 @@ func start(_chunkCoords):
 	if(chunkData[0] == ""):
 		print("Chunk " + str(position) + " is empty")
 		return
+	if(chunkData.size() > 1):
+		print("Chunk " + str(position) + " is weird")
 	
 	#Theoretically this doesn't need to be called if its already been loaded before
 	ResourceLoader.load_threaded_request(chunkData[0],"",false, ResourceLoader.CACHE_MODE_REUSE)

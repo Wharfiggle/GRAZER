@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://p66aexmg718s"]
 
 [sub_resource type="BoxShape3D" id="1"]
-size = Vector3(16, 0.1, 16)
+size = Vector3(32, 0.1, 16)
 
 [sub_resource type="NavigationMesh" id="4"]
 vertices = PackedVector3Array(-7.5, 0.45, 0, -7.5, 0.45, 7.5, 0.25, 0.45, 7.5, 15.75, 0.45, 7.5, 23.5, 0.45, 7.5, 23.5, 0.45, 0, 23.5, 0.45, 0, 23.5, 0.45, -7.5, 15.75, 0.45, -7.5, 0.25, 0.45, -7.5, -7.5, 0.45, -7.5, -7.5, 0.45, 0, 15.75, 0.45, 7.5, 23.5, 0.45, 0, 15.75, 0.45, -7.5, 8, 0.45, -7.5, 8, 0.45, 7.5, 0.25, 0.45, -7.5, -7.5, 0.45, 0, 0.25, 0.45, 7.5, 8, 0.45, 7.5, 8, 0.45, -7.5)
@@ -14,14 +14,16 @@ size = Vector3(16, 0.1, 16)
 
 [sub_resource type="BoxMesh" id="BoxMesh_367dd"]
 material = SubResource("StandardMaterial3D_3butp")
+size = Vector3(18, 9, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lb7rb"]
+size = Vector3(18, 9, 8)
 
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 shape = SubResource("1")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -33,7 +35,7 @@ mesh = SubResource("2")
 skeleton = NodePath("../..")
 
 [node name="DataIndicator" type="StaticBody3D" parent="."]
-transform = Transform3D(18, 0, 0, 0, 4, 0, 0, 0, 9, 8, 1.94137, -0.684101)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.94137, -0.684101)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DataIndicator"]
 mesh = SubResource("BoxMesh_367dd")
