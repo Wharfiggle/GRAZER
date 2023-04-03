@@ -1,17 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://v424xcj3owy0"]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="PackedScene" path="res://Prefabs/DirectionalLight.tscn" id="1_reu56"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2_6cmid"]
-[ext_resource type="Material" uid="uid://chtqv7je6cqta" path="res://Assets/Materials/Karl Ground.tres" id="2_67tc5"]
+[ext_resource type="Material" path="res://Assets/Materials/Karl Ground.tres" id="2_67tc5"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="3_c15ja"]
 [ext_resource type="PackedScene" path="res://Prefabs/FPSCounter.tscn" id="4_22bo5"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="5_5umnj"]
-[ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/Models/Prefabs/Rocks/big_stone.tscn" id="5_wwndl"]
-[ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="6_55euo"]
-[ext_resource type="PackedScene" uid="uid://bxki58hlxhykk" path="res://Assets/Models/Prefabs/Silo.tscn" id="7_edmva"]
-[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/Models/Prefabs/windmill.tscn" id="8_p7wky"]
-[ext_resource type="PackedScene" uid="uid://y1vgfwfthfrr" path="res://Assets/Models/Prefabs/Rocks/stonetower_3.tscn" id="9_wwwsu"]
-[ext_resource type="PackedScene" uid="uid://rgrgwkufv345" path="res://Assets/Models/Prefabs/Rocks/stonetower_4.tscn" id="10_ed27i"]
+[ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/Models/!Prefabs!/Rocks/big_stone.tscn" id="5_wwndl"]
+[ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="6_55euo"]
+[ext_resource type="PackedScene" uid="uid://bxki58hlxhykk" path="res://Assets/Models/!Prefabs!/Silo.tscn" id="7_edmva"]
+[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/Models/!Prefabs!/windmill.tscn" id="8_p7wky"]
+[ext_resource type="PackedScene" uid="uid://y1vgfwfthfrr" path="res://Assets/Models/!Prefabs!/Rocks/stonetower_3.tscn" id="9_wwwsu"]
+[ext_resource type="PackedScene" uid="uid://rgrgwkufv345" path="res://Assets/Models/!Prefabs!/Rocks/stonetower_4.tscn" id="10_ed27i"]
+
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w53vf"]
 size = Vector3(16, 0.1, 16)

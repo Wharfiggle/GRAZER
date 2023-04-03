@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://Assets/Images/empress of bostonia.png" id="5_hc5au"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneColor.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneGreenTest.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://dtnkj4oqx5k11" path="res://Prefabs/Player.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://i3q5n1j7uql6" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
 

@@ -38,6 +38,7 @@ var maneuverTurnDir = 1
 var raySize = [2.0, 1.0, 2.0]
 @onready var model = get_node(NodePath("./Model"))
 @onready var animation = model.find_child("AnimationTree")
+var animationBlend = 0
 var herd
 var tVelocity = Vector3(0, 0, 0)
 var speed = 0.0
@@ -226,10 +227,10 @@ func _physics_process(delta):
 				tVelocity.z = -cos(rotation.y) * speed
 				model.position.z = lerp(model.position.z, 0.0, 0.1)
 				
-				#Normalize Speed to range between -1 and 1
+				#Normalize animationBlend to range between -1 and 1
 				#Make negative for goblin mode
-				var speedClamp = speed / maxSpeed * 2 - 1
-				animation.set("parameters/Movement/BlendMove/blend_amount", speedClamp)
+				animationBlend = speed / maxSpeed * 2 - 1
+				animation.set("parameters/Movement/BlendMove/blend_amount", animationBlend)
 				
 				#old shuffle algorithm
 				#var prevAcc = acceleration
@@ -248,11 +249,20 @@ func _physics_process(delta):
 					shuffleTimeCounter = 0
 				elif(shuffleTimeCounter < shuffleTime):
 					shuffleTimeCounter += delta
-					var prevModelZ = model.position.z
+					if(shuffleTimeCounter > shuffleTime):
+						shuffleTimeCounter = shuffleTime
+						
 					model.position.z = -sin(shuffleTimeCounter * shuffleSpeed) * shuffleStrength * ((shuffleTime - shuffleTimeCounter) / shuffleTime)
 					
-					#Normalize Speed to range between -1 and 1
-					var t = (shuffleTime - shuffleTimeCounter) / shuffleTime - 1
+					#Normalize t to range between -1 and 1
+					var t = ((shuffleTime - shuffleTimeCounter) / shuffleTime)
+					t = t * t
+					t = t * (animationBlend + 1) - 1
+					if(t == -1):
+						animationBlend = -1
+					#animationBlend = lerpf(animationBlend, -1, 0.1)
+					#if(animationBlend < -0.9):
+					#	animationBlend = -1
 					animation.set("parameters/Movement/BlendMove/blend_amount", t)
 		else:
 			print("Cow.gd: target is null")

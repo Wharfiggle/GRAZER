@@ -133,10 +133,3 @@ func _ready():
 func _process(delta):
 	if(player == null):
 		player = get_node(NodePath("/root/Level/Player"))
-		
-	
-
-			
-
-
-		
