@@ -1,6 +1,6 @@
 extends Node3D
 
-class_name tileStructures
+class_name tileStructure
 
 @onready var player = get_node("/root/Level/Player")
 var tileWidth = 16
