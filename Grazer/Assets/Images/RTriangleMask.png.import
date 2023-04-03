@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dmmj5e1q8o407"
+path="res://.godot/imported/RTriangleMask.png-8b43ea0be4b4a23830088dc31c9f9d38.res"
+
+[deps]
+
+source_file="res://Assets/Images/RTriangleMask.png"
+dest_files=["res://.godot/imported/RTriangleMask.png-8b43ea0be4b4a23830088dc31c9f9d38.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

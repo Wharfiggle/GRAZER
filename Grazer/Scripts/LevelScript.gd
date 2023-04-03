@@ -126,6 +126,7 @@ func _ready():
 	music.stream = sound
 	#Starting sound
 	music.play(5.37)
+	invitory.visible = false 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -133,7 +134,9 @@ func _process(delta):
 	if(player == null):
 		player = get_node(NodePath("/root/Level/Player"))
 		
-	if(Input.is_action_pressed("openInvi")):
-		invitory.visible = true 
-	else:
-		invitory.visible = false
+	
+
+			
+
+
+		
