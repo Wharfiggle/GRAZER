@@ -92,6 +92,7 @@ func _process(delta):
 	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0):
 		shootBufferTimer = shootBufferTime
 	if(active && shootBufferTimer > 0 && shootTimer == 0):
+		Input.start_joy_vibration(0,0,0.1,0.1)
 		var smokeInstance = smoke.instantiate()
 		shootingPoint.add_child(smokeInstance)
 		smokeInstance.position = Vector3.ZERO

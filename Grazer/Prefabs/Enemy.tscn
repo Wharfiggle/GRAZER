@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://bcorhitij0ix2"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cy6xi4epix5ju" path="res://Prefabs/Revolver.tscn" id="2_022bh"]
-
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hrbv8"]
 
