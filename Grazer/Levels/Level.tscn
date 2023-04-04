@@ -1,15 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=11 format=3 uid="uid://dapc4u84j2cr"]
 
-[ext_resource type="PackedScene" uid="uid://b8oadb1xmdu5t" path="res://Assets/Models/old/CactusOld/cactusSceneNoBase.tscn" id="1"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://Prefabs/FPSCounter.tscn" id="2_c6l00"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
-[ext_resource type="ArrayMesh" uid="uid://dx1bco56p7ok5" path="res://Assets/Models/old/CactusOld/10436_Cactus_v1_max2010_it2.obj" id="5"]
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://Assets/Images/empress of bostonia.png" id="5_hc5au"]
-[ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneColor.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneGreenTest.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="8_kp882"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://i3q5n1j7uql6" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
@@ -40,25 +37,7 @@ size = 19.0
 [node name="Player" parent="." instance=ExtResource("9")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 16, 5, 16)
 
-[node name="Cactus" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0170801, -0.0104053, 1.24082e-10, 0, 2.38498e-10, 0.02, -0.0104053, -0.0170801, 2.03678e-10, -3.99982, 0, 6.69969)
-mesh = ExtResource("5")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1.10681e-07, 0.766044, 0.642788, -5.61943e-08, -0.642788, 0.766044, 1, -1.20908e-07, -2.80971e-08, 0, 0, 0)
-light_color = Color(0.905882, 0.435294, 0.25098, 1)
-shadow_enabled = true
-
-[node name="cactusScene3" parent="." instance=ExtResource("6")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.30052, -0.420078, -0.411954)
-visible = false
-
-[node name="cactusScene2" parent="." instance=ExtResource("7")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.21648, -0.311238, -0.182909)
-visible = false
-
-[node name="cactusScene" parent="." instance=ExtResource("1")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.34369, -0.556426, 6.46729)
+[node name="DirectionalLight3D" parent="." instance=ExtResource("8_kp882")]
 
 [node name="AllTerrain" type="Node3D" parent="."]
 script = ExtResource("4")
@@ -67,7 +46,7 @@ script = ExtResource("4")
 volume_db = 1.874
 bus = &"background "
 
-[node name="invitory" parent="." instance=ExtResource("13_1ubf2")]
+[node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
 anchors_preset = 8
 anchor_top = 0.5
 anchor_bottom = 0.5

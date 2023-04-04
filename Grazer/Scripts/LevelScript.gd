@@ -5,7 +5,7 @@ extends Node3D
 
 #music
 var sound = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
-@onready var invitory = $invitory
+@onready var inventory = $ItemWheel
 @onready var player = get_node(NodePath("/root/Level/Player"))
 #levels 1, 2, 3 for capacity, damage, reload for revolver, shotgun
 var gunStats = [ [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0] ]
@@ -126,7 +126,7 @@ func _ready():
 	music.stream = sound
 	#Starting sound
 	music.play(5.37)
-	invitory.visible = false 
+	inventory.visible = false 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

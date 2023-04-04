@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bm4k8t7qrd5fu" path="res://Assets/Images/triangle_PNG30.png" id="3_12tkq"]
 [ext_resource type="BitMap" uid="uid://dmmj5e1q8o407" path="res://Assets/Images/RTriangleMask.png" id="5_syvvy"]
 
-[node name="invitory" type="Control"]
+[node name="ItemWheel" type="Control"]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 13
