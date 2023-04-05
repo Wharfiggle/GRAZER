@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dtfmrm20ruq5u"]
 
-[ext_resource path="res://Scripts/FPSCounter.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://Scripts/FPSCounter.gd" id="1"]
 
-[sub_resource type="CanvasItemMaterial" id=14]
+[sub_resource type="CanvasItemMaterial" id="14"]
 
 [node name="FPS Counter" type="Label"]
-material = SubResource( 14 )
+material = SubResource("14")
 offset_top = 0.00012207
 offset_right = 40.0
 offset_bottom = 14.0001
 text = "FPS: "
-script = ExtResource( 1 )
+script = ExtResource("1")

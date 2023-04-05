@@ -25,6 +25,8 @@ var attackTime = 3
 var attackCooldown = 0
 var reloadTime = 3
 var reloadCooldown = 0
+#@export var stunTime = 0.5
+#var stunTimer = 0
 
 
 var targetPos = Vector3(0,0,0)
@@ -44,10 +46,10 @@ var GRAVITY = 30
 
 var canFire = true
 var fireDirection
-@export var knockbackMod = 1.0
+@export var knockbackMod = 1.5
 #@export var knockbackIFrames = 0.3
 #var knockbackIFramesTimer = 0.0
-@export var knockbackTime = 0.3
+@export var knockbackTime = 0.8
 var knockbackTimer = 0.0
 var knockbackVel = Vector3(0,0,0)
 var knockbackStrength = 0
@@ -62,7 +64,7 @@ var rng = RandomNumberGenerator.new()
 @onready var herd = get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
 var dragRange = 3.0
-var escapeRange = 16
+var escapeRange = 18
 
 func _ready():
 	#Setting enemy type
@@ -139,6 +141,12 @@ func _physics_process(delta):
 		set_velocity(Vector3(knockbackVel.x, tVelocity.y, knockbackVel.z))
 	set_up_direction(Vector3.UP)
 	move_and_slide()
+	
+	if(position.y < -20):
+		if(draggedCow != null):
+			herd.removeCow(draggedCow)
+			draggedCow.queue_free()
+		queue_free()
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
@@ -240,7 +248,7 @@ func circle():
 	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
 	
 	if(marauderType == enemyTypes.thief and randi_range(1,1000) <= 1):
-		print("toCowPursuit")
+		#print("toCowPursuit")
 		currentMode = behaviors.cowPursuit
 
 func pursuit():
@@ -349,7 +357,7 @@ func flee():
 	
 	#Despawn self and cow when successfully stealing cow, free other draggers
 	if(draggedCow != null):
-		print(draggedCow)
+		#print(draggedCow)
 		var distPlayer = spacing #sqrt(pow(player.position.x - position.x, 2) + pow(player.position.y - position.y, 2))
 		var centerHerd = herd.findHerdCenter()
 		var distCenterHerd = centerHerd.distance_to(player.position) #sqrt(pow(player.position.x - centerHerd.x, 2) + pow(player.position.y - centerHerd.y, 2))
@@ -425,9 +433,9 @@ func knock():
 	var enemies = knockbox.get_overlapping_bodies()
 	for enemy in enemies:
 		if(enemy != self && enemy.has_method("knockback")):
-			enemy.knockback(position, knockbackVel.length())
+			enemy.knockback(position, knockbackVel.length(), false)
 
-func knockback(damageSourcePos:Vector3, kSpeed:float):
+func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
 	#prevents knockback until knockbackIFramesTimer is zero
 #	if(knockbackIFramesTimer > 0):
 #		return
@@ -439,7 +447,9 @@ func knockback(damageSourcePos:Vector3, kSpeed:float):
 	#set knockbackVel to the direction vector * speed
 	knockbackVel = damageSourcePos.direction_to(self.position)
 	knockbackVel.y = 0
-	knockbackStrength = kSpeed * knockbackMod
+	knockbackStrength = kSpeed
+	if(useModifier):
+		knockbackStrength *= knockbackMod
 	knockbackVel *= knockbackStrength
 
 func damage_taken(damage, from) -> bool:
@@ -449,7 +459,7 @@ func damage_taken(damage, from) -> bool:
 			if(draggedCow != null):
 				draggedCow.stopDragging(self)
 			queue_free()
-			print("dead")
+			#print("dead")
 		return true
 	else:
 		return false

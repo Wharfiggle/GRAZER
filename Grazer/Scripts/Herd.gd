@@ -149,10 +149,13 @@ func clearHuddle():
 #find center of all cows
 func findHerdCenter() -> Vector3:
 	var loc = Vector3(0,0,0)
-	if(numCows > 0):
-		for i in cows:
+	var num = 0
+	for i in cows:
+		if(i.draggers.is_empty()):
 			loc += i.transform.origin
-		loc /= numCows
+			num += 1
+	if(num > 0):
+		loc /= num
 	else:
-		loc = Vector3(0, 10, 0)
+		loc = player.position
 	return loc

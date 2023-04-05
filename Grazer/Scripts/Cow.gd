@@ -12,7 +12,7 @@ var followDistance = normalFollowDistance
 var pushVel = Vector2(0, 0)
 @export var speedTransitionRadius = 1.5
 @export var shuffleTime = 0.7
-@export var shuffleTimeRandOffset = 0.5
+@export var shuffleTimeRandOffset = 0.3
 @export var shuffleStrength = 0.75
 @export var shuffleSpeed = 3.0
 var shuffleTimeCounter = 0
@@ -89,6 +89,7 @@ func startDragging(marauder):
 	
 func stopDragging(marauder):
 	draggers.erase(marauder)
+	marauder.draggedCow = null
 	if(draggers.size() == 0):
 		maxSpeed = normalSpeed
 		lookSpeed = normalLookSpeed
@@ -206,11 +207,12 @@ func _physics_process(delta):
 				#radius of herd
 				targetDistance = sqrt( pow(pushDistanceThreshold, 2) * herd.numCows )
 			var dist = sqrt( pow(targetVector.x, 2) + pow(targetVector.y, 2) )
-			if(draggers.is_empty() && herd.canHuddle && dist < targetDistance && huddling == false):
+			if(draggers.is_empty() && herd.canHuddle && dist <= targetDistance + 0.1 && huddling == false):
 				herd.addHuddler(self)
 				disableRayCasts()
 				
 			if(huddling == false && (follow || !draggers.is_empty())):
+				shuffleTimeCounter = 0
 				#speedTransitionRadius meters FARTHER than targetDistance or more: speed
 				#speedTransitionRadius meters CLOSER than targetDistance or more: -speed
 				#interpolates between the two for all values in between
@@ -241,18 +243,18 @@ func _physics_process(delta):
 				if(tVelocity.x != 0 || tVelocity.z != 0):
 					tVelocity.x = 0
 					tVelocity.z = 0
-					shuffleTimeCounter = 0
-				elif(shuffleTimeCounter < shuffleTime):
-					shuffleTimeCounter += delta
-					if(shuffleTimeCounter > shuffleTime):
-						shuffleTimeCounter = shuffleTime
-						
-					model.position.z = -sin(shuffleTimeCounter * shuffleSpeed) * shuffleStrength * ((shuffleTime - shuffleTimeCounter) / shuffleTime)
+					shuffleTimeCounter = shuffleTime
+				elif(shuffleTimeCounter > 0):
+					shuffleTimeCounter -= delta
+					if(shuffleTimeCounter < 0):
+						shuffleTimeCounter = 0
 					
+					var startT = min(0.3, shuffleTime - shuffleTimeCounter) / 0.3
+					print(startT)
+					model.position.z = startT * -sin(shuffleTimeCounter * shuffleSpeed) * shuffleStrength * ((shuffleTime - shuffleTimeCounter) / shuffleTime)
 					#Normalize t to range between -1 and 1
-					var t = ((shuffleTime - shuffleTimeCounter) / shuffleTime)
-					t = t * t
-					t = t * (animationBlend + 1) - 1
+					var t = (shuffleTimeCounter / shuffleTime)
+					t = t * (animationBlend + 1 + startT) - 1
 					if(t == -1):
 						animationBlend = -1
 					animation.set("parameters/Movement/BlendMove/blend_amount", t)
@@ -303,14 +305,19 @@ func _physics_process(delta):
 	if(is_on_floor()):
 		tVelocity.y = -0.1
 	elif(transform.origin.y < -20.0):
-		transform.origin = Vector3(0, 10, 0)
+#		transform.origin = Vector3(0, 10, 0)
+		for i in draggers:
+			if(i != null):
+				stopDragging(i)
+		queue_free()
 	totalVelocity.y = tVelocity.y
 	
-	#Normalize animationBlend to range between -1 and 1
-	#Make negative for goblin mode
-	animationBlend = Vector3(tVelocity.x, 0, tVelocity.z).length() / maxSpeed * 2 - 1
-	animationBlend = min(max(animationBlend, -1), 1)
-	animation.set("parameters/Movement/BlendMove/blend_amount", animationBlend)
+	if(shuffleTimeCounter < 0.01 && shuffleTimeCounter > -0.01):
+		#Normalize animationBlend to range between -1 and 1
+		#Make negative for goblin mode
+		animationBlend = Vector3(totalVelocity.x, 0, totalVelocity.z).length() / maxSpeed * 2 - 1
+		animationBlend = min(max(animationBlend, -1), 1)
+		animation.set("parameters/Movement/BlendMove/blend_amount", animationBlend)
 	
 	#apply velocity and move
 	set_velocity(totalVelocity)

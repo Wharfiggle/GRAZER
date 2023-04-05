@@ -21,6 +21,7 @@ var dodgeCooldownTimer = 0.0
 @export var dodgeBufferTime = 0.1
 var dodgeBufferTimer = 0.0
 var dodging = false
+var knocked = false
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
 @onready var Steps = $footsteps
@@ -37,7 +38,6 @@ var infiniteAmmo = false
 var lifeLeach = 0.0
 var potionSpeedup = 1.0
 var alwaysCrit = false
-
 var critChance = 0.1
 
 const GRAVITY = 30
@@ -55,6 +55,7 @@ var aimSwivel = 0.0
 #var shotgun
 @onready var shootingPoint = revolver.find_child("ShootingPoint")
 var onRevolver = true
+var mousePos
 var active = true
 
 # Called when the node enters the scene tree for the first time.
@@ -68,7 +69,7 @@ func _process(delta):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
 		herd.spawnCowAtPos(Vector3(position.x, position.y, position.z - 2))
-		herd.spawnCowAtPos(Vector3(position.x - 1, position.y, position.z - 3))
+		#herd.spawnCowAtPos(Vector3(position.x - 1, position.y, position.z - 3))
 		
 	if(herd.getNumCows() < 1):
 		die()
@@ -117,25 +118,19 @@ func _process(delta):
 		if(Input.is_action_pressed("moveRight")):
 			toAdd.x += 1
 			toAdd.z += -1
-			#if (!dodging):
-				#Steps.play()
 		elif(Input.is_action_pressed("moveLeft")):
 			toAdd.x += -1
 			toAdd.z += 1
-			#if (!dodging):
-				#Steps.play()
 	if(!(Input.is_action_pressed("moveDown") and Input.is_action_pressed("moveUp"))):
 		if(Input.is_action_pressed("moveDown")):
 			toAdd.x += 1
 			toAdd.z += 1
-			#if (!dodging):
-				#Steps.play()
-				
 		elif(Input.is_action_pressed("moveUp")):
 			toAdd.x += -1
 			toAdd.z += -1
-			#if (!dodging):
-				#Steps.play()
+	var stickToAdd = Vector3(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), 0, Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
+	if(stickToAdd.length() >= 0.3):
+		toAdd = stickToAdd
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
 	#rotate towards where player is moving
@@ -170,55 +165,57 @@ func _process(delta):
 	
 	#player looks where mouse is pointed but projected to isometric view
 	if(camera != null && active):
+		var prevAimDir = aimDir
 		var viewport = get_viewport()
-		var mousePos = viewport.get_mouse_position()
-		#old method involving raycasts. expensive and collided with non-ground objects
-			#var ray_length = 100
-			#var from = camera.project_ray_origin(mousePos)
-			#var to = from + camera.project_ray_normal(mousePos) * ray_length
-			#var space = get_world_3d().direct_space_state
-			#var ray_query = PhysicsRayQueryParameters3D.new()
-			#ray_query.from = from
-			#ray_query.to = to
-			#ray_query.collide_with_areas = true
-			#var aimAt = space.intersect_ray(ray_query).get("position", Vector3(0, 0, 0))
-			#angle from the camera plane to the ground plane
-		var camAngle = camera.rotation.x
-		if(camAngle < 0):
-			camAngle = PI/2.0 + fmod(camAngle, PI/2.0)
-		else:
-			camAngle = fmod(camAngle, PI/2.0)
-		#used to make the aimAt position on the ground plane compensate
-		#for the difference in angle to the camera plane
-		var angMod = 1.0 / cos(camAngle)
-		var viewWid = viewport.get_visible_rect().size.x #viewport width in pixels
-		var viewHei = viewport.get_visible_rect().size.y #viewport height in pixels
-		var unitHei = camera.size #equal to the number of units that fit in the camera's height
-		mousePos -= Vector2(viewWid / 2.0, viewHei / 2.0) #center cursor
-		#a little arbitrary but makes cursor and aimAt line up good enough on the y-axis
-		mousePos.y -= (camera.camOffset.y - camera.camOffset.x) / unitHei * viewHei - unitHei
-		#rotate to compensate for isometric 45 degree angle
-		var aimAt = Vector3(
-			cos(-PI/4.0) * mousePos.x - sin(-PI/4.0) * mousePos.y * angMod, 0,
-			sin(-PI/4.0) * mousePos.x + cos(-PI/4.0) * mousePos.y * angMod)
-		aimAt *= unitHei / viewHei #convert from pixels to units
-		aimAt.y = 1.0
-		aimAt += camera.global_position - camera.camOffset #offset to position camera is aiming at
-		
-		var worldCursor = get_node(NodePath("WorldCursor"))
-		if(worldCursor != null):
-			worldCursor.global_position = aimAt
-#		rotation.y = lerp_angle(
-#			rotation.y,
-#			atan2(position.x - aimAt.x, position.z - aimAt.z) + PI,
-#			0.1)
-		aimDir = atan2(position.x - aimAt.x, position.z - aimAt.z) + PI
-		#revolver.rotation.y = aimDir - rotation.y
-		#0 - 0.5 is right hand, 0.5 - 1.0 is left hand
-		aimSwivel = fmod(aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
+		var prevMousePos = mousePos
+		mousePos = viewport.get_mouse_position()
+		var rightStick = Vector3(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), 0, Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
+		if(prevMousePos != mousePos):
+			#old method involving raycasts. expensive and collided with non-ground objects
+				#var ray_length = 100
+				#var from = camera.project_ray_origin(mousePos)
+				#var to = from + camera.project_ray_normal(mousePos) * ray_length
+				#var space = get_world_3d().direct_space_state
+				#var ray_query = PhysicsRayQueryParameters3D.new()
+				#ray_query.from = from
+				#ray_query.to = to
+				#ray_query.collide_with_areas = true
+				#var aimAt = space.intersect_ray(ray_query).get("position", Vector3(0, 0, 0))
+				#angle from the camera plane to the ground plane
+			var camAngle = camera.rotation.x
+			if(camAngle < 0):
+				camAngle = PI/2.0 + fmod(camAngle, PI/2.0)
+			else:
+				camAngle = fmod(camAngle, PI/2.0)
+			#used to make the aimAt position on the ground plane compensate
+			#for the difference in angle to the camera plane
+			var angMod = 1.0 / cos(camAngle)
+			var viewWid = viewport.get_visible_rect().size.x #viewport width in pixels
+			var viewHei = viewport.get_visible_rect().size.y #viewport height in pixels
+			var unitHei = camera.size #equal to the number of units that fit in the camera's height
+			var mouseOffset = mousePos
+			mouseOffset -= Vector2(viewWid / 2.0, viewHei / 2.0) #center cursor
+			#a little arbitrary but makes cursor and aimAt line up good enough on the y-axis
+			mouseOffset.y -= (camera.camOffset.y - camera.camOffset.x) / unitHei * viewHei - unitHei
+			#rotate to compensate for isometric 45 degree angle
+			var aimAt = Vector3(
+				cos(-PI/4.0) * mouseOffset.x - sin(-PI/4.0) * mouseOffset.y * angMod, 0,
+				sin(-PI/4.0) * mouseOffset.x + cos(-PI/4.0) * mouseOffset.y * angMod)
+			aimAt *= unitHei / viewHei #convert from pixels to units
+			aimAt.y = 1.0
+			aimAt += camera.global_position - camera.camOffset #offset to position camera is aiming at
+			var worldCursor = get_node(NodePath("WorldCursor"))
+			if(worldCursor != null):
+				worldCursor.global_position = aimAt
+			aimDir = atan2(position.x - aimAt.x, position.z - aimAt.z) + PI
+		elif(rightStick.length() > 0.3):
+			aimDir = -atan2(rightStick.z, rightStick.x) - PI
+		if(aimDir != prevAimDir):
+			revolver.rotation.y = aimDir - rotation.y
+			#0 - 0.5 is right hand, 0.5 - 1.0 is left hand
+			aimSwivel = fmod(aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
 	else:
 		camera = get_node(NodePath("/root/Level/Camera3D"))
-		
 
 
 func _physics_process(delta):
@@ -252,12 +249,16 @@ func _physics_process(delta):
 		if(dodgeTimer < 0):
 			dodgeTimer = 0
 			dodging = false
+			knocked = false
 			dodgeVel = Vector3.ZERO
 			tVelocity = Vector3.ZERO
 		else:
 			var t = dodgeTimer / dodgeTime
 			t = sqrt(t)
-			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t
+			var knockMod = 1.0
+			if(knocked):
+				knockMod = 0.1
+			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t * knockMod
 		knock()
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
@@ -273,7 +274,8 @@ func knock():
 	var enemies = knockbox.get_overlapping_bodies()
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
-			enemy.knockback(position, dodgeVel.length())
+			enemy.knockback(enemy.position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
+			knocked = true
 
 func damage_taken(damage, from) -> bool:
 	if(from != "player"):
