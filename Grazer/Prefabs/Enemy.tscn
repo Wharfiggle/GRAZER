@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cy6xi4epix5ju" path="res://Prefabs/Revolver.tscn" id="2_022bh"]
-[ext_resource type="PackedScene" uid="uid://b86ebpf2rx06d" path="res://Assets/Models/marauder/marauder.tscn" id="3_e402j"]
+[ext_resource type="PackedScene" uid="uid://2n283fa8x1p0" path="res://Assets/Models/marauder/marauder.tscn" id="3_e402j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hrbv8"]
 
