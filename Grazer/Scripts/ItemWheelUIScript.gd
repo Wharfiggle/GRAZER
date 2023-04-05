@@ -3,6 +3,13 @@ extends Control
 var inventory = []
 @export var maxInventory = 6
 
+@onready var cell1 = $Cell1
+@onready var cell2 = $Cell2
+@onready var cell3 = $Cell3
+@onready var cell4 = $Cell4
+@onready var cell5 = $Cell5
+@onready var cell6 = $Cell6
+
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 #	pass # Replace with function body.
@@ -36,3 +43,8 @@ func _process(delta):
 			#makes the mouse hide
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)	
 	pass
+	
+	
+	
+	
+
