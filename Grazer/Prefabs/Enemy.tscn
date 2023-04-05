@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcorhitij0ix2"]
+[gd_scene load_steps=10 format=3 uid="uid://bcorhitij0ix2"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cy6xi4epix5ju" path="res://Prefabs/Revolver.tscn" id="2_022bh"]
+[ext_resource type="PackedScene" uid="uid://b86ebpf2rx06d" path="res://Assets/Models/marauder/marauder.tscn" id="3_e402j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hrbv8"]
 
@@ -27,11 +28,13 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_hrbv8")
 surface_material_override/0 = SubResource("StandardMaterial3D_82qvi")
 
 [node name="Direction" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 1, 0)
+visible = false
 mesh = SubResource("PrismMesh_i3pdl")
 surface_material_override/0 = SubResource("StandardMaterial3D_8b760")
 
@@ -63,5 +66,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59139, 0)
 bus = &"soundFXMain"
 
 [node name="ESoundFX" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Bandit" parent="." instance=ExtResource("3_e402j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.301376)
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
