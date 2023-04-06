@@ -6,7 +6,7 @@ var chunkData = []
 
 var loading = false
 
-var mapWidth = 5
+var mapWidth = terrainController.mapWidth
 
 func start(_chunkCoords):
 	chunkCoords = _chunkCoords

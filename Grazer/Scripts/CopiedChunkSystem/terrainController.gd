@@ -1,5 +1,6 @@
 extends Node3D
 #taken from https://github.com/NesiAwesomeneess/ChunkLoader/blob/main/ChunkLoading/World.gd
+class_name terrainController
 
 var playerPath = NodePath("/root/Level/Player")
 var player
@@ -11,7 +12,7 @@ var player
 @onready var structureNode = preload("res://Assets/FloorTiles/StructureNode.tscn")
 
 var renderDistance = 2
-var tileWidth = 16.0
+const tileWidth = 16.0
 var currentChunk = Vector3()
 var previousChunk = Vector3()
 var chunkLoaded = false
@@ -23,7 +24,7 @@ var revolution_distance = 8.0
 @onready var activeChunks = []
 
 var numLevels = 3
-var mapWidth = 5 #NEEDS TO BE MANUALLY SYNCED WITH mapWidth IN CHUNKNODE.GD
+const mapWidth = 5
 @export var levelLength = 15 #How many tiles until a checkpoint is set
 var structures = []
 var structPerLevel = 10
@@ -82,7 +83,7 @@ func _process(_delta):
 	previousChunk = currentChunk
 
 #converts the parameter coordinates into an smaller coord, 16,16 -> 1,1
-func getPlayerChunk(pos):
+static func getPlayerChunk(pos):
 	var chunkPos = Vector3()
 	chunkPos.x = int(pos.x / tileWidth)
 	chunkPos.y = int(0)

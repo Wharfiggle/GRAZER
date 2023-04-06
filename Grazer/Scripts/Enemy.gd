@@ -366,6 +366,8 @@ func flee():
 	speed = 1.5
 	var fleeVector = position - player.position + Vector3(0,0, fleeDirection * abs(position.x / 8.0))
 	#TODO Add check to see if enemy is at edge chunk and if so causes it to move only along z axis
+	if(abs(terrainController.getPlayerChunk(position).x) >= terrainController.mapWidth):
+		fleeVector.x = 0
 	fleeVector = fleeVector.normalized()
 	targetPos = global_transform.origin + fleeVector * 5
 	
