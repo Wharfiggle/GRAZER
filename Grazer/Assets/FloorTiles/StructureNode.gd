@@ -85,7 +85,6 @@ static func retrieveStructureInfo(id):
 			sPathname = "res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn"
 			sWidth = 2
 			sDepth = 1
-			pass
 	
 	
 	

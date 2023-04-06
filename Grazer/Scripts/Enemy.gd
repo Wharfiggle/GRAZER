@@ -36,6 +36,7 @@ var pathNode = 0
 var baseSpeed = 5.5
 var speed = 1.0
 var followDistance = 7.0 + randf_range(-1,1)
+var fleeDirection = -1 #1 to flee towards position z (backwards), -1 towards negative (forwards)
 var herdRadius = 10 + randf_range(-2,2)
 var currentCircle = 1
 var tVelocity = Vector3.ZERO
@@ -163,6 +164,10 @@ func _physics_process(delta):
 				draggedCow.position.z - cowVector.y)
 				
 	if(health <= 4.0):
+		if(currentMode != behaviors.flee):
+			var m = position.z - player.position.z
+			fleeDirection = m / abs(m)
+		
 		currentMode = behaviors.flee
 	
 	#knockback timer
@@ -349,6 +354,8 @@ func cowPursuit():
 		draggedCow.startDragging(self)
 		print("toFlee")
 		currentMode = behaviors.flee
+		var m = position.z - player.position.z
+		fleeDirection = m / abs(m)
 
 #Running away to despawn
 func flee():
@@ -357,7 +364,8 @@ func flee():
 	#If health gets too low, sever lasso and attempt to escape.
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
 	speed = 1.5
-	var fleeVector = position - player.position
+	var fleeVector = position - player.position + Vector3(0,0, fleeDirection * abs(position.x / 8.0))
+	#TODO Add check to see if enemy is at edge chunk and if so causes it to move only along z axis
 	fleeVector = fleeVector.normalized()
 	targetPos = global_transform.origin + fleeVector * 5
 	
