@@ -28,6 +28,8 @@ var knocked = false
 @onready var Vocal = $Voice
 #preloading sound file
 var run = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
+var GSSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
+var critSound = preload("res://sounds/gunsounds/crit shot.wav")
 
 #revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
 @export var gunStats = [0, 0, 0, 0, 0, 0]
@@ -52,15 +54,22 @@ var aimSwivel = 0.0
 @onready var revolver = get_node(revolverPath)
 #@export var shotgunPath:NodePath
 #var shotgun
+@export var revolverRange = 18.0
+@export var shotgunRange = 4.0
 @onready var shootingPoint = revolver.find_child("ShootingPoint")
+@onready var lineSightRaycast = shootingPoint.get_child(0)
+@onready var lineSightMesh = preload("res://Prefabs/BulletTrailMesh.tres")
+var lineSight
 var onRevolver = true
-var mousePos
 var active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	healthCounter.updateHealth(hitpoints)
+	lineSight = lineSightMesh.duplicate()
+	lineSightRaycast.get_child(0).mesh = lineSight
+	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -103,9 +112,16 @@ func _process(delta):
 			critMult = 2.0
 			#crit particle
 			#smokeInstance.get_child(2).emitting = true
+		var boomSound = smokeInstance.find_child("Boom")
 		if(onRevolver):
 			var b = bullet.instantiate()
-			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), 18.0, 2.0 * critMult, (critMult == 2.0))
+			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), revolverRange, 2.0 * critMult)
+			if(!critMult == 2.0):
+				boomSound.stream = GSSound
+				boomSound.play(.55)
+			else:
+				boomSound.stream = critSound
+				boomSound.play()
 		else:
 			print("shotgun shoot")
 		shootTimer = shootTime
@@ -168,11 +184,13 @@ func _process(delta):
 	if(camera != null && active):
 		var prevAimDir = aimDir
 		var viewport = get_viewport()
-		var prevMousePos = mousePos
-		mousePos = viewport.get_mouse_position()
+		var mousePos = viewport.get_mouse_position()
 		var rightStick = Vector3(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), 0, Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
+		#get aimDir based on right stick
+		if(rightStick.length() > 0.3):
+			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
 		#get aimDir based on mouse movement
-		if(prevMousePos != mousePos):
+		else:
 			#old method involving raycasts. expensive and collided with non-ground objects
 				#var ray_length = 100
 				#var from = camera.project_ray_origin(mousePos)
@@ -206,13 +224,10 @@ func _process(delta):
 			aimAt *= unitHei / viewHei #convert from pixels to units
 			aimAt.y = 1.0
 			aimAt += camera.global_position - camera.camOffset #offset to position camera is aiming at
-			var worldCursor = get_node(NodePath("WorldCursor"))
-			if(worldCursor != null):
-				worldCursor.global_position = aimAt
+#			var worldCursor = get_node(NodePath("WorldCursor"))
+#			if(worldCursor != null):
+#				worldCursor.global_position = aimAt
 			aimDir = atan2(position.x - aimAt.x, position.z - aimAt.z) + PI
-		#get aimDir based on right stick
-		elif(rightStick.length() > 0.3):
-			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
 		if(aimDir != prevAimDir):
 			revolver.rotation.y = aimDir - rotation.y
 			#0 - 0.5 is right hand, 0.5 - 1.0 is left hand
@@ -222,6 +237,13 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	#line of sight
+	if(lineSightRaycast.is_colliding()):
+		var dist = (lineSightRaycast.get_collision_point() - lineSightRaycast.global_position).length()
+		lineSight.updateTrail([Vector3.ZERO, Vector3(0, 0, dist)])
+	else:
+		lineSight.updateTrail([Vector3.ZERO, Vector3(0, 0, revolverRange)])
+	
 	tVelocity.y -= GRAVITY * delta
 	if(Input.is_action_just_pressed("jump") and is_on_floor()):
 		tVelocity.y += JUMP

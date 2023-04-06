@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy6xi4epix5ju"]
+[gd_scene load_steps=9 format=3 uid="uid://cy6xi4epix5ju"]
 
 [ext_resource type="PackedScene" uid="uid://dlln33d6nvy05" path="res://Assets/Models/Revolver/Revolver.fbx" id="1"]
 [ext_resource type="Texture2D" uid="uid://gvv13xkum2eo" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Normal.png" id="2"]
+[ext_resource type="Material" uid="uid://d3p7llyr4jt8" path="res://Assets/Materials/glow_material.tres" id="2_kcdtj"]
 [ext_resource type="Texture2D" uid="uid://b6lw1m41xx8s6" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_BaseMap.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://gbuep861ce8d" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Metallic.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://n08lli06401e" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Roughness.png" id="5"]
@@ -25,7 +26,16 @@ normal_texture = ExtResource("2")
 [node name="Revolver" instance=ExtResource("1")]
 
 [node name="ShootingPoint" type="Marker3D" parent="." index="0"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.000588231, 0.0664502, 0.28775)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.067, 0.29)
+
+[node name="RayCast3D" type="RayCast3D" parent="ShootingPoint" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+target_position = Vector3(0, 0, 18)
+collision_mask = 9
+
+[node name="LineOfSight" type="MeshInstance3D" parent="ShootingPoint/RayCast3D" index="0"]
+material_override = ExtResource("2_kcdtj")
+cast_shadow = 0
 
 [node name="Revolver" parent="RootNode/Revolver_FULL" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_0ge4k")

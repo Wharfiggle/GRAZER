@@ -12,9 +12,6 @@ var hitPoint = null
 @onready var raycast = get_node(NodePath("./RayCast3D"))
 var bulletTrailMesh = preload("res://Prefabs/BulletTrailMesh.tres")
 var bulletTrail
-@onready var GunShot = $Boom
-var GSSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
-var critSound = preload("res://sounds/gunsounds/crit shot.wav")
 var range
 var startPos
 var trailPoints
@@ -26,7 +23,7 @@ func _ready():
 	raycast.target_position = Vector3(0, -muzzle_velocity / 60.0, 0)
 
 func shoot(inSource:Node3D, inFrom:String, inPosition:Vector3, inRotation:Vector3, 
-inRange:float, inDamage:float, crit:bool):
+inRange:float, inDamage:float):
 	source = inSource
 	source.get_parent().add_child(self)
 	from = inFrom
@@ -42,14 +39,6 @@ inRange:float, inDamage:float, crit:bool):
 	#necessary to make the mesh independent from other bullets' trail meshes
 	bulletTrail = bulletTrailMesh.duplicate()
 	get_node(NodePath("./BulletTrail")).set_mesh(bulletTrail)
-	
-	#selecting sound
-	if(!crit):
-		GunShot.stream = GSSound
-		GunShot.play(.55)
-	else:
-		GunShot.stream = critSound
-		GunShot.play()
 	
 func _process(delta):
 	lifespan -= delta

@@ -8,7 +8,7 @@ var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
 @export var revolverPath:NodePath
 @onready var revolver = get_node(revolverPath)
-@onready var shootingPoint = revolver.find_child("ShootingPoint")
+var shootingPoint
 
 #audioStream
 @onready var Steps = $EFootsteps
@@ -25,7 +25,6 @@ var attackTime = 3
 var attackCooldown = 0
 var reloadTime = 3
 var reloadCooldown = 0
-
 
 var targetPos = Vector3(0,0,0)
 var dynamicMov = Vector3(0,0,0)
@@ -58,7 +57,7 @@ var stunTimer = 0
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
 var currentMode = behaviors.circle
 enum enemyTypes {thief, gunman}
-var marauderType
+@export var marauderType:enemyTypes
 
 var rng = RandomNumberGenerator.new()
 @onready var herd = get_node(NodePath("/root/Level/Herd"))
@@ -67,15 +66,16 @@ var dragRange = 3.0
 var escapeRange = 18
 
 func _ready():
-	#Setting enemy type
-	if(marauderType == null):
-		if(randi_range(0,1) == 0):
-			marauderType = enemyTypes.thief
-		else:
-			marauderType = enemyTypes.gunman
-	if(marauderType == enemyTypes.gunman):
-		$Mesh.scale = Vector3(1,0.7,1)
-
+	if(revolver != null):
+		shootingPoint = revolver.find_child("ShootingPoint")
+#	#Setting enemy type
+#	if(marauderType == null):
+#		if(randi_range(0,1) == 0):
+#			marauderType = enemyTypes.thief
+#		else:
+#			marauderType = enemyTypes.gunman
+#	if(marauderType == enemyTypes.gunman):
+#		$Mesh.scale = Vector3(1,0.7,1)
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):

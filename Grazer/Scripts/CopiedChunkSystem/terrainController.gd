@@ -4,7 +4,8 @@ extends Node3D
 var playerPath = NodePath("/root/Level/Player")
 var player
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
-@onready var enemyPrefab = preload("res://Prefabs/Enemy.tscn")
+@onready var gunmanPrefab = preload("res://Prefabs/Gunman.tscn")
+@onready var thiefPrefab = preload("res://Prefabs/Thief.tscn")
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 @onready var structureNode = preload("res://Assets/FloorTiles/StructureNode.tscn")
@@ -49,11 +50,11 @@ func _process(_delta):
 			camSize = camera.size
 		var scrHei = camSize / cos(55.0 * PI / 180.0)
 		var scrWid = camSize / 9.0 * 16.0 #only works with 16:9 aspect ratio
-		var enemy = enemyPrefab.instantiate()
-		var type = enemy.enemyTypes.gunman
+		var enemy
 		if(Input.is_action_just_pressed("debug5")):
-			type = enemy.enemyTypes.thief
-		enemy.marauderType = type
+			enemy = thiefPrefab.instantiate()
+		else:
+			enemy = gunmanPrefab.instantiate()
 		var horOrVert = randi_range(0, 1)
 		var topOrBot = randi_range(0, 1)
 		if(topOrBot == 0): topOrBot = -1

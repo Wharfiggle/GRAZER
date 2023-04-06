@@ -2,8 +2,5 @@
 
 [resource]
 transparency = 1
-albedo_color = Color(1, 0.94902, 0, 1)
-emission_enabled = true
-emission = Color(1, 0.94902, 0, 1)
-emission_on_uv2 = true
+shading_mode = 0
 distance_fade_max_distance = 5.0
