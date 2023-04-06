@@ -15,8 +15,8 @@ var alwaysRendered = false
 
 var scene = null
 var loaded = false
-
 var loading = false
+var loadedBefore = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
