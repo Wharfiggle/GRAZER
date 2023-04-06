@@ -25,8 +25,6 @@ var attackTime = 3
 var attackCooldown = 0
 var reloadTime = 3
 var reloadCooldown = 0
-#@export var stunTime = 0.5
-#var stunTimer = 0
 
 
 var targetPos = Vector3(0,0,0)
@@ -46,14 +44,16 @@ var GRAVITY = 30
 
 var canFire = true
 var fireDirection
-@export var knockbackMod = 1.5
+@export var knockbackMod = 2.0
 #@export var knockbackIFrames = 0.3
 #var knockbackIFramesTimer = 0.0
-@export var knockbackTime = 0.8
+@export var knockbackTime = 0.6
 var knockbackTimer = 0.0
 var knockbackVel = Vector3(0,0,0)
 var knockbackStrength = 0
 @onready var knockbox = $knockbox
+@export var stunTime = 1.0
+var stunTimer = 0
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
 var currentMode = behaviors.circle
@@ -96,7 +96,7 @@ func _physics_process(delta):
 #		if(marauderType == enemyTypes.thief):
 #			currentMode = behaviors.cowPursuit
 	if(marauderType == enemyTypes.thief && currentMode == behaviors.circle):
-		var rn = randi_range(1, 60)
+		var rn = randi_range(1, 600)
 		if(rn == 1):
 			currentMode = behaviors.cowPursuit
 	
@@ -105,21 +105,22 @@ func _physics_process(delta):
 	if(attackCooldown > 0):
 		attackCooldown -= delta
 	
-	match[currentMode]: #Essentially a switch statement
-		[behaviors.idle]:
-			idle()
-		[behaviors.circle]:
-			circle()
-		[behaviors.pursuit]:
-			pursuit()
-		[behaviors.cowPursuit]:
-			cowPursuit()
-		[behaviors.flee]:
-			flee()
-		[behaviors.retreat]:
-			retreat()
-		#[behaviors.attack]:
-		#	attack()
+	if(knockbackTimer == 0 && stunTimer == 0):
+		match[currentMode]: #Essentially a switch statement
+			[behaviors.idle]:
+				idle()
+			[behaviors.circle]:
+				circle()
+			[behaviors.pursuit]:
+				pursuit()
+			[behaviors.cowPursuit]:
+				cowPursuit()
+			[behaviors.flee]:
+				flee()
+			[behaviors.retreat]:
+				retreat()
+			#[behaviors.attack]:
+			#	attack()
 	
 	#gravity
 	tVelocity.y -= GRAVITY * delta
@@ -137,7 +138,7 @@ func _physics_process(delta):
 			tVelocity.z = tempVel.z
 	
 	set_velocity(tVelocity)
-	if(knockbackVel != Vector3.ZERO):
+	if(knockbackTimer > 0 || stunTimer > 0):
 		set_velocity(Vector3(knockbackVel.x, tVelocity.y, knockbackVel.z))
 	set_up_direction(Vector3.UP)
 	move_and_slide()
@@ -170,11 +171,16 @@ func _physics_process(delta):
 		if(knockbackTimer < 0):
 			knockbackTimer = 0
 			knockbackStrength = 0
+			stunTimer = stunTime
 		#lerp speed towards 0 on a square root curve
 		var t = knockbackTimer / knockbackTime
 		t = pow(t, 2)
 		knockbackVel = knockbackVel.normalized() * t * knockbackStrength
 		knock()
+	elif(stunTimer > 0):
+		stunTimer -= delta
+		if(stunTimer < 0):
+			stunTimer = 0
 	#knockback iframes timer
 #	elif(knockbackIFramesTimer > 0):
 #		knockbackIFramesTimer -= delta
@@ -451,6 +457,10 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
 	if(useModifier):
 		knockbackStrength *= knockbackMod
 	knockbackVel *= knockbackStrength
+	if(draggedCow != null):
+		draggedCow.stopDragging(self)
+		draggedCow = null
+		currentMode = behaviors.cowPursuit
 
 func damage_taken(damage, from) -> bool:
 	if(from != "enemy"):

@@ -19,6 +19,8 @@ var numHuddle = 0
 var canHuddle = true
 #true if the cows are following the center of the huddle, false if following the player
 var followingHerd = false
+#how many meters behind the player the target should be
+var playerTargetOffset = 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,7 +36,7 @@ func _physics_process(_delta):
 			i.followingHerd = followingHerd
 	else: #set cows target in huddle to player so they look at him
 		for i in huddle:
-			i.target = Vector2(player.position.x, player.position.z)
+			i.target = getPlayerTarget()
 			i.followingHerd = false
 
 #toggle follow/wait
@@ -103,26 +105,30 @@ func spawnCowAtPos(pos:Vector3) -> Node:
 func getTarget() -> Vector2:
 	if(numHuddle == 0):
 		followingHerd = false
-		return Vector2(player.position.x, player.position.z)
+		return getPlayerTarget()
 	else:
-		var loc = Vector2(player.position.x, player.position.z)
+		var loc = getPlayerTarget()
 		for i in huddle:
 			loc += Vector2(i.position.x, i.position.z)
 		loc /= numHuddle + 1
 		followingHerd = true
 		return loc
+func getPlayerTarget() -> Vector2:
+	return Vector2(
+		player.position.x - sin(player.rotation.y) * playerTargetOffset, 
+		player.position.z - cos(player.rotation.y) * playerTargetOffset)
 
 #add cow to huddle
 func addHuddler(huddler):
 	huddle.append(huddler)
 	numHuddle += 1
-	huddler.target = Vector2(player.position.x, player.position.z)
+	huddler.target = getPlayerTarget()
 	huddler.followingHerd = false
 	huddler.huddling = true
 	huddler.disableRayCasts()
 	var target = getTarget()
 	for i in cows:
-		if(i.huddling == false):
+		if(i != null && i.huddling == false):
 			i.target = target
 			i.followingHerd = followingHerd
 

@@ -34,7 +34,6 @@ var run = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
 @export var potionTime = 30.0
 var potionTimer = 0.0
 var potion
-var infiniteAmmo = false
 var lifeLeach = 0.0
 var potionSpeedup = 1.0
 var alwaysCrit = false
@@ -129,6 +128,8 @@ func _process(delta):
 			toAdd.x += -1
 			toAdd.z += -1
 	var stickToAdd = Vector3(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), 0, Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
+	stickToAdd = Vector3(cos(-PI/4.0) * stickToAdd.x - sin(-PI/4.0) * stickToAdd.z, 0,
+		sin(-PI/4.0) * stickToAdd.x + cos(-PI/4.0) * stickToAdd.z)
 	if(stickToAdd.length() >= 0.3):
 		toAdd = stickToAdd
 	if(toAdd != Vector3.ZERO):
@@ -170,6 +171,7 @@ func _process(delta):
 		var prevMousePos = mousePos
 		mousePos = viewport.get_mouse_position()
 		var rightStick = Vector3(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), 0, Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
+		#get aimDir based on mouse movement
 		if(prevMousePos != mousePos):
 			#old method involving raycasts. expensive and collided with non-ground objects
 				#var ray_length = 100
@@ -208,8 +210,9 @@ func _process(delta):
 			if(worldCursor != null):
 				worldCursor.global_position = aimAt
 			aimDir = atan2(position.x - aimAt.x, position.z - aimAt.z) + PI
+		#get aimDir based on right stick
 		elif(rightStick.length() > 0.3):
-			aimDir = -atan2(rightStick.z, rightStick.x) - PI
+			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
 		if(aimDir != prevAimDir):
 			revolver.rotation.y = aimDir - rotation.y
 			#0 - 0.5 is right hand, 0.5 - 1.0 is left hand

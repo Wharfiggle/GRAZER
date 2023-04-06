@@ -4,9 +4,9 @@ extends CharacterBody3D
 
 @export var normalSpeed = 8.0
 @export var normalLookSpeed = 3.0
-@export var normalFollowDistance = 5.0
-@export var dragFollowDistance = 1.0
+@export var normalFollowDistance = 2.0
 var followDistance = normalFollowDistance
+var targetRandOffset = 0.5
 @export var pushStrength = 60.0
 @export var pushDistanceThreshold = 1.5
 var pushVel = Vector2(0, 0)
@@ -16,9 +16,10 @@ var pushVel = Vector2(0, 0)
 @export var shuffleStrength = 0.75
 @export var shuffleSpeed = 3.0
 var shuffleTimeCounter = 0
-@export var dragSpeed = 5.0
+@export var dragSpeed = 3.0
 @export var dragLookSpeed = 1.0
 @export var dragShake = 0.05
+@export var dragFollowDistance = 1.0
 @export var draggers = []
 func getNumDraggers(): return draggers.size() #Used in Herd.getClosestCow()
 var dragShakeOffset = 0
@@ -70,6 +71,7 @@ func _ready():
 	shuffleTime = rng.randf_range(
 		shuffleTime - shuffleTimeRandOffset, 
 		shuffleTime + shuffleTimeRandOffset)
+	targetRandOffset = rng.randf_range(-targetRandOffset, targetRandOffset)
 	
 	animation.set("parameters/conditions/Drag", false)
 	animation.set("parameters/conditions/Not_Drag", true)
@@ -79,7 +81,7 @@ func _ready():
 
 func startDragging(marauder):
 	draggers.append(marauder)
-	maxSpeed = dragSpeed * draggers.size()
+	maxSpeed = min(dragSpeed * draggers.size(), draggers[0].baseSpeed)
 	lookSpeed = dragLookSpeed * draggers.size()
 	followDistance = dragFollowDistance
 	herd.removeHuddler(self)
@@ -136,7 +138,7 @@ func _physics_process(delta):
 						i.position.z - position.z)
 				targetVector /= draggers.size()
 			elif(target != null):
-				targetVector = Vector2(target.x - position.x, target.y - position.z)
+				targetVector = Vector2(target.x - position.x + targetRandOffset, target.y - position.z + targetRandOffset)
 			
 			if(Input.is_action_pressed("cowParty")):
 				rotate_y(maxSpeed)
@@ -309,6 +311,7 @@ func _physics_process(delta):
 		for i in draggers:
 			if(i != null):
 				stopDragging(i)
+		herd.removeCow(self)
 		queue_free()
 	totalVelocity.y = tVelocity.y
 	
