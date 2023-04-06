@@ -244,7 +244,7 @@ func _physics_process(delta):
 			dodging = true
 	
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
-		Input.start_joy_vibration(0,0.4,0.4,.1)
+		Input.start_joy_vibration(0,0.6,0.6,.1)
 		dodgeCooldownTimer = dodgeCooldownTime
 		dodgeTimer = dodgeTime
 		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed
