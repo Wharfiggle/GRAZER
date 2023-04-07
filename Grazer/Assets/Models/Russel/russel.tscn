@@ -159,7 +159,7 @@ material_override = ExtResource("2_s1b86")
 material_override = ExtResource("3_bsnhw")
 
 [node name="GunRight" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(0.226961, 0.0286375, 0.973483, -0.169737, 0.985433, 0.010584, -0.958999, -0.167638, 0.228516, -4.52362, 68.9767, -162.745)
+transform = Transform3D(0.226962, 0.0286383, 0.973483, -0.169737, 0.985433, 0.0105831, -0.958999, -0.167638, 0.228516, -4.52355, 68.9767, -162.745)
 bone_name = "RightHand"
 bone_idx = 22
 
@@ -177,7 +177,7 @@ transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 visible = false
 
 [node name="GunLeft" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="10"]
-transform = Transform3D(0.0862372, 0.0263945, -0.995925, 0.108426, 0.993463, 0.035718, 0.990357, -0.111064, 0.0828116, 4.14317, 68.1969, -164.455)
+transform = Transform3D(0.0862363, 0.0263962, -0.995925, 0.108425, 0.993463, 0.0357194, 0.990357, -0.111064, 0.0828106, 4.1432, 68.1969, -164.456)
 bone_name = "LeftHand"
 bone_idx = 9
 
