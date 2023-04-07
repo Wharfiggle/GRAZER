@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var normalLookSpeed = 3.0
 @export var normalFollowDistance = 2.0
 var followDistance = normalFollowDistance
-var targetRandOffset = 0.5
+var targetRandOffset = 0.0
 @export var pushStrength = 60.0
 @export var pushDistanceThreshold = 1.5
 var pushVel = Vector2(0, 0)
