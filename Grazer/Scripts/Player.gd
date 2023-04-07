@@ -3,7 +3,9 @@ extends CharacterBody3D
 # Declare member variables here. Examples:
 var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
-@export var shootTime = 0.2
+@export var revolverShootTime = 0.3
+@export var shotgunShootTime = 0.5
+var shootTime = revolverShootTime
 var shootTimer = 0.0
 @export var shootBufferTime = 0.1
 var shootBufferTimer = 0.0
@@ -27,9 +29,11 @@ var knocked = false
 @onready var Steps = $footsteps
 @onready var Vocal = $Voice
 #preloading sound file
-var run = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
-var GSSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
-var critSound = preload("res://sounds/gunsounds/crit shot.wav")
+var runSound = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
+var revolverShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
+var revolverCritSound = preload("res://sounds/gunsounds/crit shot.wav")
+var shotgunShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
+var shotgunCritSound = preload("res://sounds/gunsounds/crit shot.wav")
 
 #revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
 @export var gunStats = [0, 0, 0, 0, 0, 0]
@@ -50,17 +54,25 @@ var herd
 var moveDir = 0.0
 var aimDir = 0.0
 var aimSwivel = 0.0
-@export var revolverPath:NodePath
-@onready var revolver = get_node(revolverPath)
-#@export var shotgunPath:NodePath
-#var shotgun
+@onready var gunRight = get_node(NodePath("./Russel/Armature/Skeleton3D/GunRight"))
+@onready var gunLeft = get_node(NodePath("./Russel/Armature/Skeleton3D/GunLeft"))
+var rightHand = true
+var onRevolver = true
 @export var revolverRange = 18.0
-@export var shotgunRange = 4.0
-@onready var shootingPoint = revolver.find_child("ShootingPoint")
+@export var shotgunRange = 6.0
+@export var revolverDamage = 2.0
+@export var shotgunDamage = 1.0
+@export var shotgunSpread = 45.0
+@export var shotgunBullets = 20
+@onready var shootingPoint = gunRight.get_child(0).find_child("ShootingPoint")
 @onready var lineSightRaycast = shootingPoint.get_child(0)
 @onready var lineSightMesh = preload("res://Prefabs/BulletTrailMesh.tres")
+@onready var lineSightNode = get_node("./LineOfSight")
 var lineSight
-var onRevolver = true
+@onready var animation = get_node(NodePath("./Russel/AnimationPlayer/AnimationTree"))
+@onready var worldCursor = get_node(NodePath("./WorldCursor"))
+var mousePos = Vector2.ZERO
+var cursorPos = Vector3.ZERO
 var active = true
 
 # Called when the node enters the scene tree for the first time.
@@ -68,8 +80,9 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	healthCounter.updateHealth(hitpoints)
 	lineSight = lineSightMesh.duplicate()
-	lineSightRaycast.get_child(0).mesh = lineSight
+	lineSightNode.mesh = lineSight
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
+	shotgunSpread = shotgunSpread * PI / 180.0
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -86,6 +99,7 @@ func _process(delta):
 		shootTimer -= delta
 		if(shootTimer < 0):
 			shootTimer = 0
+		lineSightNode.transparency = (shootTimer / shootTime / 2.0) + 0.5
 	if(shootBufferTimer > 0):
 		shootBufferTimer -= delta
 		if(shootBufferTimer < 0):
@@ -97,14 +111,20 @@ func _process(delta):
 			potionTimer = 0
 			potion.use(false)
 			potion = null
-		
+	
+	#swap weapon
+	if(Input.is_action_just_pressed("SwapWeapon") && active):
+		setWeapon(!onRevolver)
+	
+	#shoot gun input buffer
 	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0):
 		shootBufferTimer = shootBufferTime
+	#shoot gun
 	if(active && shootBufferTimer > 0 && shootTimer == 0):
 		Input.start_joy_vibration(0,1,1,0.07)
 		var smokeInstance = smoke.instantiate()
-		shootingPoint.add_child(smokeInstance)
-		smokeInstance.position = Vector3.ZERO
+		add_child(smokeInstance)
+		smokeInstance.global_position = shootingPoint.global_position
 		smokeInstance.get_child(0).emitting = true
 		smokeInstance.get_child(1).emitting = true
 		var critMult = 1.0
@@ -115,19 +135,31 @@ func _process(delta):
 		var boomSound = smokeInstance.find_child("Boom")
 		if(onRevolver):
 			var b = bullet.instantiate()
-			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), revolverRange, 2.0 * critMult)
+			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), revolverRange, revolverDamage * critMult)
 			if(!critMult == 2.0):
-				boomSound.stream = GSSound
+				boomSound.stream = revolverShootSound
 				boomSound.play(.55)
 			else:
-				boomSound.stream = critSound
+				boomSound.stream = revolverCritSound
 				boomSound.play()
 		else:
-			print("shotgun shoot")
+			var bullets = 0
+			while bullets < shotgunBullets:
+				var b = bullet.instantiate()
+				var bRotation = Vector3(0, aimDir - shotgunSpread / 2.0
+					+ (shotgunSpread / (shotgunBullets - 1)) * bullets, 0)
+				b.shoot(self, "player", shootingPoint.global_position, bRotation, shotgunRange, shotgunDamage * critMult, 50.0)
+				bullets += 1
+			if(!critMult == 2.0):
+				boomSound.stream = revolverShootSound
+				boomSound.play(.55)
+			else:
+				boomSound.stream = revolverCritSound
+				boomSound.play()
 		shootTimer = shootTime
 	
 	#setting sound 
-	Steps.stream = run
+	Steps.stream = runSound
 	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):
 		if(Input.is_action_pressed("moveRight")):
@@ -156,6 +188,8 @@ func _process(delta):
 			rotation.y,
 			moveDir,
 			0.1)
+	lineSightNode.global_position = shootingPoint.global_position
+	lineSightNode.global_rotation = Vector3(0, aimDir, 0)
 	
 	toAdd = toAdd.normalized() * speed * potionSpeedup
 	if(toAdd.x == 0 and toAdd.z == 0):
@@ -182,15 +216,16 @@ func _process(delta):
 	
 	#player looks where mouse is pointed but projected to isometric view
 	if(camera != null && active):
-		var prevAimDir = aimDir
 		var viewport = get_viewport()
-		var mousePos = viewport.get_mouse_position()
+		var prevMousePos = mousePos
+		mousePos = viewport.get_mouse_position()
 		var rightStick = Vector3(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), 0, Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
 		#get aimDir based on right stick
-		if(rightStick.length() > 0.3):
+		if(rightStick.length() > 0.6):
 			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
+			worldCursor.visible = false
 		#get aimDir based on mouse movement
-		else:
+		elif(prevMousePos != mousePos):
 			#old method involving raycasts. expensive and collided with non-ground objects
 				#var ray_length = 100
 				#var from = camera.project_ray_origin(mousePos)
@@ -222,18 +257,29 @@ func _process(delta):
 				cos(-PI/4.0) * mouseOffset.x - sin(-PI/4.0) * mouseOffset.y * angMod, 0,
 				sin(-PI/4.0) * mouseOffset.x + cos(-PI/4.0) * mouseOffset.y * angMod)
 			aimAt *= unitHei / viewHei #convert from pixels to units
-			aimAt.y = 1.0
+			aimAt.y = 1.5
 			aimAt += camera.global_position - camera.camOffset #offset to position camera is aiming at
-#			var worldCursor = get_node(NodePath("WorldCursor"))
-#			if(worldCursor != null):
-#				worldCursor.global_position = aimAt
+			worldCursor.visible = true
+			cursorPos = aimAt - position
 			aimDir = atan2(position.x - aimAt.x, position.z - aimAt.z) + PI
-		if(aimDir != prevAimDir):
-			revolver.rotation.y = aimDir - rotation.y
-			#0 - 0.5 is right hand, 0.5 - 1.0 is left hand
-			aimSwivel = fmod(aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
-	else:
+		worldCursor.global_position = position + cursorPos
+		#-1 - 0 is left hand, 0 - 1.0 is right hand
+		var prevAimSwivel = aimSwivel
+		aimSwivel = fmod(2 * PI + aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
+		aimSwivel = -(aimSwivel * 2 - 1)
+		aimSwivel = lerpf(prevAimSwivel, aimSwivel, 0.1)
+		if(aimSwivel <= 0):
+			setHands(false)
+		else:
+			setHands(true)
+		animation.set("parameters/shootAngle/blend_position", aimSwivel)
+		#correct gun angle
+		var gun = shootingPoint.get_parent()
+		gun.set_global_rotation(Vector3(0, aimDir, 0))
+	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
+	else:
+		worldCursor.visible = false
 
 
 func _physics_process(delta):
@@ -256,6 +302,7 @@ func _physics_process(delta):
 	set_up_direction(Vector3.UP)
 	if(active):
 		move_and_slide()
+		#animation.set("parameters/idleWalk/blend_amount", Vector3(tVelocity.x, 0, tVelocity.z).length() / speed)
 	
 	if(Input.is_action_just_pressed("dodge")):
 		dodgeBufferTimer = dodgeBufferTime
@@ -291,7 +338,38 @@ func _physics_process(delta):
 		if(dodgeCooldownTimer < 0):
 			dodgeCooldownTimer = 0 
 			
-
+func setWeaponAndHands(revolver:bool, right:bool):
+	if(revolver != onRevolver || right != rightHand):
+		var oldGun = gunRight
+		if(!rightHand):
+			oldGun = gunLeft
+		var gun = gunRight
+		if(!right):
+			gun = gunLeft
+		var tempGun = oldGun.get_child(0).get_child(0)
+		if(!onRevolver):
+			tempGun = oldGun.get_child(1).get_child(0)
+		oldGun = tempGun
+		tempGun = gun.get_child(0).get_child(0)
+		if(!revolver):
+			tempGun = gun.get_child(1).get_child(0)
+		gun = tempGun
+		oldGun.visible = false
+		gun.visible = true
+		onRevolver = revolver
+		if(onRevolver):
+			shootTime = revolverShootTime
+		else:
+			shootTime = shotgunShootTime
+		rightHand = right
+		shootingPoint = gun.get_child(0)
+		lineSightRaycast = shootingPoint.get_child(0)
+func setHands(right:bool):
+	if(right != rightHand):
+		setWeaponAndHands(onRevolver, right)
+func setWeapon(revolver:bool):
+	if(revolver != onRevolver):
+		setWeaponAndHands(revolver, rightHand)
 
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()

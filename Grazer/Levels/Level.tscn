@@ -32,7 +32,6 @@ centered = false
 [node name="Camera3D" parent="." instance=ExtResource("2")]
 transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
 current = true
-size = 18.0
 
 [node name="Player" parent="." instance=ExtResource("9")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 16, 5, 16)

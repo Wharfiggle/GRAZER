@@ -1,7 +1,7 @@
 extends Area3D
 
-@export var muzzle_velocity = 150
-@export var lifespan = 4
+@export var muzzle_velocity = 150.0
+@export var lifespan = 4.0
 var velocity
 var damage
 var from = ""
@@ -23,13 +23,14 @@ func _ready():
 	raycast.target_position = Vector3(0, -muzzle_velocity / 60.0, 0)
 
 func shoot(inSource:Node3D, inFrom:String, inPosition:Vector3, inRotation:Vector3, 
-inRange:float, inDamage:float):
+inRange:float, inDamage:float, inSpeed:float = 150.0):
 	source = inSource
 	source.get_parent().add_child(self)
 	from = inFrom
 	global_position = inPosition
 	startPos = inPosition
 	rotation = inRotation
+	muzzle_velocity = inSpeed
 	velocity = Vector3(sin(rotation.y) * muzzle_velocity, 0, cos(rotation.y) * muzzle_velocity)
 	range = inRange
 	damage = inDamage

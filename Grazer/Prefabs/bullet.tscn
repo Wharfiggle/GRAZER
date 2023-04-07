@@ -1,7 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbwkymmlt3kbr"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_0go6h"]
-[ext_resource type="Material" uid="uid://d3p7llyr4jt8" path="res://Assets/Materials/glow_material.tres" id="2_frb8b"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_3n8u5"]
 size = Vector3(1, 2, 1)
@@ -11,6 +10,13 @@ size = Vector3(1, 2, 1)
 [sub_resource type="SphereMesh" id="2"]
 
 [sub_resource type="Skin" id="3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0lsm5"]
+transparency = 1
+albedo_color = Color(1, 0.654902, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.654902, 0, 1)
+distance_fade_max_distance = 5.0
 
 [node name="Bullet" type="Area3D"]
 collision_mask = 9
@@ -30,7 +36,7 @@ disabled = true
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -2.5, 0)
-collision_mask = 9
+collision_mask = 41
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.5, 0, 0, 0)
@@ -40,10 +46,11 @@ skin = SubResource("3")
 skeleton = NodePath("")
 
 [node name="BulletTrail" type="MeshInstance3D" parent="."]
-material_override = ExtResource("2_frb8b")
+material_override = SubResource("StandardMaterial3D_0lsm5")
 cast_shadow = 0
 
 [node name="Boom" type="AudioStreamPlayer3D" parent="."]
+volume_db = -12.0
 autoplay = true
 bus = &"GunShots"
 

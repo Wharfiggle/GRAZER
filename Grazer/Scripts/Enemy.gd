@@ -6,8 +6,7 @@ extends CharacterBody3D
 @onready var level = get_tree().root.get_child(0)
 var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
-@export var revolverPath:NodePath
-@onready var revolver = get_node(revolverPath)
+@onready var revolver = get_node(NodePath("./Revolver"))
 var shootingPoint
 
 #audioStream
@@ -16,6 +15,7 @@ var shootingPoint
 @onready var SoundFX = $ESoundFX
 #soundFile Preload
 var reloadSound = preload("res://sounds/gunsounds/Reload.wav")
+var revolverShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
 
 var maxHealth = 10.0
 var health = maxHealth
@@ -206,7 +206,7 @@ func circle():
 		return
 	genDynamicMov()
 	#variable for determining how far away to place next naviagation point from current position
-	var circleSpeed = 2
+	var circleSpeed = 2.0
 	var lerpSpeed = 0.1
 	var herdCenter = herd.findHerdCenter()
 	#Desired position vector based on desired radius
@@ -306,9 +306,9 @@ func pursuit():
 		if(speed < 1):
 			speed *= followDistance / spacing
 			if(spacing == 0):
-				speed = 0
+				speed = 0.0
 		if(speed > 1):
-			speed = 1
+			speed = 1.0
 		
 		var fleeVector = Vector3(0,0,0)
 		fleeVector = global_transform.origin - player.global_transform.origin
@@ -328,12 +328,12 @@ func pursuit():
 		targetPos = global_transform.origin + fleeVector * 5
 
 	elif(speed < 1):
-		speed = 1
+		speed = 1.0
 
 func cowPursuit():
 	#Marauder runs towards closest cow and attempts to lasso when in range
 	#If successful, or cowboy gets too close, the marauder switches to flee mode.
-	speed = 1
+	speed = 1.0
 	if(herd == null):
 			herd = get_node(NodePath("/root/Level/Herd"))
 			if(herd == null):
@@ -434,16 +434,21 @@ func _on_Timer_timeout():
 	moveTo(targetPos)
 
 func attack(direction:Vector3):
-	for x in 1: #lmao
+	if(shootingPoint != null):
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
 		var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
 		b.shoot(self, "enemy", shootingPoint.global_position, bulletRotation, 15.0, 2.0)
 		var smokeInstance = smoke.instantiate()
+		var boomSound = b.find_child("Boom")
+		boomSound.stream = revolverShootSound
+		boomSound.play(.55)
 		shootingPoint.add_child(smokeInstance)
 		smokeInstance.position = Vector3.ZERO
 		smokeInstance.get_child(0).emitting = true
 		smokeInstance.get_child(1).emitting = true
+	else:
+		shootingPoint = revolver.find_child("ShootingPoint")
 
 func knock():
 	var enemies = knockbox.get_overlapping_bodies()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dskm7iapg730j"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_4jemg"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_mmcw4"]
 [ext_resource type="PackedScene" uid="uid://2n283fa8x1p0" path="res://Assets/Models/marauder/marauder.tscn" id="3_kn5kd"]
 
 [sub_resource type="CapsuleShape3D" id="16"]
@@ -9,7 +9,7 @@
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 5
-script = ExtResource("1_4jemg")
+script = ExtResource("1_mmcw4")
 
 [node name="Bandit" parent="." instance=ExtResource("3_kn5kd")]
 
