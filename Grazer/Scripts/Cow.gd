@@ -39,6 +39,8 @@ var maneuverTurnDir = 1
 var raySize = [2.0, 1.0, 2.0]
 @onready var model = get_node(NodePath("./Model"))
 @onready var animation = model.find_child("AnimationTree")
+@onready var skeleton = model.find_child("Skeleton3D")
+
 var animationBlend = 0
 var herd
 var tVelocity = Vector3(0, 0, 0)
@@ -72,6 +74,12 @@ func _ready():
 		shuffleTime - shuffleTimeRandOffset, 
 		shuffleTime + shuffleTimeRandOffset)
 	targetRandOffset = rng.randf_range(-targetRandOffset, targetRandOffset)
+	
+	#var phys_bones = ["Tail_1", "Ear_Base_r", "Ear_Base_l", "Tail_2, Tail_3, TailBase, Ear_Upper_r, Ear_Upper_l"]
+	var phys_bones = ["Tail_1", "Ear_Upper_r", "Ear_Upper_l"]
+	#var phys_bones = ["Tail_1", "Ear_Base_r", "Ear_Base_l"]
+	skeleton.physical_bones_start_simulation(phys_bones)
+	#skeleton.physical_bones_start_simulation()
 	
 	animation.set("parameters/conditions/Drag", false)
 	animation.set("parameters/conditions/Not_Drag", true)

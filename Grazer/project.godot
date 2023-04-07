@@ -24,6 +24,10 @@ WorldSave="*res://Scripts/CopiedChunkSystem/WorldSave.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/jigglebones/plugin.cfg")
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
