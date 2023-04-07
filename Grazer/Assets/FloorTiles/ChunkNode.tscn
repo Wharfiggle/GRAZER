@@ -16,7 +16,6 @@ script = ExtResource("2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.795, 8)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DataIndicator"]
-visible = false
 mesh = SubResource("BoxMesh_35wjo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DataIndicator"]

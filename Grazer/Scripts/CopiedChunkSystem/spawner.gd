@@ -5,10 +5,12 @@ var instance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	#Return if a path has already been chosen
 	if(path != ""): 
 		return
-	match[]:
+	path = "wrong"
+	match[objectStringToSpawn]:
 		["gunman"]:
 			path = "res://Prefabs/Gunman.tscn"
 		["thief"]:
@@ -21,8 +23,12 @@ func _process(delta):
 	pass
 
 func spawn():
-	if(path != ""):
+	if(path == "wrong"):
+		print("Spelling error")
+	elif(path != ""):
 		instance = load(path).instantiate()
-		instance.set_parent(get_node("/root/Level"))
-		instance.position = position
+		get_node("/root/Level").add_child(instance)
+		instance.position = position + get_parent().position + get_parent().get_parent().position
 		self.queue_free()
+	else:
+		print("Tried to spawn nothing")

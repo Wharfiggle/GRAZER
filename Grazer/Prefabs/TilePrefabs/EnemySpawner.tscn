@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://fd1gm5g4mhur"]
+[gd_scene load_steps=3 format=3 uid="uid://vtb3v82advlv"]
+
+[ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/spawner.gd" id="1_6k4lh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dj02g"]
 
 [node name="EnemySpawner" type="Node3D"]
+script = ExtResource("1_6k4lh")
+
+[node name="EditorIndicator" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_dj02g")

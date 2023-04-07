@@ -3,8 +3,11 @@ extends Node3D
 class_name tileStructures
 
 @onready var player = get_node("/root/Level/Player")
-var tileWidth = 16
 
+#*UPDATE THIS VARIABLE WHEN ADDING NEW STRUCTURES*
+const numStuctures = 2
+
+var tileWidth = 16
 var tileId = 0
 
 var pathname = ""
@@ -17,6 +20,7 @@ var scene = null
 var loaded = false
 var loading = false
 var loadedBefore = false
+var instance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,42 +29,32 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#	if(pathname != null and !loaded):
-#		print("loaded structure")
-#		print(pathname)
-#		var scene = load(pathname)
-#
-#		var instance = scene.instantiate()
-#		add_child(instance)
-#		loaded = true
 	var distance = player.position.distance_to(position)
-	#print(ResourceLoader.load_threaded_get_status(pathname))
+	
+	#Waits to instantiate scene until ready
 	if(loading and ResourceLoader.load_threaded_get_status(pathname) == 3):
-		#This function will freeze the game until the scene is fully loaded
-		#But once loaded, it does return the reference to the scene that we need
 		var chunk = ResourceLoader.load_threaded_get(pathname)
 		await get_tree().process_frame
-		var instance = chunk.instantiate()
+		instance = chunk.instantiate()
 		add_child(instance)
-		#instance.position = position
 		scene = instance
 		loading = false
+		if(!loadedBefore):
+			activateSpawners()
+			loadedBefore = true
 		loaded = true
-		print("Added structure?")
-	if(distance <= renderRange * tileWidth):
-		#print("Should load this?!?!")
-		pass
-
+	
+	#Starts request to load scene when player is close enough
 	if(distance <= renderRange * tileWidth and !loaded and !loading):
 		ResourceLoader.load_threaded_request(pathname,"",false, ResourceLoader.CACHE_MODE_REUSE)
 		loading = true
-		print("Start loading")
-
+	#Unloads scene when player is far away enough
 	elif(distance > (renderRange + 1) * tileWidth and scene != null):
 		scene.queue_free()
 		scene = null
 		loaded = false
 
+#Just a setter that fills out variables from the id.
 func setStructureData(id):
 	tileId = id
 	var info = tileStructures.retrieveStructureInfo(tileId)
@@ -68,7 +62,7 @@ func setStructureData(id):
 	width = info[1]
 	depth = info[2]
 
-#Returns the 
+#Returns the path, width, and depth of structure with the id passed in
 static func retrieveStructureInfo(id):
 	
 	var sPathname = ""
@@ -86,8 +80,21 @@ static func retrieveStructureInfo(id):
 			sWidth = 2
 			sDepth = 1
 	
-	
-	
+	#* ^ ADD NEW STRUCTURES HERE ^ *
+	#The number in the "[]" is the id number. Just increment it 1 higher than the last one
+	#sPathname is the path to the scene. Right click and click "Copy Path" in the explorer to get it
+	#sWidth is the length along the x axis
+	#sDepth is the length along the z axis
+	#* REMEMBER TO UPDATE const numStructures UP ON LINE 8 *
 	
 	return [sPathname, sWidth, sDepth]
 
+func activateSpawners():
+	#loop through children and find all the spawners
+	#Then call their spawn function
+	var children = instance.get_children()
+	for c in children:
+			#Catch all for spawner names
+		if(c.name == "Spawner" or c.name == "spawnerNode" or
+		c.name == "ItemSpawner" or c.name == "EnemySpawner"):
+			c.spawn()
