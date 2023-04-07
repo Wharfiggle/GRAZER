@@ -99,7 +99,7 @@ func _process(delta):
 		shootTimer -= delta
 		if(shootTimer < 0):
 			shootTimer = 0
-		lineSightNode.transparency = (shootTimer / shootTime / 2.0) + 0.5
+		lineSightNode.transparency = sqrt(sqrt(sqrt(shootTimer / shootTime))) / 2.0 + 0.5
 	if(shootBufferTimer > 0):
 		shootBufferTimer -= delta
 		if(shootBufferTimer < 0):
