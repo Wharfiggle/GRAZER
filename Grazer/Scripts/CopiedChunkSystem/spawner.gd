@@ -5,7 +5,8 @@ var instance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	get_child(0).queue_free()
+	
 	#Return if a path has already been chosen
 	if(path != ""): 
 		return
