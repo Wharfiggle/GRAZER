@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://p66aexmg718s"]
+[gd_scene load_steps=8 format=3 uid="uid://cfo8umgxebo27"]
+
+[ext_resource type="PackedScene" uid="uid://vtb3v82advlv" path="res://Prefabs/TilePrefabs/EnemySpawner.tscn" id="1_bdamj"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(32, 0.1, 16)
@@ -43,3 +45,7 @@ mesh = SubResource("BoxMesh_367dd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DataIndicator"]
 shape = SubResource("BoxShape3D_lb7rb")
 disabled = true
+
+[node name="EnemySpawner" parent="." instance=ExtResource("1_bdamj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.772, 2, 5.221)
+objectStringToSpawn = "thief"

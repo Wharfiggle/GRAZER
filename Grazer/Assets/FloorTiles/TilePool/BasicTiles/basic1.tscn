@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://6sd6li3j1d2r"]
+[gd_scene load_steps=8 format=3 uid="uid://ckr0fpqh2pxci"]
 
 [ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_gbb6s"]
 [ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/Models/!Prefabs!/Rocks/big_stone.tscn" id="2_7fyle"]
+[ext_resource type="PackedScene" uid="uid://vtb3v82advlv" path="res://Prefabs/TilePrefabs/EnemySpawner.tscn" id="3_jkf1d"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -33,3 +34,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ig5f3")
 
 [node name="bigStone" parent="NavigationRegion3D" instance=ExtResource("2_7fyle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89519, 0.05, -3.24152)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_jkf1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39826, 4.22436, -6.05097)
+objectStringToSpawn = "gunman"

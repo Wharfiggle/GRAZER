@@ -40,8 +40,10 @@ var fleeDirection = -1 #1 to flee towards position z (backwards), -1 towards neg
 var herdRadius = 10 + randf_range(-2,2)
 var currentCircle = 1
 var tVelocity = Vector3.ZERO
-var GRAVITY = 30
+var GRAVITY = 30 #hibernate() sets this to 30, so both need to be changed when modified
 
+#Distance from player when the enemy will stop hibernating
+var wakeUpDistance = 10
 var canFire = true
 var fireDirection
 @export var knockbackMod = 2.0
@@ -55,8 +57,8 @@ var knockbackStrength = 0
 @export var stunTime = 1.0
 var stunTimer = 0
 
-enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit}
-var currentMode = behaviors.circle
+enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit, hibernate}
+var currentMode = behaviors.hibernate
 enum enemyTypes {thief, gunman}
 @export var marauderType:enemyTypes
 
@@ -87,15 +89,16 @@ func _physics_process(delta):
 	
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
-		
+	
+	#TODO ADD RAYCAST TO CHECK IF CHUNK IS UNLOADED
+	if(position.distance_to(player.position) > 50):
+		currentMode = behaviors.hibernate
+	
 	rotation.y = lerp_angle(
 		rotation.y,
 		atan2(position.x - targetPos.x, position.z - targetPos.z) + PI,
 		0.1)
 	
-#	if(Input.is_action_just_pressed("debug3")):
-#		if(marauderType == enemyTypes.thief):
-#			currentMode = behaviors.cowPursuit
 	if(marauderType == enemyTypes.thief && currentMode == behaviors.circle):
 		var rn = randi_range(1, 600)
 		if(rn == 1):
@@ -120,8 +123,8 @@ func _physics_process(delta):
 				flee()
 			[behaviors.retreat]:
 				retreat()
-			#[behaviors.attack]:
-			#	attack()
+			[behaviors.hibernate]:
+				hibernate()
 	
 	#gravity
 	tVelocity.y -= GRAVITY * delta
@@ -259,7 +262,6 @@ func circle():
 	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
 	
 	if(marauderType == enemyTypes.thief and randi_range(1,1000) <= 1):
-		#print("toCowPursuit")
 		currentMode = behaviors.cowPursuit
 
 func pursuit():
@@ -284,18 +286,17 @@ func pursuit():
 			direction = direction.normalized()
 			var angle_to = direction.dot(transform.basis.z)
 			if angle_to > 0:
-				#print("facing player")
 				pass
 			if(attackCooldown <= 0):
 				attack(direction)
 				attackCooldown = 3
 				clip -= 1
-				print("Bullets left: " + str(clip))
+				#print("Bullets left: " + str(clip))
 				if(clip <= 0):
 					#setting sound to reload
 					SoundFX.stream = reloadSound
 					#SoundFX.play()
-					print("Reloading")
+					#print("Reloading")
 					clip = clipSize
 					reloadCooldown = reloadTime 
 					currentMode = behaviors.circle
@@ -317,7 +318,7 @@ func pursuit():
 		targetPos = global_transform.origin + fleeVector * 5
 	#If thief gets too close
 	elif(marauderType == enemyTypes.thief and spacing < followDistance / 2.0):
-		print("Panic!")
+		#print("Panic!")
 		currentMode = behaviors.flee
 	#If gunman is too close, back up
 	elif(marauderType == enemyTypes.gunman and spacing < followDistance / 2.0):
@@ -352,7 +353,7 @@ func cowPursuit():
 	elif(targetCow != null && draggedCow == null):
 		draggedCow = targetCow
 		draggedCow.startDragging(self)
-		print("toFlee")
+		#print("toFlee")
 		currentMode = behaviors.flee
 		var m = position.z - player.position.z
 		fleeDirection = m / abs(m)
@@ -384,7 +385,7 @@ func flee():
 				if(leadDragger == null):
 					leadDragger = i
 				else:
-					print("toCircle")
+					#print("toCircle")
 					i.currentMode = behaviors.circle
 				i.targetCow = null
 				i.draggedCow = null
@@ -396,7 +397,7 @@ func flee():
 func retreat():
 	#Switching to fleeing
 	if(draggedCow != null or health < 0.3 * maxHealth):
-		print("toFlee")
+		#print("toFlee")
 		currentMode = behaviors.flee
 		return
 	
@@ -407,6 +408,19 @@ func retreat():
 	targetPos = global_transform.origin + fleeVector * 5
 	if(spacing > 3 * followDistance && health > 0.3 * maxHealth):
 			currentMode = behaviors.circle
+
+func hibernate():
+	GRAVITY = 0
+	baseSpeed = 0
+	#Despawn distance
+	if(position.distance_to(player.position) > 200):
+		queue_free()
+	#Wake up distance
+	if(position.distance_to(player.position) < wakeUpDistance):
+		currentMode = behaviors.circle
+		baseSpeed = 5.5
+		GRAVITY = 30
+
 
 #Function for setting a random direction to add variety to marauder movement
 func genDynamicMov():
