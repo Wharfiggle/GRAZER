@@ -52,6 +52,7 @@ var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 var moveDir = 0.0
+var prevAimDir = [0.0, 0.0]
 var aimDir = 0.0
 var aimSwivel = 0.0
 @onready var gunRight = get_node(NodePath("./Russel/Armature/Skeleton3D/GunRight"))
@@ -60,8 +61,8 @@ var rightHand = true
 var onRevolver = true
 @export var revolverRange = 18.0
 @export var shotgunRange = 6.0
-@export var revolverDamage = 2.0
-@export var shotgunDamage = 1.0
+@export var revolverDamage = 3.0
+@export var shotgunDamage = 0.5
 @export var shotgunSpread = 45.0
 @export var shotgunBullets = 20
 @onready var shootingPoint = gunRight.get_child(0).find_child("ShootingPoint")
@@ -262,6 +263,9 @@ func _process(delta):
 			worldCursor.visible = true
 			cursorPos = aimAt - position
 			aimDir = atan2(position.x - aimAt.x, position.z - aimAt.z) + PI
+		var tempPrevAimDir = [aimDir, prevAimDir[0]]
+		aimDir = (aimDir + prevAimDir[0] + prevAimDir[1]) / 3.0
+		prevAimDir = tempPrevAimDir
 		worldCursor.global_position = position + cursorPos
 		#-1 - 0 is left hand, 0 - 1.0 is right hand
 		var prevAimSwivel = aimSwivel
