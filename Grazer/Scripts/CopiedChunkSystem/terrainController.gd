@@ -34,7 +34,9 @@ var checkWidth = 3
 func _ready(): 
 	checkLength = tileStructures.retrieveStructureInfo(1)[1] #Gets length of checkpoints
 	checkLength = tileStructures.retrieveStructureInfo(1)[2] #Gets width
-
+	
+	#print(checkOverlap(1,Vector3(-1 *16,0,-14 * 16),2, Vector3(1 * 16,0,-15 * 16)))
+	
 	generateStructures()
 	
 	player = get_node(playerPath)
@@ -208,7 +210,7 @@ func generateStructures():
 #new structure would overlap
 func checkPlacement(id, worldCoords) -> bool:
 	for c in structures:
-		if(checkOverlap(id, worldCoords, c[0], c[1])):
+		if(checkOverlap(id, worldCoords, c[0], c[1] * tileWidth)):
 			return false
 	return true
 
@@ -230,12 +232,22 @@ func checkOverlap(idA, coordsA, idB, coordsB) -> bool:
 		return false
 	if(-extraTiles + coordsA.z - depthA > coordsB.z):
 		return false
+	
+#	print(str(coordsA.x) + " > " + str(coordsB.x) + " + " + str(widthB))
+#	print(coordsA.x > coordsB.x + widthB + extraTiles)
+#	print(str(coordsA.x) + " + " + str(widthA) + " < " + str(coordsB.x))
+#	print(extraTiles + coordsA.x + widthA < coordsB.x)
+#	print(str(coordsA.z) + " < " + str(coordsB.z) + " - " + str(depthB))
+#	print(coordsA.z < coordsB.z - depthB - extraTiles)
+#	print(str(coordsA.z) + " - " + str(depthA) + " > " + str(coordsB.z))
+#	print(-extraTiles + coordsA.z - depthA > coordsB.z)
+	
 	return true
 
 #Adds valid structure to the structure array, reserves the empty space, and places the node
 func addStructure(id, chunkCoords):
 	var data = tileStructures.retrieveStructureInfo(id)
-	print("Placed structure " + str(id) + " at " + str(chunkCoords))
+	#print("Placed structure " + str(id) + " at " + str(chunkCoords))
 	#Add structure to structure array
 	structures.append([id, chunkCoords, data[1], data[2]])
 	#[id, coordinates, width, depth]
