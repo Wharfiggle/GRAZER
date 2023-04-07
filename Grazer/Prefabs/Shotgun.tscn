@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://dghy1a6jaj1fx"]
+
+[ext_resource type="PackedScene" uid="uid://cimt6flw7jj5p" path="res://Assets/Models/Shotgun/shotgunCut.fbx" id="1_qa8xq"]
+[ext_resource type="Material" uid="uid://d3p7llyr4jt8" path="res://Assets/Materials/glow_material.tres" id="2_hqkwv"]
+[ext_resource type="Texture2D" uid="uid://crbe41gju5hb2" path="res://Assets/Models/Shotgun/Shotgun Textures/Shotgun_BA_lambert1_BaseColor.png" id="3_0kl51"]
+[ext_resource type="Texture2D" uid="uid://chrxn4y5rlxqw" path="res://Assets/Models/Shotgun/Shotgun Textures/Shotgun_BA_lambert1_Metallic.png" id="4_j33ns"]
+[ext_resource type="Texture2D" uid="uid://c43p1w7wddo1i" path="res://Assets/Models/Shotgun/Shotgun Textures/Shotgun_BA_lambert1_Normal.png" id="5_oqux3"]
+[ext_resource type="Texture2D" uid="uid://df35a13xa40fu" path="res://Assets/Models/Shotgun/Shotgun Textures/Shotgun_BA_lambert1_Roughness.png" id="6_7xvvq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycygi"]
+albedo_texture = ExtResource("3_0kl51")
+metallic = 1.0
+metallic_texture = ExtResource("4_j33ns")
+roughness_texture = ExtResource("6_7xvvq")
+normal_enabled = true
+normal_texture = ExtResource("5_oqux3")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1cevi"]
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqd2o"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="shotgunCut" instance=ExtResource("1_qa8xq")]
+
+[node name="ShootingPoint" type="Marker3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0876162, 0.619961)
+
+[node name="RayCast3D" type="RayCast3D" parent="ShootingPoint" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+target_position = Vector3(0, 0, 18)
+collision_mask = 9
+
+[node name="LineOfSight" type="MeshInstance3D" parent="ShootingPoint/RayCast3D" index="0"]
+material_override = ExtResource("2_hqkwv")
+cast_shadow = 0
+
+[node name="BA_Back" parent="RootNode/BA_FULL" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ycygi")
+
+[node name="BA_Front" parent="RootNode/BA_FULL" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ycygi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RootNode/BA_FULL" index="2"]
+transform = Transform3D(0.021, 0, 0, 0, -0.00255926, -0.0208435, 0, 0.0208435, -0.00255926, 0, 0.088, 0.90031)
+mesh = SubResource("CylinderMesh_1cevi")
+surface_material_override/0 = SubResource("StandardMaterial3D_rqd2o")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RootNode/BA_FULL" index="3"]
+transform = Transform3D(0.021, 0, 0, 0, -0.00255926, -0.0208435, 0, 0.0208435, -0.00255926, 0, 0.0606411, 0.895832)
+mesh = SubResource("CylinderMesh_1cevi")
+surface_material_override/0 = SubResource("StandardMaterial3D_rqd2o")
