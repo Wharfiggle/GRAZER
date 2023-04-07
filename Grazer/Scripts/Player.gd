@@ -267,7 +267,7 @@ func _process(delta):
 		var prevAimSwivel = aimSwivel
 		aimSwivel = fmod(2 * PI + aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
 		aimSwivel = -(aimSwivel * 2 - 1)
-		aimSwivel = lerpf(prevAimSwivel, aimSwivel, 0.1)
+		aimSwivel = lerpf(prevAimSwivel, aimSwivel, 0.2)
 		if(aimSwivel <= 0):
 			setHands(false)
 		else:
