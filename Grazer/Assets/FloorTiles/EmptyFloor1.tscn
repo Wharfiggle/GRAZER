@@ -1,0 +1,130 @@
+[gd_scene load_steps=17 format=3 uid="uid://dfil3qgxo25wi"]
+
+[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="1_d2arx"]
+[ext_resource type="PackedScene" uid="uid://dtfmrm20ruq5u" path="res://Prefabs/FPSCounter.tscn" id="2_rf1as"]
+[ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="3_2fe46"]
+[ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="4_yfmm1"]
+[ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="5_tcrbq"]
+[ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="6_8cw7w"]
+[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/Models/!Prefabs!/windmill.tscn" id="8_s2ieq"]
+[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="12_y2wqr"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_mloeu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dgoof"]
+size = Vector3(1, 5, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w53vf"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vxfa"]
+albedo_texture = ExtResource("12_y2wqr")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01614"]
+albedo_texture = ExtResource("12_y2wqr")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mipg"]
+albedo_texture = ExtResource("12_y2wqr")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuk6q"]
+albedo_texture = ExtResource("12_y2wqr")
+uv1_scale = Vector3(4, 4, 4)
+
+[node name="Level" type="Node3D"]
+
+[node name="Expand This Way" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.12132, 2.82843, -1.54543e-08, 0, -1.74846e-07, -0.5, -2.12132, -2.82843, 1.54543e-08, 34, 1, -18)
+mesh = SubResource("PrismMesh_mloeu")
+skeleton = NodePath("../^ Remove Above And This When Finished, BUT DONT REMOVE LEVEL")
+
+[node name="Cow Counter" parent="." instance=ExtResource("1_d2arx")]
+
+[node name="FPS Counter" parent="." instance=ExtResource("2_rf1as")]
+offset_bottom = 26.0001
+
+[node name="Health Counter" parent="." instance=ExtResource("3_2fe46")]
+offset_right = 70.0
+
+[node name="Camera3D" parent="." instance=ExtResource("4_yfmm1")]
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
+
+[node name="Player" parent="." instance=ExtResource("5_tcrbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.56569, 0, -8.69602)
+
+[node name="DirectionalLight3D" parent="." instance=ExtResource("6_8cw7w")]
+transform = Transform3D(0.866025, 0.321394, 0.383022, -6.69697e-08, -0.766044, 0.642788, 0.5, -0.55667, -0.663414, 0, 0, 0)
+shadow_blur = 0.0
+
+[node name="^ Remove Above And This When Finished, BUT DONT REMOVE LEVEL" type="Node3D" parent="."]
+
+[node name="Windmill" parent="." instance=ExtResource("8_s2ieq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7515, 0.0500011, -11.1708)
+
+[node name="Ledges" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Ledge1" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 2.5, 8)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge1"]
+shape = SubResource("BoxShape3D_dgoof")
+
+[node name="Ledge2" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 2.5, 24.5)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge2"]
+shape = SubResource("BoxShape3D_dgoof")
+
+[node name="Floors" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Floor" type="StaticBody3D" parent="Floors"]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_5vxfa")
+
+[node name="Floor2" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor2"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor2"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_01614")
+
+[node name="Floor3" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_5mipg")
+
+[node name="Floor4" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor4"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor4"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_yuk6q")
