@@ -84,6 +84,7 @@ func _ready():
 	lineSightNode.mesh = lineSight
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 	shotgunSpread = shotgunSpread * PI / 180.0
+	lineSightNode.transparency = 0.5
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

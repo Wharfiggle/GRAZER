@@ -82,6 +82,7 @@ func addCow(cow):
 #remove cow from player's herd
 func removeCow(cow):
 	cows.erase(cow)
+	huddle.erase(cow)
 	numCows -= 1
 	cowCounter.updateCowNum(numCows)
 	remove_child(cow)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfo8umgxebo27"]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource type="PackedScene" uid="uid://vtb3v82advlv" path="res://Prefabs/TilePrefabs/EnemySpawner.tscn" id="1_bdamj"]
+[ext_resource type="PackedScene" uid="uid://vtb3v82advlv" path="res://Assets/Models/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="1_bdamj"]
+
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(32, 0.1, 16)

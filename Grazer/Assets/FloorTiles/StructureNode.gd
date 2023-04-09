@@ -5,7 +5,7 @@ class_name tileStructures
 @onready var player = get_node("/root/Level/Player")
 
 #*UPDATE THIS VARIABLE WHEN ADDING NEW STRUCTURES*
-const numStuctures = 3
+const numStuctures = 4
 
 var tileWidth = 16
 var tileId = 0
@@ -79,9 +79,12 @@ static func retrieveStructureInfo(id):
 			sPathname = "res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn"
 			sWidth = 2
 			sDepth = 1
-			
 		[3]:
 			sPathname = "res://Assets/FloorTiles/EmptyFloor1.tscn"
+			sWidth = 2
+			sDepth = 2
+		[4]:
+			sPathname = "res://Assets/FloorTiles/testTile.tscn"
 			sWidth = 2
 			sDepth = 2
 	
