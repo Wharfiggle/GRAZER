@@ -52,15 +52,17 @@ var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 var moveDir = 0.0
-var prevAimDir = [0.0, 0.0]
+var prevAimDir = [0, 0, 0, 0, 0]
 var aimDir = 0.0
 var aimSwivel = 0.0
+@export var swivelSpeed = 0.2
 @onready var gunRight = get_node(NodePath("./Russel/Armature/Skeleton3D/GunRight"))
 @onready var gunLeft = get_node(NodePath("./Russel/Armature/Skeleton3D/GunLeft"))
 var rightHand = true
 var onRevolver = true
+@export var shotgunRandOffset = 0.1
 @export var revolverRange = 18.0
-@export var shotgunRange = 6.0
+@export var shotgunRange = 5.0
 @export var revolverDamage = 3.0
 @export var shotgunDamage = 0.5
 @export var shotgunSpread = 45.0
@@ -74,6 +76,7 @@ var lineSight
 @onready var worldCursor = get_node(NodePath("./WorldCursor"))
 var mousePos = Vector2.ZERO
 var cursorPos = Vector3.ZERO
+var rng = RandomNumberGenerator.new()
 var active = true
 
 # Called when the node enters the scene tree for the first time.
@@ -130,7 +133,8 @@ func _process(delta):
 		smokeInstance.get_child(0).emitting = true
 		smokeInstance.get_child(1).emitting = true
 		var critMult = 1.0
-		if(alwaysCrit || randf_range(0, 1) <= critChance):
+		rng.randomize()
+		if(alwaysCrit || rng.randf_range(0, 1) <= critChance):
 			critMult = 2.0
 			#crit particle
 			#smokeInstance.get_child(2).emitting = true
@@ -145,12 +149,15 @@ func _process(delta):
 				boomSound.stream = revolverCritSound
 				boomSound.play()
 		else:
+			rng.randomize()
 			var bullets = 0
 			while bullets < shotgunBullets:
 				var b = bullet.instantiate()
+				var rnSpread = rng.randf_range(-shotgunRandOffset, shotgunRandOffset)
+				var rnRange = shotgunRange + rng.randf_range(-shotgunRange * shotgunRandOffset, shotgunRange * shotgunRandOffset)
 				var bRotation = Vector3(0, aimDir - shotgunSpread / 2.0
-					+ (shotgunSpread / (shotgunBullets - 1)) * bullets, 0)
-				b.shoot(self, "player", shootingPoint.global_position, bRotation, shotgunRange, shotgunDamage * critMult, 50.0)
+					+ (shotgunSpread / (shotgunBullets - 1)) * bullets + rnSpread, 0)
+				b.shoot(self, "player", shootingPoint.global_position, bRotation, rnRange, shotgunDamage * critMult, 50.0)
 				bullets += 1
 			if(!critMult == 2.0):
 				boomSound.stream = revolverShootSound
@@ -178,12 +185,20 @@ func _process(delta):
 			toAdd.x += -1
 			toAdd.z += -1
 	var stickToAdd = Vector3(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), 0, Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
+	#stick input rotated 45 degrees to match isometric
 	stickToAdd = Vector3(cos(-PI/4.0) * stickToAdd.x - sin(-PI/4.0) * stickToAdd.z, 0,
 		sin(-PI/4.0) * stickToAdd.x + cos(-PI/4.0) * stickToAdd.z)
 	if(stickToAdd.length() >= 0.3):
 		toAdd = stickToAdd
+		#adjust walking animation speed to match speed
+		animation.set("parameters/idleWalk/blend_amount", stickToAdd.length())
+	else:
+		toAdd = toAdd.normalized()
+		animation.set("parameters/idleWalk/blend_amount", 1.0)
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
+#	else:
+#		animation.set("parameters/idleWalk/blend_amount", 0.0)
 	#rotate towards where player is moving
 	if(active):
 		rotation.y = lerp_angle(
@@ -193,7 +208,7 @@ func _process(delta):
 	lineSightNode.global_position = shootingPoint.global_position
 	lineSightNode.global_rotation = Vector3(0, aimDir, 0)
 	
-	toAdd = toAdd.normalized() * speed * potionSpeedup
+	toAdd = toAdd * speed * potionSpeedup
 	if(toAdd.x == 0 and toAdd.z == 0):
 		tVelocity.x = lerp(tVelocity.x,0.0,0.1)
 		tVelocity.z = lerp(tVelocity.z,0.0,0.1)
@@ -216,6 +231,18 @@ func _process(delta):
 	if(Input.is_action_just_pressed("Follow Wait") && active):
 		herd.toggleFollow()
 	
+	#update world cursor position
+	worldCursor.global_position = position + cursorPos
+
+
+func _physics_process(delta):
+	#line of sight
+	if(lineSightRaycast.is_colliding()):
+		var dist = (lineSightRaycast.get_collision_point() - lineSightRaycast.global_position).length()
+		lineSight.updateTrail([Vector3.ZERO, Vector3(0, 0, dist)])
+	else:
+		lineSight.updateTrail([Vector3.ZERO, Vector3(0, 0, revolverRange)])
+	
 	#player looks where mouse is pointed but projected to isometric view
 	if(camera != null && active):
 		var viewport = get_viewport()
@@ -227,7 +254,7 @@ func _process(delta):
 			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
 			worldCursor.visible = false
 		#get aimDir based on mouse movement
-		elif(prevMousePos != mousePos):
+		elif(prevMousePos != mousePos || worldCursor.visible):
 			#old method involving raycasts. expensive and collided with non-ground objects
 				#var ray_length = 100
 				#var from = camera.project_ray_origin(mousePos)
@@ -264,51 +291,44 @@ func _process(delta):
 			worldCursor.visible = true
 			cursorPos = aimAt - position
 			aimDir = atan2(position.x - aimAt.x, position.z - aimAt.z) + PI
-		var tempPrevAimDir = [aimDir, prevAimDir[0]]
-		aimDir = (aimDir + prevAimDir[0] + prevAimDir[1]) / 3.0
-		prevAimDir = tempPrevAimDir
-		worldCursor.global_position = position + cursorPos
+		#bring aimDir to 0 - 2PI
+		aimDir = fmod(aimDir, 2 * PI)
+		if(aimDir < 0):
+			aimDir = 2 * PI + aimDir
+		var realAimDir = aimDir
+		#account for crossover from 0 to 2PI or vice versa
+		var aimDelta = aimDir - prevAimDir[0]
+		if(abs(aimDelta) >= PI):
+			var mod = aimDelta / abs(aimDelta)
+			for i in prevAimDir.size():
+				prevAimDir[i] += PI * 2.0 * mod
+		#get average aimDir
+		for i in prevAimDir.size():
+			aimDir += prevAimDir[i]
+		aimDir /= prevAimDir.size() + 1
+		#remove oldest frame and add current frame's aimDir
+		prevAimDir.push_front(realAimDir)
+		prevAimDir.pop_back()
+		
 		#-1 - 0 is left hand, 0 - 1.0 is right hand
 		var prevAimSwivel = aimSwivel
 		aimSwivel = fmod(2 * PI + aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
 		aimSwivel = -(aimSwivel * 2 - 1)
-		aimSwivel = lerpf(prevAimSwivel, aimSwivel, 0.2)
+		aimSwivel = lerpf(prevAimSwivel, aimSwivel, swivelSpeed)
 		if(aimSwivel <= 0):
-			setHands(false)
+			setHands(false) #left hand
 		else:
-			setHands(true)
+			setHands(true) #right hand
 		animation.set("parameters/shootAngle/blend_position", aimSwivel)
-		#correct gun angle
+		#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 		var gun = shootingPoint.get_parent()
-		gun.set_global_rotation(Vector3(0, aimDir, 0))
+		gun.set_global_rotation(Vector3(0, lerpf(prevAimDir[0], aimDir, swivelSpeed), 0))
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
 	else:
 		worldCursor.visible = false
-
-
-func _physics_process(delta):
-	#line of sight
-	if(lineSightRaycast.is_colliding()):
-		var dist = (lineSightRaycast.get_collision_point() - lineSightRaycast.global_position).length()
-		lineSight.updateTrail([Vector3.ZERO, Vector3(0, 0, dist)])
-	else:
-		lineSight.updateTrail([Vector3.ZERO, Vector3(0, 0, revolverRange)])
 	
-	tVelocity.y -= GRAVITY * delta
-	if(Input.is_action_just_pressed("jump") and is_on_floor()):
-		tVelocity.y += JUMP
-	elif(is_on_floor()):
-		tVelocity.y = -0.1
-
-	set_velocity(tVelocity)
-	if(dodgeVel != Vector3.ZERO):
-		set_velocity(Vector3(dodgeVel.x, tVelocity.y, dodgeVel.z))
-	set_up_direction(Vector3.UP)
-	if(active):
-		move_and_slide()
-		#animation.set("parameters/idleWalk/blend_amount", Vector3(tVelocity.x, 0, tVelocity.z).length() / speed)
-	
+	#dodging
 	if(Input.is_action_just_pressed("dodge")):
 		dodgeBufferTimer = dodgeBufferTime
 	elif(dodgeBufferTimer > 0):
@@ -316,7 +336,6 @@ func _physics_process(delta):
 		if(dodgeBufferTimer < 0):
 			dodgeBufferTimer = 0
 			dodging = true
-	
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		Input.start_joy_vibration(0,0.6,0.6,.1)
 		dodgeCooldownTimer = dodgeCooldownTime
@@ -341,7 +360,22 @@ func _physics_process(delta):
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
 		if(dodgeCooldownTimer < 0):
-			dodgeCooldownTimer = 0 
+			dodgeCooldownTimer = 0
+	
+	#gravity
+	tVelocity.y -= GRAVITY * delta
+	if(Input.is_action_just_pressed("jump") and is_on_floor()):
+		tVelocity.y += JUMP
+	elif(is_on_floor()):
+		tVelocity.y = -0.1
+	
+	#apply velocity
+	set_velocity(tVelocity)
+	if(dodgeVel != Vector3.ZERO):
+		set_velocity(Vector3(dodgeVel.x, tVelocity.y, dodgeVel.z))
+	set_up_direction(Vector3.UP)
+	if(active):
+		move_and_slide()
 			
 func setWeaponAndHands(revolver:bool, right:bool):
 	if(revolver != onRevolver || right != rightHand):
