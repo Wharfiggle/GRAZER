@@ -35,6 +35,25 @@ current = true
 
 [node name="Player" parent="." instance=ExtResource("9")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 16, 5, 16)
+revolverShootTime = 0.3
+shotgunShootTime = 0.5
+shootBufferTime = 0.1
+dodgeSpeed = 15.0
+dodgeTime = 0.5
+dodgeCooldownTime = 0.3
+dodgeBufferTime = 0.1
+gunStats = [0, 0, 0, 0, 0, 0]
+potionTime = 30.0
+speed = 8.0
+swivelSpeed = 0.2
+shotgunRandOffset = 0.1
+revolverRange = 18.0
+shotgunRange = 5.0
+revolverDamage = 3.0
+shotgunDamage = 0.5
+shotgunSpread = 45.0
+shotgunBullets = 20
+lineSightTransparency = 0.5
 
 [node name="DirectionalLight3D" parent="." instance=ExtResource("8_kp882")]
 

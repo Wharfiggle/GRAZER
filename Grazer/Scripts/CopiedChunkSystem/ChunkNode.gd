@@ -5,6 +5,7 @@ var chunkCoords = Vector3()
 var chunkData = []
 
 var loading = false
+var loadedBefore = false
 var instance
 var mapWidth = terrainController.mapWidth
 
@@ -17,12 +18,13 @@ func start(_chunkCoords):
 		
 		#Adding this chunk node to the world save array
 		WorldSave.addChunk(_chunkCoords)
-		
+		loadedBefore = false
 	
 	
 	#else it has been loaded before
 	else:
 		chunkData = WorldSave.retriveData(chunkCoords)
+		loadedBefore = true
 	
 	if(chunkData[0] == ""):
 		print("Chunk " + str(position) + " is empty")
@@ -53,8 +55,11 @@ func _process(delta):
 			instance = chunk.instantiate()
 			add_child(instance)
 			#Spawn everything in the chunk
-			activateSpawners()
+			if(!loadedBefore):
+				activateSpawners()
+				loadedBefore = true
 			loading = false
+			
 
 
 func save():
@@ -82,9 +87,8 @@ func activateSpawners():
 	#Then call their spawn function
 	var children = instance.get_children()
 	for c in children:
-		#Catch all for spawner names
-		if(c.name == "Spawner" or c.name == "spawnerNode" or
-		c.name == "ItemSpawner" or c.name == "EnemySpawner"):
+		#Call spawn() on all spawners
+		if(c.has_method("spawn")):
 			c.spawn()
 
 func setVParent(parent):
