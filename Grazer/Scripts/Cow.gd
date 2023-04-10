@@ -76,9 +76,9 @@ func _ready():
 	targetRandOffset = rng.randf_range(-targetRandOffset, targetRandOffset)
 	
 	#var phys_bones = ["Tail_1", "Ear_Upper_r", "Ear_Upper_l"]
-	#var phys_bones = ["Tail_1"]
+	var phys_bones = ["Tail_1"]
 	#var phys_bones = ["Tail_1", "Ear_Base_r", "Ear_Base_l"]
-	#skeleton.physical_bones_start_simulation(phys_bones)
+	skeleton.physical_bones_start_simulation(phys_bones)
 	#skeleton.physical_bones_start_simulation()
 	
 	animation.set("parameters/conditions/Drag", false)

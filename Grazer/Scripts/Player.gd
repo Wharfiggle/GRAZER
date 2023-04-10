@@ -74,6 +74,7 @@ var onRevolver = true
 @export var lineSightTransparency = 0.5
 var lineSight
 @onready var animation = get_node(NodePath("./Russel/AnimationPlayer/AnimationTree"))
+@onready var skeleton = get_node(NodePath("./Russel/Armature/Skeleton3D"))
 @onready var worldCursor = get_node(NodePath("./WorldCursor"))
 var mousePos = Vector2.ZERO
 var cursorPos = Vector3.ZERO
@@ -91,6 +92,9 @@ func _ready():
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 	shotgunSpread = shotgunSpread * PI / 180.0
 	lineSightNode.transparency = lineSightTransparency
+
+	var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
+	#skeleton.physical_bones_start_simulation(phys_bones)
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -454,5 +458,8 @@ func healFromBullet(damageDone):
 		hitpoints = maxHitpoints
 		
 func die():
+	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
+	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]
 	active = false
 	rotation.x = PI / 2.0
+	#skeleton.physical_bones_start_simulation(phys_bones)
