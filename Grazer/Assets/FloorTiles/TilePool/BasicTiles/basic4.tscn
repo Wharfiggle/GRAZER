@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://dxcrxnvq1dsbq"]
 
 [ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="2_kky7m"]
 [ext_resource type="PackedScene" uid="uid://krx02obblnpl" path="res://Assets/FloorTiles/TilePool/!Prefabs!/Rocks/stone_arch.tscn" id="3_gbbfi"]
-
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)

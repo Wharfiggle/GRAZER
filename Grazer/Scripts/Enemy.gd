@@ -43,7 +43,7 @@ var tVelocity = Vector3.ZERO
 var GRAVITY = 30 #hibernate() sets this to 30, so both need to be changed when modified
 
 #Distance from player when the enemy will stop hibernating
-var wakeUpDistance = 10
+var wakeUpDistance = 20.0
 var canFire = true
 var fireDirection
 @export var knockbackMod = 2.0
