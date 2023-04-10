@@ -120,7 +120,7 @@ func _process(delta):
 			potion = null
 	
 	#swap weapon
-	if(Input.is_action_just_pressed("SwapWeapon") && active):
+	if(Input.is_action_just_released("SwapWeapon") && active):
 		setWeapon(!onRevolver)
 	
 	#shoot gun input buffer
