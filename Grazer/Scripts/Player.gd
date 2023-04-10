@@ -71,6 +71,7 @@ var onRevolver = true
 @onready var lineSightRaycast = shootingPoint.get_child(0)
 @onready var lineSightMesh = preload("res://Prefabs/BulletTrailMesh.tres")
 @onready var lineSightNode = get_node("./LineOfSight")
+@export var lineSightTransparency = 0.5
 var lineSight
 @onready var animation = get_node(NodePath("./Russel/AnimationPlayer/AnimationTree"))
 @onready var worldCursor = get_node(NodePath("./WorldCursor"))
@@ -87,7 +88,7 @@ func _ready():
 	lineSightNode.mesh = lineSight
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 	shotgunSpread = shotgunSpread * PI / 180.0
-	lineSightNode.transparency = 0.5
+	lineSightNode.transparency = lineSightTransparency
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -104,7 +105,8 @@ func _process(delta):
 		shootTimer -= delta
 		if(shootTimer < 0):
 			shootTimer = 0
-		lineSightNode.transparency = sqrt(sqrt(sqrt(shootTimer / shootTime))) / 2.0 + 0.5
+		if(onRevolver):
+			lineSightNode.transparency = sqrt(sqrt(sqrt(shootTimer / shootTime))) * (1.0 - lineSightTransparency) + lineSightTransparency
 	if(shootBufferTimer > 0):
 		shootBufferTimer -= delta
 		if(shootBufferTimer < 0):
@@ -137,7 +139,7 @@ func _process(delta):
 		if(alwaysCrit || rng.randf_range(0, 1) <= critChance):
 			critMult = 2.0
 			#crit particle
-			#smokeInstance.get_child(2).emitting = true
+			smokeInstance.get_child(2).emitting = true
 		var boomSound = smokeInstance.find_child("Boom")
 		if(onRevolver):
 			var b = bullet.instantiate()
@@ -322,7 +324,7 @@ func _physics_process(delta):
 		animation.set("parameters/shootAngle/blend_position", aimSwivel)
 		#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 		var gun = shootingPoint.get_parent()
-		gun.set_global_rotation(Vector3(0, lerpf(prevAimDir[0], aimDir, swivelSpeed), 0))
+		gun.set_global_rotation(Vector3(0, gun.global_rotation.y, 0))
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
 	else:
@@ -403,6 +405,10 @@ func setWeaponAndHands(revolver:bool, right:bool):
 		rightHand = right
 		shootingPoint = gun.get_child(0)
 		lineSightRaycast = shootingPoint.get_child(0)
+		if(onRevolver):
+			lineSightNode.transparency = lineSightTransparency
+		else:
+			lineSightNode.transparency = 1.0
 func setHands(right:bool):
 	if(right != rightHand):
 		setWeaponAndHands(onRevolver, right)

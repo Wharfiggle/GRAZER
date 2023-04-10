@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bpklw4u7vb50"]
+
+[resource]
+render_priority = -1
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.392157)

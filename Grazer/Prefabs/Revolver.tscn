@@ -1,18 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy6xi4epix5ju"]
+[gd_scene load_steps=7 format=3 uid="uid://cy6xi4epix5ju"]
 
 [ext_resource type="PackedScene" uid="uid://dlln33d6nvy05" path="res://Assets/Models/Revolver/Revolver.fbx" id="1"]
 [ext_resource type="Texture2D" uid="uid://gvv13xkum2eo" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Normal.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b6lw1m41xx8s6" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_BaseMap.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://gbuep861ce8d" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Metallic.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://n08lli06401e" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Roughness.png" id="5"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ge4k"]
-albedo_texture = ExtResource("3")
-metallic = 1.0
-metallic_texture = ExtResource("4")
-roughness_texture = ExtResource("5")
-normal_enabled = true
-normal_texture = ExtResource("2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0wwk"]
 albedo_texture = ExtResource("3")
@@ -33,10 +25,10 @@ target_position = Vector3(0, 0, 18)
 collision_mask = 9
 
 [node name="Revolver" parent="RootNode/Revolver_FULL" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_0ge4k")
+material_override = SubResource("StandardMaterial3D_r0wwk")
 
 [node name="pCube14" parent="RootNode/Revolver_FULL/Rev_Ammo" index="0"]
 visible = false
 
 [node name="pCylinder4" parent="RootNode/Revolver_FULL/Rev_Ammo" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_r0wwk")
+material_override = SubResource("StandardMaterial3D_r0wwk")

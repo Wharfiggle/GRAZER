@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/spawner.gd" id="1_4i5j7"]
+
+
+[sub_resource type="BoxMesh" id="BoxMesh_4nlry"]
+
+[node name="ItemSpawner" type="Node3D"]
+script = ExtResource("1_4i5j7")
+
+[node name="EditorIndicator" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4nlry")

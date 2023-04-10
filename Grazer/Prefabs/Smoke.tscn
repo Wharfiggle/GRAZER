@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8e30njhbrf0t"]
+[gd_scene load_steps=11 format=3 uid="uid://b8e30njhbrf0t"]
 
 [ext_resource type="Material" uid="uid://d0dtwgj6q1kj3" path="res://Assets/Materials/ParticleMaterial.tres" id="1_ag1rt"]
 [ext_resource type="Texture2D" uid="uid://en0sdx86kloa" path="res://Assets/Images/muzzle flash.png" id="2_2180d"]
@@ -23,7 +23,7 @@ color_ramp = SubResource("GradientTexture1D_ocnga")
 [sub_resource type="QuadMesh" id="QuadMesh_a2rbb"]
 material = ExtResource("1_ag1rt")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ue30"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mqufa"]
 lifetime_randomness = 0.1
 gravity = Vector3(0, 0, 0)
 angular_velocity_min = -500.0
@@ -48,6 +48,17 @@ grow_amount = 1.524
 [sub_resource type="QuadMesh" id="QuadMesh_a8i5g"]
 material = SubResource("StandardMaterial3D_1irvg")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ue30"]
+lifetime_randomness = 0.1
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = -500.0
+angular_velocity_max = 500.0
+angle_min = -180.0
+angle_max = 180.0
+scale_max = 1.5
+color = Color(1, 0.419608, 0, 1)
+color_ramp = SubResource("GradientTexture1D_ocnga")
+
 [node name="Smoke" type="Node3D"]
 
 [node name="Particles" type="GPUParticles3D" parent="."]
@@ -65,6 +76,21 @@ process_material = SubResource("1")
 draw_pass_1 = SubResource("QuadMesh_a2rbb")
 
 [node name="Flash" type="GPUParticles3D" parent="."]
+sorting_offset = 100.0
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.75
+randomness = 1.0
+fixed_fps = 60
+fract_delta = false
+visibility_aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+process_material = SubResource("ParticleProcessMaterial_mqufa")
+draw_pass_1 = SubResource("QuadMesh_a8i5g")
+
+[node name="FlashCrit" type="GPUParticles3D" parent="."]
 sorting_offset = 100.0
 emitting = false
 amount = 1

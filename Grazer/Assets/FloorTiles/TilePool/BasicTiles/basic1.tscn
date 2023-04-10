@@ -1,8 +1,9 @@
 [gd_scene load_steps=8 format=3]
 
 [ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_gbb6s"]
-[ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/Models/!Prefabs!/Rocks/big_stone.tscn" id="2_7fyle"]
-[ext_resource type="PackedScene" uid="uid://vtb3v82advlv" path="res://Assets/Models/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="3_jkf1d"]
+[ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/TilePool/!Prefabs!/Rocks/big_stone.tscn" id="2_7fyle"]
+[ext_resource type="PackedScene" uid="uid://vtb3v82advlv" path="res://Assets/FloorTiles/TilePool/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="3_jkf1d"]
+
 
 
 [sub_resource type="BoxShape3D" id="1"]

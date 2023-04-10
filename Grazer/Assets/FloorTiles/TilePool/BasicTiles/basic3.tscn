@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpd3nihgdua4n"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_sjp61"]
-[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/Models/!Prefabs!/windmill.tscn" id="2_tioc1"]
+[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/TilePool/!Prefabs!/windmill.tscn" id="2_tioc1"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)

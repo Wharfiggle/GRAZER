@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://krx02obblnpl"]
+
+[ext_resource type="PackedScene" uid="uid://bocv55v51ex5k" path="res://Assets/Models/Rocks/stoneArch.fbx" id="1_xlj6c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oartp"]
+size = Vector3(6.038, 7.90355, 4.92498)
+
+[node name="stoneArch" instance=ExtResource("1_xlj6c")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.00669, 7.28712)
+shape = SubResource("BoxShape3D_oartp")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317926, 4.00669, -7.31929)
+shape = SubResource("BoxShape3D_oartp")

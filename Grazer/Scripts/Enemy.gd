@@ -103,6 +103,11 @@ func _physics_process(delta):
 		var rn = randi_range(1, 600)
 		if(rn == 1):
 			currentMode = behaviors.cowPursuit
+		var cows = herd.getCows()
+		for i in cows.size():
+			if(position.distance_to(cows[i].position) < dragRange):
+				currentMode = behaviors.cowPursuit
+	
 	
 	if(reloadCooldown > 0):
 		reloadCooldown -= delta
@@ -261,8 +266,8 @@ func circle():
 		currentCircle = scaler
 	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
 	
-	if(marauderType == enemyTypes.thief and randi_range(1,1000) <= 1):
-		currentMode = behaviors.cowPursuit
+#	if(marauderType == enemyTypes.thief and randi_range(1,1000) <= 1):
+#		currentMode = behaviors.cowPursuit
 
 func pursuit():
 	#Marauder runs directly at cowboy.
@@ -340,10 +345,10 @@ func cowPursuit():
 			if(herd == null):
 				return
 	
+	#if(targetCow == null):
+	targetCow = herd.getClosestCow(position)
 	if(targetCow == null):
-		targetCow = herd.getClosestCow(position)
-		if(targetCow == null):
-			currentMode = behaviors.circle
+		currentMode = behaviors.circle
 	
 	if(herd.numCows <= 0):
 		return

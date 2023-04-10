@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6gai2ydtj71n"]
+
+[ext_resource type="PackedScene" uid="uid://c68p0le5ji1gg" path="res://Assets/Models/Juca/juca1.fbx" id="1_8l460"]
+
+[node name="juca1" instance=ExtResource("1_8l460")]
+
+[node name="CactusBody003" parent="RootNode" index="0"]
+visible = false
+
+[node name="spike" parent="RootNode" index="1"]
+visible = false
+
+[node name="Cactus4" parent="RootNode" index="2"]
+visible = false
+
+[node name="Cactus4001" parent="RootNode" index="3"]
+visible = false
+
+[node name="spike001" parent="RootNode" index="4"]
+visible = false
+
+[node name="nopal" parent="RootNode" index="5"]
+visible = false
+
+[node name="Tuna" parent="RootNode/nopal" index="0"]
+visible = false
+
+[node name="Tuna3" parent="RootNode/nopal" index="1"]
+visible = false
+
+[node name="Tuna2" parent="RootNode/nopal" index="2"]
+visible = false
+
+[node name="spike3" parent="RootNode" index="6"]
+visible = false
+
+[node name="Plane" parent="RootNode" index="7"]
+visible = false
+
+[node name="Plane001" parent="RootNode" index="8"]
+visible = false
+
+[node name="organ spike" parent="RootNode" index="9"]
+visible = false
+
+[node name="Cube003" parent="RootNode" index="10"]
+visible = false
+
+[node name="Cube004" parent="RootNode" index="11"]
+visible = false
+
+[node name="Cube005" parent="RootNode" index="12"]
+visible = false
+
+[node name="Cube006" parent="RootNode" index="13"]
+visible = false
+
+[node name="Low001" parent="RootNode" index="14"]
+visible = false
+
+[node name="Face Hair" parent="RootNode" index="15"]
+visible = false
+
+[node name="Hat" parent="RootNode" index="16"]
+visible = false
+
+[node name="plant3" parent="RootNode" index="17"]
+visible = false
+
+[node name="leaf1" parent="RootNode" index="19"]
+visible = false
+
+[node name="leaf2" parent="RootNode" index="20"]
+visible = false
+
+[node name="plant1001" parent="RootNode" index="21"]
+visible = false
+
+[node name="leaf1001" parent="RootNode" index="22"]
+visible = false
+
+[node name="leaf2001" parent="RootNode" index="23"]
+visible = false
+
+[node name="Sun" parent="RootNode" index="24"]
+visible = false

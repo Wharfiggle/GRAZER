@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://bowjb7yrjrn0d"]
+
+[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/TilePool/!Prefabs!/windmill.tscn" id="1_avrhh"]
+[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="2_52td7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w53vf"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vxfa"]
+albedo_texture = ExtResource("2_52td7")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01614"]
+albedo_texture = ExtResource("2_52td7")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mipg"]
+albedo_texture = ExtResource("2_52td7")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuk6q"]
+albedo_texture = ExtResource("2_52td7")
+uv1_scale = Vector3(4, 4, 4)
+
+[node name="Level" type="Node3D"]
+
+[node name="Windmill" parent="." instance=ExtResource("1_avrhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7515, 0.0500011, -11.1708)
+
+[node name="Floors" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Floor" type="StaticBody3D" parent="Floors"]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_5vxfa")
+
+[node name="Floor2" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor2"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor2"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_01614")
+
+[node name="Floor3" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_5mipg")
+
+[node name="Floor4" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor4"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor4"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_yuk6q")

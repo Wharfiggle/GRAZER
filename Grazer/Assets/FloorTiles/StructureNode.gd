@@ -4,9 +4,6 @@ class_name tileStructures
 
 @onready var player = get_node("/root/Level/Player")
 
-#*UPDATE THIS VARIABLE WHEN ADDING NEW STRUCTURES*
-const numStuctures = 4
-
 var tileWidth = 16
 var tileId = 0
 
@@ -22,10 +19,33 @@ var loading = false
 var loadedBefore = false
 var instance
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
+static func retrieveStructureTypes() -> Array:
+	var structures = []
+	
+	#sPathName, sWidth, sHeight
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn", 3, 4]) #checkpoint
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])
+	structures.append(["res://Assets/FloorTiles/TilePool/EmptyFloor1.tscn", 2, 2]) #test
+	structures.append(["res://Assets/FloorTiles/TilePool/testTile.tscn", 2, 2]) #test
+	
+	#* ^ ADD NEW STRUCTURES HERE ^ *
+	#sPathname is the path to the scene. Right click and click "Copy Path" in the explorer to get it
+	#sWidth is the length along the x axis
+	#sDepth is the length along the z axis
+	
+	return structures
+	
+#Just a setter that fills out variables from the id.
+func setStructureData(id:int, structureTypes:Array = []) -> Array:
+	tileId = id
+	var structures = structureTypes
+	if(structureTypes.is_empty()):
+		structures = retrieveStructureTypes()
+	var info = structures[tileId]
+	pathname = info[0]
+	width = info[1]
+	depth = info[2]
+	return structures
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -54,55 +74,29 @@ func _process(delta):
 		scene = null
 		loaded = false
 
-#Just a setter that fills out variables from the id.
-func setStructureData(id):
-	tileId = id
-	var info = tileStructures.retrieveStructureInfo(tileId)
-	pathname = info[0]
-	width = info[1]
-	depth = info[2]
-
 #Returns the path, width, and depth of structure with the id passed in
-static func retrieveStructureInfo(id):
-	
-	var sPathname = ""
-	var sWidth = 0
-	var sDepth = 0
-	
-	match[id]:
-		[1]: #Checkpoint
-			sPathname = "res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn"
-			sWidth = 3
-			sDepth = 4
-			
-		[2]:
-			sPathname = "res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn"
-			sWidth = 2
-			sDepth = 1
-		[3]:
-			sPathname = "res://Assets/FloorTiles/EmptyFloor1.tscn"
-			sWidth = 2
-			sDepth = 2
-		[4]:
-			sPathname = "res://Assets/FloorTiles/testTile.tscn"
-			sWidth = 2
-			sDepth = 2
-	
-	#* ^ ADD NEW STRUCTURES HERE ^ *
-	#The number in the "[]" is the id number. Just increment it 1 higher than the last one
-	#sPathname is the path to the scene. Right click and click "Copy Path" in the explorer to get it
-	#sWidth is the length along the x axis
-	#sDepth is the length along the z axis
-	#* REMEMBER TO UPDATE const numStructures UP ON LINE 8 *
-	
-	return [sPathname, sWidth, sDepth]
+#static func retrieveStructureInfo(id):
+#	var sPathname = ""
+#	var sWidth = 0
+#	var sDepth = 0
+#
+#	match[id]:
+#		[1]: #Checkpoint
+#			sPathname = "res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn"
+#			sWidth = 3
+#			sDepth = 4
+#		[2]:
+#			sPathname = "res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn"
+#			sWidth = 2
+#			sDepth = 1
+#
+#	return [sPathname, sWidth, sDepth]
 
 func activateSpawners():
 	#loop through children and find all the spawners
 	#Then call their spawn function
 	var children = instance.get_children()
 	for c in children:
-			#Catch all for spawner names
-		if(c.name == "Spawner" or c.name == "spawnerNode" or
-		c.name == "ItemSpawner" or c.name == "EnemySpawner"):
+		#If child has spawn method, call it
+		if(c.has_method("spawn")):
 			c.spawn()

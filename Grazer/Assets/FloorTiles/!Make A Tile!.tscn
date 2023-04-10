@@ -1,17 +1,18 @@
-[gd_scene load_steps=21 format=3 uid="uid://b4ul0pybutkec"]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="1_reu56"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2_6cmid"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="3_c15ja"]
 [ext_resource type="PackedScene" uid="uid://dtfmrm20ruq5u" path="res://Prefabs/FPSCounter.tscn" id="4_22bo5"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="5_5umnj"]
-[ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/Models/!Prefabs!/Rocks/big_stone.tscn" id="5_wwndl"]
+[ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/TilePool/!Prefabs!/Rocks/big_stone.tscn" id="5_wwndl"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="6_55euo"]
-[ext_resource type="PackedScene" uid="uid://bxki58hlxhykk" path="res://Assets/Models/!Prefabs!/Silo.tscn" id="7_edmva"]
-[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/Models/!Prefabs!/windmill.tscn" id="8_p7wky"]
-[ext_resource type="PackedScene" uid="uid://y1vgfwfthfrr" path="res://Assets/Models/!Prefabs!/Rocks/stonetower_3.tscn" id="9_wwwsu"]
-[ext_resource type="PackedScene" uid="uid://rgrgwkufv345" path="res://Assets/Models/!Prefabs!/Rocks/stonetower_4.tscn" id="10_ed27i"]
+[ext_resource type="PackedScene" uid="uid://bxki58hlxhykk" path="res://Assets/FloorTiles/TilePool/!Prefabs!/Silo.tscn" id="7_edmva"]
+[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/TilePool/!Prefabs!/windmill.tscn" id="8_p7wky"]
+[ext_resource type="PackedScene" uid="uid://y1vgfwfthfrr" path="res://Assets/FloorTiles/TilePool/!Prefabs!/Rocks/stonetower_3.tscn" id="9_wwwsu"]
+[ext_resource type="PackedScene" uid="uid://rgrgwkufv345" path="res://Assets/FloorTiles/TilePool/!Prefabs!/Rocks/stonetower_4.tscn" id="10_ed27i"]
 [ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="12_dl1ut"]
+
 
 [sub_resource type="PrismMesh" id="PrismMesh_mloeu"]
 

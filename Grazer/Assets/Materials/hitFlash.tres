@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bg81u1ymqgi2i"]
+
+[ext_resource type="Shader" path="res://Assets/Materials/Marauder.gdshader" id="1_0xsd8"]
+
+[resource]
+render_priority = 2
+shader = ExtResource("1_0xsd8")
+shader_parameter/active = false
+shader_parameter/color = Color(1, 1, 0, 1)

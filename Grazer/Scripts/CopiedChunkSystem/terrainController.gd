@@ -10,6 +10,7 @@ var player
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 @onready var structureNode = preload("res://Assets/FloorTiles/StructureNode.tscn")
+@onready var structureTypes = tileStructures.retrieveStructureTypes()
 
 var renderDistance = 2
 const tileWidth = 16.0
@@ -32,8 +33,8 @@ var checkLength = 4
 var checkWidth = 3
 
 func _ready(): 
-	checkLength = tileStructures.retrieveStructureInfo(1)[1] #Gets length of checkpoints
-	checkLength = tileStructures.retrieveStructureInfo(1)[2] #Gets width
+	checkWidth = structureTypes[1][1] #Gets width of checkpoints
+	checkLength = structureTypes[1][2] #Gets length
 	
 	#print(checkOverlap(1,Vector3(-1 *16,0,-14 * 16),2, Vector3(1 * 16,0,-15 * 16)))
 	
@@ -185,8 +186,8 @@ func generateStructures():
 			var loops = 50
 			var origin = Vector3()
 			#TODO Maybe change from complete random to a more balenced spread of structures?
-			var id = randi_range(2, tileStructures.numStuctures)
-			var structureInfo = tileStructures.retrieveStructureInfo(id)
+			var id = randi_range(1, structureTypes.size() - 1)
+			var structureInfo = structureTypes[id]
 			while(!placed and !failed):
 				origin.x = randi_range(-mapWidth + 1 , mapWidth - structureInfo[1])
 				origin.y = 0
@@ -216,8 +217,8 @@ func checkPlacement(id, worldCoords) -> bool:
 
 #Helper function to check if two structures would overlap. Returns false, if they don't.
 func checkOverlap(idA, coordsA, idB, coordsB) -> bool:
-	var structureA = tileStructures.retrieveStructureInfo(idA)
-	var structureB = tileStructures.retrieveStructureInfo(idB)
+	var structureA = structureTypes[idA]
+	var structureB = structureTypes[idB]
 	var widthA = structureA[1] * tileWidth
 	var depthA = structureA[2] * tileWidth
 	var widthB = structureB[1] * tileWidth
@@ -246,7 +247,7 @@ func checkOverlap(idA, coordsA, idB, coordsB) -> bool:
 
 #Adds valid structure to the structure array, reserves the empty space, and places the node
 func addStructure(id, chunkCoords):
-	var data = tileStructures.retrieveStructureInfo(id)
+	var data = structureTypes[id]
 	#print("Placed structure " + str(id) + " at " + str(chunkCoords))
 	#Add structure to structure array
 	structures.append([id, chunkCoords, data[1], data[2]])
@@ -264,7 +265,7 @@ func addStructure(id, chunkCoords):
 	var instance = structureNode.instantiate()
 	get_node(NodePath("/root/Level/AllTerrain")).add_child(instance)
 	instance.position = chunkCoords * tileWidth
-	instance.setStructureData(id)
+	instance.setStructureData(id, structureTypes)
 	
 
 #Sets a chunk as empty

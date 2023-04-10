@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://s4tjpwj4bh5l" path="res://Assets/Models/Russel/Russel_Cloth_Roughness.png" id="4_wltqx"]
 
 [resource]
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("1_ivoun")
 metallic = 1.0
 metallic_texture = ExtResource("2_cwmcq")
