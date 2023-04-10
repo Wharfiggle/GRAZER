@@ -78,6 +78,8 @@ var lineSight
 var mousePos = Vector2.ZERO
 var cursorPos = Vector3.ZERO
 var rng = RandomNumberGenerator.new()
+var swapInputFrames = 5
+var swapInputFrameCounter = 0
 var active = true
 
 # Called when the node enters the scene tree for the first time.
@@ -118,10 +120,6 @@ func _process(delta):
 			potionTimer = 0
 			potion.use(false)
 			potion = null
-	
-	#swap weapon
-	if(Input.is_action_just_released("SwapWeapon") && active):
-		setWeapon(!onRevolver)
 	
 	#shoot gun input buffer
 	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0):
@@ -238,6 +236,19 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	#swap weapon
+	if(active):
+		var swapInput = 0
+		if(Input.is_action_just_released("SwapWeapon")): swapInput = 1
+		elif(Input.is_action_just_released("SwapWeaponDown")): swapInput = -1
+		if( (swapInputFrameCounter == 0 && swapInput != 0) 
+		|| (swapInput > 0 && swapInputFrameCounter < 0) 
+		|| (swapInput < 0 && swapInputFrameCounter > 0) ):
+			setWeapon(!onRevolver)
+			swapInputFrameCounter = swapInputFrames * swapInput
+		elif(swapInputFrameCounter != 0 && swapInput == 0):
+			swapInputFrameCounter -= swapInputFrameCounter / abs(swapInputFrameCounter)
+	
 	#line of sight
 	if(lineSightRaycast.is_colliding()):
 		var dist = (lineSightRaycast.get_collision_point() - lineSightRaycast.global_position).length()
