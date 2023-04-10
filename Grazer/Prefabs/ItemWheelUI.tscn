@@ -50,6 +50,7 @@ rotation = 2.0944
 texture_normal = ExtResource("1_83kkg")
 texture_hover = ExtResource("3_12tkq")
 texture_click_mask = ExtResource("5_syvvy")
+stretch_mode = 0
 
 [node name="itemPic" type="TextureRect" parent="Cell1"]
 layout_mode = 1
