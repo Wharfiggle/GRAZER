@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcorhitij0ix2"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_8mbv4"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_2dim5"]
 [ext_resource type="PackedScene" uid="uid://cy6xi4epix5ju" path="res://Prefabs/Revolver.tscn" id="2_ayjlc"]
 [ext_resource type="PackedScene" uid="uid://c6q7168wffj3m" path="res://Assets/Models/marauder/marauder.tscn" id="3_o1f1k"]
 [ext_resource type="Script" path="res://Prefabs/HitBox.gd" id="4_tnfkf"]
@@ -15,7 +15,7 @@ radius = 1.0
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 5
-script = ExtResource("1_8mbv4")
+script = ExtResource("1_2dim5")
 marauderType = 1
 
 [node name="Revolver" parent="." instance=ExtResource("2_ayjlc")]
