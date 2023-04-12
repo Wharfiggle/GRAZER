@@ -58,9 +58,9 @@ bus = &"soundFXMain"
 [node name="ESoundFX" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Bandit" parent="." instance=ExtResource("3_3ee2o")]
+[node name="Model" parent="." instance=ExtResource("3_3ee2o")]
 
-[node name="Revolver" parent="Bandit" instance=ExtResource("2_ayjlc")]
+[node name="Revolver" parent="Model" instance=ExtResource("2_ayjlc")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0.6)
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
