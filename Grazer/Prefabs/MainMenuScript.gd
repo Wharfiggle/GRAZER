@@ -13,5 +13,11 @@ func _process(delta):
 
 func _on_button_pressed():
 	#only use if we chose to do scene change
-	#get_tree().change_scene_to_file("res://Levels/Level.tscn")
+	get_tree().change_scene_to_file("res://Levels/Level.tscn")
 	
+
+
+func _on_quit_button_pressed():
+	
+	get_tree().quit()
+	pass # Replace with function body.

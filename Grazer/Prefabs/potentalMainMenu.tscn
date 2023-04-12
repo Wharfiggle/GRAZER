@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwx3nkku0idnk"]
+[gd_scene load_steps=3 format=3 uid="uid://dwx3nkku0idnk"]
 
 [ext_resource type="Script" path="res://Prefabs/MainMenuScript.gd" id="1_ivsrd"]
+[ext_resource type="Texture2D" uid="uid://d2m0o42qas5dn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/grzrMenuScreenLogo.png" id="2_8ux03"]
 
 [node name="Panel" type="Panel"]
 anchors_preset = 15
@@ -10,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ivsrd")
 
-[node name="Button" type="Button" parent="."]
+[node name="playButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -18,38 +19,44 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -42.0
-offset_top = 40.0
+offset_top = 151.5
 offset_right = 42.0
-offset_bottom = 50.0
+offset_bottom = 182.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play
 "
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -141.0
-offset_top = 100.0
-offset_right = 140.0
-offset_bottom = 261.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 50
-text = "	Grazer
-
-"
-fit_content = true
-
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -40.0
-offset_top = 100.0
-offset_bottom = 140.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -290.0
+offset_right = 292.0
+offset_bottom = 290.0
 grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_8ux03")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="quitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = 199.0
+offset_right = 43.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+
+[connection signal="pressed" from="playButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="quitButton" to="." method="_on_quit_button_pressed"]

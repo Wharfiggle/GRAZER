@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://7hd1fbp4qfod"
+path="res://.godot/imported/hotWheelWedgemask.png-1d282caa4f460ed45131e2b7d44abd2b.res"
+
+[deps]
+
+source_file="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelWedgemask.png"
+dest_files=["res://.godot/imported/hotWheelWedgemask.png-1d282caa4f460ed45131e2b7d44abd2b.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -20,10 +20,10 @@ func _process(delta):
 
 
 
-func _on_health_update_(health, amount):
+func _on_health_update_(health):
 	healthBar.value=health
 	
-	tween.tween_property(healthBar, "value", healthBar.value, 0.5).set_trans(Tween.TRANS_BOUNCE)
+	#tween.tween_property(healthBar, "value", healthBar.value, 0.5).set_trans(Tween.TRANS_BOUNCE)
 	
 
 

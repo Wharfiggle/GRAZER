@@ -9,7 +9,9 @@ var shootTime = revolverShootTime
 var shootTimer = 0.0
 @export var shootBufferTime = 0.1
 var shootBufferTimer = 0.0
+@onready var HealthBar = $"../MarginContainer"
 @onready var knockbox = $knockbox
+var MHP=10
 var maxHitpoints = 10.0
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
@@ -95,6 +97,8 @@ func _ready():
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 	shotgunSpread = shotgunSpread * PI / 180.0
 	lineSightNode.transparency = lineSightTransparency
+	
+	#HealthBar._on_max_health_update_(10)
 
 	#var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#skeleton.physical_bones_start_simulation(phys_bones)
@@ -462,6 +466,7 @@ func damage_taken(damage, from) -> bool:
 	if(from != "player"):
 		print("player damaged")
 		hitpoints -= damage
+		HealthBar._on_health_update_(hitpoints)
 		healthCounter.updateHealth(hitpoints)
 		if hitpoints <= 0:
 			die()
