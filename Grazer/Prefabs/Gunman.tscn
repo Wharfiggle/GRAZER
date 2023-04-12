@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_2e7y8"]
 [ext_resource type="PackedScene" uid="uid://cy6xi4epix5ju" path="res://Prefabs/Revolver.tscn" id="2_ayjlc"]
-[ext_resource type="PackedScene" uid="uid://b2mivyla52lcl" path="res://Assets/Models/marauder/marauderRed.tscn" id="3_3ee2o"]
+[ext_resource type="PackedScene" uid="uid://d1d36qeyhbvr3" path="res://Assets/Models/marauder/marauderRed.tscn" id="3_3ee2o"]
 [ext_resource type="Script" path="res://Prefabs/HitBox.gd" id="4_tnfkf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6dqm1"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=17 format=3 uid="uid://dapc4u84j2cr"]
 
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dtfmrm20ruq5u" path="res://Prefabs/FPSCounter.tscn" id="2_c6l00"]
+[ext_resource type="Texture2D" uid="uid://bvww2vp1sw1lk" path="res://Assets/Images/HealthShadow.png" id="2_gpdea"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
+[ext_resource type="Texture2D" uid="uid://2dkxbrqxj2b4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/shadow.png" id="3_8yjci"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
+[ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="4_0ykas"]
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://Assets/Images/empress of bostonia.png" id="5_hc5au"]
 [ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="8_kp882"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="9"]
@@ -13,12 +16,54 @@
 [ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="12_3pmhn"]
 [ext_resource type="PackedScene" uid="uid://i3q5n1j7uql6" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_pg5ty"]
+font = ExtResource("4_0ykas")
+font_size = 28
+font_color = Color(1, 0.882353, 0, 1)
+
 [node name="Level" type="Node3D"]
 script = ExtResource("1_ilocr")
 
-[node name="Broadcast" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Broadcast" type="Control" parent="."]
+z_index = 100
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 25.0
+offset_right = 20.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="Broadcast"]
+modulate = Color(0.392157, 0.588235, 0.392157, 0.392157)
+layout_mode = 0
+offset_left = -258.0
+offset_right = 433.0
+offset_bottom = 130.0
+scale = Vector2(0.75, 0.6)
+texture = ExtResource("2_gpdea")
+
+[node name="TextureRect2" type="TextureRect" parent="Broadcast"]
+modulate = Color(0.392157, 0.588235, 0.392157, 1)
+layout_mode = 0
+offset_left = -258.0
+offset_right = 433.0
+offset_bottom = 130.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_8yjci")
+
+[node name="Label" type="Label" parent="Broadcast"]
+layout_mode = 0
+offset_left = -206.0
+offset_top = 24.0
+offset_right = 206.0
+offset_bottom = 62.0
+text = "Upgraded Revolver Capacity to Level: 3"
+label_settings = SubResource("LabelSettings_pg5ty")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="FPS Counter" parent="." instance=ExtResource("2_c6l00")]
 offset_bottom = 26.0001

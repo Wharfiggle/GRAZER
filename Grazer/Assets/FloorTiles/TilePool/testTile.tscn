@@ -60,7 +60,7 @@ timeDelay = 0.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.73421, 0, -8.82)
 gunmanSpawnChance = 0.5
 spawnChance = 1.0
-numEnemies = 1
+numEnemies = 2
 timeDelay = 0.2
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
