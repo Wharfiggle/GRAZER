@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://bljfem8tm3cxn"]
 
 [ext_resource type="PackedScene" uid="uid://cdv75hx6husqp" path="res://Prefabs/old/NavigationRegion3D.tscn" id="1_24dvh"]
 [ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_gbb6s"]

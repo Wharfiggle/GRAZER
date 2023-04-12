@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://6hesnuy7iqon"]
+
+[ext_resource type="Texture2D" uid="uid://dht0fev3dg6bq" path="res://Assets/Models/marauder/texture/Green/Bandit_Cloth_BaseColor.png" id="1_dmyb1"]
+[ext_resource type="Texture2D" uid="uid://cs1ixn62dj0cc" path="res://Assets/Models/marauder/texture/Green/Bandit_Cloth_Metallic.png" id="2_tq3p4"]
+[ext_resource type="Texture2D" uid="uid://c4in0xalqj8sa" path="res://Assets/Models/marauder/texture/Green/Bandit_Cloth_Normal.png" id="3_3lmu4"]
+[ext_resource type="Texture2D" uid="uid://cib2551xhr1f1" path="res://Assets/Models/marauder/texture/Green/Bandit_Cloth_Roughness.png" id="4_tkb40"]
+
+[resource]
+albedo_texture = ExtResource("1_dmyb1")
+metallic = 1.0
+metallic_texture = ExtResource("2_tq3p4")
+roughness_texture = ExtResource("4_tkb40")
+normal_enabled = true
+normal_texture = ExtResource("3_3lmu4")

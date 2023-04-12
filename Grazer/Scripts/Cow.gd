@@ -260,7 +260,7 @@ func _physics_process(delta):
 						shuffleTimeCounter = 0
 					
 					var startT = min(0.3, shuffleTime - shuffleTimeCounter) / 0.3
-					print(startT)
+					#print(startT)
 					model.position.z = startT * -sin(shuffleTimeCounter * shuffleSpeed) * shuffleStrength * ((shuffleTime - shuffleTimeCounter) / shuffleTime)
 					#Normalize t to range between -1 and 1
 					var t = (shuffleTimeCounter / shuffleTime)

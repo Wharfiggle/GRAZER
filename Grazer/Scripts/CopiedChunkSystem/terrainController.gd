@@ -89,9 +89,11 @@ func _process(_delta):
 		if(!chunkLoaded):
 			loadChunk()
 			pass
+		print(terrainController.getPlayerChunk(player.transform.origin))
 	else:
 		chunkLoaded = false;
 	previousChunk = currentChunk
+
 
 #converts the parameter coordinates into an smaller coord, 16,16 -> 1,1
 static func getPlayerChunk(pos):
@@ -169,12 +171,13 @@ func generateStructures():
 			var origin = Vector3()
 			origin.x = -checkWidth / 2 
 			origin.y = 0
-			origin.z = -(levelLength * (l + 1) - checkLength)
+			origin.z = -(levelLength * (l + 1) + (l * 5) - checkLength)
 			#origin *= tileWidth
 			placed = checkPlacement(1, origin * tileWidth)
 			#If it found valid coordinates, proceed to adding the structure
 			if(placed):
-				addStructure(1, origin)
+				addStructure(0, origin)
+				print("added chekcpoint at " + str(origin))
 			else:
 				print("failed to place checkpoint " + str(l + 1))
 			
@@ -202,7 +205,7 @@ func generateStructures():
 				origin.y = 0
 				#+3 is in hopes of preventing overlap with the checkpoints
 				origin.z = randi_range(-l * levelLength,
-				-(((l + 1) * levelLength) + 3))
+				-(((l + 1) * levelLength) + (l * 5) + 3))
 				#origin *= tileWidth
 				placed = checkPlacement(id, origin * tileWidth)
 				
@@ -242,16 +245,6 @@ func checkOverlap(idA, coordsA, idB, coordsB) -> bool:
 		return false
 	if(-extraTiles + coordsA.z - depthA > coordsB.z):
 		return false
-	
-#	print(str(coordsA.x) + " > " + str(coordsB.x) + " + " + str(widthB))
-#	print(coordsA.x > coordsB.x + widthB + extraTiles)
-#	print(str(coordsA.x) + " + " + str(widthA) + " < " + str(coordsB.x))
-#	print(extraTiles + coordsA.x + widthA < coordsB.x)
-#	print(str(coordsA.z) + " < " + str(coordsB.z) + " - " + str(depthB))
-#	print(coordsA.z < coordsB.z - depthB - extraTiles)
-#	print(str(coordsA.z) + " - " + str(depthA) + " > " + str(coordsB.z))
-#	print(-extraTiles + coordsA.z - depthA > coordsB.z)
-	
 	return true
 
 #Adds valid structure to the structure array, reserves the empty space, and places the node

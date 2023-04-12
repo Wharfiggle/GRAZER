@@ -78,7 +78,9 @@ func calcChunk(_chunkCoords) -> String:
 	#system for choosing a chunk from the list
 	var pathName = "res://Assets/FloorTiles/TilePool/"
 	
-	if(chunkCoords.x == mapWidth):
+	if(chunkCoords.z == 2):
+		pathName += "WallTiles/wall1c"
+	elif(chunkCoords.x == mapWidth):
 		pathName += "WallTiles/wall1d"
 	elif(chunkCoords.x == -mapWidth):
 		pathName += "WallTiles/wall1b"

@@ -1,14 +1,14 @@
-[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dobi1p4ccsh21"]
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://b3stctcj2y5lx"]
 
-[ext_resource type="Texture2D" uid="uid://db2bm5hj35dof" path="res://Assets/Models/marauder/texture/Bandit_Skull_BaseColor.png" id="1_ksjxq"]
-[ext_resource type="Texture2D" uid="uid://bovcgpaldlqfy" path="res://Assets/Models/marauder/texture/Bandit_Skull_Metallic.png" id="2_wc83d"]
-[ext_resource type="Texture2D" uid="uid://cnds4lhx0tll" path="res://Assets/Models/marauder/texture/Bandit_Skull_Normal.png" id="3_4dtip"]
-[ext_resource type="Texture2D" uid="uid://0cruw6ltkchn" path="res://Assets/Models/marauder/texture/Bandit_Skull_Roughness.png" id="4_k45kq"]
+[ext_resource type="Texture2D" uid="uid://dgpt010lsxg7d" path="res://Assets/Models/marauder/texture/Bandit_Skull_BaseColor.png" id="1_qoimq"]
+[ext_resource type="Texture2D" uid="uid://3aaj4l8pheba" path="res://Assets/Models/marauder/texture/Bandit_Skull_Metallic.png" id="2_f7rpg"]
+[ext_resource type="Texture2D" uid="uid://b1mnbmcy3ekjj" path="res://Assets/Models/marauder/texture/Bandit_Skull_Normal.png" id="3_126oa"]
+[ext_resource type="Texture2D" uid="uid://bokeydtvn70jt" path="res://Assets/Models/marauder/texture/Bandit_Skull_Roughness.png" id="4_a1j5a"]
 
 [resource]
-albedo_texture = ExtResource("1_ksjxq")
+albedo_texture = ExtResource("1_qoimq")
 metallic = 1.0
-metallic_texture = ExtResource("2_wc83d")
-roughness_texture = ExtResource("4_k45kq")
+metallic_texture = ExtResource("2_f7rpg")
+roughness_texture = ExtResource("4_a1j5a")
 normal_enabled = true
-normal_texture = ExtResource("3_4dtip")
+normal_texture = ExtResource("3_126oa")
