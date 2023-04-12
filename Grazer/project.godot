@@ -148,6 +148,7 @@ SwapWeaponDown={
 3d_physics/layer_4="Cow"
 3d_physics/layer_5="Cows Run From Me"
 3d_physics/layer_6="Hitbox"
+3d_physics/layer_9="Player Ragdoll Bones"
 
 [mono]
 

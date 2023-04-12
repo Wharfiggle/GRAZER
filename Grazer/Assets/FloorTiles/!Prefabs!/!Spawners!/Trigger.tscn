@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://p0an8yq26hw1"]
+
+[ext_resource type="Script" path="res://Scripts/Trigger.gd" id="1_woo6f"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_p76us"]
+
+[node name="Trigger" type="Area3D"]
+collision_mask = 4
+script = ExtResource("1_woo6f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_p76us")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

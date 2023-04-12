@@ -72,6 +72,8 @@ var onRevolver = true
 @onready var lineSightMesh = preload("res://Prefabs/BulletTrailMesh.tres")
 @onready var lineSightNode = get_node("./LineOfSight")
 @export var lineSightTransparency = 0.5
+@export var lineSightTime = 0.6
+var lineSightTimer = 0.0
 var lineSight
 @onready var animation = get_node(NodePath("./Russel/AnimationPlayer/AnimationTree"))
 @onready var skeleton = get_node(NodePath("./Russel/Armature/Skeleton3D"))
@@ -85,6 +87,7 @@ var active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.add_to_group('Player')
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	healthCounter.updateHealth(hitpoints)
 	lineSight = lineSightMesh.duplicate()
@@ -93,7 +96,7 @@ func _ready():
 	shotgunSpread = shotgunSpread * PI / 180.0
 	lineSightNode.transparency = lineSightTransparency
 
-	var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
+	#var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#skeleton.physical_bones_start_simulation(phys_bones)
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -107,12 +110,17 @@ func _process(delta):
 	if(herd.getNumCows() < 1):
 		die()
 	
+	if(lineSightTimer > 0):
+		lineSightTimer -= delta
+		if(lineSightTimer < 0):
+			lineSightTimer = 0
+		if(onRevolver):
+			lineSightNode.transparency = sqrt(sqrt(lineSightTimer / lineSightTime)) * (1.0 - lineSightTransparency) + lineSightTransparency
+			
 	if(shootTimer > 0):
 		shootTimer -= delta
 		if(shootTimer < 0):
 			shootTimer = 0
-		if(onRevolver):
-			lineSightNode.transparency = sqrt(sqrt(sqrt(shootTimer / shootTime))) * (1.0 - lineSightTransparency) + lineSightTransparency
 	if(shootBufferTimer > 0):
 		shootBufferTimer -= delta
 		if(shootBufferTimer < 0):
@@ -170,6 +178,7 @@ func _process(delta):
 				boomSound.stream = revolverCritSound
 				boomSound.play()
 		shootTimer = shootTime
+		lineSightTimer = lineSightTime
 	
 	#setting sound 
 	Steps.stream = runSound
@@ -192,10 +201,11 @@ func _process(delta):
 	#stick input rotated 45 degrees to match isometric
 	stickToAdd = Vector3(cos(-PI/4.0) * stickToAdd.x - sin(-PI/4.0) * stickToAdd.z, 0,
 		sin(-PI/4.0) * stickToAdd.x + cos(-PI/4.0) * stickToAdd.z)
+	stickToAdd *= 1.0 / max(0.8, stickToAdd.length()) #treat magnitude of 0.8 as the max
 	if(stickToAdd.length() >= 0.3):
 		toAdd = stickToAdd
 		#adjust walking animation speed to match speed
-		animation.set("parameters/idleWalk/blend_amount", stickToAdd.length())
+		animation.set("parameters/idleWalk/blend_amount", min(1.0, stickToAdd.length()))
 	else:
 		toAdd = toAdd.normalized()
 		animation.set("parameters/idleWalk/blend_amount", 1.0)
@@ -266,9 +276,16 @@ func _physics_process(delta):
 		var prevMousePos = mousePos
 		mousePos = viewport.get_mouse_position()
 		var rightStick = Vector3(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), 0, Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
+		var leftStick = Vector3(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), 0, Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
 		#get aimDir based on right stick
 		if(rightStick.length() > 0.6):
 			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
+			worldCursor.visible = false
+		elif(leftStick.length() > 0.3):
+			print("asdasdasd")
+			aimDir -atan2(leftStick.z, leftStick.x) - PI * 5.0 / 4.0
+			#always the same as before it started????
+			print(aimDir)
 			worldCursor.visible = false
 		#get aimDir based on mouse movement
 		elif(prevMousePos != mousePos || worldCursor.visible):

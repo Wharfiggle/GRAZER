@@ -27,7 +27,7 @@ func pause ():
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(Input.is_action_just_pressed("ItemWheel")):
 		#checking if inventory is open or not		
 		if (!self.visible):

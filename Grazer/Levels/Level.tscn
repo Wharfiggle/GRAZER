@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=12 format=3 uid="uid://dapc4u84j2cr"]
 
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
@@ -8,11 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://Assets/Images/empress of bostonia.png" id="5_hc5au"]
 [ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="8_kp882"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="9"]
+[ext_resource type="Script" path="res://Levels/LoopSound.gd" id="10_apc26"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://i3q5n1j7uql6" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_ilocr")
+
+[node name="Broadcast" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="FPS Counter" parent="." instance=ExtResource("2_c6l00")]
 offset_bottom = 26.0001
@@ -45,8 +50,11 @@ script = ExtResource("4")
 process_mode = 3
 volume_db = -12.18
 bus = &"background "
+script = ExtResource("10_apc26")
 
 [node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
 anchors_preset = 8
 anchor_top = 0.5
 anchor_bottom = 0.5
+
+[connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]

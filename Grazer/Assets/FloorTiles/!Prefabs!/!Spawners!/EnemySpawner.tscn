@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc3155bxmkxrn"]
+
+[ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="1_a1v2b"]
+[ext_resource type="PackedScene" uid="uid://c6q7168wffj3m" path="res://Assets/Models/marauder/marauder.tscn" id="2_u1pys"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dj02g"]
+
+[node name="EnemySpawner" type="Node3D"]
+script = ExtResource("1_a1v2b")
+
+[node name="EditorIndicator" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_dj02g")
+
+[node name="Bandit" parent="EditorIndicator" instance=ExtResource("2_u1pys")]

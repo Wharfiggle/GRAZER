@@ -64,7 +64,7 @@ func _process(delta):
 		trailPoints = [Vector3.ZERO, Vector3(0, 0, -trailEnd)]
 		bulletTrail.updateTrail(trailPoints)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(active):
 		if(hitBody == null && hitPoint == null):
 			if(raycast.is_colliding()): #if raycast is intercepted, move to hitPoint next frame

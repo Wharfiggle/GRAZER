@@ -127,7 +127,7 @@ func idle():
 #var rectHei = 15 / 9 * 16
 #var rectDiag = rectWid / sin( arctan( rectWid / rectHei )
 
-func damage_taken(damage, from) -> bool:
+func damage_taken(_damage, from) -> bool:
 	if(from == "player" && !draggers.is_empty()):
 		return false
 	else:

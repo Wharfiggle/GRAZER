@@ -6,13 +6,14 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	get_child(0).queue_free()
 
-func spawn():
+func spawn(_spawnChanceMod, _spawnPrefabs):
 	rng.randomize()
 	var rn = rng.randi_range(0, paths.size() - 1)
 	var instance = load(paths[rn]).instantiate()
 	if(instance != null):
 		get_node("/root/Level").add_child(instance)
 		instance.global_position = global_position
+		instance.set_global_rotation(global_rotation)
 	else:
 		print("invalid path in decoration spawner: " + str(paths[rn]))
 	self.queue_free()

@@ -54,11 +54,11 @@ class Item:
 			elif(id == 2):
 				description = "Upgraded Revolver Reload to Level: " + str(level)
 		elif(id == 3 || id == 4 || id == 5): #shotgunCapacity, shotgunDamage, shotgunReload
-			if(id == 0):
+			if(id == 3):
 				description = "Upgraded Shotgun Capacity to Level: " + str(level)
-			elif(id == 1):
+			elif(id == 4):
 				description = "Upgraded Shotgun Damage to Level: " + str(level)
-			elif(id == 2):
+			elif(id == 5):
 				description = "Upgraded Shotgun Reload to Level: " + str(level)
 	func use(useOrUndo:bool):
 		var undoMod = 1
@@ -81,14 +81,19 @@ class Item:
 
 #use for getting specific upgrade
 func getUpgrade(id:int) -> Item:
-	var level = -1
+	var level = 1
 	var ind = 0
-	while(level == -1):
+	while(level == 1):
 		if(player.gunStats[id] == gunStats[id][ind]):
-			level = ind
+			level = ind + 2
 		ind += 1
-	var item = Item.new(id, player, itemTextures[id / 3])
-	item.initUpgrade(level, gunStats)
+	var item
+	if(level == 4):
+		#if gun stat is max, return health potion instead
+		item = Item.new(6, player, itemTextures[6])
+	else:
+		item = Item.new(id, player, itemTextures[id / 3 as int]) # get tex 0 if id is 0 - 2 and get tex 1 if id is 3 - 5
+		item.initUpgrade(level, gunStats)
 	return item
 	
 #use for getting random upgrade to drop in world
@@ -130,6 +135,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(player == null):
 		player = get_node(NodePath("/root/Level/Player"))

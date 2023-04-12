@@ -32,6 +32,9 @@ var structPerLevel = 10
 var checkLength = 4
 var checkWidth = 3
 
+#chance modifier for spawners on each chunk/structure. Increases as player progresses
+var spawnChanceMod = 1.0
+
 func _ready(): 
 	checkWidth = structureTypes[1][1] #Gets width of checkpoints
 	checkLength = structureTypes[1][2] #Gets length
@@ -41,42 +44,47 @@ func _ready():
 	generateStructures()
 	
 	player = get_node(playerPath)
-	currentChunk = getPlayerChunk(player.transform.origin)
+	currentChunk = terrainController.getPlayerChunk(player.transform.origin)
 	loadChunk()
+
+func spawnMarauder(gunman:bool):
+	#screen height and width in units, 15.0 = camera.size()
+	var camSize = 15.0
+	if(camera != null):
+		camSize = camera.size
+	var scrHei = camSize / cos(55.0 * PI / 180.0)
+	var scrWid = camSize / 9.0 * 16.0 #only works with 16:9 aspect ratio
+	var enemy
+	if(!gunman):
+		enemy = thiefPrefab.instantiate()
+	else:
+		enemy = gunmanPrefab.instantiate()
+	var horOrVert = randi_range(0, 1)
+	var topOrBot = randi_range(0, 1)
+	if(topOrBot == 0): topOrBot = -1
+	if(horOrVert == 0):
+		enemy.position = Vector3(
+			topOrBot * (scrWid / 2.0 + 2), 1, 
+			randf_range(-scrHei / 2.0, scrHei / 2.0))
+	else:
+		enemy.position = Vector3(
+			randf_range(-scrWid / 2.0, scrWid / 2.0), 1, 
+			topOrBot * (scrHei / 2.0 + 2))
+	enemy.position = player.position + Vector3(
+		cos(-PI/4.0) * enemy.position.x - sin(-PI/4.0) * enemy.position.z, 0,
+		sin(-PI/4.0) * enemy.position.x + cos(-PI/4.0) * enemy.position.z)
+	get_node(NodePath("/root/Level")).add_child(enemy)
 
 func _process(_delta):
 	if(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
-	if(Input.is_action_just_pressed("debug4") || Input.is_action_just_pressed("debug5")):
-		#screen height and width in units, 15.0 = camera.size()
-		var camSize = 15.0
-		if(camera != null):
-			camSize = camera.size
-		var scrHei = camSize / cos(55.0 * PI / 180.0)
-		var scrWid = camSize / 9.0 * 16.0 #only works with 16:9 aspect ratio
-		var enemy
-		if(Input.is_action_just_pressed("debug5")):
-			enemy = thiefPrefab.instantiate()
-		else:
-			enemy = gunmanPrefab.instantiate()
-		var horOrVert = randi_range(0, 1)
-		var topOrBot = randi_range(0, 1)
-		if(topOrBot == 0): topOrBot = -1
-		if(horOrVert == 0):
-			enemy.position = Vector3(
-				topOrBot * (scrWid / 2.0 + 2), 1, 
-				randf_range(-scrHei / 2.0, scrHei / 2.0))
-		else:
-			enemy.position = Vector3(
-				randf_range(-scrWid / 2.0, scrWid / 2.0), 1, 
-				topOrBot * (scrHei / 2.0 + 2))
-		enemy.position = player.position + Vector3(
-			cos(-PI/4.0) * enemy.position.x - sin(-PI/4.0) * enemy.position.z, 0,
-			sin(-PI/4.0) * enemy.position.x + cos(-PI/4.0) * enemy.position.z)
-		get_node(NodePath("/root/Level")).add_child(enemy)
+	if(Input.is_action_just_pressed("debug4")):
+		spawnMarauder(true)
+	if(Input.is_action_just_pressed("debug5")):
+		spawnMarauder(false)
 	
 	#checks if player has left their current chunk and loads if they have
-	currentChunk = getPlayerChunk(player.transform.origin)
+	currentChunk = terrainController.getPlayerChunk(player.transform.origin)
 	if(currentChunk != previousChunk):
 		if(!chunkLoaded):
 			loadChunk()
@@ -118,6 +126,7 @@ func loadChunk():
 			#this if statement makes sure that only the coords that are not already active are loaded
 			if activeCoord.find(chunkCoords) == -1:
 				var chunk = chunkNode.instantiate()
+				chunk.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab])
 				chunk.transform.origin = chunkCoords * tileWidth
 				activeChunks.append(chunk)
 				activeCoord.append(chunkCoords)
@@ -263,6 +272,7 @@ func addStructure(id, chunkCoords):
 	#Places structure node in correct place on map
 	
 	var instance = structureNode.instantiate()
+	instance.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab])
 	get_node(NodePath("/root/Level/AllTerrain")).add_child(instance)
 	instance.position = chunkCoords * tileWidth
 	instance.setStructureData(id, structureTypes)

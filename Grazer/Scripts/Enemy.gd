@@ -6,7 +6,7 @@ extends CharacterBody3D
 @onready var level = get_tree().root.get_child(0)
 var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
-@onready var revolver = get_node(NodePath("./Revolver"))
+var revolver
 var shootingPoint
 
 #audioStream
@@ -69,6 +69,9 @@ var dragRange = 3.0
 var escapeRange = 18
 
 func _ready():
+	position.y = 3
+	if(marauderType == enemyTypes.gunman):
+		revolver = get_node(NodePath("./Model/Revolver"))
 	if(revolver != null):
 		shootingPoint = revolver.find_child("ShootingPoint")
 #	#Setting enemy type
@@ -80,8 +83,30 @@ func _ready():
 #	if(marauderType == enemyTypes.gunman):
 #		$Mesh.scale = Vector3(1,0.7,1)
 
+	var origPos = position
+	var tries = 0
+	var validLoc = false
+	while(validLoc == false && tries < 100):
+		var ray_query = PhysicsRayQueryParameters3D.new()
+		ray_query.from = Vector3(position.x + 0.5, 2.5, position.z + 0.5)
+		ray_query.to = ray_query.from + Vector3(-1, -2, -1)
+		ray_query.hit_from_inside = true
+		ray_query.set_collision_mask(0b1111)
+		var collision = get_world_3d().direct_space_state.intersect_ray(ray_query)
+		if(!collision.is_empty()):
+			position = Vector3(origPos.x + 8 * (randf() * 2 - 1), origPos.y, origPos.z + 8 * (randf() * 2 - 1))
+			tries += 1
+			if(tries == 100):
+				print("couldn't find valid location for enemy to spawn in, deleting")
+				queue_free()
+		else:
+			validLoc = true
+			position.y = 0
+
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
+	print(position.y)
+	
 	if(dynamicCooldown > 0):
 		dynamicCooldown -= delta
 	lerp(dynamicMov.x,0.0,0.1)
@@ -100,7 +125,7 @@ func _physics_process(delta):
 		0.1)
 	
 	if(marauderType == enemyTypes.thief && currentMode == behaviors.circle):
-		var rn = randi_range(1, 600)
+		var rn = randi_range(1, 100)
 		if(rn == 1):
 			currentMode = behaviors.cowPursuit
 		var cows = herd.getCows()
@@ -171,7 +196,7 @@ func _physics_process(delta):
 				position.y,
 				draggedCow.position.z - cowVector.y)
 				
-	if(health <= 4.0):
+	if(health <= 3.0):
 		if(currentMode != behaviors.flee):
 			var m = position.z - player.position.z
 			fleeDirection = m / abs(m)

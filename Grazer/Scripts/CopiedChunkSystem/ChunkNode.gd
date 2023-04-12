@@ -9,6 +9,9 @@ var loadedBefore = false
 var instance
 var mapWidth = terrainController.mapWidth
 
+var spawnChanceMod = 1.0
+var spawnPrefabs = []
+
 func start(_chunkCoords):
 	chunkCoords = _chunkCoords
 	#If this chunk has not been loaded before
@@ -39,7 +42,7 @@ func start(_chunkCoords):
 	loading = true
 	
 
-func _process(delta):
+func _process(_delta):
 	#Because if we try instantiate the scene while its not done it freezes the game
 	#Instead this function tries to check every frame if its done before attempting
 	
@@ -61,6 +64,9 @@ func _process(delta):
 			loading = false
 			
 
+func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
+	spawnChanceMod = inSpawnChanceMod
+	spawnPrefabs = inSpawnPrefabs
 
 func save():
 	WorldSave.saveChunk(chunkCoords, chunkData)
@@ -89,7 +95,7 @@ func activateSpawners():
 	for c in children:
 		#Call spawn() on all spawners
 		if(c.has_method("spawn")):
-			c.spawn()
+			c.spawn(spawnChanceMod, spawnPrefabs)
 
 func setVParent(parent):
 	vParent = parent

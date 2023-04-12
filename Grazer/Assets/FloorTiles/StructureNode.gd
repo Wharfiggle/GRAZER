@@ -19,6 +19,9 @@ var loading = false
 var loadedBefore = false
 var instance
 
+var spawnChanceMod = 1.0
+var spawnPrefabs = []
+
 static func retrieveStructureTypes() -> Array:
 	var structures = []
 	
@@ -40,15 +43,19 @@ func setStructureData(id:int, structureTypes:Array = []) -> Array:
 	tileId = id
 	var structures = structureTypes
 	if(structureTypes.is_empty()):
-		structures = retrieveStructureTypes()
+		structures = tileStructures.retrieveStructureTypes()
 	var info = structures[tileId]
 	pathname = info[0]
 	width = info[1]
 	depth = info[2]
 	return structures
 
+func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
+	spawnChanceMod = inSpawnChanceMod
+	spawnPrefabs = inSpawnPrefabs
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var distance = player.position.distance_to(position)
 	
 	#Waits to instantiate scene until ready
@@ -99,4 +106,4 @@ func activateSpawners():
 	for c in children:
 		#If child has spawn method, call it
 		if(c.has_method("spawn")):
-			c.spawn()
+			c.spawn(spawnChanceMod, spawnPrefabs)
