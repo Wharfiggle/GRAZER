@@ -228,7 +228,6 @@ func _physics_process(delta):
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
 	targetPos = position
-	genDynamicMov()
 
 func circle():
 	#Marauder circles around the herd. If marauderType is thief, it should 
@@ -237,7 +236,6 @@ func circle():
 	if(herd == null or herd.numCows <= 0):
 		targetPos = player.position
 		return
-	genDynamicMov()
 	#variable for determining how far away to place next naviagation point from current position
 	var circleSpeed = 2.0
 	var lerpSpeed = 0.1
@@ -309,7 +307,6 @@ func pursuit():
 		if(speed > 0):
 			speed = (spacing - followDistance) / 3.0
 		
-		genDynamicMov()
 		
 		if (canFire):
 			var direction = transform.origin - player.transform.origin
@@ -450,23 +447,6 @@ func hibernate():
 		currentMode = behaviors.circle
 		baseSpeed = 5.5
 		GRAVITY = 30
-
-
-#Function for setting a random direction to add variety to marauder movement
-func genDynamicMov():
-	return
-	if(dynamicCooldown <= 0):
-		dynamicMov = Vector3(dynamicMov.x + randf_range(-1.0, 1.0), 0, 
-dynamicMov.z + randf_range(-1.0, 1.0))
-	else:
-		return
-	var maxOff = 1.5
-	if(dynamicMov.x > maxOff):
-		dynamicMov.x = maxOff
-	if(dynamicMov.z > maxOff):
-		dynamicMov.z = maxOff
-	#print(dynamicMov)
-	dynamicCooldown = randf_range(1.0,3.0)
 
 #navigation function
 func moveTo(_targetPos):

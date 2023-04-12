@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dc3155bxmkxrn"]
 
 [ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="1_a1v2b"]
-[ext_resource type="PackedScene" uid="uid://d1d36qeyhbvr3" path="res://Assets/Models/marauder/marauderRed.tscn" id="2_hnllr"]
+[ext_resource type="PackedScene" path="res://Assets/Models/marauder/marauderRed.tscn" id="2_hnllr"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_dj02g"]
 
