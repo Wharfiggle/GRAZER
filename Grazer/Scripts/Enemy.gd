@@ -105,7 +105,7 @@ func _ready():
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
-	print(position.y)
+	#print(position.y)
 	
 	if(dynamicCooldown > 0):
 		dynamicCooldown -= delta

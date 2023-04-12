@@ -21,14 +21,6 @@ func _ready():
 	rng.randomize()
 	if(spawnAtEdgeOfScreen):
 		levelScript = get_node(NodePath("/root/Level"))
-	
-#	#Return if a path has already been chosen
-#	match[objectStringToSpawn]:
-#		["gunman"]:
-#			path = "res://Prefabs/Gunman.tscn"
-#		["thief"]:
-#			path = "res://Prefabs/Thief.tscn"
-#		#TODO Add more options like items
 
 func _physics_process(delta):
 	if(timer > -1):

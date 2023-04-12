@@ -285,7 +285,7 @@ func _physics_process(delta):
 			print("asdasdasd")
 			aimDir -atan2(leftStick.z, leftStick.x) - PI * 5.0 / 4.0
 			#always the same as before it started????
-			print(aimDir)
+			#print(aimDir)
 			worldCursor.visible = false
 		#get aimDir based on mouse movement
 		elif(prevMousePos != mousePos || worldCursor.visible):
