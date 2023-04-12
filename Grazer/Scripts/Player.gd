@@ -212,7 +212,7 @@ func _process(delta):
 		animation.set("parameters/idleWalk/blend_amount", min(1.0, stickToAdd.length()))
 	else:
 		toAdd = toAdd.normalized()
-		animation.set("parameters/idleWalk/blend_amount", 1.0)
+		animation.set("parameters/idleWalk/blend_amount", toAdd.length())
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
 #	else:
