@@ -26,6 +26,20 @@ var dodgeCooldownTimer = 0.0
 var dodgeBufferTimer = 0.0
 var dodging = false
 var knocked = false
+
+#Reload variables
+var revolverReloadTime = 0.75
+var shotgunReloadTime = 0.75
+var currentReloadTime = 0
+var revolverClipSize = 6
+var revolverClip = 6
+var shotgunClipSize = 2
+var shotgunClip = 2
+var idleTime = 0
+var autoReloadEnabled = true
+var autoReloadTime = 5
+var reloading = false
+
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
 @onready var Steps = $footsteps
@@ -49,7 +63,6 @@ var critChance = 0.1
 
 const GRAVITY = 30
 @export var speed = 8.0
-const JUMP = 15
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
@@ -137,11 +150,50 @@ func _process(delta):
 			potion.use(false)
 			potion = null
 	
+	#Temp var to allow easier comparisions
+	var equippedClip
+	var equippedClipSize
+	if(onRevolver):
+		equippedClip = revolverClip
+		equippedClipSize = revolverClipSize
+	else:
+		equippedClip = shotgunClip
+		equippedClipSize = shotgunClipSize
+	
+	if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize):
+		startReload()
+	
+	#Idle auto-reload timer, makes sure equipped gun is not fully loaded
+	if(autoReloadEnabled and !reloading and equippedClip < equippedClipSize):
+		idleTime += delta
+		if(idleTime > autoReloadTime):
+			startReload()
+	
+	#Reload timer countdown
+	if(reloading):
+		currentReloadTime -= delta
+	#Finish reloading
+	if(currentReloadTime <= 0 and reloading):
+		finishReloading()
+	#todo cancel reload if switching weapons
+	
 	#shoot gun input buffer
 	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0):
 		shootBufferTimer = shootBufferTime
+	
+
+	
+	if(equippedClip <= 0 and !reloading):
+		startReload()
+	
 	#shoot gun
-	if(active && shootBufferTimer > 0 && shootTimer == 0):
+	if(active && shootBufferTimer > 0 && shootTimer == 0 && equippedClip > 0):
+		#If currently reloading, cancel reload
+		if(reloading):
+			currentReloadTime = 0
+			reloading = false
+		idleTime = 0
+		
 		Input.start_joy_vibration(0,1,1,0.07)
 		var smokeInstance = smoke.instantiate()
 		add_child(smokeInstance)
@@ -155,7 +207,9 @@ func _process(delta):
 			#crit particle
 			smokeInstance.get_child(2).emitting = true
 		var boomSound = smokeInstance.find_child("Boom")
+		#Shooting the revolver
 		if(onRevolver):
+			revolverClip -= 1
 			var b = bullet.instantiate()
 			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), revolverRange, revolverDamage * critMult)
 			if(!critMult == 2.0):
@@ -164,7 +218,9 @@ func _process(delta):
 			else:
 				boomSound.stream = revolverCritSound
 				boomSound.play()
+		#Shooting the shotgun
 		else:
+			shotgunClip -= 1
 			rng.randomize()
 			var bullets = 0
 			while bullets < shotgunBullets:
@@ -252,6 +308,23 @@ func _process(delta):
 	#update world cursor position
 	worldCursor.global_position = position + cursorPos
 
+func startReload():
+	print("Reloading")
+	reloading = true
+	if(onRevolver):
+		currentReloadTime = revolverReloadTime
+	else:
+		currentReloadTime = shotgunReloadTime
+	idleTime = 0
+
+func finishReloading():
+	print("Finished Reloading")
+	reloading = false
+	idleTime = 0
+	if(onRevolver):
+		revolverClip = revolverClipSize
+	else:
+		shotgunClip = shotgunClipSize
 
 func _physics_process(delta):
 	#swap weapon
@@ -403,7 +476,7 @@ func _physics_process(delta):
 	#gravity
 	tVelocity.y -= GRAVITY * delta
 	if(Input.is_action_just_pressed("jump") and is_on_floor()):
-		tVelocity.y += JUMP
+		tVelocity.y += 15
 	elif(is_on_floor()):
 		tVelocity.y = -0.1
 	
@@ -449,6 +522,7 @@ func setHands(right:bool):
 	if(right != rightHand):
 		setWeaponAndHands(onRevolver, right)
 func setWeapon(revolver:bool):
+	idleTime = 0
 	if(revolver != onRevolver):
 		setWeaponAndHands(revolver, rightHand)
 
