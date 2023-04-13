@@ -26,6 +26,7 @@ var dodgeCooldownTimer = 0.0
 var dodgeBufferTimer = 0.0
 var dodging = false
 var knocked = false
+var movementBlend = 0.0
 
 #Reload variables
 var revolverReloadTime = 0.75
@@ -242,6 +243,8 @@ func _process(delta):
 	
 	#setting sound 
 	Steps.stream = runSound
+	
+	#movement
 	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):
 		if(Input.is_action_pressed("moveRight")):
@@ -264,11 +267,13 @@ func _process(delta):
 	stickToAdd *= 1.0 / max(0.8, stickToAdd.length()) #treat magnitude of 0.8 as the max
 	if(stickToAdd.length() >= 0.3):
 		toAdd = stickToAdd
-		#adjust walking animation speed to match speed
-		animation.set("parameters/idleWalk/blend_amount", min(1.0, stickToAdd.length()))
+		worldCursor.visible = false
 	else:
 		toAdd = toAdd.normalized()
-		animation.set("parameters/idleWalk/blend_amount", toAdd.length())
+		worldCursor.visible = true
+	#adjust walking animation speed to match speed
+	movementBlend = lerpf(movementBlend, toAdd.length(), 0.1)
+	animation.set("parameters/idleWalk/blend_amount", movementBlend)
 	if(toAdd != Vector3.ZERO):
 		moveDir = atan2(toAdd.x, toAdd.z)
 #	else:
@@ -295,6 +300,9 @@ func _process(delta):
 	
 	if(transform.origin.y < -20.0):
 		transform.origin = Vector3(0,6,0)
+		
+	#update world cursor position
+	worldCursor.global_position = position + cursorPos
 
 	if(Input.is_action_just_pressed("debug1")):
 		if(herd != null):
@@ -304,9 +312,6 @@ func _process(delta):
 	
 	if(Input.is_action_just_pressed("Follow Wait") && active):
 		herd.toggleFollow()
-	
-	#update world cursor position
-	worldCursor.global_position = position + cursorPos
 
 func startReload():
 	print("Reloading")
@@ -360,9 +365,7 @@ func _physics_process(delta):
 			worldCursor.visible = false
 		elif(leftStick.length() > 0.3):
 			print("asdasdasd")
-			aimDir -atan2(leftStick.z, leftStick.x) - PI * 5.0 / 4.0
-			#always the same as before it started????
-			#print(aimDir)
+			aimDir = -atan2(leftStick.z, leftStick.x) - PI * 5.0 / 4.0
 			worldCursor.visible = false
 		#get aimDir based on mouse movement
 		elif(prevMousePos != mousePos || worldCursor.visible):

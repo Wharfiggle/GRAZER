@@ -45,15 +45,18 @@ func _process(delta):
 	lifespan -= delta
 	if lifespan <= 0:
 		queue_free()
-		
-	if(active && hitBody == null && hitPoint == null):
-		position += velocity * delta
-		
+	
 	if(active):
+		var prevPos = position
+		if(hitBody == null && hitPoint == null):
+			prevPos = position
+			position += velocity * delta
 		var travelled = (position - startPos).length()
 		if(travelled >= range - 0.5):
-			stop()
-			
+			position = startPos + (position - startPos).normalized() * (range - 0.5)
+			if(position == prevPos):
+				stop()
+		travelled = (position - startPos).length()
 		trailEnd = min(travelled, trailLength)
 	else:
 		trailLength -= muzzle_velocity * delta
