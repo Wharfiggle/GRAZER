@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bljfem8tm3cxn"]
+[gd_scene load_steps=9 format=3 uid="uid://bljfem8tm3cxn"]
 
 [ext_resource type="PackedScene" uid="uid://cdv75hx6husqp" path="res://Prefabs/old/NavigationRegion3D.tscn" id="1_24dvh"]
 [ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_gbb6s"]
 [ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/big_stone.tscn" id="2_7fyle"]
+[ext_resource type="PackedScene" uid="uid://cebdnkuyb0ogo" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/ItemSpawner.tscn" id="4_m5b28"]
+[ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="5_x0ywm"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -29,3 +31,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ig5f3")
 
 [node name="bigStone" parent="NavigationRegion3D" instance=ExtResource("2_7fyle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89519, 0.05, -3.24152)
+
+[node name="ItemSpawner" parent="." instance=ExtResource("4_m5b28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61428, 0, 3.16056)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_x0ywm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75845)

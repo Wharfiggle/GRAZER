@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=18 format=3 uid="uid://dapc4u84j2cr"]
 
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="12_3pmhn"]
 [ext_resource type="PackedScene" uid="uid://i3q5n1j7uql6" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
+[ext_resource type="PackedScene" uid="uid://cxv63ajpdyrdm" path="res://Prefabs/ItemDrop.tscn" id="13_5viiy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pg5ty"]
 font = ExtResource("4_0ykas")
@@ -58,9 +59,9 @@ texture = ExtResource("3_8yjci")
 layout_mode = 0
 offset_left = -206.0
 offset_top = 24.0
-offset_right = 206.0
+offset_right = 220.0
 offset_bottom = 62.0
-text = "Upgraded Revolver Capacity to Level: 3"
+text = "I'm a survivor. We're a dying breed."
 label_settings = SubResource("LabelSettings_pg5ty")
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -83,6 +84,11 @@ centered = false
 [node name="Camera3D" parent="." instance=ExtResource("2")]
 transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
 current = true
+
+[node name="ItemDrop" parent="." instance=ExtResource("13_5viiy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1833, 0, 9.4683)
+randomItem = 1
+potionVsUpgradeChance = 0.0
 
 [node name="Player" parent="." instance=ExtResource("9")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 16, 5, 16)

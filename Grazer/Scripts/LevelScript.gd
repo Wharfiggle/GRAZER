@@ -6,9 +6,15 @@ extends Node3D
 #music
 var sound = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
 @onready var inventory = $ItemWheel
-@onready var player = get_node(NodePath("/root/Level/Player"))
+@onready var player = get_node(NodePath("./Player"))
+@export var broadcastStartExitTime = 0.2
+var broadcastTimer = 0.0
+var broadcastTime = 0.0
+@onready var broadcast = get_node(NodePath("./Broadcast"))
+@export var broadcastHeight = 100
+@onready var broadcastOrigPos = broadcast.position
 #levels 1, 2, 3 for capacity, damage, reload for revolver, shotgun
-var gunStats = [ [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0] ]
+var gunStats = [ [7, 8, 9], [3.5, 4.0, 4.5], [0.8, 0.6, 0.4], [3, 4, 5], [0.75, 1.0, 1.25], [0.6, 0.4, 0.2] ]
 var itemTextures = [
 	preload("res://Assets/Images/empress of bostonia.png"),
 	preload("res://Assets/Images/handsomestaringeagle.jpg"),
@@ -30,42 +36,45 @@ class Item:
 	var icon
 	var cost = 0
 	var player
-	var level = 1 # only for weapon upgrades
+	var levelScript
+	var wepLevel = -1 # only for weapon upgrades
 	#levels 1, 2, 3 for capacity, damage, reload for revolver, shotgun
 	var gunStats = [ [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0] ]
 	func _init(inId:int, inPlayer:Node, inTexture):
 		id = inId
 		player = inPlayer
 		icon = inTexture
-	func initUpgrade(inLevel:int, inGunStats:Array):
-		level = inLevel
+	func initUpgrade(inLevelScript:Node, inLevel:int, inGunStats:Array):
+		levelScript = inLevelScript
+		wepLevel = inLevel
 		gunStats = inGunStats
-		if(level == 1):
+		if(wepLevel == 1):
 			cost = 10
-		elif(level == 2):
+		elif(wepLevel == 2):
 			cost = 15
-		elif(level == 3):
+		elif(wepLevel == 3):
 			cost = 20
 		if(id == 0 || id == 1 || id == 2): #revolverCapacity, revolverDamage, revolverReload
 			if(id == 0):
-				description = "Upgraded Revolver Capacity to Level: " + str(level)
+				description = "Upgraded Revolver Capacity to Level: " + str(wepLevel)
 			elif(id == 1):
-				description = "Upgraded Revolver Damage to Level: " + str(level)
+				description = "Upgraded Revolver Damage to Level: " + str(wepLevel)
 			elif(id == 2):
-				description = "Upgraded Revolver Reload to Level: " + str(level)
+				description = "Upgraded Revolver Reload to Level: " + str(wepLevel)
 		elif(id == 3 || id == 4 || id == 5): #shotgunCapacity, shotgunDamage, shotgunReload
 			if(id == 3):
-				description = "Upgraded Shotgun Capacity to Level: " + str(level)
+				description = "Upgraded Shotgun Capacity to Level: " + str(wepLevel)
 			elif(id == 4):
-				description = "Upgraded Shotgun Damage to Level: " + str(level)
+				description = "Upgraded Shotgun Damage to Level: " + str(wepLevel)
 			elif(id == 5):
-				description = "Upgraded Shotgun Reload to Level: " + str(level)
+				description = "Upgraded Shotgun Reload to Level: " + str(wepLevel)
 	func use(useOrUndo:bool):
 		var undoMod = 1
 		if(!useOrUndo): undoMod = -1
 		if(id >= 0 && id <= 5):
-			player.gunStats[id] = gunStats[id][level - 1]
-			#todo: also broadcast description
+			player.gunStats[id] = gunStats[id][wepLevel - 1]
+			player.updateGunStats()
+			levelScript.broadcastMessage(description, 3.0)
 		elif(id == 6): #health
 			player.hitpoints += 0.5 * player.hitpoints
 			if(player.hitpoints > player.maxHitpoints):
@@ -78,13 +87,15 @@ class Item:
 			player.potionSpeedup += 1.0 * undoMod
 		elif(id == 10): #liquid luck
 			player.alwaysCrit = useOrUndo
+		elif(id == 11): #6th potion
+			print("sixth potion")
 
 #use for getting specific upgrade
 func getUpgrade(id:int) -> Item:
 	var level = 1
 	var ind = 0
-	while(level == 1):
-		if(player.gunStats[id] == gunStats[id][ind]):
+	while(level == 1 && ind < 3):
+		if(player.gunStats[id] == gunStats[id / 3][ind]):
 			level = ind + 2
 		ind += 1
 	var item
@@ -93,9 +104,8 @@ func getUpgrade(id:int) -> Item:
 		item = Item.new(6, player, itemTextures[6])
 	else:
 		item = Item.new(id, player, itemTextures[id / 3 as int]) # get tex 0 if id is 0 - 2 and get tex 1 if id is 3 - 5
-		item.initUpgrade(level, gunStats)
+		item.initUpgrade(self, level, gunStats)
 	return item
-	
 #use for getting random upgrade to drop in world
 func getRandomUpgrade() -> Item:
 	var rn = 0
@@ -118,12 +128,30 @@ func getRandomUpgrade() -> Item:
 func getPotion(id:int) -> Item:
 	id = min(max(id, 6), 11)
 	return Item.new(id, player, itemTextures[id])
-
 #use for getting random potion to drop in world
 func getRandomPotion() -> Item:
 	var rn = randi_range(6, 11)
 	return getPotion(rn)
+	
+#use for getting any item
+func getItem(id:int) -> Item:
+	id = min(max(id, 0), 11)
+	if(id < 6):
+		return getUpgrade(id)
+	else:
+		return getPotion(id)
+#use for getting any random item
+func getRandomItem(potionVsUpgradeChance:float = 0.5) -> Item:
+	var rn = randf()
+	if(rn <= potionVsUpgradeChance):
+		return getRandomPotion()
+	else:
+		return getRandomUpgrade()
 
+func broadcastMessage(message:String, time:float):
+	broadcastTime = time + 2 * broadcastStartExitTime
+	broadcastTimer = broadcastTime
+	broadcast.get_child(2).text = message
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -132,9 +160,26 @@ func _ready():
 	#Starting sound
 	music.play(5.37)
 	inventory.visible = false 
-
+	
+	broadcast.position.y -= broadcastHeight
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	if(player == null):
 		player = get_node(NodePath("/root/Level/Player"))
+	
+	if(Input.is_action_just_pressed("debug1")):
+		broadcastMessage("mumu", 1.0)
+	
+	#make broadcast message move smoothly on and off screen
+	if(broadcastTimer > 0):
+		broadcastTimer -= delta
+		if(broadcastTimer < 0):
+			broadcastTimer = 0
+		var startT = 1.0 - min(1.0, (broadcastTime - broadcastTimer) / broadcastStartExitTime)
+		var endT = 1.0 - min(1.0, broadcastTimer / broadcastStartExitTime)
+		var t = startT
+		if(endT != 0):
+			t = endT
+		t = pow(t, 2)
+		broadcast.position.y = broadcastOrigPos.y - broadcastHeight * t

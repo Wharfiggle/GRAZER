@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxv63ajpdyrdm"]
+
+[ext_resource type="Script" path="res://Scripts/ItemDrop.gd" id="1_vqyld"]
+[ext_resource type="Texture2D" uid="uid://g8t38bvfxx7q" path="res://Assets/Images/handsomestaringeagle.jpg" id="2_flcmp"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fijkr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_poebw"]
+cull_mode = 2
+diffuse_mode = 3
+albedo_texture = ExtResource("2_flcmp")
+emission = Color(0.254902, 0.254902, 0, 1)
+rim_enabled = true
+rim = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5g8nm"]
+
+[node name="ItemDrop" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_vqyld")
+randomItem = 2
+potionVsUpgradeChance = 0.9
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("QuadMesh_fijkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_poebw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("SphereShape3D_5g8nm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -53,7 +53,7 @@ var shotgunShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav
 var shotgunCritSound = preload("res://sounds/gunsounds/crit shot.wav")
 
 #revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
-@export var gunStats = [0, 0, 0, 0, 0, 0]
+@export var gunStats = [0, 0.0, 0.0, 0, 0.0, 0.0] #[6, 3.0, 1.0, 2, 0.5, 0.8]
 @export var potionTime = 30.0
 var potionTimer = 0.0
 var potion
@@ -111,6 +111,13 @@ func _ready():
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 	shotgunSpread = shotgunSpread * PI / 180.0
 	lineSightNode.transparency = lineSightTransparency
+	
+	gunStats[0] = revolverClip
+	gunStats[1] = revolverDamage
+	gunStats[2] = revolverReloadTime
+	gunStats[3] = shotgunClip
+	gunStats[4] = shotgunDamage
+	gunStats[5] = shotgunReloadTime
 	
 	#HealthBar._on_max_health_update_(10)
 
@@ -490,7 +497,15 @@ func _physics_process(delta):
 	set_up_direction(Vector3.UP)
 	if(active):
 		move_and_slide()
-			
+
+func updateGunStats():
+	revolverClip = gunStats[0]
+	revolverDamage = gunStats[1]
+	revolverReloadTime = gunStats[2]
+	shotgunClip = gunStats[3]
+	shotgunDamage = gunStats[4]
+	shotgunReloadTime = gunStats[5]
+
 func setWeaponAndHands(revolver:bool, right:bool):
 	if(revolver != onRevolver || right != rightHand):
 		var oldGun = gunRight
