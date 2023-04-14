@@ -39,7 +39,7 @@ var idleTime = 0
 var autoReloadEnabled = true
 var autoReloadTime = 5
 var reloading = false
-var invincible = false
+var invincible = true
 
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
@@ -223,6 +223,7 @@ func _process(delta):
 			revolverClip -= 1
 			var b = bullet.instantiate()
 			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), revolverRange, revolverDamage * critMult)
+			camera.add_trauma(0.15)
 			if(!critMult == 2.0):
 				boomSound.stream = revolverShootSound
 				boomSound.play(.55)
@@ -231,6 +232,7 @@ func _process(delta):
 				boomSound.play()
 		#Shooting the shotgun
 		else:
+			camera.add_trauma(0.2)
 			shotgunClip -= 1
 			rng.randomize()
 			var bullets = 0
@@ -555,12 +557,14 @@ func knock():
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
 			enemy.knockback(enemy.position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
+			camera.add_trauma(0.2)
 			knocked = true
 
 func damage_taken(damage, from) -> bool:
 	if(from != "player"):
 		print("player damaged")
 		Input.start_joy_vibration(0,1,1,0.2)
+		camera.add_trauma(0.25)
 		hitpoints -= damage
 		HealthBar._on_health_update_(hitpoints / maxHitpoints)
 		healthCounter.updateHealth(hitpoints)

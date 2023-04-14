@@ -10,6 +10,44 @@ var followTarget
 var camOffset
 var pos
 
+@export var trauamaReducRate = 1.0
+var trauma = 0.0
+var time = 0.0
+
+@export var trauma_amount = 0.1
+
+@export var maxX = 10.0
+@export var maxY = 10.0
+@export var maxZ = 5.0
+
+@export var noise : FastNoiseLite
+@export var noiseSpeed = 50.0
+
+@onready var camera = self
+@onready var initialRotation = camera.rotation as Vector3
+
+func _process(delta):
+	time += delta
+	trauma = max(trauma - delta * trauamaReducRate, 0.0)
+
+	var cameraRotDelta = Vector3.ZERO
+	cameraRotDelta.x = maxX * get_shake_intensity() * get_noise_from_seed(0)
+	cameraRotDelta.y = maxY * get_shake_intensity() * get_noise_from_seed(1)
+	cameraRotDelta.z = maxZ * get_shake_intensity() * get_noise_from_seed(2)
+	cameraRotDelta *= PI / 180.0
+	camera.rotation = initialRotation + cameraRotDelta
+
+func add_trauma(trauma_amount : float):
+	trauma = clamp(trauma + trauma_amount, 0.0, 0.4)
+
+func get_shake_intensity() -> float:
+	return trauma * trauma
+
+func get_noise_from_seed(_seed : int) -> float:
+	noise.seed = _seed
+	return noise.get_noise_1d(time * noiseSpeed)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	followTarget = get_node(targetNodePath)
