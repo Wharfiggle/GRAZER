@@ -11,8 +11,8 @@ var shootTimer = 0.0
 var shootBufferTimer = 0.0
 @onready var HealthBar = $"../GameUI"
 @onready var knockbox = $knockbox
-var MHP=10
-var maxHitpoints = 10.0
+var MHP= 20
+var maxHitpoints = 20
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
@@ -29,8 +29,8 @@ var knocked = false
 var movementBlend = 0.0
 
 #Reload variables
-var revolverReloadTime = 0.75
-var shotgunReloadTime = 0.75
+var revolverReloadTime = 1
+var shotgunReloadTime = 1.5
 var currentReloadTime = 0
 var revolverClipSize = 6
 var revolverClip = 6
@@ -77,7 +77,7 @@ var aimSwivel = 0.0
 var rightHand = true
 var onRevolver = true
 @export var shotgunRandOffset = 0.1
-@export var revolverRange = 18.0
+@export var revolverRange = 25.0
 @export var shotgunRange = 5.0
 @export var revolverDamage = 3.0
 @export var shotgunDamage = 0.5
@@ -88,7 +88,7 @@ var onRevolver = true
 @onready var lineSightMesh = preload("res://Prefabs/BulletTrailMesh.tres")
 @onready var lineSightNode = get_node("./LineOfSight")
 @export var lineSightTransparency = 0.5
-@export var lineSightTime = 0.6
+@export var lineSightTime = 0.8
 var lineSightTimer = 0.0
 var lineSight
 @onready var animation = get_node(NodePath("./Russel/AnimationPlayer/AnimationTree"))
@@ -557,6 +557,7 @@ func knock():
 func damage_taken(damage, from) -> bool:
 	if(from != "player"):
 		print("player damaged")
+		Input.start_joy_vibration(0,1,1,0.2)
 		hitpoints -= damage
 		HealthBar._on_health_update_(hitpoints)
 		healthCounter.updateHealth(hitpoints)

@@ -92,6 +92,7 @@ centered = false
 [node name="Camera3D" parent="." instance=ExtResource("2")]
 transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
 current = true
+size = 17.0
 
 [node name="ItemDrop" parent="." instance=ExtResource("13_5viiy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1833, 0, 9.4683)

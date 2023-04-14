@@ -51,15 +51,10 @@ shape = SubResource("BoxShape3D_qh03d")
 
 [node name="EnemySpawner" parent="Trigger" instance=ExtResource("7_1bid6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5873, 0, -1.48243)
-gunmanSpawnChance = 0.5
-spawnChance = 1.0
-numEnemies = 1
 timeDelay = 0.2
 
 [node name="EnemySpawner2" parent="Trigger" instance=ExtResource("7_1bid6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.73421, 0, -8.82)
-gunmanSpawnChance = 0.5
-spawnChance = 1.0
 numEnemies = 2
 timeDelay = 0.2
 
