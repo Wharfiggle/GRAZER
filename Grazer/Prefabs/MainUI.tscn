@@ -39,16 +39,21 @@ layout_mode = 2
 [node name="number" type="Label" parent="HBoxContainer/Bars/bar/count"]
 layout_mode = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer/Bars/bar"]
+[node name="Node2D" type="Node2D" parent="HBoxContainer/Bars/bar"]
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer/Bars/bar/Node2D"]
 z_index = 1
-layout_mode = 2
+offset_left = 5.0
+offset_right = 559.0
+offset_bottom = 41.0
 max_value = 10.0
 value = 10.0
 texture_under = ExtResource("2_qjtpp")
 texture_progress = ExtResource("3_w4k82")
 texture_progress_offset = Vector2(9, 9)
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Bars/bar/TextureProgressBar"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Bars/bar/Node2D/TextureProgressBar"]
 show_behind_parent = true
 layout_mode = 2
 offset_left = -70.0
@@ -60,15 +65,23 @@ pivot_offset = Vector2(350, 60)
 texture = ExtResource("4_gk0em")
 
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer/Bars"]
-custom_minimum_size = Vector2(200, 500)
+custom_minimum_size = Vector2(200, 600)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Bars"]
-layout_mode = 2
+[node name="Node2D" type="Node2D" parent="HBoxContainer/Bars"]
+position = Vector2(0, 549)
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Bars/Node2D"]
+offset_top = 164.0
+offset_right = 396.0
+offset_bottom = 217.0
 texture = ExtResource("2_4f3wd")
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Bars"]
-layout_mode = 2
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Bars/Node2D"]
+offset_top = 226.0
+offset_right = 396.0
+offset_bottom = 279.0
 texture = ExtResource("2_4f3wd")
 
 [node name="counters" type="HBoxContainer" parent="HBoxContainer"]

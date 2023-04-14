@@ -1,6 +1,6 @@
 extends MarginContainer
 
-@onready var healthBar = $HBoxContainer/Bars/bar/TextureProgressBar
+@onready var healthBar = $HBoxContainer/Bars/bar/Node2D/TextureProgressBar
 
 @onready var tween = get_tree().create_tween()
 

@@ -16,7 +16,6 @@ rim = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_5g8nm"]
 
 [node name="ItemDrop" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_vqyld")
 randomItem = 2
 potionVsUpgradeChance = 0.9

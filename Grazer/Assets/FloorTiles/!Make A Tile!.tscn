@@ -85,6 +85,7 @@ shape = SubResource("BoxShape3D_n5rqi")
 
 [node name="EnemySpawner" parent="Trigger" instance=ExtResource("8_4nkwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65598, 0, 0)
+spawnAtEdgeOfScreen = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_v867l")

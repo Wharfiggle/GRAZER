@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://i3q5n1j7uql6"]
+[gd_scene load_steps=10 format=3 uid="uid://i3q5n1j7uql6"]
 
 [ext_resource type="Script" path="res://Scripts/ItemWheelUIScript.gd" id="1_f6dx6"]
 [ext_resource type="Texture2D" uid="uid://1mdmi31fa1sd" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/howWheelShadow.png" id="2_er5ar"]
@@ -7,18 +7,30 @@
 [ext_resource type="Texture2D" uid="uid://bjl53ahpuq6p3" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelElixirBottle.png" id="5_5cs3t"]
 [ext_resource type="Texture2D" uid="uid://vx3ra3i0y670" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelElixirLiquidBlank.png" id="6_sclk0"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g20qm"]
+
+[sub_resource type="Gradient" id="Gradient_a2ki7"]
+colors = PackedColorArray(0, 0, 0, 0.196078, 0, 0, 0, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fv0op"]
+gradient = SubResource("Gradient_a2ki7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="ItemWheel" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 13
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_f6dx6")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BrownGradient" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,9 +43,26 @@ offset_right = 225.0
 offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3, 3)
 pivot_offset = Vector2(225, 225)
 texture = ExtResource("2_er5ar")
 expand_mode = 1
+
+[node name="BlackVignette" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_g20qm")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -855.0
+offset_top = -480.0
+offset_right = 855.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_fv0op")
 
 [node name="Cell2" type="TextureButton" parent="."]
 process_mode = 3
