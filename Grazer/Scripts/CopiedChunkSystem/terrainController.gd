@@ -201,7 +201,7 @@ func generateStructures():
 			var loops = 50
 			var origin = Vector3()
 			#TODO Maybe change from complete random to a more balenced spread of structures?
-			var id = randi_range(1,1)# structureTypes.size() - 1)
+			var id = randi_range(1, structureTypes.size() - 1)
 			var structureInfo = structureTypes[id]
 			while(!placed and !failed):
 				origin.x = randi_range(-mapWidth + 1 , mapWidth - structureInfo[1])
