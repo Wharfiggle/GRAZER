@@ -94,6 +94,9 @@ var lineSight
 @onready var animation = get_node(NodePath("./Russel/AnimationPlayer/AnimationTree"))
 @onready var skeleton = get_node(NodePath("./Russel/Armature/Skeleton3D"))
 @onready var worldCursor = get_node(NodePath("./WorldCursor"))
+@export var cursorSpinSpeed = 1.0
+@export var cursorSpinTime = 1.0
+var cursorSpinTimer = 0
 var mousePos = Vector2.ZERO
 var cursorPos = Vector3.ZERO
 var rng = RandomNumberGenerator.new()

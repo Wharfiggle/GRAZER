@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct5gqti8xgjyy"]
+[gd_scene load_steps=9 format=3 uid="uid://ct5gqti8xgjyy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_h6u35"]
+[ext_resource type="Texture2D" uid="uid://q0x4hf1334dn" path="res://Assets/Images/mouseCursor.png" id="2_jape7"]
 [ext_resource type="Material" uid="uid://d3p7llyr4jt8" path="res://Assets/Materials/glow_material.tres" id="3_k7ui3"]
 [ext_resource type="PackedScene" uid="uid://defh7881nafg6" path="res://Assets/Models/Russel/russel.tscn" id="3_yrgbd"]
 
@@ -9,11 +10,13 @@ radius = 0.8
 
 [sub_resource type="SphereShape3D" id="2"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_g8gds"]
+[sub_resource type="QuadMesh" id="QuadMesh_6vxs4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc7lh"]
+transparency = 1
 no_depth_test = true
-albedo_color = Color(0, 1, 0, 1)
+shading_mode = 0
+albedo_texture = ExtResource("2_jape7")
 disable_receive_shadows = true
 
 [node name="Player" type="CharacterBody3D"]
@@ -33,9 +36,8 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("2")
 
 [node name="WorldCursor" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.05, 0, 0, 0, 0.5, 0, -1, 0)
-visible = false
-mesh = SubResource("CylinderMesh_g8gds")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1, 0)
+mesh = SubResource("QuadMesh_6vxs4")
 surface_material_override/0 = SubResource("StandardMaterial3D_tc7lh")
 
 [node name="footsteps" type="AudioStreamPlayer3D" parent="."]

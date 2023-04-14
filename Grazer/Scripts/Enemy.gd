@@ -8,6 +8,7 @@ var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
+var aimDirection = 0
 
 #audioStream
 @onready var Steps = $EFootsteps
@@ -313,11 +314,13 @@ func pursuit():
 		if (canFire):
 			var direction = transform.origin - player.transform.origin
 			direction = direction.normalized()
+			aimDirection = lerp_angle(aimDirection, 
+				atan2(direction.x, direction.z) + PI, 0.5)
 			var angle_to = direction.dot(transform.basis.z)
 			if angle_to > 0:
 				pass
 			if(attackCooldown <= 0):
-				attack(direction)
+				attack()
 				attackCooldown = 1.5
 				clip -= 1
 				#print("Bullets left: " + str(clip))
@@ -459,12 +462,12 @@ global_transform.origin, _targetPos, true)
 func _on_Timer_timeout():
 	moveTo(targetPos)
 
-func attack(direction:Vector3):
+func attack():
 	if(shootingPoint != null):
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
 		#var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
-		b.shoot(self, "enemy", shootingPoint.global_position, Vector3(0, rotation.y, 0), 15.0, 2.0)
+		b.shoot(self, "enemy", shootingPoint.global_position, Vector3(0, aimDirection, 0), 15.0, 2.0)
 		var smokeInstance = smoke.instantiate()
 		var boomSound = b.find_child("Boom")
 		boomSound.stream = revolverShootSound

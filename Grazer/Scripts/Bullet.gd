@@ -73,6 +73,8 @@ func _physics_process(_delta):
 			if(raycast.is_colliding()): #if raycast is intercepted, move to hitPoint next frame
 				hitBody = raycast.get_collider()
 				var canHit = true
+				if(hitBody == null):
+					canHit = false
 				if(hitBody.has_method("damage_taken")):
 					canHit = hitBody.damage_taken(0, from)
 				if(!canHit):
