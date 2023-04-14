@@ -318,7 +318,7 @@ func pursuit():
 				pass
 			if(attackCooldown <= 0):
 				attack(direction)
-				attackCooldown = 3
+				attackCooldown = 1.5
 				clip -= 1
 				#print("Bullets left: " + str(clip))
 				if(clip <= 0):
