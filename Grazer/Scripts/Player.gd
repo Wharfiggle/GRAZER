@@ -39,6 +39,7 @@ var idleTime = 0
 var autoReloadEnabled = true
 var autoReloadTime = 5
 var reloading = false
+var invincible = false
 
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
@@ -131,7 +132,7 @@ func _process(delta):
 		herd.spawnCowAtPos(Vector3(position.x, position.y, position.z - 2))
 		#herd.spawnCowAtPos(Vector3(position.x - 1, position.y, position.z - 3))
 		
-	if(herd.getNumCows() < 1):
+	if(herd.getNumCows() < 1 and !invincible):
 		die()
 	
 	if(lineSightTimer > 0):
@@ -560,7 +561,7 @@ func damage_taken(damage, from) -> bool:
 		hitpoints -= damage
 		HealthBar._on_health_update_(hitpoints / maxHitpoints)
 		healthCounter.updateHealth(hitpoints)
-		if hitpoints <= 0:
+		if hitpoints <= 0 and !invincible:
 			die()
 		return true
 	else:
