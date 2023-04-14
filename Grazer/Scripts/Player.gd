@@ -28,8 +28,8 @@ var knocked = false
 var movementBlend = 0.0
 
 #Reload variables
-var revolverReloadTime = 1
-var shotgunReloadTime = 1.5
+var revolverReloadTime = 0.8
+var shotgunReloadTime = 0.8
 var currentReloadTime = 0
 var revolverClipSize = 6
 var revolverClip = 6
