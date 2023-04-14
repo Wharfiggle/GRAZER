@@ -39,7 +39,6 @@ var spawnChanceMod = 1.0
 func _ready(): 
 	checkWidth = structureTypes[1][1] #Gets width of checkpoints
 	checkLength = structureTypes[1][2] #Gets length
-	
 	#print(checkOverlap(1,Vector3(-1 *16,0,-14 * 16),2, Vector3(1 * 16,0,-15 * 16)))
 	preloadTiles()
 	generateStructures()
@@ -90,7 +89,7 @@ func _process(_delta):
 		if(!chunkLoaded):
 			loadChunk()
 			pass
-		print(terrainController.getPlayerChunk(player.transform.origin))
+		print("Player enterd chunk " +str(terrainController.getPlayerChunk(player.transform.origin)))
 	else:
 		chunkLoaded = false;
 	previousChunk = currentChunk
@@ -181,7 +180,7 @@ func generateStructures():
 			#If it found valid coordinates, proceed to adding the structure
 			if(placed):
 				addStructure(0, origin)
-				print("added chekcpoint at " + str(origin))
+				print("added checkpoint at " + str(origin))
 			else:
 				print("failed to place checkpoint " + str(l + 1))
 			
@@ -202,7 +201,7 @@ func generateStructures():
 			var loops = 50
 			var origin = Vector3()
 			#TODO Maybe change from complete random to a more balenced spread of structures?
-			var id = randi_range(1, structureTypes.size() - 1)
+			var id = randi_range(1,1)# structureTypes.size() - 1)
 			var structureInfo = structureTypes[id]
 			while(!placed and !failed):
 				origin.x = randi_range(-mapWidth + 1 , mapWidth - structureInfo[1])
@@ -210,6 +209,9 @@ func generateStructures():
 				#+3 is in hopes of preventing overlap with the checkpoints
 				origin.z = randi_range(-l * levelLength,
 				-(((l + 1) * levelLength) + (l * 5) + 3))
+				if(origin.z >= -1):
+					origin.z = -2
+				
 				#origin *= tileWidth
 				placed = checkPlacement(id, origin * tileWidth)
 				
@@ -277,7 +279,7 @@ func addStructure(id, chunkCoords):
 
 #Sets a chunk as empty
 func setEmptyChunk(worldCoords : Vector3):
-	#coords are in tile coordinates
+	#coords are in world coordinates
 	if(WorldSave.loadedCoords.find(worldCoords) != -1):
 		print("Tried to set " + str(worldCoords) + " to empty, but its already loaded!")
 		if(WorldSave.retriveData(worldCoords)[0] == ""):

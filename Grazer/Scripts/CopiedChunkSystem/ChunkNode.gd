@@ -35,7 +35,7 @@ static func retrieveChunkTypes() -> Array:
 func start(_chunkCoords, chunkTypes:Array = []) -> Array:
 	chunkCoords = _chunkCoords
 	if(chunkTypes.is_empty()):
-		chunkTypes = retrieveChunkTypes()
+		chunkTypes = chunkTiles.retrieveChunkTypes()
 	#If this chunk has not been loaded before
 	if(WorldSave.loadedCoords.find(_chunkCoords) == -1):
 		#Calculates a scene path and adds it to the data array

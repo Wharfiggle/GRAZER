@@ -13,8 +13,22 @@ func saveChunk(coords,data):
 	dataInChunk[loadedCoords.find(coords)] = data
 
 func retriveData(coords):
+	#checkForDuplicates(coords)
+	if(loadedCoords.size() < 1):
+		return -1
 	var data = dataInChunk[loadedCoords.find(coords)]
+
 	return data
+
+func checkForDuplicates(coords):
+	var numInstances = 0
+	for c in loadedCoords:
+		if(c == coords):
+			numInstances += 1
+	print("There are " + str(numInstances) + " of " + str(coords))
+	if(numInstances > 1):
+		return true
+	return false 
 
 func test():
 	print("test accessed")

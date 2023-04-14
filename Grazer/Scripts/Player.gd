@@ -39,7 +39,7 @@ var idleTime = 0
 var autoReloadEnabled = true
 var autoReloadTime = 5
 var reloading = false
-var invincible = false
+var invincible = true
 
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
