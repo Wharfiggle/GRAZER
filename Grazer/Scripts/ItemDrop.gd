@@ -1,6 +1,6 @@
 extends Area3D
 
-@onready var levelScript = get_node("/root/Level")
+var levelScript
 var item
 enum randomItemType {randomPotion, randomUpgrade, anyRandomItem, notRandom}
 @export var randomItem: randomItemType
@@ -20,6 +20,7 @@ var waited = false
 	
 func _physics_process(delta):
 	if(!waited):
+		levelScript = get_node("/root/Level")
 		if(randomItem == randomItemType.randomPotion):
 			item = levelScript.getRandomPotion()
 		elif(randomItem == randomItemType.randomUpgrade):
@@ -39,7 +40,7 @@ func _on_body_entered(body):
 	if(body.is_in_group('Player')):
 		if(item.wepLevel == -1):
 			#add item to player inventory if potion
-			print("add potion")
+			levelScript.broadcastMessage("Obtained " + item.name + " Potion", 3.0)
 		else:
 			item.use(true)
 		queue_free()

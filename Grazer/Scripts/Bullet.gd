@@ -49,7 +49,6 @@ func _process(delta):
 	if(active):
 		var prevPos = position
 		if(hitBody == null && hitPoint == null):
-			prevPos = position
 			position += velocity * delta
 		var travelled = (position - startPos).length()
 		if(travelled >= range - 0.5):

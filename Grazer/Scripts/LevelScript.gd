@@ -32,6 +32,7 @@ var itemTextures = [
 
 class Item:
 	var id
+	var name = "dork"
 	var description = ":^O)"
 	var icon
 	var cost = 0
@@ -44,6 +45,18 @@ class Item:
 		id = inId
 		player = inPlayer
 		icon = inTexture
+		if(id == 0): name = "Revolver Capacity Upgrade"
+		elif(id == 1): name = "Revolver Damage Upgrade"
+		elif(id == 2): name = "Revolver Reload Speed Upgrade"
+		elif(id == 3): name = "Shotgun Capacity Upgrade"
+		elif(id == 4): name = "Shotgun Damage Upgrade"
+		elif(id == 5): name = "Shotgun Reload Speed Upgrade"
+		elif(id == 6): name = "Health"
+		elif(id == 7): name = "Bulletstorm"
+		elif(id == 8): name = "Life Leach"
+		elif(id == 9): name = "Dustkicker"
+		elif(id == 10): name = "Liquid Luck"
+		elif(id == 11): name = "Dauntless"
 	func initUpgrade(inLevelScript:Node, inLevel:int, inGunStats:Array):
 		levelScript = inLevelScript
 		wepLevel = inLevel
@@ -87,7 +100,7 @@ class Item:
 			player.potionSpeedup += 1.0 * undoMod
 		elif(id == 10): #liquid luck
 			player.alwaysCrit = useOrUndo
-		elif(id == 11): #6th potion
+		elif(id == 11): #dauntless
 			print("sixth potion")
 
 #use for getting specific upgrade

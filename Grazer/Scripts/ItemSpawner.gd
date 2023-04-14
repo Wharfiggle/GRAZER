@@ -20,6 +20,6 @@ func spawn(inChanceMod:float, inPrefabs:Array):
 		instance.randomItem = randomItem
 		instance.potionVsUpgradeChance = potionVsUpgradeChance
 		instance.itemID = itemID
-		instance.global_position = global_position
 		get_node(NodePath("/root/Level")).add_child(instance)
+		instance.global_position = global_position
 	queue_free()
