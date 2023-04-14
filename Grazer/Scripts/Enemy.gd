@@ -69,7 +69,7 @@ var dragRange = 2.0
 var escapeRange = 18
 
 func _ready():
-	position.y = 3
+	position.y = 20
 	if(marauderType == enemyTypes.gunman):
 		revolver = get_node(NodePath("./Model/Revolver"))
 	if(revolver != null):
@@ -463,8 +463,8 @@ func attack(direction:Vector3):
 	if(shootingPoint != null):
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
-		var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
-		b.shoot(self, "enemy", shootingPoint.global_position, bulletRotation, 15.0, 2.0)
+		#var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
+		b.shoot(self, "enemy", shootingPoint.global_position, rotation.y, 15.0, 2.0)
 		var smokeInstance = smoke.instantiate()
 		var boomSound = b.find_child("Boom")
 		boomSound.stream = revolverShootSound

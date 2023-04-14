@@ -35,11 +35,11 @@ func _physics_process(delta):
 			if(spawners[spawnerInd].has_method("spawn")):
 				spawners[spawnerInd].spawn(chanceMod, prefabs)
 			spawnerInd += 1
-			if(spawnerInd < spawners.size()):
+			if(spawnerInd < spawners.size() - 1):
 				timer = timeDelay
 			else:
-				timer = -1
-	if(spawnerInd > spawners.size()):
+				timer = -2
+	if(spawnerInd >= spawners.size()):
 		var allNull = true
 		for i in spawners.size():
 			if(spawners[i] != null):

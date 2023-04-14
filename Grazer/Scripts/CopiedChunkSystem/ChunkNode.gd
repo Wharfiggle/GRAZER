@@ -12,7 +12,7 @@ var mapWidth = terrainController.mapWidth
 var spawnChanceMod = 1.0
 var spawnPrefabs = []
 
-static func retrieveChunkTypes() -> Array:
+func retrieveChunkTypes() -> Array:
 	var chunks = []
 	
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn")
