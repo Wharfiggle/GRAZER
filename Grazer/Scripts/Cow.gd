@@ -43,6 +43,25 @@ var raySize = [2.0, 1.0, 2.0]
 @onready var animation = model.find_child("AnimationTree")
 @onready var skeleton = model.find_child("Skeleton3D")
 
+@onready var mesh = model.find_child("Cow")
+@onready var material = mesh.get_material_overlay()
+
+#@onready var material = StandardMaterial3D.new() # create a new material instance
+
+@onready var tex1 = load("res://Assets/Models/Cow/cowCommon.png")
+@onready var tex2 = load("res://Assets/Models/Cow/cowRed.png")
+@onready var tex3 = load("res://Assets/Models/Cow/cowLucky.png")
+@onready var tex4 = load("res://Assets/Models/Cow/cowIronhide.png")
+@onready var tex5 = load("res://Assets/Models/Cow/cowMoxie.png")
+@onready var tex6 = load("res://Assets/Models/Cow/cowGrandRed.png")
+
+@onready var material1 = material.duplicate()
+@onready var material2 = material.duplicate()
+@onready var material3 = material.duplicate()
+@onready var material4 = material.duplicate()
+@onready var material5 = material.duplicate()
+@onready var material6 = material.duplicate()
+
 var animationBlend = 0
 var herd
 var tVelocity = Vector3(0, 0, 0)
@@ -76,6 +95,30 @@ func _ready():
 		shuffleTime - shuffleTimeRandOffset, 
 		shuffleTime + shuffleTimeRandOffset)
 	targetRandOffset = rng.randf_range(-targetRandOffset, targetRandOffset)
+	
+	material1.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex1)
+	material2.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex2)
+	material3.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex3)
+	material4.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex4)
+	material5.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex5)
+	material6.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex6)
+	#mesh.set_material_overlay(material2)
+	var random_material_index = randi() % 6 + 1
+
+	match random_material_index:
+		1:
+			mesh.set_material_overlay(material1)
+		2:
+			mesh.set_material_overlay(material2)
+		3:
+			mesh.set_material_overlay(material3)
+		4:
+			mesh.set_material_overlay(material4)
+		5:
+			mesh.set_material_overlay(material5)
+		6:
+			mesh.set_material_overlay(material6)
+	
 	
 	#var phys_bones = ["Tail_1", "Ear_Upper_r", "Ear_Upper_l"]
 	var phys_bones = ["Tail_1"]
