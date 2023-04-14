@@ -41,7 +41,7 @@ func _ready():
 	checkLength = structureTypes[1][2] #Gets length
 	
 	#print(checkOverlap(1,Vector3(-1 *16,0,-14 * 16),2, Vector3(1 * 16,0,-15 * 16)))
-	
+	preloadTiles()
 	generateStructures()
 	
 	player = get_node(playerPath)
@@ -293,3 +293,8 @@ func printStructureList():
 	print("Sructures:")
 	for s in structures:
 		print("id: " + str(s[0]) + " coords: " + str(s[1]))
+
+func preloadTiles():
+	for c in chunkTiles.retrieveChunkTypes():
+		load(c)
+	

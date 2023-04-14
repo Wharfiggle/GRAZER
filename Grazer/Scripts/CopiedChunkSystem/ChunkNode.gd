@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name chunkTiles
 @onready var vParent = get_node("/root/Level/AllTerrain")
 var chunkCoords = Vector3()
 var chunkData = []
@@ -12,7 +12,7 @@ var mapWidth = terrainController.mapWidth
 var spawnChanceMod = 1.0
 var spawnPrefabs = []
 
-func retrieveChunkTypes() -> Array:
+static func retrieveChunkTypes() -> Array:
 	var chunks = []
 	
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn")
@@ -52,11 +52,12 @@ func start(_chunkCoords, chunkTypes:Array = []) -> Array:
 		loadedBefore = true
 	
 	if(chunkData[0] == ""):
-		print("Chunk " + str(position) + " is empty")
+		#print("Chunk " + str(position) + " is empty")
 		return chunkTypes
 	
 	#Theoretically this doesn't need to be called if its already been loaded before
-	ResourceLoader.load_threaded_request(chunkData[0],"",false, ResourceLoader.CACHE_MODE_REUSE)
+	if(!ResourceLoader.has_cached(chunkData[0])):
+		ResourceLoader.load_threaded_request(chunkData[0],"",false, ResourceLoader.CACHE_MODE_REUSE)
 	
 	#This function returns 1 if in progress or 3 if done
 	#It needs to be used to pause this script until 3 is returned, possibly using a semaphore
@@ -70,13 +71,14 @@ func _process(_delta):
 	#Instead this function tries to check every frame if its done before attempting
 	
 	if(loading):
+		#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
 		if(chunkData[0] == ""):
 			loading = false
-		#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
 		elif(ResourceLoader.load_threaded_get_status(chunkData[0]) == 3):
 			#This function will freeze the game until the scene is fully loaded
 			#But once loaded, it does return the reference to the scene that we need
-			var chunk = ResourceLoader.load_threaded_get(chunkData[0])
+			#var chunk = ResourceLoader.load_threaded_get(chunkData[0])
+			var chunk = ResourceLoader.load(chunkData[0],"",1)
 			await get_tree().process_frame
 			instance = chunk.instantiate()
 			add_child(instance)
@@ -85,7 +87,10 @@ func _process(_delta):
 				activateSpawners()
 				loadedBefore = true
 			loading = false
-			
+		elif(ResourceLoader.has_cached(chunkData[0])):
+			print("Chunk is cached, but not thread loaded")
+		else:
+			print("Chunk wasn't preloaded")
 
 func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
 	spawnChanceMod = inSpawnChanceMod
@@ -127,3 +132,4 @@ func activateSpawners():
 
 func setVParent(parent):
 	vParent = parent
+
