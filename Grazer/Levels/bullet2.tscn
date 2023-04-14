@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="1_vgu4d"]
 [ext_resource type="Script" path="res://Scripts/knockback.gd" id="3_6qkwa"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="4_t1n1m"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="5_8ncmt"]
+[ext_resource type="PackedScene" uid="uid://bljfem8tm3cxn" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="5_8ncmt"]
 
 [sub_resource type="BoxShape3D" id="4"]
 

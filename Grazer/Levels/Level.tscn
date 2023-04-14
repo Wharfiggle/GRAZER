@@ -77,8 +77,6 @@ offset_right = 70.0
 z_index = 100
 
 [node name="GameUI" parent="." instance=ExtResource("12_3pmhn")]
-offset_right = 967.0
-offset_bottom = 659.0
 
 [node name="PostProcessing" type="Sprite2D" parent="."]
 visible = false
