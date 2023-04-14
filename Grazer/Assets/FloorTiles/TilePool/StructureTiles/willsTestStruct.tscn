@@ -91,7 +91,6 @@ timeDelay = 0.1
 [node name="EnemySpawner" parent="Trigger" instance=ExtResource("7_g3tau")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22643, -0.0500007, -9.73412)
 gunmanSpawnChance = 0.2
-spawnChance = 1.0
 numEnemies = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]

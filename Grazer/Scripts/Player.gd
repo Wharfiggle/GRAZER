@@ -3,8 +3,8 @@ extends CharacterBody3D
 # Declare member variables here. Examples:
 var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
-@export var revolverShootTime = 0.3
-@export var shotgunShootTime = 0.5
+@export var revolverShootTime = 0.23
+@export var shotgunShootTime = 0.3
 var shootTime = revolverShootTime
 var shootTimer = 0.0
 @export var shootBufferTime = 0.1
