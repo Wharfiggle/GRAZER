@@ -51,3 +51,4 @@ skeleton = NodePath("../../..")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("1_bdamj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.772, 2, 5.221)
+spawnChance = 0.5

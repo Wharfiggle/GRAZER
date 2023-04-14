@@ -3,7 +3,7 @@ extends Area3D
 @onready var collider = get_node(NodePath("./CollisionShape3D"))
 var spawners
 @export var timeDelay:float
-var timer = 0.0
+var timer = -1.0
 var spawnerInd = 0
 var chanceMod = 0
 var prefabs = []
@@ -29,7 +29,7 @@ func _ready():
 	collider.disabled = true
 
 func _physics_process(delta):
-	if(timer > 0):
+	if(timer > -1):
 		timer -= delta
 		if(timer <= 0):
 			if(spawners[spawnerInd].has_method("spawn")):
@@ -37,6 +37,8 @@ func _physics_process(delta):
 			spawnerInd += 1
 			if(spawnerInd < spawners.size()):
 				timer = timeDelay
+			else:
+				timer = -1
 	if(spawnerInd > spawners.size()):
 		var allNull = true
 		for i in spawners.size():
@@ -46,7 +48,7 @@ func _physics_process(delta):
 			queue_free()
 
 func _on_body_entered(body):
-	if(body.is_in_group('Player') && timer == 0):
+	if(body.is_in_group('Player') && timer == -1):
 		timer = timeDelay
 		print("triggered: " + str(prefabs))
 	collider.disabled = true

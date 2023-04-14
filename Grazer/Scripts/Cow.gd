@@ -10,16 +10,18 @@ var targetRandOffset = 0.0
 @export var pushStrength = 60.0
 @export var pushDistanceThreshold = 1.5
 var pushVel = Vector2(0, 0)
-@export var speedTransitionRadius = 1.5
+@export var normalSpeedTransitionRadius = 1.5
+var speedTransitionRadius = normalSpeedTransitionRadius
 @export var shuffleTime = 0.7
 @export var shuffleTimeRandOffset = 0.3
 @export var shuffleStrength = 0.75
 @export var shuffleSpeed = 3.0
 var shuffleTimeCounter = 0
-@export var dragSpeed = 3.0
+@export var dragSpeed = 6.0
 @export var dragLookSpeed = 1.0
 @export var dragShake = 0.05
 @export var dragFollowDistance = 1.0
+@export var dragSpeedTransitionRadius = 0.1
 @export var draggers = []
 func getNumDraggers(): return draggers.size() #Used in Herd.getClosestCow()
 var dragShakeOffset = 0
@@ -92,6 +94,8 @@ func startDragging(marauder):
 	maxSpeed = min(dragSpeed * draggers.size(), draggers[0].baseSpeed)
 	lookSpeed = dragLookSpeed * draggers.size()
 	followDistance = dragFollowDistance
+	speedTransitionRadius = dragSpeedTransitionRadius
+	
 	herd.removeHuddler(self)
 	enableRayCasts()
 	animation.set("parameters/conditions/Drag", true)
@@ -104,6 +108,7 @@ func stopDragging(marauder):
 		maxSpeed = normalSpeed
 		lookSpeed = normalLookSpeed
 		followDistance = normalFollowDistance
+		speedTransitionRadius = normalSpeedTransitionRadius
 	animation.set("parameters/conditions/Drag", false)
 	animation.set("parameters/conditions/Not_Drag", true)
 	

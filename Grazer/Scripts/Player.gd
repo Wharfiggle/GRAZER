@@ -11,8 +11,7 @@ var shootTimer = 0.0
 var shootBufferTimer = 0.0
 @onready var HealthBar = $"../GameUI"
 @onready var knockbox = $knockbox
-var MHP= 20
-var maxHitpoints = 20
+var maxHitpoints = 20.0
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
@@ -275,7 +274,7 @@ func _process(delta):
 	if(stickToAdd.length() >= 0.3):
 		toAdd = stickToAdd
 		worldCursor.visible = false
-	else:
+	elif(toAdd.length() > 0):
 		toAdd = toAdd.normalized()
 		worldCursor.visible = true
 	#adjust walking animation speed to match speed
@@ -559,7 +558,7 @@ func damage_taken(damage, from) -> bool:
 		print("player damaged")
 		Input.start_joy_vibration(0,1,1,0.2)
 		hitpoints -= damage
-		HealthBar._on_health_update_(hitpoints)
+		HealthBar._on_health_update_(hitpoints / maxHitpoints)
 		healthCounter.updateHealth(hitpoints)
 		if hitpoints <= 0:
 			die()

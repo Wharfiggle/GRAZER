@@ -11,6 +11,7 @@ var player
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 @onready var structureNode = preload("res://Assets/FloorTiles/StructureNode.tscn")
 @onready var structureTypes = tileStructures.retrieveStructureTypes()
+var chunkTypes
 
 var renderDistance = 2
 const tileWidth = 16.0
@@ -133,7 +134,10 @@ func loadChunk():
 				activeChunks.append(chunk)
 				activeCoord.append(chunkCoords)
 				add_child(chunk)
-				chunk.start(chunkKey)
+				if(chunkTypes == null):
+					chunkTypes = chunk.start(chunkKey)
+				else:
+					chunk.start(chunkKey, chunkTypes)
 
 	#deleting the chunks just makes an array of chunks that are in active chunks and not in the
 	#chunks that are being loaded (loading coords), deleting chunks then deletes them from 

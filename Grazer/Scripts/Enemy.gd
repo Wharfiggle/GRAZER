@@ -65,7 +65,7 @@ enum enemyTypes {thief, gunman}
 var rng = RandomNumberGenerator.new()
 @onready var herd = get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
-var dragRange = 3.0
+var dragRange = 2.0
 var escapeRange = 18
 
 func _ready():
@@ -157,9 +157,10 @@ func _physics_process(delta):
 				hibernate()
 	
 	#gravity
-	tVelocity.y -= GRAVITY * delta
-	if(is_on_floor()):
-		tVelocity.y = -0.1
+	#tVelocity.y -= GRAVITY * delta
+	#if(is_on_floor()):
+	#	tVelocity.y = -0.1
+	tVelocity.y = 0
 	
 	if(pathNode < path.size()):
 		var direction = (path[pathNode] - global_transform.origin)
@@ -176,6 +177,7 @@ func _physics_process(delta):
 		set_velocity(Vector3(knockbackVel.x, tVelocity.y, knockbackVel.z))
 	set_up_direction(Vector3.UP)
 	move_and_slide()
+	position.y = 0
 	
 	if(position.y < -20):
 		if(draggedCow != null):

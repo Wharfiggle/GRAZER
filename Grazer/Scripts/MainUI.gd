@@ -21,7 +21,7 @@ func _process(delta):
 
 
 func _on_health_update_(health):
-	healthBar.value=health
+	healthBar.value = health * 10
 	
 	#tween.tween_property(healthBar, "value", healthBar.value, 0.5).set_trans(Tween.TRANS_BOUNCE)
 	

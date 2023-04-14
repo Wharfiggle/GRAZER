@@ -19,8 +19,6 @@ var prefabs = []
 func _ready():
 	get_child(0).queue_free()
 	rng.randomize()
-	if(spawnAtEdgeOfScreen):
-		levelScript = get_node(NodePath("/root/Level"))
 
 func _physics_process(delta):
 	if(timer > -1):
@@ -37,6 +35,8 @@ func spawn(inChanceMod:float, inPrefabs:Array):
 	chanceMod = inChanceMod
 	prefabs = inPrefabs
 	timer = timeDelay
+	if(spawnAtEdgeOfScreen):
+		levelScript = get_node(NodePath("/root/Level/AllTerrain"))
 	
 func spawnEnemy():
 	var rn = rng.randf()
@@ -44,6 +44,7 @@ func spawnEnemy():
 		rn = rng.randf()
 		if(spawnAtEdgeOfScreen):
 			levelScript.spawnMarauder(rn <= gunmanSpawnChance)
+			print("spawning instance successful")
 		else:
 			var instance
 			if(rn <= gunmanSpawnChance):

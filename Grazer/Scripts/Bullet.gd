@@ -88,7 +88,8 @@ func _physics_process(_delta):
 func hit(body):
 	if(hitBody.has_method("damage_taken")):
 		body.damage_taken(damage, from)
-	if(source.has_method("healFromBullet")):
+	var wr = weakref(source) #used to see if source has been queue_free()'d or not
+	if(wr.get_ref() && source.has_method("healFromBullet")):
 		source.healFromBullet(damage)
 	stop()
 

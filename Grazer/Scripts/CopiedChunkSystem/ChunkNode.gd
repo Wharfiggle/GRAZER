@@ -12,12 +12,34 @@ var mapWidth = terrainController.mapWidth
 var spawnChanceMod = 1.0
 var spawnPrefabs = []
 
-func start(_chunkCoords):
+static func retrieveChunkTypes() -> Array:
+	var chunks = []
+	
+	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn")
+	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2.tscn")
+	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic3.tscn")
+	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic4.tscn")
+	
+	# * ^ ADD NEW CHUNKS HERE ^ *
+	#The string is the path to the scene. Right click and click "Copy Path" in the explorer to get it
+	
+	# "Should my tile be a Chunk or a Structure?":
+	#If your tile is more than 1x1, it should be a Structure.
+	#If your tile is 1x1, it can be a Structure, but only if it is significant and shouldn't be spawned a ton.
+	#If your tile spawns items or has a high probability to spawn enemies, it should be a structure.
+	#Your tile should be a Chunk if you want it to pop up all over the place.
+	#You can put enemy spawns in Chunks but they should have a low spawnChance.
+	
+	return chunks
+
+func start(_chunkCoords, chunkTypes:Array = []) -> Array:
 	chunkCoords = _chunkCoords
+	if(chunkTypes.is_empty()):
+		chunkTypes = retrieveChunkTypes()
 	#If this chunk has not been loaded before
 	if(WorldSave.loadedCoords.find(_chunkCoords) == -1):
 		#Calculates a scene path and adds it to the data array
-		chunkData.append(calcChunk(chunkCoords))
+		chunkData.append(calcChunk(chunkCoords, chunkTypes))
 		
 		#Adding this chunk node to the world save array
 		WorldSave.addChunk(_chunkCoords)
@@ -31,7 +53,7 @@ func start(_chunkCoords):
 	
 	if(chunkData[0] == ""):
 		print("Chunk " + str(position) + " is empty")
-		return
+		return chunkTypes
 	
 	#Theoretically this doesn't need to be called if its already been loaded before
 	ResourceLoader.load_threaded_request(chunkData[0],"",false, ResourceLoader.CACHE_MODE_REUSE)
@@ -41,6 +63,7 @@ func start(_chunkCoords):
 	#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
 	loading = true
 	
+	return chunkTypes
 
 func _process(_delta):
 	#Because if we try instantiate the scene while its not done it freezes the game
@@ -74,20 +97,23 @@ func save():
 
 
 #custom function for choosing a chunk from our library based on the coordinates
-func calcChunk(_chunkCoords) -> String:
+func calcChunk(_chunkCoords, chunkTypes:Array = []) -> String:
 	#system for choosing a chunk from the list
-	var pathName = "res://Assets/FloorTiles/TilePool/"
 	
+	if(chunkTypes.is_empty()):
+		chunkTypes = retrieveChunkTypes()
+
+	var pathName = ""
 	if(chunkCoords.z == 2):
-		pathName += "WallTiles/wall1c"
+		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/wall1c.tscn"
 	elif(chunkCoords.x == mapWidth):
-		pathName += "WallTiles/wall1d"
+		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/wall1d.tscn"
 	elif(chunkCoords.x == -mapWidth):
-		pathName += "WallTiles/wall1b"
+		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/wall1b.tscn"
 	else:
-		pathName += "BasicTiles/basic"
-		pathName += str(randi_range(1,4))
-	pathName += ".tscn"
+		var rn = randi_range(0, chunkTypes.size() - 1)
+		pathName = chunkTypes[rn]
+		
 	return pathName
 
 func activateSpawners():

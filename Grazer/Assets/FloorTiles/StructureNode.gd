@@ -31,10 +31,17 @@ static func retrieveStructureTypes() -> Array:
 	structures.append(["res://Assets/FloorTiles/TilePool/EmptyFloor1.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/testTile.tscn", 2, 2]) #test
 	
-	#* ^ ADD NEW STRUCTURES HERE ^ *
+	# * ^ ADD NEW STRUCTURES HERE ^ *
 	#sPathname is the path to the scene. Right click and click "Copy Path" in the explorer to get it
 	#sWidth is the length along the x axis
 	#sDepth is the length along the z axis
+	
+	# "Should my tile be a Chunk or a Structure?":
+	#If your tile is more than 1x1, it should be a Structure.
+	#If your tile is 1x1, it can be a Structure, but only if it is significant and shouldn't be spawned a ton.
+	#If your tile spawns items or has a high probability to spawn enemies, it should be a structure.
+	#Your tile should be a Chunk if you want it to pop up all over the place.
+	#You can put enemy spawns in Chunks but they should have a low spawnChance.
 	
 	return structures
 	
