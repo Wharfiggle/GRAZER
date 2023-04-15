@@ -11,7 +11,7 @@ var sound = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
 var broadcastTimer = 0.0
 var broadcastTime = 0.0
 @onready var broadcast = get_node(NodePath("./Broadcast"))
-@export var broadcastHeight = 100
+@export var broadcastHeight = 200
 @onready var broadcastOrigPos = broadcast.position
 #levels 1, 2, 3 for capacity, damage, reload for revolver, shotgun
 var gunStats = [ [7, 8, 9], [3.5, 4.0, 4.5], [0.8, 0.6, 0.4], [3, 4, 5], [0.75, 1.0, 1.25], [0.6, 0.4, 0.2] ]

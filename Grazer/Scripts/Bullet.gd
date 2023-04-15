@@ -17,6 +17,7 @@ var startPos
 var trailPoints
 @export var trailLength = 3.0
 var trailEnd = 0
+var bulletStopExtend = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -75,11 +76,11 @@ func _physics_process(_delta):
 				if(hitBody == null):
 					canHit = false
 				if(hitBody.has_method("damage_taken")):
-					canHit = hitBody.damage_taken(0, from)
+					canHit = hitBody.damage_taken(0, from, self)
 				if(!canHit):
 					hitBody = null
 				else: #hits only if object doesn't have damage_taken or damage_taken returns true
-					hitPoint = raycast.get_collision_point()
+					hitPoint = raycast.get_collision_point() + velocity.normalized() * bulletStopExtend
 		elif(hitPoint != null): #if hitPoint was set last frame, move to hitPoint
 			position = hitPoint
 			hitPoint = null
@@ -88,7 +89,7 @@ func _physics_process(_delta):
 
 func hit(body):
 	if(hitBody.has_method("damage_taken")):
-		body.damage_taken(damage, from)
+		body.damage_taken(damage, from, self)
 	var wr = weakref(source) #used to see if source has been queue_free()'d or not
 	if(wr.get_ref() && source.has_method("healFromBullet")):
 		source.healFromBullet(damage)

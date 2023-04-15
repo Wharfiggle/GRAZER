@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1d36qeyhbvr3"]
+[gd_scene load_steps=18 format=3 uid="uid://d1d36qeyhbvr3"]
 
 [ext_resource type="PackedScene" uid="uid://cnj38oqxbqtp2" path="res://Assets/Models/marauder/Bandit.gltf" id="1_0xrue"]
-[ext_resource type="Material" uid="uid://b3stctcj2y5lx" path="res://Assets/Models/marauder/texture/Skull.tres" id="2_cfbqe"]
+[ext_resource type="Material" uid="uid://dobi1p4ccsh21" path="res://Assets/Models/marauder/texture/Skull.tres" id="2_cfbqe"]
 [ext_resource type="Material" uid="uid://bmcuraabvqmrq" path="res://Assets/Models/marauder/texture/Red/ClothRed.tres" id="2_xdfd2"]
-[ext_resource type="Material" uid="uid://c7dgn2e55f6hc" path="res://Assets/Models/marauder/texture/Skin.tres" id="3_yefu7"]
+[ext_resource type="Material" uid="uid://bysj08caoa44y" path="res://Assets/Models/marauder/texture/Skin.tres" id="3_yefu7"]
+[ext_resource type="PackedScene" uid="uid://cy6xi4epix5ju" path="res://Prefabs/Revolver.tscn" id="5_glu3j"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oy2ry"]
 animation = &"IdleStill_liz"
@@ -70,7 +71,7 @@ node_connections = [&"output", 0, &"walkShoot", &"OneShot", 0, &"Animation 2", &
 [node name="Bandit" instance=ExtResource("1_0xrue")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(-0.00302159, 8.47573, -109.179)
+bones/0/position = Vector3(-0.00220398, 9.97204, -110.831)
 bones/17/rotation = Quaternion(-0.681876, -0.197407, 0.290498, -0.641629)
 bones/18/rotation = Quaternion(0.0419153, 0.00909914, 0.466568, 0.883445)
 bones/19/position = Vector3(9.25158e-07, 25.9074, 1.37894e-05)
@@ -114,27 +115,27 @@ bones/41/position = Vector3(-0.0466854, 3.79247, -6.04056e-06)
 bones/41/rotation = Quaternion(0.208192, 0.298986, -0.107915, 0.924996)
 bones/42/position = Vector3(-0.00271773, 3.43109, -4.80343e-06)
 bones/42/rotation = Quaternion(-0.008894, -6.3769e-08, -9.60464e-08, 0.99996)
-bones/43/rotation = Quaternion(-0.222004, -0.342837, 0.911538, 0.047702)
+bones/43/rotation = Quaternion(-0.1935, -0.290093, 0.937164, -0.0112797)
 bones/44/position = Vector3(4.26477e-07, 48.7967, 1.21238e-05)
-bones/44/rotation = Quaternion(-0.38951, 0.000625802, -0.150189, 0.908694)
-bones/45/rotation = Quaternion(0.210039, 0.637909, 0.718384, 0.18133)
+bones/44/rotation = Quaternion(-0.559153, 0.000551268, -0.2156, 0.80054)
+bones/45/rotation = Quaternion(0.265408, 0.421181, 0.85132, 0.165585)
 bones/46/position = Vector3(6.97327e-08, 48.7926, -1.00523e-06)
-bones/46/rotation = Quaternion(-0.664882, 9.33343e-05, 0.336194, 0.667012)
+bones/46/rotation = Quaternion(-0.25219, 0.00013395, 0.127518, 0.959239)
 bones/47/position = Vector3(27.9008, -13.4015, -119.701)
 bones/47/rotation = Quaternion(0.379801, -0.716902, -0.330224, 0.482447)
 bones/48/position = Vector3(-30.2307, -9.63868, -123.788)
 bones/48/rotation = Quaternion(0.257845, 0.668167, 0.396642, 0.574233)
 bones/49/position = Vector3(-49.1659, -20.2665, -166.148)
 bones/49/rotation = Quaternion(0.0126916, 0, 0.999919, 0)
-bones/50/position = Vector3(16.8233, -66.0973, -65.4807)
+bones/50/position = Vector3(16.9288, -57.8708, -77.3212)
 bones/50/rotation = Quaternion(-0.00417408, -0.0494067, 0.99877, 0.000206481)
-bones/51/position = Vector3(-0.000343736, 0.0014416, 0.000768533)
-bones/51/rotation = Quaternion(0.620659, 0.000971619, 0.0214932, 0.783785)
+bones/51/position = Vector3(-0.000556819, 0.00391425, 0.00130771)
+bones/51/rotation = Quaternion(0.441054, 0.00440027, 0.019419, 0.89726)
 bones/52/position = Vector3(1.5745e-06, 22.6684, -3.20697e-06)
-bones/52/rotation = Quaternion(0.413358, -0.0251012, -0.0221921, 0.909952)
-bones/53/position = Vector3(-12.7481, 49.3789, -52.0293)
-bones/53/rotation = Quaternion(0.00138693, 0.288139, 0.957544, 0.00912891)
-bones/54/position = Vector3(0.000585493, 0.00202875, 0.00814879)
+bones/52/rotation = Quaternion(0.349509, -0.0259059, -0.0229921, 0.936293)
+bones/53/position = Vector3(-18.0153, 68.5944, -32.7658)
+bones/53/rotation = Quaternion(0.000230926, 0.409805, 0.912126, 0.00922503)
+bones/54/position = Vector3(1.54277e-05, 0.000308249, 0.00154739)
 bones/54/rotation = Quaternion(0.97551, 0.0121726, -0.0122717, 0.219274)
 bones/55/rotation = Quaternion(0.202002, 0.0285332, 0.0123165, 0.978892)
 bones/56/position = Vector3(28.5018, 47.9484, -56.4657)
@@ -144,74 +145,74 @@ bones/58/position = Vector3(48.9124, -20.2087, -165.894)
 bones/58/rotation = Quaternion(-0.0118319, -2.30163e-22, 0.99993, 0)
 
 [node name="horns" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.0166, 0, 0, 0, 1.0166, 3.64036e-07, 0, -3.64983e-07, 1.0166, -2.79999, 10.4084, -5.07465)
+transform = Transform3D(1.0166, 0, 0, 0, 1.0166, 3.64036e-07, 0, -3.64983e-07, 1.0166, -2.79917, 11.9047, -6.72662)
 bone_idx = 6
 
 [node name="horns" parent="Armature/Skeleton3D/horns" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="loSkullNoRings1" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(22.7319, 0, 0, 0, 22.5501, -2.86983, 0, 2.86983, 22.5501, -0.00302159, 15.765, -188.489)
+transform = Transform3D(22.7319, 0, 0, 0, 22.5501, -2.86983, 0, 2.86983, 22.5501, -0.00220398, 17.2613, -190.141)
 bone_idx = 7
 
 [node name="loSkullNoRings1" parent="Armature/Skeleton3D/loSkullNoRings1" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="tooth1" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(1.59172, -0.866756, -0.218933, 0.486443, 2.53027, -0.609316, 0.266411, 0.558525, 2.42061, -6.52142, 22.2333, -169.549)
+transform = Transform3D(1.59172, -0.866756, -0.218933, 0.486443, 2.53027, -0.609316, 0.266411, 0.558525, 2.42061, -6.52061, 23.7296, -171.201)
 bone_idx = 8
 
 [node name="tooth2" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(1.65015, -0.557243, -1.86689e-08, 0.335686, 2.61199, -0.540102, 0.0740986, 0.576566, 2.4468, -7.32101, 25.0624, -168.667)
+transform = Transform3D(1.65015, -0.557243, -1.86689e-08, 0.335686, 2.61199, -0.540102, 0.0740986, 0.576566, 2.4468, -7.32019, 26.5587, -170.318)
 bone_idx = 9
 
 [node name="tooth2" parent="Armature/Skeleton3D/tooth2" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="tooth3" parent="Armature/Skeleton3D" index="4"]
-transform = Transform3D(-1.28475, -0.223447, 5.92935e-08, -0.182185, 1.57494, -0.0356732, -0.00408422, 0.0353074, 1.59125, 7.58592, 33.6957, -166.892)
+transform = Transform3D(-1.28475, -0.223447, 5.92935e-08, -0.182185, 1.57494, -0.0356732, -0.00408422, 0.0353074, 1.59125, 7.58674, 35.192, -168.544)
 bone_idx = 10
 
 [node name="tooth3" parent="Armature/Skeleton3D/tooth3" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="tooth4" parent="Armature/Skeleton3D" index="5"]
-transform = Transform3D(1.5714, -0.959793, -0.218933, -0.610087, -2.45889, -0.609317, -0.0114456, -0.705763, 2.42061, 6.20391, 22.2333, -169.549)
+transform = Transform3D(1.5714, -0.959793, -0.218933, -0.610087, -2.45889, -0.609317, -0.0114456, -0.705763, 2.42061, 6.20472, 23.7296, -171.201)
 bone_idx = 11
 
 [node name="tooth4" parent="Armature/Skeleton3D/tooth4" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="tooth5" parent="Armature/Skeleton3D" index="6"]
-transform = Transform3D(-1.64108, 0.624541, 7.46758e-08, 0.376257, 2.59744, -0.540101, 0.0830542, 0.573352, 2.4468, 7.71032, 25.0624, -168.667)
+transform = Transform3D(-1.64108, 0.624541, 7.46758e-08, 0.376257, 2.59744, -0.540101, 0.0830542, 0.573352, 2.4468, 7.71114, 26.5587, -170.318)
 bone_idx = 12
 
 [node name="tooth5" parent="Armature/Skeleton3D/tooth5" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="tooth6" parent="Armature/Skeleton3D" index="7"]
-transform = Transform3D(-1.67661, 0.23924, -1.91623e-08, 0.170773, 2.23968, -0.554374, 0.037696, 0.494382, 2.51146, 7.65203, 27.6613, -167.819)
+transform = Transform3D(-1.67661, 0.23924, -1.91623e-08, 0.170773, 2.23968, -0.554374, 0.037696, 0.494382, 2.51146, 7.65285, 29.1577, -169.471)
 bone_idx = 13
 
 [node name="tooth6" parent="Armature/Skeleton3D/tooth6" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="tooth7" parent="Armature/Skeleton3D" index="8"]
-transform = Transform3D(-1.68571, 0, 0, 0, 2.0555, -0.22039, 0, 0.220314, 2.05621, 7.77671, 30.459, -167.067)
+transform = Transform3D(-1.68571, 0, 0, 0, 2.0555, -0.22039, 0, 0.220314, 2.05621, 7.77753, 31.9553, -168.719)
 bone_idx = 14
 
 [node name="tooth7" parent="Armature/Skeleton3D/tooth7" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="tooth8" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(1.68557, 0, 0, 0, 2.01868, -0.445753, 0, 0.445599, 2.01938, -7.87341, 30.459, -167.067)
+transform = Transform3D(1.68557, 0, 0, 0, 2.01868, -0.445753, 0, 0.445599, 2.01938, -7.87259, 31.9553, -168.719)
 bone_idx = 15
 
 [node name="tooth8" parent="Armature/Skeleton3D/tooth8" index="0"]
 material_override = ExtResource("2_cfbqe")
 
 [node name="tooth9" parent="Armature/Skeleton3D" index="10"]
-transform = Transform3D(1.68557, 0, 0, 0, 2.25183, -0.554375, 0, 0.497065, 2.51146, -7.87341, 27.6613, -167.819)
+transform = Transform3D(1.68557, 0, 0, 0, 2.25183, -0.554375, 0, 0.497065, 2.51146, -7.87259, 29.1577, -169.471)
 bone_idx = 16
 
 [node name="tooth9" parent="Armature/Skeleton3D/tooth9" index="0"]
@@ -234,6 +235,16 @@ material_override = ExtResource("2_xdfd2")
 
 [node name="pants" parent="Armature/Skeleton3D" index="16"]
 material_override = ExtResource("2_xdfd2")
+
+[node name="GunRight" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="17"]
+transform = Transform3D(0.226961, 0.0286375, 0.973483, -0.061498, 0.997994, -0.0150205, -0.97196, -0.0564581, 0.228267, -4.0751, 69.3076, -163.005)
+bone_name = "RightHand"
+bone_idx = 33
+
+[node name="RevolverOffset" type="Node3D" parent="Armature/Skeleton3D/GunRight" index="0"]
+transform = Transform3D(0.213206, 0.961684, -0.172358, 0.0290095, 0.170105, 0.984999, 0.976577, -0.215008, 0.00836943, 2.50012, 14.5, 2.49999)
+
+[node name="Revolver" parent="Armature/Skeleton3D/GunRight/RevolverOffset" index="0" instance=ExtResource("5_glu3j")]
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" index="0"]
 tree_root = SubResource("AnimationNodeBlendTree_moftp")

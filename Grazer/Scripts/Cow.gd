@@ -175,10 +175,12 @@ func idle():
 #var rectHei = 15 / 9 * 16
 #var rectDiag = rectWid / sin( arctan( rectWid / rectHei )
 
-func damage_taken(_damage, from) -> bool:
+func damage_taken(_damage:float, from:String, bullet:Node) -> bool:
 	if(from == "player" && !draggers.is_empty()):
 		return false
 	else:
+		if(bullet != null):
+			bullet.bulletStopExtend = 0.5
 		return true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

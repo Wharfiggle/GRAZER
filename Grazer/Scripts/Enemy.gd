@@ -72,7 +72,7 @@ var escapeRange = 18
 func _ready():
 	position.y = 20
 	if(marauderType == enemyTypes.gunman):
-		revolver = get_node(NodePath("./Model/Revolver"))
+		revolver = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight/RevolverOffset/Revolver"))
 	if(revolver != null):
 		shootingPoint = revolver.find_child("ShootingPoint")
 #	#Setting enemy type
@@ -506,9 +506,11 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
 		draggedCow = null
 		currentMode = behaviors.cowPursuit
 
-func damage_taken(damage, from) -> bool:
+func damage_taken(damage:float, from:String, bullet:Node = null) -> bool:
 	if(from != "enemy"):
 		health -= damage
+		if(bullet != null):
+			bullet.bulletStopExtend = 1
 		if health <= 0:
 			if(draggedCow != null):
 				draggedCow.stopDragging(self)
