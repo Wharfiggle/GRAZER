@@ -115,6 +115,10 @@ func calcChunk(_chunkCoords, chunkTypes:Array = []) -> String:
 		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/wall1d.tscn"
 	elif(chunkCoords.x == -mapWidth):
 		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/wall1b.tscn"
+	elif(chunkCoords.x > mapWidth):
+		pathName = ""
+	elif(chunkCoords.x < -mapWidth):
+		pathName = ""
 	else:
 		var rn = randi_range(0, chunkTypes.size() - 1)
 		pathName = chunkTypes[rn]
