@@ -9,6 +9,7 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
 var aimDirection = 0
+@export var aimLerpSpeed = 0.75
 
 #audioStream
 @onready var Steps = $EFootsteps
@@ -166,10 +167,9 @@ func _physics_process(delta):
 				hibernate()
 	
 	#gravity
-	#tVelocity.y -= GRAVITY * delta
-	#if(is_on_floor()):
-	#	tVelocity.y = -0.1
-	tVelocity.y = 0
+	tVelocity.y -= GRAVITY * delta
+	if(is_on_floor()):
+		tVelocity.y = -0.1
 	
 	if(pathNode < path.size()):
 		var direction = (path[pathNode] - global_transform.origin)
@@ -186,7 +186,6 @@ func _physics_process(delta):
 		set_velocity(Vector3(knockbackVel.x, tVelocity.y, knockbackVel.z))
 	set_up_direction(Vector3.UP)
 	move_and_slide()
-	position.y = 0
 	
 	if(position.y < -20):
 		if(draggedCow != null):
@@ -323,7 +322,7 @@ func pursuit():
 			var direction = transform.origin - player.transform.origin
 			direction = direction.normalized()
 			aimDirection = lerp_angle(aimDirection, 
-				atan2(direction.x, direction.z) + PI, 0.5)
+				atan2(direction.x, direction.z) + PI, aimLerpSpeed)
 			var angle_to = direction.dot(transform.basis.z)
 			if angle_to > 0:
 				pass

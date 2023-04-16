@@ -114,4 +114,3 @@ shape = SubResource("BoxShape3D_bv0nb")
 
 [node name="ItemSpawner" parent="." instance=ExtResource("7_xs26p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7604, 0.0499997, 9.64923)
-randomItem = 0
