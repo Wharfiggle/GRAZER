@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0u7d010v6jxc"]
+
+[ext_resource type="PackedScene" uid="uid://dp1irkk2e06v5" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraight/Wall_Clif.fbx" id="1_nf0le"]
+[ext_resource type="Texture2D" uid="uid://vjd3cllbubov" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraight/Wall_Clif_Material.001_BaseColor.png" id="2_hr4h0"]
+[ext_resource type="Texture2D" uid="uid://yrbrwj4ey4x0" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraight/Wall_Clif_Material.001_Emissive.png" id="3_vsrfw"]
+[ext_resource type="Texture2D" uid="uid://bdgnm36yxpddd" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraight/Wall_Clif_Material.001_Metallic.png" id="4_sa45m"]
+[ext_resource type="Texture2D" uid="uid://cxlieeprlxalk" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraight/Wall_Clif_Material.001_Normal.png" id="5_804e1"]
+[ext_resource type="Texture2D" uid="uid://cwnhbo8kxe6tp" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraight/Wall_Clif_Material.001_Roughness.png" id="6_4nsn2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glen0"]
+albedo_texture = ExtResource("2_hr4h0")
+metallic = 1.0
+metallic_texture = ExtResource("4_sa45m")
+roughness_texture = ExtResource("6_4nsn2")
+emission_enabled = true
+emission_texture = ExtResource("3_vsrfw")
+normal_enabled = true
+normal_texture = ExtResource("5_804e1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tqcsk"]
+size = Vector3(16, 6, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ll35m"]
+size = Vector3(1, 5, 17.8486)
+
+[node name="Wall_Clif" instance=ExtResource("1_nf0le")]
+
+[node name="Wall_Clif" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_glen0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -7)
+shape = SubResource("BoxShape3D_tqcsk")
+
+[node name="Ledges" type="Node3D" parent="RootNode" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Ledge2" type="StaticBody3D" parent="RootNode/Ledges" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 8.5, 1.499)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/Ledges/Ledge2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.5)
+shape = SubResource("BoxShape3D_ll35m")

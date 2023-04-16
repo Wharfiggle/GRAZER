@@ -30,6 +30,7 @@ static func retrieveStructureTypes() -> Array:
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])
 	structures.append(["res://Assets/FloorTiles/TilePool/EmptyFloor1.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/testTile.tscn", 2, 2]) #test
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPit1.tscn", 1, 1]) #test
 	
 	# * ^ ADD NEW STRUCTURES HERE ^ *
 	#sPathname is the path to the scene. Right click and click "Copy Path" in the explorer to get it

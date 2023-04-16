@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://cerdsnwcq55fl"]
+
+[ext_resource type="PackedScene" uid="uid://de5gyortheiv5" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCorner/Clif_InsideCorner.fbx" id="1_mj02y"]
+[ext_resource type="Texture2D" uid="uid://xtda8nei6j3u" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCorner/Clif_InsideCorner_Material.001_BaseColor.png" id="2_5wcyq"]
+[ext_resource type="Texture2D" uid="uid://dadqjjj7ri0uu" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCorner/Clif_InsideCorner_Material.001_Emissive.png" id="3_7y8jv"]
+[ext_resource type="Texture2D" uid="uid://c1ewlctq8e61a" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCorner/Clif_InsideCorner_Material.001_Metallic.png" id="4_0j50e"]
+[ext_resource type="Texture2D" uid="uid://fmjgnplnwrg6" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCorner/Clif_InsideCorner_Material.001_Normal.png" id="5_wrgww"]
+[ext_resource type="Texture2D" uid="uid://c63mcwuyc3cvu" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCorner/Clif_InsideCorner_Material.001_Roughness.png" id="6_2pim8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tm7v"]
+albedo_texture = ExtResource("2_5wcyq")
+metallic = 1.0
+metallic_texture = ExtResource("4_0j50e")
+roughness_texture = ExtResource("6_2pim8")
+emission_enabled = true
+emission_on_uv2 = true
+emission_texture = ExtResource("3_7y8jv")
+normal_enabled = true
+normal_texture = ExtResource("5_wrgww")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t6ms7"]
+size = Vector3(3, 6, 16)
+
+[node name="Clif_InsideCorner" instance=ExtResource("1_mj02y")]
+
+[node name="InsideCorner_Clif" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tm7v")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, 0)
+shape = SubResource("BoxShape3D_t6ms7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3, -6)
+shape = SubResource("BoxShape3D_t6ms7")

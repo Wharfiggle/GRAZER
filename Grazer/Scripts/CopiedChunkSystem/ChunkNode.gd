@@ -110,7 +110,7 @@ func calcChunk(_chunkCoords, chunkTypes:Array = []) -> String:
 
 	var pathName = ""
 	if(chunkCoords.z == 2):
-		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/wall1c.tscn"
+		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/cliffSide1.tscn"
 	elif(chunkCoords.z > 2):
 		pathName = ""
 	elif(chunkCoords.x == mapWidth):
