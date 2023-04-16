@@ -57,6 +57,8 @@ var knockbackStrength = 0
 @onready var knockbox = $knockbox
 @export var stunTime = 1.0
 var stunTimer = 0
+@onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/pants")).get_material_overlay()
+var hitFlashAmmount = 0.0
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit, hibernate}
 var currentMode = behaviors.hibernate
@@ -106,7 +108,13 @@ func _ready():
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
-	#print(position.y)
+	
+	if(hitFlashAmmount > 0.1):
+		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
+		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
+		if(hitFlashAmmount < 0.1):
+			hitFlashAmmount = 0
+			hitFlash.set_shader_parameter("ammount", 0.0)
 	
 	if(dynamicCooldown > 0):
 		dynamicCooldown -= delta
@@ -509,6 +517,7 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
 func damage_taken(damage:float, from:String, bullet:Node = null) -> bool:
 	if(from != "enemy"):
 		health -= damage
+		hitFlashAmmount = 1
 		if(bullet != null):
 			bullet.bulletStopExtend = 1
 		if health <= 0:

@@ -1,9 +1,9 @@
 extends Node3D
 
 var itemDrop = preload("res://Prefabs/ItemDrop.tscn")
-enum randomItemType {randomPotion, randomUpgrade, anyRandomItem, notRandom}
+enum randomItemType {randomElixir, randomUpgrade, anyRandomItem, notRandom}
 @export var randomItem: randomItemType
-@export var potionVsUpgradeChance: float
+@export var elixirVsUpgradeChance: float
 @export var itemID: int
 @export var spawnChance: float
 var rng = RandomNumberGenerator.new()
@@ -18,7 +18,7 @@ func spawn(inChanceMod:float, _inPrefabs:Array):
 	if(rn <= spawnChance * inChanceMod):
 		var instance = itemDrop.instantiate()
 		instance.randomItem = randomItem
-		instance.potionVsUpgradeChance = potionVsUpgradeChance
+		instance.elixirVsUpgradeChance = elixirVsUpgradeChance
 		instance.itemID = itemID
 		get_node(NodePath("/root/Level")).add_child(instance)
 		instance.global_position = global_position

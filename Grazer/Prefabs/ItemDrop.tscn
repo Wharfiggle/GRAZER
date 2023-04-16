@@ -1,29 +1,74 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxv63ajpdyrdm"]
+[gd_scene load_steps=11 format=3 uid="uid://cxv63ajpdyrdm"]
 
 [ext_resource type="Script" path="res://Scripts/ItemDrop.gd" id="1_vqyld"]
-[ext_resource type="Texture2D" uid="uid://g8t38bvfxx7q" path="res://Assets/Images/handsomestaringeagle.jpg" id="2_flcmp"]
+[ext_resource type="Texture2D" uid="uid://cijaryf7osjxm" path="res://Assets/Images/canimakeanestinyou.png" id="2_ol5mp"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_fijkr"]
+[sub_resource type="Gradient" id="Gradient_u6gqg"]
+colors = PackedColorArray(1, 0.816667, 0, 0.392157, 1, 0.815686, 0, 0.392157)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_poebw"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddqrq"]
+gradient = SubResource("Gradient_u6gqg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36c62"]
+resource_local_to_scene = true
+render_priority = -1
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 2
+alpha_antialiasing_edge = 0.35
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0.815686, 0, 0.392157)
+albedo_texture = ExtResource("2_ol5mp")
+detail_enabled = true
+detail_albedo = SubResource("GradientTexture2D_ddqrq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_141s1"]
+resource_local_to_scene = true
+transparency = 1
 cull_mode = 2
+depth_draw_mode = 1
 diffuse_mode = 3
-albedo_texture = ExtResource("2_flcmp")
+albedo_texture = ExtResource("2_ol5mp")
 emission = Color(0.254902, 0.254902, 0, 1)
 rim_enabled = true
 rim = 0.5
 
+[sub_resource type="QuadMesh" id="QuadMesh_fijkr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arqog"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.8
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_ol5mp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_08leh"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_5g8nm"]
 
 [node name="ItemDrop" type="Area3D"]
+transform = Transform3D(1.41421, -0.366025, 1.36603, 0, 1.93185, 0.517638, -1.41421, -0.366025, 1.36603, 0, 0, 0)
 script = ExtResource("1_vqyld")
 randomItem = 2
-potionVsUpgradeChance = 0.9
+elixirVsUpgradeChance = 1.0
+spinSpeed = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+material_override = SubResource("StandardMaterial3D_36c62")
+material_overlay = SubResource("StandardMaterial3D_141s1")
 mesh = SubResource("QuadMesh_fijkr")
-surface_material_override/0 = SubResource("StandardMaterial3D_poebw")
+
+[node name="ShadowCaster" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.9407e-08, 0, 1, -7.45058e-09, 1, -1.49012e-08, -1, 5.96046e-08, -5.96046e-08, 0, 0.75, 5.96046e-08)
+material_override = SubResource("StandardMaterial3D_arqog")
+cast_shadow = 3
+mesh = SubResource("QuadMesh_08leh")
+skeleton = NodePath("../MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

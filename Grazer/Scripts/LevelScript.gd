@@ -16,18 +16,18 @@ var broadcastTime = 0.0
 #levels 1, 2, 3 for capacity, damage, reload for revolver, shotgun
 var gunStats = [ [7, 8, 9], [3.5, 4.0, 4.5], [0.8, 0.6, 0.4], [3, 4, 5], [0.75, 1.0, 1.25], [0.6, 0.4, 0.2] ]
 var itemTextures = [
-	preload("res://Assets/Images/empress of bostonia.png"),
-	preload("res://Assets/Images/handsomestaringeagle.jpg"),
+	preload("res://Assets/Images/shotgunUpgradeIcon.png"),
+	preload("res://Assets/Images/revolvUpgradeIcon.png"),
 	null,
 	null,
 	null,
 	null,
-	preload("res://Assets/Images/the creature.jpg"),
-	preload("res://Assets/Images/the creature.jpg"),
-	preload("res://Assets/Images/the creature.jpg"),
-	preload("res://Assets/Images/the creature.jpg"),
-	preload("res://Assets/Images/the creature.jpg"),
-	preload("res://Assets/Images/the creature.jpg")
+	preload("res://Assets/Images/remedyElixir.png"),
+	preload("res://Assets/Images/bulletstormElixir.png"),
+	preload("res://Assets/Images/lifeleachElixir.png"),
+	preload("res://Assets/Images/dustkickerElixir.png"),
+	preload("res://Assets/Images/liquidluckElixir.png"),
+	preload("res://Assets/Images/dauntlessElixir.png")
 ]
 
 class Item:

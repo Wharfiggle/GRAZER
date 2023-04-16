@@ -38,6 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89519, 0.05, -3.24152)
 
 [node name="ItemSpawner" parent="." instance=ExtResource("4_m5b28")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61428, 0, 3.16056)
+elixirVsUpgradeChance = 0.5
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_x0ywm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75845)

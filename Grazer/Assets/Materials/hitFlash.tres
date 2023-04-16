@@ -3,7 +3,8 @@
 [ext_resource type="Shader" path="res://Assets/Materials/Marauder.gdshader" id="1_0xsd8"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 2
 shader = ExtResource("1_0xsd8")
-shader_parameter/active = false
-shader_parameter/color = Color(1, 1, 0, 1)
+shader_parameter/ammount = 0.0
+shader_parameter/color = Color(1, 0, 0, 1)

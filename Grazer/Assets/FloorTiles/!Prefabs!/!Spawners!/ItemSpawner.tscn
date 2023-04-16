@@ -7,7 +7,6 @@
 [node name="ItemSpawner" type="Node3D"]
 script = ExtResource("1_f5frr")
 randomItem = 2
-potionVsUpgradeChance = 0.9
 spawnChance = 1.0
 
 [node name="EditorIndicator" type="MeshInstance3D" parent="."]
