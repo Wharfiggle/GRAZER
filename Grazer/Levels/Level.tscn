@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=20 format=3 uid="uid://dapc4u84j2cr"]
 
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="12_3pmhn"]
 [ext_resource type="PackedScene" uid="uid://i3q5n1j7uql6" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
+[ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="16_leqkn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pg5ty"]
 font = ExtResource("4_0ykas")
@@ -23,7 +24,8 @@ font_color = Color(1, 0.882353, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_35e5v"]
 interpolation_mode = 2
-colors = PackedColorArray(0, 0, 0, 0, 1, 0.478431, 0.0196078, 0.294118)
+offsets = PackedFloat32Array(0.574257, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.254902, 0.117647, 0.00392157, 0.368627)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w6p3l"]
 gradient = SubResource("Gradient_35e5v")
@@ -138,5 +140,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.478431, 0.0196078, 0.196078)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("16_leqkn")
 
 [connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]

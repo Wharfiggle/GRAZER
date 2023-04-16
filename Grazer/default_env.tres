@@ -10,4 +10,6 @@ sky_material = SubResource("ProceduralSkyMaterial_ispwu")
 [resource]
 background_mode = 2
 sky = SubResource("Sky_fuebc")
-ambient_light_color = Color(1, 1, 1, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(1, 0.466667, 0, 1)
