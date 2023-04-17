@@ -37,4 +37,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5mipg")
 [node name="Wall_Clif" parent="NavigationRegion3D" instance=ExtResource("8_hdhdg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -5.95, 24)
 
+[node name="Wall_Clif" parent="NavigationRegion3D/Wall_Clif/RootNode" index="0"]
+transform = Transform3D(800, 0, 0, 0, -24.2216, 99.9542, 0, -799.633, -3.0277, 0, 0, 0)
+
 [editable path="NavigationRegion3D/Wall_Clif"]

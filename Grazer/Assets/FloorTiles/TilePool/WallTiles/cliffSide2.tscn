@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvt8hrf7qbibu"]
+
+[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_23art"]
+[ext_resource type="PackedScene" uid="uid://ccnx64oa6vbqv" path="res://Assets/FloorTiles/!Prefabs!/cliffStraightV2.tscn" id="3_e2igm"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_v867l"]
+vertices = PackedVector3Array(0.239179, 0.6616, 15.25, 0.239179, 0.6616, 16, 2.73918, 0.6616, 16.25, 2.73918, 0.6616, 16.25, 2.98918, 0.6616, 16.75, 5.48918, 0.6616, 16.75, 2.73918, 0.6616, 16.25, 5.48918, 0.6616, 16.75, 6.98918, 0.9116, 16, 0.489179, 0.4116, 8, 0.239179, 0.6616, 15.25, 3.7342, 0.4116, 13.497, 3.75423, 0.9116, 15.0189, 7.98918, 0.4116, 0.5, 0.489179, 0.4116, 0.5, 0.489179, 0.4116, 8, 13.7392, 0.9116, 16.5, 15.9892, 0.4116, 16, 15.7392, 0.4116, 8.25, 14.4058, 0.4116, 13.75, 15.7392, 0.4116, 8.25, 15.7392, 0.4116, 0.5, 7.98918, 0.4116, 0.5, 0.489179, 0.4116, 8, 6.98918, 0.9116, 16, 13.7392, 0.9116, 16.5, 14.4058, 0.4116, 13.75, 8.24488, 0.4116, 13.5123, 8.48918, -8.5884, 15.25, 5.98918, -8.5884, 15, 8.73918, -8.3384, 16, 8.73918, -8.5884, 14.75, 8.48918, -8.5884, 15.25, 8.73918, -8.3384, 16, 11.7392, -8.3384, 15.25, 11.7392, -8.3384, 14.75, 10.7392, -8.0884, 14.75, 2.23918, -13.3384, 18.75, 0.989179, -13.3384, 17.5, 0.239179, -13.3384, 17.5, 0.239179, -13.3384, 24, 7.98918, -13.3384, 30.5, 15.7392, -13.3384, 30.5, 15.7392, -13.3384, 24, 4.23918, -13.3384, 19.25, 2.23918, -13.3384, 18.75, 0.239179, -13.3384, 24, 0.239179, -13.3384, 24, 0.239179, -13.3384, 30.5, 7.98918, -13.3384, 30.5, 15.7392, -13.3384, 24, 15.7392, -13.3384, 17.75, 4.23918, -13.3384, 19.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(9, 11, 10), PackedInt32Array(10, 12, 6), PackedInt32Array(6, 12, 7), PackedInt32Array(7, 12, 8), PackedInt32Array(8, 11, 9), PackedInt32Array(11, 12, 10), PackedInt32Array(12, 11, 8), PackedInt32Array(15, 14, 13), PackedInt32Array(16, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(24, 27, 25), PackedInt32Array(25, 27, 26), PackedInt32Array(26, 27, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(22, 27, 23), PackedInt32Array(23, 27, 24), PackedInt32Array(27, 22, 20), PackedInt32Array(28, 30, 29), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 36), PackedInt32Array(33, 36, 34), PackedInt32Array(34, 36, 35), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 40), PackedInt32Array(43, 42, 41), PackedInt32Array(44, 46, 45), PackedInt32Array(48, 47, 49), PackedInt32Array(49, 47, 52), PackedInt32Array(49, 52, 50), PackedInt32Array(50, 52, 51)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w53vf"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mipg"]
+albedo_texture = ExtResource("1_23art")
+uv1_scale = Vector3(4, 4, 4)
+
+[node name="Level" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_v867l")
+
+[node name="Floors" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Floor3" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor3"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor3"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_5mipg")
+
+[node name="cliffStraightV4" parent="NavigationRegion3D" instance=ExtResource("3_e2igm")]
+transform = Transform3D(1, 0, 0, 0, 0.867256, 0, 0, 0, 1, 8.00132, -13.947, 23.0179)
