@@ -14,8 +14,6 @@ var pos
 var trauma = 0.0
 var time = 0.0
 
-@export var trauma_amount = 0.1
-
 @export var maxX = 10.0
 @export var maxY = 10.0
 @export var maxZ = 5.0
@@ -37,8 +35,8 @@ func _process(delta):
 	cameraRotDelta *= PI / 180.0
 	camera.rotation = initialRotation + cameraRotDelta
 
-func add_trauma(trauma_amount : float):
-	trauma = clamp(trauma + trauma_amount, 0.0, 0.4)
+func add_trauma(in_trauma_amount : float):
+	trauma = clamp(trauma + in_trauma_amount, 0.0, 0.4)
 
 func get_shake_intensity() -> float:
 	return trauma * trauma

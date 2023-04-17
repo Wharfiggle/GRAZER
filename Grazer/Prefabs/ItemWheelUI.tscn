@@ -188,6 +188,7 @@ texture = ExtResource("5_5cs3t")
 
 [node name="elixirCount" type="Label" parent="Cell2"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
@@ -252,6 +253,7 @@ texture = ExtResource("5_5cs3t")
 
 [node name="elixirCount" type="Label" parent="Cell3"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
@@ -316,6 +318,7 @@ texture = ExtResource("5_5cs3t")
 
 [node name="elixirCount" type="Label" parent="Cell4"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
@@ -380,6 +383,7 @@ texture = ExtResource("5_5cs3t")
 
 [node name="elixirCount" type="Label" parent="Cell5"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
@@ -444,6 +448,7 @@ texture = ExtResource("5_5cs3t")
 
 [node name="elixirCount" type="Label" parent="Cell6"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0

@@ -540,12 +540,12 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
 		draggedCow = null
 		currentMode = behaviors.cowPursuit
 
-func damage_taken(damage:float, from:String, bullet:Node = null) -> bool:
+func damage_taken(damage:float, from:String, inBullet:Node = null) -> bool:
 	if(from != "enemy"):
 		health -= damage
 		hitFlashAmmount = 1
-		if(bullet != null):
-			bullet.bulletStopExtend = 1
+		if(inBullet != null):
+			inBullet.bulletStopExtend = 1
 		if health <= 0:
 			if(draggedCow != null):
 				draggedCow.stopDragging(self)

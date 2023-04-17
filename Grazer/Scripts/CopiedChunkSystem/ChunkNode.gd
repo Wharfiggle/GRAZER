@@ -78,6 +78,7 @@ func _process(_delta):
 			#This function will freeze the game until the scene is fully loaded
 			#But once loaded, it does return the reference to the scene that we need
 			#var chunk = ResourceLoader.load_threaded_get(chunkData[0])
+			@warning_ignore("int_as_enum_without_cast")
 			var chunk = ResourceLoader.load(chunkData[0],"",1)
 			await get_tree().process_frame
 			instance = chunk.instantiate()
@@ -110,7 +111,7 @@ func calcChunk(_chunkCoords, chunkTypes:Array = []) -> String:
 	#system for choosing a chunk from the list
 	
 	if(chunkTypes.is_empty()):
-		chunkTypes = retrieveChunkTypes()
+		chunkTypes = chunkTiles.retrieveChunkTypes()
 
 	var pathName = ""
 	if(chunkCoords.z == 2):

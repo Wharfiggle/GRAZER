@@ -108,6 +108,7 @@ func getUpgrade(id:int) -> Item:
 	var level = 1
 	var ind = 0
 	while(level == 1 && ind < 3):
+		@warning_ignore("integer_division")
 		if(player.gunStats[id] == gunStats[id / 3][ind]):
 			level = ind + 2
 		ind += 1
@@ -116,7 +117,8 @@ func getUpgrade(id:int) -> Item:
 		#if gun stat is max, return health potion instead
 		item = Item.new(6, player, itemTextures[6])
 	else:
-		item = Item.new(id, player, itemTextures[id / 3 as int]) # get tex 0 if id is 0 - 2 and get tex 1 if id is 3 - 5
+		@warning_ignore("integer_division")
+		item = Item.new(id, player, itemTextures[id / 3]) # get tex 0 if id is 0 - 2 and get tex 1 if id is 3 - 5
 		item.initUpgrade(self, level, gunStats)
 	return item
 #use for getting random upgrade to drop in world

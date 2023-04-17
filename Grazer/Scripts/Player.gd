@@ -583,7 +583,7 @@ func knock():
 			camera.add_trauma(0.2)
 			knocked = true
 
-func damage_taken(damage:float, from:String, bullet:Node) -> bool:
+func damage_taken(damage:float, from:String, _inBullet:Node) -> bool:
 	if(from != "player"):
 		print("player damaged")
 		Input.start_joy_vibration(0,1,1,0.2)

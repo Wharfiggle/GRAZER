@@ -12,7 +12,7 @@ var hitPoint = null
 @onready var raycast = get_node(NodePath("./RayCast3D"))
 var bulletTrailMesh = preload("res://Prefabs/BulletTrailMesh.tres")
 var bulletTrail
-var range
+var bulletRange
 var startPos
 var trailPoints
 @export var trailLength = 3.0
@@ -33,7 +33,7 @@ inRange:float, inDamage:float, inSpeed:float = 150.0):
 	rotation = inRotation
 	muzzle_velocity = inSpeed
 	velocity = Vector3(sin(rotation.y) * muzzle_velocity, 0, cos(rotation.y) * muzzle_velocity)
-	range = inRange
+	bulletRange = inRange
 	damage = inDamage
 	active = true
 	
@@ -52,8 +52,8 @@ func _process(delta):
 		if(hitBody == null && hitPoint == null):
 			position += velocity * delta
 		var travelled = (position - startPos).length()
-		if(travelled >= range - 0.5):
-			position = startPos + (position - startPos).normalized() * (range - 0.5)
+		if(travelled >= bulletRange - 0.5):
+			position = startPos + (position - startPos).normalized() * (bulletRange - 0.5)
 			if(position == prevPos):
 				stop()
 		travelled = (position - startPos).length()
