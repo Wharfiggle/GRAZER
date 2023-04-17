@@ -24,6 +24,7 @@ font_color = Color(1, 0.882353, 0, 1)
 
 [sub_resource type="FogMaterial" id="FogMaterial_akt85"]
 density = 0.5
+albedo = Color(1, 0.956863, 0.890196, 1)
 
 [sub_resource type="Gradient" id="Gradient_35e5v"]
 interpolation_mode = 2

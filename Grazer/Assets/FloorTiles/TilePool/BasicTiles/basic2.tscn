@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://duv50x2w723c4"]
+[gd_scene load_steps=5 format=3 uid="uid://duv50x2w723c4"]
 
-[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_iflht"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_xyi3r"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -11,10 +11,6 @@ polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Arr
 
 [sub_resource type="BoxMesh" id="2"]
 size = Vector3(16, 0.1, 16)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1lndq"]
-albedo_texture = ExtResource("1_iflht")
-uv1_scale = Vector3(4, 4, 4)
 
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
@@ -28,4 +24,4 @@ navigation_mesh = SubResource("4")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 mesh = SubResource("2")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_1lndq")
+surface_material_override/0 = ExtResource("1_xyi3r")

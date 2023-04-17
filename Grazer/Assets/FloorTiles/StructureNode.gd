@@ -28,8 +28,8 @@ static func retrieveStructureTypes() -> Array:
 	#sPathName, sWidth, sHeight
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn", 3, 4]) #checkpoint
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])
-	structures.append(["res://Assets/FloorTiles/TilePool/EmptyFloor1.tscn", 2, 2]) #test
-	structures.append(["res://Assets/FloorTiles/TilePool/testTile.tscn", 2, 2]) #test
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/EmptyFloor1.tscn", 2, 2]) #test
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testTile.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPit1.tscn", 1, 1]) #test
 	
 	# * ^ ADD NEW STRUCTURES HERE ^ *

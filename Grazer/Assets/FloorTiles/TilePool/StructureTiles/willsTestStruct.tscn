@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://xjqax7qs2jbr"]
+[gd_scene load_steps=13 format=3 uid="uid://xjqax7qs2jbr"]
 
 [ext_resource type="PackedScene" uid="uid://rgrgwkufv345" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stonetower_4.tscn" id="1_75s18"]
 [ext_resource type="PackedScene" uid="uid://y1vgfwfthfrr" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stonetower_3.tscn" id="2_rhu70"]
 [ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/big_stone.tscn" id="3_vlvnb"]
-[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="4_cneon"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="4_y3d0c"]
 [ext_resource type="PackedScene" uid="uid://c86l2ot6qgw2j" path="res://Assets/Models/Cacti/Tallcacti.fbx" id="5_t86dw"]
 [ext_resource type="PackedScene" uid="uid://bevqipq4gq0f" path="res://Assets/Models/Cacti/Tallcactiround.fbx" id="6_m768v"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="7_g3tau"]
@@ -16,14 +16,6 @@ size = Vector3(16, 0.1, 16)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
 size = Vector3(16, 0.1, 16)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mipg"]
-albedo_texture = ExtResource("4_cneon")
-uv1_scale = Vector3(4, 4, 4)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuk6q"]
-albedo_texture = ExtResource("4_cneon")
-uv1_scale = Vector3(4, 4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lbx3y"]
 
@@ -62,7 +54,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor3"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = SubResource("StandardMaterial3D_5mipg")
+surface_material_override/0 = ExtResource("4_y3d0c")
 
 [node name="Floor4" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
@@ -73,7 +65,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor4"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = SubResource("StandardMaterial3D_yuk6q")
+surface_material_override/0 = ExtResource("4_y3d0c")
 
 [node name="Tallcacti" parent="." instance=ExtResource("5_t86dw")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.6939, 0.0499992, 7.77957)

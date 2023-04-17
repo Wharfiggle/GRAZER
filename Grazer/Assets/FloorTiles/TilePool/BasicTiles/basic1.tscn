@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bljfem8tm3cxn"]
+[gd_scene load_steps=8 format=3 uid="uid://bljfem8tm3cxn"]
 
-[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_gbb6s"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_mjuoe"]
 [ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/big_stone.tscn" id="2_7fyle"]
 [ext_resource type="PackedScene" uid="uid://cebdnkuyb0ogo" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/ItemSpawner.tscn" id="4_m5b28"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="5_x0ywm"]
@@ -15,10 +15,6 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(4, 3, 5), PackedInt32Arr
 [sub_resource type="BoxMesh" id="2"]
 size = Vector3(16, 0.1, 16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig5f3"]
-albedo_texture = ExtResource("1_gbb6s")
-uv1_scale = Vector3(3.5, 3.5, 3.5)
-
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 
@@ -31,7 +27,7 @@ navigation_mesh = SubResource("NavigationMesh_atots")
 [node name="FloorMesh" type="MeshInstance3D" parent="NavigationRegion3D"]
 mesh = SubResource("2")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_ig5f3")
+surface_material_override/0 = ExtResource("1_mjuoe")
 
 [node name="bigStone" parent="NavigationRegion3D" instance=ExtResource("2_7fyle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89519, 0.05, -3.24152)

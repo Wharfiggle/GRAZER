@@ -1,0 +1,108 @@
+[gd_scene load_steps=14 format=3 uid="uid://cpaf6t6vaqxsr"]
+
+[ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="1_10wjt"]
+[ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="2_u3kxi"]
+[ext_resource type="PackedScene" uid="uid://bxki58hlxhykk" path="res://Assets/FloorTiles/!Prefabs!/Silo.tscn" id="3_l84ix"]
+[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="4_dh2ve"]
+[ext_resource type="PackedScene" uid="uid://rgrgwkufv345" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stonetower_4.tscn" id="5_3lsjn"]
+[ext_resource type="PackedScene" uid="uid://y1vgfwfthfrr" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stonetower_3.tscn" id="6_i30dd"]
+[ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/big_stone.tscn" id="7_labuo"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="8_0bpe5"]
+[ext_resource type="PackedScene" uid="uid://cjoiku0us1i3f" path="res://Assets/FloorTiles/!Prefabs!/Plant/tallcacti.tscn" id="9_oisr3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qh03d"]
+size = Vector3(13.0633, 3.23271, 4.25987)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rbtkm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w53vf"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
+size = Vector3(16, 0.1, 16)
+
+[node name="Level2" type="Node3D"]
+
+[node name="Trigger" parent="." instance=ExtResource("1_10wjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0013, 0.0500011, 2.97342)
+timeDelay = 0.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+transform = Transform3D(0.917685, 0, 0.397308, 0, 1, 0, -0.397308, 0, 0.917685, 0.0049305, 1.62695, 0.0774059)
+shape = SubResource("BoxShape3D_qh03d")
+
+[node name="EnemySpawner" parent="Trigger" instance=ExtResource("2_u3kxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5873, 0, -1.48243)
+timeDelay = 0.2
+
+[node name="EnemySpawner2" parent="Trigger" instance=ExtResource("2_u3kxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.46911, 0, -8.52936)
+numEnemies = 2
+timeDelay = 0.2
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_rbtkm")
+
+[node name="Silo_V2" parent="NavigationRegion3D" instance=ExtResource("3_l84ix")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20.0875, 0.0499992, -11.5815)
+
+[node name="Windmill" parent="NavigationRegion3D" instance=ExtResource("4_dh2ve")]
+transform = Transform3D(1.49994, 0, -0.0139276, 0, 1.5, 0, 0.0139276, 0, 1.49994, 27.0444, 0.0500049, -9.87201)
+
+[node name="stonetower4" parent="NavigationRegion3D" instance=ExtResource("5_3lsjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6892, 0.0499992, -2.90966)
+
+[node name="stonetower3" parent="NavigationRegion3D" instance=ExtResource("6_i30dd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1762, 0.0499992, 1.63635)
+
+[node name="bigStone" parent="NavigationRegion3D" instance=ExtResource("7_labuo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17104, 0.0500011, 4.97049)
+
+[node name="Floors" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = ExtResource("8_0bpe5")
+
+[node name="Floor2" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor2"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor2"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = ExtResource("8_0bpe5")
+
+[node name="Floor3" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor3"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor3"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = ExtResource("8_0bpe5")
+
+[node name="Floor4" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor4"]
+shape = SubResource("BoxShape3D_w53vf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor4"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = ExtResource("8_0bpe5")
+
+[node name="Tallcacti" parent="NavigationRegion3D" instance=ExtResource("9_oisr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5755, 0.0500002, 2.02643)

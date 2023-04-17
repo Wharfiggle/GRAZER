@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvt8hrf7qbibu"]
+[gd_scene load_steps=6 format=3 uid="uid://cfcpnnxfcf5c"]
 
-[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="1_23art"]
-[ext_resource type="PackedScene" uid="uid://ccnx64oa6vbqv" path="res://Assets/FloorTiles/!Prefabs!/cliffStraightV2.tscn" id="3_e2igm"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_88ssp"]
+[ext_resource type="PackedScene" uid="uid://ccnx64oa6vbqv" path="res://Assets/FloorTiles/!Prefabs!/cliffStraightV2_USE.tscn" id="3_e2igm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_v867l"]
 vertices = PackedVector3Array(0.239179, 0.6616, 15.25, 0.239179, 0.6616, 16, 2.73918, 0.6616, 16.25, 2.73918, 0.6616, 16.25, 2.98918, 0.6616, 16.75, 5.48918, 0.6616, 16.75, 2.73918, 0.6616, 16.25, 5.48918, 0.6616, 16.75, 6.98918, 0.9116, 16, 0.489179, 0.4116, 8, 0.239179, 0.6616, 15.25, 3.7342, 0.4116, 13.497, 3.75423, 0.9116, 15.0189, 7.98918, 0.4116, 0.5, 0.489179, 0.4116, 0.5, 0.489179, 0.4116, 8, 13.7392, 0.9116, 16.5, 15.9892, 0.4116, 16, 15.7392, 0.4116, 8.25, 14.4058, 0.4116, 13.75, 15.7392, 0.4116, 8.25, 15.7392, 0.4116, 0.5, 7.98918, 0.4116, 0.5, 0.489179, 0.4116, 8, 6.98918, 0.9116, 16, 13.7392, 0.9116, 16.5, 14.4058, 0.4116, 13.75, 8.24488, 0.4116, 13.5123, 8.48918, -8.5884, 15.25, 5.98918, -8.5884, 15, 8.73918, -8.3384, 16, 8.73918, -8.5884, 14.75, 8.48918, -8.5884, 15.25, 8.73918, -8.3384, 16, 11.7392, -8.3384, 15.25, 11.7392, -8.3384, 14.75, 10.7392, -8.0884, 14.75, 2.23918, -13.3384, 18.75, 0.989179, -13.3384, 17.5, 0.239179, -13.3384, 17.5, 0.239179, -13.3384, 24, 7.98918, -13.3384, 30.5, 15.7392, -13.3384, 30.5, 15.7392, -13.3384, 24, 4.23918, -13.3384, 19.25, 2.23918, -13.3384, 18.75, 0.239179, -13.3384, 24, 0.239179, -13.3384, 24, 0.239179, -13.3384, 30.5, 7.98918, -13.3384, 30.5, 15.7392, -13.3384, 24, 15.7392, -13.3384, 17.75, 4.23918, -13.3384, 19.25)
@@ -12,10 +12,6 @@ size = Vector3(16, 0.1, 16)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
 size = Vector3(16, 0.1, 16)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mipg"]
-albedo_texture = ExtResource("1_23art")
-uv1_scale = Vector3(4, 4, 4)
 
 [node name="Level" type="Node3D"]
 
@@ -34,7 +30,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor3"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = SubResource("StandardMaterial3D_5mipg")
+surface_material_override/0 = ExtResource("1_88ssp")
 
 [node name="cliffStraightV4" parent="NavigationRegion3D" instance=ExtResource("3_e2igm")]
 transform = Transform3D(1, 0, 0, 0, 0.867256, 0, 0, 0, 1, 8.00132, -13.947, 23.0179)
