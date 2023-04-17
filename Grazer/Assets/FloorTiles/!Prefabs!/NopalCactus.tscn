@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cih4flvhms0p4"]
 
 [ext_resource type="PackedScene" uid="uid://dyxicxdyjmqbw" path="res://Assets/Models/old/Cacti/Nopal.fbx" id="1_62kd7"]
-
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h8kfq"]
 size = Vector3(1, 3, 2)
