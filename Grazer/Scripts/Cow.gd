@@ -371,6 +371,7 @@ func _physics_process(delta):
 				stopDragging(i)
 		herd.removeCow(self)
 		queue_free()
+		SceneCounter.cows -= 1
 	totalVelocity.y = tVelocity.y
 	
 	if(shuffleTimeCounter < 0.01 && shuffleTimeCounter > -0.01):

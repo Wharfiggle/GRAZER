@@ -19,7 +19,7 @@ var waited = false
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 #	pass
-	
+
 func _physics_process(delta):
 	if(!waited):
 		levelScript = get_node("/root/Level")
@@ -34,8 +34,10 @@ func _physics_process(delta):
 		meshMat1.albedo_texture = item.icon
 		meshMat2.albedo_texture = item.icon
 		meshMat3.albedo_texture = item.icon
+		get_child(0).visible = true
+		get_child(1).visible = true
 		waited = true
-		
+	
 	time += delta
 	position.y = sin(time * bobSpeed) * bobStrength
 	rotation.y += spinSpeed * delta

@@ -54,17 +54,19 @@ albedo_texture = ExtResource("2_ol5mp")
 transform = Transform3D(1.41421, -0.366025, 1.36603, 0, 1.93185, 0.517638, -1.41421, -0.366025, 1.36603, 0, 0, 0)
 script = ExtResource("1_vqyld")
 randomItem = 2
-elixirVsUpgradeChance = 1.0
+elixirVsUpgradeChance = 0.8
 spinSpeed = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_36c62")
 material_overlay = SubResource("StandardMaterial3D_141s1")
 mesh = SubResource("QuadMesh_fijkr")
 
 [node name="ShadowCaster" type="MeshInstance3D" parent="."]
 transform = Transform3D(-8.9407e-08, 0, 1, -7.45058e-09, 1, -1.49012e-08, -1, 5.96046e-08, -5.96046e-08, 0, 0.75, 5.96046e-08)
+visible = false
 material_override = SubResource("StandardMaterial3D_arqog")
 cast_shadow = 3
 mesh = SubResource("QuadMesh_08leh")

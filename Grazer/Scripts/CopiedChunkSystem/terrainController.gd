@@ -61,6 +61,7 @@ func spawnMarauder(gunman:bool):
 	else:
 		enemy = gunmanPrefab.instantiate()
 	SceneCounter.marauders += 1
+	get_node(NodePath("/root/Level")).add_child(enemy)
 	var horOrVert = randi_range(0, 1)
 	var topOrBot = randi_range(0, 1)
 	if(topOrBot == 0): topOrBot = -1
