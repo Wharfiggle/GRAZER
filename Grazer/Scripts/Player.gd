@@ -9,7 +9,8 @@ var shootTime = revolverShootTime
 var shootTimer = 0.0
 @export var shootBufferTime = 0.1
 var shootBufferTimer = 0.0
-@onready var HealthBar = $"../GameUI"
+@onready var MainHud = $"../GameUI"
+
 @onready var knockbox = $knockbox
 var maxHitpoints = 20.0
 var hitpoints = maxHitpoints
@@ -103,6 +104,7 @@ var rng = RandomNumberGenerator.new()
 var swapInputFrames = 5
 var swapInputFrameCounter = 0
 var active = true
+var maxAmmo = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -122,6 +124,8 @@ func _ready():
 	gunStats[4] = shotgunDamage
 	gunStats[5] = shotgunReloadTime
 	
+	
+	MainHud._ammo_update_(revolverClip)
 	#HealthBar._on_max_health_update_(10)
 
 	#var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
@@ -170,9 +174,15 @@ func _process(delta):
 	if(onRevolver):
 		equippedClip = revolverClip
 		equippedClipSize = revolverClipSize
+		
 	else:
 		equippedClip = shotgunClip
 		equippedClipSize = shotgunClipSize
+		
+		
+	
+	
+	
 	
 	if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize):
 		startReload()
@@ -194,6 +204,8 @@ func _process(delta):
 	#shoot gun input buffer
 	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0):
 		shootBufferTimer = shootBufferTime
+		
+		
 	
 
 	
@@ -224,6 +236,8 @@ func _process(delta):
 		#Shooting the revolver
 		if(onRevolver):
 			revolverClip -= 1
+			if (revolverClip>0):
+				MainHud._ammo_remove_()
 			var b = bullet.instantiate()
 			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), revolverRange, revolverDamage * critMult)
 			camera.add_trauma(0.15)
@@ -343,8 +357,12 @@ func finishReloading():
 	idleTime = 0
 	if(onRevolver):
 		revolverClip = revolverClipSize
+		MainHud._ammo_update_(revolverClip)
+		
 	else:
 		shotgunClip = shotgunClipSize
+		MainHud._ammo_update_(shotgunClip)
+		
 
 func _physics_process(delta):
 	#swap weapon
@@ -513,6 +531,8 @@ func updateGunStats():
 	shotgunClip = gunStats[3]
 	shotgunDamage = gunStats[4]
 	shotgunReloadTime = gunStats[5]
+	
+	
 
 func setWeaponAndHands(revolver:bool, right:bool):
 	if(revolver != onRevolver || right != rightHand):
@@ -569,7 +589,7 @@ func damage_taken(damage:float, from:String, bullet:Node) -> bool:
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.25)
 		hitpoints -= damage
-		HealthBar._on_health_update_(hitpoints / maxHitpoints)
+		MainHud._on_health_update_(hitpoints / maxHitpoints)
 		healthCounter.updateHealth(hitpoints)
 		if hitpoints <= 0 and !invincible:
 			die()

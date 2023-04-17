@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk4jb1s652hxe"]
+
+[ext_resource type="Texture2D" uid="uid://b0bpngunh4hbe" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/bullet.png" id="1_3vf8r"]
+
+[node name="ammo1" type="TextureRect"]
+texture = ExtResource("1_3vf8r")
+stretch_mode = 3
