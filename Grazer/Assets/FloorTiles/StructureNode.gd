@@ -71,6 +71,7 @@ func _process(_delta):
 		var chunk = ResourceLoader.load_threaded_get(pathname)
 		await get_tree().process_frame
 		instance = chunk.instantiate()
+		SceneCounter.structureScenes += 1
 		add_child(instance)
 		scene = instance
 		loading = false
@@ -86,26 +87,9 @@ func _process(_delta):
 	#Unloads scene when player is far away enough
 	elif(distance > (renderRange + 1) * tileWidth and scene != null):
 		scene.queue_free()
+		SceneCounter.structureScenes -= 1
 		scene = null
 		loaded = false
-
-#Returns the path, width, and depth of structure with the id passed in
-#static func retrieveStructureInfo(id):
-#	var sPathname = ""
-#	var sWidth = 0
-#	var sDepth = 0
-#
-#	match[id]:
-#		[1]: #Checkpoint
-#			sPathname = "res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn"
-#			sWidth = 3
-#			sDepth = 4
-#		[2]:
-#			sPathname = "res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn"
-#			sWidth = 2
-#			sDepth = 1
-#
-#	return [sPathname, sWidth, sDepth]
 
 func activateSpawners():
 	#loop through children and find all the spawners

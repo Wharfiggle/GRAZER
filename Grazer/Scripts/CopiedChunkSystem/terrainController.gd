@@ -49,6 +49,7 @@ func _ready():
 
 func spawnMarauder(gunman:bool):
 	#screen height and width in units, 15.0 = camera.size()
+
 	var camSize = 15.0
 	if(camera != null):
 		camSize = camera.size
@@ -59,6 +60,7 @@ func spawnMarauder(gunman:bool):
 		enemy = thiefPrefab.instantiate()
 	else:
 		enemy = gunmanPrefab.instantiate()
+	SceneCounter.marauders += 1
 	var horOrVert = randi_range(0, 1)
 	var topOrBot = randi_range(0, 1)
 	if(topOrBot == 0): topOrBot = -1
@@ -128,6 +130,7 @@ func loadChunk():
 			#this if statement makes sure that only the coords that are not already active are loaded
 			if activeCoord.find(chunkCoords) == -1:
 				var chunk = chunkNode.instantiate()
+				SceneCounter.chunkNodes += 1
 				chunk.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab])
 				chunk.transform.origin = chunkCoords * tileWidth
 				activeChunks.append(chunk)
@@ -271,6 +274,7 @@ func addStructure(id, chunkCoords):
 	#Places structure node in correct place on map
 	
 	var instance = structureNode.instantiate()
+	SceneCounter.structureNodes += 1
 	instance.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab])
 	get_node(NodePath("/root/Level/AllTerrain")).add_child(instance)
 	instance.position = chunkCoords * tileWidth

@@ -48,3 +48,4 @@ func _on_body_entered(body):
 		else:
 			item.use(true)
 		queue_free()
+		SceneCounter.items -= 1

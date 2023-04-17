@@ -103,6 +103,7 @@ func _ready():
 			if(tries == 100):
 				print("couldn't find valid location for enemy to spawn in, deleting")
 				queue_free()
+				SceneCounter.marauders -= 1
 		else:
 			validLoc = true
 			position.y = 0
@@ -191,7 +192,9 @@ func _physics_process(delta):
 		if(draggedCow != null):
 			herd.removeCow(draggedCow)
 			draggedCow.queue_free()
+			SceneCounter.cows -= 1
 		queue_free()
+		SceneCounter.marauders -= 1
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
@@ -454,6 +457,7 @@ func hibernate():
 	#Despawn distance
 	if(position.distance_to(player.position) > 200):
 		queue_free()
+		SceneCounter.marauders -= 1
 	#Wake up distance
 	if(position.distance_to(player.position) < wakeUpDistance):
 		currentMode = behaviors.circle
@@ -523,7 +527,12 @@ func damage_taken(damage:float, from:String, bullet:Node = null) -> bool:
 			if(draggedCow != null):
 				draggedCow.stopDragging(self)
 			queue_free()
-			#print("dead")
+			
+			#Changing the health to -100000 is to prevent the counter being
+			#changed multiple times because of the shotgun bullets.
+			health = -100000
+			if(health > -100000):
+				SceneCounter.marauders -= 1
 		return true
 	else:
 		return false

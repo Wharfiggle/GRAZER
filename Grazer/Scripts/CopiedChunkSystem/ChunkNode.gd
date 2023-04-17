@@ -81,6 +81,7 @@ func _process(_delta):
 			var chunk = ResourceLoader.load(chunkData[0],"",1)
 			await get_tree().process_frame
 			instance = chunk.instantiate()
+			SceneCounter.chunkScenes += 1
 			add_child(instance)
 			#Spawn everything in the chunk
 			if(!loadedBefore):
@@ -99,6 +100,9 @@ func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
 func save():
 	WorldSave.saveChunk(chunkCoords, chunkData)
 	queue_free()
+	SceneCounter.chunkNodes -= 1
+	if(chunkData[0] != ""):
+		SceneCounter.chunkScenes -= 1
 
 
 #custom function for choosing a chunk from our library based on the coordinates

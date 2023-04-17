@@ -17,6 +17,7 @@ func spawn(inChanceMod:float, _inPrefabs:Array):
 	var rn = rng.randf()
 	if(rn <= spawnChance * inChanceMod):
 		var instance = itemDrop.instantiate()
+		SceneCounter.items += 1
 		instance.randomItem = randomItem
 		instance.elixirVsUpgradeChance = elixirVsUpgradeChance
 		instance.itemID = itemID

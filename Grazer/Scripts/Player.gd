@@ -129,6 +129,9 @@ func _ready():
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(Input.is_action_just_pressed("printSceneCounter")):
+		SceneCounter.printCounters()
+	
 	if(herd == null):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
