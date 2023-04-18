@@ -34,7 +34,7 @@ var currentReloadTime = 0
 var revolverClip = 6
 var shotgunClip = 2
 var idleTime = 0
-var autoReloadEnabled = true
+var autoReloadEnabled = false
 var autoReloadTime = 5
 var reloading = false
 var invincible = false
@@ -48,14 +48,17 @@ var invincible = false
 @export var shotgunReloadTime = 1.0
 @export var shotgunClipSize = 2
 
+var potions = null
+var inventory = [0, 0, 0, 0, 0, 0]
 @export var potionTime = 30.0
 var potionTimer = 0.0
-var potion
+var potionUsed
 var lifeLeach = 0.0
 var potionSpeedup = 1.0
 var alwaysCrit = false
 var critChance = 0.1
 var dauntless = false
+var bulletstorm = false
 
 @export var hitColor:Color
 @onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/Pants")).get_material_override()
@@ -143,7 +146,16 @@ func _ready():
 func _process(delta):
 	if(Input.is_action_just_pressed("printSceneCounter")):
 		SceneCounter.printCounters()
-		
+	
+	#set up list of potions, only happens once after level is done initializing
+	if(potions == null):
+		var level = get_node(NodePath("/root/Level"))
+		if(level != null):
+			potions = []
+			for i in 6:
+				potions.append(level.getPotion(6 + i))
+	
+	#restart level
 	if(Input.is_action_just_pressed("restart")):
 		WorldSave.reset()
 		get_tree().change_scene_to_file("res://Levels/Level.tscn")
@@ -177,8 +189,8 @@ func _process(delta):
 		potionTimer -= delta
 		if(potionTimer < 0):
 			potionTimer = 0
-			potion.use(false)
-			potion = null
+			potionUsed.use(false)
+			potionUsed = null
 	
 	#Temp var to allow easier comparisions
 	var equippedClip
@@ -186,14 +198,9 @@ func _process(delta):
 	if(onRevolver):
 		equippedClip = revolverClip
 		equippedClipSize = revolverClipSize
-		
 	else:
 		equippedClip = shotgunClip
 		equippedClipSize = shotgunClipSize
-		
-		
-	
-	
 	
 	
 	if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize):
@@ -216,10 +223,7 @@ func _process(delta):
 	#shoot gun input buffer
 	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0):
 		shootBufferTimer = shootBufferTime
-		
-		
 	
-
 	
 	if(equippedClip <= 0 and !reloading):
 		startReload()
@@ -280,6 +284,8 @@ func _process(delta):
 				boomSound.stream = revolverCritSound
 				boomSound.play()
 		shootTimer = shootTime
+		if(bulletstorm):
+			shootTimer = 0.001
 		lineSightTimer = lineSightTime
 	
 	#setting sound 
@@ -312,20 +318,21 @@ func _process(delta):
 	elif(toAdd.length() > 0 && active):
 		toAdd = toAdd.normalized()
 		worldCursor.visible = true
-	#adjust walking animation speed to match speed
-	movementBlend = lerpf(movementBlend, toAdd.length(), 0.1)
-	animation.set("parameters/idleWalk/blend_amount", movementBlend)
-	if(toAdd != Vector3.ZERO):
-		moveDir = atan2(toAdd.x, toAdd.z)
-#	else:
-#		animation.set("parameters/idleWalk/blend_amount", 0.0)
-	#rotate towards where player is moving
+	
 	if(active):
+		#adjust walking animation speed to match speed
+		movementBlend = lerpf(movementBlend, toAdd.length(), 0.1)
+		animation.set("parameters/idleWalk/blend_amount", movementBlend)
+		if(toAdd != Vector3.ZERO):
+			moveDir = atan2(toAdd.x, toAdd.z)
+		
+		#rotate towards where player is moving
 		rotation.y = lerp_angle(
 			rotation.y,
 			moveDir,
 			0.1)
 		worldCursor.set_global_rotation(Vector3(worldCursor.rotation.x, PI / 4.0, worldCursor.rotation.z))
+	
 	lineSightNode.global_position = shootingPoint.global_position
 	lineSightNode.global_rotation = Vector3(0, aimDir, 0)
 	
@@ -355,6 +362,13 @@ func _process(delta):
 	if(Input.is_action_just_pressed("Follow Wait") && active):
 		herd.toggleFollow()
 
+func usePotion(ind:int):
+	if(inventory[ind] > 0):
+		potions[ind].use()
+		inventory[ind] -= 1
+		potionTimer = potionTime
+		potionUsed = potions[ind]
+
 func startReload():
 	print("Reloading")
 	reloading = true
@@ -362,6 +376,8 @@ func startReload():
 		currentReloadTime = revolverReloadTime
 	else:
 		currentReloadTime = shotgunReloadTime
+	if(bulletstorm):
+		currentReloadTime = 0.001
 	idleTime = 0
 
 func finishReloading():
@@ -371,7 +387,6 @@ func finishReloading():
 	if(onRevolver):
 		revolverClip = revolverClipSize
 		MainHud._ammo_update_(revolverClip)
-		
 	else:
 		shotgunClip = shotgunClipSize
 		MainHud._ammo_update_(shotgunClip)
@@ -418,7 +433,6 @@ func _physics_process(delta):
 			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
 			worldCursor.visible = false
 		elif(leftStick.length() > 0.3):
-			print("asdasdasd")
 			aimDir = -atan2(leftStick.z, leftStick.x) - PI * 5.0 / 4.0
 			worldCursor.visible = false
 		#get aimDir based on mouse movement

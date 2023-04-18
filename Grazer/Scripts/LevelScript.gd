@@ -82,7 +82,7 @@ class Item:
 				description = "Upgraded Shotgun Damage to Level: " + str(wepLevel)
 			elif(id == 5):
 				description = "Upgraded Shotgun Reload to Level: " + str(wepLevel)
-	func use(useOrUndo:bool):
+	func use(useOrUndo:bool = true):
 		var undoMod = 1
 		if(!useOrUndo): undoMod = -1
 		if(id >= 0 && id <= 5):
@@ -94,7 +94,7 @@ class Item:
 			if(player.hitpoints > player.maxHitpoints):
 				player.hitpoints = player.maxHitpoints
 		elif(id == 7): #bulletstorm
-			player.infiniteAmmo = useOrUndo
+			player.bulletstorm = useOrUndo
 		elif(id == 8): #life leach
 			player.lifeLeach += 0.1 * undoMod
 		elif(id == 9): #dustkicker
