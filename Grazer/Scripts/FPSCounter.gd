@@ -1,3 +1,4 @@
+#Elijah Southman
 extends Label
 
 func _ready():

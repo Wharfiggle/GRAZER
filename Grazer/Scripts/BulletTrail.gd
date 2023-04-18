@@ -1,4 +1,4 @@
-class_name BulletGlow
+#Elijah Southman
 extends ImmediateMesh
 
 func updateTrail(points:Array):

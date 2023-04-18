@@ -1,3 +1,4 @@
+#Elijah Southman
 extends Node3D
 
 var itemDrop = preload("res://Prefabs/ItemDrop.tscn")

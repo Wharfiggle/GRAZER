@@ -1,3 +1,5 @@
+#Elijah Southman
+
 extends Camera3D
 
 # Declare member variables here.

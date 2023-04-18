@@ -89,11 +89,10 @@ offset_bottom = 26.0001
 [node name="Health Counter" parent="." instance=ExtResource("3_8ivn4")]
 offset_right = 70.0
 
-[node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
-z_index = 100
-
 [node name="GameUI" parent="." instance=ExtResource("12_3pmhn")]
+process_mode = 3
 z_index = 25
+mouse_filter = 1
 
 [node name="PostProcessing" type="Sprite2D" parent="."]
 visible = false
@@ -152,5 +151,7 @@ color = Color(1, 0.478431, 0.0196078, 0.196078)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("16_leqkn")
+
+[node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
 
 [connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]

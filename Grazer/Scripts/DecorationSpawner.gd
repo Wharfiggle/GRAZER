@@ -1,3 +1,4 @@
+#Elijah Southman
 extends Node3D
 @export var paths = []
 var rng = RandomNumberGenerator.new()

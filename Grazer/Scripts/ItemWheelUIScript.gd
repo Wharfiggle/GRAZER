@@ -1,7 +1,16 @@
+#Elijah Southman
+
 extends Control
 
-var inventory = []
-@export var maxInventory = 6
+#NOTE: 
+#For some reason Godot hates this object being a prefab,
+#and if you edit it at all it won't work anymore.
+#If you edit the prefab and it stops working,
+#delete it from Level, then copy paste the root node
+#from the ItemWheelUI prefab back into Level.
+#It will just arbitrarily work again.
+
+@onready var player = get_node(NodePath("/root/Level/Player"))
 @onready var cells = [
 	$Cell1,
 	$Cell2,
@@ -13,21 +22,15 @@ var inventory = []
 var highlight = [0, 0, 0, 0, 0, 0]
 var selected = -1
 @onready var origTransparency = cells[0].modulate.a
-@onready var origScale = cells[0].size.x
-var wheelRadius = 80
+@onready var origScale = cells[0].scale.x
+var wheelRadius = 200
+@onready var viewport = get_viewport()
 
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass # Replace with function body.
-
-#needs to be set on a node that always is prossessing
 func pause ():
-	#checking if the game is paused or not
 	if (!get_tree().paused):
-		#pauses all the nodes thats prossessing is set to inharent
+		#pauses all the nodes thats processing is set to inherent
 		get_tree().paused = true
 	elif(get_tree().paused):
-		#unpauses all the nodes thats prossessing is set to inharent
 		get_tree().paused = false
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,23 +38,21 @@ func _process(_delta):
 	if(Input.is_action_just_pressed("ItemWheel")):
 		#checking if inventory is open or not
 		if(!visible):
-			#makes the menu visable
 			visible = true
-			pause()
-			#makes the mouse appear
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		elif(visible):
-			#makes the menu vanish
-			visible = false
+			viewport.warp_mouse(viewport.get_visible_rect().size / 2)
 			pause()
-			#makes the mouse hide
+		elif(visible):
+			visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			highlight = [0, 0, 0, 0, 0, 0]
 			selected = -1
 			for i in cells.size():
 				cells[i].modulate.a = origTransparency
-				cells[i].size = Vector2(origScale, origScale)
+				cells[i].scale = Vector2(origScale, origScale)
+			pause()
 	if(visible):
+		print(selected)
 		for i in highlight.size():
 			var target = 1.0
 			if(selected != i):
@@ -59,9 +60,10 @@ func _process(_delta):
 			highlight[i] = lerpf(highlight[i], target, 0.1)
 			cells[i].modulate.a = origTransparency + (1 - origTransparency) * highlight[i]
 			var newScale = origScale + (1 - origScale) * highlight[i]
-			cells[i].size = Vector2(newScale, newScale)
+			cells[i].scale = Vector2(newScale, newScale)
 			
-		var mousePos = get_viewport().get_mouse_position()
+		var mousePos = viewport.get_mouse_position()
+		mousePos -= viewport.get_visible_rect().size / 2
 		if(mousePos.length() > wheelRadius):
 			selected = -1
 

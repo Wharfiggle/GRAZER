@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://i3q5n1j7uql6"]
+[gd_scene load_steps=11 format=3 uid="uid://i3q5n1j7uql6"]
 
 [ext_resource type="Script" path="res://Scripts/ItemWheelUIScript.gd" id="1_f6dx6"]
 [ext_resource type="Texture2D" uid="uid://1mdmi31fa1sd" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/howWheelShadow.png" id="2_er5ar"]
@@ -17,8 +17,6 @@ gradient = SubResource("Gradient_a2ki7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_movu0"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_jgnme"]
 font = ExtResource("6_0fd67")
 font_size = 36
@@ -34,6 +32,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.75, 0.75)
+mouse_filter = 1
 script = ExtResource("1_f6dx6")
 
 [node name="BrownGradient" type="TextureRect" parent="."]
@@ -51,7 +50,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 pivot_offset = Vector2(225, 225)
-mouse_filter = 2
 texture = ExtResource("2_er5ar")
 expand_mode = 1
 
@@ -69,7 +67,6 @@ offset_right = 855.0
 offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 texture = SubResource("GradientTexture2D_fv0op")
 
 [node name="Cell1" type="TextureButton" parent="."]
@@ -92,7 +89,6 @@ scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(102, 265)
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_tvxu0")
-texture_hover = SubResource("NoiseTexture2D_movu0")
 texture_click_mask = ExtResource("4_2o7ja")
 
 [node name="elixir" type="TextureRect" parent="Cell1"]
@@ -139,7 +135,7 @@ offset_top = 180.0
 offset_right = 124.0
 offset_bottom = 224.0
 pivot_offset = Vector2(22, 22)
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -209,7 +205,7 @@ offset_right = 124.0
 offset_bottom = 224.0
 rotation = -1.0472
 pivot_offset = Vector2(22, 22)
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -279,7 +275,7 @@ offset_right = 124.0
 offset_bottom = 224.0
 rotation = -2.0944
 pivot_offset = Vector2(22, 22)
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -349,7 +345,7 @@ offset_right = 124.0
 offset_bottom = 224.0
 rotation = 3.14159
 pivot_offset = Vector2(22, 22)
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -419,7 +415,7 @@ offset_right = 124.0
 offset_bottom = 224.0
 rotation = 2.0944
 pivot_offset = Vector2(22, 22)
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -489,7 +485,7 @@ offset_right = 124.0
 offset_bottom = 224.0
 rotation = 1.0472
 pivot_offset = Vector2(22, 22)
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
 vertical_alignment = 2

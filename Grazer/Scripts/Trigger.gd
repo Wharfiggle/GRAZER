@@ -6,6 +6,8 @@ var spawners
 var timer = -1.0
 var spawnerInd = 0
 var chanceMod = 0
+#Elijah Southman
+
 var prefabs = []
 
 # Called when the node enters the scene tree for the first time.
