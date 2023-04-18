@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0wrupasa0db7"]
+
+[ext_resource type="PackedScene" uid="uid://djx7opmil0ji4" path="res://Assets/Models/Rocks FINAL/stone10/stone10.fbx" id="1_shutu"]
+[ext_resource type="Texture2D" uid="uid://d2wbupq8qtje8" path="res://Assets/Models/Rocks FINAL/stone10/stone10_Material_BaseColor.png" id="2_gcb83"]
+[ext_resource type="Texture2D" uid="uid://dstwcj2cxp6oa" path="res://Assets/Models/Rocks FINAL/stone10/stone10_Material_Metallic.png" id="3_gbxbm"]
+[ext_resource type="Texture2D" uid="uid://cs1w5joiuaawf" path="res://Assets/Models/Rocks FINAL/stone10/stone10_Material_Normal.png" id="4_b5jln"]
+[ext_resource type="Texture2D" uid="uid://c6cmo71jmv4gy" path="res://Assets/Models/Rocks FINAL/stone10/stone10_Material_Roughness.png" id="5_xcnkp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6e8eu"]
+albedo_texture = ExtResource("2_gcb83")
+metallic = 1.0
+metallic_texture = ExtResource("3_gbxbm")
+roughness_texture = ExtResource("5_xcnkp")
+normal_enabled = true
+normal_texture = ExtResource("4_b5jln")
+
+[node name="stone10" instance=ExtResource("1_shutu")]
+
+[node name="stoneD" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6e8eu")

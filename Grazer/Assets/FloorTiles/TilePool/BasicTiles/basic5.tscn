@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxuba337abui1"]
+[gd_scene load_steps=9 format=3 uid="uid://xqocipnnhq7"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_fehf1"]
 [ext_resource type="PackedScene" uid="uid://b4ehi2slultkr" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="3_6d5np"]
 [ext_resource type="PackedScene" uid="uid://bu2brunjq1plk" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="3_ivs2i"]
 [ext_resource type="PackedScene" uid="uid://drpymt3uxjd6y" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="4_4epyv"]
-[ext_resource type="PackedScene" uid="uid://badsogtm40lc4" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11.tscn" id="5_or7fd"]
+[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="5_or7fd"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
