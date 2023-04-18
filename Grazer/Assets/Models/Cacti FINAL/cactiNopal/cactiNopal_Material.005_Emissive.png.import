@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4pgik73a23fo"
-path="res://.godot/imported/cacti1_Material.001_Emissive.png-3b2b88bd3d934dd7c42f68057c91b224.ctex"
+uid="uid://bmk6bikw4ux7u"
+path="res://.godot/imported/cactiNopal_Material.005_Emissive.png-04062c48826d02fc3f6197ffd240dcee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Emissive.png"
-dest_files=["res://.godot/imported/cacti1_Material.001_Emissive.png-3b2b88bd3d934dd7c42f68057c91b224.ctex"]
+source_file="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.005_Emissive.png"
+dest_files=["res://.godot/imported/cactiNopal_Material.005_Emissive.png-04062c48826d02fc3f6197ffd240dcee.ctex"]
 
 [params]
 

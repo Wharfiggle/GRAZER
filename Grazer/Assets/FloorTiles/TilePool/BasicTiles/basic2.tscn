@@ -12,7 +12,7 @@ polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Arr
 [sub_resource type="BoxMesh" id="2"]
 size = Vector3(16, 0.1, 16)
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[node name="StaticBody3D2" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

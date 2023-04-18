@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cprlltx8rcmfp"
-path.s3tc="res://.godot/imported/cacti1_Material.002_Roughness.png-7801957f60726389a246649ebd0cf587.s3tc.ctex"
+uid="uid://bly1wnslm0vqo"
+path.s3tc="res://.godot/imported/stone12_Material.001_Normal.png-87e1d8704b63396df91ac8b0c763bc15.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/Cacti FINAL/cacti1_Material.002_Roughness.png"
-dest_files=["res://.godot/imported/cacti1_Material.002_Roughness.png-7801957f60726389a246649ebd0cf587.s3tc.ctex"]
+source_file="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Normal.png"
+dest_files=["res://.godot/imported/stone12_Material.001_Normal.png-87e1d8704b63396df91ac8b0c763bc15.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bxki58hlxhykk" path="res://Assets/FloorTiles/!Prefabs!/Silo.tscn" id="4_d7k3w"]
 [ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="5_50vup"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="6_tss42"]
-[ext_resource type="PackedScene" uid="uid://bh7jdx2kii5ey" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="7_al1ra"]
+[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="7_al1ra"]
 [ext_resource type="PackedScene" uid="uid://cebdnkuyb0ogo" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/ItemSpawner.tscn" id="7_c4uc5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3p0j7"]

@@ -1,0 +1,639 @@
+[gd_scene load_steps=13 format=3 uid="uid://drpymt3uxjd6y"]
+
+[ext_resource type="PackedScene" uid="uid://c4ap4erh7qs2s" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal.fbx" id="1_tq445"]
+[ext_resource type="Texture2D" uid="uid://ff3pc34n14ux" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.005_BaseColor.png" id="2_16mkc"]
+[ext_resource type="Texture2D" uid="uid://cuo8dky74j4rw" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.005_Metallic.png" id="3_glwdc"]
+[ext_resource type="Texture2D" uid="uid://dto7430w07p88" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.005_Normal.png" id="4_2x6r0"]
+[ext_resource type="Texture2D" uid="uid://de217uln7qho4" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.005_Roughness.png" id="5_vspyk"]
+[ext_resource type="Texture2D" uid="uid://cda61f2n3elf5" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.006_BaseColor.png" id="6_d4hph"]
+[ext_resource type="Texture2D" uid="uid://bjj532abqoict" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.006_Metallic.png" id="7_rn633"]
+[ext_resource type="Texture2D" uid="uid://bj3wdxkr3o2ut" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.006_Normal.png" id="8_y73pr"]
+[ext_resource type="Texture2D" uid="uid://bu1gutyxc4lyx" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.006_Roughness.png" id="9_oc7xn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6ql1"]
+albedo_texture = ExtResource("2_16mkc")
+metallic = 1.0
+metallic_texture = ExtResource("3_glwdc")
+roughness_texture = ExtResource("5_vspyk")
+normal_enabled = true
+normal_texture = ExtResource("4_2x6r0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqjv3"]
+albedo_texture = ExtResource("6_d4hph")
+metallic = 1.0
+metallic_texture = ExtResource("7_rn633")
+roughness_texture = ExtResource("9_oc7xn")
+normal_enabled = true
+normal_texture = ExtResource("8_y73pr")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b5f5a"]
+size = Vector3(0.617835, 1, 1)
+
+[node name="cactiNopal" instance=ExtResource("1_tq445")]
+
+[node name="nopal" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_i6ql1")
+
+[node name="nopal|spike3|Dupli|" parent="RootNode/nopal" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|1" parent="RootNode/nopal" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|2" parent="RootNode/nopal" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|3" parent="RootNode/nopal" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|4" parent="RootNode/nopal" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|5" parent="RootNode/nopal" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|6" parent="RootNode/nopal" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|7" parent="RootNode/nopal" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|8" parent="RootNode/nopal" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|9" parent="RootNode/nopal" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|10" parent="RootNode/nopal" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|11" parent="RootNode/nopal" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|12" parent="RootNode/nopal" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|13" parent="RootNode/nopal" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|14" parent="RootNode/nopal" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|15" parent="RootNode/nopal" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|16" parent="RootNode/nopal" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|17" parent="RootNode/nopal" index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|18" parent="RootNode/nopal" index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|19" parent="RootNode/nopal" index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|20" parent="RootNode/nopal" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|21" parent="RootNode/nopal" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|22" parent="RootNode/nopal" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|23" parent="RootNode/nopal" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|24" parent="RootNode/nopal" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|25" parent="RootNode/nopal" index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|26" parent="RootNode/nopal" index="26"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|27" parent="RootNode/nopal" index="27"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|28" parent="RootNode/nopal" index="28"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|29" parent="RootNode/nopal" index="29"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|30" parent="RootNode/nopal" index="30"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|31" parent="RootNode/nopal" index="31"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|32" parent="RootNode/nopal" index="32"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|33" parent="RootNode/nopal" index="33"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|34" parent="RootNode/nopal" index="34"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|35" parent="RootNode/nopal" index="35"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|36" parent="RootNode/nopal" index="36"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|37" parent="RootNode/nopal" index="37"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|38" parent="RootNode/nopal" index="38"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|39" parent="RootNode/nopal" index="39"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|40" parent="RootNode/nopal" index="40"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|41" parent="RootNode/nopal" index="41"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|42" parent="RootNode/nopal" index="42"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|43" parent="RootNode/nopal" index="43"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|44" parent="RootNode/nopal" index="44"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|45" parent="RootNode/nopal" index="45"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|46" parent="RootNode/nopal" index="46"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|47" parent="RootNode/nopal" index="47"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|48" parent="RootNode/nopal" index="48"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|49" parent="RootNode/nopal" index="49"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|50" parent="RootNode/nopal" index="50"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|51" parent="RootNode/nopal" index="51"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|52" parent="RootNode/nopal" index="52"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|53" parent="RootNode/nopal" index="53"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|54" parent="RootNode/nopal" index="54"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|55" parent="RootNode/nopal" index="55"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|56" parent="RootNode/nopal" index="56"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|57" parent="RootNode/nopal" index="57"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|58" parent="RootNode/nopal" index="58"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|59" parent="RootNode/nopal" index="59"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|60" parent="RootNode/nopal" index="60"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|61" parent="RootNode/nopal" index="61"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|62" parent="RootNode/nopal" index="62"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|63" parent="RootNode/nopal" index="63"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|64" parent="RootNode/nopal" index="64"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|65" parent="RootNode/nopal" index="65"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|66" parent="RootNode/nopal" index="66"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|67" parent="RootNode/nopal" index="67"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|68" parent="RootNode/nopal" index="68"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|69" parent="RootNode/nopal" index="69"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|70" parent="RootNode/nopal" index="70"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|71" parent="RootNode/nopal" index="71"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|72" parent="RootNode/nopal" index="72"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|73" parent="RootNode/nopal" index="73"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|74" parent="RootNode/nopal" index="74"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|75" parent="RootNode/nopal" index="75"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|76" parent="RootNode/nopal" index="76"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|77" parent="RootNode/nopal" index="77"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|78" parent="RootNode/nopal" index="78"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|79" parent="RootNode/nopal" index="79"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|80" parent="RootNode/nopal" index="80"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|81" parent="RootNode/nopal" index="81"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|82" parent="RootNode/nopal" index="82"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|83" parent="RootNode/nopal" index="83"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|84" parent="RootNode/nopal" index="84"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|85" parent="RootNode/nopal" index="85"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|86" parent="RootNode/nopal" index="86"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|87" parent="RootNode/nopal" index="87"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|88" parent="RootNode/nopal" index="88"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|89" parent="RootNode/nopal" index="89"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|90" parent="RootNode/nopal" index="90"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|91" parent="RootNode/nopal" index="91"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|92" parent="RootNode/nopal" index="92"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|93" parent="RootNode/nopal" index="93"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|94" parent="RootNode/nopal" index="94"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|95" parent="RootNode/nopal" index="95"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|96" parent="RootNode/nopal" index="96"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|97" parent="RootNode/nopal" index="97"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|98" parent="RootNode/nopal" index="98"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|99" parent="RootNode/nopal" index="99"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|100" parent="RootNode/nopal" index="100"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|101" parent="RootNode/nopal" index="101"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|102" parent="RootNode/nopal" index="102"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|103" parent="RootNode/nopal" index="103"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|104" parent="RootNode/nopal" index="104"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|105" parent="RootNode/nopal" index="105"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|106" parent="RootNode/nopal" index="106"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|107" parent="RootNode/nopal" index="107"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|108" parent="RootNode/nopal" index="108"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|109" parent="RootNode/nopal" index="109"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|110" parent="RootNode/nopal" index="110"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|111" parent="RootNode/nopal" index="111"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|112" parent="RootNode/nopal" index="112"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|113" parent="RootNode/nopal" index="113"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|114" parent="RootNode/nopal" index="114"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|115" parent="RootNode/nopal" index="115"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|116" parent="RootNode/nopal" index="116"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|117" parent="RootNode/nopal" index="117"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|118" parent="RootNode/nopal" index="118"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|119" parent="RootNode/nopal" index="119"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|120" parent="RootNode/nopal" index="120"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|121" parent="RootNode/nopal" index="121"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|122" parent="RootNode/nopal" index="122"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|123" parent="RootNode/nopal" index="123"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|124" parent="RootNode/nopal" index="124"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|125" parent="RootNode/nopal" index="125"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|126" parent="RootNode/nopal" index="126"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|127" parent="RootNode/nopal" index="127"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|128" parent="RootNode/nopal" index="128"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|129" parent="RootNode/nopal" index="129"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|130" parent="RootNode/nopal" index="130"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|131" parent="RootNode/nopal" index="131"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|132" parent="RootNode/nopal" index="132"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|133" parent="RootNode/nopal" index="133"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|134" parent="RootNode/nopal" index="134"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|135" parent="RootNode/nopal" index="135"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|136" parent="RootNode/nopal" index="136"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|137" parent="RootNode/nopal" index="137"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|138" parent="RootNode/nopal" index="138"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|139" parent="RootNode/nopal" index="139"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|140" parent="RootNode/nopal" index="140"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|141" parent="RootNode/nopal" index="141"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|142" parent="RootNode/nopal" index="142"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|143" parent="RootNode/nopal" index="143"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|144" parent="RootNode/nopal" index="144"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|145" parent="RootNode/nopal" index="145"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|146" parent="RootNode/nopal" index="146"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|147" parent="RootNode/nopal" index="147"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|148" parent="RootNode/nopal" index="148"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|149" parent="RootNode/nopal" index="149"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|150" parent="RootNode/nopal" index="150"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|151" parent="RootNode/nopal" index="151"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|152" parent="RootNode/nopal" index="152"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|153" parent="RootNode/nopal" index="153"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|154" parent="RootNode/nopal" index="154"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|155" parent="RootNode/nopal" index="155"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|156" parent="RootNode/nopal" index="156"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|157" parent="RootNode/nopal" index="157"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|158" parent="RootNode/nopal" index="158"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|159" parent="RootNode/nopal" index="159"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|160" parent="RootNode/nopal" index="160"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|161" parent="RootNode/nopal" index="161"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|162" parent="RootNode/nopal" index="162"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|163" parent="RootNode/nopal" index="163"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|164" parent="RootNode/nopal" index="164"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|165" parent="RootNode/nopal" index="165"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|166" parent="RootNode/nopal" index="166"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|167" parent="RootNode/nopal" index="167"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|168" parent="RootNode/nopal" index="168"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|169" parent="RootNode/nopal" index="169"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|170" parent="RootNode/nopal" index="170"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|171" parent="RootNode/nopal" index="171"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|172" parent="RootNode/nopal" index="172"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|173" parent="RootNode/nopal" index="173"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|174" parent="RootNode/nopal" index="174"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|175" parent="RootNode/nopal" index="175"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|176" parent="RootNode/nopal" index="176"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|177" parent="RootNode/nopal" index="177"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|178" parent="RootNode/nopal" index="178"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|179" parent="RootNode/nopal" index="179"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|180" parent="RootNode/nopal" index="180"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|181" parent="RootNode/nopal" index="181"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|182" parent="RootNode/nopal" index="182"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|183" parent="RootNode/nopal" index="183"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|184" parent="RootNode/nopal" index="184"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|185" parent="RootNode/nopal" index="185"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|186" parent="RootNode/nopal" index="186"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|187" parent="RootNode/nopal" index="187"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|188" parent="RootNode/nopal" index="188"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|189" parent="RootNode/nopal" index="189"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|190" parent="RootNode/nopal" index="190"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|191" parent="RootNode/nopal" index="191"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|192" parent="RootNode/nopal" index="192"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|193" parent="RootNode/nopal" index="193"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|194" parent="RootNode/nopal" index="194"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|195" parent="RootNode/nopal" index="195"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|196" parent="RootNode/nopal" index="196"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|197" parent="RootNode/nopal" index="197"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="nopal|spike3|Dupli|198" parent="RootNode/nopal" index="198"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140208, 0.435115, 0)
+shape = SubResource("BoxShape3D_b5f5a")

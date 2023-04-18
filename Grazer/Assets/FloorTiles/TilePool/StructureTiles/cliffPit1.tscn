@@ -23,17 +23,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5.5)
 [node name="cliffStraightV5" parent="NavigationRegion3D" instance=ExtResource("2_pwto1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, -15.95, 8)
 
-[node name="Ledge2" parent="NavigationRegion3D/cliffStraightV5/Ledges" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 8.5, 1.499)
-
 [node name="CollisionShape3D" parent="NavigationRegion3D/cliffStraightV5/Ledges/Ledge2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5.5)
 
 [node name="cliffStraightV6" parent="NavigationRegion3D" instance=ExtResource("2_pwto1")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 8, -15.95, 8)
-
-[node name="Ledge2" parent="NavigationRegion3D/cliffStraightV6/Ledges" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 8.5, 1.499)
 
 [node name="CollisionShape3D" parent="NavigationRegion3D/cliffStraightV6/Ledges/Ledge2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5.5)

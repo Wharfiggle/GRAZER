@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ias3xh5psbhh"
-path.s3tc="res://.godot/imported/cacti1_Material.001_Metallic.png-ddb6f67f79b3d0b50a0698e4d768ec3b.s3tc.ctex"
+uid="uid://b3enotf83macu"
+path.s3tc="res://.godot/imported/cacti1_Material.001_BaseColor.png-d4eedcaf7dafb6ae2ca9a5c8b4e3d8e8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Metallic.png"
-dest_files=["res://.godot/imported/cacti1_Material.001_Metallic.png-ddb6f67f79b3d0b50a0698e4d768ec3b.s3tc.ctex"]
+source_file="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_BaseColor.png"
+dest_files=["res://.godot/imported/cacti1_Material.001_BaseColor.png-d4eedcaf7dafb6ae2ca9a5c8b4e3d8e8.s3tc.ctex"]
 
 [params]
 

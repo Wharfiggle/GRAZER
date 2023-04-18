@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bh7jdx2kii5ey"]
+[gd_scene load_steps=13 format=3]
 
-[ext_resource type="PackedScene" uid="uid://de3y7y07knv8q" path="res://Assets/Models/Cacti FINAL/cacti1.fbx" id="1_cbg7n"]
-[ext_resource type="Texture2D" uid="uid://b3enotf83macu" path="res://Assets/Models/Cacti FINAL/cacti1_Material.001_BaseColor.png" id="2_g1xee"]
-[ext_resource type="Texture2D" uid="uid://ias3xh5psbhh" path="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Metallic.png" id="3_eusr3"]
-[ext_resource type="Texture2D" uid="uid://xlcgh4oy4qpm" path="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Normal.png" id="4_idtlg"]
-[ext_resource type="Texture2D" uid="uid://cv5nyvdgbs8wy" path="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Roughness.png" id="5_3b0yy"]
-[ext_resource type="Texture2D" uid="uid://behi8yclnwww7" path="res://Assets/Models/Cacti FINAL/cacti1_Material.002_BaseColor.png" id="6_nrrrd"]
-[ext_resource type="Texture2D" uid="uid://c6f4ujtsge741" path="res://Assets/Models/Cacti FINAL/cacti1_Material.002_Metallic.png" id="7_d2nbr"]
-[ext_resource type="Texture2D" uid="uid://c1vl4c04pfu4r" path="res://Assets/Models/Cacti FINAL/cacti1_Material.002_Normal.png" id="8_xreyi"]
-[ext_resource type="Texture2D" uid="uid://cprlltx8rcmfp" path="res://Assets/Models/Cacti FINAL/cacti1_Material.002_Roughness.png" id="9_kwgax"]
+[ext_resource type="PackedScene" uid="uid://de3y7y07knv8q" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1.fbx" id="1_cbg7n"]
+[ext_resource type="Texture2D" uid="uid://b3enotf83macu" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_BaseColor.png" id="2_g1xee"]
+[ext_resource type="Texture2D" uid="uid://ias3xh5psbhh" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Metallic.png" id="3_eusr3"]
+[ext_resource type="Texture2D" uid="uid://xlcgh4oy4qpm" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Normal.png" id="4_idtlg"]
+[ext_resource type="Texture2D" uid="uid://cv5nyvdgbs8wy" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Roughness.png" id="5_3b0yy"]
+[ext_resource type="Texture2D" uid="uid://behi8yclnwww7" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_BaseColor.png" id="6_nrrrd"]
+[ext_resource type="Texture2D" uid="uid://c6f4ujtsge741" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Metallic.png" id="7_d2nbr"]
+[ext_resource type="Texture2D" uid="uid://c1vl4c04pfu4r" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Normal.png" id="8_xreyi"]
+[ext_resource type="Texture2D" uid="uid://cprlltx8rcmfp" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Roughness.png" id="9_kwgax"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36h55"]
 albedo_texture = ExtResource("2_g1xee")

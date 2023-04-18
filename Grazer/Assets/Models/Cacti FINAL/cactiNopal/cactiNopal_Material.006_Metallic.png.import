@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xlcgh4oy4qpm"
-path.s3tc="res://.godot/imported/cacti1_Material.001_Normal.png-5fe578370f550b539682c14d673f62fe.s3tc.ctex"
+uid="uid://bjj532abqoict"
+path.s3tc="res://.godot/imported/cactiNopal_Material.006_Metallic.png-ae8e8bb5035bbe795a6c1acfe5ae5556.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Normal.png"
-dest_files=["res://.godot/imported/cacti1_Material.001_Normal.png-5fe578370f550b539682c14d673f62fe.s3tc.ctex"]
+source_file="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.006_Metallic.png"
+dest_files=["res://.godot/imported/cactiNopal_Material.006_Metallic.png-ae8e8bb5035bbe795a6c1acfe5ae5556.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Normal.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

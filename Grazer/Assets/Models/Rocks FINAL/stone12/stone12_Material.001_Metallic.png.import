@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://behi8yclnwww7"
-path.s3tc="res://.godot/imported/cacti1_Material.002_BaseColor.png-a19c6baa32ab5c3f49ea2cfa2fd0096f.s3tc.ctex"
+uid="uid://bxk2ixhb3oi3g"
+path.s3tc="res://.godot/imported/stone12_Material.001_Metallic.png-b4f011a5f7c3c24fad08290ce8fae7e4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/Cacti FINAL/cacti1_Material.002_BaseColor.png"
-dest_files=["res://.godot/imported/cacti1_Material.002_BaseColor.png-a19c6baa32ab5c3f49ea2cfa2fd0096f.s3tc.ctex"]
+source_file="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Metallic.png"
+dest_files=["res://.godot/imported/stone12_Material.001_Metallic.png-b4f011a5f7c3c24fad08290ce8fae7e4.s3tc.ctex"]
 
 [params]
 

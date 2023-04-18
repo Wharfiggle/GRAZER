@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://hblrj652v6u7"]
+
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_qx0tp"]
+[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="2_thmpr"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="NavigationMesh" id="4"]
+vertices = PackedVector3Array(-7.5, 0.45, -4.5, -5.5, 0.45, -4.5, -5.75, 0.45, -5.5, -7.5, 0.45, -7.5, -7.5, 0.45, -4.5, -5.75, 0.45, -5.5, -5, 0.45, -6.25, 1.25, 0.45, -7.5, -3.75, 0.45, -6.25, -3.25, 0.45, -4.75, 0.25, 0.45, 1.25, 1.25, 0.45, 1, -7.5, 0.45, -7.5, -5, 0.45, -6.25, -3.75, 0.45, -6.25, 1.25, 0.45, -7.5, 3, 0.45, 2, 3, 0.45, 2.75, 7.5, 0.45, 2.75, 2.25, 0.45, 1.25, 3, 0.45, 2, 7.5, 0.45, 2.75, 7.5, 0.45, -7.5, 1.25, 0.45, -7.5, 1.25, 0.45, -7.5, 1.25, 0.45, 1, 2.25, 0.45, 1.25, -5, 0.45, -4, -5.5, 0.45, -4.5, -7.5, 0.45, -4.5, -7.5, 0.45, 2.75, 0.25, 0.45, 1.25, -3.25, 0.45, -4.75, -3.75, 0.45, -4, -1, 0.45, 2.75, 0.25, 0.45, 1.25, -3.75, 0.45, -4, -5, 0.45, -4, -7.5, 0.45, 2.75, 0.75, 2.2, 3.5, 1.5, 2.2, 3.5, 1.5, 2.2, 2.5, 0.5, 2.2, 2.5, 1, 0.45, 7.5, 1, 0.45, 4.75, 0, 0.45, 4.75, 1, 0.45, 7.5, 0, 0.45, 4.75, -0.75, 0.45, 4, -7.5, 0.45, 2.75, -7.5, 0.45, 7.5, -0.75, 0.45, 4, -1, 0.45, 2.75, -7.5, 0.45, 2.75, 2, 0.45, 4.75, 1, 0.45, 4.75, 1, 0.45, 7.5, 2.75, 0.45, 4, 2, 0.45, 4.75, 1, 0.45, 7.5, 7.5, 0.45, 7.5, 7.5, 0.45, 2.75, 7.5, 0.45, 2.75, 3, 0.45, 2.75, 2.75, 0.45, 4)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 3), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(18, 17, 16), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(22, 19, 23), PackedInt32Array(26, 25, 24), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(33, 32, 31), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 34), PackedInt32Array(37, 34, 38), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 42), PackedInt32Array(45, 44, 43), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 50), PackedInt32Array(48, 50, 49), PackedInt32Array(53, 52, 51), PackedInt32Array(56, 55, 54), PackedInt32Array(58, 57, 59), PackedInt32Array(59, 57, 60), PackedInt32Array(60, 57, 61), PackedInt32Array(62, 64, 63)]
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(16, 0.1, 16)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("2")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_qx0tp")
+
+[node name="cacti1" parent="NavigationRegion3D" instance=ExtResource("2_thmpr")]
+transform = Transform3D(0.6, 0, 0, 0, 1.15668, 0, 0, 0, 0.6, -4.42891, 0.0499992, -5.15113)
+
+[node name="cacti3" parent="NavigationRegion3D" instance=ExtResource("2_thmpr")]
+transform = Transform3D(1.40878, 0, 0, 0, 1.20044, 0, 0, 0, 1.29125, 1.06255, 0.0500002, 2.93531)
