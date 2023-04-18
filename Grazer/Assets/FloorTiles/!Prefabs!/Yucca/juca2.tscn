@@ -1,0 +1,365 @@
+[gd_scene load_steps=18 format=3 uid="uid://citoc5snwh525"]
+
+[ext_resource type="PackedScene" uid="uid://bk6047bmgxqs2" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2.fbx" id="1_trdfi"]
+[ext_resource type="Texture2D" uid="uid://dgcdgxgtyxpi8" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.010_BaseColor.png" id="2_rd4ms"]
+[ext_resource type="Texture2D" uid="uid://cfxo5i74ovqvw" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_plant1_BaseColor.png" id="3_gjbhs"]
+[ext_resource type="Texture2D" uid="uid://2c6yn5u2rcdd" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.010_Metallic.png" id="3_vr702"]
+[ext_resource type="Texture2D" uid="uid://bipwep2187gex" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.010_Normal.png" id="4_5cwnt"]
+[ext_resource type="Texture2D" uid="uid://crwl6g11y32sy" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_plant1_Metallic.png" id="4_ut8ur"]
+[ext_resource type="Texture2D" uid="uid://cemgsknbm8nhq" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_plant1_Normal.png" id="5_d25a6"]
+[ext_resource type="Texture2D" uid="uid://t0wkkrfot7bu" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.010_Roughness.png" id="5_y4bjg"]
+[ext_resource type="Texture2D" uid="uid://mknu0vfpcmko" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_plant1_Roughness.png" id="6_5eohh"]
+[ext_resource type="Texture2D" uid="uid://dpowgesd8i8e2" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.011_BaseColor.png" id="10_fw5l4"]
+[ext_resource type="Texture2D" uid="uid://dj0ax6ch2ehr3" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.011_Metallic.png" id="11_ehsuv"]
+[ext_resource type="Texture2D" uid="uid://dpa25kvuo0pho" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.011_Normal.png" id="12_es44i"]
+[ext_resource type="Texture2D" uid="uid://dk6nsh0gbnu4u" path="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.011_Roughness.png" id="13_gix72"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwuoy"]
+albedo_texture = ExtResource("2_rd4ms")
+metallic = 1.0
+metallic_texture = ExtResource("3_vr702")
+roughness_texture = ExtResource("5_y4bjg")
+normal_enabled = true
+normal_texture = ExtResource("4_5cwnt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4irg"]
+albedo_texture = ExtResource("3_gjbhs")
+metallic = 1.0
+metallic_texture = ExtResource("4_ut8ur")
+roughness_texture = ExtResource("6_5eohh")
+normal_enabled = true
+normal_texture = ExtResource("5_d25a6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51t7y"]
+albedo_texture = ExtResource("10_fw5l4")
+metallic = 1.0
+metallic_texture = ExtResource("11_ehsuv")
+roughness_texture = ExtResource("13_gix72")
+normal_enabled = true
+normal_texture = ExtResource("12_es44i")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8ylj"]
+size = Vector3(0.579731, 1, 0.822577)
+
+[node name="Juca2" instance=ExtResource("1_trdfi")]
+
+[node name="plant1001" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_uwuoy")
+
+[node name="plant1001|leaf1|Dupli|" parent="RootNode/plant1001" index="0"]
+transform = Transform3D(-0.032987, -0.127906, -0.0160413, -0.00446043, -0.024402, 0.0846797, -0.212103, 0.0204056, 0.000714031, -0.00564393, -0.00908224, 0.0305771)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|1" parent="RootNode/plant1001" index="1"]
+transform = Transform3D(0.0643647, 0.115348, -0.0330369, 0.0673116, -0.0609357, -0.0734549, -0.187923, 0.0176811, -0.0376259, -0.00614441, -0.0139987, 0.0305598)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|2" parent="RootNode/plant1001" index="2"]
+transform = Transform3D(0.00764953, -0.107604, 0.0506719, 0.0760613, 0.0727592, 0.0659673, -0.19751, 0.0238522, 0.0273666, -0.00365891, -0.00942612, 0.0305721)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|3" parent="RootNode/plant1001" index="3"]
+transform = Transform3D(0.0927892, 0.0636899, -0.0672289, 0.0252765, -0.114012, -0.0431817, -0.186014, 0.0162779, -0.0394034, -0.00828565, -0.0135933, 0.0319542)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|4" parent="RootNode/plant1001" index="4"]
+transform = Transform3D(0.0494921, -0.0501182, 0.0783325, 0.0504858, 0.120468, 0.0286181, -0.200173, 0.0179918, 0.0265852, -0.00301672, -0.0107914, 0.0319524)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|5" parent="RootNode/plant1001" index="5"]
+transform = Transform3D(-0.0195893, -0.00217377, -0.0859325, -0.0275147, -0.130531, 0.00243238, -0.211999, 0.0171422, 0.00762473, -0.00927479, -0.0122233, 0.0336625)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|6" parent="RootNode/plant1001" index="6"]
+transform = Transform3D(0.101899, 0.0404206, 0.0729272, 0.00239421, 0.123297, -0.0318583, -0.181984, 0.0242549, 0.0404152, -0.00371278, -0.0133408, 0.033656)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|7" parent="RootNode/plant1001" index="7"]
+transform = Transform3D(0.166144, 0.0582079, 0.00156277, -0.0821704, 0.117684, -0.000969371, -0.00338969, 0.000230913, 0.100097, -0.00740067, -0.0121025, 0.0352551)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|8" parent="RootNode/plant1001" index="8"]
+transform = Transform3D(-0.0345539, -0.114558, 0.0452112, 0.165783, -0.0447737, -0.0290127, 0.0754251, 0.0459305, 0.0844818, -0.00646653, -0.0112424, 0.0352551)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|9" parent="RootNode/plant1001" index="9"]
+transform = Transform3D(0.032612, 0.129709, 0.00475783, -0.11205, 0.0172776, -0.0752661, -0.169813, 0.0135097, 0.0505775, -0.00670524, -0.0144274, 0.034711)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|10" parent="RootNode/plant1001" index="10"]
+transform = Transform3D(-0.0361589, -0.129216, -0.00559309, 0.128991, -0.0213447, 0.0697002, -0.151856, 0.0126371, 0.0605372, -0.00654606, -0.0098657, 0.0341736)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|11" parent="RootNode/plant1001" index="11"]
+transform = Transform3D(0.136393, 0.0352849, 0.0636724, -0.0169032, 0.12559, -0.0268194, -0.148035, 0.0181697, 0.0617275, -0.00429232, -0.0132744, 0.0341698)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|12" parent="RootNode/plant1001" index="12"]
+transform = Transform3D(-0.042071, 0.0967064, -0.0584986, -0.104773, -0.0856654, -0.0511746, -0.173629, 0.0282609, 0.0450548, -0.00813225, -0.0138348, 0.0347116)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|13" parent="RootNode/plant1001" index="13"]
+transform = Transform3D(0.00607679, 0.127745, -0.0221415, -0.118113, -0.0242961, -0.0723032, -0.169095, 0.0215616, 0.0497082, -0.00709929, -0.0143885, 0.0347111)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|14" parent="RootNode/plant1001" index="14"]
+transform = Transform3D(0.0329749, -0.0741859, 0.0714565, 0.0788091, 0.105449, 0.041808, -0.192698, 0.0304316, 0.0293263, -0.00375058, -0.0105176, 0.0330741)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|15" parent="RootNode/plant1001" index="15"]
+transform = Transform3D(0.0263142, 0.127358, 0.0194399, 0.0217183, 0.0281755, -0.0837749, -0.211916, 0.018702, -0.00617183, -0.00546354, -0.0149567, 0.0325005)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|16" parent="RootNode/plant1001" index="16"]
+transform = Transform3D(0.049118, 0.0910194, 0.0594346, 0.00908742, 0.0922161, -0.0618035, -0.207899, 0.025535, 0.0113405, -0.00394129, -0.0141474, 0.0324998)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|17" parent="RootNode/plant1001" index="17"]
+transform = Transform3D(0.0622113, 0.0448329, -0.0779159, -0.0105945, -0.122274, -0.0322094, -0.203329, 0.0200884, -0.0221612, -0.00891411, -0.0132678, 0.0330746)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|18" parent="RootNode/plant1001" index="18"]
+transform = Transform3D(-0.119481, -0.0961753, -0.0267697, 0.122707, -0.0893057, 0.0348685, -0.0859333, 0.00619884, 0.0870104, -0.00760791, -0.0112485, 0.0352774)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf1|Dupli|19" parent="RootNode/plant1001" index="19"]
+transform = Transform3D(0.098046, 0.109941, 0.0190564, -0.14087, 0.0716104, -0.039205, -0.0847022, 0.00816409, 0.087261, -0.00625016, -0.0137936, 0.0352768)
+surface_material_override/0 = SubResource("StandardMaterial3D_b4irg")
+
+[node name="plant1001|leaf2|Dupli|01" parent="RootNode/plant1001" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|11" parent="RootNode/plant1001" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|21" parent="RootNode/plant1001" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|31" parent="RootNode/plant1001" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|41" parent="RootNode/plant1001" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|51" parent="RootNode/plant1001" index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|61" parent="RootNode/plant1001" index="26"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|71" parent="RootNode/plant1001" index="27"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|81" parent="RootNode/plant1001" index="28"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|91" parent="RootNode/plant1001" index="29"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|101" parent="RootNode/plant1001" index="30"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|111" parent="RootNode/plant1001" index="31"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|121" parent="RootNode/plant1001" index="32"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|131" parent="RootNode/plant1001" index="33"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|141" parent="RootNode/plant1001" index="34"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|151" parent="RootNode/plant1001" index="35"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|161" parent="RootNode/plant1001" index="36"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|171" parent="RootNode/plant1001" index="37"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|181" parent="RootNode/plant1001" index="38"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|191" parent="RootNode/plant1001" index="39"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|201" parent="RootNode/plant1001" index="40"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|211" parent="RootNode/plant1001" index="41"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|221" parent="RootNode/plant1001" index="42"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|231" parent="RootNode/plant1001" index="43"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|241" parent="RootNode/plant1001" index="44"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|251" parent="RootNode/plant1001" index="45"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|261" parent="RootNode/plant1001" index="46"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|271" parent="RootNode/plant1001" index="47"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|281" parent="RootNode/plant1001" index="48"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|291" parent="RootNode/plant1001" index="49"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|301" parent="RootNode/plant1001" index="50"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|311" parent="RootNode/plant1001" index="51"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|321" parent="RootNode/plant1001" index="52"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|331" parent="RootNode/plant1001" index="53"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|341" parent="RootNode/plant1001" index="54"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|351" parent="RootNode/plant1001" index="55"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|361" parent="RootNode/plant1001" index="56"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|371" parent="RootNode/plant1001" index="57"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|381" parent="RootNode/plant1001" index="58"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|391" parent="RootNode/plant1001" index="59"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|401" parent="RootNode/plant1001" index="60"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|411" parent="RootNode/plant1001" index="61"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|421" parent="RootNode/plant1001" index="62"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|431" parent="RootNode/plant1001" index="63"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|441" parent="RootNode/plant1001" index="64"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|451" parent="RootNode/plant1001" index="65"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|461" parent="RootNode/plant1001" index="66"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|471" parent="RootNode/plant1001" index="67"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|481" parent="RootNode/plant1001" index="68"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|491" parent="RootNode/plant1001" index="69"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|501" parent="RootNode/plant1001" index="70"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|511" parent="RootNode/plant1001" index="71"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|521" parent="RootNode/plant1001" index="72"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|531" parent="RootNode/plant1001" index="73"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|541" parent="RootNode/plant1001" index="74"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|551" parent="RootNode/plant1001" index="75"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|561" parent="RootNode/plant1001" index="76"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|571" parent="RootNode/plant1001" index="77"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|581" parent="RootNode/plant1001" index="78"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|591" parent="RootNode/plant1001" index="79"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|601" parent="RootNode/plant1001" index="80"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|611" parent="RootNode/plant1001" index="81"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|621" parent="RootNode/plant1001" index="82"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|631" parent="RootNode/plant1001" index="83"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|641" parent="RootNode/plant1001" index="84"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|651" parent="RootNode/plant1001" index="85"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|661" parent="RootNode/plant1001" index="86"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|671" parent="RootNode/plant1001" index="87"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|681" parent="RootNode/plant1001" index="88"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|691" parent="RootNode/plant1001" index="89"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|701" parent="RootNode/plant1001" index="90"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|711" parent="RootNode/plant1001" index="91"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|721" parent="RootNode/plant1001" index="92"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|731" parent="RootNode/plant1001" index="93"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|741" parent="RootNode/plant1001" index="94"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|751" parent="RootNode/plant1001" index="95"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="plant1001|leaf2|Dupli|761" parent="RootNode/plant1001" index="96"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51t7y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304275, 0.32168)
+shape = SubResource("BoxShape3D_r8ylj")

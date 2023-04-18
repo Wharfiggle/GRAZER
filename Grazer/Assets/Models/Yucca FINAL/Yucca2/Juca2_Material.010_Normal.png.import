@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bipwep2187gex"
+path.s3tc="res://.godot/imported/Juca2_Material.010_Normal.png-2718a9a7b80fc36a856e5c9b88d3d758.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.010_Normal.png"
+dest_files=["res://.godot/imported/Juca2_Material.010_Normal.png-2718a9a7b80fc36a856e5c9b88d3d758.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Assets/Models/Yucca FINAL/Yucca2/Juca2_Material.010_Normal.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
