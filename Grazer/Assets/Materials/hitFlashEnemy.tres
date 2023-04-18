@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cnjj7a6dje3l1"]
+
+[ext_resource type="Material" uid="uid://us68hofb4gbq" path="res://Assets/Materials/EnemySilhouette.tres" id="1_xdf27"]
+[ext_resource type="Shader" path="res://Assets/Materials/Marauder.gdshader" id="2_qgry4"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 2
+next_pass = ExtResource("1_xdf27")
+shader = ExtResource("2_qgry4")
+shader_parameter/ammount = 0.0
+shader_parameter/color = Color(1, 0, 0, 1)

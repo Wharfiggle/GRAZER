@@ -1,11 +1,13 @@
-[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://fn54vf75rioo"]
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://fn54vf75rioo"]
 
 [ext_resource type="Texture2D" uid="uid://d3gg3acqo3w0f" path="res://Assets/Models/Russel/Russel_Body_BaseColor.png" id="1_yfsin"]
 [ext_resource type="Texture2D" uid="uid://mr7783b6w3ul" path="res://Assets/Models/Russel/Russel_Body_Metallic.png" id="2_ovolo"]
+[ext_resource type="Material" uid="uid://bg81u1ymqgi2i" path="res://Assets/Materials/hitFlash.tres" id="3_kdgb0"]
 [ext_resource type="Texture2D" uid="uid://dlny1g100iuqc" path="res://Assets/Models/Russel/Russel_Body_Normal.png" id="3_qdode"]
 [ext_resource type="Texture2D" uid="uid://bwwkeuo6fj3jb" path="res://Assets/Models/Russel/Russel_Body_Roughness.png" id="4_vl3cj"]
 
 [resource]
+next_pass = ExtResource("3_kdgb0")
 transparency = 4
 depth_draw_mode = 1
 albedo_texture = ExtResource("1_yfsin")

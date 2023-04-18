@@ -1,10 +1,10 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bg81u1ymqgi2i"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bg81u1ymqgi2i"]
 
 [ext_resource type="Shader" path="res://Assets/Materials/Marauder.gdshader" id="1_0xsd8"]
+[ext_resource type="Material" uid="uid://bpklw4u7vb50" path="res://Assets/Materials/Silhouette.tres" id="1_8nd1u"]
 
 [resource]
 resource_local_to_scene = true
 render_priority = 2
+next_pass = ExtResource("1_8nd1u")
 shader = ExtResource("1_0xsd8")
-shader_parameter/ammount = 0.0
-shader_parameter/color = Color(1, 0, 0, 1)

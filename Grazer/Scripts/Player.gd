@@ -10,6 +10,7 @@ var shootTimer = 0.0
 @export var shootBufferTime = 0.1
 var shootBufferTimer = 0.0
 @onready var MainHud = $"../GameUI"
+@onready var fog = get_node(NodePath("/root/Level/FogVolume"))
 
 @onready var knockbox = $knockbox
 var maxHitpoints = 20.0
@@ -29,12 +30,8 @@ var knocked = false
 var movementBlend = 0.0
 
 #Reload variables
-var revolverReloadTime = 0.8
-var shotgunReloadTime = 1.0
 var currentReloadTime = 0
-var revolverClipSize = 6
 var revolverClip = 6
-var shotgunClipSize = 2
 var shotgunClip = 2
 var idleTime = 0
 var autoReloadEnabled = true
@@ -42,6 +39,27 @@ var autoReloadTime = 5
 var reloading = false
 var invincible = false
 
+#revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
+@export var gunStats = [0, 0.0, 0.0, 0, 0.0, 0.0]
+@export var revolverDamage = 3.0
+@export var revolverReloadTime = 0.8
+@export var revolverClipSize = 6
+@export var shotgunDamage = 0.5
+@export var shotgunReloadTime = 1.0
+@export var shotgunClipSize = 2
+
+@export var potionTime = 30.0
+var potionTimer = 0.0
+var potion
+var lifeLeach = 0.0
+var potionSpeedup = 1.0
+var alwaysCrit = false
+var critChance = 0.1
+var dauntless = false
+
+@export var hitColor:Color
+@onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/Pants")).get_material_override()
+var hitFlashAmmount = 0.0
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
 @onready var Steps = $footsteps
@@ -53,16 +71,6 @@ var revolverCritSound = preload("res://sounds/gunsounds/crit shot.wav")
 var shotgunShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
 var shotgunCritSound = preload("res://sounds/gunsounds/crit shot.wav")
 
-#revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
-@export var gunStats = [0, 0.0, 0.0, 0, 0.0, 0.0] #[6, 3.0, 1.0, 2, 0.5, 0.8]
-@export var potionTime = 30.0
-var potionTimer = 0.0
-var potion
-var lifeLeach = 0.0
-var potionSpeedup = 1.0
-var alwaysCrit = false
-var critChance = 0.1
-
 const GRAVITY = 30
 @export var speed = 8.0
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
@@ -73,15 +81,13 @@ var prevAimDir = [0, 0, 0, 0, 0]
 var aimDir = 0.0
 var aimSwivel = 0.0
 @export var swivelSpeed = 0.2
-@onready var gunRight = get_node(NodePath("./Russel/Armature/Skeleton3D/GunRight"))
-@onready var gunLeft = get_node(NodePath("./Russel/Armature/Skeleton3D/GunLeft"))
+@onready var gunRight = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight"))
+@onready var gunLeft = get_node(NodePath("./Model/Armature/Skeleton3D/GunLeft"))
 var rightHand = true
 var onRevolver = true
 @export var shotgunRandOffset = 0.1
 @export var revolverRange = 25.0
 @export var shotgunRange = 5.0
-@export var revolverDamage = 3.0
-@export var shotgunDamage = 0.5
 @export var shotgunSpread = 45.0
 @export var shotgunBullets = 20
 @onready var shootingPoint = gunRight.get_child(0).find_child("ShootingPoint")
@@ -92,8 +98,8 @@ var onRevolver = true
 @export var lineSightTime = 0.8
 var lineSightTimer = 0.0
 var lineSight
-@onready var animation = get_node(NodePath("./Russel/AnimationPlayer/AnimationTree"))
-@onready var skeleton = get_node(NodePath("./Russel/Armature/Skeleton3D"))
+@onready var animation = get_node(NodePath("./Model/AnimationPlayer/AnimationTree"))
+@onready var skeleton = get_node(NodePath("./Model/Armature/Skeleton3D"))
 @onready var worldCursor = get_node(NodePath("./WorldCursor"))
 @export var cursorSpinSpeed = 1.0
 @export var cursorSpinTime = 1.0
@@ -106,6 +112,7 @@ var swapInputFrameCounter = 0
 var active = true
 var maxAmmo = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.add_to_group('Player')
@@ -117,13 +124,14 @@ func _ready():
 	shotgunSpread = shotgunSpread * PI / 180.0
 	lineSightNode.transparency = lineSightTransparency
 	
-	gunStats[0] = revolverClip
+	gunStats[0] = revolverClipSize
 	gunStats[1] = revolverDamage
 	gunStats[2] = revolverReloadTime
-	gunStats[3] = shotgunClip
+	gunStats[3] = shotgunClipSize
 	gunStats[4] = shotgunDamage
 	gunStats[5] = shotgunReloadTime
 	
+	hitFlash.set_shader_parameter("color", hitColor)
 	
 	MainHud._ammo_update_(revolverClip)
 	#HealthBar._on_max_health_update_(10)
@@ -365,6 +373,14 @@ func finishReloading():
 		
 
 func _physics_process(delta):
+	#hit flash on being hit
+	if(hitFlashAmmount > 0.1):
+		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
+		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
+		if(hitFlashAmmount < 0.1):
+			hitFlashAmmount = 0
+			hitFlash.set_shader_parameter("ammount", 0.0)
+	
 	#swap weapon
 	if(active):
 		var swapInput = 0
@@ -523,12 +539,13 @@ func _physics_process(delta):
 	set_up_direction(Vector3.UP)
 	if(active):
 		move_and_slide()
+		fog.position = Vector3(position.x, fog.position.y, position.z)
 
 func updateGunStats():
-	revolverClip = gunStats[0]
+	revolverClipSize = gunStats[0]
 	revolverDamage = gunStats[1]
 	revolverReloadTime = gunStats[2]
-	shotgunClip = gunStats[3]
+	shotgunClipSize = gunStats[3]
 	shotgunDamage = gunStats[4]
 	shotgunReloadTime = gunStats[5]
 	
@@ -586,6 +603,7 @@ func knock():
 func damage_taken(damage:float, from:String, _inBullet:Node) -> bool:
 	if(from != "player"):
 		print("player damaged")
+		hitFlashAmmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.25)
 		hitpoints -= damage
@@ -607,4 +625,9 @@ func die():
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]
 	active = false
 	rotation.x = PI / 2.0
+	lineSightNode.visible = false
+	position.y = -0.5
+	animation.set("parameters/idleWalk/blend_amount", 0)
+	animation.set("parameters/walkShoot/blend_amount", 0.1)
+	animation.set("parameters/shootAngle/blend_position", 1)
 	#skeleton.physical_bones_start_simulation(phys_bones)

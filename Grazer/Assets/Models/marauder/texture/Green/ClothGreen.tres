@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cib2551xhr1f1" path="res://Assets/Models/marauder/texture/Green/Bandit_Cloth_Roughness.png" id="4_tkb40"]
 
 [resource]
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("1_dmyb1")
 metallic = 1.0
 metallic_texture = ExtResource("2_tq3p4")

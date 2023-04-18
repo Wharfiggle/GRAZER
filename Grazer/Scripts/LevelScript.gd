@@ -14,10 +14,10 @@ var broadcastTime = 0.0
 @export var broadcastHeight = 200
 @onready var broadcastOrigPos = broadcast.position
 #levels 1, 2, 3 for capacity, damage, reload for revolver, shotgun
-var gunStats = [ [7, 8, 9], [3.5, 4.0, 4.5], [0.8, 0.6, 0.4], [3, 4, 5], [0.75, 1.0, 1.25], [0.6, 0.4, 0.2] ]
+var gunStats = [ [8, 10, 12], [3.5, 4.0, 4.5], [0.65, 0.5, 0.35], [3, 4, 5], [0.75, 1.0, 1.25], [0.85, 0.7, 0.55] ]
 var itemTextures = [
-	preload("res://Assets/Images/shotgunUpgradeIcon.png"),
 	preload("res://Assets/Images/revolvUpgradeIcon.png"),
+	preload("res://Assets/Images/shotgunUpgradeIcon.png"),
 	null,
 	null,
 	null,
@@ -101,15 +101,14 @@ class Item:
 		elif(id == 10): #liquid luck
 			player.alwaysCrit = useOrUndo
 		elif(id == 11): #dauntless
-			print("sixth potion")
+			player.dauntless = useOrUndo
 
 #use for getting specific upgrade
 func getUpgrade(id:int) -> Item:
 	var level = 1
 	var ind = 0
 	while(level == 1 && ind < 3):
-		@warning_ignore("integer_division")
-		if(player.gunStats[id] == gunStats[id / 3][ind]):
+		if(player.gunStats[id] == gunStats[id][ind]):
 			level = ind + 2
 		ind += 1
 	var item

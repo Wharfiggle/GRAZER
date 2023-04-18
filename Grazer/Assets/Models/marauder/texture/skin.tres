@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://j2y8kcxd5kb7" path="res://Assets/Models/marauder/texture/Bandit_Skin_Roughness.png" id="4_0eoj2"]
 
 [resource]
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("1_0toua")
 metallic = 1.0
 metallic_texture = ExtResource("2_l6b6x")

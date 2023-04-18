@@ -22,6 +22,33 @@ disable_receive_shadows = true
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 5
 script = ExtResource("1_h6u35")
+revolverShootTime = null
+shotgunShootTime = null
+shootBufferTime = null
+dodgeSpeed = null
+dodgeTime = null
+dodgeCooldownTime = null
+dodgeBufferTime = null
+gunStats = null
+revolverDamage = null
+revolverReloadTime = null
+revolverClipSize = null
+shotgunDamage = null
+shotgunReloadTime = null
+shotgunClipSize = null
+potionTime = null
+hitColor = Color(1, 0, 0, 1)
+speed = null
+swivelSpeed = null
+shotgunRandOffset = null
+revolverRange = null
+shotgunRange = null
+shotgunSpread = null
+shotgunBullets = null
+lineSightTransparency = null
+lineSightTime = null
+cursorSpinSpeed = null
+cursorSpinTime = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -52,7 +79,7 @@ bus = &"soundFXMain"
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70047, 0.0811439)
 
-[node name="Russel" parent="." instance=ExtResource("3_yrgbd")]
+[node name="Model" parent="." instance=ExtResource("3_yrgbd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.677098)
 
 [node name="LineOfSight" type="MeshInstance3D" parent="."]

@@ -59,7 +59,8 @@ var knockbackStrength = 0
 @onready var knockbox = $knockbox
 @export var stunTime = 1.0
 var stunTimer = 0
-@onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/pants")).get_material_overlay()
+@export var hitColor = Color(1.0, 0.5, 0.15)
+@onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/pants")).get_material_override()
 var hitFlashAmmount = 0.0
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit, hibernate}
@@ -93,6 +94,8 @@ func _ready():
 	var rn = rng.randf()
 	if(rn <= 0.1):
 		itemDrop = itemDropPrefab.instantiate()
+		
+	hitFlash.set_shader_parameter("color", hitColor)
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):

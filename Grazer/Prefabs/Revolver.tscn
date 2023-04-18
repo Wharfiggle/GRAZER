@@ -1,12 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy6xi4epix5ju"]
+[gd_scene load_steps=8 format=3 uid="uid://cy6xi4epix5ju"]
 
 [ext_resource type="PackedScene" uid="uid://dlln33d6nvy05" path="res://Assets/Models/Revolver/Revolver.fbx" id="1"]
 [ext_resource type="Texture2D" uid="uid://gvv13xkum2eo" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Normal.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b6lw1m41xx8s6" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_BaseMap.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://gbuep861ce8d" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Metallic.png" id="4"]
+[ext_resource type="Material" uid="uid://bg81u1ymqgi2i" path="res://Assets/Materials/hitFlash.tres" id="4_7xn4m"]
 [ext_resource type="Texture2D" uid="uid://n08lli06401e" path="res://Assets/Models/Revolver/Revolver Textures/Revolver_lambert1_Roughness.png" id="5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0wwk"]
+next_pass = ExtResource("4_7xn4m")
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("3")
 metallic = 1.0
 metallic_texture = ExtResource("4")
