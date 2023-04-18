@@ -17,14 +17,15 @@ normal_texture = ExtResource("5_f1y78")
 heightmap_texture = ExtResource("3_ff1fj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jtg2o"]
-size = Vector3(18, 16, 2)
+size = Vector3(16, 16, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3xvc2"]
-size = Vector3(1, 5, 17.8486)
+size = Vector3(1, 5, 16)
 
 [node name="cliffStraightV4" instance=ExtResource("1_7u5kb")]
 
 [node name="PM3D_Wall_Clif1_1" parent="RootNode" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_7iu3p")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]

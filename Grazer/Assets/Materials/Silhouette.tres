@@ -15,5 +15,5 @@ alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 no_depth_test = true
 shading_mode = 0
-albedo_color = Color(0.0625, 0.25, 0, 0.392157)
+albedo_color = Color(0.0392157, 0.14902, 0, 0.392157)
 detail_albedo = SubResource("GradientTexture2D_ddqrq")

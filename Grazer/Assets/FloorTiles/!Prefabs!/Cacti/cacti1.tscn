@@ -26,8 +26,8 @@ roughness_texture = ExtResource("9_kwgax")
 normal_enabled = true
 normal_texture = ExtResource("8_xreyi")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sp3mv"]
-size = Vector3(1.37548, 1, 1.28743)
+[sub_resource type="BoxShape3D" id="BoxShape3D_cwygf"]
+size = Vector3(1, 3, 1)
 
 [node name="cacti1" instance=ExtResource("1_cbg7n")]
 
@@ -404,5 +404,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.703173, 0)
-shape = SubResource("BoxShape3D_sp3mv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_cwygf")

@@ -30,5 +30,9 @@ func checkForDuplicates(coords):
 		return true
 	return false 
 
+func reset():
+	loadedCoords.clear()
+	dataInChunk.clear()
+
 func test():
 	print("test accessed")

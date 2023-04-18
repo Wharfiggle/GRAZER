@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnd6srcpx5l7x"]
+
+[ext_resource type="PackedScene" uid="uid://dwx3nkku0idnk" path="res://Prefabs/potentalMainMenu.tscn" id="1_dm4o7"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Panel" parent="." instance=ExtResource("1_dm4o7")]

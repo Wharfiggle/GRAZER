@@ -98,4 +98,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44284, 0, -0.944635)
 shape = SubResource("BoxShape3D_bv0nb")
 
 [node name="ItemSpawner" parent="." instance=ExtResource("7_c4uc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7604, 0.0499997, 7.2996)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5137, 0.0499997, 7.2996)
