@@ -16,6 +16,7 @@ var time = 0.0
 @export var bobStrength = 0.15
 @export var spinSpeed = 2.0
 var waited = false
+var player
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -24,6 +25,7 @@ var waited = false
 func _physics_process(delta):
 	if(!waited):
 		levelScript = get_node("/root/Level")
+		player = levelScript.find_child("Player")
 		if(randomItem == randomItemType.randomElixir):
 			item = levelScript.getRandomPotion()
 		elif(randomItem == randomItemType.randomUpgrade):
@@ -46,7 +48,7 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	if(body.is_in_group('Player')):
 		if(item.wepLevel == -1):
-			#add item to player inventory if elixir
+			player.inventory[item.id - 6] += 1
 			levelScript.broadcastMessage("Obtained " + item.name + " Elixir", 3.0)
 		else:
 			item.use(true)

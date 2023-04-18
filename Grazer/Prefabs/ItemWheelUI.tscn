@@ -1,11 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://i3q5n1j7uql6"]
+[gd_scene load_steps=17 format=3 uid="uid://i3q5n1j7uql6"]
 
 [ext_resource type="Script" path="res://Scripts/ItemWheelUIScript.gd" id="1_f6dx6"]
 [ext_resource type="Texture2D" uid="uid://1mdmi31fa1sd" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/howWheelShadow.png" id="2_er5ar"]
 [ext_resource type="Texture2D" uid="uid://7g83he5wrqy4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelWedge.png" id="2_tvxu0"]
 [ext_resource type="BitMap" uid="uid://bn28vn6mtl023" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelClickMask.png" id="4_2o7ja"]
 [ext_resource type="Texture2D" uid="uid://bjl53ahpuq6p3" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelElixirBottle.png" id="5_5cs3t"]
+[ext_resource type="Texture2D" uid="uid://bsghh8v6kkvoi" path="res://Assets/Images/remedyElixir.png" id="5_rcxhx"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="6_0fd67"]
+[ext_resource type="Texture2D" uid="uid://boomrdkedmbnw" path="res://Assets/Images/bulletstormElixir.png" id="8_8kuin"]
+[ext_resource type="Texture2D" uid="uid://dtd4xlob0m5f8" path="res://Assets/Images/lifeleachElixir.png" id="9_s4lcp"]
+[ext_resource type="Texture2D" uid="uid://cfhp3iro2becj" path="res://Assets/Images/dustkickerElixir.png" id="10_oapbm"]
+[ext_resource type="Texture2D" uid="uid://cyhnfktrfkge1" path="res://Assets/Images/liquidluckElixir.png" id="11_kioe0"]
+[ext_resource type="Texture2D" uid="uid://d2bbltp8vpdts" path="res://Assets/Images/dauntlessElixir.png" id="12_goenk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g20qm"]
 
@@ -93,21 +99,19 @@ texture_click_mask = ExtResource("4_2o7ja")
 
 [node name="elixir" type="TextureRect" parent="Cell1"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = -90.5
-offset_right = 27.5
-offset_bottom = -3.49997
+offset_left = -110.0
+offset_top = -20.0
+offset_right = 110.0
+offset_bottom = 199.0
 grow_horizontal = 2
-grow_vertical = 2
 rotation = 0.349066
-pivot_offset = Vector2(28.5, 46)
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(110, 109.5)
 mouse_filter = 2
-texture = ExtResource("5_5cs3t")
+texture = ExtResource("5_rcxhx")
 
 [node name="elixirEmpty" type="TextureRect" parent="Cell1"]
 layout_mode = 1
@@ -162,6 +166,21 @@ pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
 texture_click_mask = ExtResource("4_2o7ja")
 
+[node name="elixir" type="TextureRect" parent="Cell2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -107.0
+offset_top = -23.0
+offset_right = 113.0
+offset_bottom = 196.0
+grow_horizontal = 2
+rotation = -0.698132
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(110, 109.5)
+texture = ExtResource("8_8kuin")
+
 [node name="elixirEmpty" type="TextureRect" parent="Cell2"]
 layout_mode = 1
 anchors_preset = 8
@@ -172,24 +191,7 @@ anchor_bottom = 0.5
 offset_left = -29.5
 offset_top = -90.5
 offset_right = 27.5
-offset_bottom = -3.50003
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.698132
-pivot_offset = Vector2(28.5, 46)
-texture = ExtResource("5_5cs3t")
-
-[node name="elixir" type="TextureRect" parent="Cell2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = -90.5
-offset_right = 27.5
-offset_bottom = -3.50003
+offset_bottom = -3.50002
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.698132
@@ -232,24 +234,22 @@ pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
 texture_click_mask = ExtResource("4_2o7ja")
 
-[node name="elixirEmpty" type="TextureRect" parent="Cell3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = -90.5
-offset_right = 27.5
-offset_bottom = -3.50003
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -1.74533
-pivot_offset = Vector2(28.5, 46)
-texture = ExtResource("5_5cs3t")
-
 [node name="elixir" type="TextureRect" parent="Cell3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -106.5
+offset_top = -28.0
+offset_right = 113.5
+offset_bottom = 191.0
+grow_horizontal = 2
+rotation = -1.74533
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(110, 109.5)
+texture = ExtResource("9_s4lcp")
+
+[node name="elixirEmpty" type="TextureRect" parent="Cell3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -302,24 +302,25 @@ pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
 texture_click_mask = ExtResource("4_2o7ja")
 
-[node name="elixirEmpty" type="TextureRect" parent="Cell4"]
+[node name="elixir" type="TextureRect" parent="Cell4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = -90.5
-offset_right = 27.5
-offset_bottom = -3.50003
+offset_left = -111.5
+offset_top = -158.5
+offset_right = 108.5
+offset_bottom = 60.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -2.79253
-pivot_offset = Vector2(28.5, 46)
-texture = ExtResource("5_5cs3t")
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(110, 109.5)
+texture = ExtResource("10_oapbm")
 
-[node name="elixir" type="TextureRect" parent="Cell4"]
+[node name="elixirEmpty" type="TextureRect" parent="Cell4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -372,24 +373,25 @@ pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
 texture_click_mask = ExtResource("4_2o7ja")
 
-[node name="elixirEmpty" type="TextureRect" parent="Cell5"]
+[node name="elixir" type="TextureRect" parent="Cell5"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = -90.5
-offset_right = 27.5
-offset_bottom = -3.50003
+offset_left = -115.5
+offset_top = -155.5
+offset_right = 104.5
+offset_bottom = 63.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -3.83972
-pivot_offset = Vector2(28.5, 46)
-texture = ExtResource("5_5cs3t")
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(110, 109.5)
+texture = ExtResource("11_kioe0")
 
-[node name="elixir" type="TextureRect" parent="Cell5"]
+[node name="elixirEmpty" type="TextureRect" parent="Cell5"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -442,24 +444,25 @@ pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
 texture_click_mask = ExtResource("4_2o7ja")
 
-[node name="elixirEmpty" type="TextureRect" parent="Cell6"]
+[node name="elixir" type="TextureRect" parent="Cell6"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = -90.5
-offset_right = 27.5
-offset_bottom = -3.50003
+offset_left = -114.5
+offset_top = -152.5
+offset_right = 105.5
+offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -4.88692
-pivot_offset = Vector2(28.5, 46)
-texture = ExtResource("5_5cs3t")
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(110, 109.5)
+texture = ExtResource("12_goenk")
 
-[node name="elixir" type="TextureRect" parent="Cell6"]
+[node name="elixirEmpty" type="TextureRect" parent="Cell6"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

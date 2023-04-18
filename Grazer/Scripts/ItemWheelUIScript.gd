@@ -26,31 +26,39 @@ var selected = -1
 var wheelRadius = 200
 @onready var viewport = get_viewport()
 
-func pause ():
-	if (!get_tree().paused):
-		#pauses all the nodes thats processing is set to inherent
+func toggleItemWheel():
+	if(!visible):
+		for i in cells.size():
+			var itemNum = player.inventory[i]
+			cells[i].get_child(2).text = str(itemNum)
+			var elixirIcon = cells[i].get_child(0)
+			if(itemNum > 0):
+				elixirIcon.visible = true
+			else:
+				elixirIcon.visible = false
+				
+		visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		viewport.warp_mouse(viewport.get_visible_rect().size / 2)
 		get_tree().paused = true
-	elif(get_tree().paused):
+	elif(visible):
+		visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		highlight = [0, 0, 0, 0, 0, 0]
+		selected = -1
+		for i in cells.size():
+			cells[i].modulate.a = origTransparency
+			cells[i].scale = Vector2(origScale, origScale)
 		get_tree().paused = false
-		
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if(Input.is_action_just_pressed("ItemWheel")):
-		#checking if inventory is open or not
-		if(!visible):
-			visible = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			viewport.warp_mouse(viewport.get_visible_rect().size / 2)
-			pause()
-		elif(visible):
-			visible = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			highlight = [0, 0, 0, 0, 0, 0]
-			selected = -1
-			for i in cells.size():
-				cells[i].modulate.a = origTransparency
-				cells[i].scale = Vector2(origScale, origScale)
-			pause()
+		toggleItemWheel()
+	if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("reload")) 
+	&& selected != -1 && player.inventory[selected] > 0):
+		player.usePotion(selected)
+		toggleItemWheel()
 	if(visible):
 		print(selected)
 		for i in highlight.size():
