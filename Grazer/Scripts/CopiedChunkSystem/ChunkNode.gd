@@ -17,8 +17,11 @@ static func retrieveChunkTypes() -> Array:
 	
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2.tscn")
+	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2.tscn")
+	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic3.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic4.tscn")
+	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic5.tscn")
 	
 	# * ^ ADD NEW CHUNKS HERE ^ *
 	#The string is the path to the scene. Right click and click "Copy Path" in the explorer to get it
@@ -121,7 +124,7 @@ func calcChunk(_chunkCoords, chunkTypes:Array = []) -> String:
 	elif(chunkCoords.x == mapWidth):
 		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/cliffSide3.tscn"
 	elif(chunkCoords.x == -mapWidth):
-		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/wall1b.tscn"
+		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/canyonWall1.tscn"
 	elif(chunkCoords.x > mapWidth):
 		pathName = ""
 	elif(chunkCoords.x < -mapWidth):

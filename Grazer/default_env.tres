@@ -13,4 +13,4 @@ background_energy_multiplier = 1.1
 sky = SubResource("Sky_fuebc")
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
-volumetric_fog_albedo = Color(1, 0.466667, 0, 1)
+volumetric_fog_albedo = Color(1, 0.513726, 0.211765, 1)

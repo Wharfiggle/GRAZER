@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://yndmkfdnh0sn"]
+[gd_scene load_steps=25 format=3 uid="uid://vllwktoofdv8"]
 
 [ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="1_reu56"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2_6cmid"]

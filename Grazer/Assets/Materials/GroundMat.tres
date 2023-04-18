@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ccuovmdnlk6y5" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Roughness.png" id="5_t58qq"]
 
 [resource]
-albedo_color = Color(0.862745, 1, 1, 1)
+albedo_color = Color(0.88, 1, 1, 1)
 albedo_texture = ExtResource("1_evx5v")
 metallic = 1.0
 metallic_specular = 0.0
@@ -16,6 +16,6 @@ roughness_texture = ExtResource("5_t58qq")
 emission_enabled = true
 emission_texture = ExtResource("2_wx7t1")
 normal_enabled = true
-normal_scale = 0.35
+normal_scale = 0.4
 normal_texture = ExtResource("4_wkqla")
 uv1_scale = Vector3(3.5, 3.5, 3.5)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4ehi2slultkr"]
+
+[ext_resource type="PackedScene" uid="uid://cjf8qsk02fwwv" path="res://Assets/Models/Rocks FINAL/stone1/stone1.fbx" id="1_w1xa2"]
+[ext_resource type="Texture2D" uid="uid://clb83xn3dv3a1" path="res://Assets/Models/Rocks FINAL/stone1/stone1_Material_BaseColor.png" id="2_46fwi"]
+[ext_resource type="Texture2D" uid="uid://b8rvjmvwu28e1" path="res://Assets/Models/Rocks FINAL/stone1/stone1_Material_Metallic.png" id="3_a8y2u"]
+[ext_resource type="Texture2D" uid="uid://dgned1h6ofgne" path="res://Assets/Models/Rocks FINAL/stone1/stone1_Material_Normal.png" id="4_22lem"]
+[ext_resource type="Texture2D" uid="uid://bx3evfc3q3qkd" path="res://Assets/Models/Rocks FINAL/stone1/stone1_Material_Roughness.png" id="5_ixgxu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbnw8"]
+albedo_texture = ExtResource("2_46fwi")
+metallic = 1.0
+metallic_texture = ExtResource("3_a8y2u")
+roughness_texture = ExtResource("5_ixgxu")
+normal_enabled = true
+normal_texture = ExtResource("4_22lem")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yn4o1"]
+size = Vector3(2.5, 4, 4.5)
+
+[node name="stone1" instance=ExtResource("1_w1xa2")]
+
+[node name="stone column" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_mbnw8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20563, 0.212482)
+shape = SubResource("BoxShape3D_yn4o1")

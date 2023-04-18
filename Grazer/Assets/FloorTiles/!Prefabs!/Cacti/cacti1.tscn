@@ -1,0 +1,408 @@
+[gd_scene load_steps=13 format=3 uid="uid://bh7jdx2kii5ey"]
+
+[ext_resource type="PackedScene" uid="uid://de3y7y07knv8q" path="res://Assets/Models/Cacti FINAL/cacti1.fbx" id="1_cbg7n"]
+[ext_resource type="Texture2D" uid="uid://b3enotf83macu" path="res://Assets/Models/Cacti FINAL/cacti1_Material.001_BaseColor.png" id="2_g1xee"]
+[ext_resource type="Texture2D" uid="uid://ias3xh5psbhh" path="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Metallic.png" id="3_eusr3"]
+[ext_resource type="Texture2D" uid="uid://xlcgh4oy4qpm" path="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Normal.png" id="4_idtlg"]
+[ext_resource type="Texture2D" uid="uid://cv5nyvdgbs8wy" path="res://Assets/Models/Cacti FINAL/cacti1_Material.001_Roughness.png" id="5_3b0yy"]
+[ext_resource type="Texture2D" uid="uid://behi8yclnwww7" path="res://Assets/Models/Cacti FINAL/cacti1_Material.002_BaseColor.png" id="6_nrrrd"]
+[ext_resource type="Texture2D" uid="uid://c6f4ujtsge741" path="res://Assets/Models/Cacti FINAL/cacti1_Material.002_Metallic.png" id="7_d2nbr"]
+[ext_resource type="Texture2D" uid="uid://c1vl4c04pfu4r" path="res://Assets/Models/Cacti FINAL/cacti1_Material.002_Normal.png" id="8_xreyi"]
+[ext_resource type="Texture2D" uid="uid://cprlltx8rcmfp" path="res://Assets/Models/Cacti FINAL/cacti1_Material.002_Roughness.png" id="9_kwgax"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36h55"]
+albedo_texture = ExtResource("2_g1xee")
+metallic = 1.0
+metallic_texture = ExtResource("3_eusr3")
+roughness_texture = ExtResource("5_3b0yy")
+normal_enabled = true
+normal_texture = ExtResource("4_idtlg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4d4v"]
+albedo_texture = ExtResource("6_nrrrd")
+metallic = 1.0
+metallic_texture = ExtResource("7_d2nbr")
+roughness_texture = ExtResource("9_kwgax")
+normal_enabled = true
+normal_texture = ExtResource("8_xreyi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sp3mv"]
+size = Vector3(1.37548, 1, 1.28743)
+
+[node name="cacti1" instance=ExtResource("1_cbg7n")]
+
+[node name="CactusBody003" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_36h55")
+
+[node name="CactusBody003|spike|Dupli|" parent="RootNode/CactusBody003" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|1" parent="RootNode/CactusBody003" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|2" parent="RootNode/CactusBody003" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|3" parent="RootNode/CactusBody003" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|4" parent="RootNode/CactusBody003" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|5" parent="RootNode/CactusBody003" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|6" parent="RootNode/CactusBody003" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|7" parent="RootNode/CactusBody003" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|8" parent="RootNode/CactusBody003" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|9" parent="RootNode/CactusBody003" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|10" parent="RootNode/CactusBody003" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|11" parent="RootNode/CactusBody003" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|12" parent="RootNode/CactusBody003" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|13" parent="RootNode/CactusBody003" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|14" parent="RootNode/CactusBody003" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|15" parent="RootNode/CactusBody003" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|16" parent="RootNode/CactusBody003" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|17" parent="RootNode/CactusBody003" index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|18" parent="RootNode/CactusBody003" index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|19" parent="RootNode/CactusBody003" index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|20" parent="RootNode/CactusBody003" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|21" parent="RootNode/CactusBody003" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|22" parent="RootNode/CactusBody003" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|23" parent="RootNode/CactusBody003" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|24" parent="RootNode/CactusBody003" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|25" parent="RootNode/CactusBody003" index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|26" parent="RootNode/CactusBody003" index="26"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|27" parent="RootNode/CactusBody003" index="27"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|28" parent="RootNode/CactusBody003" index="28"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|29" parent="RootNode/CactusBody003" index="29"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|30" parent="RootNode/CactusBody003" index="30"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|31" parent="RootNode/CactusBody003" index="31"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|32" parent="RootNode/CactusBody003" index="32"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|33" parent="RootNode/CactusBody003" index="33"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|34" parent="RootNode/CactusBody003" index="34"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|35" parent="RootNode/CactusBody003" index="35"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|36" parent="RootNode/CactusBody003" index="36"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|37" parent="RootNode/CactusBody003" index="37"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|38" parent="RootNode/CactusBody003" index="38"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|39" parent="RootNode/CactusBody003" index="39"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|40" parent="RootNode/CactusBody003" index="40"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|41" parent="RootNode/CactusBody003" index="41"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|42" parent="RootNode/CactusBody003" index="42"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|43" parent="RootNode/CactusBody003" index="43"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|44" parent="RootNode/CactusBody003" index="44"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|45" parent="RootNode/CactusBody003" index="45"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|46" parent="RootNode/CactusBody003" index="46"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|47" parent="RootNode/CactusBody003" index="47"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|48" parent="RootNode/CactusBody003" index="48"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|49" parent="RootNode/CactusBody003" index="49"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|50" parent="RootNode/CactusBody003" index="50"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|51" parent="RootNode/CactusBody003" index="51"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|52" parent="RootNode/CactusBody003" index="52"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|53" parent="RootNode/CactusBody003" index="53"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|54" parent="RootNode/CactusBody003" index="54"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|55" parent="RootNode/CactusBody003" index="55"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|56" parent="RootNode/CactusBody003" index="56"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|57" parent="RootNode/CactusBody003" index="57"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|58" parent="RootNode/CactusBody003" index="58"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|59" parent="RootNode/CactusBody003" index="59"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|60" parent="RootNode/CactusBody003" index="60"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|61" parent="RootNode/CactusBody003" index="61"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|62" parent="RootNode/CactusBody003" index="62"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|63" parent="RootNode/CactusBody003" index="63"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|64" parent="RootNode/CactusBody003" index="64"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|65" parent="RootNode/CactusBody003" index="65"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|66" parent="RootNode/CactusBody003" index="66"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|67" parent="RootNode/CactusBody003" index="67"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|68" parent="RootNode/CactusBody003" index="68"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|69" parent="RootNode/CactusBody003" index="69"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|70" parent="RootNode/CactusBody003" index="70"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|71" parent="RootNode/CactusBody003" index="71"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|72" parent="RootNode/CactusBody003" index="72"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|73" parent="RootNode/CactusBody003" index="73"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|74" parent="RootNode/CactusBody003" index="74"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|75" parent="RootNode/CactusBody003" index="75"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|76" parent="RootNode/CactusBody003" index="76"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|77" parent="RootNode/CactusBody003" index="77"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|78" parent="RootNode/CactusBody003" index="78"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|79" parent="RootNode/CactusBody003" index="79"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|80" parent="RootNode/CactusBody003" index="80"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|81" parent="RootNode/CactusBody003" index="81"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|82" parent="RootNode/CactusBody003" index="82"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|83" parent="RootNode/CactusBody003" index="83"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|84" parent="RootNode/CactusBody003" index="84"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|85" parent="RootNode/CactusBody003" index="85"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|86" parent="RootNode/CactusBody003" index="86"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|87" parent="RootNode/CactusBody003" index="87"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|88" parent="RootNode/CactusBody003" index="88"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|89" parent="RootNode/CactusBody003" index="89"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|90" parent="RootNode/CactusBody003" index="90"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|91" parent="RootNode/CactusBody003" index="91"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|92" parent="RootNode/CactusBody003" index="92"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|93" parent="RootNode/CactusBody003" index="93"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|94" parent="RootNode/CactusBody003" index="94"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|95" parent="RootNode/CactusBody003" index="95"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|96" parent="RootNode/CactusBody003" index="96"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|97" parent="RootNode/CactusBody003" index="97"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|98" parent="RootNode/CactusBody003" index="98"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|99" parent="RootNode/CactusBody003" index="99"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|100" parent="RootNode/CactusBody003" index="100"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|101" parent="RootNode/CactusBody003" index="101"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|102" parent="RootNode/CactusBody003" index="102"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|103" parent="RootNode/CactusBody003" index="103"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|104" parent="RootNode/CactusBody003" index="104"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|105" parent="RootNode/CactusBody003" index="105"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|106" parent="RootNode/CactusBody003" index="106"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|107" parent="RootNode/CactusBody003" index="107"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|108" parent="RootNode/CactusBody003" index="108"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|109" parent="RootNode/CactusBody003" index="109"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|110" parent="RootNode/CactusBody003" index="110"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|111" parent="RootNode/CactusBody003" index="111"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|112" parent="RootNode/CactusBody003" index="112"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|113" parent="RootNode/CactusBody003" index="113"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|114" parent="RootNode/CactusBody003" index="114"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|115" parent="RootNode/CactusBody003" index="115"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|116" parent="RootNode/CactusBody003" index="116"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|117" parent="RootNode/CactusBody003" index="117"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|118" parent="RootNode/CactusBody003" index="118"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|119" parent="RootNode/CactusBody003" index="119"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|120" parent="RootNode/CactusBody003" index="120"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="CactusBody003|spike|Dupli|121" parent="RootNode/CactusBody003" index="121"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.703173, 0)
+shape = SubResource("BoxShape3D_sp3mv")

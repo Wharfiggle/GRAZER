@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://c41nldgjrdemf"]
+
+[ext_resource type="PackedScene" uid="uid://dbot4xhidabj1" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch.fbx" id="1_tqn3q"]
+[ext_resource type="Texture2D" uid="uid://b0xyvv1okp8c1" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch_Material_BaseColor.png" id="2_pgg83"]
+[ext_resource type="Texture2D" uid="uid://j47gumdw7q45" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch_Material_Metallic.png" id="3_oboi8"]
+[ext_resource type="Texture2D" uid="uid://bb4st8thikl0n" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch_Material_Normal.png" id="4_q6b3j"]
+[ext_resource type="Texture2D" uid="uid://c1t0x5kklroke" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch_Material_Roughness.png" id="5_5ictc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj48r"]
+albedo_texture = ExtResource("2_pgg83")
+metallic = 1.0
+metallic_texture = ExtResource("3_oboi8")
+roughness_texture = ExtResource("5_5ictc")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("4_q6b3j")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8bofv"]
+height = 10.0
+radius = 3.0
+
+[node name="stoneArch" instance=ExtResource("1_tqn3q")]
+
+[node name="Plane" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kj48r")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87575, 13.0967)
+shape = SubResource("CylinderShape3D_8bofv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87575, -1.75917)
+shape = SubResource("CylinderShape3D_8bofv")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjqs4e663nqgv"]
+
+[ext_resource type="PackedScene" uid="uid://bgq6ime7fbuxk" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraight.fbx" id="1_vyymg"]
+[ext_resource type="Texture2D" uid="uid://btw56eqjttati" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_BaseColor.png" id="2_wxpdy"]
+[ext_resource type="Texture2D" uid="uid://bqp7q8fpbweu" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Height.png" id="3_kw410"]
+[ext_resource type="Texture2D" uid="uid://cof2smyxqleye" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Metallic.png" id="4_rwyqv"]
+[ext_resource type="Texture2D" uid="uid://c6cpclp10vb7o" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Normal.png" id="5_628tu"]
+[ext_resource type="Texture2D" uid="uid://ocacxg8eh0y6" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Roughness.png" id="6_64cqq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4ajr"]
+albedo_texture = ExtResource("2_wxpdy")
+metallic = 1.0
+metallic_texture = ExtResource("4_rwyqv")
+roughness_texture = ExtResource("6_64cqq")
+normal_enabled = true
+normal_texture = ExtResource("5_628tu")
+heightmap_texture = ExtResource("3_kw410")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qf6m"]
+size = Vector3(20, 9.57821, 11)
+
+[node name="wallStraight" instance=ExtResource("1_vyymg")]
+
+[node name="decim" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.34772, -2.95583)
+shape = SubResource("BoxShape3D_1qf6m")

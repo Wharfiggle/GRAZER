@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bljfem8tm3cxn"]
+[gd_scene load_steps=8 format=3 uid="uid://boj07qsc3nxim"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_mjuoe"]
 [ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/big_stone.tscn" id="2_7fyle"]

@@ -7,7 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dx1bco56p7ok5" path="res://Assets/Models/old/CactusOld/10436_Cactus_v1_max2010_it2.obj" id="5"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneColor.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Assets/Models/old/CactusOld/cactusSceneGreenTest.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://bljfem8tm3cxn" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://boj07qsc3nxim" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://Assets/Images/empress of bostonia.png" id="10"]
 [ext_resource type="Shader" path="res://Scripts/Pallette.gdshader" id="11"]
