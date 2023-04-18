@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://21bqi8afjpn6"]
+
+[ext_resource type="PackedScene" uid="uid://dtdpunppw6xai" path="res://Assets/Models/Outpost Gate FINAL/Frame/Gate-Arch.fbx" id="1_5ckah"]
+[ext_resource type="Texture2D" uid="uid://cumwduhof05e5" path="res://Assets/Models/Outpost Gate FINAL/Frame/Gate-Arch_lambert1_BaseColor.png" id="2_ltsqy"]
+[ext_resource type="Texture2D" uid="uid://bnfyshsa7hjbq" path="res://Assets/Models/Outpost Gate FINAL/Frame/Gate-Arch_lambert1_Metallic.png" id="3_cdlb7"]
+[ext_resource type="Texture2D" uid="uid://gu86xi0b0cyu" path="res://Assets/Models/Outpost Gate FINAL/Frame/Gate-Arch_lambert1_Normal.png" id="4_xvp2l"]
+[ext_resource type="Texture2D" uid="uid://b86isqjh5geky" path="res://Assets/Models/Outpost Gate FINAL/Frame/Gate-Arch_lambert1_Roughness.png" id="5_p0566"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j1tn"]
+albedo_texture = ExtResource("2_ltsqy")
+metallic = 1.0
+metallic_texture = ExtResource("3_cdlb7")
+roughness_texture = ExtResource("5_p0566")
+normal_enabled = true
+normal_texture = ExtResource("4_xvp2l")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ko3fi"]
+size = Vector3(0.398615, 2.93619, 0.447092)
+
+[node name="Gate-Arch" instance=ExtResource("1_5ckah")]
+
+[node name="pCube80" parent="RootNode/Gate_Arch" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1j1tn")
+
+[node name="pCube81" parent="RootNode/Gate_Arch" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1j1tn")
+
+[node name="pCube82" parent="RootNode/Gate_Arch" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1j1tn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.62466, 0.921795, 0)
+shape = SubResource("BoxShape3D_ko3fi")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59008, 0.921795, 0)
+shape = SubResource("BoxShape3D_ko3fi")

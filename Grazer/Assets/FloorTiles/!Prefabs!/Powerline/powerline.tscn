@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1qgsg7jyyxbt"]
+
+[ext_resource type="PackedScene" uid="uid://bfxarm13k332" path="res://Assets/Models/Powerline FINAL/Powerline.fbx" id="1_v4itd"]
+[ext_resource type="Texture2D" uid="uid://cdletgo1dx0h2" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_BaseColor.png" id="2_euhga"]
+[ext_resource type="Texture2D" uid="uid://dm67q636nhjoa" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Metallic.png" id="3_77llj"]
+[ext_resource type="Texture2D" uid="uid://bbei46t58gg10" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Normal.png" id="4_squ2j"]
+[ext_resource type="Texture2D" uid="uid://b2sufrkl84c2o" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Roughness.png" id="5_jtfxa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jde53"]
+albedo_texture = ExtResource("2_euhga")
+metallic = 1.0
+metallic_texture = ExtResource("3_77llj")
+roughness_texture = ExtResource("5_jtfxa")
+normal_enabled = true
+normal_texture = ExtResource("4_squ2j")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nahcm"]
+size = Vector3(0.236996, 6.10593, 0.259113)
+
+[node name="Powerline" instance=ExtResource("1_v4itd")]
+
+[node name="pCylinder8" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jde53")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82613, 0)
+shape = SubResource("BoxShape3D_nahcm")
