@@ -53,7 +53,7 @@ func toggleItemWheel():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if(Input.is_action_just_pressed("ItemWheel")):
+	if(Input.is_action_just_pressed("ItemWheel") && player.active):
 		toggleItemWheel()
 	if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("reload")) 
 	&& selected != -1 && player.inventory[selected] > 0):
