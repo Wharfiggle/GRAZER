@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqsinrlm5521v"]
+
+[ext_resource type="PackedScene" uid="uid://f7fejufe7umd" path="res://Assets/Models/Water Barrel FINAL/Water_Barrel-v2.fbx" id="1_kxyib"]
+[ext_resource type="Texture2D" uid="uid://hba7dww8xkst" path="res://Assets/Models/Water Barrel FINAL/Water_Barrel-v2_standardSurface1_BaseColor.png" id="2_61haw"]
+[ext_resource type="Texture2D" uid="uid://bcfvg1esx7oqv" path="res://Assets/Models/Water Barrel FINAL/Water_Barrel-v2_standardSurface1_Metallic.png" id="3_0a7s8"]
+[ext_resource type="Texture2D" uid="uid://e5rx15fsh1vh" path="res://Assets/Models/Water Barrel FINAL/Water_Barrel-v2_standardSurface1_Normal.png" id="4_5ukgs"]
+[ext_resource type="Texture2D" uid="uid://cvptmcrdyd32q" path="res://Assets/Models/Water Barrel FINAL/Water_Barrel-v2_standardSurface1_Roughness.png" id="5_sajt5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r61c1"]
+albedo_texture = ExtResource("2_61haw")
+metallic = 1.0
+metallic_texture = ExtResource("3_0a7s8")
+roughness_texture = ExtResource("5_sajt5")
+normal_enabled = true
+normal_texture = ExtResource("4_5ukgs")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_55k8v"]
+size = Vector3(0.540358, 1.24267, 0.551567)
+
+[node name="Water_Barrel-v2" instance=ExtResource("1_kxyib")]
+
+[node name="Water_Barrel" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_r61c1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551414, 0)
+shape = SubResource("BoxShape3D_55k8v")
