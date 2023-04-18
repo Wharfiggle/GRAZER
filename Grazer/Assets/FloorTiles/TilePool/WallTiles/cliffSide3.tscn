@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvgvphajidlon"]
+[gd_scene load_steps=8 format=3 uid="uid://cvgvphajidlon"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_6l6yr"]
 [ext_resource type="PackedScene" uid="uid://ccnx64oa6vbqv" path="res://Assets/FloorTiles/!Prefabs!/cliffStraightV2_USE.tscn" id="2_lapb3"]
+[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="3_odw5u"]
+[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="4_cv64d"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_v867l"]
 vertices = PackedVector3Array(16.75, 0.445572, 13.0431, 17.25, 0.445572, 12.7931, 16.5, 0.695572, 8.79307, 16.25, 0.695572, 15.7931, 16.75, 0.445572, 13.0431, 16.5, 0.695572, 8.79307, 8.5, 0.445572, 15.5431, 0.5, 0.445572, 7.79307, 0.5, 0.445572, 15.5431, 8.5, 0.445572, 15.5431, 16.5, 0.695572, 8.79307, 16.5, 0.445572, 0.0430737, 8.5, 0.445572, 0.293074, 8.5, 0.445572, 0.293074, 0.5, 0.445572, 0.293074, 0.5, 0.445572, 7.79307, 19, -15.5544, 14.0431, 17.75, -15.5544, 15.2931, 24.25, -15.5544, 15.5431, 19.75, -15.5544, 11.5431, 19, -15.5544, 14.0431, 24.25, -15.5544, 15.5431, 31, -15.5544, 7.79307, 31, -15.5544, 0.293074, 24.5, -15.5544, 0.293074, 24.25, -15.5544, 15.5431, 31, -15.5544, 15.5431, 31, -15.5544, 7.79307, 24.5, -15.5544, 0.293074, 18.25, -15.5544, 0.293074, 19.75, -15.5544, 11.5431, 15.75, -10.3044, 7.54307, 15.5, -10.0544, 10.0431, 16.5, -9.80443, 7.04307, 16.1667, -10.3044, 8.04307, 15.25, -9.80443, 4.29307, 15.75, -10.3044, 7.54307, 16.5, -9.80443, 7.04307, 15.75, -9.80443, 4.29307, 15.4167, -9.55443, 5.37641)
@@ -34,3 +36,18 @@ surface_material_override/0 = ExtResource("1_6l6yr")
 
 [node name="cliffStraightV4" parent="NavigationRegion3D" instance=ExtResource("2_lapb3")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23.5, -15.95, 8)
+
+[node name="stone10" parent="." instance=ExtResource("3_odw5u")]
+transform = Transform3D(0.773232, 0.47203, 0.423439, 0, -0.667755, 0.744381, 0.634123, -0.575579, -0.516329, 12.6126, -0.283527, 11.936)
+
+[node name="stone12" parent="." instance=ExtResource("3_odw5u")]
+transform = Transform3D(0.536711, -0.628084, -0.563429, 0, -0.667755, 0.744382, -0.843766, -0.399518, -0.358391, 12.8544, -0.439059, 7.66191)
+
+[node name="stone13" parent="." instance=ExtResource("3_odw5u")]
+transform = Transform3D(-0.497199, 0.428112, 0.754661, 0.209669, 0.903296, -0.374293, -0.841922, -0.027869, -0.53888, 12.7399, -0.764467, 4.92029)
+
+[node name="stone14" parent="." instance=ExtResource("3_odw5u")]
+transform = Transform3D(-0.237486, 0.398207, 0.187168, 0.0856535, -0.166782, 0.463516, 0.431583, 0.25222, 0.0110012, 15.2401, -0.295831, 13.3327)
+
+[node name="stone11" parent="." instance=ExtResource("4_cv64d")]
+transform = Transform3D(-0.235508, 0, -0.551848, 0.0673202, 0.595519, -0.0287298, 0.547726, -0.0731944, -0.233749, 13.0904, -0.493247, 7.62489)
