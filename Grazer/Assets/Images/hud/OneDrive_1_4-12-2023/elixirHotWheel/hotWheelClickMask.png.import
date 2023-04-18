@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bn28vn6mtl023"
+path="res://.godot/imported/hotWheelClickMask.png-696838bda1290839f44aaa6bb9c0d8fa.res"
+
+[deps]
+
+source_file="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelClickMask.png"
+dest_files=["res://.godot/imported/hotWheelClickMask.png-696838bda1290839f44aaa6bb9c0d8fa.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

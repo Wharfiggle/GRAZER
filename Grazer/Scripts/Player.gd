@@ -101,9 +101,9 @@ var lineSight
 @onready var animation = get_node(NodePath("./Model/AnimationPlayer/AnimationTree"))
 @onready var skeleton = get_node(NodePath("./Model/Armature/Skeleton3D"))
 @onready var worldCursor = get_node(NodePath("./WorldCursor"))
-@export var cursorSpinSpeed = 1.0
-@export var cursorSpinTime = 1.0
-var cursorSpinTimer = 0
+#@export var cursorSpinSpeed = 1.0
+#@export var cursorSpinTime = 1.0
+#var cursorSpinTimer = 0
 var mousePos = Vector2.ZERO
 var cursorPos = Vector3.ZERO
 var rng = RandomNumberGenerator.new()
@@ -309,7 +309,7 @@ func _process(delta):
 	if(stickToAdd.length() >= 0.3):
 		toAdd = stickToAdd
 		worldCursor.visible = false
-	elif(toAdd.length() > 0):
+	elif(toAdd.length() > 0 && active):
 		toAdd = toAdd.normalized()
 		worldCursor.visible = true
 	#adjust walking animation speed to match speed
@@ -325,6 +325,7 @@ func _process(delta):
 			rotation.y,
 			moveDir,
 			0.1)
+		worldCursor.set_global_rotation(Vector3(worldCursor.rotation.x, PI / 4.0, worldCursor.rotation.z))
 	lineSightNode.global_position = shootingPoint.global_position
 	lineSightNode.global_rotation = Vector3(0, aimDir, 0)
 	

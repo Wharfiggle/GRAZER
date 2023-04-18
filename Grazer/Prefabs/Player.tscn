@@ -13,6 +13,7 @@ radius = 0.8
 [sub_resource type="QuadMesh" id="QuadMesh_6vxs4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc7lh"]
+render_priority = 127
 transparency = 1
 no_depth_test = true
 shading_mode = 0
@@ -37,8 +38,9 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("2")
 
 [node name="WorldCursor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1, 0)
+transform = Transform3D(0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 0, -1, 0)
 visible = false
+transparency = 0.25
 mesh = SubResource("QuadMesh_6vxs4")
 surface_material_override/0 = SubResource("StandardMaterial3D_tc7lh")
 

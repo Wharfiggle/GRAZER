@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://i3q5n1j7uql6"]
+[gd_scene load_steps=12 format=3 uid="uid://i3q5n1j7uql6"]
 
 [ext_resource type="Script" path="res://Scripts/ItemWheelUIScript.gd" id="1_f6dx6"]
 [ext_resource type="Texture2D" uid="uid://1mdmi31fa1sd" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/howWheelShadow.png" id="2_er5ar"]
 [ext_resource type="Texture2D" uid="uid://7g83he5wrqy4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelWedge.png" id="2_tvxu0"]
-[ext_resource type="BitMap" uid="uid://7hd1fbp4qfod" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelWedgemask.png" id="4_8rpay"]
+[ext_resource type="BitMap" uid="uid://bn28vn6mtl023" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelClickMask.png" id="4_2o7ja"]
 [ext_resource type="Texture2D" uid="uid://bjl53ahpuq6p3" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelElixirBottle.png" id="5_5cs3t"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="6_0fd67"]
 
@@ -17,9 +17,11 @@ gradient = SubResource("Gradient_a2ki7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_movu0"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_jgnme"]
 font = ExtResource("6_0fd67")
-font_size = 40
+font_size = 36
 
 [node name="ItemWheel" type="Control"]
 process_mode = 3
@@ -49,6 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 pivot_offset = Vector2(225, 225)
+mouse_filter = 2
 texture = ExtResource("2_er5ar")
 expand_mode = 1
 
@@ -66,10 +69,13 @@ offset_right = 855.0
 offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_fv0op")
 
 [node name="Cell1" type="TextureButton" parent="."]
 process_mode = 3
+process_priority = 100
+modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -82,9 +88,12 @@ offset_right = 105.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(102, 265)
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_tvxu0")
-texture_click_mask = ExtResource("4_8rpay")
+texture_hover = SubResource("NoiseTexture2D_movu0")
+texture_click_mask = ExtResource("4_2o7ja")
 
 [node name="elixir" type="TextureRect" parent="Cell1"]
 layout_mode = 1
@@ -101,6 +110,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.349066
 pivot_offset = Vector2(28.5, 46)
+mouse_filter = 2
 texture = ExtResource("5_5cs3t")
 
 [node name="elixirEmpty" type="TextureRect" parent="Cell1"]
@@ -118,6 +128,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.349066
 pivot_offset = Vector2(28.5, 46)
+mouse_filter = 2
 texture = ExtResource("5_5cs3t")
 
 [node name="elixirCount" type="Label" parent="Cell1"]
@@ -131,10 +142,12 @@ pivot_offset = Vector2(22, 22)
 text = "1"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Cell2" type="TextureButton" parent="."]
 process_mode = 3
+process_priority = 100
+modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -148,9 +161,10 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.04608
+scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
-texture_click_mask = ExtResource("4_8rpay")
+texture_click_mask = ExtResource("4_2o7ja")
 
 [node name="elixirEmpty" type="TextureRect" parent="Cell2"]
 layout_mode = 1
@@ -193,13 +207,17 @@ offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
 offset_bottom = 224.0
+rotation = -1.0472
+pivot_offset = Vector2(22, 22)
 text = "1"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Cell3" type="TextureButton" parent="."]
 process_mode = 3
+process_priority = 100
+modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -213,9 +231,10 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 2.0944
+scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
-texture_click_mask = ExtResource("4_8rpay")
+texture_click_mask = ExtResource("4_2o7ja")
 
 [node name="elixirEmpty" type="TextureRect" parent="Cell3"]
 layout_mode = 1
@@ -258,13 +277,17 @@ offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
 offset_bottom = 224.0
+rotation = -2.0944
+pivot_offset = Vector2(22, 22)
 text = "1"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Cell4" type="TextureButton" parent="."]
 process_mode = 3
+process_priority = 100
+modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -278,9 +301,10 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 3.14159
+scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
-texture_click_mask = ExtResource("4_8rpay")
+texture_click_mask = ExtResource("4_2o7ja")
 
 [node name="elixirEmpty" type="TextureRect" parent="Cell4"]
 layout_mode = 1
@@ -323,13 +347,17 @@ offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
 offset_bottom = 224.0
+rotation = 3.14159
+pivot_offset = Vector2(22, 22)
 text = "1"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Cell5" type="TextureButton" parent="."]
 process_mode = 3
+process_priority = 100
+modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -343,9 +371,10 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 4.18879
+scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
-texture_click_mask = ExtResource("4_8rpay")
+texture_click_mask = ExtResource("4_2o7ja")
 
 [node name="elixirEmpty" type="TextureRect" parent="Cell5"]
 layout_mode = 1
@@ -388,13 +417,17 @@ offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
 offset_bottom = 224.0
+rotation = 2.0944
+pivot_offset = Vector2(22, 22)
 text = "1"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Cell6" type="TextureButton" parent="."]
 process_mode = 3
+process_priority = 100
+modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -408,9 +441,10 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 5.23599
+scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(102, 265)
 texture_normal = ExtResource("2_tvxu0")
-texture_click_mask = ExtResource("4_8rpay")
+texture_click_mask = ExtResource("4_2o7ja")
 
 [node name="elixirEmpty" type="TextureRect" parent="Cell6"]
 layout_mode = 1
@@ -453,7 +487,16 @@ offset_left = 80.0
 offset_top = 180.0
 offset_right = 124.0
 offset_bottom = 224.0
+rotation = 1.0472
+pivot_offset = Vector2(22, 22)
 text = "1"
 label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
+
+[connection signal="mouse_entered" from="Cell1" to="." method="_on_cell_1_mouse_entered"]
+[connection signal="mouse_entered" from="Cell2" to="." method="_on_cell_2_mouse_entered"]
+[connection signal="mouse_entered" from="Cell3" to="." method="_on_cell_3_mouse_entered"]
+[connection signal="mouse_entered" from="Cell4" to="." method="_on_cell_4_mouse_entered"]
+[connection signal="mouse_entered" from="Cell5" to="." method="_on_cell_5_mouse_entered"]
+[connection signal="mouse_entered" from="Cell6" to="." method="_on_cell_6_mouse_entered"]
