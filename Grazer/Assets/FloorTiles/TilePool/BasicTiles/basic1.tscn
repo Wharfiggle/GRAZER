@@ -40,12 +40,19 @@ transform = Transform3D(1.06331, 0.26024, -1.0255, -0.187318, 1.47725, 0.180657,
 [node name="stone11" parent="NavigationRegion3D" instance=ExtResource("4_d7ghl")]
 transform = Transform3D(0.392512, 0, 0.0770362, 0, 0.4, 0, -0.0770362, 0, 0.392512, -1.31245, -0.135297, 1.97007)
 
+[node name="stone13" parent="NavigationRegion3D" instance=ExtResource("4_d7ghl")]
+transform = Transform3D(-0.4419, 0, -0.542885, 0, 0.7, 0, 0.542885, 0, -0.4419, 3.93783, -0.353667, -1.14022)
+
 [node name="stone12" parent="NavigationRegion3D" instance=ExtResource("4_d7ghl")]
 transform = Transform3D(-0.121893, 0, -0.158562, 0, 0.2, 0, 0.158562, 0, -0.121893, -0.256339, -0.0471144, 1.67731)
+
+[node name="stone14" parent="NavigationRegion3D" instance=ExtResource("4_d7ghl")]
+transform = Transform3D(0.191363, 0, -0.0581367, 0, 0.2, 0, 0.0581367, 0, 0.191363, 6.29865, -0.0471149, -1.31897)
 
 [node name="ItemSpawner" parent="." instance=ExtResource("4_m5b28")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61428, 0, 3.16056)
 elixirVsUpgradeChance = 0.5
+spawnChance = 0.2
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_x0ywm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75845)
