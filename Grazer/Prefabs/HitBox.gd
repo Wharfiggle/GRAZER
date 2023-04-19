@@ -3,5 +3,5 @@ extends StaticBody3D
 
 @onready var parent = get_parent()
 
-func damage_taken(damage:float, from:String, bullet:Node) -> bool:
-	return parent.damage_taken(damage, from, bullet)
+func damage_taken(damage:float, from:String, critHit:bool = false, bullet:Node = null) -> bool:
+	return parent.damage_taken(damage, from, critHit, bullet)

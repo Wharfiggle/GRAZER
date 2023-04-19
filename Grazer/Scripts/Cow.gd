@@ -187,7 +187,7 @@ func idle():
 #var rectHei = 15 / 9 * 16
 #var rectDiag = rectWid / sin( arctan( rectWid / rectHei )
 
-func damage_taken(_damage:float, from:String, bullet:Node) -> bool:
+func damage_taken(_damage:float, from:String, inCritHit:bool = false, bullet:Node = null) -> bool:
 	if(from == "player" && !draggers.is_empty()):
 		return false
 	else:

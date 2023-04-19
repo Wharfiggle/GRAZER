@@ -61,7 +61,9 @@ var knockbackStrength = 0
 @onready var knockbox = $knockbox
 @export var stunTime = 1.0
 var stunTimer = 0
-@export var hitColor = Color(1.0, 0.5, 0.15)
+var critHit = false
+@export var hitColor = Color(1, 1, 0)
+@export var critHitColor = Color(1, 0, 0)
 @onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/pants")).get_material_override()
 var hitFlashAmmount = 0.0
 
@@ -134,6 +136,7 @@ func _physics_process(delta):
 		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
 		if(hitFlashAmmount < 0.1):
 			hitFlashAmmount = 0
+			critHit = false
 			hitFlash.set_shader_parameter("ammount", 0.0)
 	
 	if(herd == null):
@@ -509,7 +512,7 @@ func attack():
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
 		#var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
-		b.shoot(self, "enemy", shootingPoint.global_position, Vector3(0, aimDirection, 0), 15.0, 2.0)
+		b.shoot(self, "enemy", shootingPoint.global_position, Vector3(0, aimDirection, 0), 15.0, 2.0, false)
 		var smokeInstance = smoke.instantiate()
 		var boomSound = b.find_child("Boom")
 		boomSound.stream = revolverShootSound
@@ -548,10 +551,15 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
 		draggedCow = null
 		currentMode = behaviors.cowPursuit
 
-func damage_taken(damage:float, from:String, inBullet:Node = null) -> bool:
+func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
 	if(from != "enemy"):
 		health -= damage
 		hitFlashAmmount = 1
+		critHit = inCritHit
+		if(!critHit):
+			hitFlash.set_shader_parameter("color", hitColor)
+		else:
+			hitFlash.set_shader_parameter("color", critHitColor)
 		if(inBullet != null):
 			inBullet.bulletStopExtend = 1
 		if health <= 0:

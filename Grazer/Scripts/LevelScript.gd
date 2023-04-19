@@ -93,8 +93,17 @@ class Item:
 			player.hitpoints += 0.5 * player.hitpoints
 			if(player.hitpoints > player.maxHitpoints):
 				player.hitpoints = player.maxHitpoints
+			player.hitFlash.set_shader_parameter("color", Color(0.5, 1, 0.5))
+			player.hitFlashAmmount = 1.0
 		elif(id == 7): #bulletstorm
 			player.bulletstorm = useOrUndo
+			if(useOrUndo):
+				print("set line and bullet color")
+				player.setLineSightColor(Color(0.5, 0.75, 1))
+				player.setBulletColor(Color(0.5, 0.75, 1))
+			else:
+				player.setLineSightColor()
+				player.setBulletColor()
 		elif(id == 8): #life leach
 			player.lifeLeach += 0.1 * undoMod
 		elif(id == 9): #dustkicker

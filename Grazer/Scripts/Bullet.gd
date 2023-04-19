@@ -19,13 +19,15 @@ var trailPoints
 @export var trailLength = 3.0
 var trailEnd = 0
 var bulletStopExtend = 0
+var trailColor = Color(1, 167 / 255.0, 0)
+var critHit = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	raycast.target_position = Vector3(0, -muzzle_velocity / 60.0, 0)
 
 func shoot(inSource:Node3D, inFrom:String, inPosition:Vector3, inRotation:Vector3, 
-inRange:float, inDamage:float, inSpeed:float = 150.0):
+inRange:float, inDamage:float, inCritHit:bool = false, inColor:Color = Color(-1,-1,-1), inSpeed:float = 150.0):
 	source = inSource
 	source.get_parent().add_child(self)
 	from = inFrom
@@ -37,11 +39,18 @@ inRange:float, inDamage:float, inSpeed:float = 150.0):
 	bulletRange = inRange
 	damage = inDamage
 	active = true
+	critHit = inCritHit
 	
 	trailPoints = [Vector3.ZERO, Vector3.ZERO]
 	#necessary to make the mesh independent from other bullets' trail meshes
 	bulletTrail = bulletTrailMesh.duplicate()
-	get_node(NodePath("./BulletTrail")).set_mesh(bulletTrail)
+	var meshInstance = get_node(NodePath("./BulletTrail"))
+	meshInstance.set_mesh(bulletTrail)
+	if(inColor != null && inColor.r != -1):
+		print("set bullet trail to " + str(inColor))
+		bulletTrail.prepareForColorChange(meshInstance)
+		bulletTrail.setColor(inColor)
+		trailColor = inColor
 	
 func _process(delta):
 	lifespan -= delta
@@ -77,7 +86,7 @@ func _physics_process(_delta):
 				if(hitBody == null):
 					canHit = false
 				if(hitBody.has_method("damage_taken")):
-					canHit = hitBody.damage_taken(0, from, self)
+					canHit = hitBody.damage_taken(0, from, critHit, self)
 				if(!canHit):
 					hitBody = null
 				else: #hits only if object doesn't have damage_taken or damage_taken returns true
@@ -90,7 +99,14 @@ func _physics_process(_delta):
 
 func hit(body):
 	if(hitBody.has_method("damage_taken")):
-		body.damage_taken(damage, from, self)
+		var bodyParent = body.get_parent()
+		body.damage_taken(damage, from, critHit, self)
+#		if(!("hitFlash" in body)):
+#			var bodyParent = body.get_parent()
+#			if("hitFlash" in bodyParent):
+#				bodyParent.hitFlash.set_shader_parameter("color", trailColor)
+#		else:
+#			body.hitFlash.set_shader_parameter("color", trailColor)
 	var wr = weakref(source) #used to see if source has been queue_free()'d or not
 	if(wr.get_ref() && source.has_method("healFromBullet")):
 		source.healFromBullet(damage)

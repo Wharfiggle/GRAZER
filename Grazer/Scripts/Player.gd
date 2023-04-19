@@ -52,7 +52,8 @@ var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponH
 @export var shotgunClipSize = 2
 
 var potions = null
-var inventory = [0, 0, 0, 0, 0, 0]
+#var inventory = [0, 0, 0, 0, 0, 0]
+var inventory = [1, 1, 1, 1, 1, 1]
 @export var potionTime = 30.0
 var potionTimer = 0.0
 var potionUsed
@@ -62,6 +63,9 @@ var alwaysCrit = false
 var critChance = 0.1
 var dauntless = false
 var bulletstorm = false
+var bulletColor = Color(1, 1, 0)
+var lineSightColor = Color(1, 1, 1)
+var critColor = Color(0, 0, 0)
 
 @export var hitColor:Color
 @onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/Pants")).get_material_override()
@@ -127,6 +131,7 @@ func _ready():
 	healthCounter.updateHealth(hitpoints)
 	lineSight = lineSightMesh.duplicate()
 	lineSightNode.mesh = lineSight
+	lineSight.prepareForColorChange(lineSightNode)
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 	shotgunSpread = shotgunSpread * PI / 180.0
 	lineSightNode.transparency = lineSightTransparency
@@ -244,6 +249,7 @@ func _process(delta):
 			reloading = false
 		idleTime = 0
 		
+		shootBufferTimer = 0
 		Input.start_joy_vibration(0,1,1,0.07)
 		var smokeInstance = smoke.instantiate()
 		add_child(smokeInstance)
@@ -257,13 +263,20 @@ func _process(delta):
 			#crit particle
 			smokeInstance.get_child(2).emitting = true
 		var boomSound = smokeInstance.find_child("Boom")
+		
+		var bColor = bulletColor
+		if(critMult == 2.0):
+			bColor = critColor
+		print(bColor)
+		
 		#Shooting the revolver
 		if(onRevolver):
 			revolverClip -= 1
 			
 			MainHud._ammo_remove_(1)
 			var b = bullet.instantiate()
-			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), revolverRange, revolverDamage * critMult)
+			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0),
+			revolverRange, revolverDamage * critMult, critMult > 1, bColor, 150.0)
 			camera.add_trauma(0.15)
 			if(!critMult == 2.0):
 				boomSound.stream = revolverShootSound
@@ -284,7 +297,8 @@ func _process(delta):
 				var rnRange = shotgunRange + rng.randf_range(-shotgunRange * shotgunRandOffset, shotgunRange * shotgunRandOffset)
 				var bRotation = Vector3(0, aimDir - shotgunSpread / 2.0
 					+ (shotgunSpread / (shotgunBullets - 1)) * bullets + rnSpread, 0)
-				b.shoot(self, "player", shootingPoint.global_position, bRotation, rnRange, shotgunDamage * critMult, 50.0)
+				b.shoot(self, "player", shootingPoint.global_position, bRotation, 
+				rnRange, shotgunDamage * critMult, critMult > 1, bColor, 50.0)
 				bullets += 1
 			if(!critMult == 2.0):
 				boomSound.stream = revolverShootSound
@@ -371,8 +385,18 @@ func _process(delta):
 	if(Input.is_action_just_pressed("Follow Wait") && active):
 		herd.toggleFollow()
 
+func setLineSightColor(inColor:Color = Color(1, 1, 1)):
+	lineSightColor = inColor
+	print(inColor)
+	lineSight.setColor(inColor)
+
+func setBulletColor(inColor:Color = Color(1, 1, 0)):
+	bulletColor = inColor
+
 func usePotion(ind:int):
 	if(inventory[ind] > 0):
+		if(potionUsed != null):
+			potionUsed.use(false)
 		potions[ind].use()
 		inventory[ind] -= 1
 		potionTimer = potionTime
@@ -414,6 +438,7 @@ func _physics_process(delta):
 		if(hitFlashAmmount < 0.1):
 			hitFlashAmmount = 0
 			hitFlash.set_shader_parameter("ammount", 0.0)
+			hitFlash.set_shader_parameter("color", hitColor)
 	
 	#swap weapon
 	if(active):
@@ -642,7 +667,7 @@ func knock():
 			camera.add_trauma(0.2)
 			knocked = true
 
-func damage_taken(damage:float, from:String, _inBullet:Node) -> bool:
+func damage_taken(damage:float, from:String, inCritHit:bool = false, _inBullet:Node = null) -> bool:
 	if(from != "player"):
 		print("player damaged")
 		hitFlashAmmount = 1
