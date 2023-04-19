@@ -8,8 +8,6 @@ var chunkScenes = 0
 var structureNodes = 0
 var structureScenes = 0
 
-
-
 func printCounters():
 	print("Cows: " + str(cows))
 	print("Marauders: " + str(marauders))
@@ -18,4 +16,3 @@ func printCounters():
 	print("Chunk Scenes: " + str(chunkScenes))
 	print("Structure Nodes: " + str(structureNodes))
 	print("Structure Scenes: " + str(structureScenes))
-	

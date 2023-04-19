@@ -304,4 +304,7 @@ func printStructureList():
 func preloadTiles():
 	for c in chunkTiles.retrieveChunkTypes():
 		load(c)
-	
+	for s in tileStructures.retrieveStructureTypes():
+		load(s[0])
+	for w in chunkTiles.retrieveWallsTypes():
+		load(w)

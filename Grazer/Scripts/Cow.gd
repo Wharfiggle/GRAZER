@@ -140,7 +140,8 @@ func startDragging(marauder):
 	speedTransitionRadius = dragSpeedTransitionRadius
 	
 	herd.removeHuddler(self)
-	enableRayCasts()
+	#Set to disable, because otherwise the cow can't look at the marauder when dragged
+	disableRayCasts()
 	animation.set("parameters/conditions/Drag", true)
 	animation.set("parameters/conditions/Not_Drag", false)
 	
@@ -267,6 +268,17 @@ func _physics_process(delta):
 						rotation.y,
 						targetAngle, 
 						lookSpeed * delta)
+						
+				
+				#Reducing movespeed until cow is facing right direction when dragged
+				if(getNumDraggers() > 0):
+					#Is in radians
+					var curDirection = Vector2 (cos (rotation.y), sin (rotation.y))
+					var targetDirection = Vector2 (cos (targetAngle), sin (targetAngle))
+					#Use dot product to produce a scaler 0 < x < 1 based on the cow's direction
+					maxSpeed = dragSpeed * ((curDirection.dot(targetDirection)))
+					
+				
 			var targetDistance = followDistance
 			if(followingHerd && draggers.is_empty()):
 				#radius of herd

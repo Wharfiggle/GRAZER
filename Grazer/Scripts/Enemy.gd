@@ -8,7 +8,8 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
 var aimDirection = 0
-@export var aimLerpSpeed = 0.75
+@export var baseAimSpeed = 0.75
+var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
 
@@ -24,7 +25,7 @@ var maxHealth = 10.0
 var health = maxHealth
 var clipSize = 3
 var clip = 3
-var attackTime = 3
+var aimTime = 1
 var attackCooldown = 0
 var reloadTime = 3
 var reloadCooldown = 0
@@ -48,6 +49,7 @@ var GRAVITY = 30 #hibernate() sets this to 30, so both need to be changed when m
 #Distance from player when the enemy will stop hibernating
 var wakeUpDistance = 20.0
 var canFire = true
+var aiming = false
 var fireDirection
 @export var knockbackMod = 2.0
 #@export var knockbackIFrames = 0.3
@@ -81,14 +83,6 @@ func _ready():
 		revolver = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight/RevolverOffset/Revolver"))
 	if(revolver != null):
 		shootingPoint = revolver.find_child("ShootingPoint")
-#	#Setting enemy type
-#	if(marauderType == null):
-#		if(randi_range(0,1) == 0):
-#			marauderType = enemyTypes.thief
-#		else:
-#			marauderType = enemyTypes.gunman
-#	if(marauderType == enemyTypes.gunman):
-#		$Mesh.scale = Vector3(1,0.7,1)
 	
 	rng.randomize()
 	var rn = rng.randf()
@@ -142,18 +136,14 @@ func _physics_process(delta):
 			hitFlashAmmount = 0
 			hitFlash.set_shader_parameter("ammount", 0.0)
 	
-	if(dynamicCooldown > 0):
-		dynamicCooldown -= delta
-	lerp(dynamicMov.x,0.0,0.1)
-	lerp(dynamicMov.z,0.0,0.1)
-	
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
 	
 	#TODO ADD RAYCAST TO CHECK IF CHUNK IS UNLOADED
-	if(position.distance_to(player.position) > 50):
+	if(position.distance_to(player.position) > 50 or !is_on_floor()):
 		currentMode = behaviors.hibernate
 	
+	#TODO, ENEMY AIMING IS SEPERATE FROM ENEMY ROTATION DIRECTION, FIX
 	rotation.y = lerp_angle(
 		rotation.y,
 		atan2(position.x - targetPos.x, position.z - targetPos.z) + PI,
@@ -202,7 +192,7 @@ func _physics_process(delta):
 			pathNode += 1
 		else:
 			#set velocity to account for changes in direction but leave gravity alone
-			var tempVel = direction.normalized() * baseSpeed * speed + dynamicMov
+			var tempVel = direction.normalized() * baseSpeed * speed
 			tVelocity.x = tempVel.x
 			tVelocity.z = tempVel.z
 	
@@ -305,7 +295,7 @@ func circle():
 		return
 	
 	#If player is close enough to gunman, (Pursuit)
-	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 4 and 
+	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 6 and 
 	reloadCooldown <= 0):
 		currentMode = behaviors.pursuit
 		return
@@ -339,12 +329,10 @@ func pursuit():
 	#If closer than follow distance, back up
 	#If closer than half of follow distance, panic and flee
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
-	if(spacing < followDistance + 3 and spacing > followDistance):
+	if((spacing < followDistance + 3 and spacing > followDistance) or aiming):
 		#Slowing down in desired range
 		if(speed > 0):
 			speed = (spacing - followDistance) / 3.0
-		
-		
 		if (canFire):
 			var direction = transform.origin - player.transform.origin
 			direction = direction.normalized()
@@ -354,7 +342,7 @@ func pursuit():
 			if angle_to > 0:
 				pass
 			if(attackCooldown <= 0):
-				attack()
+				readyAim()
 				attackCooldown = 1.0
 				clip -= 1
 				#print("Bullets left: " + str(clip))
@@ -498,6 +486,23 @@ global_transform.origin, _targetPos, true)
 
 func _on_Timer_timeout():
 	moveTo(targetPos)
+
+func readyAim():
+	if(aiming):
+		return
+	print("Ready... Aim...")
+	aiming = true
+	for i in 6:
+		speed = 1 - i / 7.0
+		aimLerpSpeed = baseAimSpeed * (1 - i / 5.0)
+		if(aimLerpSpeed < 0):
+			aimLerpSpeed = 0
+		await get_tree().create_timer(aimTime / 5.0).timeout
+	print("Fire!")
+	attack()
+	aiming = false
+	speed = 1.0
+	aimLerpSpeed = baseAimSpeed
 
 func attack():
 	if(shootingPoint != null):

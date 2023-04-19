@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=2 format=3 uid="uid://b2d08mld62ud4"]
+[gd_resource type="ArrayMesh" load_steps=2 format=3 uid="uid://y6qx4v2pa2ql"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xh80"]
 resource_name = "cowBase"
