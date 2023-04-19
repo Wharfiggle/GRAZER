@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://w70vum3e544d"]
+
+[ext_resource type="PackedScene" uid="uid://dg5m4hmbf0e03" path="res://Assets/Models/Bushes/DryBush.fbx" id="1_ayx11"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pga7o"]
+albedo_color = Color(0.521569, 0.239216, 0.109804, 1)
+
+[node name="DryBush" instance=ExtResource("1_ayx11")]
+
+[node name="Cube" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube001" parent="RootNode" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube003" parent="RootNode" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube002" parent="RootNode" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube005" parent="RootNode" index="4"]
+transform = Transform3D(-18.0539, 5.50378, 5.68247e-08, 7.17215e-08, -6.13292e-16, 15.8162, 6.68729, 14.8587, -1.55721e-08, -0.174966, 0.0480743, -0.00630124)
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube006" parent="RootNode" index="5"]
+transform = Transform3D(-1.03109, 15.8225, -1.40634e-05, -2.86886e-06, 1.41668e-05, 15.8161, 19.225, 0.848607, 1.81458e-06, -0.174966, 0.0480743, -0.00630124)
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube008" parent="RootNode" index="6"]
+transform = Transform3D(-24.9049, 1.19438, 5.18577e-08, 0, -5.99021e-07, 13.612, 2.1789, 13.6519, 5.92735e-07, -0.174966, 0.0480743, -0.00630124)
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube009" parent="RootNode" index="7"]
+transform = Transform3D(-17.073, 12.8819, 5.59325e-07, 0, -6.95995e-07, 15.8162, 23.5007, 9.35856, 4.06343e-07, -0.174966, 0.0480743, -0.00630124)
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube010" parent="RootNode" index="8"]
+transform = Transform3D(12.1947, 14.4514, 2.1336e-05, -8.6569e-07, -2.65735e-05, 15.8162, 26.364, -6.68453, -1.16995e-05, -0.174966, 0.0480743, -0.00630124)
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
+
+[node name="Cube011" parent="RootNode" index="9"]
+transform = Transform3D(20.6832, 9.51261, 4.13056e-07, 0, -6.46885e-07, 14.701, 17.3553, -11.3367, -4.92261e-07, -0.174966, 0.0480743, -0.00630124)
+surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")
