@@ -47,7 +47,7 @@ inRange:float, inDamage:float, inCritHit:bool = false, inColor:Color = Color(-1,
 	var meshInstance = get_node(NodePath("./BulletTrail"))
 	meshInstance.set_mesh(bulletTrail)
 	if(inColor != null && inColor.r != -1):
-		print("set bullet trail to " + str(inColor))
+		#print("set bullet trail to " + str(inColor))
 		bulletTrail.prepareForColorChange(meshInstance)
 		bulletTrail.setColor(inColor)
 		trailColor = inColor

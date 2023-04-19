@@ -14,7 +14,6 @@ var spawnPrefabs = []
 
 static func retrieveChunkTypes() -> Array:
 	var chunks = []
-	
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn")
@@ -45,69 +44,42 @@ static func retrieveWallsTypes() -> Array:
 	#Add any walls here that need to be preloaded
 	return walls
 
-
-
 func start(_chunkCoords, chunkTypes:Array = []) -> Array:
 	chunkCoords = _chunkCoords
 	if(chunkTypes.is_empty()):
 		chunkTypes = chunkTiles.retrieveChunkTypes()
+		print_debug("1:Copied chunk types from chunkNode.gd")
+	
 	#If this chunk has not been loaded before
 	if(WorldSave.loadedCoords.find(_chunkCoords) == -1):
-		#Calculates a scene path and adds it to the data array
-		chunkData.append(calcChunk(chunkCoords, chunkTypes))
+		#Chooses a preloaded scene and adds it to the data array
+		chunkData.append(calcPrefab(chunkCoords, chunkTypes))
 		
 		#Adding this chunk node to the world save array
 		WorldSave.addChunk(_chunkCoords)
 		loadedBefore = false
-	
 	
 	#else it has been loaded before
 	else:
 		chunkData = WorldSave.retriveData(chunkCoords)
 		loadedBefore = true
 	
-	if(chunkData[0] == ""):
-		#print("Chunk " + str(position) + " is empty")
+	if(chunkData[0] == null):
 		return chunkTypes
 	
-	#Theoretically this doesn't need to be called if its already been loaded before
-	if(!ResourceLoader.has_cached(chunkData[0])):
-		ResourceLoader.load_threaded_request(chunkData[0],"",false, ResourceLoader.CACHE_MODE_REUSE)
-	
-	#This function returns 1 if in progress or 3 if done
-	#It needs to be used to pause this script until 3 is returned, possibly using a semaphore
-	#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
-	loading = true
-	
+	if(chunkData[0] == null):
+		loading = false
+	else:
+		print(chunkData[0])
+		instance = chunkData[0].instantiate()
+		SceneCounter.chunkScenes += 1
+		add_child(instance)
+		#Spawn everything in the chunk
+		if(!loadedBefore):
+			activateSpawners()
+			loadedBefore = true
+		loading = false
 	return chunkTypes
-
-func _process(_delta):
-	#Because if we try instantiate the scene while its not done it freezes the game
-	#Instead this function tries to check every frame if its done before attempting
-	
-	if(loading):
-		#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
-		if(chunkData[0] == ""):
-			loading = false
-		elif(ResourceLoader.load_threaded_get_status(chunkData[0]) == 3):
-			#This function will freeze the game until the scene is fully loaded
-			#But once loaded, it does return the reference to the scene that we need
-			#var chunk = ResourceLoader.load_threaded_get(chunkData[0])
-			@warning_ignore("int_as_enum_without_cast")
-			var chunk = ResourceLoader.load(chunkData[0],"",1)
-			await get_tree().process_frame
-			instance = chunk.instantiate()
-			SceneCounter.chunkScenes += 1
-			add_child(instance)
-			#Spawn everything in the chunk
-			if(!loadedBefore):
-				activateSpawners()
-				loadedBefore = true
-			loading = false
-		elif(ResourceLoader.has_cached(chunkData[0])):
-			print("Chunk is cached, but not thread loaded")
-		else:
-			print("Chunk wasn't preloaded")
 
 func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
 	spawnChanceMod = inSpawnChanceMod
@@ -117,35 +89,58 @@ func save():
 	WorldSave.saveChunk(chunkCoords, chunkData)
 	queue_free()
 	SceneCounter.chunkNodes -= 1
-	if(chunkData[0] != ""):
+	if(chunkData[0] != null):
 		SceneCounter.chunkScenes -= 1
 
 
 #custom function for choosing a chunk from our library based on the coordinates
-func calcChunk(_chunkCoords, chunkTypes:Array = []) -> String:
+func calcPrefab(_chunkCoords, chunkTypes:Array = []):
 	#system for choosing a chunk from the list
 	
 	if(chunkTypes.is_empty()):
 		chunkTypes = chunkTiles.retrieveChunkTypes()
-
-	var pathName = ""
+		print_debug("2:Copied chunk types from chunkNode.gd")
+	var chunkPrefabs = terrainController.getChunkPrefabs()
+	var structurePrefabs = terrainController.getStructurePrefabs()
+	var wallPrefabs = terrainController.getWallPrefabs()
+	var scene
 	if(chunkCoords.z == 2):
-		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/cliffSide2.tscn"
+		scene = wallPrefabs[0]
 	elif(chunkCoords.z > 2):
-		pathName = ""
+		scene = null
 	elif(chunkCoords.x == mapWidth):
-		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/cliffSide3.tscn"
+		scene = wallPrefabs[1]
 	elif(chunkCoords.x == -mapWidth):
-		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/canyonWall1.tscn"
+		scene = wallPrefabs[2]
 	elif(chunkCoords.x > mapWidth):
-		pathName = ""
+		scene = null
 	elif(chunkCoords.x < -mapWidth):
-		pathName = ""
+		scene = null
 	else:
-		var rn = randi_range(0, chunkTypes.size() - 1)
-		pathName = chunkTypes[rn]
-		
-	return pathName
+		var rn = randi_range(0, chunkPrefabs.size() - 1)
+		scene = chunkPrefabs[rn]
+	
+	return scene
+
+#func calcChunk(_chunkCoords, chunkTypes:Array = []) -> String:
+#	var pathName = ""
+#	if(chunkCoords.z == 2):
+#		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/cliffSide2.tscn"
+#	elif(chunkCoords.z > 2):
+#		pathName = ""
+#	elif(chunkCoords.x == mapWidth):
+#		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/cliffSide3.tscn"
+#	elif(chunkCoords.x == -mapWidth):
+#		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/canyonWall1.tscn"
+#	elif(chunkCoords.x > mapWidth):
+#		pathName = ""
+#	elif(chunkCoords.x < -mapWidth):
+#		pathName = ""
+#	else:
+#		var rn = randi_range(0, chunkTypes.size() - 1)
+#		pathName = chunkTypes[rn]
+#		
+#	return pathName
 
 func activateSpawners():
 	#loop through children and find all the spawners
