@@ -90,9 +90,7 @@ class Item:
 			player.updateGunStats()
 			levelScript.broadcastMessage(description, 3.0)
 		elif(id == 6): #health
-			player.hitpoints += 0.5 * player.hitpoints
-			if(player.hitpoints > player.maxHitpoints):
-				player.hitpoints = player.maxHitpoints
+			player.updateHealth(player.hitpoints + 0.5 * player.maxHitpoints)
 			player.hitFlash.set_shader_parameter("color", Color(0.5, 1, 0.5))
 			player.hitFlashAmmount = 1.0
 		elif(id == 7): #bulletstorm

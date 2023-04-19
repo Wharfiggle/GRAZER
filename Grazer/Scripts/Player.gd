@@ -53,7 +53,7 @@ var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponH
 
 var potions = null
 #var inventory = [0, 0, 0, 0, 0, 0]
-var inventory = [1, 1, 1, 1, 1, 1]
+var inventory = [5, 5, 5, 5, 5, 5]
 @export var potionTime = 30.0
 var potionTimer = 0.0
 var potionUsed
@@ -306,9 +306,9 @@ func _process(delta):
 			else:
 				boomSound.stream = revolverCritSound
 				boomSound.play()
+#		if(bulletstorm):
+#			shootTime = 0.1
 		shootTimer = shootTime
-		if(bulletstorm):
-			shootTimer = 0.001
 		lineSightTimer = lineSightTime
 	
 	#setting sound 
@@ -667,17 +667,22 @@ func knock():
 			camera.add_trauma(0.2)
 			knocked = true
 
+func updateHealth(newHP:float):
+	hitpoints = newHP
+	MainHud._on_health_update_(hitpoints / maxHitpoints)
+	healthCounter.updateHealth(hitpoints)
+	if(hitpoints <= 0 and !invincible):
+		die()
+	if(hitpoints > maxHitpoints):
+		hitpoints = maxHitpoints
+
 func damage_taken(damage:float, from:String, inCritHit:bool = false, _inBullet:Node = null) -> bool:
 	if(from != "player"):
 		print("player damaged")
 		hitFlashAmmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.25)
-		hitpoints -= damage
-		MainHud._on_health_update_(hitpoints / maxHitpoints)
-		healthCounter.updateHealth(hitpoints)
-		if hitpoints <= 0 and !invincible:
-			die()
+		updateHealth(hitpoints - damage)
 		return true
 	else:
 		return false
