@@ -1,7 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqxte1b7mb7fa"]
+[gd_scene load_steps=11 format=3 uid="uid://dqxte1b7mb7fa"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_14vnj"]
 [ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="2_tioc1"]
+[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="3_6o4m0"]
+[ext_resource type="PackedScene" uid="uid://drpymt3uxjd6y" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="4_xtr4e"]
+[ext_resource type="PackedScene" uid="uid://dqsinrlm5521v" path="res://Assets/FloorTiles/!Prefabs!/Water Barrel/waterBarrelV2.tscn" id="5_nnpwg"]
+[ext_resource type="PackedScene" uid="uid://w70vum3e544d" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="6_ubpae"]
+[ext_resource type="PackedScene" uid="uid://d1xxh0cq2yh8i" path="res://Assets/FloorTiles/!Prefabs!/Cow Skull/skull.tscn" id="7_vt76a"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -29,3 +34,21 @@ surface_material_override/0 = ExtResource("1_14vnj")
 
 [node name="Windmill" parent="NavigationRegion3D" instance=ExtResource("2_tioc1")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.668374, 0.0500002, 0.269363)
+
+[node name="cacti1" parent="." instance=ExtResource("3_6o4m0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.484674, 0.0500002, 2.1962)
+
+[node name="cactiNopal" parent="." instance=ExtResource("4_xtr4e")]
+transform = Transform3D(0.847558, 0, -0.530703, 0, 1, 0, 0.530703, 0, 0.847558, 1.9104, 0.0500007, 1.53701)
+
+[node name="Water_Barrel-v2" parent="." instance=ExtResource("5_nnpwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30309, 0.05, -1.25118)
+
+[node name="Water_Barrel-v3" parent="." instance=ExtResource("5_nnpwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05496, 0.0423924, -1.25919)
+
+[node name="DryBush" parent="." instance=ExtResource("6_ubpae")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.06551, 0.0466301, -0.894493)
+
+[node name="Skull" parent="." instance=ExtResource("7_vt76a")]
+transform = Transform3D(0.442497, 0, 1.16906, 0, 1.25, 0, -1.16906, 0, 0.442497, 2.08114, 1.13473, -1.25698)

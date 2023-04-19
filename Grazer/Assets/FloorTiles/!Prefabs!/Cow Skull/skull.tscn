@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1xxh0cq2yh8i"]
+
+[ext_resource type="PackedScene" uid="uid://cj6rgpa4r2q5p" path="res://Assets/Models/Cow Skull/Skull.gltf" id="1_rn8g0"]
+[ext_resource type="Material" uid="uid://dobi1p4ccsh21" path="res://Assets/Models/marauder/texture/skull.tres" id="2_t73ht"]
+
+[node name="Skull" instance=ExtResource("1_rn8g0")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="Skull2" parent="." index="0"]
+material_override = ExtResource("2_t73ht")
+
+[node name="horns" parent="." index="1"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth1" parent="." index="2"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth2" parent="." index="3"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth3" parent="." index="4"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth4" parent="." index="5"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth5" parent="." index="6"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth6" parent="." index="7"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth7" parent="." index="8"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth8" parent="." index="9"]
+material_override = ExtResource("2_t73ht")
+
+[node name="tooth9" parent="." index="10"]
+material_override = ExtResource("2_t73ht")

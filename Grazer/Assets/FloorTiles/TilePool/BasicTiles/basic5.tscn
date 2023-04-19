@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://xqocipnnhq7"]
+[gd_scene load_steps=10 format=3 uid="uid://xqocipnnhq7"]
 
+[ext_resource type="PackedScene" uid="uid://d1xxh0cq2yh8i" path="res://Assets/FloorTiles/!Prefabs!/Cow Skull/skull.tscn" id="1_0bgfd"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_fehf1"]
 [ext_resource type="PackedScene" uid="uid://b4ehi2slultkr" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="3_6d5np"]
 [ext_resource type="PackedScene" uid="uid://bu2brunjq1plk" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="3_ivs2i"]
@@ -21,6 +22,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("1")
+
+[node name="Skull" parent="." instance=ExtResource("1_0bgfd")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5.66616, 0.358603, -3.8412)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("4")
