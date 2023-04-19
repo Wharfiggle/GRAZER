@@ -11,7 +11,36 @@ var player
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 @onready var structureNode = preload("res://Assets/FloorTiles/StructureNode.tscn")
 @onready var structureTypes = tileStructures.retrieveStructureTypes()
-var chunkTypes
+var chunkTypes = chunkTiles.retrieveChunkTypes()
+
+#var chunkPrefabs = [
+#	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_3.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic3.tscn"),
+#	#preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic4.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic5.tscn")
+#]
+#var structurePrefabs = [
+#	preload("res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn"), #checkpoint
+#	preload("res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/StructureTiles/EmptyFloor1.tscn"), #test
+#	preload("res://Assets/FloorTiles/TilePool/StructureTiles/testTile.tscn"), #test
+#	preload("res://Assets/FloorTiles/TilePool/StructureTiles/cliffPit1.tscn"), #test
+#	preload("res://Assets/FloorTiles/TilePool/StructureTiles/cliffPitV2.tscn"), #test
+#	preload("res://Assets/FloorTiles/TilePool/StructureTiles/rvTestStruct.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic4.tscn")
+#]
+#var wallPrefabs = [
+#	preload("res://Assets/FloorTiles/TilePool/WallTiles/cliffSide2.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/WallTiles/cliffSide3.tscn"),
+#	preload("res://Assets/FloorTiles/TilePool/WallTiles/canyonWall1.tscn")
+#]
+
+#I can't actually figure out how to implement this properly right now but
+#this is our last resort if tiles keep refusing to load.
 
 var renderDistance = 2
 const tileWidth = 16.0
@@ -36,7 +65,7 @@ var checkWidth = 3
 #chance modifier for spawners on each chunk/structure. Increases as player progresses
 var spawnChanceMod = 1.0
 
-func _ready(): 
+func _ready():
 	checkWidth = structureTypes[1][1] #Gets width of checkpoints
 	checkLength = structureTypes[1][2] #Gets length
 	#print(checkOverlap(1,Vector3(-1 *16,0,-14 * 16),2, Vector3(1 * 16,0,-15 * 16)))
