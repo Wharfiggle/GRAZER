@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cagxngogpkioa"]
+
+[ext_resource type="PackedScene" uid="uid://w5e8ovnd8mw8" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/porch.tscn" id="1_405n7"]
+[ext_resource type="PackedScene" uid="uid://ch61xq358xwbd" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/rv.tscn" id="2_i0mhf"]
+
+[node name="Porch" instance=ExtResource("1_405n7")]
+
+[node name="RV" parent="." index="3" instance=ExtResource("2_i0mhf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00881588, 0, -0.0188072)

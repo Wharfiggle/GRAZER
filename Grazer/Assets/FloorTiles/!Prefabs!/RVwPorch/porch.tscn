@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://w5e8ovnd8mw8"]
+
+[ext_resource type="PackedScene" uid="uid://c0i18dgwmqo2u" path="res://Assets/Models/RVwPorch FINAL/Porch/Porch.fbx" id="1_7l7q1"]
+[ext_resource type="Texture2D" uid="uid://db1e6t3o3mb2n" path="res://Assets/Models/RVwPorch FINAL/Porch/Porch_lambert1_BaseColor.png" id="2_tqt1q"]
+[ext_resource type="Texture2D" uid="uid://cbrt7n48y184e" path="res://Assets/Models/RVwPorch FINAL/Porch/Porch_lambert1_Metallic.png" id="3_57a6t"]
+[ext_resource type="Texture2D" uid="uid://ds3bqvvsactj1" path="res://Assets/Models/RVwPorch FINAL/Porch/Porch_lambert1_Normal.png" id="4_cycvp"]
+[ext_resource type="Texture2D" uid="uid://cgtrpe5roxe0y" path="res://Assets/Models/RVwPorch FINAL/Porch/Porch_lambert1_Roughness.png" id="5_avoke"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tkmb"]
+albedo_texture = ExtResource("2_tqt1q")
+metallic = 1.0
+metallic_texture = ExtResource("3_57a6t")
+roughness_texture = ExtResource("5_avoke")
+normal_enabled = true
+normal_texture = ExtResource("4_cycvp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcl8g"]
+size = Vector3(1, 3.44462, 3.23271)
+
+[node name="Porch" instance=ExtResource("1_7l7q1")]
+
+[node name="pCube46" parent="RootNode/Porch" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube47" parent="RootNode/Porch" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube48" parent="RootNode/Porch" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube44" parent="RootNode/Porch" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube51" parent="RootNode/Porch" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube45" parent="RootNode/Porch" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube43" parent="RootNode/Porch" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube50" parent="RootNode/Porch" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube53" parent="RootNode/Porch" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube52" parent="RootNode/Porch" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube49" parent="RootNode/Porch" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube56" parent="RootNode/Porch" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube55" parent="RootNode/Porch" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube54" parent="RootNode/Porch" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pasted__pCube69" parent="RootNode/Porch" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pasted__pCube70" parent="RootNode/Porch" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="Wavy_Metal6" parent="RootNode/Porch" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="Wavy_Metal7" parent="RootNode/Porch" index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="Wavy_Metal8" parent="RootNode/Porch" index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="Wavy_Metal9" parent="RootNode/Porch" index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube68" parent="RootNode/Porch" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube63" parent="RootNode/Porch" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube62" parent="RootNode/Porch" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube61" parent="RootNode/Porch" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="pCube59" parent="RootNode/Porch" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="Wavy_Metal14" parent="RootNode/Porch" index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tkmb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+collision_layer = 19
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(-0.326377, -5.50879e-08, 0.94524, -0.94524, -5.69476e-08, -0.326377, 7.18085e-08, -1, -3.34849e-08, 2.4886, -0.216955, 0.36534)
+shape = SubResource("BoxShape3D_wcl8g")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(-0.326377, -5.50879e-08, 0.94524, -0.94524, -5.69476e-08, -0.326377, 7.18085e-08, -1, -3.34849e-08, 2.4886, -0.216955, 0.36534)
+shape = SubResource("BoxShape3D_wcl8g")

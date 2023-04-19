@@ -35,11 +35,13 @@ shape = SubResource("BoxShape3D_qh03d")
 [node name="EnemySpawner" parent="Trigger" instance=ExtResource("2_u3kxi")]
 transform = Transform3D(-0.697153, 0, 0.716923, 0, 1, 0, -0.716923, 0, -0.697153, -14.2824, 0, 0.348255)
 timeDelay = 0.2
+spawnAtEdgeOfScreen = true
 
 [node name="EnemySpawner2" parent="Trigger" instance=ExtResource("2_u3kxi")]
 transform = Transform3D(0.399149, 0, -0.916886, 0, 1, 0, 0.916886, 0, 0.399149, 5.44255, 0, -7.74023)
 numEnemies = 2
 timeDelay = 0.2
+spawnAtEdgeOfScreen = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_rbtkm")

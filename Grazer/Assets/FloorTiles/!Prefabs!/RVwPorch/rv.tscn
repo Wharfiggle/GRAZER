@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://ch61xq358xwbd"]
+
+[ext_resource type="PackedScene" uid="uid://co8yrmwt2xkro" path="res://Assets/Models/RVwPorch FINAL/RV/RV.fbx" id="1_noket"]
+[ext_resource type="Texture2D" uid="uid://b6cvjt3s1go4a" path="res://Assets/Models/RVwPorch FINAL/RV/RV_lambert1_BaseColor.png" id="2_8vkp8"]
+[ext_resource type="Texture2D" uid="uid://cltmqmo6iahbm" path="res://Assets/Models/RVwPorch FINAL/RV/RV_lambert1_Metallic.png" id="3_127qj"]
+[ext_resource type="Texture2D" uid="uid://c2iad80w7orfu" path="res://Assets/Models/RVwPorch FINAL/RV/RV_lambert1_Normal.png" id="4_sf3xc"]
+[ext_resource type="Texture2D" uid="uid://dlqviou6cwob5" path="res://Assets/Models/RVwPorch FINAL/RV/RV_lambert1_Roughness.png" id="5_4wfou"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rih6o"]
+albedo_texture = ExtResource("2_8vkp8")
+metallic = 1.0
+metallic_texture = ExtResource("3_127qj")
+roughness_texture = ExtResource("5_4wfou")
+normal_enabled = true
+normal_texture = ExtResource("4_sf3xc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rmy16"]
+size = Vector3(2.8707, 1.67116, 6.92945)
+
+[node name="RV" instance=ExtResource("1_noket")]
+
+[node name="RV_Base1" parent="RootNode/RV" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="pCube65" parent="RootNode/RV" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="pCube64" parent="RootNode/RV" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="pCube60" parent="RootNode/RV" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="pCube58" parent="RootNode/RV" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="pCube24" parent="RootNode/RV" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="pCube57" parent="RootNode/RV" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="pCube67" parent="RootNode/RV" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="pCube66" parent="RootNode/RV" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00697851, 0.836253, -0.499547)
+shape = SubResource("BoxShape3D_rmy16")
