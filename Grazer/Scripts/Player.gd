@@ -614,11 +614,13 @@ func setWeaponAndHands(revolver:bool, right:bool):
 			lineSightNode.transparency = lineSightTransparency
 			MainHud._ammo_update_(revolverClip)
 			MainHud._set_weapon_image_(revolverimage)
+			MainHud.move_ammoHold_(true)
 			
 		else:
 			lineSightNode.transparency = 1.0
 			MainHud._ammo_update_(shotgunClip)
 			MainHud._set_weapon_image_(shotgunimage)
+			MainHud.move_ammoHold_(false)
 		
 func setHands(right:bool):
 	if(right != rightHand):

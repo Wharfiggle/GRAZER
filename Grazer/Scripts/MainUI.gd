@@ -6,6 +6,7 @@ var tween : Tween
 var ammoIcon = preload("res://Prefabs/templates/ammo.tscn")
 @onready var ammoHolder = $ammoDisplay
 var PositionR = Vector2(153.0,653.0)
+var PositionS = Vector2(253.0,653.0)
 @onready var Wimage = $weponIcon
 
 # Called when the node enters the scene tree for the first time.
@@ -60,5 +61,8 @@ func _on_max_health_update_(maxHealth):
 func _set_weapon_image_(image):
 	Wimage.set_texture(image)
 
-func move_ammoHold_ ():
-	ammoHolder.set_position()
+func move_ammoHold_ (weapon:bool):
+	if(weapon == true):
+		ammoHolder.set_position(PositionR)
+	elif (weapon == false):
+		ammoHolder.set_position(PositionS)

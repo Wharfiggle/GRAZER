@@ -54,8 +54,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8271, 102.047, -32.0673)
 [node name="enemycube" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.0975, 7.23129, -23.2195)
 script = ExtResource("3_6qkwa")
-knockable = null
-knockbackMod = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemycube"]
 shape = SubResource("4")
@@ -94,8 +92,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -31.8324, 8.43322, -20.3087)
 collision_layer = 15
 collision_mask = 15
 script = ExtResource("3_6qkwa")
-knockable = null
-knockbackMod = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy2"]
 shape = SubResource("BoxShape3D_duc3a")
