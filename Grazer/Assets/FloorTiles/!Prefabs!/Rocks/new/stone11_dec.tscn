@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://badsogtm40lc4"]
+[gd_scene load_steps=7 format=3 uid="uid://dlqd077gajlyo"]
 
 [ext_resource type="PackedScene" uid="uid://bokadbaow24hg" path="res://Assets/Models/Rocks FINAL/stone11/stone11.fbx" id="1_hr28a"]
 [ext_resource type="Texture2D" uid="uid://c7q1ment1xj1p" path="res://Assets/Models/Rocks FINAL/stone11/stone11_Material_BaseColor.png" id="2_0ft6u"]

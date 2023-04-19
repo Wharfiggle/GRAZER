@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://b6gai2ydtj71n"]
 
-[ext_resource type="PackedScene" uid="uid://c68p0le5ji1gg" path="res://Assets/Models/Juca/juca1.fbx" id="1_8l460"]
+[ext_resource type="PackedScene" uid="uid://c68p0le5ji1gg" path="res://Assets/Models/Juca/juca1.fbx" id="1_qsxl1"]
 
-[node name="juca1" instance=ExtResource("1_8l460")]
+[node name="juca1" instance=ExtResource("1_qsxl1")]
 
 [node name="CactusBody003" parent="RootNode" index="0"]
 visible = false

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://152arhrywqgi"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_x5v7x"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="2_qh1tq"]
+[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="2_qh1tq"]
 [ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="4_adikl"]
 
 [sub_resource type="BoxShape3D" id="1"]

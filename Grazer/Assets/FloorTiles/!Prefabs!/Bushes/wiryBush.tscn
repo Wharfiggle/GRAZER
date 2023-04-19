@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dg5m4hmbf0e03" path="res://Assets/Models/Bushes/DryBush.fbx" id="1_ayx11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pga7o"]
-albedo_color = Color(0.521569, 0.239216, 0.109804, 1)
+albedo_color = Color(0.6, 0.337255, 0.215686, 1)
 
 [node name="DryBush" instance=ExtResource("1_ayx11")]
 

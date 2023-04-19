@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://sy13hnatlbhk"]
+[gd_scene load_steps=7 format=3 uid="uid://sy13hnatlbhk"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_itu8t"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="1_x0r71"]
+[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="1_x0r71"]
+[ext_resource type="PackedScene" uid="uid://w70vum3e544d" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="3_77nlw"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -35,3 +36,9 @@ transform = Transform3D(0.75, 0, 0, 0, 1.055, 0, 0, 0, 0.75, 4.28997, 0.0500002,
 
 [node name="cacti3" parent="NavigationRegion3D" instance=ExtResource("1_x0r71")]
 transform = Transform3D(1.40878, 0, 0, 0, 1.20044, 0, 0, 0, 1.29125, 3.28682, 0.0500002, -1.29887)
+
+[node name="DryBush" parent="." instance=ExtResource("3_77nlw")]
+transform = Transform3D(0.243534, 0, 0.337081, 0, 0.708173, 0, -0.35753, 0, 0.229605, -4.95006, 0.0500002, -3.85814)
+
+[node name="DryBush2" parent="." instance=ExtResource("3_77nlw")]
+transform = Transform3D(0.140741, 0, 0.194223, 0, 0.354, 0, -0.20662, 0, 0.132296, -3.00591, 0.0500002, -3.29749)

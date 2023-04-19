@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8jomw2f7q3cb"]
 
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="2_4ctqp"]
+[ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="2_4ctqp"]
 [ext_resource type="PackedScene" uid="uid://ccnx64oa6vbqv" path="res://Assets/FloorTiles/!Prefabs!/cliffStraightV2_USE.tscn" id="2_pwto1"]
 [ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="2_s7foh"]
 [ext_resource type="PackedScene" uid="uid://drpymt3uxjd6y" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="4_u0f32"]

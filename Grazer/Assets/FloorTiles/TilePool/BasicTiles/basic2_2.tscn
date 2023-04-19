@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://hblrj652v6u7"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_qx0tp"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="2_thmpr"]
+[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="2_thmpr"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)

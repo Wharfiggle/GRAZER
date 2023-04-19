@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="8_0bpe5"]
 [ext_resource type="PackedScene" uid="uid://cvioj5lu03uhd" path="res://Assets/FloorTiles/!Prefabs!/Silos/siloV1.tscn" id="8_htqr0"]
 [ext_resource type="PackedScene" uid="uid://dqsinrlm5521v" path="res://Assets/FloorTiles/!Prefabs!/Water Barrel/waterBarrelV2.tscn" id="8_w5dsu"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="9_4o462"]
+[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="9_4o462"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qh03d"]
 size = Vector3(13.0633, 3.23271, 4.25987)

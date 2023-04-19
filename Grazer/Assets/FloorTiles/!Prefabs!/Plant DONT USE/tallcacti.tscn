@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjoiku0us1i3f"]
 
-[ext_resource type="PackedScene" uid="uid://c86l2ot6qgw2j" path="res://Assets/Models/Cacti/Tallcacti.fbx" id="1_gk0kn"]
+[ext_resource type="PackedScene" uid="uid://c86l2ot6qgw2j" path="res://Assets/Models/Cacti/Tallcacti.fbx" id="1_r0qmv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hwjtk"]
 height = 1.5
 
-[node name="Tallcacti" instance=ExtResource("1_gk0kn")]
+[node name="Tallcacti" instance=ExtResource("1_r0qmv")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="1"]
 collision_layer = 19
