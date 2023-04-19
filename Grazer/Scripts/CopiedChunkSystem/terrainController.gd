@@ -306,3 +306,5 @@ func preloadTiles():
 		load(c)
 	for s in tileStructures.retrieveStructureTypes():
 		load(s[0])
+	for w in chunkTiles.retrieveWallsTypes():
+		load(w)

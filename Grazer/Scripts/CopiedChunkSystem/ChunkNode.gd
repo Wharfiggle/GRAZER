@@ -36,6 +36,17 @@ static func retrieveChunkTypes() -> Array:
 	
 	return chunks
 
+static func retrieveWallsTypes() -> Array:
+	var walls = []
+	walls.append("res://Assets/FloorTiles/TilePool/WallTiles/cliffSide2.tscn")
+	walls.append("res://Assets/FloorTiles/TilePool/WallTiles/cliffSide3.tscn")
+	walls.append("res://Assets/FloorTiles/TilePool/WallTiles/canyonWall1.tscn")
+	
+	#Add any walls here that need to be preloaded
+	return walls
+
+
+
 func start(_chunkCoords, chunkTypes:Array = []) -> Array:
 	chunkCoords = _chunkCoords
 	if(chunkTypes.is_empty()):
