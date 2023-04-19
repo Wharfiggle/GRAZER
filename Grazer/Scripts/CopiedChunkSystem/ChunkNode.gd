@@ -70,7 +70,6 @@ func start(_chunkCoords, chunkTypes:Array = []) -> Array:
 	if(chunkData[0] == null):
 		loading = false
 	else:
-		print(chunkData[0])
 		instance = chunkData[0].instantiate()
 		SceneCounter.chunkScenes += 1
 		add_child(instance)

@@ -17,9 +17,9 @@ var chunkTypes = chunkTiles.retrieveChunkTypes()
 const chunkPrefabs = [
 	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn"),
 	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2.tscn"),
-	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn"),
+	#preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn"),
 	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_3.tscn"),
-	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn"),
+	#preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn"),
 	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic3.tscn"),
 	#preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic4.tscn"),
 	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic5.tscn")
