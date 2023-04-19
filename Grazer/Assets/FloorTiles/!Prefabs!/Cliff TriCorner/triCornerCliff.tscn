@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdfitt6fxqiit"]
+
+[ext_resource type="PackedScene" uid="uid://cdmwebm8plb0b" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCornerV2/triCornerCliff_FixedV1_UV.fbx" id="1_ensni"]
+[ext_resource type="Texture2D" uid="uid://br0qokxt5vmsl" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCornerV2/triCornerCliff_FixedV1_blinn1_BaseColor.png" id="2_6vnfo"]
+[ext_resource type="Texture2D" uid="uid://383lwepn60qv" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCornerV2/triCornerCliff_FixedV1_blinn1_Metallic.png" id="3_jm83j"]
+[ext_resource type="Texture2D" uid="uid://fye61wt4868b" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCornerV2/triCornerCliff_FixedV1_blinn1_Normal.png" id="4_bjvu3"]
+[ext_resource type="Texture2D" uid="uid://kk8fx1mgd65v" path="res://Assets/Models/Stone Cliffs FINAL/cliffTriCornerV2/triCornerCliff_FixedV1_blinn1_Roughness.png" id="5_yrhx8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0c1q7"]
+albedo_texture = ExtResource("2_6vnfo")
+metallic = 1.0
+metallic_texture = ExtResource("3_jm83j")
+roughness_texture = ExtResource("5_yrhx8")
+normal_enabled = true
+normal_texture = ExtResource("4_bjvu3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2to2j"]
+size = Vector3(4, 3, 17)
+
+[node name="triCornerCliff_FixedV1_UV" instance=ExtResource("1_ensni")]
+
+[node name="fullTriwGround1_DECIM2" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0c1q7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.85282, 3.7, 0.303073)
+shape = SubResource("BoxShape3D_2to2j")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(-0.756687, 0, 0.653777, 0, 1, 0, -0.653777, 0, -0.756687, -2.95048, 3.7, -5.07059)
+shape = SubResource("BoxShape3D_2to2j")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.7, -7)
+shape = SubResource("BoxShape3D_2to2j")
