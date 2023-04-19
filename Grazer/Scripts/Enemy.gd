@@ -305,7 +305,7 @@ func circle():
 		return
 	
 	#If player is close enough to gunman, (Pursuit)
-	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 4 and 
+	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 6 and 
 	reloadCooldown <= 0):
 		currentMode = behaviors.pursuit
 		return
