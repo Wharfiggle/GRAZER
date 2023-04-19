@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc22uux0dxytn"]
+[gd_scene load_steps=7 format=3 uid="uid://bc22uux0dxytn"]
 
 [ext_resource type="Script" path="res://Scripts/MainUI.gd" id="1_f6sgc"]
-[ext_resource type="Texture2D" uid="uid://b0bpngunh4hbe" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/bullet.png" id="2_aoceg"]
 [ext_resource type="Texture2D" uid="uid://bf44dkwn285mh" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/rim.png" id="2_qjtpp"]
 [ext_resource type="Texture2D" uid="uid://bysfqdo0vgg8w" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/healthFullLength.png" id="3_w4k82"]
 [ext_resource type="Texture2D" uid="uid://2dkxbrqxj2b4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/shadow.png" id="4_gk0em"]
@@ -89,12 +88,6 @@ layout_mode = 2
 position = Vector2(0, 549)
 scale = Vector2(0.5, 0.5)
 
-[node name="TextureRect2" type="TextureRect" parent="Control/HBoxContainer/Bars/Node2D"]
-offset_top = 164.0
-offset_right = 229.0
-offset_bottom = 259.0
-texture = ExtResource("6_nmetx")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer/Bars"]
 layout_mode = 2
 
@@ -108,6 +101,15 @@ layout_direction = 1
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="weponIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 651.0
+offset_right = 249.0
+offset_bottom = 746.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_nmetx")
+
 [node name="ammoDisplay" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -115,17 +117,12 @@ anchor_left = 0.139
 anchor_top = 1.0
 anchor_right = 0.139
 anchor_bottom = 1.0
-offset_left = -34.92
+offset_left = -24.92
 offset_top = -67.0
-offset_right = 189.08
+offset_right = 199.08
 theme_override_constants/h_separation = 7
 theme_override_constants/v_separation = 8
 columns = 6
-
-[node name="ammo1" type="TextureRect" parent="ammoDisplay"]
-layout_mode = 2
-texture = ExtResource("2_aoceg")
-stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0

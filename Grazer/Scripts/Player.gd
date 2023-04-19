@@ -39,6 +39,9 @@ var autoReloadTime = 5
 var reloading = false
 var invincible = false
 
+var revolverimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/revolvEquip.png")
+var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/shotgunEquip.png")
+
 #revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
 @export var gunStats = [0, 0.0, 0.0, 0, 0.0, 0.0]
 @export var revolverDamage = 3.0
@@ -114,6 +117,7 @@ var swapInputFrames = 5
 var swapInputFrameCounter = 0
 var active = true
 var maxAmmo = 0
+var once = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -136,7 +140,11 @@ func _ready():
 	
 	hitFlash.set_shader_parameter("color", hitColor)
 	
-	MainHud._ammo_update_(revolverClip)
+	if(once):
+		MainHud._ammo_update_(revolverClip)
+		once = false
+	else:
+		print("only one will stand")
 	#HealthBar._on_max_health_update_(10)
 
 	#var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
@@ -252,8 +260,8 @@ func _process(delta):
 		#Shooting the revolver
 		if(onRevolver):
 			revolverClip -= 1
-			if (revolverClip>0):
-				MainHud._ammo_remove_()
+			
+			MainHud._ammo_remove_(1)
 			var b = bullet.instantiate()
 			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0), revolverRange, revolverDamage * critMult)
 			camera.add_trauma(0.15)
@@ -268,6 +276,7 @@ func _process(delta):
 			camera.add_trauma(0.2)
 			shotgunClip -= 1
 			rng.randomize()
+			MainHud._ammo_remove_(1)
 			var bullets = 0
 			while bullets < shotgunBullets:
 				var b = bullet.instantiate()
@@ -372,6 +381,7 @@ func usePotion(ind:int):
 func startReload():
 	print("Reloading")
 	reloading = true
+	once = true
 	if(onRevolver):
 		currentReloadTime = revolverReloadTime
 	else:
@@ -386,7 +396,11 @@ func finishReloading():
 	idleTime = 0
 	if(onRevolver):
 		revolverClip = revolverClipSize
-		MainHud._ammo_update_(revolverClip)
+		if (once):
+			MainHud._ammo_update_(revolverClip)
+			once = false
+		else:
+			print("it is done")
 	else:
 		shotgunClip = shotgunClipSize
 		MainHud._ammo_update_(shotgunClip)
@@ -598,8 +612,14 @@ func setWeaponAndHands(revolver:bool, right:bool):
 		lineSightRaycast = shootingPoint.get_child(0)
 		if(onRevolver):
 			lineSightNode.transparency = lineSightTransparency
+			MainHud._ammo_update_(revolverClip)
+			MainHud._set_weapon_image_(revolverimage)
+			
 		else:
 			lineSightNode.transparency = 1.0
+			MainHud._ammo_update_(shotgunClip)
+			MainHud._set_weapon_image_(shotgunimage)
+		
 func setHands(right:bool):
 	if(right != rightHand):
 		setWeaponAndHands(onRevolver, right)
@@ -607,6 +627,7 @@ func setWeapon(revolver:bool):
 	idleTime = 0
 	if(revolver != onRevolver):
 		setWeaponAndHands(revolver, rightHand)
+		
 
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()
