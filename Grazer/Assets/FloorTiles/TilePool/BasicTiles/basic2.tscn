@@ -1,9 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://rcyckmybkh2j"]
+[gd_scene load_steps=5 format=3 uid="uid://rcyckmybkh2j"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_xyi3r"]
-[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="2_tge0o"]
-[ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="3_k01cx"]
-[ext_resource type="PackedScene" uid="uid://4vq7bhevj5ar" path="res://Assets/FloorTiles/!Prefabs!/Bushes/sandBush.tscn" id="4_juvgc"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -28,21 +25,3 @@ navigation_mesh = SubResource("4")
 mesh = SubResource("2")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_xyi3r")
-
-[node name="stone10" parent="." instance=ExtResource("2_tge0o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15784, -0.237708, 4.68076)
-
-[node name="stone13" parent="." instance=ExtResource("2_tge0o")]
-transform = Transform3D(0.274228, 0.194255, 0.725992, 0.0686422, -0.776057, 0.181724, 0.74839, 0, -0.282688, -2.28353, -0.237708, -7.68243)
-
-[node name="stone14" parent="." instance=ExtResource("2_tge0o")]
-transform = Transform3D(0.912401, 0.215444, 0.57542, 0.094383, -1.06708, 0.24987, 0.607138, -0.157883, -0.90358, 5.47553, -0.219187, 0.667029)
-
-[node name="stone11" parent="." instance=ExtResource("3_k01cx")]
-transform = Transform3D(0.398035, 0.0395959, 0, -0.0395959, 0.398035, 0, 0, 0, 0.4, -0.223677, -0.290782, 2.08037)
-
-[node name="stone12" parent="." instance=ExtResource("3_k01cx")]
-transform = Transform3D(-0.16866, 0, 0.248101, -0.120066, 0.26253, -0.081621, -0.217113, -0.145182, -0.147594, 1.55025, -0.307327, 0.175615)
-
-[node name="Sand Bush" parent="." instance=ExtResource("4_juvgc")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.46487, -0.0937061, -0.671139)

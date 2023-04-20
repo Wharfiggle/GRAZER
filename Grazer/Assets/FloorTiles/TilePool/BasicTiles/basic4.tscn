@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvsloftv3qi2h"]
+[gd_scene load_steps=8 format=3 uid="uid://dvsloftv3qi2h"]
 
 [ext_resource type="PackedScene" uid="uid://c41nldgjrdemf" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stoneArch.tscn" id="2_7em30"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="2_dm4kt"]
 [ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="3_cmdm8"]
+[ext_resource type="PackedScene" uid="uid://drpymt3uxjd6y" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="4_05xcc"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
 
 [sub_resource type="NavigationMesh" id="4"]
-vertices = PackedVector3Array(-3.25, 0.369037, 5, -3.25, 0.869037, 4.25, -4.25, 0.369037, 3.75, -2.25, 0.369037, 7.5, -2.25, 0.369037, 5, -3.25, 0.369037, 5, -1.5, 0.369037, 0.75, -0.25, 0.369037, -2, -1, 0.369037, -2.5, -3, 0.369037, 0.5, -1.5, 0.369037, 0.75, -1, 0.369037, -2.5, -1, 0.369037, -4.75, -2.25, 0.369037, 7.5, -3.25, 0.369037, 5, -4.25, 0.369037, 3.75, -7.5, 0.369037, 0, -7.5, 0.369037, 7.5, 1.75, 0.369037, -6, 7.5, 0.369037, -7.5, 0, 0.369037, -7.5, 0, 0.369037, -6, -1, 0.369037, -4.75, 0, 0.369037, -6, 0, 0.369037, -7.5, -7.5, 0.369037, 0, -4.25, 0.369037, 3.75, -4.25, 0.369037, 1.75, -7.5, 0.369037, 0, -4.25, 0.369037, 1.75, -3, 0.369037, 0.5, -1, 0.369037, -4.75, 0, 0.369037, -7.5, -7.5, 0.369037, -7.5, 3, 0.369037, -4.5, 7.5, 0.369037, -4.5, 7.5, 0.369037, -7.5, 1.75, 0.369037, -6, -1, 0.369037, 4.75, -2.25, 0.369037, 5, -2.25, 0.369037, 7.5, 0.75, 0.369037, -1.5, -0.25, 0.369037, -2, -1.5, 0.369037, 0.75, 0.75, 0.369037, -1.5, -1.5, 0.369037, 0.75, 0, 0.369037, 2, 2, 0.369037, -1.75, 7.5, 0.369037, -4.5, 3, 0.369037, -4.5, 2, 0.369037, -1.75, 0, 0.369037, 3, -1, 0.369037, 4.75, -2.25, 0.369037, 7.5, 7.5, 0.369037, 7.5, 2, 0.369037, -1.75, 0, 0.369037, 2, 0, 0.369037, 3, 7.5, 0.369037, 7.5, 7.5, 0.369037, -4.5, 0, 4.86904, -3.25, 0, 5.36904, -2.5, 1, 4.86904, -3.25, -1, 4.86904, 1.75, -1.25, 5.36904, 1, -1.75, 5.11904, 1, -2.25, 4.86904, 1.75, -2, 4.86904, 2.5)
-polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 17), PackedInt32Array(15, 17, 16), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(23, 22, 24), PackedInt32Array(27, 26, 25), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(31, 28, 32), PackedInt32Array(32, 28, 33), PackedInt32Array(34, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(40, 39, 38), PackedInt32Array(43, 42, 41), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47), PackedInt32Array(50, 49, 48), PackedInt32Array(52, 51, 53), PackedInt32Array(53, 51, 54), PackedInt32Array(56, 55, 57), PackedInt32Array(57, 55, 59), PackedInt32Array(57, 59, 58), PackedInt32Array(62, 61, 60), PackedInt32Array(64, 63, 65), PackedInt32Array(65, 63, 66), PackedInt32Array(66, 63, 67)]
+vertices = PackedVector3Array(-1.5, 0.369037, 0.75, -0.25, 0.369037, -2, -1, 0.369037, -2.5, -7.5, 0.369037, 2.75, -4.25, 0.369037, 2.75, -4.25, 0.369037, 1.75, -3.5, 0.369037, 0.75, -1.5, 0.369037, 0.75, -1, 0.369037, -2.5, -1, 0.369037, -4.75, -7.5, 0.369037, 2.75, -4.25, 0.369037, 1.75, -3.5, 0.369037, 0.75, -1, 0.369037, -4.75, 0, 0.369037, -7.5, -7.5, 0.369037, -7.5, 3, 0.369037, -4.5, 7.5, 0.369037, -4.5, 7.5, 0.369037, -7.5, 1.75, 0.369037, -6, -1, 0.369037, -4.75, 0, 0.369037, -6, 0, 0.369037, -7.5, 1.75, 0.369037, -6, 7.5, 0.369037, -7.5, 0, 0.369037, -7.5, 0, 0.369037, -6, 0.75, 0.369037, -1.5, -0.25, 0.369037, -2, -1.5, 0.369037, 0.75, 0.75, 0.369037, -1.5, -1.5, 0.369037, 0.75, 0, 0.369037, 2, 2, 0.369037, -1.75, -0.5, 0.369037, 4, 2, 0.619037, 5.75, 2.75, 0.369037, 5.75, 7.5, 0.369037, -4.5, 3, 0.369037, -4.5, 2, 0.369037, -1.75, 0, 0.369037, 2, -0.5, 0.369037, 4, 2.75, 0.369037, 5.75, 7.5, 0.369037, 7.5, 7.5, 0.369037, -4.5, 2, 0.369037, -1.75, 2.75, 0.369037, 5.75, 3.75, 0.369037, 7.5, 7.5, 0.369037, 7.5, 0, 4.86904, -3.25, 0, 5.36904, -2.5, 1, 4.86904, -3.25, -1, 4.86904, 1.75, -1.25, 5.36904, 1, -1.75, 5.11904, 1, -2.25, 4.86904, 1.75, -2, 4.86904, 2.5, -3.25, 0.369037, 5, -3.25, 0.869037, 4.25, -4.25, 0.369037, 3.75, -7.5, 0.369037, 2.75, -7.5, 0.369037, 7.5, 1.25, 0.369037, 6.25, 2, 0.619037, 5.75, -0.5, 0.369037, 4, -1.5, 0.369037, 5, 1.5, 0.369037, 7.5, 1.25, 0.369037, 6.25, -1.5, 0.369037, 5, -3.25, 0.369037, 5, -7.5, 0.369037, 7.5, -4.25, 0.369037, 3.75, -4.25, 0.369037, 2.75, -7.5, 0.369037, 2.75)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 14), PackedInt32Array(14, 10, 15), PackedInt32Array(16, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(21, 20, 22), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(29, 28, 27), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(36, 35, 34), PackedInt32Array(39, 38, 37), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 45), PackedInt32Array(42, 45, 43), PackedInt32Array(43, 45, 44), PackedInt32Array(48, 47, 46), PackedInt32Array(51, 50, 49), PackedInt32Array(53, 52, 54), PackedInt32Array(54, 52, 55), PackedInt32Array(55, 52, 56), PackedInt32Array(58, 57, 59), PackedInt32Array(59, 57, 60), PackedInt32Array(60, 57, 61), PackedInt32Array(63, 62, 64), PackedInt32Array(64, 62, 65), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 69), PackedInt32Array(69, 66, 70), PackedInt32Array(73, 72, 71)]
 agent_height = 2.0
 
 [sub_resource type="BoxMesh" id="2"]
@@ -24,6 +25,9 @@ shape = SubResource("1")
 [node name="DryBush" parent="." instance=ExtResource("3_cmdm8")]
 transform = Transform3D(0.4, 0, 0, 0, 0.708173, 0, 0, 0, 0.4, 3.80824, 0.0500002, -4.94217)
 
+[node name="DryBush2" parent="." instance=ExtResource("3_cmdm8")]
+transform = Transform3D(0.203661, 0.16545, 0.208379, -0.0236674, 0.670088, -0.0760014, -0.219003, 0.0814439, 0.201995, -0.767313, 0.0500002, 3.746)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("4")
 
@@ -34,3 +38,6 @@ surface_material_override/0 = ExtResource("2_dm4kt")
 
 [node name="stoneArch" parent="NavigationRegion3D" instance=ExtResource("2_7em30")]
 transform = Transform3D(0.452532, 0, -0.212636, 0, 0.5, 0, 0.212636, 0, 0.452532, 0.502272, -0.0524806, -3.11637)
+
+[node name="cactiNopal" parent="NavigationRegion3D" instance=ExtResource("4_05xcc")]
+transform = Transform3D(-0.942627, 0, -0.56697, 0, 1.1, 0, 0.56697, 0, -0.942627, 2.44729, 0.0500002, 6.86704)

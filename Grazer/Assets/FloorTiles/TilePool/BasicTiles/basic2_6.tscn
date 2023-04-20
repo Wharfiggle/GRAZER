@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk6mh0qrfnh6y"]
+
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_i02hj"]
+[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="2_p7ro4"]
+[ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="3_2sbme"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="NavigationMesh" id="4"]
+vertices = PackedVector3Array(0, 0.45, -7.5, -7.5, 0.45, 0, -7.5, 0.45, 7.5, 0, 0.45, 7.5, 7.5, 0.45, 0, 7.5, 0.45, -7.5, 0, 0.45, 7.5, 7.5, 0.45, 7.5, 7.5, 0.45, 0, 0, 0.45, -7.5, -7.5, 0.45, -7.5, -7.5, 0.45, 0)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 1), PackedInt32Array(1, 3, 2), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9)]
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(16, 0.1, 16)
+
+[node name="StaticBody3D3" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("2")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_i02hj")
+
+[node name="stone10" parent="." instance=ExtResource("2_p7ro4")]
+transform = Transform3D(0.608678, 0, 0.793417, 0, 1, 0, -0.793417, 0, 0.608678, 1.18822, -0.237708, 7.51764)
+
+[node name="stone13" parent="." instance=ExtResource("2_p7ro4")]
+transform = Transform3D(0.760702, 0.118239, 0.217606, 0.0686422, -0.776057, 0.181724, 0.237952, -0.154125, -0.74808, -4.41631, -0.237708, -5.46313)
+
+[node name="stone11" parent="." instance=ExtResource("3_2sbme")]
+transform = Transform3D(-0.277919, -0.027647, -0.28635, -0.0395959, 0.398035, 1.18228e-09, 0.284943, 0.0283457, -0.279291, 2.69935, -0.290782, -1.63879)
+
+[node name="stone12" parent="." instance=ExtResource("3_2sbme")]
+transform = Transform3D(-0.274921, -0.11519, 0.0339101, -0.120066, 0.26253, -0.081621, 0.00166573, -0.0883691, -0.286685, 6.15663, -0.307327, 0.0828028)
