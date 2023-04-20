@@ -29,7 +29,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_i02hj")
 
 [node name="stone10" parent="." instance=ExtResource("2_p7ro4")]
-transform = Transform3D(0.608678, 0, 0.793417, 0, 1, 0, -0.793417, 0, 0.608678, 1.18822, -0.237708, 7.51764)
+transform = Transform3D(0.426075, 0, 0.555392, 0, 0.7, 0, -0.555392, 0, 0.426075, 1.18822, -0.237708, 7.51764)
 
 [node name="stone13" parent="." instance=ExtResource("2_p7ro4")]
 transform = Transform3D(0.760702, 0.118239, 0.217606, 0.0686422, -0.776057, 0.181724, 0.237952, -0.154125, -0.74808, -4.41631, -0.237708, -5.46313)
