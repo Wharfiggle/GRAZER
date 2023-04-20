@@ -21,7 +21,7 @@ var itemDrop = null
 var reloadSound = preload("res://sounds/gunsounds/Reload.wav")
 var revolverShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
 
-var maxHealth = 10.0
+var maxHealth = 15.0
 var health = maxHealth
 var clipSize = 3
 var clip = 3

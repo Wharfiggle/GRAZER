@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://xqocipnnhq7"]
+[gd_scene load_steps=12 format=3 uid="uid://xqocipnnhq7"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_fehf1"]
 [ext_resource type="PackedScene" uid="uid://b4ehi2slultkr" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="3_6d5np"]
@@ -17,6 +17,9 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 
 [sub_resource type="BoxMesh" id="2"]
 size = Vector3(16, 0.1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3ryb"]
+size = Vector3(2.10829, 4.2345, 0.976386)
 
 [node name="StaticBody3D3" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
@@ -64,3 +67,7 @@ transform = Transform3D(0.391543, 0, -0.395537, 0, 0.958, 0, 0.310957, 0, 0.4980
 
 [node name="cacti1" parent="NavigationRegion3D" instance=ExtResource("7_n43b4")]
 transform = Transform3D(0.7, 0, 0, 0, 1.29138, 0, 0, 0, 0.7, -0.906606, 0.0500002, 5.99265)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.41109, 0.0019908, 4.34813)
+shape = SubResource("BoxShape3D_e3ryb")

@@ -48,7 +48,7 @@ transform = Transform3D(0.771114, 0, 0.636698, 0, 1, 0, -0.636698, 0, 0.771114, 
 gunmanSpawnChance = 0.45
 spawnChance = 0.9
 numEnemies = 7
-timeDelay = 0.1
+timeDelay = 0.2
 spawnAtEdgeOfScreen = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
