@@ -44,12 +44,11 @@ transform = Transform3D(0.316141, 0.0314493, 0.243033, -0.0395959, 0.398035, -2.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08094, 0.0499992, 2.03172)
 
 [node name="EnemySpawner" parent="Trigger" instance=ExtResource("4_0p2kv")]
-transform = Transform3D(0.771114, 0, 0.636698, 0, 1, 0, -0.636698, 0, 0.771114, -1.92176, 9.53674e-07, -2.05987)
+transform = Transform3D(0.771114, 0, 0.636698, 0, 1, 0, -0.636698, 0, 0.771114, 0.335409, 0, -35.8678)
 gunmanSpawnChance = 0.45
 spawnChance = 0.9
 numEnemies = 7
 timeDelay = 0.2
-spawnAtEdgeOfScreen = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21479, 0, -1.79346)
