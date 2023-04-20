@@ -4,7 +4,9 @@ extends Control
 @onready var healthBarOver = $Control/HBoxContainer/Bars/bar/Node2D/TextureProgressBar2
 var tween : Tween
 var ammoIcon = preload("res://Prefabs/templates/ammo.tscn")
+var ammoBIcon = preload("res://Prefabs/templates/ammoBack.tscn")
 @onready var ammoHolder = $ammoDisplay
+@onready var AHBack = $ammoDisplay2
 var PositionR = Vector2(153.0,653.0)
 var PositionS = Vector2(253.0,653.0)
 @onready var Wimage = $weponIcon
@@ -64,5 +66,27 @@ func _set_weapon_image_(image):
 func move_ammoHold_ (weapon:bool):
 	if(weapon == true):
 		ammoHolder.set_position(PositionR)
+		AHBack.set_position(PositionR)
 	elif (weapon == false):
 		ammoHolder.set_position(PositionS)
+		AHBack.set_position(PositionS)
+
+func _set_ammo_Back (MaxAmmo):
+	if(AHBack.get_children().size() < MaxAmmo):
+		for i in (MaxAmmo - AHBack.get_children().size()):
+			var ammoIcon_new = ammoBIcon.instantiate()
+			AHBack.add_child(ammoIcon_new, true)
+		
+	elif (AHBack.get_children().size() > MaxAmmo):
+		#should remove the children until proper amount
+		var count = 0
+		print_debug(AHBack.get_children().size()- MaxAmmo)
+		
+		for i in (AHBack.get_children().size()- MaxAmmo):
+			#ammoHolder.get_children()[ammoHolder.get_children().size() -1].queue_free()
+			count += 1
+			
+			var celloneB=AHBack.get_child(0)
+			AHBack.remove_child(celloneB)
+			print(count)
+	

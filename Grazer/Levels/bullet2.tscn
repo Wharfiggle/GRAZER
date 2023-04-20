@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="1_8i0en"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="1_ivg21"]
-[ext_resource type="PackedScene" uid="uid://i3q5n1j7uql6" path="res://Prefabs/ItemWheelUI.tscn" id="1_ths6l"]
+[ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="1_ths6l"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="1_vgu4d"]
 [ext_resource type="Script" path="res://Scripts/knockback.gd" id="3_6qkwa"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="4_t1n1m"]
-[ext_resource type="PackedScene" uid="uid://boj07qsc3nxim" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="5_8ncmt"]
+[ext_resource type="PackedScene" uid="uid://b66yihrlihrt7" path="res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn" id="5_8ncmt"]
 
 [sub_resource type="BoxShape3D" id="4"]
 
