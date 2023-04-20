@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dg5m4hmbf0e03"
-path="res://.godot/imported/DryBush.fbx-45e102fe930e41e0eac83e0dc1d0bf6a.scn"
+path="res://.godot/imported/DryBush.fbx-9d6fb816166524af55929113d2627e9c.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Bushes/DryBush.fbx"
-dest_files=["res://.godot/imported/DryBush.fbx-45e102fe930e41e0eac83e0dc1d0bf6a.scn"]
+source_file="res://Assets/Models/Bushes FINAL/DryBush.fbx"
+dest_files=["res://.godot/imported/DryBush.fbx-9d6fb816166524af55929113d2627e9c.scn"]
 
 [params]
 

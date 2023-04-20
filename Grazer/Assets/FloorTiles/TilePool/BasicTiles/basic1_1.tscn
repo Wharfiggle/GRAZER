@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7pfs8con1j5d"]
+
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_1275l"]
+[ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="2_se0ab"]
+[ext_resource type="PackedScene" uid="uid://citoc5snwh525" path="res://Assets/FloorTiles/!Prefabs!/Yucca/juca2.tscn" id="3_l5d0u"]
+[ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="4_u6jw0"]
+[ext_resource type="PackedScene" uid="uid://cebdnkuyb0ogo" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/ItemSpawner.tscn" id="5_tgm7s"]
+[ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="6_ro4bd"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_atots"]
+vertices = PackedVector3Array(5.25, 0.508104, -4.5, 5.5, 0.508104, -2.5, 7.5, 0.508104, -2.5, -7.5, 0.508104, 0.25, -4.5, 0.508104, 0.25, -4.5, 0.508104, -0.5, 5.25, 0.508104, -4.5, 7.5, 0.508104, -2.5, 7.5, 0.508104, -7.5, 4.25, 0.508104, -5.75, -3, 0.508104, -4, -1, 0.508104, -6.75, -7.5, 0.508104, -7.5, -4.5, 0.508104, -0.5, -3.25, 0.508104, -1.25, -3, 0.508104, -4, -7.5, 0.508104, -7.5, -7.5, 0.508104, 0.25, 4.25, 0.508104, -5.75, 7.5, 0.508104, -7.5, 0, 0.508104, -7.5, 1.75, 0.508104, -6.75, 0, 0.508104, -7.5, -7.5, 0.508104, -7.5, -1, 0.508104, -6.75, 1.75, 0.508104, -6.75, 3, 2.0081, -4.75, 4.25, 1.7581, -3.25, 4.25, 1.7581, -4, 2.5, 0.508104, -3.25, 1.75, 0.508104, -3.75, 0.5, 0.508104, -3.75, -1.25, 0.508104, -1.75, -1, 0.508104, -0.25, 0.25, 0.508104, 0, 1.75, 0.508104, -0.25, 3, 0.508104, -1.5, 2.5, 0.508104, -3.25, 0.5, 0.508104, -3.75, -1.25, 0.508104, -1.75, 0.25, 0.508104, 0, 2.5, 4.5081, -3, 1.75, 4.2581, -3.75, 0.5, 4.0081, -3.75, -0.5, 4.0081, -2.25, -0.25, 4.0081, -1.25, 0.75, 4.0081, -0.5, 2.5, 4.0081, -0.5, 2.5, 4.5081, -3, 0.5, 4.0081, -3.75, 2.5, 4.5081, -1.75, 7.5, 0.508104, -2.5, 5.5, 0.508104, -2.5, 4.5, 0.508104, 0.75, 7.5, 0.508104, 7.5, 4.83333, 1.0081, -0.333333, 3, 0.508104, 2, 1.5, 0.508104, 2.25, 1.5, 0.508104, 7.5, 3, 0.508104, 2, 1.5, 0.508104, 7.5, 7.5, 0.508104, 7.5, 4.5, 0.508104, 0.75, -1, 0.758104, 1.75, -2, 0.508104, 1, -4, 0.508104, 1.25, -4, 0.508104, 1.25, -4.5, 0.508104, 0.25, -7.5, 0.508104, 0.25, -7.5, 0.508104, 7.5, 1.5, 0.508104, 2.25, -1, 0.758104, 1.75, -4, 0.508104, 1.25, -7.5, 0.508104, 7.5, 1.5, 0.508104, 7.5)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 3), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 17), PackedInt32Array(15, 17, 16), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(28, 27, 26), PackedInt32Array(30, 29, 31), PackedInt32Array(34, 33, 32), PackedInt32Array(35, 40, 36), PackedInt32Array(36, 40, 37), PackedInt32Array(37, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(43, 42, 41), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 49), PackedInt32Array(46, 49, 48), PackedInt32Array(46, 48, 50), PackedInt32Array(46, 50, 47), PackedInt32Array(52, 51, 55), PackedInt32Array(55, 51, 53), PackedInt32Array(53, 51, 54), PackedInt32Array(58, 57, 56), PackedInt32Array(59, 62, 60), PackedInt32Array(60, 62, 61), PackedInt32Array(65, 64, 63), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 69), PackedInt32Array(71, 70, 72), PackedInt32Array(72, 70, 74), PackedInt32Array(72, 74, 73)]
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(16, 0.1, 16)
+
+[node name="StaticBody3D2" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_atots")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("2")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_1275l")
+
+[node name="stone6" parent="NavigationRegion3D" instance=ExtResource("2_se0ab")]
+transform = Transform3D(0.459251, 0, 1.38373, 0, 1, 0, -1.21064, 0, 0.524913, 1.06297, -0.794915, -2.27313)
+
+[node name="Juca2" parent="NavigationRegion3D" instance=ExtResource("3_l5d0u")]
+transform = Transform3D(1.06331, 0.26024, -1.0255, -0.187318, 1.47725, 0.180657, 1.04129, 0, 1.07968, -2.86014, 0.0499992, -0.328978)
+
+[node name="stone11" parent="NavigationRegion3D" instance=ExtResource("4_u6jw0")]
+transform = Transform3D(0.392512, 0, 0.0770362, 0, 0.4, 0, -0.0770362, 0, 0.392512, -1.31245, -0.135297, 1.97007)
+
+[node name="stone13" parent="NavigationRegion3D" instance=ExtResource("4_u6jw0")]
+transform = Transform3D(-0.4419, 0, -0.542885, 0, 0.7, 0, 0.542885, 0, -0.4419, 3.93783, -0.353667, -1.14022)
+
+[node name="stone12" parent="NavigationRegion3D" instance=ExtResource("4_u6jw0")]
+transform = Transform3D(-0.121893, 0, -0.158562, 0, 0.2, 0, 0.158562, 0, -0.121893, -0.256339, -0.0471144, 1.67731)
+
+[node name="stone14" parent="NavigationRegion3D" instance=ExtResource("4_u6jw0")]
+transform = Transform3D(0.191363, 0, -0.0581367, 0, 0.2, 0, 0.0581367, 0, 0.191363, 6.29865, -0.0471149, -1.31897)
+
+[node name="ItemSpawner" parent="." instance=ExtResource("5_tgm7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61428, 0, 3.16056)
+elixirVsUpgradeChance = 0.5
+spawnChance = 0.2
+
+[node name="EnemySpawner" parent="." instance=ExtResource("6_ro4bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75845)

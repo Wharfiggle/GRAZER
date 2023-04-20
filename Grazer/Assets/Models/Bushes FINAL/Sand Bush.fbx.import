@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8cwkfct3drrw"
-path="res://.godot/imported/Sand Bush.fbx-108b8ee091eb3d9ee76e035055d23fb6.scn"
+uid="uid://b625b0i86n5ak"
+path="res://.godot/imported/Sand Bush.fbx-e2b67a77ec6cf7c3169c2b96a7536fad.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Bushes/Sand Bush.fbx"
-dest_files=["res://.godot/imported/Sand Bush.fbx-108b8ee091eb3d9ee76e035055d23fb6.scn"]
+source_file="res://Assets/Models/Bushes FINAL/Sand Bush.fbx"
+dest_files=["res://.godot/imported/Sand Bush.fbx-e2b67a77ec6cf7c3169c2b96a7536fad.scn"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c41nldgjrdemf" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stoneArch.tscn" id="2_7em30"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="2_dm4kt"]
-[ext_resource type="PackedScene" uid="uid://w70vum3e544d" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="3_cmdm8"]
+[ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="3_cmdm8"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)

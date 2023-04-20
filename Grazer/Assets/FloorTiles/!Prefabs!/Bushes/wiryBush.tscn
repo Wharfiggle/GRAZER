@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://w70vum3e544d"]
+[gd_scene load_steps=3 format=3 uid="uid://c37okwagmeuxb"]
 
-[ext_resource type="PackedScene" uid="uid://dg5m4hmbf0e03" path="res://Assets/Models/Bushes/DryBush.fbx" id="1_ayx11"]
+[ext_resource type="PackedScene" uid="uid://dg5m4hmbf0e03" path="res://Assets/Models/Bushes FINAL/DryBush.fbx" id="1_huw1b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pga7o"]
 albedo_color = Color(0.6, 0.337255, 0.215686, 1)
 
-[node name="DryBush" instance=ExtResource("1_ayx11")]
+[node name="DryBush" instance=ExtResource("1_huw1b")]
 
 [node name="Cube" parent="RootNode" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_pga7o")

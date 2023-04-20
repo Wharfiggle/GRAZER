@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=3 uid="uid://4vq7bhevj5ar"]
+
+[ext_resource type="PackedScene" uid="uid://b625b0i86n5ak" path="res://Assets/Models/Bushes FINAL/Sand Bush.fbx" id="1_fmhu0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gdmww"]
+albedo_color = Color(0.619608, 0.505882, 0.309804, 1)
+
+[node name="Sand Bush" instance=ExtResource("1_fmhu0")]
+
+[node name="bush base" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|" parent="RootNode/bush base" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|1" parent="RootNode/bush base" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|2" parent="RootNode/bush base" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|3" parent="RootNode/bush base" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|4" parent="RootNode/bush base" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|5" parent="RootNode/bush base" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|6" parent="RootNode/bush base" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|7" parent="RootNode/bush base" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|8" parent="RootNode/bush base" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|9" parent="RootNode/bush base" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|10" parent="RootNode/bush base" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|11" parent="RootNode/bush base" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|12" parent="RootNode/bush base" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|13" parent="RootNode/bush base" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|14" parent="RootNode/bush base" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|15" parent="RootNode/bush base" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|16" parent="RootNode/bush base" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|17" parent="RootNode/bush base" index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|18" parent="RootNode/bush base" index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf|Dupli|19" parent="RootNode/bush base" index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|01" parent="RootNode/bush base" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|11" parent="RootNode/bush base" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|21" parent="RootNode/bush base" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|31" parent="RootNode/bush base" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|41" parent="RootNode/bush base" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|51" parent="RootNode/bush base" index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|61" parent="RootNode/bush base" index="26"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|71" parent="RootNode/bush base" index="27"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|81" parent="RootNode/bush base" index="28"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|91" parent="RootNode/bush base" index="29"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|101" parent="RootNode/bush base" index="30"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|111" parent="RootNode/bush base" index="31"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|121" parent="RootNode/bush base" index="32"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|131" parent="RootNode/bush base" index="33"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|141" parent="RootNode/bush base" index="34"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|151" parent="RootNode/bush base" index="35"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|161" parent="RootNode/bush base" index="36"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|171" parent="RootNode/bush base" index="37"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|181" parent="RootNode/bush base" index="38"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")
+
+[node name="bush base|bush leaf bended|Dupli|191" parent="RootNode/bush base" index="39"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gdmww")

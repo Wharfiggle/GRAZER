@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://d5855ypifxok"]
+[gd_scene load_steps=13 format=3 uid="uid://dwwhkdhe5x3ao"]
 
 [ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="1_10wjt"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="2_u3kxi"]
-[ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone6.tscn" id="6_npsu4"]
+[ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="6_npsu4"]
 [ext_resource type="PackedScene" uid="uid://b4ehi2slultkr" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="7_bo0ki"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="8_0bpe5"]
 [ext_resource type="PackedScene" uid="uid://cvioj5lu03uhd" path="res://Assets/FloorTiles/!Prefabs!/Silos/siloV1.tscn" id="8_htqr0"]
