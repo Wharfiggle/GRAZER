@@ -17,9 +17,8 @@ static func retrieveChunkTypes() -> Array:
 	
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2.tscn")
-	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn")
+	#chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_3.tscn")
-	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic2_1.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic3.tscn")
 	#chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic4.tscn")
 	chunks.append("res://Assets/FloorTiles/TilePool/BasicTiles/basic5.tscn")
