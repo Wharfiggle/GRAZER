@@ -17,7 +17,6 @@ var PositionS = Vector2(253.0,653.0)
 
 func _ammo_update_(AmmoAmount):
 	#checks to see if the ammo counter has the right amount
-	print_debug("update called")
 	if(ammoHolder.get_children().size() < AmmoAmount):
 		for i in (AmmoAmount - ammoHolder.get_children().size()):
 			var ammoIcon_new = ammoIcon.instantiate()

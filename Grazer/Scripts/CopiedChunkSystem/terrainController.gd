@@ -1,7 +1,7 @@
 extends Node3D
 #taken from https://github.com/NesiAwesomeneess/ChunkLoader/blob/main/ChunkLoading/World.gd
 class_name terrainController
-
+@onready var rock = preload("res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn")
 var playerPath = NodePath("/root/Level/Player")
 var player
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
@@ -42,10 +42,13 @@ var chunkTypes = chunkTiles.retrieveChunkTypes()
 #I can't actually figure out how to implement this properly right now but
 #this is our last resort if tiles keep refusing to load.
 
-var renderDistance = 2
+var renderDistance = 1
+var pointDistance = 6
 const tileWidth = 16.0
 var currentChunk = Vector3()
 var previousChunk = Vector3()
+var playerPoints = []
+var previousPoints = []
 var chunkLoaded = false
 
 var circumnavigation = false
@@ -74,7 +77,8 @@ func _ready():
 	
 	player = get_node(playerPath)
 	currentChunk = terrainController.getPlayerChunk(player.transform.origin)
-	loadChunk()
+	genPlayerPoints()
+	loadChunk(playerPoints)
 
 func spawnMarauder(gunman:bool):
 	#screen height and width in units, 15.0 = camera.size()
@@ -115,17 +119,29 @@ func _process(_delta):
 	if(Input.is_action_just_pressed("debug5")):
 		spawnMarauder(false)
 	
-	#checks if player has left their current chunk and loads if they have
-	currentChunk = terrainController.getPlayerChunk(player.transform.origin)
-	if(currentChunk != previousChunk):
+	genPlayerPoints()
+	
+	if(playerPoints != previousPoints):
 		if(!chunkLoaded):
-			loadChunk()
+			loadChunk(playerPoints)
 			pass
-		print("Player enterd chunk " +str(terrainController.getPlayerChunk(player.transform.origin)))
+		print("Player entered chunk " +str(terrainController.getPlayerChunk(player.transform.origin)))
 	else:
 		chunkLoaded = false;
 	previousChunk = currentChunk
+	previousPoints = [] + playerPoints
 
+#Fills the player points array
+func genPlayerPoints():
+	var playerPos = player.transform.origin
+	playerPoints.clear()
+	for x in 3:
+		for z in 3:
+			var point = playerPos + Vector3((x - 1),0,(z - 1)).normalized() * pointDistance
+			#line(playerPos, point)
+			point = getPlayerChunk(point)
+			if(playerPoints.find(point) == -1):
+				playerPoints.append(point)
 
 #converts the parameter coordinates into an smaller coord, 16,16 -> 1,1
 static func getPlayerChunk(pos):
@@ -139,37 +155,41 @@ static func getPlayerChunk(pos):
 		chunkPos.z -= 1
 	return chunkPos
 
-func loadChunk():
+func loadChunk(points):
+	print("loadchunk")
 	var renderBounds = (float(renderDistance)*2.0)+1.0
 	var loadingCoord = []
+	var point
+	for p in points:
+		point = p
 	#if x = 0, then x+1 = 1
 	#if render_bounds = 5 (render distance = 2) then 5/2 = 2.5, (round(2.5)) = 3
 	#then 1 - 3 = -2 which is the x coord in the chunk space, this same principle is used
 	#for the y axis as well.
-	for x in range(renderBounds):
-		for z in range(renderBounds):
-			var _x  = (x+1) - (round(renderBounds/2.0)) + currentChunk.x
-			var _z  = (z+1) - (round(renderBounds/2.0)) + currentChunk.z
-			
-			var chunkCoords = Vector3(_x, 0, _z)
-			#the chunk key is the key the chunk will use to retreive data from the world save
-			#it depends on the no of revolutions and the chunk coords
-			var chunkKey = _get_chunk_key(chunkCoords)
-			loadingCoord.append(chunkCoords)
-			#loading chunks stores the coords that are in the new render chunk
-			#this if statement makes sure that only the coords that are not already active are loaded
-			if activeCoord.find(chunkCoords) == -1:
-				var chunk = chunkNode.instantiate()
-				SceneCounter.chunkNodes += 1
-				chunk.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab])
-				chunk.transform.origin = chunkCoords * tileWidth
-				activeChunks.append(chunk)
-				activeCoord.append(chunkCoords)
-				add_child(chunk)
-				if(chunkTypes == null):
-					chunkTypes = chunk.start(chunkKey)
-				else:
-					chunk.start(chunkKey, chunkTypes)
+		for x in range(renderBounds):
+			for z in range(renderBounds):
+				var _x  = (x+1) - (round(renderBounds/2.0)) + point.x
+				var _z  = (z+1) - (round(renderBounds/2.0)) + point.z
+				
+				var chunkCoords = Vector3(_x, 0, _z)
+				#the chunk key is the key the chunk will use to retreive data from the world save
+				#it depends on the no of revolutions and the chunk coords
+				var chunkKey = _get_chunk_key(chunkCoords)
+				loadingCoord.append(chunkCoords)
+				#loading chunks stores the coords that are in the new render chunk
+				#this if statement makes sure that only the coords that are not already active are loaded
+				if activeCoord.find(chunkCoords) == -1:
+					var chunk = chunkNode.instantiate()
+					SceneCounter.chunkNodes += 1
+					chunk.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab])
+					chunk.transform.origin = chunkCoords * tileWidth
+					activeChunks.append(chunk)
+					activeCoord.append(chunkCoords)
+					add_child(chunk)
+					if(chunkTypes == null):
+						chunkTypes = chunk.start(chunkKey)
+					else:
+						chunk.start(chunkKey, chunkTypes)
 
 	#deleting the chunks just makes an array of chunks that are in active chunks and not in the
 	#chunks that are being loaded (loading coords), deleting chunks then deletes them from 
@@ -337,3 +357,22 @@ func preloadTiles():
 		load(s[0])
 	for w in chunkTiles.retrieveWallsTypes():
 		load(w)
+
+func line(pos1: Vector3, pos2: Vector3, color = Color.WHITE_SMOKE) -> MeshInstance3D:
+	var mesh_instance := MeshInstance3D.new()
+	var immediate_mesh := ImmediateMesh.new()
+	var material := ORMMaterial3D.new()
+	
+	mesh_instance.mesh = immediate_mesh
+
+	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
+	immediate_mesh.surface_add_vertex(pos1)
+	immediate_mesh.surface_add_vertex(pos2)
+	immediate_mesh.surface_end()	
+	
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_color = color
+	
+	get_tree().get_root().add_child(mesh_instance)
+	
+	return mesh_instance
