@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://vllwktoofdv8"]
+[gd_scene load_steps=22 format=3 uid="uid://vllwktoofdv8"]
 
 [ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="1_reu56"]
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_t0cy4"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="8_4nkwo"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="8_j3wbu"]
 [ext_resource type="PackedScene" uid="uid://bxmokm0w5pjrq" path="res://Prefabs/fog_volume.tscn" id="9_ed27k"]
-[ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="12_dl1ut"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="15_8l4ug"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_mloeu"]
 
@@ -33,14 +33,6 @@ size = Vector3(16, 0.1, 16)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
 size = Vector3(16, 0.1, 16)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mipg"]
-albedo_texture = ExtResource("12_dl1ut")
-uv1_scale = Vector3(4, 4, 4)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuk6q"]
-albedo_texture = ExtResource("12_dl1ut")
-uv1_scale = Vector3(4, 4, 4)
 
 [node name="Level" type="Node3D"]
 
@@ -128,7 +120,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor3"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = SubResource("StandardMaterial3D_5mipg")
+surface_material_override/0 = ExtResource("15_8l4ug")
 
 [node name="Floor4" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
@@ -139,4 +131,4 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor4"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = SubResource("StandardMaterial3D_yuk6q")
+surface_material_override/0 = ExtResource("15_8l4ug")

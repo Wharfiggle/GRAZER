@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://4q3wsfc60qeq"]
+
+[ext_resource type="PackedScene" uid="uid://bfxarm13k332" path="res://Assets/Models/Powerline FINAL/Powerline.fbx" id="1_q1lad"]
+[ext_resource type="Texture2D" uid="uid://cdletgo1dx0h2" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_BaseColor.png" id="2_b1lf4"]
+[ext_resource type="Texture2D" uid="uid://dm67q636nhjoa" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Metallic.png" id="3_g7se8"]
+[ext_resource type="Texture2D" uid="uid://bbei46t58gg10" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Normal.png" id="4_tgw23"]
+[ext_resource type="Texture2D" uid="uid://b2sufrkl84c2o" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Roughness.png" id="5_slgi6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jde53"]
+albedo_texture = ExtResource("2_b1lf4")
+metallic = 1.0
+metallic_texture = ExtResource("3_g7se8")
+roughness_texture = ExtResource("5_slgi6")
+normal_enabled = true
+normal_texture = ExtResource("4_tgw23")
+
+[node name="Powerline" instance=ExtResource("1_q1lad")]
+
+[node name="pCylinder8" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jde53")
