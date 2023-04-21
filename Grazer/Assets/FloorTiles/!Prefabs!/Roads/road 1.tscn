@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://btc0x7hilb2lx"]
+
+[ext_resource type="PackedScene" uid="uid://df1iug5d88ka" path="res://Assets/Models/Roads/road.fbx" id="1_mc8qi"]
+[ext_resource type="Texture2D" uid="uid://c7n4m010yjq4m" path="res://Assets/Models/Roads/road_DefaultMaterial_BaseColor.png" id="2_yl0i2"]
+[ext_resource type="Texture2D" uid="uid://c3xuc4ptppkhh" path="res://Assets/Models/Roads/road_DefaultMaterial_Metallic.png" id="3_fuxlr"]
+[ext_resource type="Texture2D" uid="uid://26m6yfloksvw" path="res://Assets/Models/Roads/road_DefaultMaterial_Normal.png" id="4_y73fa"]
+[ext_resource type="Texture2D" uid="uid://c6e8eld4ya3d5" path="res://Assets/Models/Roads/road_DefaultMaterial_Roughness.png" id="5_we46u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfk6s"]
+albedo_texture = ExtResource("2_yl0i2")
+metallic_specular = 0.33
+metallic_texture = ExtResource("3_fuxlr")
+roughness_texture = ExtResource("5_we46u")
+normal_enabled = true
+normal_scale = 5.62
+normal_texture = ExtResource("4_y73fa")
+
+[node name="road" instance=ExtResource("1_mc8qi")]
+
+[node name="Plane" parent="RootNode" index="0"]
+transform = Transform3D(-1.08115e-05, -235.243, -1.19209e-05, 0, -2.80432e-05, 100, -247.338, 1.02828e-05, 5.2108e-13, 0, 0.0918101, 0)
+material_override = SubResource("StandardMaterial3D_hfk6s")
