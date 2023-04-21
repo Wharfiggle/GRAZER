@@ -358,6 +358,7 @@ func preloadTiles():
 	for w in chunkTiles.retrieveWallsTypes():
 		load(w)
 
+#Copied code to draw a line
 func line(pos1: Vector3, pos2: Vector3, color = Color.WHITE_SMOKE) -> MeshInstance3D:
 	var mesh_instance := MeshInstance3D.new()
 	var immediate_mesh := ImmediateMesh.new()
