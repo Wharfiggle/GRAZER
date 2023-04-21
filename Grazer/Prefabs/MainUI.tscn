@@ -110,20 +110,6 @@ offset_bottom = 746.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_nmetx")
 
-[node name="ammoDisplay" type="GridContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.139
-anchor_top = 1.0
-anchor_right = 0.139
-anchor_bottom = 1.0
-offset_left = -24.92
-offset_top = -67.0
-offset_right = 199.08
-theme_override_constants/h_separation = 7
-theme_override_constants/v_separation = 8
-columns = 6
-
 [node name="ammoDisplay2" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -134,7 +120,21 @@ anchor_bottom = 1.0
 offset_left = -24.92
 offset_top = -67.0
 offset_right = 199.08
-theme_override_constants/h_separation = 7
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 8
+columns = 6
+
+[node name="ammoDisplay" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.139
+anchor_top = 1.0
+anchor_right = 0.139
+anchor_bottom = 1.0
+offset_left = -24.92
+offset_top = -67.0
+offset_right = 199.08
+theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 8
 columns = 6
 

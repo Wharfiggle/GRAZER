@@ -493,6 +493,8 @@ label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="mouse_entered" from="Cell1" to="." method="_on_cell_1_mouse_entered"]
 [connection signal="mouse_entered" from="Cell2" to="." method="_on_cell_2_mouse_entered"]
 [connection signal="mouse_entered" from="Cell3" to="." method="_on_cell_3_mouse_entered"]

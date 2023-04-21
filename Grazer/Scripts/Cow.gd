@@ -80,11 +80,13 @@ var lookSpeed = normalLookSpeed
 #export (float) var minPushDistance = 0.0
 #export (float) var minPushPercent = 0.0
 #export (float) var lookMoveDissonance = 0.0
-
+var isDragged = false
 #AudioStreams
 @onready var Steps = $walking
 @onready var Vocal = $moo
 #SoundFiles PreLoad
+var stressed = preload("res://sounds/Cows/Cows/cowstressed.wav")
+var moo1 = preload("res://sounds/Cows/Cows/idlemoo1.wav")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -144,11 +146,15 @@ func _ready():
 	#get_node(NodePath("./Model/AnimationPlayer")).set_speed(10.0)
 
 func startDragging(marauder):
+	isDragged =true
 	draggers.append(marauder)
 	maxSpeed = min(dragSpeed * draggers.size(), draggers[0].baseSpeed)
 	lookSpeed = dragLookSpeed * draggers.size()
 	followDistance = dragFollowDistance
 	speedTransitionRadius = dragSpeedTransitionRadius
+	#while(isDragged):
+		#if(!Vocal.is_playing()):
+	Vocal.stream = stressed
 	
 	herd.removeHuddler(self)
 	#Set to disable, because otherwise the cow can't look at the marauder when dragged
@@ -157,6 +163,8 @@ func startDragging(marauder):
 	animation.set("parameters/conditions/Not_Drag", false)
 	
 func stopDragging(marauder):
+	Vocal.stop()
+	isDragged =false
 	draggers.erase(marauder)
 	marauder.draggedCow = null
 	if(draggers.size() == 0):
@@ -182,6 +190,7 @@ func idle():
 	target = null
 	followingHerd = false
 	animation.set("parameters/Movement/BlendMove/blend_amount", -1)
+	Vocal.stream = moo1
 #equation for diagonal length of screen
 #var rectWid = 15 / cos(55 * PI / 180)
 #var rectHei = 15 / 9 * 16

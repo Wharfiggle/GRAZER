@@ -39,8 +39,8 @@ var autoReloadTime = 5
 var reloading = false
 var invincible = false
 
-var revolverimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/revolvEquip.png")
-var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/shotgunEquip.png")
+var revolverimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/revolvEquippedV2.png")
+var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/shotgunEquippedV2.png")
 
 #revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
 @export var gunStats = [0, 0.0, 0.0, 0, 0.0, 0.0]
@@ -147,6 +147,7 @@ func _ready():
 	
 	if(once):
 		MainHud._ammo_update_(revolverClip)
+		MainHud._set_ammo_Back(revolverClipSize)
 		once = false
 	#HealthBar._on_max_health_update_(10)
 
@@ -632,12 +633,14 @@ func setWeaponAndHands(revolver:bool, right:bool):
 		if(onRevolver):
 			lineSightNode.transparency = lineSightTransparency
 			MainHud._ammo_update_(revolverClip)
+			MainHud._set_ammo_Back(revolverClipSize)
 			MainHud._set_weapon_image_(revolverimage)
 			MainHud.move_ammoHold_(true)
 			
 		else:
 			lineSightNode.transparency = 1.0
 			MainHud._ammo_update_(shotgunClip)
+			MainHud._set_ammo_Back(shotgunClipSize)
 			MainHud._set_weapon_image_(shotgunimage)
 			MainHud.move_ammoHold_(false)
 		

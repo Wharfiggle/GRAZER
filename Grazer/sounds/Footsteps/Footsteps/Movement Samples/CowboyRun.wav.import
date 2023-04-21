@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cndlvcfkx0goc"
+path="res://.godot/imported/CowboyRun.wav-7d9e01e665931ebca41d8599ab3350ff.sample"
+
+[deps]
+
+source_file="res://sounds/Footsteps/Footsteps/Movement Samples/CowboyRun.wav"
+dest_files=["res://.godot/imported/CowboyRun.wav-7d9e01e665931ebca41d8599ab3350ff.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

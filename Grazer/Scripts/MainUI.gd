@@ -7,8 +7,8 @@ var ammoIcon = preload("res://Prefabs/templates/ammo.tscn")
 var ammoBIcon = preload("res://Prefabs/templates/ammoBack.tscn")
 @onready var ammoHolder = $ammoDisplay
 @onready var AHBack = $ammoDisplay2
-var PositionR = Vector2(153.0,653.0)
-var PositionS = Vector2(253.0,653.0)
+var PositionR = Vector2(150.0,653.0)
+var PositionS = Vector2(230.0,653.0)
 @onready var Wimage = $weponIcon
 
 # Called when the node enters the scene tree for the first time.
