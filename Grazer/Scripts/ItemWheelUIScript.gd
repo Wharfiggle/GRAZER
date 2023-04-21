@@ -77,7 +77,6 @@ func _process(_delta):
 
 func _on_cell_1_mouse_entered():
 	selected = 0
-	print("mouse entered top cell")
 func _on_cell_2_mouse_entered():
 	selected = 1
 func _on_cell_3_mouse_entered():

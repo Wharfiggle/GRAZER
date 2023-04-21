@@ -56,7 +56,7 @@ bus = &"soundFXMain"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70047, 0.0811439)
 
 [node name="Model" parent="." instance=ExtResource("3_yrgbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.677098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.857936)
 
 [node name="LineOfSight" type="MeshInstance3D" parent="."]
 material_override = ExtResource("3_k7ui3")

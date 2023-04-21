@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cnf6lf3fv0jhp" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/damageFullLength.png" id="5_bi53q"]
 [ext_resource type="Texture2D" uid="uid://csqut4gymbsr3" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/revolvEquip.png" id="6_nmetx"]
 
-[node name="mainUI" type="Control"]
+[node name="GameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -96,14 +96,19 @@ class Item:
 		elif(id == 7): #bulletstorm
 			player.bulletstorm = useOrUndo
 			if(useOrUndo):
-				print("set line and bullet color")
-				player.setLineSightColor(Color(0.5, 0.75, 1))
-				player.setBulletColor(Color(0.5, 0.75, 1))
+				player.setLineSightColor(Color(0.35, 0.75, 1))
+				player.setBulletColor(Color(0.35, 0.75, 1))
 			else:
 				player.setLineSightColor()
 				player.setBulletColor()
 		elif(id == 8): #life leach
 			player.lifeLeach += 0.1 * undoMod
+			if(useOrUndo):
+				player.setLineSightColor(Color(1, 0.65, 1))
+				player.setBulletColor(Color(1, 0.65, 1))
+			else:
+				player.setLineSightColor()
+				player.setBulletColor()
 		elif(id == 9): #dustkicker
 			player.potionSpeedup += 1.0 * undoMod
 		elif(id == 10): #liquid luck

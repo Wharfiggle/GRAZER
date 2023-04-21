@@ -1,14 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://vllwktoofdv8"]
+[gd_scene load_steps=24 format=3 uid="uid://vllwktoofdv8"]
 
 [ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="1_reu56"]
+[ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_t0cy4"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2_6cmid"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="3_c15ja"]
 [ext_resource type="PackedScene" uid="uid://dtfmrm20ruq5u" path="res://Prefabs/FPSCounter.tscn" id="4_22bo5"]
+[ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="4_otjev"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="5_5umnj"]
+[ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="5_bmq4m"]
 [ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/big_stone.tscn" id="5_wwndl"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="6_55euo"]
 [ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="7_h31pw"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="8_4nkwo"]
+[ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="8_j3wbu"]
+[ext_resource type="PackedScene" uid="uid://bxmokm0w5pjrq" path="res://Prefabs/fog_volume.tscn" id="9_ed27k"]
 [ext_resource type="Texture2D" uid="uid://djn3cjpkor0rg" path="res://Assets/Images/karl light.png" id="12_dl1ut"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_mloeu"]
@@ -44,6 +49,9 @@ transform = Transform3D(-2.12132, 2.82843, -1.54543e-08, 0, -1.74846e-07, -0.5, 
 mesh = SubResource("PrismMesh_mloeu")
 skeleton = NodePath("../^ Remove Above And This When Finished, BUT DONT REMOVE LEVEL")
 
+[node name="Broadcast" parent="." instance=ExtResource("1_t0cy4")]
+visible = false
+
 [node name="Cow Counter" parent="." instance=ExtResource("3_c15ja")]
 
 [node name="FPS Counter" parent="." instance=ExtResource("4_22bo5")]
@@ -52,11 +60,21 @@ offset_bottom = 26.0001
 [node name="Health Counter" parent="." instance=ExtResource("5_5umnj")]
 offset_right = 70.0
 
+[node name="GameUI" parent="." instance=ExtResource("4_otjev")]
+
+[node name="ItemWheel" parent="." instance=ExtResource("5_bmq4m")]
+visible = false
+
 [node name="Camera3D" parent="." instance=ExtResource("2_6cmid")]
 transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
 
 [node name="Player" parent="." instance=ExtResource("6_55euo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.68268, 1.90735e-06, 12.9039)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("8_j3wbu")
+
+[node name="FogVolume" parent="." instance=ExtResource("9_ed27k")]
 
 [node name="DirectionalLight3D" parent="." instance=ExtResource("1_reu56")]
 transform = Transform3D(0.866025, 0.321394, 0.383022, -6.69697e-08, -0.766044, 0.642788, 0.5, -0.55667, -0.663414, 0, 0, 0)

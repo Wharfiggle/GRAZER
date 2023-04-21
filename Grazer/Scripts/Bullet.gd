@@ -2,7 +2,7 @@
 extends Area3D
 
 @export var muzzle_velocity = 150.0
-@export var lifespan = 4.0
+#@export var lifespan = 4.0
 var velocity
 var damage
 var from = ""
@@ -53,9 +53,9 @@ inRange:float, inDamage:float, inCritHit:bool = false, inColor:Color = Color(-1,
 		trailColor = inColor
 	
 func _process(delta):
-	lifespan -= delta
-	if lifespan <= 0:
-		queue_free()
+#	lifespan -= delta
+#	if lifespan <= 0:
+#		queue_free()
 	
 	if(active):
 		var prevPos = position
@@ -70,8 +70,10 @@ func _process(delta):
 		trailEnd = min(travelled, trailLength)
 	else:
 		trailLength -= muzzle_velocity * delta
-		trailLength = max(trailLength, 0)
-		trailEnd = min(trailEnd, trailLength)
+		if(trailLength < 0):
+			queue_free()
+		else:
+			trailEnd = min(trailEnd, trailLength)
 	
 	if(bulletTrail != null):
 		trailPoints = [Vector3.ZERO, Vector3(0, 0, -trailEnd)]
@@ -80,7 +82,8 @@ func _process(delta):
 func _physics_process(_delta):
 	if(active):
 		if(hitBody == null && hitPoint == null):
-			if(raycast.is_colliding()): #if raycast is intercepted, move to hitPoint next frame
+			#if raycast is intercepted within range, move to hitPoint next frame
+			if(raycast.is_colliding() && (raycast.get_collision_point() - startPos).length() <= bulletRange - 0.5):
 				hitBody = raycast.get_collider()
 				var canHit = true
 				if(hitBody == null):

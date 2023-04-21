@@ -148,8 +148,6 @@ func _ready():
 	if(once):
 		MainHud._ammo_update_(revolverClip)
 		once = false
-	else:
-		print("only one will stand")
 	#HealthBar._on_max_health_update_(10)
 
 	#var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
@@ -163,7 +161,7 @@ func _process(delta):
 	#set up list of potions, only happens once after level is done initializing
 	if(potions == null):
 		var level = get_node(NodePath("/root/Level"))
-		if(level != null):
+		if(level != null && level.has_method("getPotion")):
 			potions = []
 			for i in 6:
 				potions.append(level.getPotion(6 + i))
@@ -267,7 +265,6 @@ func _process(delta):
 		var bColor = bulletColor
 		if(critMult == 2.0):
 			bColor = critColor
-		print(bColor)
 		
 		#Shooting the revolver
 		if(onRevolver):
@@ -387,7 +384,6 @@ func _process(delta):
 
 func setLineSightColor(inColor:Color = Color(1, 1, 1)):
 	lineSightColor = inColor
-	print(inColor)
 	lineSight.setColor(inColor)
 
 func setBulletColor(inColor:Color = Color(1, 1, 0)):
@@ -423,8 +419,6 @@ func finishReloading():
 		if (once):
 			MainHud._ammo_update_(revolverClip)
 			once = false
-		else:
-			print("it is done")
 	else:
 		shotgunClip = shotgunClipSize
 		MainHud._ammo_update_(shotgunClip)
