@@ -56,6 +56,8 @@ func _process(delta):
 	lifespan -= delta
 	if lifespan <= 0:
 		queue_free()
+		if(trailLength > 0):
+			print("im a fucking retard")
 	
 	var prevPos = position
 	if(active && hitBody == null && hitPoint == null):
@@ -65,7 +67,7 @@ func _process(delta):
 	if(active):
 		if(travelled >= bulletRange - 0.5):
 			position = startPos + (position - startPos).normalized() * (bulletRange - 0.5)
-			if(position == prevPos):
+			if(abs(position - prevPos).length() < 0.01):
 				stop()
 		travelled = (position - startPos).length()
 		trailEnd = min(travelled, trailLength)
