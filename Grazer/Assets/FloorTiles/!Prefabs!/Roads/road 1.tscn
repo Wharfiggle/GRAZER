@@ -12,11 +12,11 @@ metallic_specular = 0.33
 metallic_texture = ExtResource("3_fuxlr")
 roughness_texture = ExtResource("5_we46u")
 normal_enabled = true
-normal_scale = 5.62
+normal_scale = 8.8
 normal_texture = ExtResource("4_y73fa")
 
 [node name="road" instance=ExtResource("1_mc8qi")]
 
 [node name="Plane" parent="RootNode" index="0"]
-transform = Transform3D(-1.08115e-05, -235.243, -1.19209e-05, 0, -2.80432e-05, 100, -247.338, 1.02828e-05, 5.2108e-13, 0, 0.0918101, 0)
+transform = Transform3D(-1.08115e-05, -235.243, -1.19209e-05, 0, -2.80432e-05, 100, -247.338, 1.02828e-05, 5.2108e-13, 0, 0.1, 0)
 material_override = SubResource("StandardMaterial3D_hfk6s")

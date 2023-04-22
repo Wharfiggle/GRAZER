@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://cv71eqbohjii7"]
+
+[ext_resource type="PackedScene" uid="uid://clm22058drcbq" path="res://Assets/Models/Signs/sign.fbx" id="1_e145p"]
+[ext_resource type="Texture2D" uid="uid://dsn065rjy3o5y" path="res://Assets/Models/Signs/Textures/sign_HW Las Vegas_BaseColor.png" id="2_mrgtc"]
+[ext_resource type="Texture2D" uid="uid://c8c0yrk8u5vx3" path="res://Assets/Models/Signs/Textures/sign_HW Las Vegas_Metallic.png" id="3_yhtue"]
+[ext_resource type="Texture2D" uid="uid://dlljuccydd565" path="res://Assets/Models/Signs/Textures/sign_HW Las Vegas_Normal.png" id="4_vmvcb"]
+[ext_resource type="Texture2D" uid="uid://wxdhy70gsun3" path="res://Assets/Models/Signs/Textures/sign_HW Las Vegas_Roughness.png" id="5_di0b3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yyhw5"]
+albedo_texture = ExtResource("2_mrgtc")
+metallic = 1.0
+metallic_texture = ExtResource("3_yhtue")
+roughness_texture = ExtResource("5_di0b3")
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = ExtResource("4_vmvcb")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n66n5"]
+size = Vector3(3.03754, 3.27803, 0.308086)
+
+[node name="sign" instance=ExtResource("1_e145p")]
+
+[node name="Plane" parent="RootNode" index="0"]
+transform = Transform3D(-10, 1.50996e-06, 6.60024e-14, 0, -4.37114e-07, 10, 1.50996e-06, 10, 4.37114e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_yyhw5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42669, -0.0658824)
+shape = SubResource("BoxShape3D_n66n5")
