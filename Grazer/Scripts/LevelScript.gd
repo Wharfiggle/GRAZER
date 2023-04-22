@@ -5,7 +5,7 @@ extends Node3D
 @onready var music = $BackgroundPlayer
 
 #music
-var sound = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
+var sound = preload("res://sounds/Opening Theme.wav")
 @onready var inventory = $ItemWheel
 @onready var player = get_node(NodePath("./Player"))
 @export var broadcastStartExitTime = 0.2
