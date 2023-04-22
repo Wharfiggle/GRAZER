@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv33auis000h5"]
+[gd_scene load_steps=11 format=3 uid="uid://dmygj8whnmcp5"]
 
-[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_shml2"]
-[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="2_4ycxv"]
-[ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="3_c0g8s"]
-[ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="4_0p2kv"]
-[ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="4_q1ymv"]
-[ext_resource type="PackedScene" uid="uid://d1xxh0cq2yh8i" path="res://Assets/FloorTiles/!Prefabs!/Cow Skull/skull.tscn" id="6_ic525"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_cnyjy"]
+[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="2_mjru7"]
+[ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="3_qluem"]
+[ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="4_ff0th"]
+[ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="5_w03gg"]
+[ext_resource type="PackedScene" uid="uid://d1xxh0cq2yh8i" path="res://Assets/FloorTiles/!Prefabs!/Cow Skull/skull.tscn" id="6_bi30f"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -32,18 +32,18 @@ navigation_mesh = SubResource("4")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 mesh = SubResource("2")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("1_shml2")
+surface_material_override/0 = ExtResource("1_cnyjy")
 
-[node name="stone13" parent="." instance=ExtResource("2_4ycxv")]
+[node name="stone13" parent="." instance=ExtResource("2_mjru7")]
 transform = Transform3D(-0.675996, -0.153317, -0.399404, 0.0686422, -0.776057, 0.181724, -0.422278, 0.119285, 0.668919, 1.89835, -0.237708, 2.52414)
 
-[node name="stone11" parent="." instance=ExtResource("3_c0g8s")]
+[node name="stone11" parent="." instance=ExtResource("3_qluem")]
 transform = Transform3D(0.316141, 0.0314493, 0.243033, -0.0395959, 0.398035, -2.33013e-08, -0.241839, -0.0240578, 0.317702, 2.37781, -0.290782, 0.142245)
 
-[node name="Trigger" parent="." instance=ExtResource("4_q1ymv")]
+[node name="Trigger" parent="." instance=ExtResource("4_ff0th")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08094, 0.0499992, 2.03172)
 
-[node name="EnemySpawner" parent="Trigger" instance=ExtResource("4_0p2kv")]
+[node name="EnemySpawner" parent="Trigger" instance=ExtResource("5_w03gg")]
 transform = Transform3D(0.554511, 0, -0.832177, 0, 1, 0, 0.832177, 0, 0.554511, 13.0321, 0, -6.6389)
 gunmanSpawnChance = 0.45
 numEnemies = 7
@@ -53,5 +53,5 @@ spawnAtEdgeOfScreen = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21479, 0, -1.79346)
 shape = SubResource("BoxShape3D_f4mbs")
 
-[node name="Skull" parent="." instance=ExtResource("6_ic525")]
+[node name="Skull" parent="." instance=ExtResource("6_bi30f")]
 transform = Transform3D(1.38089, -0.0449833, -0.226105, -6.25152e-09, 1.37309, -0.273174, 0.230536, 0.269445, 1.35435, 1.93347, 0.0500002, 0.157793)

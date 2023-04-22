@@ -1,0 +1,1638 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0chluqj65wur"]
+
+[ext_resource type="PackedScene" uid="uid://ddpma4pwrt6wm" path="res://Assets/Models/Cacti FINAL/organCactus/Organcacti_Nopal.fbx" id="1_g623x"]
+[ext_resource type="Texture2D" uid="uid://cpsebuscwoplo" path="res://Assets/Models/Cacti FINAL/organCactus/Organcacti_Nopal_Material_BaseColor.png" id="2_atke8"]
+[ext_resource type="Texture2D" uid="uid://cgoayt4rjwy6j" path="res://Assets/Models/Cacti FINAL/organCactus/Organcacti_Nopal_Material_Normal.png" id="3_tvu3h"]
+[ext_resource type="Texture2D" uid="uid://bnws6cpye5wx0" path="res://Assets/Models/Cacti FINAL/organCactus/Organcacti_Nopal_Material_Roughness.png" id="4_5xl7c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88sua"]
+albedo_texture = ExtResource("2_atke8")
+roughness_texture = ExtResource("4_5xl7c")
+normal_enabled = true
+normal_texture = ExtResource("3_tvu3h")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xxlks"]
+size = Vector3(2.67493, 6.4376, 2.24088)
+
+[node name="Organcacti_Nopal" instance=ExtResource("1_g623x")]
+
+[node name="Plane" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|" parent="RootNode/Plane" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|1" parent="RootNode/Plane" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|2" parent="RootNode/Plane" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|3" parent="RootNode/Plane" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|4" parent="RootNode/Plane" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|5" parent="RootNode/Plane" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|6" parent="RootNode/Plane" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|7" parent="RootNode/Plane" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|8" parent="RootNode/Plane" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|9" parent="RootNode/Plane" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|10" parent="RootNode/Plane" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|11" parent="RootNode/Plane" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|12" parent="RootNode/Plane" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|13" parent="RootNode/Plane" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|14" parent="RootNode/Plane" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|15" parent="RootNode/Plane" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|16" parent="RootNode/Plane" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|17" parent="RootNode/Plane" index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|18" parent="RootNode/Plane" index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|19" parent="RootNode/Plane" index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|20" parent="RootNode/Plane" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|21" parent="RootNode/Plane" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|22" parent="RootNode/Plane" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|23" parent="RootNode/Plane" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|24" parent="RootNode/Plane" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|25" parent="RootNode/Plane" index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|26" parent="RootNode/Plane" index="26"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|27" parent="RootNode/Plane" index="27"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|28" parent="RootNode/Plane" index="28"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|29" parent="RootNode/Plane" index="29"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|30" parent="RootNode/Plane" index="30"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|31" parent="RootNode/Plane" index="31"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|32" parent="RootNode/Plane" index="32"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|33" parent="RootNode/Plane" index="33"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|34" parent="RootNode/Plane" index="34"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|35" parent="RootNode/Plane" index="35"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|36" parent="RootNode/Plane" index="36"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|37" parent="RootNode/Plane" index="37"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|38" parent="RootNode/Plane" index="38"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|39" parent="RootNode/Plane" index="39"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|40" parent="RootNode/Plane" index="40"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|41" parent="RootNode/Plane" index="41"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|42" parent="RootNode/Plane" index="42"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|43" parent="RootNode/Plane" index="43"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|44" parent="RootNode/Plane" index="44"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|45" parent="RootNode/Plane" index="45"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|46" parent="RootNode/Plane" index="46"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|47" parent="RootNode/Plane" index="47"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|48" parent="RootNode/Plane" index="48"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|49" parent="RootNode/Plane" index="49"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|50" parent="RootNode/Plane" index="50"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|51" parent="RootNode/Plane" index="51"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|52" parent="RootNode/Plane" index="52"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|53" parent="RootNode/Plane" index="53"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|54" parent="RootNode/Plane" index="54"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|55" parent="RootNode/Plane" index="55"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|56" parent="RootNode/Plane" index="56"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|57" parent="RootNode/Plane" index="57"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|58" parent="RootNode/Plane" index="58"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|59" parent="RootNode/Plane" index="59"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|60" parent="RootNode/Plane" index="60"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|61" parent="RootNode/Plane" index="61"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|62" parent="RootNode/Plane" index="62"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|63" parent="RootNode/Plane" index="63"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|64" parent="RootNode/Plane" index="64"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|65" parent="RootNode/Plane" index="65"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|66" parent="RootNode/Plane" index="66"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|67" parent="RootNode/Plane" index="67"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|68" parent="RootNode/Plane" index="68"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|69" parent="RootNode/Plane" index="69"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|70" parent="RootNode/Plane" index="70"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|71" parent="RootNode/Plane" index="71"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|72" parent="RootNode/Plane" index="72"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|73" parent="RootNode/Plane" index="73"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|74" parent="RootNode/Plane" index="74"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|75" parent="RootNode/Plane" index="75"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|76" parent="RootNode/Plane" index="76"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|77" parent="RootNode/Plane" index="77"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|78" parent="RootNode/Plane" index="78"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|79" parent="RootNode/Plane" index="79"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|80" parent="RootNode/Plane" index="80"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|81" parent="RootNode/Plane" index="81"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|82" parent="RootNode/Plane" index="82"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|83" parent="RootNode/Plane" index="83"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|84" parent="RootNode/Plane" index="84"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|85" parent="RootNode/Plane" index="85"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|86" parent="RootNode/Plane" index="86"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|87" parent="RootNode/Plane" index="87"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|88" parent="RootNode/Plane" index="88"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|89" parent="RootNode/Plane" index="89"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|90" parent="RootNode/Plane" index="90"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|91" parent="RootNode/Plane" index="91"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|92" parent="RootNode/Plane" index="92"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|93" parent="RootNode/Plane" index="93"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|94" parent="RootNode/Plane" index="94"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|95" parent="RootNode/Plane" index="95"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|96" parent="RootNode/Plane" index="96"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|97" parent="RootNode/Plane" index="97"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|98" parent="RootNode/Plane" index="98"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|99" parent="RootNode/Plane" index="99"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|100" parent="RootNode/Plane" index="100"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|101" parent="RootNode/Plane" index="101"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|102" parent="RootNode/Plane" index="102"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|103" parent="RootNode/Plane" index="103"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|104" parent="RootNode/Plane" index="104"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|105" parent="RootNode/Plane" index="105"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|106" parent="RootNode/Plane" index="106"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|107" parent="RootNode/Plane" index="107"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|108" parent="RootNode/Plane" index="108"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|109" parent="RootNode/Plane" index="109"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|110" parent="RootNode/Plane" index="110"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|111" parent="RootNode/Plane" index="111"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|112" parent="RootNode/Plane" index="112"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|113" parent="RootNode/Plane" index="113"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|114" parent="RootNode/Plane" index="114"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|115" parent="RootNode/Plane" index="115"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|116" parent="RootNode/Plane" index="116"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|117" parent="RootNode/Plane" index="117"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|118" parent="RootNode/Plane" index="118"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|119" parent="RootNode/Plane" index="119"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|120" parent="RootNode/Plane" index="120"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|121" parent="RootNode/Plane" index="121"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|122" parent="RootNode/Plane" index="122"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|123" parent="RootNode/Plane" index="123"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|124" parent="RootNode/Plane" index="124"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|125" parent="RootNode/Plane" index="125"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|126" parent="RootNode/Plane" index="126"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|127" parent="RootNode/Plane" index="127"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|128" parent="RootNode/Plane" index="128"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|129" parent="RootNode/Plane" index="129"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|130" parent="RootNode/Plane" index="130"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|131" parent="RootNode/Plane" index="131"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|132" parent="RootNode/Plane" index="132"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|133" parent="RootNode/Plane" index="133"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|134" parent="RootNode/Plane" index="134"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|135" parent="RootNode/Plane" index="135"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|136" parent="RootNode/Plane" index="136"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|137" parent="RootNode/Plane" index="137"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|138" parent="RootNode/Plane" index="138"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|139" parent="RootNode/Plane" index="139"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|140" parent="RootNode/Plane" index="140"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|141" parent="RootNode/Plane" index="141"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|142" parent="RootNode/Plane" index="142"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|143" parent="RootNode/Plane" index="143"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|144" parent="RootNode/Plane" index="144"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|145" parent="RootNode/Plane" index="145"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|146" parent="RootNode/Plane" index="146"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|147" parent="RootNode/Plane" index="147"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|148" parent="RootNode/Plane" index="148"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|149" parent="RootNode/Plane" index="149"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|150" parent="RootNode/Plane" index="150"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|151" parent="RootNode/Plane" index="151"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|152" parent="RootNode/Plane" index="152"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|153" parent="RootNode/Plane" index="153"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|154" parent="RootNode/Plane" index="154"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|155" parent="RootNode/Plane" index="155"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|156" parent="RootNode/Plane" index="156"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|157" parent="RootNode/Plane" index="157"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|158" parent="RootNode/Plane" index="158"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|159" parent="RootNode/Plane" index="159"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|160" parent="RootNode/Plane" index="160"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|161" parent="RootNode/Plane" index="161"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|162" parent="RootNode/Plane" index="162"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|163" parent="RootNode/Plane" index="163"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|164" parent="RootNode/Plane" index="164"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|165" parent="RootNode/Plane" index="165"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|166" parent="RootNode/Plane" index="166"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|167" parent="RootNode/Plane" index="167"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|168" parent="RootNode/Plane" index="168"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|169" parent="RootNode/Plane" index="169"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|170" parent="RootNode/Plane" index="170"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|171" parent="RootNode/Plane" index="171"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|172" parent="RootNode/Plane" index="172"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|173" parent="RootNode/Plane" index="173"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|174" parent="RootNode/Plane" index="174"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|175" parent="RootNode/Plane" index="175"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|176" parent="RootNode/Plane" index="176"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|177" parent="RootNode/Plane" index="177"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|178" parent="RootNode/Plane" index="178"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|179" parent="RootNode/Plane" index="179"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|180" parent="RootNode/Plane" index="180"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|181" parent="RootNode/Plane" index="181"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|182" parent="RootNode/Plane" index="182"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|183" parent="RootNode/Plane" index="183"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|184" parent="RootNode/Plane" index="184"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|185" parent="RootNode/Plane" index="185"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|186" parent="RootNode/Plane" index="186"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|187" parent="RootNode/Plane" index="187"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|188" parent="RootNode/Plane" index="188"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|189" parent="RootNode/Plane" index="189"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|190" parent="RootNode/Plane" index="190"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|191" parent="RootNode/Plane" index="191"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|192" parent="RootNode/Plane" index="192"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|193" parent="RootNode/Plane" index="193"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|194" parent="RootNode/Plane" index="194"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|195" parent="RootNode/Plane" index="195"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|196" parent="RootNode/Plane" index="196"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|197" parent="RootNode/Plane" index="197"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|198" parent="RootNode/Plane" index="198"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|199" parent="RootNode/Plane" index="199"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|200" parent="RootNode/Plane" index="200"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|201" parent="RootNode/Plane" index="201"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|202" parent="RootNode/Plane" index="202"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|203" parent="RootNode/Plane" index="203"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|204" parent="RootNode/Plane" index="204"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|205" parent="RootNode/Plane" index="205"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|206" parent="RootNode/Plane" index="206"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|207" parent="RootNode/Plane" index="207"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|208" parent="RootNode/Plane" index="208"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|209" parent="RootNode/Plane" index="209"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|210" parent="RootNode/Plane" index="210"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|211" parent="RootNode/Plane" index="211"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|212" parent="RootNode/Plane" index="212"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|213" parent="RootNode/Plane" index="213"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|214" parent="RootNode/Plane" index="214"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|215" parent="RootNode/Plane" index="215"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|216" parent="RootNode/Plane" index="216"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|217" parent="RootNode/Plane" index="217"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|218" parent="RootNode/Plane" index="218"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|219" parent="RootNode/Plane" index="219"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|220" parent="RootNode/Plane" index="220"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|221" parent="RootNode/Plane" index="221"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|222" parent="RootNode/Plane" index="222"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|223" parent="RootNode/Plane" index="223"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|224" parent="RootNode/Plane" index="224"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|225" parent="RootNode/Plane" index="225"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|226" parent="RootNode/Plane" index="226"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|227" parent="RootNode/Plane" index="227"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|228" parent="RootNode/Plane" index="228"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|229" parent="RootNode/Plane" index="229"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|230" parent="RootNode/Plane" index="230"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|231" parent="RootNode/Plane" index="231"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|232" parent="RootNode/Plane" index="232"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|233" parent="RootNode/Plane" index="233"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|234" parent="RootNode/Plane" index="234"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|235" parent="RootNode/Plane" index="235"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|236" parent="RootNode/Plane" index="236"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|237" parent="RootNode/Plane" index="237"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|238" parent="RootNode/Plane" index="238"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|239" parent="RootNode/Plane" index="239"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|240" parent="RootNode/Plane" index="240"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|241" parent="RootNode/Plane" index="241"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|242" parent="RootNode/Plane" index="242"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|243" parent="RootNode/Plane" index="243"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|244" parent="RootNode/Plane" index="244"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|245" parent="RootNode/Plane" index="245"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|246" parent="RootNode/Plane" index="246"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|247" parent="RootNode/Plane" index="247"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|248" parent="RootNode/Plane" index="248"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|249" parent="RootNode/Plane" index="249"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|250" parent="RootNode/Plane" index="250"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|251" parent="RootNode/Plane" index="251"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|252" parent="RootNode/Plane" index="252"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|253" parent="RootNode/Plane" index="253"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|254" parent="RootNode/Plane" index="254"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|255" parent="RootNode/Plane" index="255"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|256" parent="RootNode/Plane" index="256"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|257" parent="RootNode/Plane" index="257"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|258" parent="RootNode/Plane" index="258"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|259" parent="RootNode/Plane" index="259"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|260" parent="RootNode/Plane" index="260"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|261" parent="RootNode/Plane" index="261"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|262" parent="RootNode/Plane" index="262"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|263" parent="RootNode/Plane" index="263"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|264" parent="RootNode/Plane" index="264"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|265" parent="RootNode/Plane" index="265"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|266" parent="RootNode/Plane" index="266"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|267" parent="RootNode/Plane" index="267"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|268" parent="RootNode/Plane" index="268"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|269" parent="RootNode/Plane" index="269"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|270" parent="RootNode/Plane" index="270"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|271" parent="RootNode/Plane" index="271"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|272" parent="RootNode/Plane" index="272"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|273" parent="RootNode/Plane" index="273"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|274" parent="RootNode/Plane" index="274"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|275" parent="RootNode/Plane" index="275"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|276" parent="RootNode/Plane" index="276"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|277" parent="RootNode/Plane" index="277"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|278" parent="RootNode/Plane" index="278"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|279" parent="RootNode/Plane" index="279"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|280" parent="RootNode/Plane" index="280"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|281" parent="RootNode/Plane" index="281"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|282" parent="RootNode/Plane" index="282"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|283" parent="RootNode/Plane" index="283"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|284" parent="RootNode/Plane" index="284"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|285" parent="RootNode/Plane" index="285"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|286" parent="RootNode/Plane" index="286"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|287" parent="RootNode/Plane" index="287"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|288" parent="RootNode/Plane" index="288"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|289" parent="RootNode/Plane" index="289"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|290" parent="RootNode/Plane" index="290"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|291" parent="RootNode/Plane" index="291"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|292" parent="RootNode/Plane" index="292"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|293" parent="RootNode/Plane" index="293"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|294" parent="RootNode/Plane" index="294"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|295" parent="RootNode/Plane" index="295"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|296" parent="RootNode/Plane" index="296"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|297" parent="RootNode/Plane" index="297"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|298" parent="RootNode/Plane" index="298"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|299" parent="RootNode/Plane" index="299"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|300" parent="RootNode/Plane" index="300"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|301" parent="RootNode/Plane" index="301"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|302" parent="RootNode/Plane" index="302"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|303" parent="RootNode/Plane" index="303"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|304" parent="RootNode/Plane" index="304"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|305" parent="RootNode/Plane" index="305"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|306" parent="RootNode/Plane" index="306"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|307" parent="RootNode/Plane" index="307"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|308" parent="RootNode/Plane" index="308"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|309" parent="RootNode/Plane" index="309"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|310" parent="RootNode/Plane" index="310"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|311" parent="RootNode/Plane" index="311"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|312" parent="RootNode/Plane" index="312"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|313" parent="RootNode/Plane" index="313"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|314" parent="RootNode/Plane" index="314"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|315" parent="RootNode/Plane" index="315"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|316" parent="RootNode/Plane" index="316"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|317" parent="RootNode/Plane" index="317"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|318" parent="RootNode/Plane" index="318"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|319" parent="RootNode/Plane" index="319"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|320" parent="RootNode/Plane" index="320"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|321" parent="RootNode/Plane" index="321"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|322" parent="RootNode/Plane" index="322"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|323" parent="RootNode/Plane" index="323"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|324" parent="RootNode/Plane" index="324"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|325" parent="RootNode/Plane" index="325"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|326" parent="RootNode/Plane" index="326"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|327" parent="RootNode/Plane" index="327"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|328" parent="RootNode/Plane" index="328"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|329" parent="RootNode/Plane" index="329"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|330" parent="RootNode/Plane" index="330"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|331" parent="RootNode/Plane" index="331"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|332" parent="RootNode/Plane" index="332"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|333" parent="RootNode/Plane" index="333"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|334" parent="RootNode/Plane" index="334"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|335" parent="RootNode/Plane" index="335"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|336" parent="RootNode/Plane" index="336"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|337" parent="RootNode/Plane" index="337"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|338" parent="RootNode/Plane" index="338"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|339" parent="RootNode/Plane" index="339"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|340" parent="RootNode/Plane" index="340"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|341" parent="RootNode/Plane" index="341"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|342" parent="RootNode/Plane" index="342"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|343" parent="RootNode/Plane" index="343"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|344" parent="RootNode/Plane" index="344"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|345" parent="RootNode/Plane" index="345"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|346" parent="RootNode/Plane" index="346"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|347" parent="RootNode/Plane" index="347"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|348" parent="RootNode/Plane" index="348"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|349" parent="RootNode/Plane" index="349"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|350" parent="RootNode/Plane" index="350"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|351" parent="RootNode/Plane" index="351"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|352" parent="RootNode/Plane" index="352"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|353" parent="RootNode/Plane" index="353"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|354" parent="RootNode/Plane" index="354"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|355" parent="RootNode/Plane" index="355"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|356" parent="RootNode/Plane" index="356"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|357" parent="RootNode/Plane" index="357"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|358" parent="RootNode/Plane" index="358"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|359" parent="RootNode/Plane" index="359"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|360" parent="RootNode/Plane" index="360"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|361" parent="RootNode/Plane" index="361"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|362" parent="RootNode/Plane" index="362"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|363" parent="RootNode/Plane" index="363"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|364" parent="RootNode/Plane" index="364"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|365" parent="RootNode/Plane" index="365"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|366" parent="RootNode/Plane" index="366"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|367" parent="RootNode/Plane" index="367"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|368" parent="RootNode/Plane" index="368"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|369" parent="RootNode/Plane" index="369"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|370" parent="RootNode/Plane" index="370"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|371" parent="RootNode/Plane" index="371"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|372" parent="RootNode/Plane" index="372"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|373" parent="RootNode/Plane" index="373"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|374" parent="RootNode/Plane" index="374"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|375" parent="RootNode/Plane" index="375"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|376" parent="RootNode/Plane" index="376"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|377" parent="RootNode/Plane" index="377"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|378" parent="RootNode/Plane" index="378"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|379" parent="RootNode/Plane" index="379"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|380" parent="RootNode/Plane" index="380"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|381" parent="RootNode/Plane" index="381"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|382" parent="RootNode/Plane" index="382"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|383" parent="RootNode/Plane" index="383"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|384" parent="RootNode/Plane" index="384"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|385" parent="RootNode/Plane" index="385"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|386" parent="RootNode/Plane" index="386"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|387" parent="RootNode/Plane" index="387"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|388" parent="RootNode/Plane" index="388"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|389" parent="RootNode/Plane" index="389"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|390" parent="RootNode/Plane" index="390"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|391" parent="RootNode/Plane" index="391"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|392" parent="RootNode/Plane" index="392"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|393" parent="RootNode/Plane" index="393"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|394" parent="RootNode/Plane" index="394"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|395" parent="RootNode/Plane" index="395"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|396" parent="RootNode/Plane" index="396"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|397" parent="RootNode/Plane" index="397"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|398" parent="RootNode/Plane" index="398"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|399" parent="RootNode/Plane" index="399"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|400" parent="RootNode/Plane" index="400"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|401" parent="RootNode/Plane" index="401"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|402" parent="RootNode/Plane" index="402"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|403" parent="RootNode/Plane" index="403"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|404" parent="RootNode/Plane" index="404"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|405" parent="RootNode/Plane" index="405"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|406" parent="RootNode/Plane" index="406"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|407" parent="RootNode/Plane" index="407"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|408" parent="RootNode/Plane" index="408"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|409" parent="RootNode/Plane" index="409"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|410" parent="RootNode/Plane" index="410"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|411" parent="RootNode/Plane" index="411"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|412" parent="RootNode/Plane" index="412"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|413" parent="RootNode/Plane" index="413"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|414" parent="RootNode/Plane" index="414"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|415" parent="RootNode/Plane" index="415"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|416" parent="RootNode/Plane" index="416"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|417" parent="RootNode/Plane" index="417"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|418" parent="RootNode/Plane" index="418"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|419" parent="RootNode/Plane" index="419"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|420" parent="RootNode/Plane" index="420"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|421" parent="RootNode/Plane" index="421"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|422" parent="RootNode/Plane" index="422"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|423" parent="RootNode/Plane" index="423"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|424" parent="RootNode/Plane" index="424"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|425" parent="RootNode/Plane" index="425"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|426" parent="RootNode/Plane" index="426"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|427" parent="RootNode/Plane" index="427"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|428" parent="RootNode/Plane" index="428"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|429" parent="RootNode/Plane" index="429"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|430" parent="RootNode/Plane" index="430"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|431" parent="RootNode/Plane" index="431"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|432" parent="RootNode/Plane" index="432"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|433" parent="RootNode/Plane" index="433"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|434" parent="RootNode/Plane" index="434"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|435" parent="RootNode/Plane" index="435"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|436" parent="RootNode/Plane" index="436"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|437" parent="RootNode/Plane" index="437"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|438" parent="RootNode/Plane" index="438"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|439" parent="RootNode/Plane" index="439"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|440" parent="RootNode/Plane" index="440"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|441" parent="RootNode/Plane" index="441"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|442" parent="RootNode/Plane" index="442"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|443" parent="RootNode/Plane" index="443"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|444" parent="RootNode/Plane" index="444"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|445" parent="RootNode/Plane" index="445"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|446" parent="RootNode/Plane" index="446"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|447" parent="RootNode/Plane" index="447"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|448" parent="RootNode/Plane" index="448"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|449" parent="RootNode/Plane" index="449"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|450" parent="RootNode/Plane" index="450"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|451" parent="RootNode/Plane" index="451"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|452" parent="RootNode/Plane" index="452"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|453" parent="RootNode/Plane" index="453"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|454" parent="RootNode/Plane" index="454"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|455" parent="RootNode/Plane" index="455"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|456" parent="RootNode/Plane" index="456"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|457" parent="RootNode/Plane" index="457"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|458" parent="RootNode/Plane" index="458"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|459" parent="RootNode/Plane" index="459"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|460" parent="RootNode/Plane" index="460"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|461" parent="RootNode/Plane" index="461"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|462" parent="RootNode/Plane" index="462"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|463" parent="RootNode/Plane" index="463"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|464" parent="RootNode/Plane" index="464"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|465" parent="RootNode/Plane" index="465"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|466" parent="RootNode/Plane" index="466"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|467" parent="RootNode/Plane" index="467"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|468" parent="RootNode/Plane" index="468"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|469" parent="RootNode/Plane" index="469"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|470" parent="RootNode/Plane" index="470"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|471" parent="RootNode/Plane" index="471"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|472" parent="RootNode/Plane" index="472"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|473" parent="RootNode/Plane" index="473"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|474" parent="RootNode/Plane" index="474"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|475" parent="RootNode/Plane" index="475"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|476" parent="RootNode/Plane" index="476"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|477" parent="RootNode/Plane" index="477"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|478" parent="RootNode/Plane" index="478"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|479" parent="RootNode/Plane" index="479"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|480" parent="RootNode/Plane" index="480"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|481" parent="RootNode/Plane" index="481"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|482" parent="RootNode/Plane" index="482"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|483" parent="RootNode/Plane" index="483"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|484" parent="RootNode/Plane" index="484"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|485" parent="RootNode/Plane" index="485"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|486" parent="RootNode/Plane" index="486"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|487" parent="RootNode/Plane" index="487"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|488" parent="RootNode/Plane" index="488"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|489" parent="RootNode/Plane" index="489"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|490" parent="RootNode/Plane" index="490"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|491" parent="RootNode/Plane" index="491"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|492" parent="RootNode/Plane" index="492"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|493" parent="RootNode/Plane" index="493"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|494" parent="RootNode/Plane" index="494"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|495" parent="RootNode/Plane" index="495"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|496" parent="RootNode/Plane" index="496"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|497" parent="RootNode/Plane" index="497"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|498" parent="RootNode/Plane" index="498"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|499" parent="RootNode/Plane" index="499"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|500" parent="RootNode/Plane" index="500"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|501" parent="RootNode/Plane" index="501"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|502" parent="RootNode/Plane" index="502"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|503" parent="RootNode/Plane" index="503"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|504" parent="RootNode/Plane" index="504"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|505" parent="RootNode/Plane" index="505"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|506" parent="RootNode/Plane" index="506"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|507" parent="RootNode/Plane" index="507"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|508" parent="RootNode/Plane" index="508"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|509" parent="RootNode/Plane" index="509"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|510" parent="RootNode/Plane" index="510"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|511" parent="RootNode/Plane" index="511"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|512" parent="RootNode/Plane" index="512"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|513" parent="RootNode/Plane" index="513"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|514" parent="RootNode/Plane" index="514"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|515" parent="RootNode/Plane" index="515"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|516" parent="RootNode/Plane" index="516"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|517" parent="RootNode/Plane" index="517"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|518" parent="RootNode/Plane" index="518"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|519" parent="RootNode/Plane" index="519"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|520" parent="RootNode/Plane" index="520"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|521" parent="RootNode/Plane" index="521"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|522" parent="RootNode/Plane" index="522"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|523" parent="RootNode/Plane" index="523"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|524" parent="RootNode/Plane" index="524"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|525" parent="RootNode/Plane" index="525"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|526" parent="RootNode/Plane" index="526"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|527" parent="RootNode/Plane" index="527"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|528" parent="RootNode/Plane" index="528"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|529" parent="RootNode/Plane" index="529"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|530" parent="RootNode/Plane" index="530"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|531" parent="RootNode/Plane" index="531"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|532" parent="RootNode/Plane" index="532"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|533" parent="RootNode/Plane" index="533"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|534" parent="RootNode/Plane" index="534"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|535" parent="RootNode/Plane" index="535"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="Plane|organ spike|Dupli|536" parent="RootNode/Plane" index="536"]
+surface_material_override/0 = SubResource("StandardMaterial3D_88sua")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.09002, 0)
+shape = SubResource("BoxShape3D_xxlks")

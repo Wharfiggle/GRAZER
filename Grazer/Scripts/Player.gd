@@ -282,7 +282,7 @@ func _process(delta):
 			var b = bullet.instantiate()
 			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0),
 			revolverRange, revolverDamage * critMult, critMult > 1, bColor, 150.0)
-			camera.add_trauma(0.15)
+			camera.add_trauma(0.22)
 			if(!critMult == 2.0):
 				boomSound.stream = revolverShootSound
 				boomSound.play(.55)
@@ -291,7 +291,7 @@ func _process(delta):
 				boomSound.play()
 		#Shooting the shotgun
 		else:
-			camera.add_trauma(0.2)
+			camera.add_trauma(0.3)
 			shotgunClip -= 1
 			rng.randomize()
 			MainHud._ammo_remove_(1)
@@ -684,7 +684,7 @@ func knock():
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
 			enemy.knockback(enemy.position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
-			camera.add_trauma(0.2)
+			camera.add_trauma(0.3)
 			knocked = true
 
 func updateHealth(newHP:float):
@@ -701,7 +701,7 @@ func damage_taken(damage:float, from:String, _inCritHit:bool = false, _inBullet:
 		print("player damaged")
 #		hitFlashAmmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
-		camera.add_trauma(0.25)
+		camera.add_trauma(0.35)
 		updateHealth(hitpoints - damage)
 		return true
 	else:

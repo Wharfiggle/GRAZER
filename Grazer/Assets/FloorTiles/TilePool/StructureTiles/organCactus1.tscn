@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://cv33auis000h5"]
+
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_qse1f"]
+[ext_resource type="PackedScene" uid="uid://d0chluqj65wur" path="res://Assets/FloorTiles/!Prefabs!/Cacti/organCacti.tscn" id="2_5sfwp"]
+[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="2_bi0my"]
+[ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="3_nyycd"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="NavigationMesh" id="4"]
+vertices = PackedVector3Array(-7.5, 0.398714, 1.75, -1.75, 0.398714, 1.75, -1.5, 0.398714, 0.5, -7.5, 0.398714, 1.75, -1.5, 0.398714, 0.5, -0.75, 0.398714, -0.25, 0.75, 0.398714, -7.5, -7.5, 0.398714, -7.5, -0.75, 0.398714, -0.25, 0.75, 0.398714, -0.5, 0.75, 0.398714, -7.5, 1.75, 0.398714, -0.5, 2.25, 0.398714, 0.75, 7.5, 0.398714, 0.75, 7.5, 0.398714, -7.5, 0.75, 0.398714, -7.5, 0.75, 0.398714, -7.5, 0.75, 0.398714, -0.5, 1.75, 0.398714, -0.5, 1.5, 0.398714, 3, 0.5, 0.398714, 3.5, 0.5, 0.398714, 7.5, 7.5, 0.398714, 0.75, 2.25, 0.398714, 0.75, 1.5, 0.398714, 3, 0.5, 0.398714, 7.5, 7.5, 0.398714, 7.5, 0.5, 0.398714, 7.5, 0.5, 0.398714, 3.5, -1.25, 0.398714, 3, 0.5, 0.398714, 7.5, -1.25, 0.398714, 3, -1.75, 0.398714, 1.75, -7.5, 0.398714, 1.75, -7.5, 0.398714, 7.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(10, 9, 8), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 11, 15), PackedInt32Array(18, 17, 16), PackedInt32Array(21, 20, 19), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 22), PackedInt32Array(25, 22, 26), PackedInt32Array(29, 28, 27), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(33, 30, 34)]
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(16, 0.1, 16)
+
+[node name="StaticBody3D3" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("2")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_qse1f")
+
+[node name="Organcacti_Nopal" parent="NavigationRegion3D" instance=ExtResource("2_5sfwp")]
+transform = Transform3D(0.221259, 0, 0.975215, 0, 1, 0, -0.975215, 0, 0.221259, 0.14971, -0.032002, 1.18446)
+
+[node name="stone10" parent="." instance=ExtResource("2_bi0my")]
+transform = Transform3D(-0.906374, 0, 0.422476, 0.167027, 0.918529, 0.358338, -0.388056, 0.395353, -0.832531, 4.34577, -0.679304, 2.32656)
+
+[node name="stone12" parent="." instance=ExtResource("2_bi0my")]
+transform = Transform3D(-0.679781, 0, 0.316857, 0.12527, 0.688897, 0.268753, -0.291042, 0.296515, -0.624398, -3.49931, -0.679304, 2.52819)
+
+[node name="stone13" parent="." instance=ExtResource("2_bi0my")]
+transform = Transform3D(0.719868, -0.0512752, -0.204109, 0.12527, 0.688897, 0.268753, 0.169106, -0.292048, 0.669784, 1.91053, -0.679304, 2.03279)
+
+[node name="stone11" parent="." instance=ExtResource("3_nyycd")]
+transform = Transform3D(-0.319014, 0, -0.385006, 0, 0.5, 0, 0.385006, 0, -0.319014, -0.00727654, -0.219381, 1.97717)
