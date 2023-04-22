@@ -88,6 +88,8 @@ var isDragged = false
 var stressed = preload("res://sounds/Cows/Cows/cowstressed.wav")
 var moo1 = preload("res://sounds/Cows/Cows/idlemoo1.wav")
 
+var potionSpeedup = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -196,7 +198,7 @@ func idle():
 #var rectHei = 15 / 9 * 16
 #var rectDiag = rectWid / sin( arctan( rectWid / rectHei )
 
-func damage_taken(_damage:float, from:String, inCritHit:bool = false, bullet:Node = null) -> bool:
+func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:Node = null) -> bool:
 	if(from == "player" && !draggers.is_empty()):
 		return false
 	else:
@@ -420,6 +422,8 @@ func _physics_process(delta):
 	
 	#apply velocity and move
 	set_velocity(totalVelocity)
+	if(draggers.is_empty()):
+		set_velocity(totalVelocity * potionSpeedup)
 	set_up_direction(Vector3.UP)
 	move_and_slide()
 	

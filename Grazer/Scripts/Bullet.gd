@@ -2,7 +2,7 @@
 extends Area3D
 
 @export var muzzle_velocity = 150.0
-#@export var lifespan = 4.0
+@export var lifespan = 4.0
 var velocity
 var damage
 var from = ""
@@ -53,15 +53,16 @@ inRange:float, inDamage:float, inCritHit:bool = false, inColor:Color = Color(-1,
 		trailColor = inColor
 	
 func _process(delta):
-#	lifespan -= delta
-#	if lifespan <= 0:
-#		queue_free()
+	lifespan -= delta
+	if lifespan <= 0:
+		queue_free()
+	
+	var prevPos = position
+	if(active && hitBody == null && hitPoint == null):
+		position += velocity * delta
+	var travelled = (position - startPos).length()
 	
 	if(active):
-		var prevPos = position
-		if(hitBody == null && hitPoint == null):
-			position += velocity * delta
-		var travelled = (position - startPos).length()
 		if(travelled >= bulletRange - 0.5):
 			position = startPos + (position - startPos).normalized() * (bulletRange - 0.5)
 			if(position == prevPos):
@@ -70,10 +71,8 @@ func _process(delta):
 		trailEnd = min(travelled, trailLength)
 	else:
 		trailLength -= muzzle_velocity * delta
-		if(trailLength < 0):
-			queue_free()
-		else:
-			trailEnd = min(trailEnd, trailLength)
+		trailLength = max(0, trailLength)
+		trailEnd = min(travelled, trailLength)
 	
 	if(bulletTrail != null):
 		trailPoints = [Vector3.ZERO, Vector3(0, 0, -trailEnd)]
@@ -102,7 +101,7 @@ func _physics_process(_delta):
 
 func hit(body):
 	if(hitBody.has_method("damage_taken")):
-		var bodyParent = body.get_parent()
+#		var bodyParent = body.get_parent()
 		body.damage_taken(damage, from, critHit, self)
 #		if(!("hitFlash" in body)):
 #			var bodyParent = body.get_parent()

@@ -14,7 +14,7 @@ func _ready():
 	rng.randomize()
 
 func spawn(inChanceMod:float, _inPrefabs:Array):
-	print("spawn called on item spawner: " + str(spawnChance) + " : " + str(inChanceMod))
+	#print("spawn called on item spawner: " + str(spawnChance) + " : " + str(inChanceMod))
 	var rn = rng.randf()
 	if(rn <= spawnChance * inChanceMod):
 		var instance = itemDrop.instantiate()

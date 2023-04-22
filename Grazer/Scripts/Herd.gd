@@ -22,6 +22,8 @@ var followingHerd = false
 #how many meters behind the player the target should be
 var playerTargetOffset = 3.0
 
+var potionSpeedup = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(player == null):
@@ -67,6 +69,12 @@ func getClosestCow(loc) -> Node:
 			distance = c.position.distance_to(loc)
 	return closestCow
 
+func setPotionSpeedup(inPotionSpeedup):
+	var prevPSU = potionSpeedup
+	potionSpeedup = inPotionSpeedup
+	if(prevPSU != potionSpeedup):
+		for i in cows:
+			i.potionSpeedup = potionSpeedup
 
 #add cow to player's herd
 func addCow(cow):
@@ -77,6 +85,7 @@ func addCow(cow):
 	cow.follow = follow
 	cow.target = getTarget()
 	cow.followingHerd = followingHerd
+	cow.potionSpeedup = potionSpeedup
 	cow.herd = self
 
 #remove cow from player's herd

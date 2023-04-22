@@ -80,7 +80,7 @@ var escapeRange = 18
 var waited = false
 
 func _ready():
-	position.y = 30
+	position.y = 0
 	if(marauderType == enemyTypes.gunman):
 		revolver = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight/RevolverOffset/Revolver"))
 	if(revolver != null):
@@ -98,35 +98,38 @@ func _physics_process(delta):
 	if(waited == false):
 		waited = true
 		var origPos = position
+		var displaceDir = origPos - player.position
 		var tries = 0
 		var validLoc = false
-		while(validLoc == false && tries < 100):
+		while(validLoc == false && tries < 10):
+			validLoc = true
 			var ray_query = PhysicsRayQueryParameters3D.new()
-			ray_query.from = Vector3(position.x + 0.5, 2.5, position.z + 0.5)
+			ray_query.from = Vector3(global_position.x + 0.5, 2.5, global_position.z + 0.5)
 			ray_query.to = ray_query.from + Vector3(-1, -2, -1)
 			ray_query.hit_from_inside = true
 			ray_query.set_collision_mask(0b1111)
 			var collision = get_world_3d().direct_space_state.intersect_ray(ray_query)
-			var retry = false
 			if(!collision.is_empty() && collision.collider != self):
-				retry = true
+				print("try " + str(tries) + ": something in the way")
+				validLoc = false
 			else: #looking good, check for ground
-				ray_query = PhysicsRayQueryParameters3D.new()
-				ray_query.from = Vector3(position.x, 0.5, position.z)
-				ray_query.to = ray_query.from + Vector3(0, -1, 0)
-				ray_query.hit_from_inside = true
-				ray_query.set_collision_mask(0b11)
-				collision = get_world_3d().direct_space_state.intersect_ray(ray_query)
-				if(!collision.is_empty() && collision.collider != self):
-					validLoc = true
-					position.y = 0.1
-					print("tries: " + str(tries))
-				else:
-					retry = true
-			if(retry):
-				position = Vector3(origPos.x + 8 * (randf() * 2 - 1), origPos.y, origPos.z + 8 * (randf() * 2 - 1))
+				position.y = 0
+				set_velocity(Vector3(0, -1, 0))
+				set_up_direction(Vector3.UP)
+				move_and_slide()
+				if(!is_on_floor()):
+					print("try " + str(tries) + ": no ground")
+					validLoc = false
+			if(validLoc):
+				position.y = 0.1
+				print("tries: " + str(tries))
+			else:
+				position.y = 30
 				tries += 1
-				if(tries == 100):
+				position = Vector3(
+					origPos.x + 0.8 * tries * displaceDir.x, origPos.y, 
+					origPos.z + 0.8 * tries * displaceDir.z)
+				if(tries == 10):
 					print("couldn't find valid location for enemy to spawn in, deleting")
 					queue_free()
 					SceneCounter.marauders -= 1

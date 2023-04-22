@@ -53,7 +53,6 @@ func _on_body_entered(body):
 	if(body.is_in_group('Player') && timer == -1):
 		timer = timeDelay
 		print("triggered: " + str(prefabs))
-	collider.disabled = true
 	
 func spawn(inChanceMod:float, inPrefabs):
 	collider.disabled = false

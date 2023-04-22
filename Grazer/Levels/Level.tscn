@@ -37,7 +37,6 @@ offset_bottom = 26.0001
 [node name="Cow Counter" parent="." instance=ExtResource("12")]
 
 [node name="Health Counter" parent="." instance=ExtResource("3_8ivn4")]
-visible = false
 offset_right = 70.0
 
 [node name="GameUI" parent="." instance=ExtResource("12_3pmhn")]

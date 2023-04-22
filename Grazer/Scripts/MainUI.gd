@@ -47,10 +47,10 @@ func _ammo_remove_( remove):
 	
 func _on_health_update_(health):
 	tween = create_tween()
-	healthBarOver.value = health * 10
-	healthBarUnder.value = health * 10
+	healthBarOver.value = health * 100
+	healthBarUnder.value = health * 100
 	
-	tween.tween_property(healthBarUnder, "value", healthBarUnder.value, 2.0).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(healthBarUnder, "value", healthBarUnder.value, 2.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 
 

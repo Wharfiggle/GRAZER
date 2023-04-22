@@ -45,16 +45,16 @@ var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponH
 #revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
 @export var gunStats = [0, 0.0, 0.0, 0, 0.0, 0.0]
 @export var revolverDamage = 3.0
-@export var revolverReloadTime = 0.8
+@export var revolverReloadTime = 0.9
 @export var revolverClipSize = 6
 @export var shotgunDamage = 0.6
-@export var shotgunReloadTime = 1.0
+@export var shotgunReloadTime = 1.1
 @export var shotgunClipSize = 2
 
 var potions = null
 #var inventory = [0, 0, 0, 0, 0, 0]
 var inventory = [5, 5, 5, 5, 5, 5]
-@export var potionTime = 30.0
+@export var potionTime = 20.0
 var potionTimer = 0.0
 var potionUsed
 var lifeLeach = 0.0
@@ -67,9 +67,9 @@ var bulletColor = Color(1, 1, 0)
 var lineSightColor = Color(1, 1, 1)
 var critColor = Color(0, 0, 0)
 
-@export var hitColor:Color
+#@export var hitColor:Color
+#var hitFlashAmmount = 0.0
 @onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/Pants")).get_material_override()
-var hitFlashAmmount = 0.0
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
 @onready var Steps = $footsteps
@@ -123,6 +123,8 @@ var active = true
 var maxAmmo = 0
 var once = true
 
+var lastGroundedPosition = position
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -143,12 +145,14 @@ func _ready():
 	gunStats[4] = shotgunDamage
 	gunStats[5] = shotgunReloadTime
 	
-	hitFlash.set_shader_parameter("color", hitColor)
+	#hitFlash.set_shader_parameter("color", hitColor)
+	hitFlash.set_shader_parameter("color", Color(1, 1, 1))
 	
 	if(once):
 		MainHud._ammo_update_(revolverClip)
 		MainHud._set_ammo_Back(revolverClipSize)
 		once = false
+		
 	#HealthBar._on_max_health_update_(10)
 
 	#var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
@@ -198,11 +202,14 @@ func _process(delta):
 			shootBufferTimer = 0
 			
 	if(potionTimer > 0):
+		var t = potionTimer / potionTime
+		hitFlash.set_shader_parameter("ammount", abs( sin( sqrt(t) * 100) ) / 10)
 		potionTimer -= delta
 		if(potionTimer < 0):
 			potionTimer = 0
 			potionUsed.use(false)
 			potionUsed = null
+			hitFlash.set_shader_parameter("ammount", 0)
 	
 	#Temp var to allow easier comparisions
 	var equippedClip
@@ -367,9 +374,6 @@ func _process(delta):
 		herd.canHuddle = false
 		tVelocity.x = toAdd.x
 		tVelocity.z = toAdd.z
-	
-	if(transform.origin.y < -20.0):
-		transform.origin = Vector3(0,6,0)
 		
 	#update world cursor position
 	worldCursor.global_position = position + cursorPos
@@ -397,6 +401,8 @@ func usePotion(ind:int):
 		potions[ind].use()
 		inventory[ind] -= 1
 		potionTimer = potionTime
+		if(ind == 0):
+			potionTimer = 1.0
 		potionUsed = potions[ind]
 
 func startReload():
@@ -427,13 +433,13 @@ func finishReloading():
 
 func _physics_process(delta):
 	#hit flash on being hit
-	if(hitFlashAmmount > 0.1):
-		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
-		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
-		if(hitFlashAmmount < 0.1):
-			hitFlashAmmount = 0
-			hitFlash.set_shader_parameter("ammount", 0.0)
-			hitFlash.set_shader_parameter("color", hitColor)
+#	if(hitFlashAmmount > 0.1):
+#		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
+#		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
+#		if(hitFlashAmmount < 0.1):
+#			hitFlashAmmount = 0
+#			hitFlash.set_shader_parameter("ammount", 0.0)
+#			hitFlash.set_shader_parameter("color", hitColor)
 	
 	#swap weapon
 	if(active):
@@ -578,12 +584,22 @@ func _physics_process(delta):
 		if(dodgeCooldownTimer < 0):
 			dodgeCooldownTimer = 0
 	
-	#gravity
-	tVelocity.y -= GRAVITY * delta
-	if(Input.is_action_just_pressed("jump") and is_on_floor()):
-		tVelocity.y += 15
-	elif(is_on_floor()):
-		tVelocity.y = -0.1
+	if(active):
+		#gravity
+		tVelocity.y -= GRAVITY * delta
+		var grounded = is_on_floor()
+		if(Input.is_action_just_pressed("jump") and grounded):
+			tVelocity.y += 15
+		elif(grounded):
+			tVelocity.y = -0.1
+		elif(position.y < -10.0):
+			updateHealth(hitpoints - 1)
+			if(active):
+				position = Vector3(lastGroundedPosition.x, 0.5, lastGroundedPosition.z)
+				lastGroundedPosition.y = 0
+				tVelocity.y = -0.1
+	else:
+		tVelocity.y = 0
 	
 	#apply velocity
 	set_velocity(tVelocity)
@@ -593,6 +609,13 @@ func _physics_process(delta):
 	if(active):
 		move_and_slide()
 		fog.position = Vector3(position.x, fog.position.y, position.z)
+		
+	if(is_on_floor()):
+		if(position.y > -0.5 && position.y < 0.5):
+			if(lastGroundedPosition.y >= 60):
+				lastGroundedPosition = Vector3(position.x, 0, position.z)
+			else:
+				lastGroundedPosition.y += 1
 
 func updateGunStats():
 	revolverClipSize = gunStats[0]
@@ -673,10 +696,10 @@ func updateHealth(newHP:float):
 	if(hitpoints > maxHitpoints):
 		hitpoints = maxHitpoints
 
-func damage_taken(damage:float, from:String, inCritHit:bool = false, _inBullet:Node = null) -> bool:
+func damage_taken(damage:float, from:String, _inCritHit:bool = false, _inBullet:Node = null) -> bool:
 	if(from != "player"):
 		print("player damaged")
-		hitFlashAmmount = 1
+#		hitFlashAmmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.25)
 		updateHealth(hitpoints - damage)
@@ -685,9 +708,7 @@ func damage_taken(damage:float, from:String, inCritHit:bool = false, _inBullet:N
 		return false
 		
 func healFromBullet(damageDone):
-	hitpoints += damageDone * lifeLeach
-	if(hitpoints >= maxHitpoints):
-		hitpoints = maxHitpoints
+	updateHealth(hitpoints + damageDone * lifeLeach)
 		
 func die():
 	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]

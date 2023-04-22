@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu2brunjq1plk"]
+[gd_scene load_steps=9 format=3 uid="uid://dmombb06cyng6"]
 
 [ext_resource type="PackedScene" uid="uid://bjah70i3n330a" path="res://Assets/Models/Rocks FINAL/stone12/stone12.fbx" id="1_b8t5a"]
 [ext_resource type="Texture2D" uid="uid://cqmaeqa6m4lpc" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_BaseColor.png" id="2_1xccl"]
@@ -16,9 +16,9 @@ emission_texture = ExtResource("3_klxlr")
 normal_enabled = true
 normal_texture = ExtResource("5_k8vu8")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0k8si"]
-radius = 7.27267
-height = 14.7681
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hpmg8"]
+radius = 7.0
+height = 20.0
 
 [node name="stone12" instance=ExtResource("1_b8t5a")]
 
@@ -26,7 +26,8 @@ height = 14.7681
 surface_material_override/0 = SubResource("StandardMaterial3D_0l4ie")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(0.99982, 0.00557598, 0.018127, -0.00551998, 0.99998, -0.0031382, -0.0181441, 0.00303759, 0.999831, 0, 1.03812, 0)
-shape = SubResource("CapsuleShape3D_0k8si")
+transform = Transform3D(0.99982, 0.00557598, 0.018127, -0.00551998, 0.99998, -0.0031382, -0.0181441, 0.00303759, 0.999831, 0, 6.55681, 0)
+shape = SubResource("CapsuleShape3D_hpmg8")
