@@ -47,7 +47,7 @@ var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponH
 @export var revolverDamage = 3.0
 @export var revolverReloadTime = 0.8
 @export var revolverClipSize = 6
-@export var shotgunDamage = 0.5
+@export var shotgunDamage = 0.6
 @export var shotgunReloadTime = 1.0
 @export var shotgunClipSize = 2
 
@@ -97,7 +97,7 @@ var rightHand = true
 var onRevolver = true
 @export var shotgunRandOffset = 0.1
 @export var revolverRange = 25.0
-@export var shotgunRange = 5.0
+@export var shotgunRange = 6.0
 @export var shotgunSpread = 45.0
 @export var shotgunBullets = 20
 @onready var shootingPoint = gunRight.get_child(0).find_child("ShootingPoint")
