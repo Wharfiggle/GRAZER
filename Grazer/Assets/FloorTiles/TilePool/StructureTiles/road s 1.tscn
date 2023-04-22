@@ -29,7 +29,6 @@ size = Vector3(16, 0.1, 16)
 [node name="Level" type="Node3D"]
 
 [node name="Finders" type="Node3D" parent="."]
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Finders"]
 transform = Transform3D(1.88833e-07, 90.2187, 1.76229e-08, 0, -3.94358e-06, 0.403164, -4.32, 3.94358e-06, 7.7032e-16, -44.7144, 0, 15.7076)
@@ -151,4 +150,4 @@ transform = Transform3D(0.39504, 0, 0, 0, 0.39504, 0, 0, 0, 0.39504, 11.2475, 0.
 transform = Transform3D(-0.751674, -0.659225, 0.0202141, -0.0237168, -0.00361181, -0.999712, 0.659108, -0.751937, -0.0129198, 15.1132, 0.23959, -13.1228)
 
 [node name="sign" parent="." instance=ExtResource("13_22128")]
-transform = Transform3D(0.444792, 0, 0.895634, 0, 1, 0, -0.895634, 0, 0.444792, 4.09169, 0.0499992, -8.03793)
+transform = Transform3D(0.704845, 0, 0.709362, 0, 1, 0, -0.709362, 0, 0.704845, 4.09169, 0.0499992, -8.03793)
