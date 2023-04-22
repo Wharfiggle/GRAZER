@@ -54,7 +54,7 @@ var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponH
 var potions = null
 #var inventory = [0, 0, 0, 0, 0, 0]
 var inventory = [5, 5, 5, 5, 5, 5]
-@export var potionTime = 20.0
+@export var potionTime = 30.0
 var potionTimer = 0.0
 var potionUsed
 var lifeLeach = 0.0
@@ -561,10 +561,14 @@ func _physics_process(delta):
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		Input.start_joy_vibration(0,0.6,0.6,.1)
 		dodgeCooldownTimer = dodgeCooldownTime
+		if(dauntless):
+			dodgeCooldownTimer = 0.001
 		dodgeTimer = dodgeTime
 		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed
 	if(dodgeTimer > 0):
 		dodgeTimer -= delta
+		if(dauntless):
+			dodgeTimer -= delta
 		if(dodgeTimer < 0):
 			dodgeTimer = 0
 			dodging = false
@@ -578,6 +582,8 @@ func _physics_process(delta):
 			if(knocked):
 				knockMod = 0.1
 			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t * knockMod
+		if(dauntless):
+			dodgeVel *= 2
 		knock()
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
@@ -683,6 +689,8 @@ func knock():
 	var enemies = knockbox.get_overlapping_bodies()
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
+			if(dauntless):
+				enemy.damage_taken(4, "player", false)
 			enemy.knockback(enemy.position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
 			camera.add_trauma(0.3)
 			knocked = true
@@ -715,8 +723,7 @@ func die():
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]
 	active = false
 	rotation.x = PI / 2.0
-	lineSightNode.visible = false
-	position.y = -0.5
+	lineSightNode.visible = false 
 	animation.set("parameters/idleWalk/blend_amount", 0)
 	animation.set("parameters/walkShoot/blend_amount", 0.1)
 	animation.set("parameters/shootAngle/blend_position", 1)

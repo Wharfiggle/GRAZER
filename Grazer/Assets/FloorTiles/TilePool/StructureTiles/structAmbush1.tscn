@@ -43,15 +43,15 @@ transform = Transform3D(0.316141, 0.0314493, 0.243033, -0.0395959, 0.398035, -2.
 [node name="Trigger" parent="." instance=ExtResource("4_ff0th")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08094, 0.0499992, 2.03172)
 
-[node name="EnemySpawner" parent="Trigger" instance=ExtResource("5_w03gg")]
-transform = Transform3D(0.554511, 0, -0.832177, 0, 1, 0, 0.832177, 0, 0.554511, 13.0321, 0, -6.6389)
-gunmanSpawnChance = 0.45
-numEnemies = 7
-spawnAtEdgeOfScreen = true
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21479, 0, -1.79346)
 shape = SubResource("BoxShape3D_f4mbs")
+
+[node name="EnemySpawner" parent="Trigger" instance=ExtResource("5_w03gg")]
+transform = Transform3D(0.554511, 0, -0.832177, 0, 1, 0, 0.832177, 0, 0.554511, 0.0148716, 0, -0.715119)
+gunmanSpawnChance = 0.45
+numEnemies = 7
+spawnAtEdgeOfScreen = true
 
 [node name="Skull" parent="." instance=ExtResource("6_bi30f")]
 transform = Transform3D(1.38089, -0.0449833, -0.226105, -6.25152e-09, 1.37309, -0.273174, 0.230536, 0.269445, 1.35435, 1.93347, 0.0500002, 0.157793)

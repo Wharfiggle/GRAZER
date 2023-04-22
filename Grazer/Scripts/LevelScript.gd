@@ -122,7 +122,7 @@ class Item:
 			player.hitFlash.set_shader_parameter("color", Color(1, 1, 0))
 			player.alwaysCrit = useOrUndo
 		elif(id == 11): #dauntless
-			player.hitFlash.set_shader_parameter("color", Color(42/255.0, 118/255.0, 99/255.0))
+			player.hitFlash.set_shader_parameter("color", Color(84/255.0, 236/255.0, 198/255.0))
 			player.dauntless = useOrUndo
 
 #use for getting specific upgrade

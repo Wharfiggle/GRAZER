@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7pfs8con1j5d"]
+[gd_scene load_steps=9 format=3 uid="uid://c7pfs8con1j5d"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_1275l"]
 [ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="2_se0ab"]
 [ext_resource type="PackedScene" uid="uid://citoc5snwh525" path="res://Assets/FloorTiles/!Prefabs!/Yucca/juca2.tscn" id="3_l5d0u"]
 [ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="4_u6jw0"]
-[ext_resource type="PackedScene" uid="uid://cebdnkuyb0ogo" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/ItemSpawner.tscn" id="5_tgm7s"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="6_ro4bd"]
 
 [sub_resource type="BoxShape3D" id="1"]
@@ -49,10 +48,8 @@ transform = Transform3D(-0.121893, 0, -0.158562, 0, 0.2, 0, 0.158562, 0, -0.1218
 [node name="stone14" parent="NavigationRegion3D" instance=ExtResource("4_u6jw0")]
 transform = Transform3D(0.191363, 0, -0.0581367, 0, 0.2, 0, 0.0581367, 0, 0.191363, 6.29865, -0.0471149, -1.31897)
 
-[node name="ItemSpawner" parent="." instance=ExtResource("5_tgm7s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61428, 0, 3.16056)
-elixirVsUpgradeChance = 0.5
-spawnChance = 0.2
-
 [node name="EnemySpawner" parent="." instance=ExtResource("6_ro4bd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75845)
+transform = Transform3D(0.773099, 0, -0.634285, 0, 1, 0, 0.634285, 0, 0.773099, -1.53959, 0, -5.43149)
+spawnChance = 0.1
+numEnemies = 5
+timeDelay = 0.25

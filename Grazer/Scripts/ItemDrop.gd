@@ -46,11 +46,12 @@ func _physics_process(delta):
 	rotation.y += spinSpeed * delta
 
 func _on_body_entered(body):
-	if(body.is_in_group('Player')):
-		if(item.wepLevel == -1):
-			player.inventory[item.id - 6] += 1
-			levelScript.broadcastMessage("Obtained " + item.name + " Elixir", 3.0)
-		else:
-			item.use(true)
-		queue_free()
-		SceneCounter.items -= 1
+	if(waited):
+		if(body.is_in_group('Player')):
+			if(item.wepLevel == -1):
+				player.inventory[item.id - 6] += 1
+				levelScript.broadcastMessage("Obtained " + item.name + " Elixir", 3.0)
+			else:
+				item.use(true)
+			queue_free()
+			SceneCounter.items -= 1

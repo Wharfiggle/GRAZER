@@ -247,7 +247,7 @@ func _physics_process(delta):
 					rayInd += 1
 				#if(rayMags[5] != 0): #direct
 				if(rayMags[0] > 0.01 && rayMags[2] > 0.01): #left and right
-					maneuverTurnOffset = maneuverTurnDir * (rayMags[0] + rayMags[2]) / 2.0 * maneuverTurnSpeed * delta
+					maneuverTurnOffset = maneuverTurnDir * (rayMags[0] + rayMags[2]) * maneuverTurnSpeed * delta
 					maneuvering = true
 					#maneuverMoveModifier = -abs(maneuverMoveModifier)
 				elif(rayMags[0] > 0.01): #left

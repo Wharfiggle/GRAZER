@@ -104,8 +104,8 @@ func _physics_process(delta):
 		while(validLoc == false && tries < 10):
 			validLoc = true
 			var ray_query = PhysicsRayQueryParameters3D.new()
-			ray_query.from = Vector3(global_position.x + 0.5, 2.5, global_position.z + 0.5)
-			ray_query.to = ray_query.from + Vector3(-1, -2, -1)
+			ray_query.from = Vector3(global_position.x + 0.25, 2.5, global_position.z + 0.25)
+			ray_query.to = ray_query.from + Vector3(-0.5, -2, -0.5)
 			ray_query.hit_from_inside = true
 			ray_query.set_collision_mask(0b1111)
 			var collision = get_world_3d().direct_space_state.intersect_ray(ray_query)
@@ -126,9 +126,16 @@ func _physics_process(delta):
 			else:
 				position.y = 30
 				tries += 1
+				var displace = Vector2(rng.randf_range(-1, 1), rng.randf_range(-1, 1))
+				if(displaceDir.x < 0 && displace.x < 0 && displaceDir.z < 0 && displace.y < 0):
+					var rn = rng.randf()
+					if(rn > 0.5):
+						displace.x *= -1
+					else:
+						displace.y *= -1
 				position = Vector3(
-					origPos.x + 0.8 * tries * displaceDir.x, origPos.y, 
-					origPos.z + 0.8 * tries * displaceDir.z)
+					origPos.x + 1 * tries * displace.x, origPos.y, 
+					origPos.z + 1 * tries * displace.y)
 				if(tries == 10):
 					print("couldn't find valid location for enemy to spawn in, deleting")
 					queue_free()
@@ -554,9 +561,28 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
 		draggedCow = null
 		currentMode = behaviors.cowPursuit
 
+func die():
+	#Changing the health to -100000 is to prevent the counter being
+	#changed multiple times because of the shotgun bullets.
+	if(health > -100000):
+		SceneCounter.marauders -= 1
+		if(draggedCow != null):
+			draggedCow.stopDragging(self)
+		if(itemDrop != null):
+			get_node("/root/Level").add_child(itemDrop)
+			itemDrop.position = position
+			itemDrop = null
+		queue_free()
+	health = -100000
+
+func updateHealth(newHP:float):
+	health = newHP
+	if(health <= 0):
+		die()
+
 func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
 	if(from != "enemy"):
-		health -= damage
+		updateHealth(health - damage)
 		hitFlashAmmount = 1
 		critHit = inCritHit
 		if(!critHit):
@@ -565,20 +591,6 @@ func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:No
 			hitFlash.set_shader_parameter("color", critHitColor)
 		if(inBullet != null):
 			inBullet.bulletStopExtend = 1
-		if health <= 0:
-			if(draggedCow != null):
-				draggedCow.stopDragging(self)
-			if(itemDrop != null):
-				get_node("/root/Level").add_child(itemDrop)
-				itemDrop.position = position
-				itemDrop = null
-			queue_free()
-			
-			#Changing the health to -100000 is to prevent the counter being
-			#changed multiple times because of the shotgun bullets.
-			health = -100000
-			if(health > -100000):
-				SceneCounter.marauders -= 1
 		return true
 	else:
 		return false

@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="5_x0ywm"]
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="6_a6g3t"]
 [ext_resource type="PackedScene" uid="uid://dmombb06cyng6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="6_kiljd"]
-[ext_resource type="PackedScene" uid="uid://b4ehi2slultkr" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="7_jorfd"]
-[ext_resource type="PackedScene" uid="uid://drpymt3uxjd6y" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="7_qkq11"]
+[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="7_jorfd"]
+[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="7_qkq11"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -61,7 +61,10 @@ transform = Transform3D(-0.104562, 0, 0.17049, 0, 0.2, 0, -0.17049, 0, -0.104562
 transform = Transform3D(-0.300639, 0, -0.953738, 0, 1, 0, 0.953738, 0, -0.300639, -3.09312, -0.983035, 4.75078)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_x0ywm")]
-transform = Transform3D(0.750203, 0, 0.661207, 0, 1, 0, -0.661207, 0, 0.750203, 3.88082, 9.53674e-07, 2.28891)
+transform = Transform3D(0.750203, 0, 0.661207, 0, 1, 0, -0.661207, 0, 0.750203, -6.10928, 9.53674e-07, 3.29785)
 gunmanSpawnChance = 0.4
-spawnChance = 0.8
-timeDelay = 1.0
+spawnChance = 0.1
+numEnemies = 4
+timeDelay = 0.2
+
+[editable path="NavigationRegion3D/stone15"]
