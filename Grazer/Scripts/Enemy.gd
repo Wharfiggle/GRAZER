@@ -67,6 +67,8 @@ var critHit = false
 @export var critHitColor = Color(1, 0, 0)
 @onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/pants")).get_material_override()
 var hitFlashAmmount = 0.0
+@onready var silhouette = hitFlash.get_next_pass()
+@onready var silhouetteColor = silhouette.albedo_color
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit, hibernate}
 var currentMode = behaviors.hibernate
@@ -82,6 +84,7 @@ var waited = false
 
 func _ready():
 	self.add_to_group('DespawnAtCheckpoint')
+	self.add_to_group('Enemy')
 	
 	position.y = 0
 	if(marauderType == enemyTypes.gunman):
@@ -125,7 +128,7 @@ func _physics_process(delta):
 					validLoc = false
 			if(validLoc):
 				position.y = 0.1
-				print("tries: " + str(tries))
+				print("enemy spawn tries: " + str(tries))
 			else:
 				position.y = 30
 				tries += 1
@@ -232,7 +235,8 @@ func _physics_process(delta):
 				SceneCounter.marauders -= 1
 	
 	if(position.y < -0.5):
-		hitFlash.get_next_pass().albedo_color = Color(0, 0, 0, 0)
+		#print("no silhouette for me: " + str(position.y))
+		silhouette.albedo_color = Color(0, 0, 0, 0)
 #		if(revolver != null):
 #			revolver.get_node("./RootNode/Revolver_FULL/Revolver").get_material_override().get_next_pass().albdeo_color = Color(0, 0, 0, 0)
 		if(position.y < -20):
@@ -242,6 +246,8 @@ func _physics_process(delta):
 				SceneCounter.cows -= 1
 			queue_free()
 			SceneCounter.marauders -= 1
+	else:
+		silhouette.albedo_color = silhouetteColor
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):

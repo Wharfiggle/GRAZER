@@ -10,7 +10,7 @@ func _ready():
 	parent = get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(inRange && Input.is_action_just_pressed("Interact") && parent.has_method("use")):
 		parent.use()
 	

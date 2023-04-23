@@ -62,8 +62,8 @@ class Item:
 			name = "Bulletstorm"
 			description = "Makes you reload instantly."
 		elif(id == 8): 
-			name = "Life Leach"
-			description = "Makes you heal 10% of the damage you deal."
+			name = "Life Leech"
+			description = "Makes you heal 15% of the damage you deal."
 		elif(id == 9): 
 			name = "Dustkicker"
 			description = "Increases you and your cows' speed by 50%."
@@ -118,7 +118,7 @@ class Item:
 				player.setLineSightColor()
 				player.setBulletColor()
 		elif(id == 8): #life leach
-			player.lifeLeach += 0.1 * undoMod
+			player.lifeLeach += 0.15 * undoMod
 			if(useOrUndo):
 				player.hitFlash.set_shader_parameter("color", Color(1, 0.65, 1))
 				player.setLineSightColor(Color(1, 0.65, 1))

@@ -224,6 +224,8 @@ func _process(delta):
 	
 	if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize):
 		startReload()
+	if(equippedClip <= 0 and !reloading):
+		startReload()
 	
 	#Idle auto-reload timer, makes sure equipped gun is not fully loaded
 	if(autoReloadEnabled and !reloading and equippedClip < equippedClipSize):
@@ -237,15 +239,10 @@ func _process(delta):
 	#Finish reloading
 	if(currentReloadTime <= 0 and reloading):
 		finishReloading()
-	#todo cancel reload if switching weapons
 	
 	#shoot gun input buffer
-	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0 && !dauntless):
+	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0 && !dauntless && !reloading):
 		shootBufferTimer = shootBufferTime
-	
-	
-	if(equippedClip <= 0 and !reloading):
-		startReload()
 	
 	#shoot gun
 	if(active && shootBufferTimer > 0 && shootTimer == 0 && equippedClip > 0):
@@ -598,7 +595,7 @@ func _physics_process(delta):
 				knockMod = 0.1
 			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t * knockMod
 		if(dauntless):
-			dodgeVel *= 2
+			dodgeVel *= 1.5
 		if(!knocked):
 			knock()
 	elif(dodgeCooldownTimer > 0):
@@ -706,7 +703,7 @@ func knock():
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
 			if(dauntless):
-				enemy.damage_taken(5, "player", false)
+				enemy.damage_taken(4, "player", false)
 			#print("player knockback: " + str(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir))))
 			enemy.knockback(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
 			camera.add_trauma(0.3)

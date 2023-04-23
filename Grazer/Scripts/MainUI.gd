@@ -24,12 +24,12 @@ func _ammo_update_(AmmoAmount):
 		
 	elif (ammoHolder.get_children().size() > AmmoAmount):
 		#should remove the children until proper amount
-		var count = 0
+		#var count = 0
 		#print_debug(ammoHolder.get_children().size()- AmmoAmount)
 		
 		for i in (ammoHolder.get_children().size()- AmmoAmount):
 			#ammoHolder.get_children()[ammoHolder.get_children().size() -1].queue_free()
-			count += 1
+			#count += 1
 			
 			_ammo_remove_(ammoHolder.get_children().size()- AmmoAmount)
 			#print(count)

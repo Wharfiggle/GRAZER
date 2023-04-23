@@ -20,17 +20,13 @@ extends Control
 	$Cell6
 ]
 var highlight = [0, 0, 0, 0, 0, 0]
-var selected = -1
+var selected = 0
 @onready var origTransparency = cells[0].modulate.a
 @onready var origScale = cells[0].scale.x
 var wheelRadius = 200
 @onready var viewport = get_viewport()
 @onready var elixirName = $ElixirName
 @onready var elixirDesc = $ElixirDesc
-
-func _ready():
-	elixirName.text = ""
-	elixirDesc.text = ""
 
 func toggleItemWheel():
 	if(!visible):
@@ -51,7 +47,6 @@ func toggleItemWheel():
 		visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		highlight = [0, 0, 0, 0, 0, 0]
-		selected = -1
 		for i in cells.size():
 			cells[i].modulate.a = origTransparency
 			cells[i].scale = Vector2(origScale, origScale)
@@ -61,7 +56,7 @@ func toggleItemWheel():
 func _process(_delta):
 	if(Input.is_action_just_pressed("ItemWheel") && player.active):
 		toggleItemWheel()
-	if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
+	if(visible && (Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
 	&& selected != -1 && player.inventory[selected] > 0):
 		player.usePotion(selected)
 		toggleItemWheel()
@@ -72,7 +67,6 @@ func _process(_delta):
 			selectAngle = fmod(selectAngle + PI - PI / 6.0, PI * 2)
 			selectAngle = 2 * PI - selectAngle
 			selectAngle = fmod(selectAngle, PI * 2)
-			#selectAngle -= PI / 6.0
 			selected = selectAngle / (PI / 3.0) as int
 		else:
 			var mousePos = viewport.get_mouse_position()
