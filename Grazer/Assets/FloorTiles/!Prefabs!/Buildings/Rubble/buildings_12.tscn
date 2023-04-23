@@ -1,0 +1,147 @@
+[gd_scene load_steps=6 format=3 uid="uid://dss4pmdp52xfj"]
+
+[ext_resource type="PackedScene" uid="uid://ducblgkf870ch" path="res://Assets/Models/Buildings/Building Rubble/Buildings 12.fbx" id="1_ms161"]
+[ext_resource type="Material" uid="uid://cykxxq8casug0" path="res://Assets/Models/Buildings/Building Rubble/building rubble.tres" id="2_4gesg"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="3_vkuyu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uaotm"]
+size = Vector3(4.29891, 3.63579, 0.41351)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3udaj"]
+size = Vector3(0.475133, 3.45494, 3.73545)
+
+[node name="Buildings 12" instance=ExtResource("1_ms161")]
+
+[node name="buildingCornerS" parent="RootNode" index="0"]
+material_override = ExtResource("2_4gesg")
+
+[node name="buildingCornerS001" parent="RootNode" index="1"]
+material_override = ExtResource("3_vkuyu")
+
+[node name="InnerPebb114" parent="RootNode" index="2"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerPebb115" parent="RootNode" index="3"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerPebb116" parent="RootNode" index="4"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerPebb117" parent="RootNode" index="5"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerPebb118" parent="RootNode" index="6"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerPebb119" parent="RootNode" index="7"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerPebb120" parent="RootNode" index="8"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerPebb121" parent="RootNode" index="9"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerStone028" parent="RootNode" index="10"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerStone029" parent="RootNode" index="11"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtFlat019" parent="RootNode" index="12"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExRock022" parent="RootNode" index="13"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExFlat030" parent="RootNode" index="14"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtRock018" parent="RootNode" index="15"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerFlat020" parent="RootNode" index="16"]
+material_override = ExtResource("2_4gesg")
+
+[node name="InnerRock017" parent="RootNode" index="17"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb274" parent="RootNode" index="18"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb275" parent="RootNode" index="19"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb276" parent="RootNode" index="20"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb277" parent="RootNode" index="21"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb278" parent="RootNode" index="22"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb279" parent="RootNode" index="23"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb280" parent="RootNode" index="24"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb281" parent="RootNode" index="25"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb282" parent="RootNode" index="26"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb283" parent="RootNode" index="27"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb284" parent="RootNode" index="28"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb285" parent="RootNode" index="29"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb286" parent="RootNode" index="30"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb287" parent="RootNode" index="31"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb288" parent="RootNode" index="32"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb289" parent="RootNode" index="33"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb290" parent="RootNode" index="34"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExtPebb291" parent="RootNode" index="35"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExStone070" parent="RootNode" index="36"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExStone071" parent="RootNode" index="37"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExStone072" parent="RootNode" index="38"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExStone073" parent="RootNode" index="39"]
+material_override = ExtResource("2_4gesg")
+
+[node name="ExPebb152" parent="RootNode" index="40"]
+material_override = ExtResource("2_4gesg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25689, 1.998, 0.921458)
+shape = SubResource("BoxShape3D_uaotm")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625609, 2.09147, -0.808654)
+shape = SubResource("BoxShape3D_3udaj")

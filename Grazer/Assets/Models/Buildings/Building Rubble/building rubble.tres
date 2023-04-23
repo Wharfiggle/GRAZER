@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cykxxq8casug0"]
+
+[ext_resource type="Texture2D" uid="uid://ku4ds2r4xywb" path="res://Assets/Models/Buildings/Building Rubble/RuinsTex_COL.png" id="1_1v407"]
+[ext_resource type="Texture2D" uid="uid://dfseiypsegpox" path="res://Assets/Models/Buildings/Building Rubble/RuinsTex_NRM.png" id="2_1ukcs"]
+
+[resource]
+albedo_texture = ExtResource("1_1v407")
+normal_enabled = true
+normal_texture = ExtResource("2_1ukcs")
