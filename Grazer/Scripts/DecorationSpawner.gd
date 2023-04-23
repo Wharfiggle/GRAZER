@@ -15,6 +15,7 @@ func spawn(_spawnChanceMod, _spawnPrefabs):
 		get_node("/root/Level").add_child(instance)
 		instance.global_position = global_position
 		instance.set_global_rotation(global_rotation)
+		instance.scale = scale
 	else:
 		print("invalid path in decoration spawner: " + str(paths[rn]))
 	self.queue_free()

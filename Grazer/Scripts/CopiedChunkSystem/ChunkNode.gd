@@ -130,7 +130,11 @@ func calcChunk(_chunkCoords, chunkTypes:Array = []) -> String:
 		chunkTypes = chunkTiles.retrieveChunkTypes()
 
 	var pathName = ""
-	if(chunkCoords.z == 2):
+	if(chunkCoords.z == 2 && chunkCoords.x == mapWidth):
+		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/cliffCorner.tscn"
+	elif(chunkCoords.z == 2 && chunkCoords.x == -mapWidth):
+		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/canyonCliffCorner.tscn"
+	elif(chunkCoords.z == 2 && chunkCoords.x < mapWidth && chunkCoords.x > -mapWidth):
 		pathName = "res://Assets/FloorTiles/TilePool/WallTiles/cliffSide2.tscn"
 	elif(chunkCoords.z > 2):
 		pathName = ""

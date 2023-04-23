@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://defh7881nafg6" path="res://Assets/Models/Russel/russel.tscn" id="3_yrgbd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vl5hc"]
-radius = 1.0
 
 [sub_resource type="SphereShape3D" id="2"]
 
@@ -30,7 +29,7 @@ shape = SubResource("CylinderShape3D_vl5hc")
 
 [node name="knockbox" type="Area3D" parent="."]
 transform = Transform3D(1.5, -3.97905e-11, 1.23526e-20, 3.97905e-11, 1.5, -4.65663e-10, 0, 4.65663e-10, 1.5, 0, 1, 0)
-collision_mask = 4
+collision_mask = 36
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="knockbox"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)

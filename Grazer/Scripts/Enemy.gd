@@ -215,13 +215,15 @@ func _physics_process(delta):
 	set_up_direction(Vector3.UP)
 	move_and_slide()
 	
-	if(position.y < -20):
-		if(draggedCow != null):
-			herd.removeCow(draggedCow)
-			draggedCow.queue_free()
-			SceneCounter.cows -= 1
-		queue_free()
-		SceneCounter.marauders -= 1
+	if(position.y < -0.5):
+		hitFlash.get_next_pass().no_depth_test = false
+		if(position.y < -20):
+			if(draggedCow != null):
+				herd.removeCow(draggedCow)
+				draggedCow.queue_free()
+				SceneCounter.cows -= 1
+			queue_free()
+			SceneCounter.marauders -= 1
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
@@ -541,6 +543,7 @@ func knock():
 			enemy.knockback(position, knockbackVel.length(), false)
 
 func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
+	print("enemy knockback: " + str(damageSourcePos))
 	#prevents knockback until knockbackIFramesTimer is zero
 #	if(knockbackIFramesTimer > 0):
 #		return

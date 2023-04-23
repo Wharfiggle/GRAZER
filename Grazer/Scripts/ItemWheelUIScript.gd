@@ -60,7 +60,6 @@ func _process(_delta):
 		player.usePotion(selected)
 		toggleItemWheel()
 	if(visible):
-		print(selected)
 		for i in highlight.size():
 			var target = 1.0
 			if(selected != i):

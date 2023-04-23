@@ -359,7 +359,9 @@ func _process(delta):
 			rotation.y,
 			moveDir,
 			0.1)
+		var cursorScale = worldCursor.scale
 		worldCursor.set_global_rotation(Vector3(worldCursor.rotation.x, PI / 4.0, worldCursor.rotation.z))
+		worldCursor.scale = cursorScale
 	
 	lineSightNode.global_position = shootingPoint.global_position
 	lineSightNode.global_rotation = Vector3(0, aimDir, 0)
@@ -417,6 +419,12 @@ func startReload():
 		currentReloadTime = 0.001
 	idleTime = 0
 
+func cancelReloading():
+	reloading = false
+	once = false
+	currentReloadTime = 0
+	idleTime = 0
+
 func finishReloading():
 	print("Finished Reloading")
 	reloading = false
@@ -451,6 +459,7 @@ func _physics_process(delta):
 		|| (swapInput < 0 && swapInputFrameCounter > 0) ):
 			setWeapon(!onRevolver)
 			swapInputFrameCounter = swapInputFrames * swapInput
+			cancelReloading()
 		elif(swapInputFrameCounter != 0 && swapInput == 0):
 			swapInputFrameCounter -= swapInputFrameCounter / abs(swapInputFrameCounter)
 	
@@ -544,7 +553,9 @@ func _physics_process(delta):
 		animation.set("parameters/shootAngle/blend_position", aimSwivel)
 		#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 		var gun = shootingPoint.get_parent()
+		var gunScale = gun.scale
 		gun.set_global_rotation(Vector3(0, gun.global_rotation.y, 0))
+		gun.scale = gunScale
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
 	else:
@@ -568,7 +579,7 @@ func _physics_process(delta):
 	if(dodgeTimer > 0):
 		dodgeTimer -= delta
 		if(dauntless):
-			dodgeTimer -= delta
+			dodgeTimer -= delta * 0.5
 		if(dodgeTimer < 0):
 			dodgeTimer = 0
 			dodging = false
@@ -584,7 +595,8 @@ func _physics_process(delta):
 			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t * knockMod
 		if(dauntless):
 			dodgeVel *= 2
-		knock()
+		if(!knocked):
+			knock()
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
 		if(dodgeCooldownTimer < 0):
@@ -691,7 +703,8 @@ func knock():
 		if enemy.has_method("knockback"):
 			if(dauntless):
 				enemy.damage_taken(4, "player", false)
-			enemy.knockback(enemy.position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
+			print("player knockback: " + str(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir))))
+			enemy.knockback(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
 			camera.add_trauma(0.3)
 			knocked = true
 

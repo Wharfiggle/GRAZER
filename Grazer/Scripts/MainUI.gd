@@ -25,14 +25,14 @@ func _ammo_update_(AmmoAmount):
 	elif (ammoHolder.get_children().size() > AmmoAmount):
 		#should remove the children until proper amount
 		var count = 0
-		print_debug(ammoHolder.get_children().size()- AmmoAmount)
+		#print_debug(ammoHolder.get_children().size()- AmmoAmount)
 		
 		for i in (ammoHolder.get_children().size()- AmmoAmount):
 			#ammoHolder.get_children()[ammoHolder.get_children().size() -1].queue_free()
 			count += 1
 			
 			_ammo_remove_(ammoHolder.get_children().size()- AmmoAmount)
-			print(count)
+			#print(count)
 		
 
 func _ammo_remove_( remove):
@@ -79,7 +79,7 @@ func _set_ammo_Back (MaxAmmo):
 	elif (AHBack.get_children().size() > MaxAmmo):
 		#should remove the children until proper amount
 		var count = 0
-		print_debug(AHBack.get_children().size()- MaxAmmo)
+		#print_debug(AHBack.get_children().size()- MaxAmmo)
 		
 		for i in (AHBack.get_children().size()- MaxAmmo):
 			#ammoHolder.get_children()[ammoHolder.get_children().size() -1].queue_free()
@@ -87,5 +87,5 @@ func _set_ammo_Back (MaxAmmo):
 			
 			var celloneB=AHBack.get_child(0)
 			AHBack.remove_child(celloneB)
-			print(count)
+			#print(count)
 	

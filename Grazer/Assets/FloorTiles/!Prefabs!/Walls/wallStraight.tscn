@@ -17,7 +17,7 @@ normal_texture = ExtResource("5_628tu")
 heightmap_texture = ExtResource("3_kw410")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qf6m"]
-size = Vector3(20, 9.57821, 11)
+size = Vector3(20, 9.57821, 12.2312)
 
 [node name="wallStraight" instance=ExtResource("1_vyymg")]
 
@@ -28,5 +28,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.34772, -2.95583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.34772, -3.37689)
 shape = SubResource("BoxShape3D_1qf6m")

@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://df35a13xa40fu" path="res://Assets/Models/Shotgun/Shotgun Textures/Shotgun_BA_lambert1_Roughness.png" id="6_7xvvq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycygi"]
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("3_0kl51")
 metallic = 1.0
 metallic_texture = ExtResource("4_j33ns")

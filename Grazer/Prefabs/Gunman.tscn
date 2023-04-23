@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bcorhitij0ix2"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_ocf0t"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_1xrby"]
 [ext_resource type="PackedScene" uid="uid://d1d36qeyhbvr3" path="res://Assets/Models/marauder/marauderRed.tscn" id="2_gsgy7"]
 [ext_resource type="Script" path="res://Prefabs/HitBox.gd" id="4_tnfkf"]
 
@@ -14,7 +14,7 @@ radius = 1.25
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 5
-script = ExtResource("1_ocf0t")
+script = ExtResource("1_1xrby")
 marauderType = 1
 
 [node name="Model" parent="." instance=ExtResource("2_gsgy7")]
