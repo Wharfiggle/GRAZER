@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drpymt3uxjd6y"]
+[gd_scene load_steps=13 format=3 uid="uid://cawfrcqgihwhd"]
 
 [ext_resource type="PackedScene" uid="uid://c4ap4erh7qs2s" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal.fbx" id="1_tq445"]
 [ext_resource type="Texture2D" uid="uid://ff3pc34n14ux" path="res://Assets/Models/Cacti FINAL/cactiNopal/cactiNopal_Material.005_BaseColor.png" id="2_16mkc"]
@@ -27,7 +27,7 @@ normal_enabled = true
 normal_texture = ExtResource("8_y73pr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b5f5a"]
-size = Vector3(0.617835, 1, 1)
+size = Vector3(0.617835, 3.11238, 1)
 
 [node name="cactiNopal" instance=ExtResource("1_tq445")]
 
@@ -635,5 +635,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jqjv3")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140208, 0.435115, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140208, 1.53663, 0)
 shape = SubResource("BoxShape3D_b5f5a")

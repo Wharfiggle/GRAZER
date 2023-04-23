@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=18 format=3 uid="uid://dapc4u84j2cr"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="12_3pmhn"]
 [ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
+[ext_resource type="PackedScene" uid="uid://dra5buej3kycq" path="res://Prefabs/Usable.tscn" id="15_hq1n4"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="16_leqkn"]
 
 [sub_resource type="Gradient" id="Gradient_35e5v"]
@@ -93,5 +94,7 @@ grow_vertical = 2
 color = Color(1, 0.478431, 0.0196078, 0.196078)
 
 [node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
+
+[node name="Usable" parent="." instance=ExtResource("15_hq1n4")]
 
 [connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]

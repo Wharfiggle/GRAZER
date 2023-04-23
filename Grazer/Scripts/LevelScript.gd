@@ -55,12 +55,24 @@ class Item:
 		elif(id == 3): name = "Shotgun Capacity Upgrade"
 		elif(id == 4): name = "Shotgun Damage Upgrade"
 		elif(id == 5): name = "Shotgun Reload Speed Upgrade"
-		elif(id == 6): name = "Health"
-		elif(id == 7): name = "Bulletstorm"
-		elif(id == 8): name = "Life Leach"
-		elif(id == 9): name = "Dustkicker"
-		elif(id == 10): name = "Liquid Luck"
-		elif(id == 11): name = "Dauntless"
+		elif(id == 6): 
+			name = "Health Remedy"
+			description = "Heals 50% of your health."
+		elif(id == 7): 
+			name = "Bulletstorm"
+			description = "Makes you reload instantly."
+		elif(id == 8): 
+			name = "Life Leach"
+			description = "Makes you heal 10% of the damage you deal."
+		elif(id == 9): 
+			name = "Dustkicker"
+			description = "Increases you and your cows' speed by 50%."
+		elif(id == 10): 
+			name = "Liquid Luck"
+			description = "Every shot is a critical hit (double damage)."
+		elif(id == 11): 
+			name = "Dauntless"
+			description = "Your lunges are much faster and deadly, but you cannot shoot."
 	func initUpgrade(inLevelScript:Node, inLevel:int, inGunStats:Array):
 		levelScript = inLevelScript
 		wepLevel = inLevel

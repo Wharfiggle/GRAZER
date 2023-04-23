@@ -194,7 +194,7 @@ func _physics_process(delta):
 				hibernate()
 	
 	if(currentMode == behaviors.hibernate):
-		print("im hibernating")
+		#print("im hibernating")
 		return
 		
 	#gravity
