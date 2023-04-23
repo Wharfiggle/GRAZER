@@ -19,8 +19,8 @@ var waited = false
 var player
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass
+func _ready():
+	self.add_to_group('DespawnAtCheckpoint')
 
 func _physics_process(delta):
 	if(!waited):

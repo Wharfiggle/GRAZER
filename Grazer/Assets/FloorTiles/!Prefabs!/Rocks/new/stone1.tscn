@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4ehi2slultkr"]
+[gd_scene load_steps=8 format=3 uid="uid://bey4mphmvig4w"]
 
 [ext_resource type="PackedScene" uid="uid://cjf8qsk02fwwv" path="res://Assets/Models/Rocks FINAL/stone1/stone1.fbx" id="1_w1xa2"]
 [ext_resource type="Texture2D" uid="uid://clb83xn3dv3a1" path="res://Assets/Models/Rocks FINAL/stone1/stone1_Material_BaseColor.png" id="2_46fwi"]
@@ -15,7 +15,7 @@ normal_enabled = true
 normal_texture = ExtResource("4_22lem")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yn4o1"]
-size = Vector3(2.5, 4, 4.5)
+size = Vector3(2.5, 7.03634, 4.5)
 
 [node name="stone1" instance=ExtResource("1_w1xa2")]
 
@@ -26,5 +26,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mbnw8")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20563, 0.212482)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.64241, 0.212482)
 shape = SubResource("BoxShape3D_yn4o1")

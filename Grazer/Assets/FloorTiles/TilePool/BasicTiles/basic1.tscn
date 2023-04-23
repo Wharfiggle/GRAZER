@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="5_x0ywm"]
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="6_a6g3t"]
 [ext_resource type="PackedScene" uid="uid://dmombb06cyng6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="6_kiljd"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="7_jorfd"]
+[ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="7_jorfd"]
 [ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="7_qkq11"]
 
 [sub_resource type="BoxShape3D" id="1"]

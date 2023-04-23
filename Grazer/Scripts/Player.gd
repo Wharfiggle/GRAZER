@@ -554,7 +554,11 @@ func _physics_process(delta):
 		#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 		var gun = shootingPoint.get_parent()
 		var gunScale = gun.scale
-		gun.set_global_rotation(Vector3(0, gun.global_rotation.y, 0))
+		if(abs(prevAimSwivel - aimSwivel) < 0.01):
+			#do this when arms are aiming same direction as cursor to fix gun slowly becoming offset
+			gun.set_global_rotation(Vector3(0, aimDir, 0))
+		else:
+			gun.set_global_rotation(Vector3(0, gun.global_rotation.y, 0))
 		gun.scale = gunScale
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
@@ -703,7 +707,7 @@ func knock():
 		if enemy.has_method("knockback"):
 			if(dauntless):
 				enemy.damage_taken(4, "player", false)
-			print("player knockback: " + str(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir))))
+			#print("player knockback: " + str(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir))))
 			enemy.knockback(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
 			camera.add_trauma(0.3)
 			knocked = true

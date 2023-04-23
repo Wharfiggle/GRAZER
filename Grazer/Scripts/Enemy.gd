@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 @onready var player = get_node("/root/Level/Player")
+@onready var terrain = get_node("/root/Level/AllTerrain")
 #@onready var nav = get_node("/root/Level/Navigation")
 var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
@@ -80,6 +81,8 @@ var escapeRange = 18
 var waited = false
 
 func _ready():
+	self.add_to_group('DespawnAtCheckpoint')
+	
 	position.y = 0
 	if(marauderType == enemyTypes.gunman):
 		revolver = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight/RevolverOffset/Revolver"))
@@ -152,10 +155,6 @@ func _physics_process(delta):
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
 	
-	#TODO ADD RAYCAST TO CHECK IF CHUNK IS UNLOADED
-	if(position.distance_to(player.position) > 50 or !is_on_floor()):
-		currentMode = behaviors.hibernate
-	
 	#TODO, ENEMY AIMING IS SEPERATE FROM ENEMY ROTATION DIRECTION, FIX
 	rotation.y = lerp_angle(
 		rotation.y,
@@ -194,6 +193,10 @@ func _physics_process(delta):
 			[behaviors.hibernate]:
 				hibernate()
 	
+	if(currentMode == behaviors.hibernate):
+		print("im hibernating")
+		return
+		
 	#gravity
 	tVelocity.y -= GRAVITY * delta
 	if(is_on_floor()):
@@ -215,8 +218,23 @@ func _physics_process(delta):
 	set_up_direction(Vector3.UP)
 	move_and_slide()
 	
+	if(!is_on_floor()):
+		var chunk = terrainController.getPlayerChunk(position)
+		if(!terrain.activeCoord.has(chunk)):
+			#print("gonna hibernate, my chunk: " + str(chunk) + " activeCoords: " + str(terrain.activeCoord))
+			position.y = 0
+			currentMode = behaviors.hibernate
+			if(draggedCow != null):
+				herd.removeCow(draggedCow)
+				draggedCow.queue_free()
+				SceneCounter.cows -= 1
+				queue_free()
+				SceneCounter.marauders -= 1
+	
 	if(position.y < -0.5):
-		hitFlash.get_next_pass().no_depth_test = false
+		hitFlash.get_next_pass().albedo_color = Color(0, 0, 0, 0)
+#		if(revolver != null):
+#			revolver.get_node("./RootNode/Revolver_FULL/Revolver").get_material_override().get_next_pass().albdeo_color = Color(0, 0, 0, 0)
 		if(position.y < -20):
 			if(draggedCow != null):
 				herd.removeCow(draggedCow)
@@ -484,14 +502,19 @@ func hibernate():
 	GRAVITY = 0
 	baseSpeed = 0
 	#Despawn distance
-	if(position.distance_to(player.position) > 200):
-		queue_free()
-		SceneCounter.marauders -= 1
+#	if(position.distance_to(player.position) > 200):
+#		queue_free()
+#		SceneCounter.marauders -= 1
 	#Wake up distance
-	if(position.distance_to(player.position) < wakeUpDistance):
+	var chunk = terrainController.getPlayerChunk(position)
+	if(terrain.activeCoord.has(chunk)):
 		currentMode = behaviors.circle
 		baseSpeed = 5.5
 		GRAVITY = 30
+#	if(position.distance_to(player.position) < wakeUpDistance):
+#		currentMode = behaviors.circle
+#		baseSpeed = 5.5
+#		GRAVITY = 30
 
 #navigation function
 func moveTo(_targetPos):
@@ -543,7 +566,7 @@ func knock():
 			enemy.knockback(position, knockbackVel.length(), false)
 
 func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
-	print("enemy knockback: " + str(damageSourcePos))
+	#print("enemy knockback: " + str(damageSourcePos))
 	#prevents knockback until knockbackIFramesTimer is zero
 #	if(knockbackIFramesTimer > 0):
 #		return
