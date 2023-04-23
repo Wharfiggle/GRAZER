@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://q8ygu4mfnr2l"
+path="res://.godot/imported/MenuSlideOut.wav-1fef6981cb29c6b61a5cef3e471818a9.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/UI/MenuSlideOut.wav"
+dest_files=["res://.godot/imported/MenuSlideOut.wav-1fef6981cb29c6b61a5cef3e471818a9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

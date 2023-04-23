@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://degg4kmjo35jr"
+path="res://.godot/imported/Cowgirl#02.5.wav-dce4e15dda8cd8a546eeefac83348ec4.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Cowgirl/Damage/Cowgirl#02.5.wav"
+dest_files=["res://.godot/imported/Cowgirl#02.5.wav-dce4e15dda8cd8a546eeefac83348ec4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

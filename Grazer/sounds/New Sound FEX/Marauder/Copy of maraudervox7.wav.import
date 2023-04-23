@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://qbqmul8lg4h6"
+path="res://.godot/imported/Copy of maraudervox7.wav-b471f24122e4fa0c06906c82ed684e1c.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Marauder/Copy of maraudervox7.wav"
+dest_files=["res://.godot/imported/Copy of maraudervox7.wav-b471f24122e4fa0c06906c82ed684e1c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d4bcxg75w8mdq"
+path="res://.godot/imported/CriticalHit1.wav-ad57ba04d6398226c9818b938c69e04c.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Revolver-Impacts/CriticalHit1.wav"
+dest_files=["res://.godot/imported/CriticalHit1.wav-ad57ba04d6398226c9818b938c69e04c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

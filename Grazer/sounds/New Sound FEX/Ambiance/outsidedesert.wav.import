@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctinn75mya67b"
+path="res://.godot/imported/outsidedesert.wav-95970dc9dba3dad324fc177bed6ea051.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Ambiance/outsidedesert.wav"
+dest_files=["res://.godot/imported/outsidedesert.wav-95970dc9dba3dad324fc177bed6ea051.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

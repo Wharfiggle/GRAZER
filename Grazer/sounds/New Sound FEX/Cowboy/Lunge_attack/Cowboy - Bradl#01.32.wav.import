@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://o1tlqj5bha1e"
+path="res://.godot/imported/Cowboy - Bradl#01.32.wav-85195746837f7a7247ea389f8158461d.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Cowboy/Lunge_attack/Cowboy - Bradl#01.32.wav"
+dest_files=["res://.godot/imported/Cowboy - Bradl#01.32.wav-85195746837f7a7247ea389f8158461d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

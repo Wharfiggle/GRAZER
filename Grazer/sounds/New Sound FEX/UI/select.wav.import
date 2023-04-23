@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bpsj5tw7dfwh2"
+path="res://.godot/imported/select.wav-12acdb4fcec8b0162e8f3b195336facf.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/UI/select.wav"
+dest_files=["res://.godot/imported/select.wav-12acdb4fcec8b0162e8f3b195336facf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

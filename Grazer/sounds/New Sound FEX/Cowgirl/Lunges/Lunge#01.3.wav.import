@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwq42w5p56h3o"
+path="res://.godot/imported/Lunge#01.3.wav-c245892e3a2e87f6149571fbd6f589ab.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Cowgirl/Lunges/Lunge#01.3.wav"
+dest_files=["res://.godot/imported/Lunge#01.3.wav-c245892e3a2e87f6149571fbd6f589ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

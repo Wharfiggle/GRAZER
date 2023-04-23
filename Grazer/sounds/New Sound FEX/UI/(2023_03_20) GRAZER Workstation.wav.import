@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvy5uqo6wia4g"
+path="res://.godot/imported/(2023_03_20) GRAZER Workstation.wav-0d6d162ec5c53e5701bf8a1d9d112550.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/UI/(2023_03_20) GRAZER Workstation.wav"
+dest_files=["res://.godot/imported/(2023_03_20) GRAZER Workstation.wav-0d6d162ec5c53e5701bf8a1d9d112550.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
