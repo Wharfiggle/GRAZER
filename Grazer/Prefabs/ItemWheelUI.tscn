@@ -507,7 +507,7 @@ label_settings = SubResource("LabelSettings_jgnme")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="item sounds" type="AudioStreamPlayer2D" parent="."]
 
 [node name="ElixirName" type="Label" parent="."]
 layout_mode = 1

@@ -76,14 +76,26 @@ var russelOrRay = "Russel"
 @onready var hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/Pants")).get_material_override()
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
+@onready var gun = $gun
 @onready var Steps = $footsteps
 @onready var Vocal = $Voice
 #preloading sound file
 var runSound = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
-var revolverShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
-var revolverCritSound = preload("res://sounds/gunsounds/crit shot.wav")
-var shotgunShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
-var shotgunCritSound = preload("res://sounds/gunsounds/crit shot.wav")
+var stepsSound = preload("res://sounds/Footsteps/Footsteps/CowboyStep1.wav")
+var revolverShootSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/revolverfire.wav")
+var revolverCritSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/CriticalHit1.wav")
+var shotgunShootSound = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/shottyfire.wav")
+var shotgunCritSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/CriticalHit1.wav")
+var usepotionS = preload("res://sounds/New Sound FEX/Elixir-Power/elixirdrink.wav")
+var damagesound = preload("res://sounds/New Sound FEX/Cowboy/Damage/Cowboy - Bradl#01.47.wav")
+var lungeSound = preload("res://sounds/New Sound FEX/Cowboy/Lunge_attack/Cowboy - Bradl#01.32.wav")
+var reloadStartR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloadOpen.wav")
+var reloadingSoundR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloadBullet.wav")
+var reloadEndR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloadClose.wav")
+
+var reloadStartS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadOpen.wav")
+var reloadingSoundS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadBullet.wav")
+var reloadEndS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadClose.wav")
 
 const GRAVITY = 30
 @export var speed = 8.0
@@ -148,14 +160,17 @@ func _ready():
 	gunStats[4] = shotgunDamage
 	gunStats[5] = shotgunReloadTime
 	
+	
+	Steps.stream = stepsSound
+	
 	#hitFlash.set_shader_parameter("color", hitColor)
 	hitFlash.set_shader_parameter("color", Color(1, 1, 1))
 	
-	if(once):
-		MainHud._ammo_update_(revolverClip)
-		MainHud._set_ammo_Back(revolverClipSize)
-		once = false
-		
+	
+	MainHud._ammo_update_(revolverClip)
+	MainHud._set_ammo_Back(revolverClipSize)
+	
+	
 	#HealthBar._on_max_health_update_(10)
 
 	#var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
@@ -351,22 +366,30 @@ func _process(delta):
 		lineSightTimer = lineSightTime
 	
 	#setting sound 
-	Steps.stream = runSound
+	
 	
 	#movement
 	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):
 		if(Input.is_action_pressed("moveRight")):
+			#if (!Steps.playing):
+			#Steps.play()
 			toAdd.x += 1
 			toAdd.z += -1
 		elif(Input.is_action_pressed("moveLeft")):
+			
+			#Steps.play()
 			toAdd.x += -1
 			toAdd.z += 1
 	if(!(Input.is_action_pressed("moveDown") and Input.is_action_pressed("moveUp"))):
 		if(Input.is_action_pressed("moveDown")):
+			
+			#Steps.play()
 			toAdd.x += 1
 			toAdd.z += 1
 		elif(Input.is_action_pressed("moveUp")):
+			
+			#Steps.play()
 			toAdd.x += -1
 			toAdd.z += -1
 	var stickToAdd = Vector3(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), 0, Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
@@ -450,6 +473,9 @@ func setBulletColor(inColor:Color = Color(1, 1, 0)):
 
 func usePotion(ind:int):
 	if(inventory[ind] > 0):
+		#put sound here
+		Vocal.stream = usepotionS
+		Vocal.play()
 		if(potionUsed != null):
 			potionUsed.use(false)
 		potions[ind].use()
@@ -460,6 +486,13 @@ func usePotion(ind:int):
 		potionUsed = potions[ind]
 
 func startReload():
+	if (onRevolver):
+		gun.stream = reloadStartR
+		gun.play()
+	else :
+		gun.stream = reloadStartS
+		gun.play()
+	
 	print("Reloading")
 	reloading = true
 	once = true
@@ -479,15 +512,20 @@ func cancelReloading():
 	idleTime = 0
 
 func finishReloading():
+	
 	print("Finished Reloading")
 	reloading = false
 	idleTime = 0
 	if(onRevolver):
 		revolverClip = revolverClipSize
-		if (once):
-			MainHud._ammo_update_(revolverClip)
-			once = false
+		gun.stream = reloadEndR
+		gun.play()
+		
+		MainHud._ammo_update_(revolverClip)
+		
 	else:
+		gun.stream = reloadEndS
+		gun.play()
 		shotgunClip = shotgunClipSize
 		MainHud._ammo_update_(shotgunClip)
 		
@@ -624,6 +662,10 @@ func _physics_process(delta):
 	
 	#dodging
 	if(Input.is_action_just_pressed("dodge")):
+		Vocal.stream = lungeSound
+		if(once):
+			Vocal.play()
+			once = false
 		dodgeBufferTimer = dodgeBufferTime
 	elif(dodgeBufferTimer > 0):
 		dodgeBufferTimer -= delta
@@ -768,6 +810,7 @@ func findHerdCenter() -> Vector3:
 
 func knock():
 	var enemies = knockbox.get_overlapping_bodies()
+	once = true
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
 			#print("player knockback: " + str(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir))))
@@ -789,6 +832,9 @@ func updateHealth(newHP:float):
 func damage_taken(damage:float, from:String, _inCritHit:bool = false, _inBullet:Node = null) -> bool:
 	if(from != "player"):
 		print("player damaged")
+		Vocal.stream = damagesound
+		if(!Vocal.playing):
+			Vocal.play()
 #		hitFlashAmmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.35)

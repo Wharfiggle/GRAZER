@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://f6o3n68bbkde"
+path="res://.godot/imported/ShottyReloadBullet.wav-a4ea8e21489347a5b8ee9af780b5c3c3.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadBullet.wav"
+dest_files=["res://.godot/imported/ShottyReloadBullet.wav-a4ea8e21489347a5b8ee9af780b5c3c3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -3,9 +3,12 @@ extends Node3D
 
 #audioStream
 @onready var music = $BackgroundPlayer
+@onready var aumbi = $aumbiunce
 
 #music
 var sound = preload("res://sounds/Opening Theme.wav")
+var aumbiMucic = preload("res://sounds/New Sound FEX/Ambiance/outsidedesert.wav")
+
 @onready var inventory = $ItemWheel
 @onready var player = get_node(NodePath("./Player"))
 @export var broadcastStartExitTime = 0.2
@@ -245,8 +248,10 @@ func broadcastMessage(message:String, time:float):
 func _ready():
 	#selecting sound to play
 	music.stream = sound
+	aumbi.stream = aumbiMucic
 	#Starting sound
-	music.play(5.37)
+	music.play()
+	aumbi.play()
 	inventory.visible = false 
 	
 	broadcast.position.y -= broadcastHeight

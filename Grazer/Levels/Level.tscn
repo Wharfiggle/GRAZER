@@ -980,6 +980,9 @@ label_settings = SubResource("LabelSettings_nsy4h")
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="aumbiunce" type="AudioStreamPlayer" parent="."]
+bus = &"Ambi"
+
 [connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_mouse_entered"]

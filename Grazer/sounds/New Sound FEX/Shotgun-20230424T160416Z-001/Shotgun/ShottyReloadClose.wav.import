@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b2y4425equpl3"
+path="res://.godot/imported/ShottyReloadClose.wav-f8967823f442acbbb00699a4c1f868a0.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadClose.wav"
+dest_files=["res://.godot/imported/ShottyReloadClose.wav-f8967823f442acbbb00699a4c1f868a0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

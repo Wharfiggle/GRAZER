@@ -22,6 +22,13 @@ var itemDrop = null
 #soundFile Preload
 var reloadSound = preload("res://sounds/gunsounds/Reload.wav")
 var revolverShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
+var damagesound= preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox5.wav")
+var deathSound = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox6.wav")
+var voice1 = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox4.wav")
+var voice2 = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox2.wav")
+var voice3 = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox1.wav")
+var audioArray = [voice1,voice2,voice3]
+
 
 var maxHealth = 15.0
 var health = maxHealth
@@ -142,7 +149,7 @@ func _physics_process(delta):
 					else:
 						displace.y *= -1
 				position = Vector3(
-					origPos.x + 1 * tries * displace.x, origPos.y, 
+					origPos.x + 1 * tries * displace.x, origPos.y,
 					origPos.z + 1 * tries * displace.y)
 				if(tries == 10):
 					print("couldn't find valid location for enemy to spawn in, deleting")
@@ -157,7 +164,7 @@ func _physics_process(delta):
 		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
 		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
 		if(hitFlashAmmount < 0.1):
-			hitFlashAmmount = 0
+
 			critHit = false
 			hitFlash.set_shader_parameter("ammount", 0.0)
 	
@@ -372,8 +379,7 @@ func circle():
 func pursuit():
 	#Marauder runs directly at cowboy.
 	#Once close enough,
-	#If marauderType is gunman, they attempt to shoot the cowboy. 
-	targetPos = player.global_transform.origin
+	#If marauderType is gunman, they attempt to shoot the cowboy.
 	
 	#Slows down when getting close to follow distance
 	#If closer than follow distance, back up
@@ -436,6 +442,9 @@ func pursuit():
 		speed = 1.0
 
 func cowPursuit():
+	var clip_to_play = audioArray[randi() % audioArray.size()] 
+	Vocal.stream=clip_to_play
+	Vocal.play()
 	#Marauder runs towards closest cow and attempts to lasso when in range
 	#If successful, or cowboy gets too close, the marauder switches to flee mode.
 	speed = 1.0
@@ -564,7 +573,13 @@ func readyAim():
 	aimLerpSpeed = baseAimSpeed
 
 func attack():
+	var clip_to_play = audioArray[randi() % audioArray.size()] 
+	targetPos = player.global_transform.origin
+	Vocal.stream=clip_to_play
+	
+	
 	if(shootingPoint != null):
+		Vocal.play()
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
 		
@@ -621,6 +636,8 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 func die():
 	#Changing the health to -100000 is to prevent the counter being
 	#changed multiple times because of the shotgun bullets.
+	Vocal.stream = deathSound
+	Vocal.play()
 	if(health > -100000):
 		SceneCounter.marauders -= 1
 		if(draggedCow != null):
@@ -639,6 +656,9 @@ func updateHealth(newHP:float):
 
 func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
 	if(from != "enemy"):
+		Vocal.stream = damagesound
+		if(!Vocal.playing):
+			Vocal.play(0.13)
 		updateHealth(health - damage)
 		hitFlashAmmount = 1
 		critHit = inCritHit

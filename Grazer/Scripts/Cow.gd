@@ -141,6 +141,7 @@ func startDragging(marauder):
 	#while(isDragged):
 		#if(!Vocal.is_playing()):
 	Vocal.stream = stressed
+	Vocal.play()
 	
 	herd.removeHuddler(self)
 	#Set to disable, because otherwise the cow can't look at the marauder when dragged
@@ -177,6 +178,7 @@ func idle():
 	followingHerd = false
 	animation.set("parameters/Movement/BlendMove/blend_amount", -1)
 	Vocal.stream = moo1
+	Vocal.play()
 #equation for diagonal length of screen
 #var rectWid = 15 / cos(55 * PI / 180)
 #var rectHei = 15 / 9 * 16

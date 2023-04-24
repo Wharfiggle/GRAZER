@@ -88,6 +88,7 @@ func _process(_delta):
 			cells[i].scale = Vector2(newScale, newScale)
 
 func _on_cell_1_mouse_entered():
+	#put sound here
 	selected = 0
 func _on_cell_2_mouse_entered():
 	selected = 1
