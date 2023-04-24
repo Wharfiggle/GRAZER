@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct5gqti8xgjyy"]
+[gd_scene load_steps=10 format=3 uid="uid://ct5gqti8xgjyy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_h6u35"]
 [ext_resource type="Texture2D" uid="uid://q0x4hf1334dn" path="res://Assets/Images/mouseCursor.png" id="2_jape7"]
 [ext_resource type="Material" uid="uid://d3p7llyr4jt8" path="res://Assets/Materials/glow_material.tres" id="3_k7ui3"]
 [ext_resource type="PackedScene" uid="uid://defh7881nafg6" path="res://Assets/Models/Russel/russel.tscn" id="3_yrgbd"]
+[ext_resource type="PackedScene" uid="uid://c8472mqbt84rl" path="res://Assets/Models/Ray/ray.tscn" id="4_drvwk"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vl5hc"]
 
@@ -53,8 +54,12 @@ bus = &"soundFXMain"
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70047, 0.0811439)
 
-[node name="Model" parent="." instance=ExtResource("3_yrgbd")]
+[node name="Russel" parent="." instance=ExtResource("3_yrgbd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135789)
+
+[node name="Ray" parent="." instance=ExtResource("4_drvwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135789)
+visible = false
 
 [node name="LineOfSight" type="MeshInstance3D" parent="."]
 material_override = ExtResource("3_k7ui3")

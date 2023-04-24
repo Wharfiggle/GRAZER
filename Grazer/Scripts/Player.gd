@@ -69,9 +69,11 @@ var bulletColor = Color(1, 1, 0)
 var lineSightColor = Color(1, 1, 1)
 var critColor = Color(0, 0, 0)
 
+var russelOrRay = "Russel"
+
 #@export var hitColor:Color
 #var hitFlashAmmount = 0.0
-@onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/Pants")).get_material_override()
+@onready var hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/Pants")).get_material_override()
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
 @onready var Steps = $footsteps
@@ -93,8 +95,8 @@ var prevAimDir = [0, 0, 0, 0, 0]
 var aimDir = 0.0
 var aimSwivel = 0.0
 @export var swivelSpeed = 0.2
-@onready var gunRight = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight"))
-@onready var gunLeft = get_node(NodePath("./Model/Armature/Skeleton3D/GunLeft"))
+@onready var gunRight = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunRight"))
+@onready var gunLeft = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunLeft"))
 var rightHand = true
 var onRevolver = true
 @export var shotgunRandOffset = 0.1
@@ -110,8 +112,8 @@ var onRevolver = true
 @export var lineSightTime = 0.8
 var lineSightTimer = 0.0
 var lineSight
-@onready var animation = get_node(NodePath("./Model/AnimationPlayer/AnimationTree"))
-@onready var skeleton = get_node(NodePath("./Model/Armature/Skeleton3D"))
+@onready var animation = get_node(NodePath("./"+russelOrRay+"/AnimationPlayer/AnimationTree"))
+@onready var skeleton = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D"))
 @onready var worldCursor = get_node(NodePath("./WorldCursor"))
 #@export var cursorSpinSpeed = 1.0
 #@export var cursorSpinTime = 1.0
@@ -124,7 +126,6 @@ var swapInputFrameCounter = 0
 var active = true
 var maxAmmo = 0
 var once = true
-
 var lastGroundedPosition = position
 
 
@@ -180,6 +181,10 @@ func _process(delta):
 	if(Input.is_action_just_pressed("restart")):
 		WorldSave.reset()
 		get_tree().change_scene_to_file("res://Levels/Level.tscn")
+		
+	#swap model between ray and russel
+	if(Input.is_action_just_pressed("GenderBend")):
+		setModel(russelOrRay == "Ray")
 	
 	if(herd == null):
 		herd = herdPrefab.instantiate()
@@ -422,6 +427,19 @@ func _process(delta):
 			herd.toggleFollow()
 	else:
 		print("fuck there is no herd") #yeah
+
+func setModel(inRusselOrRay:bool):
+	var model = get_node(NodePath("./" + russelOrRay))
+	model.visible = false
+	if(inRusselOrRay):
+		russelOrRay = "Russel"
+	else:
+		russelOrRay = "Ray"
+	model = get_node(NodePath("./" + russelOrRay))
+	model.visible = true
+	hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/Pants")).get_material_override()
+	gunRight = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunRight"))
+	gunLeft = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunLeft"))
 
 func setLineSightColor(inColor:Color = Color(1, 1, 1)):
 	lineSightColor = inColor
@@ -694,7 +712,6 @@ func updateGunStats():
 	shotgunClipSize = gunStats[3]
 	shotgunDamage = gunStats[4]
 	shotgunReloadTime = gunStats[5]
-	
 	
 
 func setWeaponAndHands(revolver:bool, right:bool):
