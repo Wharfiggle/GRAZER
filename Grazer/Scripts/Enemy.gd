@@ -9,6 +9,7 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
 var aimDirection = 0
+var movementBlend = 0.0
 @export var baseAimSpeed = 0.75
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
@@ -69,6 +70,7 @@ var critHit = false
 var hitFlashAmmount = 0.0
 @onready var silhouette = hitFlash.get_next_pass()
 @onready var silhouetteColor = silhouette.albedo_color
+@onready var animation = get_node(NodePath("./Model/AnimationPlayer/AnimationTree"))
 
 enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit, hibernate}
 var currentMode = behaviors.hibernate
@@ -147,6 +149,10 @@ func _physics_process(delta):
 					queue_free()
 					SceneCounter.marauders -= 1
 	
+	movementBlend = speed
+	movementBlend = 1-  movementBlend
+	animation.set("parameters/idleWalk/blend_amount", movementBlend)
+	
 	if(hitFlashAmmount > 0.1):
 		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
 		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
@@ -159,9 +165,14 @@ func _physics_process(delta):
 		herd = get_node(NodePath("/root/Level/Herd"))
 	
 	#TODO, ENEMY AIMING IS SEPERATE FROM ENEMY ROTATION DIRECTION, FIX
+	var rotateTo
+	if(!aiming):
+		rotateTo = targetPos
+	else:
+		rotateTo = player.position
 	rotation.y = lerp_angle(
 		rotation.y,
-		atan2(position.x - targetPos.x, position.z - targetPos.z) + PI,
+		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + PI,
 		0.1)
 	
 	if(marauderType == enemyTypes.thief && currentMode == behaviors.circle):
@@ -534,15 +545,19 @@ func _on_Timer_timeout():
 func readyAim():
 	if(aiming):
 		return
-	print("Ready... Aim...")
 	aiming = true
 	for i in 6:
 		speed = 1 - i / 7.0
 		aimLerpSpeed = baseAimSpeed * (1 - i / 5.0)
 		if(aimLerpSpeed < 0):
 			aimLerpSpeed = 0
+		if(speed > 1):
+			speed = 1
+#		movementBlend = lerpf(movementBlend, 1, 0.1)
+#		movementBlend = speed
+#		animation.set("parameters/idleWalk/blend_amount", movementBlend)
+		
 		await get_tree().create_timer(aimTime / 5.0).timeout
-	print("Fire!")
 	attack()
 	aiming = false
 	speed = 1.0
@@ -552,8 +567,16 @@ func attack():
 	if(shootingPoint != null):
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
+		
+		var direction = transform.origin - player.transform.origin
+		direction = direction.normalized()
+		var looking = atan2(direction.x, direction.z)
+		
+		
+		
+		
 		#var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
-		b.shoot(self, "enemy", shootingPoint.global_position, Vector3(0, aimDirection, 0), 15.0, 2.0, false)
+		b.shoot(self, "enemy", shootingPoint.global_position, Vector3(0, rotation.y, 0), 15.0, 2.0, false)
 		var smokeInstance = smoke.instantiate()
 		var boomSound = b.find_child("Boom")
 		boomSound.stream = revolverShootSound
