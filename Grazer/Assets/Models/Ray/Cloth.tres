@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://vci1ldij7k6v" path="res://Assets/Models/Ray/Ray_Cloth_Roughness.png" id="4_rtpia"]
 
 [resource]
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("1_eajbb")
 metallic = 1.0
 metallic_texture = ExtResource("2_wnt40")

@@ -36,6 +36,7 @@ var itemTextures = [
 	preload("res://Assets/Images/liquidluckElixir.png"),
 	preload("res://Assets/Images/dauntlessElixir.png")
 ]
+var rng = RandomNumberGenerator.new()
 
 class CowType:
 	var id
@@ -56,11 +57,11 @@ class CowType:
 		if(id == 1): #red
 			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
 		elif(id == 2): #lucky
-			player.critChance += 0.1 * undoMod
+			player.critChance += 0.05 * undoMod
 			player.cowDamageMod += 0.1 * undoMod
 		elif(id == 3): #grand red
 			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
-			player.potionSpeedup += 0.25 * undoMod
+			player.potionSpeedup += 0.1 * undoMod
 			player.herd.setPotionSpeedup(player.potionSpeedup)
 		elif(id == 4): #ironhide
 			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
@@ -99,23 +100,29 @@ class Item:
 		elif(id == 4): name = "Shotgun Damage Upgrade"
 		elif(id == 5): name = "Shotgun Reload Speed Upgrade"
 		elif(id == 6): 
-			name = "Health Remedy"
+			name = "Recovery Elixir"
 			description = "Heals 50% of your health."
+			cost = 4
 		elif(id == 7): 
 			name = "Bulletstorm"
-			description = "Makes you reload instantly."
+			description = "You reload instantly."
+			cost = 3
 		elif(id == 8): 
 			name = "Life Leech"
-			description = "Makes you heal 15% of the damage you deal."
+			description = "You heal 15% of the damage you deal."
+			cost = 2
 		elif(id == 9): 
-			name = "Dustkicker"
-			description = "Increases you and your cows' speed by 50%."
+			name = "Roadrunner"
+			description = "Increase you and your herd's speed by 50%."
+			cost = 3
 		elif(id == 10): 
 			name = "Liquid Luck"
 			description = "Every shot is a critical hit (double damage)."
+			cost = 1
 		elif(id == 11): 
 			name = "Dauntless"
 			description = "Your lunges are much faster and deadly, but you cannot shoot."
+			cost = 3
 	func initUpgrade(inLevelScript:Node, inLevel:int, inGunStats:Array):
 		levelScript = inLevelScript
 		wepLevel = inLevel
@@ -150,7 +157,7 @@ class Item:
 		elif(id == 6): #health
 			player.updateHealth(player.hitpoints + 0.5 * player.maxHitpoints)
 			player.hitFlash.set_shader_parameter("color", Color(0.5, 1, 0.5))
-#			player.hitFlashAmmount = 1.0
+#			player.hitFlashAmount = 1.0
 		elif(id == 7): #bulletstorm
 			player.bulletstorm = useOrUndo
 			if(useOrUndo):
@@ -190,8 +197,8 @@ func getUpgrade(id:int) -> Item:
 		ind += 1
 	var item
 	if(level == 4):
-		#if gun stat is max, return health potion instead
-		item = Item.new(6, player, itemTextures[6])
+		#if gun stat is max, return random potion instead
+		item = getRandomPotion()
 	else:
 		@warning_ignore("integer_division")
 		item = Item.new(id, player, itemTextures[id / 3]) # get tex 0 if id is 0 - 2 and get tex 1 if id is 3 - 5
@@ -203,7 +210,7 @@ func getRandomUpgrade() -> Item:
 	var valid = false
 	var tried = []
 	while(valid == false && tried.size() < 6):
-		rn = randi_range(0, 5)
+		rn = rng.randi_range(0, 5)
 		if(!tried.has(rn)):
 			tried.append(rn)
 			#if player's respective gun stat isn't equal to the max level, then it's valid
@@ -211,7 +218,7 @@ func getRandomUpgrade() -> Item:
 				valid = true
 	#if all gun stats are max, return health potion instead
 	if(valid == false):
-		return Item.new(6, player, itemTextures[6])
+		return getRandomPotion()
 	else:
 		return getUpgrade(rn)
 
@@ -221,8 +228,25 @@ func getPotion(id:int) -> Item:
 	return Item.new(id, player, itemTextures[id])
 #use for getting random potion to drop in world
 func getRandomPotion() -> Item:
-	var rn = randi_range(6, 11)
-	return getPotion(rn)
+	#gets random potion weighted based on cost of potions.
+	#higher cost = less likely to be picked
+	var maxCost = -1
+	for i in player.potions:
+		if(i.cost > maxCost):
+			maxCost = i.cost
+	var weights = []
+	for i in player.potions.size():
+		var sum = 0
+		if(weights.size() > 0):
+			sum = weights[i - 1]
+		weights.append(sum + maxCost * 4 - player.potions[i].cost * 3)
+	var rn = rng.randi_range(0, weights[weights.size() - 1])
+	var index = -1
+	for i in weights.size():
+		if(rn <= weights[i] && index == -1):
+			index = 6 + i
+	print("weights: " + str(weights) + " index rolled: " + str(index - 6) + " num rolled: " + str(rn))
+	return getPotion(index)
 	
 #use for getting any item
 func getItem(id:int) -> Item:
@@ -233,7 +257,7 @@ func getItem(id:int) -> Item:
 		return getPotion(id)
 #use for getting any random item
 func getRandomItem(potionVsUpgradeChance:float = 0.5) -> Item:
-	var rn = randf()
+	var rn = rng.randf()
 	if(rn <= potionVsUpgradeChance):
 		return getRandomPotion()
 	else:
@@ -255,6 +279,8 @@ func _ready():
 	inventory.visible = false 
 	
 	broadcast.position.y -= broadcastHeight
+	
+	rng.randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

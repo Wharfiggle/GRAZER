@@ -44,10 +44,10 @@ var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponH
 #revolver capacity, revolver damage, revolver reload, shotgun capacity, shotgun damage, shotgun reload
 @export var gunStats = [0, 0.0, 0.0, 0, 0.0, 0.0]
 @export var revolverDamage = 3.0
-@export var revolverReloadTime = 0.9
+@export var revolverReloadTime = 1.0
 @export var revolverClipSize = 6
 @export var shotgunDamage = 0.6
-@export var shotgunReloadTime = 1.1
+@export var shotgunReloadTime = 1.2
 @export var shotgunClipSize = 2
 
 var cowDamageMod = 1.0
@@ -56,7 +56,7 @@ var cowTypes = null
 var potions = null
 #var inventory = [0, 0, 0, 0, 0, 0]
 var inventory = [5, 5, 5, 5, 5, 5]
-@export var potionTime = 30.0
+@export var potionTime = 25.0
 var potionTimer = 0.0
 var potionUsed
 var lifeLeach = 0.0
@@ -72,11 +72,11 @@ var critColor = Color(0, 0, 0)
 var russelOrRay = "Russel"
 
 #@export var hitColor:Color
-#var hitFlashAmmount = 0.0
+#var hitFlashAmount = 0.0
 @onready var hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/Pants")).get_material_override()
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
-@onready var gun = $gun
+@onready var gunSound = $gun
 @onready var Steps = $footsteps
 @onready var Vocal = $Voice
 #preloading sound file
@@ -233,6 +233,8 @@ func _process(delta):
 		var pTime = potionTime
 		if(potionUsed == potions[0]):
 			pTime = 1.0
+		elif(potionUsed == potions[3]):
+			pTime = 15.0
 		if(potionTimer > pTime - startTime):
 			blend = 1 - ((potionTimer - (pTime - startTime)) / startTime)
 			blend = pow(blend, 2)
@@ -241,13 +243,13 @@ func _process(delta):
 			blend = sqrt(blend)
 		animation.set("parameters/walkEllixir/blend_amount", blend)
 		var t = potionTimer / potionTime
-		hitFlash.set_shader_parameter("ammount", abs( sin( sqrt(t) * 100) ) / 10)
+		hitFlash.set_shader_parameter("amount", abs( sin( sqrt(t) * 100) ) / 10)
 		potionTimer -= delta
 		if(potionTimer < 0):
 			potionTimer = 0
 			potionUsed.use(false)
 			potionUsed = null
-			hitFlash.set_shader_parameter("ammount", 0)
+			hitFlash.set_shader_parameter("amount", 0)
 	
 	#Temp var to allow easier comparisions
 	var equippedClip
@@ -463,6 +465,16 @@ func setModel(inRusselOrRay:bool):
 	hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/Pants")).get_material_override()
 	gunRight = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunRight"))
 	gunLeft = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunLeft"))
+	animation = get_node(NodePath("./"+russelOrRay+"/AnimationPlayer/AnimationTree"))
+	skeleton = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D"))
+	setWeaponAndHands(onRevolver, rightHand)
+#	var gun = gunRight
+#	if(!rightHand):
+#		gun = gunLeft
+#	shootingPoint = gun.find_child("ShootingPoint")
+#	lineSightRaycast = shootingPoint.get_child(0)
+#	if(onRevolver):
+#		lineSightNode.transparency = lineSightTransparency
 
 func setLineSightColor(inColor:Color = Color(1, 1, 1)):
 	lineSightColor = inColor
@@ -483,15 +495,17 @@ func usePotion(ind:int):
 		potionTimer = potionTime
 		if(ind == 0):
 			potionTimer = 1.0
+		elif(ind == 3):
+			potionTimer = 15.0
 		potionUsed = potions[ind]
 
 func startReload():
 	if (onRevolver):
-		gun.stream = reloadStartR
-		gun.play()
+		gunSound.stream = reloadStartR
+		gunSound.play()
 	else :
-		gun.stream = reloadStartS
-		gun.play()
+		gunSound.stream = reloadStartS
+		gunSound.play()
 	
 	print("Reloading")
 	reloading = true
@@ -506,38 +520,38 @@ func startReload():
 
 func cancelReloading():
 	reloading = false
-	animation.set("parameters/Reload/blend_amount", 0)
+	animation.set("parameters/walkReload 2/blend_amount", 0)
 	once = false
 	currentReloadTime = 0
 	idleTime = 0
 
 func finishReloading():
-	
+	animation.set("parameters/walkReload 2/blend_amount", 0)
 	print("Finished Reloading")
 	reloading = false
 	idleTime = 0
 	if(onRevolver):
 		revolverClip = revolverClipSize
-		gun.stream = reloadEndR
-		gun.play()
+		gunSound.stream = reloadEndR
+		gunSound.play()
 		
 		MainHud._ammo_update_(revolverClip)
 		
 	else:
-		gun.stream = reloadEndS
-		gun.play()
+		gunSound.stream = reloadEndS
+		gunSound.play()
 		shotgunClip = shotgunClipSize
 		MainHud._ammo_update_(shotgunClip)
 		
 
 func _physics_process(delta):
 	#hit flash on being hit
-#	if(hitFlashAmmount > 0.1):
-#		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
-#		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
-#		if(hitFlashAmmount < 0.1):
-#			hitFlashAmmount = 0
-#			hitFlash.set_shader_parameter("ammount", 0.0)
+#	if(hitFlashAmount > 0.1):
+#		hitFlash.set_shader_parameter("amount", hitFlashAmount)
+#		hitFlashAmount = lerpf(hitFlashAmount, 0, 0.3)
+#		if(hitFlashAmount < 0.1):
+#			hitFlashAmount = 0
+#			hitFlash.set_shader_parameter("amount", 0.0)
 #			hitFlash.set_shader_parameter("color", hitColor)
 	
 	#swap weapon
@@ -661,8 +675,7 @@ func _physics_process(delta):
 		worldCursor.visible = false
 	
 	#dodging
-	if(Input.is_action_just_pressed("dodge")):
-		Vocal.stream = lungeSound
+	if(Input.is_action_just_pressed("dodge") && active):
 		if(once):
 			Vocal.play()
 			once = false
@@ -673,6 +686,7 @@ func _physics_process(delta):
 			dodgeBufferTimer = 0
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		Input.start_joy_vibration(0,0.6,0.6,.1)
+		Vocal.stream = lungeSound
 		dodgeCooldownTimer = dodgeCooldownTime
 		if(dauntless):
 			dodgeCooldownTimer = 0.001
@@ -695,7 +709,7 @@ func _physics_process(delta):
 			var knockMod = 1.0
 			if(knocked):
 				knockMod = 0.5
-			print(Vector3(sin(moveDir), 0, cos(moveDir)))
+			#print(Vector3(sin(moveDir), 0, cos(moveDir)))
 			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t * knockMod
 		if(dauntless):
 			dodgeVel *= 1.5
@@ -723,7 +737,7 @@ func _physics_process(delta):
 		elif(grounded):
 			tVelocity.y = -0.1
 		elif(position.y < -10.0):
-			updateHealth(hitpoints - 1)
+			updateHealth(hitpoints - 4)
 			if(active):
 				position = Vector3(lastGroundedPosition.x, 0.5, lastGroundedPosition.z)
 				lastGroundedPosition.y = 0
@@ -757,44 +771,47 @@ func updateGunStats():
 	
 
 func setWeaponAndHands(revolver:bool, right:bool):
-	if(revolver != onRevolver || right != rightHand):
-		var oldGun = gunRight
-		if(!rightHand):
-			oldGun = gunLeft
-		var gun = gunRight
-		if(!right):
-			gun = gunLeft
-		var tempGun = oldGun.get_child(0).get_child(0)
-		if(!onRevolver):
-			tempGun = oldGun.get_child(1).get_child(0)
-		oldGun = tempGun
-		tempGun = gun.get_child(0).get_child(0)
-		if(!revolver):
-			tempGun = gun.get_child(1).get_child(0)
-		gun = tempGun
-		oldGun.visible = false
-		gun.visible = true
-		onRevolver = revolver
-		if(onRevolver):
-			shootTime = revolverShootTime
-		else:
-			shootTime = shotgunShootTime
-		rightHand = right
-		shootingPoint = gun.get_child(0)
-		lineSightRaycast = shootingPoint.get_child(0)
-		if(onRevolver):
-			lineSightNode.transparency = lineSightTransparency
-			MainHud._ammo_update_(revolverClip)
-			MainHud._set_ammo_Back(revolverClipSize)
-			MainHud._set_weapon_image_(revolverimage)
-			MainHud.move_ammoHold_(true)
-			
-		else:
-			lineSightNode.transparency = 1.0
-			MainHud._ammo_update_(shotgunClip)
-			MainHud._set_ammo_Back(shotgunClipSize)
-			MainHud._set_weapon_image_(shotgunimage)
-			MainHud.move_ammoHold_(false)
+	gunRight.get_child(0).get_child(0).visible = false
+	gunRight.get_child(1).get_child(0).visible = false
+	gunLeft.get_child(0).get_child(0).visible = false
+	gunLeft.get_child(1).get_child(0).visible = false
+#	var oldGun = gunRight
+#	if(!rightHand):
+#		oldGun = gunLeft
+	var gun = gunRight
+	if(!right):
+		gun = gunLeft
+#	var tempGun = oldGun.get_child(0).get_child(0)
+#	if(!onRevolver):
+#		tempGun = oldGun.get_child(1).get_child(0)
+#	oldGun = tempGun
+	var tempGun = gun.get_child(0).get_child(0)
+	if(!revolver):
+		tempGun = gun.get_child(1).get_child(0)
+	gun = tempGun
+#	oldGun.visible = false
+	gun.visible = true
+	onRevolver = revolver
+	if(onRevolver):
+		shootTime = revolverShootTime
+	else:
+		shootTime = shotgunShootTime
+	rightHand = right
+	shootingPoint = gun.find_child("ShootingPoint")
+	lineSightRaycast = shootingPoint.get_child(0)
+	if(onRevolver):
+		lineSightNode.transparency = lineSightTransparency
+		MainHud._ammo_update_(revolverClip)
+		MainHud._set_ammo_Back(revolverClipSize)
+		MainHud._set_weapon_image_(revolverimage)
+		MainHud.move_ammoHold_(true)
+		
+	else:
+		lineSightNode.transparency = 1.0
+		MainHud._ammo_update_(shotgunClip)
+		MainHud._set_ammo_Back(shotgunClipSize)
+		MainHud._set_weapon_image_(shotgunimage)
+		MainHud.move_ammoHold_(false)
 		
 func setHands(right:bool):
 	if(right != rightHand):
@@ -835,7 +852,7 @@ func damage_taken(damage:float, from:String, _inCritHit:bool = false, _inBullet:
 		Vocal.stream = damagesound
 		if(!Vocal.playing):
 			Vocal.play()
-#		hitFlashAmmount = 1
+#		hitFlashAmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.35)
 		updateHealth(hitpoints - damage)

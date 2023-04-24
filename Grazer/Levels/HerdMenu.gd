@@ -58,6 +58,9 @@ func _process(delta):
 		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
 		&& hovered != -1):
 			select(hovered)
+		
+		if(Input.is_action_just_pressed("dodge")):
+			use()
 
 func unselect(ind:int):
 	var children = cowMenus[ind].get_children()

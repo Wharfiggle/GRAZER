@@ -111,9 +111,9 @@ func setType(ind:int = -1):
 		preload("res://Assets/Models/Cow/cowCommon.png"),
 		preload("res://Assets/Models/Cow/cowRed.png"),
 		preload("res://Assets/Models/Cow/cowLucky.png"),
+		preload("res://Assets/Models/Cow/cowGrandRed2.png"),
 		preload("res://Assets/Models/Cow/cowIronhide.png"),
-		preload("res://Assets/Models/Cow/cowMoxie.png"),
-		preload("res://Assets/Models/Cow/cowGrandRed.png")]
+		preload("res://Assets/Models/Cow/cowMoxie2.png")]
 	
 	#set cow texture based on cow type
 	if(ind == -1):

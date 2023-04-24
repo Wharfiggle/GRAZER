@@ -3,14 +3,15 @@
 extends Camera3D
 
 # Declare member variables here.
-@export var screenWidth = 640.0
-@export var unitWidth = 42.0
+#@export var screenWidth = 640.0
+#@export var unitWidth = 42.0
 @export var lerpSpeed = 5.0
-@export var incrementalCamera = false
+#@export var incrementalCamera = false
 var targetNodePath = NodePath("/root/Level/Player")
 var followTarget
 var camOffset
 var pos
+@export var maxOffset = 1.0
 
 @export var trauamaReducRate = 1.0
 var trauma = 0.0
@@ -58,14 +59,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	pos = lerp(pos, followTarget.global_transform.origin, lerpSpeed * delta)
+	pos = lerp(pos, followTarget.global_position, lerpSpeed * delta)
+	var posDelta = pos - followTarget.global_position
+	if(posDelta.length() > maxOffset):
+		pos = followTarget.global_position + posDelta.normalized() * maxOffset
 	#pos = followTarget.global_translation
 	self.position = pos + camOffset
-	if(incrementalCamera):
-		self.position -= Vector3(
-		#42 units accross the screen horizontally with camera size 30
-			fmod(self.position.x * screenWidth / unitWidth, 1) * unitWidth / screenWidth,
-			fmod(self.position.y * screenWidth / unitWidth, 1) * unitWidth / screenWidth,
-			fmod(self.position.z * screenWidth / unitWidth, 1) * unitWidth / screenWidth)
+#	if(incrementalCamera):
+#		self.position -= Vector3(
+#		#42 units accross the screen horizontally with camera size 30
+#			fmod(self.position.x * screenWidth / unitWidth, 1) * unitWidth / screenWidth,
+#			fmod(self.position.y * screenWidth / unitWidth, 1) * unitWidth / screenWidth,
+#			fmod(self.position.z * screenWidth / unitWidth, 1) * unitWidth / screenWidth)
 	#print(self.position)
 	#self.position = followTarget.global_translation + camOffset

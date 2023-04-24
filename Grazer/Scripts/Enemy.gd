@@ -74,7 +74,7 @@ var critHit = false
 @export var hitColor = Color(1, 1, 0)
 @export var critHitColor = Color(1, 0, 0)
 @onready var hitFlash = get_node(NodePath("./Model/Armature/Skeleton3D/pants")).get_material_override()
-var hitFlashAmmount = 0.0
+var hitFlashAmount = 0.0
 @onready var silhouette = hitFlash.get_next_pass()
 @onready var silhouetteColor = silhouette.albedo_color
 @onready var animation = get_node(NodePath("./Model/AnimationPlayer/AnimationTree"))
@@ -160,13 +160,13 @@ func _physics_process(delta):
 	var temp = 1.0 -  movementBlend
 	animation.set("parameters/idleWalk/blend_amount", temp)
 	
-	if(hitFlashAmmount > 0.1):
-		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
-		hitFlashAmmount = lerpf(hitFlashAmmount, 0, 0.3)
-		if(hitFlashAmmount < 0.1):
+	if(hitFlashAmount > 0.1):
+		hitFlash.set_shader_parameter("amount", hitFlashAmount)
+		hitFlashAmount = lerpf(hitFlashAmount, 0, 0.3)
+		if(hitFlashAmount < 0.1):
 
 			critHit = false
-			hitFlash.set_shader_parameter("ammount", 0.0)
+			hitFlash.set_shader_parameter("amount", 0.0)
 	
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
@@ -660,7 +660,7 @@ func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:No
 		if(!Vocal.playing):
 			Vocal.play(0.13)
 		updateHealth(health - damage)
-		hitFlashAmmount = 1
+		hitFlashAmount = 1
 		critHit = inCritHit
 		if(!critHit):
 			hitFlash.set_shader_parameter("color", hitColor)
