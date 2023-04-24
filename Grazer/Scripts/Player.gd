@@ -204,10 +204,12 @@ func _process(delta):
 	if(potionTimer > 0):
 		var t = potionTimer / potionTime
 		hitFlash.set_shader_parameter("ammount", abs( sin( sqrt(t) * 100) ) / 10)
+		animation.set("parameters/walkEllixir/blend_amount", 1)
 		potionTimer -= delta
 		if(potionTimer < 0):
 			potionTimer = 0
 			potionUsed.use(false)
+			animation.set("parameters/walkEllixir/blend_amount", 0)
 			potionUsed = null
 			hitFlash.set_shader_parameter("ammount", 0)
 	
@@ -407,6 +409,7 @@ func usePotion(ind:int):
 func startReload():
 	print("Reloading")
 	reloading = true
+	animation.set("parameters/Reload/blend_amount", 1)
 	once = true
 	if(onRevolver):
 		currentReloadTime = revolverReloadTime
@@ -418,6 +421,7 @@ func startReload():
 
 func cancelReloading():
 	reloading = false
+	animation.set("parameters/Reload/blend_amount", 0)
 	once = false
 	currentReloadTime = 0
 	idleTime = 0
@@ -565,6 +569,7 @@ func _physics_process(delta):
 	#dodging
 	if(Input.is_action_just_pressed("dodge")):
 		dodgeBufferTimer = dodgeBufferTime
+		animation.set("parameters/walkLunge/blend_amount", 1)
 	elif(dodgeBufferTimer > 0):
 		dodgeBufferTimer -= delta
 		if(dodgeBufferTimer < 0):
@@ -584,6 +589,7 @@ func _physics_process(delta):
 		if(dodgeTimer < 0):
 			dodgeTimer = 0
 			dodging = false
+			animation.set("parameters/walkLunge/blend_amount", 0)
 			knocked = false
 			dodgeVel = Vector3.ZERO
 			tVelocity = Vector3.ZERO

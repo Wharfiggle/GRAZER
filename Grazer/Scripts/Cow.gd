@@ -123,7 +123,7 @@ func _ready():
 		6:
 			mesh.set_material_overlay(material6)
 	
-	random_material_index = randi() % 4 + 1
+	random_material_index = randi() % 5 + 1
 
 	match random_material_index:
 		1:
@@ -134,6 +134,9 @@ func _ready():
 			mesh.set("blend_shapes/Out", 1)
 		4:
 			mesh.set("blend_shapes/Way Out", 1)
+		5:
+			mesh.set("blend_shapes/Down", 0)
+	
 	
 	#var phys_bones = ["Tail_1", "Ear_Upper_r", "Ear_Upper_l"]
 	var phys_bones = ["Tail_1"]
