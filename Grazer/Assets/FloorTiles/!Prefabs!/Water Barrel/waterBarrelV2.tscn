@@ -15,7 +15,7 @@ normal_enabled = true
 normal_texture = ExtResource("4_5ukgs")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_55k8v"]
-size = Vector3(0.540358, 1.24267, 0.551567)
+size = Vector3(0.54, 1.25, 0.552)
 
 [node name="Water_Barrel-v2" instance=ExtResource("1_kxyib")]
 
@@ -26,5 +26,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_r61c1")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551414, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.609118, 0)
 shape = SubResource("BoxShape3D_55k8v")

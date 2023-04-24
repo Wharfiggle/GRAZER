@@ -15,7 +15,7 @@ normal_enabled = true
 normal_texture = ExtResource("4_squ2j")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nahcm"]
-size = Vector3(0.236996, 6.10593, 0.259113)
+size = Vector3(0.5, 6.106, 0.5)
 
 [node name="Powerline" instance=ExtResource("1_v4itd")]
 

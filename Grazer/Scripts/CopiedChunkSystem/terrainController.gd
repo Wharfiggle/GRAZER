@@ -113,9 +113,9 @@ func spawnMarauder(gunman:bool):
 func _process(_delta):
 	if(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
-	if(Input.is_action_just_pressed("debug4")):
+	if(Input.is_action_just_pressed("debugGunman")):
 		spawnMarauder(true)
-	if(Input.is_action_just_pressed("debug5")):
+	if(Input.is_action_just_pressed("debugThief")):
 		spawnMarauder(false)
 	
 	genPlayerPoints()

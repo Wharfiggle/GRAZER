@@ -25,7 +25,6 @@ var dodgeTimer = 0.0
 var dodgeCooldownTimer = 0.0
 @export var dodgeBufferTime = 0.1
 var dodgeBufferTimer = 0.0
-var dodging = false
 var knocked = false
 var movementBlend = 0.0
 
@@ -50,6 +49,9 @@ var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponH
 @export var shotgunDamage = 0.6
 @export var shotgunReloadTime = 1.1
 @export var shotgunClipSize = 2
+
+var cowDamageMod = 1.0
+var cowTypes = null
 
 var potions = null
 #var inventory = [0, 0, 0, 0, 0, 0]
@@ -163,13 +165,16 @@ func _process(delta):
 	if(Input.is_action_just_pressed("printSceneCounter")):
 		SceneCounter.printCounters()
 	
-	#set up list of potions, only happens once after level is done initializing
+	#set up list of potions and cow types, only happens once after level is done initializing
 	if(potions == null):
 		var level = get_node(NodePath("/root/Level"))
 		if(level != null && level.has_method("getPotion")):
 			potions = []
 			for i in 6:
 				potions.append(level.getPotion(6 + i))
+			cowTypes = []
+			for i in 6:
+				cowTypes.append(level.CowType.new(i, self))
 	
 	#restart level
 	if(Input.is_action_just_pressed("restart")):
@@ -179,8 +184,8 @@ func _process(delta):
 	if(herd == null):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
-		herd.spawnCowAtPos(Vector3(position.x, position.y, position.z - 2))
-		#herd.spawnCowAtPos(Vector3(position.x - 1, position.y, position.z - 3))
+		herd.spawnCowAtPos(Vector3(position.x, position.y, position.z - 2), 0)
+		#herd.spawnCowAtPos(Vector3(position.x - 1, position.y, position.z - 3), 0)
 		
 	if(herd.getNumCows() < 1 and !invincible):
 		die()
@@ -202,14 +207,25 @@ func _process(delta):
 			shootBufferTimer = 0
 			
 	if(potionTimer > 0):
+		var startTime = 0.25
+		var endTime = 0.2
+		var blend = 0
+		var pTime = potionTime
+		if(potionUsed == potions[0]):
+			pTime = 1.0
+		if(potionTimer > pTime - startTime):
+			blend = 1 - ((potionTimer - (pTime - startTime)) / startTime)
+			blend = pow(blend, 2)
+		elif(potionTimer > pTime - endTime - startTime):
+			blend = 1 - ((potionTimer - (pTime - startTime)) / -endTime)
+			blend = sqrt(blend)
+		animation.set("parameters/walkEllixir/blend_amount", blend)
 		var t = potionTimer / potionTime
 		hitFlash.set_shader_parameter("ammount", abs( sin( sqrt(t) * 100) ) / 10)
-		animation.set("parameters/walkEllixir/blend_amount", 1)
 		potionTimer -= delta
 		if(potionTimer < 0):
 			potionTimer = 0
 			potionUsed.use(false)
-			animation.set("parameters/walkEllixir/blend_amount", 0)
 			potionUsed = null
 			hitFlash.set_shader_parameter("ammount", 0)
 	
@@ -223,11 +239,11 @@ func _process(delta):
 		equippedClip = shotgunClip
 		equippedClipSize = shotgunClipSize
 	
-	
-	if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize):
-		startReload()
-	if(equippedClip <= 0 and !reloading):
-		startReload()
+	if(!reloading):
+		if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize):
+			startReload()
+		if(equippedClip <= 0):
+			startReload()
 	
 	#Idle auto-reload timer, makes sure equipped gun is not fully loaded
 	if(autoReloadEnabled and !reloading and equippedClip < equippedClipSize):
@@ -238,9 +254,23 @@ func _process(delta):
 	#Reload timer countdown
 	if(reloading):
 		currentReloadTime -= delta
-	#Finish reloading
-	if(currentReloadTime <= 0 and reloading):
-		finishReloading()
+		#Finish reloading
+		if(currentReloadTime <= 0):
+			currentReloadTime = 0
+			finishReloading()
+		
+		var startTime = 0.1
+		var endTime = 0.1
+		var rTime = revolverReloadTime
+		if(!onRevolver):
+			rTime = shotgunReloadTime
+		var startT = 1.0 - min(1.0, (rTime - currentReloadTime) / startTime)
+		var endT = 1.0 - min(1.0, currentReloadTime / endTime)
+		var t = startT
+		if(endT != 0):
+			t = endT
+		t = 1 - pow(t, 2)
+		animation.set("parameters/walkReload 2/blend_amount", t)
 	
 	#shoot gun input buffer
 	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0 && !dauntless && !reloading):
@@ -280,7 +310,7 @@ func _process(delta):
 			MainHud._ammo_remove_(1)
 			var b = bullet.instantiate()
 			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0),
-			revolverRange, revolverDamage * critMult, critMult > 1, bColor, 150.0)
+			revolverRange, revolverDamage * critMult * cowDamageMod, critMult > 1, bColor, 150.0)
 			camera.add_trauma(0.22)
 			if(!critMult == 2.0):
 				boomSound.stream = revolverShootSound
@@ -302,7 +332,7 @@ func _process(delta):
 				var bRotation = Vector3(0, aimDir - shotgunSpread / 2.0
 					+ (shotgunSpread / (shotgunBullets - 1)) * bullets + rnSpread, 0)
 				b.shoot(self, "player", shootingPoint.global_position, bRotation, 
-				rnRange, shotgunDamage * critMult, critMult > 1, bColor, 50.0)
+				rnRange, shotgunDamage * critMult * cowDamageMod, critMult > 1, bColor, 50.0)
 				bullets += 1
 			if(!critMult == 2.0):
 				boomSound.stream = revolverShootSound
@@ -361,6 +391,10 @@ func _process(delta):
 		var cursorScale = worldCursor.scale
 		worldCursor.set_global_rotation(Vector3(worldCursor.rotation.x, PI / 4.0, worldCursor.rotation.z))
 		worldCursor.scale = cursorScale
+	else:
+		worldCursor.visible = false
+		movementBlend = lerpf(movementBlend, 0, 0.1)
+		animation.set("parameters/idleWalk/blend_amount", movementBlend)
 	
 	lineSightNode.global_position = shootingPoint.global_position
 	lineSightNode.global_rotation = Vector3(0, aimDir, 0)
@@ -379,14 +413,15 @@ func _process(delta):
 	#update world cursor position
 	worldCursor.global_position = position + cursorPos
 
-	if(Input.is_action_just_pressed("debug1")):
-		if(herd != null):
-			herd.spawnCow()
-		else:
-			print("fuck there is no herd") #yeah
-	
-	if(Input.is_action_just_pressed("Follow Wait") && active):
-		herd.toggleFollow()
+	if(herd != null):
+		for i in 6:
+			if(Input.is_action_just_pressed("debug" + str(i + 1))):
+				herd.spawnCow(i)
+		
+		if(Input.is_action_just_pressed("Follow Wait") && active):
+			herd.toggleFollow()
+	else:
+		print("fuck there is no herd") #yeah
 
 func setLineSightColor(inColor:Color = Color(1, 1, 1)):
 	lineSightColor = inColor
@@ -409,7 +444,6 @@ func usePotion(ind:int):
 func startReload():
 	print("Reloading")
 	reloading = true
-	animation.set("parameters/Reload/blend_amount", 1)
 	once = true
 	if(onRevolver):
 		currentReloadTime = revolverReloadTime
@@ -542,25 +576,29 @@ func _physics_process(delta):
 		prevAimDir.push_front(realAimDir)
 		prevAimDir.pop_back()
 		
-		#-1 - 0 is left hand, 0 - 1.0 is right hand
-		var prevAimSwivel = aimSwivel
-		aimSwivel = fmod(2 * PI + aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
-		aimSwivel = -(aimSwivel * 2 - 1)
-		aimSwivel = lerpf(prevAimSwivel, aimSwivel, swivelSpeed)
-		if(aimSwivel <= 0):
-			setHands(false) #left hand
+		if(dodgeTimer == 0 && !reloading):
+			lineSightNode.visible = true
+			#-1 - 0 is left hand, 0 - 1.0 is right hand
+			var prevAimSwivel = aimSwivel
+			aimSwivel = fmod(2 * PI + aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
+			aimSwivel = -(aimSwivel * 2 - 1)
+			aimSwivel = lerpf(prevAimSwivel, aimSwivel, swivelSpeed)
+			if(aimSwivel <= 0):
+				setHands(false) #left hand
+			else:
+				setHands(true) #right hand
+			animation.set("parameters/shootAngle/blend_position", aimSwivel)
+			#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
+			var gun = shootingPoint.get_parent()
+			var gunScale = gun.scale
+			if(abs(prevAimSwivel - aimSwivel) < 0.01):
+				#do this when arms are aiming same direction as cursor to fix gun slowly becoming offset
+				gun.set_global_rotation(Vector3(0, aimDir, 0))
+			else:
+				gun.set_global_rotation(Vector3(0, gun.global_rotation.y, 0))
+			gun.scale = gunScale
 		else:
-			setHands(true) #right hand
-		animation.set("parameters/shootAngle/blend_position", aimSwivel)
-		#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
-		var gun = shootingPoint.get_parent()
-		var gunScale = gun.scale
-		if(abs(prevAimSwivel - aimSwivel) < 0.01):
-			#do this when arms are aiming same direction as cursor to fix gun slowly becoming offset
-			gun.set_global_rotation(Vector3(0, aimDir, 0))
-		else:
-			gun.set_global_rotation(Vector3(0, gun.global_rotation.y, 0))
-		gun.scale = gunScale
+			lineSightNode.visible = false
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
 	else:
@@ -569,18 +607,17 @@ func _physics_process(delta):
 	#dodging
 	if(Input.is_action_just_pressed("dodge")):
 		dodgeBufferTimer = dodgeBufferTime
-		animation.set("parameters/walkLunge/blend_amount", 1)
 	elif(dodgeBufferTimer > 0):
 		dodgeBufferTimer -= delta
 		if(dodgeBufferTimer < 0):
 			dodgeBufferTimer = 0
-			dodging = true
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		Input.start_joy_vibration(0,0.6,0.6,.1)
 		dodgeCooldownTimer = dodgeCooldownTime
 		if(dauntless):
 			dodgeCooldownTimer = 0.001
 		dodgeTimer = dodgeTime
+		dodgeBufferTimer = 0
 		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed
 	if(dodgeTimer > 0):
 		dodgeTimer -= delta
@@ -588,7 +625,6 @@ func _physics_process(delta):
 			dodgeTimer -= delta * 0.5
 		if(dodgeTimer < 0):
 			dodgeTimer = 0
-			dodging = false
 			animation.set("parameters/walkLunge/blend_amount", 0)
 			knocked = false
 			dodgeVel = Vector3.ZERO
@@ -598,12 +634,21 @@ func _physics_process(delta):
 			t = sqrt(t)
 			var knockMod = 1.0
 			if(knocked):
-				knockMod = 0.1
+				knockMod = 0.5
+			print(Vector3(sin(moveDir), 0, cos(moveDir)))
 			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t * knockMod
 		if(dauntless):
 			dodgeVel *= 1.5
-		if(!knocked):
-			knock()
+		knock()
+		
+		var startTime = 0.1
+		var blend = 0
+		if(dodgeTimer > dodgeTime - startTime):
+			blend = 1 - ((dodgeTimer - (dodgeTime - startTime)) / startTime)
+		else:
+			blend = dodgeTimer / (dodgeTime - startTime)
+			blend = blend
+		animation.set("parameters/walkLunge/blend_amount", blend)
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
 		if(dodgeCooldownTimer < 0):
@@ -708,10 +753,10 @@ func knock():
 	var enemies = knockbox.get_overlapping_bodies()
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
-			if(dauntless):
-				enemy.damage_taken(4, "player", false)
 			#print("player knockback: " + str(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir))))
-			enemy.knockback(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
+			var newKnockback = enemy.knockback(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
+			if(dauntless && newKnockback):
+				enemy.damage_taken(4 * cowDamageMod, "player", false)
 			camera.add_trauma(0.3)
 			knocked = true
 
@@ -739,6 +784,7 @@ func healFromBullet(damageDone):
 	updateHealth(hitpoints + damageDone * lifeLeach)
 		
 func die():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]
 	active = false

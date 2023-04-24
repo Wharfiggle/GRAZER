@@ -24,6 +24,8 @@ var playerTargetOffset = 3.0
 
 var potionSpeedup = 1.0
 
+var dragResistance = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(player == null):
@@ -70,11 +72,18 @@ func getClosestCow(loc) -> Node:
 	return closestCow
 
 func setPotionSpeedup(inPotionSpeedup):
-	var prevPSU = potionSpeedup
-	potionSpeedup = inPotionSpeedup
-	if(prevPSU != potionSpeedup):
+	if(inPotionSpeedup != potionSpeedup):
+		potionSpeedup = inPotionSpeedup
 		for i in cows:
 			i.potionSpeedup = potionSpeedup
+			
+func setDragResistance(inDragResistance):
+	if(inDragResistance != dragResistance):
+		dragResistance = inDragResistance
+		for i in cows:
+			i.dragResistance = dragResistance
+			if(!i.draggers.is_empty()):
+				i.maxSpeed = min(i.dragSpeed * i.draggers.size() / dragResistance, i.draggers[0].baseSpeed)
 
 #add cow to player's herd
 func addCow(cow):
@@ -87,6 +96,7 @@ func addCow(cow):
 	cow.followingHerd = followingHerd
 	cow.potionSpeedup = potionSpeedup
 	cow.herd = self
+	player.cowTypes[cow.cowTypeInd].use()
 
 #remove cow from player's herd
 func removeCow(cow):
@@ -97,20 +107,23 @@ func removeCow(cow):
 	remove_child(cow)
 	get_node(NodePath("/root/Level")).add_child(cow)
 	cow.idle()
+	player.cowTypes[cow.cowTypeInd].use(false)
 
 #spawn a cow in center of herd
-func spawnCow() -> Node:
-	var cow = cowPrefab.instantiate()
-	SceneCounter.cows += 1
-	cow.position = findHerdCenter()
-	addCow(cow)
+func spawnCow(type:int = -1) -> Node:
+	var cow = spawnCowAtPos(findHerdCenter(), type)
 	return cow
 #spawn cow at given position
-func spawnCowAtPos(pos:Vector3) -> Node:
+func spawnCowAtPos(pos:Vector3, type:int = -1) -> Node:
+	var cow = spawnStrayCow(pos, type)
+	addCow(cow)
+	return cow
+#spawn stray cow
+func spawnStrayCow(pos:Vector3, type:int = -1) -> Node:
 	var cow = cowPrefab.instantiate()
+	cow.setType(type)
 	SceneCounter.cows += 1
 	cow.position = pos
-	addCow(cow)
 	return cow
 
 #get target for cows to follow, either player's position or center of huddle

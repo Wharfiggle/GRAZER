@@ -236,7 +236,7 @@ func _physics_process(delta):
 	
 	if(position.y < -0.5):
 		#print("no silhouette for me: " + str(position.y))
-		silhouette.albedo_color = Color(0, 0, 0, 0)
+		silhouette.set_albedo(Color(0, 0, 0, 0))
 #		if(revolver != null):
 #			revolver.get_node("./RootNode/Revolver_FULL/Revolver").get_material_override().get_next_pass().albdeo_color = Color(0, 0, 0, 0)
 		if(position.y < -20):
@@ -247,7 +247,7 @@ func _physics_process(delta):
 			queue_free()
 			SceneCounter.marauders -= 1
 	else:
-		silhouette.albedo_color = silhouetteColor
+		silhouette.set_albedo(silhouetteColor)
 	
 	#stay within dragRange of dragged cow
 	if(draggedCow != null):
@@ -571,15 +571,16 @@ func knock():
 		if(enemy != self && enemy.has_method("knockback")):
 			enemy.knockback(position, knockbackVel.length(), false)
 
-func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
+func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 	#print("enemy knockback: " + str(damageSourcePos))
 	#prevents knockback until knockbackIFramesTimer is zero
 #	if(knockbackIFramesTimer > 0):
 #		return
 #	#activate knockback and IFrames timers
 #	knockbackIFramesTimer = knockbackIFrames
-	if(knockbackTimer > 0 || kSpeed < 0.1):
-		return
+	var result = (knockbackTimer == 0)
+	if(knockbackTimer > 0 && kSpeed <= knockbackStrength):
+		return result
 	knockbackTimer = knockbackTime
 	#set knockbackVel to the direction vector * speed
 	knockbackVel = damageSourcePos.direction_to(self.position)
@@ -592,6 +593,7 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
 		draggedCow.stopDragging(self)
 		draggedCow = null
 		currentMode = behaviors.cowPursuit
+	return result
 
 func die():
 	#Changing the health to -100000 is to prevent the counter being

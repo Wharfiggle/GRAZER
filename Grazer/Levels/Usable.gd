@@ -4,6 +4,7 @@ var parent
 @onready var interactGraphic = get_child(0)
 var inRange = false
 var active = true
+@onready var player = get_node(NodePath("/root/Level/Player"))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +12,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if(inRange && Input.is_action_just_pressed("Interact") && parent.has_method("use")):
+	if(Input.is_action_just_pressed("Interact") && parent.has_method("use")
+	&& player.hitpoints > 0 && player.herd.getNumCows() > 0 && inRange):
 		parent.use()
 	
 	var targAlpha = 0

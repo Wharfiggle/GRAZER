@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=30 format=3 uid="uid://dapc4u84j2cr"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -13,8 +13,16 @@
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="12_3pmhn"]
 [ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
-[ext_resource type="PackedScene" path="res://Prefabs/Usable.tscn" id="15_hq1n4"]
+[ext_resource type="Script" path="res://Levels/HerdMenu.gd" id="15_8jq8n"]
+[ext_resource type="PackedScene" uid="uid://dra5buej3kycq" path="res://Prefabs/Usable.tscn" id="15_hq1n4"]
+[ext_resource type="Texture2D" uid="uid://d8guaa20j25s" path="res://Assets/Images/hud/herdExchangeWholeTab.png" id="15_xkkar"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="16_leqkn"]
+[ext_resource type="Texture2D" uid="uid://dvsyjajaobag1" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemCollapsed.png" id="18_u7k13"]
+[ext_resource type="Texture2D" uid="uid://6ppeipv72qiw" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemExpandedCowHeadCost.png" id="19_jdc8t"]
+[ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="19_u5bqv"]
+[ext_resource type="Texture2D" uid="uid://cf5xep6d18eqo" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/elixir menu/shopElixirCowHeadCost.png" id="21_vsota"]
+[ext_resource type="Texture2D" uid="uid://b7u23a48obmro" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemExpandedInfoStageButton.png" id="22_0573l"]
+[ext_resource type="Texture2D" uid="uid://cxgt8ygd822tr" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/MakeTradeHover.png" id="22_vsqqn"]
 
 [sub_resource type="Gradient" id="Gradient_35e5v"]
 interpolation_mode = 2
@@ -26,6 +34,26 @@ gradient = SubResource("Gradient_35e5v")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nsy4h"]
+font = ExtResource("19_u5bqv")
+font_size = 48
+font_color = Color(0.819608, 0.823529, 0.831373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hxfn5"]
+font = ExtResource("19_u5bqv")
+font_size = 36
+font_color = Color(0.301961, 0.270588, 0.231373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4j3ub"]
+font = ExtResource("19_u5bqv")
+font_size = 24
+font_color = Color(0.819608, 0.823529, 0.831373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jk6to"]
+font = ExtResource("19_u5bqv")
+font_size = 64
+font_color = Color(0.819608, 0.823529, 0.831373, 1)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_ilocr")
@@ -95,6 +123,867 @@ color = Color(1, 0.478431, 0.0196078, 0.196078)
 
 [node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
 
-[node name="Usable" parent="." instance=ExtResource("15_hq1n4")]
+[node name="HerdMenu" type="TextureRect" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -338.0
+offset_top = -360.0
+offset_right = 171.0
+offset_bottom = 721.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("15_xkkar")
+script = ExtResource("15_8jq8n")
+widthOffset = 340.0
+
+[node name="Usable" parent="HerdMenu" instance=ExtResource("15_hq1n4")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HerdMenu"]
+layout_mode = 1
+offset_left = 19.0
+offset_top = 192.0
+offset_right = 509.0
+offset_bottom = 985.0
+theme_override_constants/separation = 18
+
+[node name="Common" type="TextureButton" parent="HerdMenu/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("18_u7k13")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="HerdMenu/VBoxContainer/Common"]
+modulate = Color(0.760784, 0.709804, 0.607843, 1)
+z_index = 2
+position = Vector2(83, 44)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name" type="Label" parent="HerdMenu/VBoxContainer/Common"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "Common"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="HerdMenu/VBoxContainer/Common"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = -59.0
+offset_right = 459.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Common"]
+visible = false
+modulate = Color(0.760784, 0.709804, 0.607843, 1)
+z_index = 2
+position = Vector2(108, 73)
+scale = Vector2(2, 2)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Common"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "Common"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="HerdMenu/VBoxContainer/Common"]
+visible = false
+layout_mode = 1
+offset_left = 117.432
+offset_top = 118.345
+offset_right = 214.432
+offset_bottom = 158.345
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Common"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 62.8726
+offset_right = 186.9
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "Just your average cattle.
+No special effects."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MakeTradeCommon" type="TextureButton" parent="HerdMenu/VBoxContainer/Common"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.141
+offset_top = -77.1859
+offset_right = -56.1409
+offset_bottom = -31.1859
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("22_0573l")
+texture_pressed = ExtResource("22_0573l")
+texture_hover = ExtResource("22_vsqqn")
+
+[node name="Cost" type="Label" parent="HerdMenu/VBoxContainer/Common"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "1"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="HerdMenu/VBoxContainer/Common/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("21_vsota")
+
+[node name="Red" type="TextureButton" parent="HerdMenu/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("18_u7k13")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="HerdMenu/VBoxContainer/Red"]
+modulate = Color(0.807843, 0.286275, 0.27451, 1)
+z_index = 2
+position = Vector2(83, 44)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name" type="Label" parent="HerdMenu/VBoxContainer/Red"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "Red"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="HerdMenu/VBoxContainer/Red"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = -59.0
+offset_right = 459.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Red"]
+visible = false
+modulate = Color(0.807843, 0.286275, 0.27451, 1)
+z_index = 2
+position = Vector2(108, 73)
+scale = Vector2(2, 2)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Red"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "Red"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="HerdMenu/VBoxContainer/Red"]
+visible = false
+layout_mode = 0
+offset_left = 117.432
+offset_top = 118.345
+offset_right = 214.432
+offset_bottom = 158.345
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Red"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 62.8726
+offset_right = 186.9
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "Like a cow, but redder.
++Cow Drag Resistance"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MakeTradeRed" type="TextureButton" parent="HerdMenu/VBoxContainer/Red"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.141
+offset_top = -77.1859
+offset_right = -56.1409
+offset_bottom = -31.1859
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("22_0573l")
+texture_pressed = ExtResource("22_0573l")
+texture_hover = ExtResource("22_vsqqn")
+
+[node name="Cost" type="Label" parent="HerdMenu/VBoxContainer/Red"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "3"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="HerdMenu/VBoxContainer/Red/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("21_vsota")
+
+[node name="Lucky" type="TextureButton" parent="HerdMenu/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("18_u7k13")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="HerdMenu/VBoxContainer/Lucky"]
+modulate = Color(0.854902, 0.784314, 0.337255, 1)
+z_index = 2
+position = Vector2(83, 44)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name" type="Label" parent="HerdMenu/VBoxContainer/Lucky"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "Lucky"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="HerdMenu/VBoxContainer/Lucky"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = -59.0
+offset_right = 459.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Lucky"]
+visible = false
+modulate = Color(0.854902, 0.784314, 0.337255, 1)
+z_index = 2
+position = Vector2(108, 73)
+scale = Vector2(2, 2)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Lucky"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "Lucky"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="HerdMenu/VBoxContainer/Lucky"]
+visible = false
+layout_mode = 0
+offset_left = 117.432
+offset_top = 118.345
+offset_right = 214.432
+offset_bottom = 158.345
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Lucky"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 62.8726
+offset_right = 186.9
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "Piss cow
++Crit Chance
++Damage"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MakeTradeLucky" type="TextureButton" parent="HerdMenu/VBoxContainer/Lucky"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.141
+offset_top = -77.1859
+offset_right = -56.1409
+offset_bottom = -31.1859
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("22_0573l")
+texture_pressed = ExtResource("22_0573l")
+texture_hover = ExtResource("22_vsqqn")
+
+[node name="Cost" type="Label" parent="HerdMenu/VBoxContainer/Lucky"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "3"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="HerdMenu/VBoxContainer/Lucky/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("21_vsota")
+
+[node name="GrandRed" type="TextureButton" parent="HerdMenu/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("18_u7k13")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="HerdMenu/VBoxContainer/GrandRed"]
+modulate = Color(0.854902, 0.184314, 0.152941, 1)
+z_index = 2
+position = Vector2(83, 44)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name" type="Label" parent="HerdMenu/VBoxContainer/GrandRed"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "Grand Red"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="HerdMenu/VBoxContainer/GrandRed"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = -59.0
+offset_right = 459.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/GrandRed"]
+visible = false
+modulate = Color(0.854902, 0.184314, 0.152941, 1)
+z_index = 2
+position = Vector2(108, 73)
+scale = Vector2(2, 2)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/GrandRed"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "Grand Red"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="HerdMenu/VBoxContainer/GrandRed"]
+visible = false
+layout_mode = 0
+offset_left = 117.432
+offset_top = 118.345
+offset_right = 214.432
+offset_bottom = 158.345
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/GrandRed"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 62.8726
+offset_right = 186.9
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "No way it's redder!?!?!?!?
++Cow Drag Resistance
++Speed"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MakeTradeGrandRed" type="TextureButton" parent="HerdMenu/VBoxContainer/GrandRed"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.141
+offset_top = -77.1859
+offset_right = -56.1409
+offset_bottom = -31.1859
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("22_0573l")
+texture_pressed = ExtResource("22_0573l")
+texture_hover = ExtResource("22_vsqqn")
+
+[node name="Cost" type="Label" parent="HerdMenu/VBoxContainer/GrandRed"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "6"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="HerdMenu/VBoxContainer/GrandRed/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("21_vsota")
+
+[node name="Ironhide" type="TextureButton" parent="HerdMenu/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("18_u7k13")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="HerdMenu/VBoxContainer/Ironhide"]
+modulate = Color(0.368627, 0.517647, 0.552941, 1)
+z_index = 2
+position = Vector2(83, 44)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name" type="Label" parent="HerdMenu/VBoxContainer/Ironhide"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "Ironhide"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="HerdMenu/VBoxContainer/Ironhide"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = -59.0
+offset_right = 459.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Ironhide"]
+visible = false
+modulate = Color(0.368627, 0.517647, 0.552941, 1)
+z_index = 2
+position = Vector2(108, 73)
+scale = Vector2(2, 2)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Ironhide"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "Ironhide"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="HerdMenu/VBoxContainer/Ironhide"]
+visible = false
+layout_mode = 0
+offset_left = 117.432
+offset_top = 118.345
+offset_right = 214.432
+offset_bottom = 158.345
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Ironhide"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 62.8726
+offset_right = 186.9
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "Transformer cow
++Cow Drag Resistance
++Max Health"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MakeTradeIronhide" type="TextureButton" parent="HerdMenu/VBoxContainer/Ironhide"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.141
+offset_top = -77.1859
+offset_right = -56.1409
+offset_bottom = -31.1859
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("22_0573l")
+texture_pressed = ExtResource("22_0573l")
+texture_hover = ExtResource("22_vsqqn")
+
+[node name="Cost" type="Label" parent="HerdMenu/VBoxContainer/Ironhide"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "6"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="HerdMenu/VBoxContainer/Ironhide/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("21_vsota")
+
+[node name="Moxie" type="TextureButton" parent="HerdMenu/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("18_u7k13")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="HerdMenu/VBoxContainer/Moxie"]
+modulate = Color(0.670588, 0.423529, 0.678431, 1)
+z_index = 2
+position = Vector2(83, 44)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name" type="Label" parent="HerdMenu/VBoxContainer/Moxie"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "Moxie"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="HerdMenu/VBoxContainer/Moxie"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = -59.0
+offset_right = 459.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Moxie"]
+visible = false
+modulate = Color(0.670588, 0.423529, 0.678431, 1)
+z_index = 2
+position = Vector2(108, 73)
+scale = Vector2(2, 2)
+texture = ExtResource("19_jdc8t")
+
+[node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Moxie"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "Moxie"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="HerdMenu/VBoxContainer/Moxie"]
+visible = false
+layout_mode = 0
+offset_left = 117.432
+offset_top = 118.345
+offset_right = 214.432
+offset_bottom = 158.345
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Moxie"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 62.8726
+offset_right = 186.9
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "God cow
+++Crit Chance
+++Damage
+++Max Health"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MakeTradeMoxie" type="TextureButton" parent="HerdMenu/VBoxContainer/Moxie"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.141
+offset_top = -77.1859
+offset_right = -56.1409
+offset_bottom = -31.1859
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("22_0573l")
+texture_pressed = ExtResource("22_0573l")
+texture_hover = ExtResource("22_vsqqn")
+
+[node name="Cost" type="Label" parent="HerdMenu/VBoxContainer/Moxie"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "12"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="HerdMenu/VBoxContainer/Moxie/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("21_vsota")
+
+[node name="TotalValue" type="Label" parent="HerdMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 43.4781
+offset_top = -70.5051
+offset_right = 134.478
+offset_bottom = -18.5051
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]
+[connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
+[connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_mouse_entered"]
+[connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Lucky" to="HerdMenu" method="_on_lucky_mouse_entered"]
+[connection signal="mouse_entered" from="HerdMenu/VBoxContainer/GrandRed" to="HerdMenu" method="_on_grand_red_mouse_entered"]
+[connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Ironhide" to="HerdMenu" method="_on_ironhide_mouse_entered"]
+[connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Moxie" to="HerdMenu" method="_on_moxie_mouse_entered"]

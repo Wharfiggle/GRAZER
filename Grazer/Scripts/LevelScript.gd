@@ -34,6 +34,46 @@ var itemTextures = [
 	preload("res://Assets/Images/dauntlessElixir.png")
 ]
 
+class CowType:
+	var id
+	var cost
+	var player
+	func _init(inId:int, inPlayer:Node):
+		id = inId
+		player = inPlayer
+		if(id == 0): cost = 1
+		elif(id == 1): cost = 3
+		elif(id == 2): cost = 3
+		elif(id == 3): cost = 6
+		elif(id == 4): cost = 6
+		elif(id == 5): cost = 12
+	func use(useOrUndo:bool = true):
+		var undoMod = 1
+		if(!useOrUndo): undoMod = -1
+		if(id == 1): #red
+			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
+		elif(id == 2): #lucky
+			player.critChance += 0.1 * undoMod
+			player.cowDamageMod += 0.1 * undoMod
+		elif(id == 3): #grand red
+			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
+			player.potionSpeedup += 0.25 * undoMod
+			player.herd.setPotionSpeedup(player.potionSpeedup)
+		elif(id == 4): #ironhide
+			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
+			player.maxHitpoints += 2 * undoMod
+			if(useOrUndo):
+				player.hitpoints += 2
+			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
+		elif(id == 5): #moxie
+			player.critChance += 0.2 * undoMod
+			player.cowDamageMod += 0.2 * undoMod
+			player.maxHitpoints += 4 * undoMod
+			if(useOrUndo):
+				player.hitpoints += 4
+			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
+			
+
 class Item:
 	var id
 	var name = "dork"

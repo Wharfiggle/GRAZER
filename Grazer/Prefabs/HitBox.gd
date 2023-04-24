@@ -6,6 +6,6 @@ extends StaticBody3D
 func damage_taken(damage:float, from:String, critHit:bool = false, bullet:Node = null) -> bool:
 	return parent.damage_taken(damage, from, critHit, bullet)
 
-func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool):
+func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 	#print("hitbox knockback: " + str(damageSourcePos))
-	parent.knockback(damageSourcePos, kSpeed, useModifier)
+	return parent.knockback(damageSourcePos, kSpeed, useModifier)

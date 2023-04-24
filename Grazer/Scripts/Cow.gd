@@ -39,28 +39,6 @@ var maneuverTurnDir = 1
 	#get_node(NodePath("./RayCastSideRight")),
 	#get_node(NodePath("./RayCastDirect"))]
 var raySize = [2.0, 1.0, 2.0]
-@onready var model = get_node(NodePath("./Model"))
-@onready var animation = model.find_child("AnimationTree")
-@onready var skeleton = model.find_child("Skeleton3D")
-
-@onready var mesh = model.find_child("Cow")
-@onready var material = mesh.get_material_overlay()
-
-#@onready var material = StandardMaterial3D.new() # create a new material instance
-
-@onready var tex1 = load("res://Assets/Models/Cow/cowCommon.png")
-@onready var tex2 = load("res://Assets/Models/Cow/cowRed.png")
-@onready var tex3 = load("res://Assets/Models/Cow/cowLucky.png")
-@onready var tex4 = load("res://Assets/Models/Cow/cowIronhide.png")
-@onready var tex5 = load("res://Assets/Models/Cow/cowMoxie.png")
-@onready var tex6 = load("res://Assets/Models/Cow/cowGrandRed.png")
-
-@onready var material1 = material.duplicate()
-@onready var material2 = material.duplicate()
-@onready var material3 = material.duplicate()
-@onready var material4 = material.duplicate()
-@onready var material5 = material.duplicate()
-@onready var material6 = material.duplicate()
 
 var animationBlend = 0
 var herd
@@ -88,7 +66,15 @@ var isDragged = false
 var stressed = preload("res://sounds/Cows/Cows/cowstressed.wav")
 var moo1 = preload("res://sounds/Cows/Cows/idlemoo1.wav")
 
+var model = null
+var animation = null
+var skeleton = null
+var mesh = null
+var material = null
+var typeTextures = null
 var potionSpeedup = 1.0
+var dragResistance = 1.0
+var cowTypeInd = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -99,44 +85,6 @@ func _ready():
 		shuffleTime - shuffleTimeRandOffset, 
 		shuffleTime + shuffleTimeRandOffset)
 	targetRandOffset = rng.randf_range(-targetRandOffset, targetRandOffset)
-	
-	material1.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex1)
-	material2.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex2)
-	material3.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex3)
-	material4.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex4)
-	material5.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex5)
-	material6.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, tex6)
-	#mesh.set_material_overlay(material2)
-	var random_material_index = randi() % 6 + 1
-
-	match random_material_index:
-		1:
-			mesh.set_material_overlay(material1)
-		2:
-			mesh.set_material_overlay(material2)
-		3:
-			mesh.set_material_overlay(material3)
-		4:
-			mesh.set_material_overlay(material4)
-		5:
-			mesh.set_material_overlay(material5)
-		6:
-			mesh.set_material_overlay(material6)
-	
-	random_material_index = randi() % 5 + 1
-
-	match random_material_index:
-		1:
-			mesh.set("blend_shapes/Back", 1)
-		2:
-			mesh.set("blend_shapes/Down", 1)
-		3:
-			mesh.set("blend_shapes/Out", 1)
-		4:
-			mesh.set("blend_shapes/Way Out", 1)
-		5:
-			mesh.set("blend_shapes/Down", 0)
-	
 	
 	#var phys_bones = ["Tail_1", "Ear_Upper_r", "Ear_Upper_l"]
 	var phys_bones = ["Tail_1"]
@@ -149,11 +97,44 @@ func _ready():
 	animation.set("parameters/conditions/Graze", false)
 	animation.set("parameters/conditions/Not_Graze", true)
 	#get_node(NodePath("./Model/AnimationPlayer")).set_speed(10.0)
+	
+	if(cowTypeInd == -1):
+		setType()
+	
+func setType(ind:int = -1):
+	model = get_node(NodePath("./Model"))
+	animation = model.find_child("AnimationTree")
+	skeleton = model.find_child("Skeleton3D")
+	mesh = model.find_child("Cow")
+	material = mesh.get_material_overlay()
+	var typeTextures = [
+		preload("res://Assets/Models/Cow/cowCommon.png"),
+		preload("res://Assets/Models/Cow/cowRed.png"),
+		preload("res://Assets/Models/Cow/cowLucky.png"),
+		preload("res://Assets/Models/Cow/cowIronhide.png"),
+		preload("res://Assets/Models/Cow/cowMoxie.png"),
+		preload("res://Assets/Models/Cow/cowGrandRed.png")]
+	
+	#set cow texture based on cow type
+	if(ind == -1):
+		cowTypeInd = rng.randi_range(0, typeTextures.size() - 1)
+	else:
+		cowTypeInd = ind
+	var typeMaterial = material.duplicate()
+	typeMaterial.set_texture(StandardMaterial3D.TEXTURE_ALBEDO, typeTextures[cowTypeInd])
+	mesh.set_material_overlay(typeMaterial)
+	#randomly set cow horn type
+	match rng.randi_range(0, 4):
+		0: mesh.set("blend_shapes/Back", 1)
+		1: mesh.set("blend_shapes/Down", 1)
+		2: mesh.set("blend_shapes/Out", 1)
+		3: mesh.set("blend_shapes/Way Out", 1)
+		4: mesh.set("blend_shapes/Down", 0)
 
 func startDragging(marauder):
-	isDragged =true
+	isDragged = true
 	draggers.append(marauder)
-	maxSpeed = min(dragSpeed * draggers.size(), draggers[0].baseSpeed)
+	maxSpeed = min(dragSpeed * draggers.size(), draggers[0].baseSpeed) / dragResistance
 	lookSpeed = dragLookSpeed * draggers.size()
 	followDistance = dragFollowDistance
 	speedTransitionRadius = dragSpeedTransitionRadius
@@ -163,7 +144,7 @@ func startDragging(marauder):
 	
 	herd.removeHuddler(self)
 	#Set to disable, because otherwise the cow can't look at the marauder when dragged
-	disableRayCasts()
+	#disableRayCasts() dont do this, it completely breaks all maneuvering. i fixed the collision layers so they dont look away from the marauders
 	animation.set("parameters/conditions/Drag", true)
 	animation.set("parameters/conditions/Not_Drag", false)
 	
@@ -301,7 +282,7 @@ func _physics_process(delta):
 					var curDirection = Vector2 (cos (rotation.y), sin (rotation.y))
 					var targetDirection = Vector2 (cos (targetAngle), sin (targetAngle))
 					#Use dot product to produce a scaler 0 < x < 1 based on the cow's direction
-					maxSpeed = dragSpeed * ((curDirection.dot(targetDirection)))
+					maxSpeed = dragSpeed * ((curDirection.dot(targetDirection))) / dragResistance
 					
 				
 			var targetDistance = followDistance
@@ -363,37 +344,38 @@ func _physics_process(delta):
 		else:
 			print("Cow.gd: target is null")
 		
-		#cows push eachother out of eachother's radius
-		var cows = herd.getCows()
-		var avgVec = Vector2(0, 0)
-		var numInside = 0
-		for i in cows:
-			if(i != self):
-				#direction to other cow
-				var cowDirVec = Vector2(
-					position.x - i.position.x, 
-					position.z - i.position.z)
-				#distance to other cow
-				var dist = sqrt(pow(cowDirVec.x, 2) + pow(cowDirVec.y, 2))
-				if(dist < pushDistanceThreshold):
-					#0 to 1, 0: pushDistanceThreshold meters away, 1: 0 meters away
-					var t = min( max( (pushDistanceThreshold - dist) / pushDistanceThreshold, -1 ), 1 )
-					numInside += 1
-					#average push vector to every other cow with magnitude from 0 to 1
-					avgVec += cowDirVec.normalized() * t
-					
-					#minPushDistance makes maximum push strength come at a distance of minPushDistance instead of 0, made pushing extremely jittery so I cut it
-					#var t = min( max( (pushDistanceThreshold + minPushDistance - dist) / pushDistanceThreshold, -1 ), 1 )
-					
-					#makes t go from minPushPercent to 1 instead of 0 to 1, made pushing look a little jittery so I cut it
-					#if(minPushPercent > 0):
-					#	t = t * ( 1.0 - minPushPercent ) + minPushPercent
-					
-					#t = pow(t, 3)
-					#dist = smoothstep(0, 1, dist)
-		if(numInside > 1):
-			avgVec /= numInside
-		pushVel = avgVec * pushStrength
+		if(draggers.is_empty()):
+			#cows push eachother out of eachother's radius
+			var cows = herd.getCows()
+			var avgVec = Vector2(0, 0)
+			var numInside = 0
+			for i in cows:
+				if(i != self):
+					#direction to other cow
+					var cowDirVec = Vector2(
+						position.x - i.position.x, 
+						position.z - i.position.z)
+					#distance to other cow
+					var dist = sqrt(pow(cowDirVec.x, 2) + pow(cowDirVec.y, 2))
+					if(dist < pushDistanceThreshold):
+						#0 to 1, 0: pushDistanceThreshold meters away, 1: 0 meters away
+						var t = min( max( (pushDistanceThreshold - dist) / pushDistanceThreshold, -1 ), 1 )
+						numInside += 1
+						#average push vector to every other cow with magnitude from 0 to 1
+						avgVec += cowDirVec.normalized() * t
+						
+						#minPushDistance makes maximum push strength come at a distance of minPushDistance instead of 0, made pushing extremely jittery so I cut it
+						#var t = min( max( (pushDistanceThreshold + minPushDistance - dist) / pushDistanceThreshold, -1 ), 1 )
+						
+						#makes t go from minPushPercent to 1 instead of 0 to 1, made pushing look a little jittery so I cut it
+						#if(minPushPercent > 0):
+						#	t = t * ( 1.0 - minPushPercent ) + minPushPercent
+						
+						#t = pow(t, 3)
+						#dist = smoothstep(0, 1, dist)
+			if(numInside > 1):
+				avgVec /= numInside
+			pushVel = avgVec * pushStrength
 	else:
 		print("Cow.gd: herd is null")
 		

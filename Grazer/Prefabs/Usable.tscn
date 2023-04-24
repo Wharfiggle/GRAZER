@@ -6,6 +6,7 @@
 [sub_resource type="QuadMesh" id="QuadMesh_djqmi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptetw"]
+transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("2_p7i2y")
 billboard_mode = 1
