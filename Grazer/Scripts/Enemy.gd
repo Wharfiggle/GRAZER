@@ -149,8 +149,8 @@ func _physics_process(delta):
 					queue_free()
 					SceneCounter.marauders -= 1
 	
-	movementBlend = speed
-	movementBlend = 1-  movementBlend
+	movementBlend = lerpf(movementBlend, speed, 0.1)
+	movementBlend = 1 -  movementBlend
 	animation.set("parameters/idleWalk/blend_amount", movementBlend)
 	
 	if(hitFlashAmmount > 0.1):
