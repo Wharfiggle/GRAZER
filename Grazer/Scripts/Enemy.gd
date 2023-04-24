@@ -157,8 +157,8 @@ func _physics_process(delta):
 					SceneCounter.marauders -= 1
 	
 	movementBlend = lerpf(movementBlend, speed, 0.1)
-	movementBlend = 1 -  movementBlend
-	animation.set("parameters/idleWalk/blend_amount", movementBlend)
+	var temp = 1.0 -  movementBlend
+	animation.set("parameters/idleWalk/blend_amount", temp)
 	
 	if(hitFlashAmmount > 0.1):
 		hitFlash.set_shader_parameter("ammount", hitFlashAmmount)
