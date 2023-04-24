@@ -64,6 +64,8 @@ blend_point_2/pos = 1.0
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gj1ff"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_6hrub"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:ArmIK.L", "Armature/Skeleton3D:ArmIK.R", "Armature/Skeleton3D:FootIK.L", "Armature/Skeleton3D:FootIK.R", "Armature/Skeleton3D:HandIK.L", "Armature/Skeleton3D:HandIK.R", "Armature/Skeleton3D:Hips", "Armature/Skeleton3D:KneeIK.L", "Armature/Skeleton3D:KneeIK.R", "Armature/Skeleton3D:LeftFoot", "Armature/Skeleton3D:LeftLeg", "Armature/Skeleton3D:LeftToeBase", "Armature/Skeleton3D:LeftUpLeg", "Armature/Skeleton3D:RightFoot", "Armature/Skeleton3D:RightLeg", "Armature/Skeleton3D:RightToeBase", "Armature/Skeleton3D:RightUpLeg"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2678m"]
 animation = &"Walk_Liz"
@@ -75,7 +77,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:LeftArm", "Armature/Skeleton3D:LeftForeArm", "Armature/Skeleton3D:LeftHand", "Armature/Skeleton3D:LeftHandIndex1", "Armature/Skeleton3D:LeftHandIndex2", "Armature/Skeleton3D:LeftHandIndex3", "Armature/Skeleton3D:LeftHandRing1", "Armature/Skeleton3D:LeftHandRing2", "Armature/Skeleton3D:LeftHandRing3", "Armature/Skeleton3D:LeftHandThumb1", "Armature/Skeleton3D:LeftHandThumb2", "Armature/Skeleton3D:LeftHandThumb3", "Armature/Skeleton3D:LeftShoulder", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:RightArm", "Armature/Skeleton3D:RightForeArm", "Armature/Skeleton3D:RightHand", "Armature/Skeleton3D:RightHandIndex1", "Armature/Skeleton3D:RightHandIndex2", "Armature/Skeleton3D:RightHandIndex3", "Armature/Skeleton3D:RightHandRing1", "Armature/Skeleton3D:RightHandRing2", "Armature/Skeleton3D:RightHandRing3", "Armature/Skeleton3D:RightHandThumb1", "Armature/Skeleton3D:RightHandThumb2", "Armature/Skeleton3D:RightHandThumb3", "Armature/Skeleton3D:RightShoulder", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Spine1", "Armature/Skeleton3D:Spine2"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pid2i"]
-graph_offset = Vector2(-24.2491, -11.0414)
+graph_offset = Vector2(279.7, -78.0135)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_fvgf6")
 nodes/Animation/position = Vector2(480, 96)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_oy2ry")
@@ -105,13 +107,13 @@ nodes/walkPushed/node = SubResource("AnimationNodeBlend2_e7ome")
 nodes/walkPushed/position = Vector2(1456, 224)
 nodes/walkshoot/node = SubResource("AnimationNodeBlend2_40ywp")
 nodes/walkshoot/position = Vector2(700, 240)
-node_connections = [&"output", 0, &"walkPushed", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"OneShot", 0, &"Animation 4", &"OneShot", 1, &"Animation 5", &"OneShot 2", 0, &"OneShot", &"OneShot 2", 1, &"Animation 6", &"TimeScale", 0, &"walk", &"idleWalk", 0, &"Blend2", &"idleWalk", 1, &"walkshoot", &"walkPushed", 0, &"idleWalk", &"walkPushed", 1, &"OneShot 2", &"walkshoot", 0, &"TimeScale", &"walkshoot", 1, &"BlendSpace1D"]
+node_connections = [&"output", 0, &"walkPushed", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"OneShot", 0, &"Animation 4", &"OneShot", 1, &"Animation 5", &"OneShot 2", 0, &"OneShot", &"OneShot 2", 1, &"Animation 6", &"TimeScale", 0, &"walk", &"idleWalk", 0, &"walkshoot", &"idleWalk", 1, &"Blend2", &"walkPushed", 0, &"idleWalk", &"walkPushed", 1, &"OneShot 2", &"walkshoot", 0, &"TimeScale", &"walkshoot", 1, &"BlendSpace1D"]
 
 [node name="Bandit" instance=ExtResource("1_0xrue")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0.525149, 4.971, -116.634)
-bones/0/rotation = Quaternion(-0.640365, -0.0665079, 0.0561127, 0.763126)
+bones/0/position = Vector3(-0.00302159, -3.02899, -111.634)
+bones/0/rotation = Quaternion(-0.707106, 0.000161214, 0.000171432, 0.707107)
 bones/17/rotation = Quaternion(-0.681876, -0.197407, 0.290498, -0.641629)
 bones/18/rotation = Quaternion(0.292711, -0.42876, 0.361594, 0.774426)
 bones/19/position = Vector3(9.25158e-07, 25.9074, 1.37894e-05)
@@ -155,37 +157,33 @@ bones/41/position = Vector3(-0.0466854, 3.79247, -6.04056e-06)
 bones/41/rotation = Quaternion(0.208192, 0.298986, -0.107915, 0.924996)
 bones/42/position = Vector3(-0.00271773, 3.43109, -4.80343e-06)
 bones/42/rotation = Quaternion(-0.008894, -6.3769e-08, -9.60464e-08, 0.99996)
-bones/43/rotation = Quaternion(-0.0455569, 0.398743, 0.908531, -0.116189)
-bones/44/position = Vector3(3.4737e-07, 48.7967, 4.83136e-06)
-bones/44/rotation = Quaternion(-0.0917474, 0.000685342, -0.0353763, 0.995154)
-bones/45/rotation = Quaternion(0.381389, -0.125896, 0.914097, -0.0558511)
-bones/46/position = Vector3(5.49543e-06, 48.7926, 4.36019e-06)
-bones/46/rotation = Quaternion(-0.417281, 0.00012336, 0.210996, 0.883944)
-bones/47/position = Vector3(34.3144, 11.0938, -129.417)
-bones/47/rotation = Quaternion(0.152001, -0.528054, -0.167114, 0.818613)
-bones/48/position = Vector3(-31.0182, 35.8457, -131.963)
-bones/48/rotation = Quaternion(-0.149545, 0.665228, -0.116181, 0.722225)
-bones/49/position = Vector3(-31.1294, -39.3985, -145.274)
+bones/43/rotation = Quaternion(-0.229525, 0.0095067, 0.968885, -0.0921434)
+bones/44/rotation = Quaternion(-0.131966, 0.000681739, -0.050884, 0.989947)
+bones/45/rotation = Quaternion(0.224969, 0.0172693, 0.970718, 0.0824506)
+bones/46/rotation = Quaternion(-0.110097, -0.000734532, 0.0391426, 0.99315)
+bones/47/position = Vector3(27.9008, -13.4015, -119.701)
+bones/47/rotation = Quaternion(0.379801, -0.716902, -0.330224, 0.482447)
+bones/48/position = Vector3(-30.2307, -9.63868, -123.788)
+bones/48/rotation = Quaternion(0.257845, 0.668167, 0.396642, 0.574233)
+bones/49/position = Vector3(-49.1659, -20.2665, -166.148)
 bones/49/rotation = Quaternion(0.0126916, 0, 0.999919, 0)
-bones/50/position = Vector3(12.2013, 60.6032, -30.4064)
+bones/50/position = Vector3(26.3481, -7.34753, -12.636)
 bones/50/rotation = Quaternion(-0.00417408, -0.0494067, 0.99877, 0.000206481)
-bones/51/position = Vector3(0.000205646, 0.000861283, -0.000998202)
-bones/51/rotation = Quaternion(0.934616, -0.0152168, 0.0136708, -0.355069)
-bones/52/position = Vector3(2.29259e-06, 22.6684, 3.88164e-06)
-bones/52/rotation = Quaternion(0.532002, -0.0231901, -0.0203298, 0.846181)
-bones/53/position = Vector3(-10.4546, -61.4404, -58.5126)
-bones/53/rotation = Quaternion(-0.0173982, -0.521471, 0.853025, 0.0106475)
-bones/54/position = Vector3(5.94103e-05, -0.000267632, 0.00246293)
-bones/54/rotation = Quaternion(0.97551, 0.0121726, -0.0122717, 0.219274)
-bones/55/rotation = Quaternion(0.202002, 0.0285332, 0.0123165, 0.978892)
-bones/56/position = Vector3(12.619, 47.9484, -56.6914)
-bones/57/position = Vector3(-13.9135, 46.381, -77.6046)
-bones/57/rotation = Quaternion(-0.00824131, 0.999759, 0.00535506, 0.019617)
-bones/58/position = Vector3(31.0464, -39.8916, -145.606)
+bones/51/position = Vector3(-1.73032e-05, 3.47006e-05, -4.10765e-06)
+bones/51/rotation = Quaternion(0.984418, -0.0100621, 0.0210596, 0.174289)
+bones/53/position = Vector3(-24.2576, -4.08158, -11.7532)
+bones/53/rotation = Quaternion(0.00416422, -0.048721, 0.998804, -0.000203128)
+bones/54/position = Vector3(1.80274e-05, 3.40495e-05, 2.99278e-05)
+bones/54/rotation = Quaternion(0.985102, 0.00601169, -0.0204691, 0.170643)
+bones/55/rotation = Quaternion(0.207757, 0.0267696, 0.0202711, 0.977604)
+bones/56/position = Vector3(28.5018, 47.9484, -56.4657)
+bones/57/position = Vector3(-32.5678, 49.4017, -56.4657)
+bones/57/rotation = Quaternion(-2.94096e-09, 0.999805, -1.33721e-07, 0.0197681)
+bones/58/position = Vector3(48.9124, -20.2087, -165.894)
 bones/58/rotation = Quaternion(-0.0118319, -2.30163e-22, 0.99993, 0)
 
 [node name="horns" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.0012, -0.17625, 0.00047119, 0.173655, 0.985989, -0.176449, 0.0301345, 0.173857, 1.00117, -2.51627, -11.7017, -13.8615)
+transform = Transform3D(1.01659, -1.46898e-05, 0.000478239, 1.46903e-05, 1.0166, -9.69027e-07, -0.000478238, 9.6808e-07, 1.0166, -2.75105, -1.09654, -7.52771)
 bone_idx = 6
 
 [node name="horns" parent="Armature/Skeleton3D/horns" index="0"]
@@ -193,7 +191,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="loSkullNoRings1" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(22.3877, -3.90824, 0.508005, 3.88309, 21.3731, -6.69743, 0.673834, 6.68278, 21.717, -0.775373, 25.8066, -193.493)
+transform = Transform3D(22.7319, 0.00102421, 0.0106497, 0.000328488, 22.5501, -2.86986, -0.0106938, 2.86986, 22.5501, -0.0404369, 4.26035, -190.944)
 bone_idx = 7
 
 [node name="loSkullNoRings1" parent="Armature/Skeleton3D/loSkullNoRings1" index="0"]
@@ -201,7 +199,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth1" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(1.4834, -1.29205, -0.108857, 0.697456, 2.20909, -1.04851, 0.392741, 0.95708, 2.27317, -8.30772, 27.6792, -173.927)
+transform = Transform3D(1.59183, -0.866529, -0.217786, 0.486466, 2.53025, -0.609322, 0.265663, 0.558936, 2.42071, -6.55002, 10.7286, -172)
 bone_idx = 8
 
 [node name="tooth1" parent="Armature/Skeleton3D/tooth1" index="0"]
@@ -209,7 +207,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth2" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(1.56699, -1.00139, 0.0947732, 0.594598, 2.33809, -0.948531, 0.179297, 0.997999, 2.3173, -9.58527, 30.1334, -172.598)
+transform = Transform3D(1.65018, -0.55701, 0.00115884, 0.33571, 2.61199, -0.540105, 0.0733228, 0.576831, 2.4468, -7.34923, 13.5576, -171.117)
 bone_idx = 9
 
 [node name="tooth2" parent="Armature/Skeleton3D/tooth2" index="0"]
@@ -217,7 +215,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth3" parent="Armature/Skeleton3D" index="4"]
-transform = Transform3D(-1.23371, -0.493098, 0.00692246, -0.395454, 1.48322, -0.310791, -0.0732629, 0.297493, 1.56099, 3.59995, 40.7451, -168.932)
+transform = Transform3D(-1.28475, -0.223453, 0.000749148, -0.182204, 1.57493, -0.0356752, -0.00348007, 0.0354146, 1.59125, 7.5584, 22.1911, -169.35)
 bone_idx = 10
 
 [node name="tooth3" parent="Armature/Skeleton3D/tooth3" index="0"]
@@ -225,7 +223,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth4" parent="Armature/Skeleton3D" index="5"]
-transform = Transform3D(1.65337, -0.51928, -0.108857, -0.321306, -2.42632, -1.04851, -0.0690285, -1.14402, 2.27317, 4.2249, 29.853, -173.55)
+transform = Transform3D(1.5714, -0.960089, -0.217786, -0.610064, -2.45891, -0.609324, -0.0121856, -0.705314, 2.42071, 6.17531, 10.7288, -172.006)
 bone_idx = 11
 
 [node name="tooth4" parent="Armature/Skeleton3D/tooth4" index="0"]
@@ -233,7 +231,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth5" parent="Armature/Skeleton3D" index="6"]
-transform = Transform3D(-1.68143, 0.165023, 0.0947732, 0.0701831, 2.52641, -0.94853, 0.097495, 1.02738, 2.3173, 5.21843, 32.7011, -172.153)
+transform = Transform3D(-1.64105, 0.624773, 0.00115893, 0.376234, 2.59745, -0.540104, 0.0838266, 0.573061, 2.4468, 7.6821, 13.5578, -171.124)
 bone_idx = 12
 
 [node name="tooth5" parent="Armature/Skeleton3D/tooth5" index="0"]
@@ -241,7 +239,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth6" parent="Armature/Skeleton3D" index="7"]
-transform = Transform3D(-1.68081, -0.152455, 0.0972777, -0.127312, 2.12731, -0.973597, 0.0166301, 0.877, 2.37853, 4.71082, 35.0648, -170.876)
+transform = Transform3D(-1.6766, 0.23944, 0.00118946, 0.170748, 2.23969, -0.554378, 0.0384849, 0.494273, 2.51146, 7.62416, 16.1568, -170.277)
 bone_idx = 13
 
 [node name="tooth6" parent="Armature/Skeleton3D/tooth6" index="0"]
@@ -249,7 +247,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth7" parent="Armature/Skeleton3D" index="8"]
-transform = Transform3D(-1.66018, -0.356267, 0.0391629, -0.287954, 1.95538, -0.57065, -0.0499688, 0.568502, 1.98731, 4.34892, 37.6689, -169.652)
+transform = Transform3D(-1.68571, 7.39411e-05, 0.000970491, -2.43594e-05, 2.0555, -0.220393, 0.000793012, 0.220317, 2.05621, 7.74916, 18.9545, -169.525)
 bone_idx = 14
 
 [node name="tooth7" parent="Armature/Skeleton3D/tooth7" index="0"]
@@ -257,7 +255,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth8" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(1.66005, -0.349778, 0.0782176, 0.287931, 1.88056, -0.782834, 0.0499648, 0.78407, 1.91249, -11.0642, 34.9955, -170.116)
+transform = Transform3D(1.68557, 0.000180454, 0.00095642, 2.43574e-05, 2.01868, -0.445756, -0.000792947, 0.445602, 2.01938, -7.90095, 18.9543, -169.517)
 bone_idx = 15
 
 [node name="tooth8" parent="Armature/Skeleton3D/tooth8" index="0"]
@@ -265,7 +263,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_cfbqe")
 
 [node name="tooth9" parent="Armature/Skeleton3D" index="10"]
-transform = Transform3D(1.66005, -0.390177, 0.0972778, 0.287931, 2.09776, -0.973597, 0.0499648, 0.874628, 2.37853, -10.5795, 32.4127, -171.336)
+transform = Transform3D(1.68557, 0.000201296, 0.00118948, 2.43574e-05, 2.25183, -0.554378, -0.000792947, 0.497068, 2.51146, -7.90127, 16.1566, -170.27)
 bone_idx = 16
 
 [node name="tooth9" parent="Armature/Skeleton3D/tooth9" index="0"]
@@ -297,7 +295,7 @@ material_override = ExtResource("2_4os7a")
 material_overlay = ExtResource("2_xdfd2")
 
 [node name="GunRight" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="17"]
-transform = Transform3D(0.252507, -0.142721, 0.957011, 0.0405958, 0.989753, 0.136893, -0.966743, 0.00428426, 0.255714, -14.1965, 69.9128, -154.259)
+transform = Transform3D(0.226513, 0.0285447, 0.97359, -0.169732, 0.985433, 0.0105976, -0.959105, -0.16765, 0.228058, -4.54722, 56.0752, -159.965)
 bone_name = "RightHand"
 bone_idx = 33
 
