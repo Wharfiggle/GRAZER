@@ -27,7 +27,10 @@ var wheelRadius = 200
 @onready var viewport = get_viewport()
 @onready var elixirName = $ElixirName
 @onready var elixirDesc = $ElixirDesc
-
+@onready var soundMaker = $"item sounds"
+var hover = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
+var menuOpen = preload("res://sounds/New Sound FEX/UI/MenuSlideIn.wav")
+var menuClose = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
 func toggleItemWheel():
 	if(!visible):
 		for i in cells.size():
@@ -39,11 +42,15 @@ func toggleItemWheel():
 			else:
 				elixirIcon.visible = false
 				
+		soundMaker.stream = menuOpen
+		soundMaker.play()
 		visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		viewport.warp_mouse(viewport.get_visible_rect().size / 2)
 		get_tree().paused = true
 	elif(visible):
+		soundMaker.stream = menuClose
+		soundMaker.play()
 		visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		highlight = [0, 0, 0, 0, 0, 0]
@@ -88,15 +95,27 @@ func _process(_delta):
 			cells[i].scale = Vector2(newScale, newScale)
 
 func _on_cell_1_mouse_entered():
+	soundMaker.stream = hover
+	soundMaker.play()
 	#put sound here
 	selected = 0
 func _on_cell_2_mouse_entered():
+	soundMaker.stream = hover
+	soundMaker.play()
 	selected = 1
 func _on_cell_3_mouse_entered():
+	soundMaker.stream = hover
+	soundMaker.play()
 	selected = 2
 func _on_cell_4_mouse_entered():
+	soundMaker.stream = hover
+	soundMaker.play()
 	selected = 3
 func _on_cell_5_mouse_entered():
+	soundMaker.stream = hover
+	soundMaker.play()
 	selected = 4
 func _on_cell_6_mouse_entered():
+	soundMaker.stream = hover
+	soundMaker.play()
 	selected = 5

@@ -65,6 +65,9 @@ var isDragged = false
 #SoundFiles PreLoad
 var stressed = preload("res://sounds/Cows/Cows/cowstressed.wav")
 var moo1 = preload("res://sounds/Cows/Cows/idlemoo1.wav")
+var moo2 = preload("res://sounds/Cows/Cows/idlemoo2.wav")
+var moo3 = preload("res://sounds/Cows/Cows/idlemoo3.wav")
+var audioArray = [moo1,moo2,moo3]
 
 var model = null
 var animation = null
@@ -177,7 +180,8 @@ func idle():
 	target = null
 	followingHerd = false
 	animation.set("parameters/Movement/BlendMove/blend_amount", -1)
-	Vocal.stream = moo1
+	var clip_to_play = audioArray[randi() % audioArray.size()] 
+	Vocal.stream=clip_to_play
 	Vocal.play()
 #equation for diagonal length of screen
 #var rectWid = 15 / cos(55 * PI / 180)
