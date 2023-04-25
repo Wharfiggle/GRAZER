@@ -548,7 +548,7 @@ func moveTo(_targetPos):
 global_transform.origin, _targetPos, true)
 	pathNode = 0
 
-func _on_Timer_timeout():
+func _on_timer_timeout():
 	moveTo(targetPos)
 
 func readyAim():

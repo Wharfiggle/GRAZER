@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bcorhitij0ix2"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_cdl7x"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_cfl6f"]
 [ext_resource type="PackedScene" uid="uid://d1d36qeyhbvr3" path="res://Assets/Models/marauder/marauderRed.tscn" id="2_gsgy7"]
 [ext_resource type="Script" path="res://Prefabs/HitBox.gd" id="4_tnfkf"]
 
@@ -13,10 +13,11 @@ radius = 1.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_ho5wn"]
 
 [node name="Enemy" type="CharacterBody3D"]
-script = ExtResource("1_cdl7x")
+script = ExtResource("1_cfl6f")
 marauderType = 1
 
 [node name="Model" parent="." instance=ExtResource("2_gsgy7")]
+script = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -58,4 +59,4 @@ bus = &"soundFXMain"
 [node name="ESoundFX" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
