@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cibcmvalffoa6"]
+[gd_scene load_steps=20 format=3 uid="uid://vgtr3tesewb6"]
 
 [ext_resource type="PackedScene" uid="uid://8vqw1t8xn8gm" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_1.tscn" id="2_m4w52"]
 [ext_resource type="PackedScene" uid="uid://81tdkywtx00y" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_2.tscn" id="3_wbykj"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://h701twm7a42r" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_11.tscn" id="12_i78bt"]
 [ext_resource type="PackedScene" uid="uid://dss4pmdp52xfj" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_12.tscn" id="13_4omdq"]
 [ext_resource type="PackedScene" uid="uid://04xi0dji04u" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_13.tscn" id="14_tbbc5"]
+[ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="15_6rg1h"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="15_s3012"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_v867l"]
@@ -150,3 +151,11 @@ mesh = SubResource("PrismMesh_ta2rh")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.8847, 1.81899e-12, 1.22553e-15, 1.24613e-21, -4.54381e-06, 0.172478, 2.84217e-14, -103.95, -7.53924e-09, 16.2291, 0, 68.6846)
 mesh = SubResource("PrismMesh_ta2rh")
+
+[node name="CowSpawner" parent="." instance=ExtResource("15_6rg1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8298, 0.0499992, -1.39997)
+spawnChance = 0.5
+
+[node name="CowSpawner2" parent="." instance=ExtResource("15_6rg1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0425, 0.0499992, -1.19263)
+spawnChance = 0.5

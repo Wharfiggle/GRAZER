@@ -87,9 +87,9 @@ func _ready():
 	targetRandOffset = rng.randf_range(-targetRandOffset, targetRandOffset)
 	
 	#var phys_bones = ["Tail_1", "Ear_Upper_r", "Ear_Upper_l"]
-	var phys_bones = ["Tail_1"]
+	#var phys_bones = ["Tail_1"]
 	#var phys_bones = ["Tail_1", "Ear_Base_r", "Ear_Base_l"]
-	skeleton.physical_bones_start_simulation(phys_bones)
+	#skeleton.physical_bones_start_simulation(phys_bones)
 	#skeleton.physical_bones_start_simulation()
 	
 	animation.set("parameters/conditions/Drag", false)
@@ -345,7 +345,8 @@ func _physics_process(delta):
 						animationBlend = -1
 					animation.set("parameters/Movement/BlendMove/blend_amount", t)
 		else:
-			print("Cow.gd: target is null")
+			if(abs((position - herd.player.position).length()) < 2.5):
+				herd.addCow(self)
 		
 		if(draggers.is_empty()):
 			#cows push eachother out of eachother's radius
@@ -380,6 +381,7 @@ func _physics_process(delta):
 				avgVec /= numInside
 			pushVel = avgVec * pushStrength
 	else:
+		herd = get_node("/root/Level/Herd")
 		print("Cow.gd: herd is null")
 		
 	#limit total velocity to not go past maxSpeed
@@ -388,18 +390,21 @@ func _physics_process(delta):
 		totalVelocity = totalVelocity.normalized() * maxSpeed
 	
 	#gravity, unnaffected by maxSpeed limit
-	tVelocity.y -= 30 * delta
-	if(is_on_floor()):
-		tVelocity.y = -0.1
-	elif(transform.origin.y < -20.0):
-#		transform.origin = Vector3(0, 10, 0)
-		for i in draggers:
-			if(i != null):
-				stopDragging(i)
-		herd.removeCow(self)
-		queue_free()
-		SceneCounter.cows -= 1
-	totalVelocity.y = tVelocity.y
+	if(target != null):
+		tVelocity.y -= 30 * delta
+		if(is_on_floor()):
+			tVelocity.y = -0.1
+		elif(transform.origin.y < -20.0):
+	#		transform.origin = Vector3(0, 10, 0)
+			for i in draggers:
+				if(i != null):
+					stopDragging(i)
+			herd.removeCow(self)
+			queue_free()
+			SceneCounter.cows -= 1
+		totalVelocity.y = tVelocity.y
+	else:
+		tVelocity.y = 0
 	
 	if(shuffleTimeCounter < 0.01 && shuffleTimeCounter > -0.01):
 		#Normalize animationBlend to range between -1 and 1

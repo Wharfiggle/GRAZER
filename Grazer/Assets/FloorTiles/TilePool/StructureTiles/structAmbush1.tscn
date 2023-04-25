@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmygj8whnmcp5"]
+[gd_scene load_steps=12 format=3 uid="uid://dmygj8whnmcp5"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_cnyjy"]
 [ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="2_mjru7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="4_ff0th"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="5_w03gg"]
 [ext_resource type="PackedScene" uid="uid://d1xxh0cq2yh8i" path="res://Assets/FloorTiles/!Prefabs!/Cow Skull/skull.tscn" id="6_bi30f"]
+[ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="7_a6fk5"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -18,7 +19,7 @@ polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Arr
 size = Vector3(16, 0.1, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f4mbs"]
-size = Vector3(12.2026, 7.53569, 12.0722)
+size = Vector3(8.06869, 7.2415, 7.81714)
 
 [node name="StaticBody3D3" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
@@ -44,7 +45,7 @@ transform = Transform3D(0.316141, 0.0314493, 0.243033, -0.0395959, 0.398035, -2.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08094, 0.0499992, 2.03172)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21479, 0, -1.79346)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37681, 0, -2.02921)
 shape = SubResource("BoxShape3D_f4mbs")
 
 [node name="EnemySpawner" parent="Trigger" instance=ExtResource("5_w03gg")]
@@ -55,3 +56,6 @@ spawnAtEdgeOfScreen = true
 
 [node name="Skull" parent="." instance=ExtResource("6_bi30f")]
 transform = Transform3D(1.38089, -0.0449833, -0.226105, -6.25152e-09, 1.37309, -0.273174, 0.230536, 0.269445, 1.35435, 1.93347, 0.0500002, 0.157793)
+
+[node name="CowSpawner" parent="." instance=ExtResource("7_a6fk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31022, 0.0500002, 0.0550327)

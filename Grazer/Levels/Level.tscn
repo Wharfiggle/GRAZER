@@ -79,7 +79,7 @@ environment = ExtResource("16_leqkn")
 [node name="FogVolume" parent="." instance=ExtResource("11_1gwt8")]
 
 [node name="Camera3D" parent="." instance=ExtResource("2")]
-transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 24, 23.5, 24)
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
 current = true
 size = 17.0
 
@@ -980,7 +980,7 @@ label_settings = SubResource("LabelSettings_nsy4h")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="aumbiunce" type="AudioStreamPlayer" parent="."]
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
 
 [connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]

@@ -28,7 +28,7 @@ static func retrieveStructureTypes() -> Array:
 	#sPathName, sWidth, sHeight
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn", 3, 4]) #checkpoint
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])
-	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/EmptyFloor1.tscn", 2, 2]) #test
+#	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/EmptyFloor1.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testTile.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPit1.tscn", 1, 1]) #test
 	#structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPitV2.tscn", 1, 1]) #test
@@ -39,6 +39,7 @@ static func retrieveStructureTypes() -> Array:
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/road s 1.tscn", 1, 3])
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/organCactus1.tscn", 1, 1])
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/building test.tscn", 2, 3])
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPitV2.tscn", 1, 1])
 	
 	# * ^ ADD NEW STRUCTURES HERE ^ *
 	#sPathname is the path to the scene. Right click and click "Copy Path" in the explorer to get it

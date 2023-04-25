@@ -19,6 +19,7 @@ var prefabs = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_child(0).queue_free()
+	rng.randomize()
 
 func _physics_process(delta):
 	if(timer > -1):
@@ -39,7 +40,6 @@ func spawn(inChanceMod:float, inPrefabs:Array):
 		levelScript = get_node(NodePath("/root/Level/AllTerrain"))
 	
 func spawnEnemy():
-	rng.randomize()
 	var rn = rng.randf()
 	if(rn <= spawnChance * chanceMod):
 		rn = rng.randf()

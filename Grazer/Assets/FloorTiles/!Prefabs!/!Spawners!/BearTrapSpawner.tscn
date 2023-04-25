@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://cn0pd35v1tibj"]
 
-[ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="1_ei0pe"]
+[ext_resource type="Script" path="res://Scripts/DecorationSpawner.gd" id="1_k08vh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4nlry"]
 
@@ -8,7 +8,7 @@
 albedo_color = Color(1, 0, 0, 1)
 
 [node name="BearTrapSpawner" type="Node3D"]
-script = ExtResource("1_ei0pe")
+script = ExtResource("1_k08vh")
 
 [node name="EditorIndicator" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_4nlry")

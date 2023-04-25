@@ -100,14 +100,15 @@ func addCow(cow):
 
 #remove cow from player's herd
 func removeCow(cow):
-	cows.erase(cow)
-	huddle.erase(cow)
-	numCows -= 1
-	cowCounter.updateCowNum(numCows)
-	remove_child(cow)
-	get_node(NodePath("/root/Level")).add_child(cow)
-	cow.idle()
-	player.cowTypes[cow.cowTypeInd].use(false)
+	if(cows.has(cow)):
+		cows.erase(cow)
+		huddle.erase(cow)
+		numCows -= 1
+		cowCounter.updateCowNum(numCows)
+		remove_child(cow)
+		get_node(NodePath("/root/Level")).add_child(cow)
+		cow.idle()
+		player.cowTypes[cow.cowTypeInd].use(false)
 
 #spawn a cow in center of herd
 func spawnCow(type:int = -1) -> Node:
@@ -122,6 +123,7 @@ func spawnCowAtPos(pos:Vector3, type:int = -1) -> Node:
 func spawnStrayCow(pos:Vector3, type:int = -1) -> Node:
 	var cow = cowPrefab.instantiate()
 	cow.setType(type)
+	add_child(cow)
 	SceneCounter.cows += 1
 	cow.position = pos
 	return cow
