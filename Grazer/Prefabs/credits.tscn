@@ -1,0 +1,152 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr2p0uvxjl7nc"]
+
+[ext_resource type="Script" path="res://Scripts/credits.gd" id="1_qdl18"]
+
+[node name="credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qdl18")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1282.0
+offset_bottom = 721.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 669.0
+offset_right = 91.0
+offset_bottom = 708.0
+text = "Back"
+
+[node name="Credits" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 16.0
+offset_right = 831.0
+offset_bottom = 156.0
+theme_override_font_sizes/font_size = 100
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Art" type="Label" parent="Panel/Credits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.178
+anchor_right = 0.499
+anchor_bottom = 0.178
+offset_left = -63.117
+offset_top = 111.08
+offset_right = 64.883
+offset_bottom = 175.08
+theme_override_font_sizes/font_size = 40
+text = "Art"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Panel/Credits/Art"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -632.0
+offset_top = 64.0
+offset_right = -16.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 20
+text = "Garretsone, Liz | Concept Art & UI Design 
+Lucero, Jose | Environment Art 
+Ramaley, Howie | Character Artist, Rigger, Technical Artist 
+"
+
+[node name="Label2" type="Label" parent="Panel/Credits/Art"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_top = 64.0
+offset_right = 571.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 20
+text = "Sagstetter, Will | Project Lead, Art Director, Gameplay Designer
+Stark, Ethan | Environment Art, Prop Art 
+Zinnecker, Mae | Character Artist, Rigger, Technical Artist "
+
+[node name="Code" type="Label" parent="Panel/Credits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.178
+anchor_right = 0.499
+anchor_bottom = 0.178
+offset_left = -63.117
+offset_top = 279.08
+offset_right = 65.883
+offset_bottom = 337.08
+theme_override_font_sizes/font_size = 40
+text = "Code"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/Credits/Code"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -449.0
+offset_top = 56.0
+offset_right = 319.0
+offset_bottom = 184.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "Anderson, Ian | Enemy AI Programmer 
+Parker, Molly | Interactions Programmer 
+Southman, Elijah | Programming Lead 
+
+"
+horizontal_alignment = 1
+
+[node name="Other" type="Label" parent="Panel/Credits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.178
+anchor_right = 0.499
+anchor_bottom = 0.178
+offset_left = -63.117
+offset_top = 439.08
+offset_right = 65.883
+offset_bottom = 497.08
+theme_override_font_sizes/font_size = 40
+text = "Other"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel/Credits/Other"]
+layout_mode = 0
+offset_left = -280.0
+offset_top = 58.0
+offset_right = 48.0
+offset_bottom = 219.0
+theme_override_font_sizes/font_size = 20
+text = "Palarz , Jayden | Sound
+Dimiceli, Bella  | Sound
+Summers, Bradley | Sound
+"
+
+[node name="Label4" type="Label" parent="Panel/Credits/Other"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 58.0
+offset_right = 290.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 20
+text = "Sara, Last | Website
+Holden, Last | Video
+Isaac , Last	 | Preproduction"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
