@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Grazer"
-run/main_scene="res://Levels/Level.tscn"
+config/name="GRAZER"
+run/main_scene="res://Levels/MainMenuScene.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 

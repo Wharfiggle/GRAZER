@@ -72,9 +72,6 @@ var audioArray = [moo1,moo2,moo3]
 var model = null
 var animation = null
 var skeleton = null
-var mesh = null
-var material = null
-var typeTextures = null
 var potionSpeedup = 1.0
 var dragResistance = 1.0
 var cowTypeInd = -1
@@ -108,8 +105,8 @@ func setType(ind:int = -1):
 	model = get_node(NodePath("./Model"))
 	animation = model.find_child("AnimationTree")
 	skeleton = model.find_child("Skeleton3D")
-	mesh = model.find_child("Cow")
-	material = mesh.get_material_overlay()
+	var mesh = model.find_child("Cow")
+	var material = mesh.get_material_overlay()
 	var typeTextures = [
 		preload("res://Assets/Models/Cow/cowCommon.png"),
 		preload("res://Assets/Models/Cow/cowRed.png"),

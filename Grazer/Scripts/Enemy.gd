@@ -158,7 +158,7 @@ func _physics_process(delta):
 	
 	movementBlend = lerpf(movementBlend, speed, 0.1)
 	var temp = 1.0 -  movementBlend
-	animation.set("parameters/idleWalk/blend_amount", temp)
+	animation.set("parameters/idleWalk/blend_amount", max( min(temp, 1), 0 ) )
 	
 	if(hitFlashAmount > 0.1):
 		hitFlash.set_shader_parameter("amount", hitFlashAmount)

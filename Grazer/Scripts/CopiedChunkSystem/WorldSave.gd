@@ -2,6 +2,7 @@ class_name worldsave extends Node
 
 @onready var loadedCoords = []
 @onready var dataInChunk = []
+var russelOrRay = "Russel"
 
 #Coordinates are stored in chunk coords, so like (1,0,1) NOT (16,0,16)!
 
@@ -33,6 +34,13 @@ func checkForDuplicates(coords):
 func reset():
 	loadedCoords.clear()
 	dataInChunk.clear()
+
+func getCharacter() -> String:
+	return russelOrRay
+
+func setCharacter(inRusselOrRay:bool):
+	if(inRusselOrRay): russelOrRay = "Russel"
+	else: russelOrRay = "Ray"
 
 func test():
 	print("test accessed")

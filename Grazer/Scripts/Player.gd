@@ -69,7 +69,7 @@ var bulletColor = Color(1, 1, 0)
 var lineSightColor = Color(1, 1, 1)
 var critColor = Color(0, 0, 0)
 
-var russelOrRay = "Russel"
+var russelOrRay = WorldSave.getCharacter()
 
 #@export var hitColor:Color
 #var hitFlashAmount = 0.0
@@ -137,7 +137,6 @@ var swapInputFrames = 5
 var swapInputFrameCounter = 0
 var active = true
 var maxAmmo = 0
-var once = true
 var lastGroundedPosition = position
 
 
@@ -160,6 +159,8 @@ func _ready():
 	gunStats[4] = shotgunDamage
 	gunStats[5] = shotgunReloadTime
 	
+	get_node(NodePath("./Russel")).visible = false
+	get_node(NodePath("./"+russelOrRay)).visible = true
 	
 	Steps.stream = stepsSound
 	
@@ -282,16 +283,22 @@ func _process(delta):
 			finishReloading()
 		
 		var startTime = 0.1
-		var endTime = 0.1
 		var rTime = revolverReloadTime
 		if(!onRevolver):
 			rTime = shotgunReloadTime
+		var endTime = min(0.6, rTime - startTime)
 		var startT = 1.0 - min(1.0, (rTime - currentReloadTime) / startTime)
 		var endT = 1.0 - min(1.0, currentReloadTime / endTime)
 		var t = startT
 		if(endT != 0):
 			t = endT
-		t = 1 - pow(t, 2)
+			if(onRevolver && gunSound.stream != reloadEndR):
+				gunSound.stream = reloadEndR
+				gunSound.play()
+			elif(!onRevolver && gunSound.stream != reloadEndS):
+				gunSound.stream = reloadEndS
+				gunSound.play()
+		t = 1 - pow(t, 4)
 		animation.set("parameters/walkReload 2/blend_amount", t)
 	
 	#shoot gun input buffer
@@ -454,6 +461,9 @@ func _process(delta):
 		print("fuck there is no herd") #yeah
 
 func setModel(inRusselOrRay:bool):
+	if(inRusselOrRay == (russelOrRay == "Russel")):
+		return
+	WorldSave.setCharacter(inRusselOrRay)
 	var model = get_node(NodePath("./" + russelOrRay))
 	model.visible = false
 	if(inRusselOrRay):
@@ -509,7 +519,6 @@ func startReload():
 	
 	print("Reloading")
 	reloading = true
-	once = true
 	if(onRevolver):
 		currentReloadTime = revolverReloadTime
 	else:
@@ -521,7 +530,6 @@ func startReload():
 func cancelReloading():
 	reloading = false
 	animation.set("parameters/walkReload 2/blend_amount", 0)
-	once = false
 	currentReloadTime = 0
 	idleTime = 0
 
@@ -532,14 +540,9 @@ func finishReloading():
 	idleTime = 0
 	if(onRevolver):
 		revolverClip = revolverClipSize
-		gunSound.stream = reloadEndR
-		gunSound.play()
-		
 		MainHud._ammo_update_(revolverClip)
 		
 	else:
-		gunSound.stream = reloadEndS
-		gunSound.play()
 		shotgunClip = shotgunClipSize
 		MainHud._ammo_update_(shotgunClip)
 		
@@ -676,9 +679,6 @@ func _physics_process(delta):
 	
 	#dodging
 	if(Input.is_action_just_pressed("dodge") && active):
-		if(once):
-			Vocal.play()
-			once = false
 		dodgeBufferTimer = dodgeBufferTime
 	elif(dodgeBufferTimer > 0):
 		dodgeBufferTimer -= delta
@@ -686,7 +686,9 @@ func _physics_process(delta):
 			dodgeBufferTimer = 0
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		Input.start_joy_vibration(0,0.6,0.6,.1)
-		Vocal.stream = lungeSound
+		if(Vocal.stream != lungeSound):
+			Vocal.stream = lungeSound
+			Vocal.play()
 		dodgeCooldownTimer = dodgeCooldownTime
 		if(dauntless):
 			dodgeCooldownTimer = 0.001
@@ -699,6 +701,7 @@ func _physics_process(delta):
 			dodgeTimer -= delta * 0.5
 		if(dodgeTimer < 0):
 			dodgeTimer = 0
+			Vocal.stream = null
 			animation.set("parameters/walkLunge/blend_amount", 0)
 			knocked = false
 			dodgeVel = Vector3.ZERO
@@ -827,7 +830,6 @@ func findHerdCenter() -> Vector3:
 
 func knock():
 	var enemies = knockbox.get_overlapping_bodies()
-	once = true
 	for enemy in enemies:
 		if enemy.has_method("knockback"):
 			#print("player knockback: " + str(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir))))

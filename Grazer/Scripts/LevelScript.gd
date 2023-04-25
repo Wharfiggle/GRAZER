@@ -20,8 +20,8 @@ var broadcastTime = 0.0
 #levels [1, 2, 3]
 var gunStats = [ 
 	#capacity	 	damage					reload speed
-	[8, 10, 12], 	[3.5, 4.0, 4.5], 		[0.75, 0.6, 0.45],  #revolver
-	[3, 4, 5], 	 	[0.75, 1.0, 1.25], 		[0.95, 0.8, 0.65] ] #shotgun
+	[8, 10, 12], 	[3.5, 4.0, 4.5], 		[0.85, 0.7, 0.55],  #revolver
+	[3, 4, 5], 	 	[0.75, 1.0, 1.25], 		[1.05, 0.9, 0.75] ] #shotgun
 var itemTextures = [
 	preload("res://Assets/Images/revolvUpgradeIcon.png"),
 	preload("res://Assets/Images/shotgunUpgradeIcon.png"),
