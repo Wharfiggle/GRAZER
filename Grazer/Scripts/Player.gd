@@ -102,6 +102,9 @@ var reloadEndS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-00
 var potionPowerDown = preload("res://sounds/New Sound FEX/Elixir-Power/powerdown.wav")
 var potionPowerUP = preload("res://sounds/New Sound FEX/Elixir-Power/powerup.wav")
 
+var RayHurtSound = preload("res://sounds/Cowgirl edited/Damage/Cowgirl Damage Take 4#01.3.wav")
+var rayLungesound = preload("res://sounds/Cowgirl edited/Lunges/Lunge#01.3.wav")
+
 const GRAVITY = 30
 @export var speed = 8.0
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
@@ -505,6 +508,9 @@ func usePotion(ind:int):
 		#put sound here
 		Vocal.stream = usepotionS
 		Vocal.play()
+		await Vocal.finished
+		Vocal.stream = potionPowerUP
+		Vocal.play()
 		if(potionUsed != null):
 			potionUsed.use(false)
 		potions[ind].use()
@@ -693,9 +699,16 @@ func _physics_process(delta):
 			dodgeBufferTimer = 0
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		Input.start_joy_vibration(0,0.6,0.6,.1)
-		if(Vocal.stream != lungeSound):
-			Vocal.stream = lungeSound
-			Vocal.play()
+		if(russelOrRay == "Russel"):
+			if(Vocal.stream != lungeSound):
+				Vocal.stream = lungeSound
+				if(!Vocal.playing):
+					Vocal.play()
+		if(russelOrRay == "Ray"):
+			if(Vocal.stream != rayLungesound):
+				Vocal.stream = rayLungesound
+				if(!Vocal.playing):
+					Vocal.play()
 		dodgeCooldownTimer = dodgeCooldownTime
 		if(dauntless):
 			dodgeCooldownTimer = 0.001
@@ -858,9 +871,14 @@ func updateHealth(newHP:float):
 func damage_taken(damage:float, from:String, _inCritHit:bool = false, _inBullet:Node = null) -> bool:
 	if(from != "player"):
 		print("player damaged")
-		Vocal.stream = damagesound
-		if(!Vocal.playing):
-			Vocal.play()
+		if(russelOrRay == "Russel"):
+			Vocal.stream = damagesound
+			if(!Vocal.playing):
+				Vocal.play()
+		if(russelOrRay == "Ray"):
+			Vocal.stream = RayHurtSound
+			if(!Vocal.playing):
+				Vocal.play()
 #		hitFlashAmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.35)

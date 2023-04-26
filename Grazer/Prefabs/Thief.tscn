@@ -51,7 +51,7 @@ bus = &"soundFXMain"
 
 [node name="EVoice" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59139, 0)
-bus = &"soundFXMain"
+bus = &"enemyVoice"
 
 [node name="ESoundFX" type="AudioStreamPlayer3D" parent="."]
 

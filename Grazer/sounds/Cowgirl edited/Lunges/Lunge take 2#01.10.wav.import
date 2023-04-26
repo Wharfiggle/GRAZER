@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bn5p2i520xjtt"
+path="res://.godot/imported/Lunge take 2#01.10.wav-449a8e0d91fc9e1434e49729cf59d83e.sample"
+
+[deps]
+
+source_file="res://sounds/Cowgirl edited/Lunges/Lunge take 2#01.10.wav"
+dest_files=["res://.godot/imported/Lunge take 2#01.10.wav-449a8e0d91fc9e1434e49729cf59d83e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

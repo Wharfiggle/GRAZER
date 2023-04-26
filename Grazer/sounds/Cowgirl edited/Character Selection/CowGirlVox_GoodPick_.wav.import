@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bt1djb0f5kh0o"
+path="res://.godot/imported/CowGirlVox_GoodPick_.wav-9dd00f038da6b93c1b3258bf16d2f325.sample"
+
+[deps]
+
+source_file="res://sounds/Cowgirl edited/Character Selection/CowGirlVox_GoodPick_.wav"
+dest_files=["res://.godot/imported/CowGirlVox_GoodPick_.wav-9dd00f038da6b93c1b3258bf16d2f325.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
