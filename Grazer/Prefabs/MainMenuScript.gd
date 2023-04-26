@@ -8,7 +8,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if(Input.is_action_just_pressed("dodge")):
+		_on_quit_button_pressed()
+	if(Input.is_action_just_pressed("Interact")):
+		_on_button_pressed()
 
 
 func _on_button_pressed():
