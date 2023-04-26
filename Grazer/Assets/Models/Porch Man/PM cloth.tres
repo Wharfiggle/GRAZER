@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://gb1ovy8isf5a"]
+
+[ext_resource type="Texture2D" uid="uid://dj06yq4fkii0w" path="res://Assets/Models/Porch Man/Russel Texture_Cloth_BaseColor.png" id="1_n1o7o"]
+[ext_resource type="Texture2D" uid="uid://s1nfsenlwbv3" path="res://Assets/Models/Porch Man/Russel Texture_Cloth_Metallic.png" id="2_hmfi8"]
+[ext_resource type="Texture2D" uid="uid://c2xht7qyjlwm7" path="res://Assets/Models/Porch Man/Russel Texture_Cloth_Normal.png" id="3_63edd"]
+[ext_resource type="Texture2D" uid="uid://b1b16rhu4fg8e" path="res://Assets/Models/Porch Man/Russel Texture_Cloth_Roughness.png" id="4_t7h40"]
+
+[resource]
+albedo_texture = ExtResource("1_n1o7o")
+metallic = 1.0
+metallic_texture = ExtResource("2_hmfi8")
+roughness_texture = ExtResource("4_t7h40")
+normal_enabled = true
+normal_texture = ExtResource("3_63edd")

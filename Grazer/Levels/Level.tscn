@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://dapc4u84j2cr"]
 
-[ext_resource type="PackedScene" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
+[ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dtfmrm20ruq5u" path="res://Prefabs/FPSCounter.tscn" id="2_c6l00"]

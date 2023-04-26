@@ -1,35 +1,35 @@
 [gd_scene load_steps=4 format=3 uid="uid://dur5c8rol4408"]
 
 [ext_resource type="PackedScene" uid="uid://cw6tfek2ofr00" path="res://Assets/Models/Porch Man/Porch Man.fbx" id="1_5lw4p"]
-[ext_resource type="Material" uid="uid://db86surtvq6n" path="res://Assets/Models/Russel/Cloth.tres" id="2_qwbtr"]
-[ext_resource type="Material" uid="uid://fn54vf75rioo" path="res://Assets/Models/Russel/Body.tres" id="3_fkelg"]
+[ext_resource type="Material" uid="uid://gb1ovy8isf5a" path="res://Assets/Models/Porch Man/PM cloth.tres" id="2_b40c4"]
+[ext_resource type="Material" uid="uid://ccp2qhxobb1qc" path="res://Assets/Models/Porch Man/PM skin.tres" id="3_ovi6a"]
 
 [node name="Porch Man" instance=ExtResource("1_5lw4p")]
 
 [node name="Belt001" parent="RootNode" index="0"]
-material_override = ExtResource("2_qwbtr")
+material_override = ExtResource("2_b40c4")
 
 [node name="Boots001" parent="RootNode" index="1"]
-material_override = ExtResource("2_qwbtr")
+material_override = ExtResource("2_b40c4")
 
 [node name="Face_Hair001" parent="RootNode" index="2"]
-material_override = ExtResource("3_fkelg")
+material_override = ExtResource("3_ovi6a")
 
 [node name="Hair001" parent="RootNode" index="3"]
-material_override = ExtResource("3_fkelg")
+material_override = ExtResource("3_ovi6a")
 
 [node name="Hat001" parent="RootNode" index="4"]
-material_override = ExtResource("2_qwbtr")
+material_override = ExtResource("2_b40c4")
 
 [node name="Pants001" parent="RootNode" index="5"]
-material_override = ExtResource("2_qwbtr")
+material_override = ExtResource("2_b40c4")
 
 [node name="Shirt001" parent="RootNode" index="6"]
-material_override = ExtResource("2_qwbtr")
+material_override = ExtResource("2_b40c4")
 
 [node name="Skin001" parent="RootNode" index="7"]
-material_override = ExtResource("3_fkelg")
+material_override = ExtResource("3_ovi6a")
 
 [node name="Glove001" parent="RootNode" index="8"]
 visible = false
-material_override = ExtResource("2_qwbtr")
+material_override = ExtResource("2_b40c4")
