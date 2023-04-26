@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+var invincible = false
+
 # Declare member variables here. Examples:
 var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
@@ -36,7 +38,6 @@ var idleTime = 0
 var autoReloadEnabled = false
 var autoReloadTime = 5
 var reloading = false
-var invincible = true
 
 var revolverimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/revolvEquippedV2.png")
 var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/shotgunEquippedV2.png")
@@ -142,7 +143,7 @@ var swapInputFrameCounter = 0
 var active = true
 var maxAmmo = 0
 var lastGroundedPosition = position
-
+@onready var deathMenu = $"../DeathMenu"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -882,3 +883,6 @@ func die():
 	animation.set("parameters/walkShoot/blend_amount", 0.1)
 	animation.set("parameters/shootAngle/blend_position", 1)
 	#skeleton.physical_bones_start_simulation(phys_bones)
+	if(deathMenu == null):
+		var deathMenu = $"../DeathMenu"
+	deathMenu.start()

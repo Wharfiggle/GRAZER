@@ -1,3 +1,5 @@
+#Elijah Southman
+
 extends TextureRect
 
 @export var enterExitTime = 0.2
