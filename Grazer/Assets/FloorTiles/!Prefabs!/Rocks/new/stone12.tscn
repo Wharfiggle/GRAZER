@@ -17,7 +17,7 @@ normal_enabled = true
 normal_texture = ExtResource("5_k8vu8")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hpmg8"]
-radius = 7.0
+radius = 6.5
 height = 36.1227
 
 [node name="stone12" instance=ExtResource("1_b8t5a")]

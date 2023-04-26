@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_3s20x"]
 [ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="2_feq3i"]
 [ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="2_v5jxt"]
-[ext_resource type="PackedScene" uid="uid://b4ehi2slultkr" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="3_oa507"]
+[ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="3_oa507"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)

@@ -30,7 +30,7 @@ static func retrieveStructureTypes() -> Array:
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/EmptyFloor1.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testTile.tscn", 2, 2]) #test
-	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPit1.tscn", 1, 1]) #test
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPit1.tscn", 1, 2]) #test
 	#structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPitV2.tscn", 1, 1]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/rvTestStruct.tscn", 2, 1])
 	structures.append(["res://Assets/FloorTiles/TilePool/BasicTiles/basic4.tscn", 1, 1])

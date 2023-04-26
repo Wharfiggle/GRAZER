@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://xqocipnnhq7"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_fehf1"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="3_6d5np"]
+[ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="3_6d5np"]
 [ext_resource type="PackedScene" uid="uid://dmombb06cyng6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="3_ivs2i"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="4_4epyv"]
+[ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="4_4epyv"]
 [ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="5_or7fd"]
 [ext_resource type="PackedScene" uid="uid://citoc5snwh525" path="res://Assets/FloorTiles/!Prefabs!/Yucca/juca2.tscn" id="7_d63uh"]
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="7_n43b4"]
