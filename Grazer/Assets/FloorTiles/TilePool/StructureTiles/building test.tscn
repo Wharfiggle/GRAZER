@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://vgtr3tesewb6"]
+[gd_scene load_steps=19 format=3 uid="uid://vgtr3tesewb6"]
 
 [ext_resource type="PackedScene" uid="uid://8vqw1t8xn8gm" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_1.tscn" id="2_m4w52"]
 [ext_resource type="PackedScene" uid="uid://81tdkywtx00y" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_2.tscn" id="3_wbykj"]
@@ -25,8 +25,6 @@ size = Vector3(16, 0.1, 16)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bh6h6"]
 size = Vector3(16, 0.1, 16)
-
-[sub_resource type="PrismMesh" id="PrismMesh_ta2rh"]
 
 [node name="Level" type="Node3D"]
 
@@ -139,18 +137,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9349, 0.0499992, -22.0559)
 
 [node name="Buildings 13" parent="NavigationRegion3D" instance=ExtResource("14_tbbc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6196, 0.0499992, -28.3154)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.57229e-07, 103.95, 7.53924e-09, 0, -4.54381e-06, 0.172478, -5.8847, 4.54381e-06, 9.42315e-16, -51.8071, 0, 15.8598)
-mesh = SubResource("PrismMesh_ta2rh")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.57229e-07, -103.95, -7.53924e-09, 1.24613e-21, -4.54381e-06, 0.172478, 5.88471, 4.54381e-06, -2.83214e-16, 83.1676, 0, 15.8598)
-mesh = SubResource("PrismMesh_ta2rh")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-5.8847, 1.81899e-12, 1.22553e-15, 1.24613e-21, -4.54381e-06, 0.172478, 2.84217e-14, -103.95, -7.53924e-09, 16.2291, 0, 68.6846)
-mesh = SubResource("PrismMesh_ta2rh")
 
 [node name="CowSpawner" parent="." instance=ExtResource("15_6rg1h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8298, 0.0499992, -1.39997)

@@ -61,11 +61,14 @@ script = ExtResource("1_ilocr")
 [node name="Broadcast" parent="." instance=ExtResource("1_33qyj")]
 
 [node name="FPS Counter" parent="." instance=ExtResource("2_c6l00")]
+visible = false
 offset_bottom = 26.0001
 
 [node name="Cow Counter" parent="." instance=ExtResource("12")]
+visible = false
 
 [node name="Health Counter" parent="." instance=ExtResource("3_8ivn4")]
+visible = false
 offset_right = 70.0
 
 [node name="GameUI" parent="." instance=ExtResource("12_3pmhn")]

@@ -15,7 +15,7 @@ normal_enabled = true
 normal_texture = ExtResource("4_sf3xc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rmy16"]
-size = Vector3(2.8707, 1.67116, 6.92945)
+size = Vector3(2.8707, 2.82705, 6.92945)
 
 [node name="RV" instance=ExtResource("1_noket")]
 
@@ -50,5 +50,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rih6o")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00697851, 0.836253, -0.499547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00697851, 1.43542, -0.499547)
 shape = SubResource("BoxShape3D_rmy16")
