@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b66yihrlihrt7"]
+[gd_scene load_steps=11 format=3 uid="uid://b66yihrlihrt7"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_mjuoe"]
 [ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="2_yb4l6"]
 [ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="4_d7ghl"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="5_x0ywm"]
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="6_a6g3t"]
-[ext_resource type="PackedScene" uid="uid://dmombb06cyng6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="6_kiljd"]
 [ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="7_jorfd"]
 [ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="7_qkq11"]
 
@@ -18,9 +17,6 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Arr
 
 [sub_resource type="BoxMesh" id="2"]
 size = Vector3(16, 0.1, 16)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yn5k4"]
-size = Vector3(12.1333, 13.7106, 13.4639)
 
 [node name="StaticBody3D2" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
@@ -57,13 +53,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1387, 0.0500002, -2.71456)
 [node name="cactiNopal" parent="NavigationRegion3D" instance=ExtResource("7_qkq11")]
 transform = Transform3D(0.527786, 0, -0.849377, 0, 1, 0, 0.849377, 0, 0.527786, 5.62559, 0.0500002, -2.87341)
 
-[node name="stone15" parent="NavigationRegion3D" instance=ExtResource("6_kiljd")]
-transform = Transform3D(-0.104562, 0, 0.17049, 0, 0.2, 0, -0.17049, 0, -0.104562, 5.87277, -0.409782, 5.42262)
-
-[node name="CollisionShape3D" parent="NavigationRegion3D/stone15/StaticBody3D" index="0"]
-transform = Transform3D(0.99982, 0.00557598, 0.018127, -0.00551999, 0.999982, -0.00313821, -0.0181441, 0.00303759, 0.999831, 0, 1.17959, 0)
-shape = SubResource("BoxShape3D_yn5k4")
-
 [node name="stone1" parent="NavigationRegion3D" instance=ExtResource("7_jorfd")]
 transform = Transform3D(-0.300639, 0, -0.953738, 0, 1, 0, 0.953738, 0, -0.300639, -3.09312, -0.983035, 4.75078)
 
@@ -73,5 +62,3 @@ gunmanSpawnChance = 0.4
 spawnChance = 0.1
 numEnemies = 4
 timeDelay = 0.2
-
-[editable path="NavigationRegion3D/stone15"]

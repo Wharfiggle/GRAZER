@@ -61,7 +61,6 @@ script = ExtResource("1_ilocr")
 [node name="Broadcast" parent="." instance=ExtResource("1_33qyj")]
 
 [node name="FPS Counter" parent="." instance=ExtResource("2_c6l00")]
-visible = false
 offset_bottom = 26.0001
 
 [node name="Cow Counter" parent="." instance=ExtResource("12")]
@@ -987,8 +986,14 @@ vertical_alignment = 1
 
 [connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Common/MakeTradeCommon" to="HerdMenu" method="_on_make_trade_common_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Red/MakeTradeRed" to="HerdMenu" method="_on_make_trade_red_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Lucky" to="HerdMenu" method="_on_lucky_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/MakeTradeLucky" to="HerdMenu" method="_on_make_trade_lucky_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/GrandRed" to="HerdMenu" method="_on_grand_red_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/MakeTradeGrandRed" to="HerdMenu" method="_on_make_trade_grand_red_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Ironhide" to="HerdMenu" method="_on_ironhide_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/MakeTradeIronhide" to="HerdMenu" method="_on_make_trade_ironhide_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Moxie" to="HerdMenu" method="_on_moxie_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/MakeTradeMoxie" to="HerdMenu" method="_on_make_trade_moxie_pressed"]

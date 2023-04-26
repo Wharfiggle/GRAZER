@@ -26,15 +26,15 @@ static func retrieveStructureTypes() -> Array:
 	var structures = []
 	
 	#sPathName, sWidth, sHeight
-	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn", 3, 4]) #checkpoint
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn", 10, 4]) #checkpoint
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/EmptyFloor1.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testTile.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPit1.tscn", 1, 2]) #test
 	#structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPitV2.tscn", 1, 1]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/rvTestStruct.tscn", 2, 1])
-	structures.append(["res://Assets/FloorTiles/TilePool/BasicTiles/basic4.tscn", 1, 1])
-	structures.append(["res://Assets/FloorTiles/TilePool/BasicTiles/basic3.tscn", 1, 1])
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/archway.tscn", 1, 1])
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/radioTower.tscn", 1, 1])
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structAmbush1.tscn", 1, 1])
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/road s 1.tscn", 1, 3])
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/organCactus1.tscn", 1, 1])
@@ -73,7 +73,7 @@ func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var distance = player.position.distance_to(position)
+	var distance = abs(position - player.position)
 	
 	#Waits to instantiate scene until ready
 	if(loading and ResourceLoader.load_threaded_get_status(pathname) == 3):
@@ -90,11 +90,13 @@ func _process(_delta):
 		loaded = true
 	
 	#Starts request to load scene when player is close enough
-	if(distance <= renderRange * tileWidth and !loaded and !loading):
+	var inRange = distance.x <= (width + 2) * tileWidth && distance.z <= (depth + 2) * tileWidth
+	if(inRange && !loaded && !loading):
 		ResourceLoader.load_threaded_request(pathname,"",false, ResourceLoader.CACHE_MODE_REUSE)
 		loading = true
 	#Unloads scene when player is far away enough
-	elif(distance > (renderRange + 1) * tileWidth and scene != null):
+	#elif(distance > (renderRange + 1) * tileWidth and scene != null):
+	elif(!inRange && scene != null):
 		scene.queue_free()
 		SceneCounter.structureScenes -= 1
 		scene = null

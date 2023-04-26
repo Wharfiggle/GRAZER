@@ -90,7 +90,8 @@ func addCow(cow):
 	cows.append(cow)
 	numCows += 1
 	cowCounter.updateCowNum(numCows)
-	add_child(cow)
+	if(cow.get_parent() != self):
+		add_child(cow)
 	cow.follow = follow
 	cow.target = getTarget()
 	cow.followingHerd = followingHerd

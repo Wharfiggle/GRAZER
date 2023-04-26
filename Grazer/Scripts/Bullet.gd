@@ -56,8 +56,6 @@ func _process(delta):
 	lifespan -= delta
 	if lifespan <= 0:
 		queue_free()
-		if(trailLength > 0):
-			print("im a fucking retard")
 	
 	var prevPos = position
 	if(active && hitBody == null && hitPoint == null):

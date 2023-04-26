@@ -17,7 +17,7 @@ normal_texture = ExtResource("5_628tu")
 heightmap_texture = ExtResource("3_kw410")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qf6m"]
-size = Vector3(20, 9.57821, 12.2312)
+size = Vector3(20.8916, 9.57821, 12.2312)
 
 [node name="wallStraight" instance=ExtResource("1_vyymg")]
 

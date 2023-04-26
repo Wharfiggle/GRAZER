@@ -223,7 +223,7 @@ func _physics_process(delta):
 				var rayMags = [0, 0, 0]
 				for i in rayCasts:
 					if(i == null):
-						printerr("Cow.gd: null raycasts oggofosodfodofsdfo!") #you heard me
+						printerr("Cow.gd: null raycasts")
 					elif(i.is_colliding()):
 						#if(rayInd == 5):
 						#	rayMags[rayInd] = 1

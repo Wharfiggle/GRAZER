@@ -36,7 +36,7 @@ var idleTime = 0
 var autoReloadEnabled = false
 var autoReloadTime = 5
 var reloading = false
-var invincible = false
+var invincible = true
 
 var revolverimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/revolvEquippedV2.png")
 var shotgunimage = preload("res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/shotgunEquippedV2.png")
@@ -54,8 +54,8 @@ var cowDamageMod = 1.0
 var cowTypes = null
 
 var potions = null
-#var inventory = [0, 0, 0, 0, 0, 0]
-var inventory = [5, 5, 5, 5, 5, 5]
+var inventory = [0, 0, 0, 5, 0, 0]
+#var inventory = [5, 5, 5, 5, 5, 5]
 @export var potionTime = 25.0
 var potionTimer = 0.0
 var potionUsed
@@ -209,8 +209,8 @@ func _process(delta):
 	if(herd == null):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
-		herd.spawnCowAtPos(Vector3(position.x, position.y, position.z - 2), 0)
-		#herd.spawnCowAtPos(Vector3(position.x - 1, position.y, position.z - 3), 0)
+		for i in 5:
+			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1), position.y, position.z + (rng.randf() * 2 - 1)), 0)
 		
 	if(herd.getNumCows() < 1 and !invincible):
 		die()
@@ -464,7 +464,7 @@ func _process(delta):
 		if(Input.is_action_just_pressed("Follow Wait") && active):
 			herd.toggleFollow()
 	else:
-		print("fuck there is no herd") #yeah
+		print("there is no herd?")
 
 func setModel(inRusselOrRay:bool):
 	if(inRusselOrRay == (russelOrRay == "Russel")):
@@ -554,7 +554,7 @@ func finishReloading():
 		
 
 func _physics_process(delta):
-	#hit flash on being hit
+	#hit flash on being hit (discarded because it was unnecessary and was better used as glows for potion effects)
 #	if(hitFlashAmount > 0.1):
 #		hitFlash.set_shader_parameter("amount", hitFlashAmount)
 #		hitFlashAmount = lerpf(hitFlashAmount, 0, 0.3)

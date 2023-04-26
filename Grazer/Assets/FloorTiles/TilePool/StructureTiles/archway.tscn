@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvsloftv3qi2h"]
+[gd_scene load_steps=9 format=3 uid="uid://dvsloftv3qi2h"]
 
-[ext_resource type="PackedScene" uid="uid://c41nldgjrdemf" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stoneArch.tscn" id="2_7em30"]
-[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="2_dm4kt"]
-[ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="3_cmdm8"]
-[ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="4_05xcc"]
+[ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="1_nf66a"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="2_ncrc5"]
+[ext_resource type="PackedScene" uid="uid://c41nldgjrdemf" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stoneArch.tscn" id="3_rvujn"]
+[ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="4_ae8ol"]
+[ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="5_igfp7"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -22,10 +23,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("1")
 
-[node name="DryBush" parent="." instance=ExtResource("3_cmdm8")]
+[node name="DryBush" parent="." instance=ExtResource("1_nf66a")]
 transform = Transform3D(0.4, 0, 0, 0, 0.708173, 0, 0, 0, 0.4, 3.80824, 0.0500002, -4.94217)
 
-[node name="DryBush2" parent="." instance=ExtResource("3_cmdm8")]
+[node name="DryBush2" parent="." instance=ExtResource("1_nf66a")]
 transform = Transform3D(0.203661, 0.16545, 0.208379, -0.0236674, 0.670088, -0.0760014, -0.219003, 0.0814439, 0.201995, -0.767313, 0.0500002, 3.746)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -34,10 +35,18 @@ navigation_mesh = SubResource("4")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 mesh = SubResource("2")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("2_dm4kt")
+surface_material_override/0 = ExtResource("2_ncrc5")
 
-[node name="stoneArch" parent="NavigationRegion3D" instance=ExtResource("2_7em30")]
+[node name="stoneArch" parent="NavigationRegion3D" instance=ExtResource("3_rvujn")]
 transform = Transform3D(0.452532, 0, -0.212636, 0, 0.5, 0, 0.212636, 0, 0.452532, 0.502272, -0.0524806, -3.11637)
 
-[node name="cactiNopal" parent="NavigationRegion3D" instance=ExtResource("4_05xcc")]
+[node name="cactiNopal" parent="NavigationRegion3D" instance=ExtResource("4_ae8ol")]
 transform = Transform3D(-1.05408, 0, 0.314496, 0, 1.1, 0, -0.314496, 0, -1.05408, 2.44729, 0.0500002, 6.86704)
+
+[node name="CowSpawner" parent="." instance=ExtResource("5_igfp7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20819, 0.0500002, 0.809928)
+spawnChance = 0.5
+
+[node name="CowSpawner2" parent="." instance=ExtResource("5_igfp7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582658, 0.0500002, -1.34815)
+spawnChance = 0.5

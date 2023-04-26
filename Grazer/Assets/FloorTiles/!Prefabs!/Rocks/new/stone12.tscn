@@ -16,9 +16,9 @@ emission_texture = ExtResource("3_klxlr")
 normal_enabled = true
 normal_texture = ExtResource("5_k8vu8")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hpmg8"]
-radius = 6.5
-height = 36.1227
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iviob"]
+height = 8.55882
+radius = 5.91157
 
 [node name="stone12" instance=ExtResource("1_b8t5a")]
 
@@ -29,5 +29,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0l4ie")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(0.99982, 0.00557598, 0.018127, -0.00551998, 0.99998, -0.0031382, -0.0181441, 0.00303759, 0.999831, 0, 6.55681, 0)
-shape = SubResource("CapsuleShape3D_hpmg8")
+transform = Transform3D(0.99982, 0.00557598, 0.018127, -0.00551998, 0.99998, -0.0031382, -0.0181441, 0.00303759, 0.999831, 0, 3.5758, 0)
+shape = SubResource("CylinderShape3D_iviob")

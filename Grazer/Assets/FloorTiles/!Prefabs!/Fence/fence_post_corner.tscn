@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwq17w2fj0kvq"]
+
+[ext_resource type="PackedScene" uid="uid://c8c0dtbch2emf" path="res://Assets/Models/Fence Textures/Fence Corner Post/Fence_Post_Corner.fbx" id="1_62vhk"]
+[ext_resource type="Texture2D" uid="uid://b32lgcxuh2jmw" path="res://Assets/Models/Fence Textures/Fence Corner Post/Fence_Post_Corner_lambert1_BaseColor.png" id="2_k24fu"]
+[ext_resource type="Texture2D" uid="uid://dydccapu44wlg" path="res://Assets/Models/Fence Textures/Fence Corner Post/Fence_Post_Corner_lambert1_Height.png" id="3_ou74c"]
+[ext_resource type="Texture2D" uid="uid://binwm06odh7pn" path="res://Assets/Models/Fence Textures/Fence_Post_lambert1_Normal.png" id="4_qxbsg"]
+[ext_resource type="Texture2D" uid="uid://tnt0ag1b3a0" path="res://Assets/Models/Fence Textures/Fence_Post_lambert1_Roughness.png" id="5_scjv3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7btkb"]
+albedo_texture = ExtResource("2_k24fu")
+roughness_texture = ExtResource("5_scjv3")
+normal_enabled = true
+normal_texture = ExtResource("4_qxbsg")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_flip_binormal = true
+heightmap_texture = ExtResource("3_ou74c")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u74j2"]
+size = Vector3(0.3, 1.7, 0.3)
+
+[node name="Fence_Post_Corner" instance=ExtResource("1_62vhk")]
+
+[node name="Corner_Fence_Post" parent="RootNode" index="0"]
+material_override = SubResource("StandardMaterial3D_7btkb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+shape = SubResource("BoxShape3D_u74j2")

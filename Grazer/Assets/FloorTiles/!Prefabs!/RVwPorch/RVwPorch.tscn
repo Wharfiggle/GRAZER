@@ -1,9 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://cagxngogpkioa"]
+[gd_scene load_steps=5 format=3 uid="uid://cagxngogpkioa"]
 
 [ext_resource type="PackedScene" uid="uid://w5e8ovnd8mw8" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/porch.tscn" id="1_405n7"]
 [ext_resource type="PackedScene" uid="uid://ch61xq358xwbd" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/rv.tscn" id="2_i0mhf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1m66c"]
+size = Vector3(0.582648, 3.17767, 2.30934)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lg4r"]
+size = Vector3(0.582648, 3.17767, 2.99305)
 
 [node name="Porch" instance=ExtResource("1_405n7")]
 
 [node name="RV" parent="." index="3" instance=ExtResource("2_i0mhf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00881588, 0, -0.0188072)
+
+[node name="Ledge2" type="StaticBody3D" parent="RV" index="3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.50254, 0.528485, 0.373604)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RV/Ledge2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62303, 1.06685, -1.26024)
+shape = SubResource("BoxShape3D_1m66c")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RV/Ledge2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.623, 1.067, -1.26)
+shape = SubResource("BoxShape3D_1m66c")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RV/Ledge2" index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.104027, 1.067, -0.39785)
+shape = SubResource("BoxShape3D_2lg4r")

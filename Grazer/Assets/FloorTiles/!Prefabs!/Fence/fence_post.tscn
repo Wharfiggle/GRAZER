@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6b6t5yx3tyen"]
+
+[ext_resource type="PackedScene" uid="uid://kytmnkdppg6n" path="res://Assets/Models/Fence Textures/Fence_Post.fbx" id="1_vibnv"]
+[ext_resource type="Texture2D" uid="uid://b0smxs3c6r587" path="res://Assets/Models/Fence Textures/Fence_Post_lambert1_BaseColor.png" id="2_yl0ln"]
+[ext_resource type="Texture2D" uid="uid://djm1n6i606fa7" path="res://Assets/Models/Fence Textures/Fence_Post_lambert1_Height.png" id="3_xf1k8"]
+[ext_resource type="Texture2D" uid="uid://binwm06odh7pn" path="res://Assets/Models/Fence Textures/Fence_Post_lambert1_Normal.png" id="4_w7735"]
+[ext_resource type="Texture2D" uid="uid://tnt0ag1b3a0" path="res://Assets/Models/Fence Textures/Fence_Post_lambert1_Roughness.png" id="5_mumlc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbb0a"]
+albedo_texture = ExtResource("2_yl0ln")
+roughness_texture = ExtResource("5_mumlc")
+normal_enabled = true
+normal_texture = ExtResource("4_w7735")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_flip_binormal = true
+heightmap_texture = ExtResource("3_xf1k8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2wlxh"]
+size = Vector3(2, 1.7, 0.3)
+
+[node name="Fence_Post" instance=ExtResource("1_vibnv")]
+
+[node name="Fence_Post" parent="RootNode" index="0"]
+material_override = SubResource("StandardMaterial3D_hbb0a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.65, 0)
+shape = SubResource("BoxShape3D_2wlxh")

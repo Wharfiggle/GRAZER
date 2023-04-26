@@ -20,6 +20,7 @@ var trading = false
 	$VBoxContainer/Ironhide,
 	$VBoxContainer/Moxie
 ]
+var numCowTypes = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +30,7 @@ func use():
 	active = !active
 	enterExitTimer = enterExitTime
 	if(active):
+		updateNumCowTypes()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		var newMousePos = Vector2(
 			viewport.get_visible_rect().size.x - widthOffset,
@@ -41,6 +43,9 @@ func use():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(player == null):
+		player = get_node(NodePath("/root/Level/Player"))
+	
 	if(enterExitTimer > 0):
 		enterExitTimer -= delta
 		if(enterExitTimer <= 0):
@@ -87,11 +92,23 @@ func select(ind:int):
 			children[i].visible = false
 	cowMenus[selected].texture_normal = expandedMenu
 	
+func startTrade():
+	trading = true
+	
 func stopTrade():
 	pass
-
-func startTrade():
-	pass
+	
+func updateNumCowTypes():
+	if(player == null):
+		return
+		
+	numCowTypes = [0, 0, 0, 0, 0, 0]
+	var cows = player.herd.getCows()
+	for i in cows.size():
+		numCowTypes[cows[i].cowTypeInd] += 1
+	for i in 6:
+		cowMenus[i].find_child("Num").text = str(numCowTypes[i])
+		cowMenus[i].find_child("Num2").text = str(numCowTypes[i])
 
 func _on_common_mouse_entered():
 	hovered = 0
@@ -105,3 +122,16 @@ func _on_ironhide_mouse_entered():
 	hovered = 4
 func _on_moxie_mouse_entered():
 	hovered = 5
+
+func _on_make_trade_common_pressed():
+	startTrade()
+func _on_make_trade_red_pressed():
+	startTrade()
+func _on_make_trade_lucky_pressed():
+	startTrade()
+func _on_make_trade_grand_red_pressed():
+	startTrade()
+func _on_make_trade_ironhide_pressed():
+	startTrade()
+func _on_make_trade_moxie_pressed():
+	startTrade()

@@ -63,14 +63,14 @@ const mapWidth = 5
 var structures = []
 var structPerLevel = 10
 var checkLength = 4
-var checkWidth = 3
+var checkWidth = 10
 
 #chance modifier for spawners on each chunk/structure. Increases as player progresses
 var spawnChanceMod = 1.0
 
 func _ready():
-	checkWidth = structureTypes[1][1] #Gets width of checkpoints
-	checkLength = structureTypes[1][2] #Gets length
+	#checkWidth = structureTypes[1][1] #Gets width of checkpoints
+	#checkLength = structureTypes[1][2] #Gets length
 	#print(checkOverlap(1,Vector3(-1 *16,0,-14 * 16),2, Vector3(1 * 16,0,-15 * 16)))
 	preloadTiles()
 	generateStructures()

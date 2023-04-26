@@ -58,3 +58,4 @@ collision_layer = 19
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70919, 1.53823, 0)
 shape = SubResource("BoxShape3D_1lilo")
+disabled = true

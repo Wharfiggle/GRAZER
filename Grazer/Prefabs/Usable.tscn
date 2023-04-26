@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://dra5buej3kycq"]
 
 [ext_resource type="Script" path="res://Levels/Usable.gd" id="1_02raw"]
-[ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://Assets/Images/empress of bostonia.png" id="2_p7i2y"]
+[ext_resource type="Texture2D" uid="uid://b86jfncuxpn5s" path="res://Assets/Images/interactPrompt.png" id="2_vyoio"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_djqmi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptetw"]
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("2_p7i2y")
+albedo_texture = ExtResource("2_vyoio")
 billboard_mode = 1
 billboard_keep_scale = true
 
@@ -20,7 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
 script = ExtResource("1_02raw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.707107, -0.298836, 0.640856, 0, 0.906308, 0.422618, -0.707107, -0.298836, 0.640856, 0, 3, 0)
+transform = Transform3D(2.12132, -0.896508, 1.92257, 0, 2.71892, 1.26785, -2.12132, -0.896508, 1.92257, 0, 3, 0)
 mesh = SubResource("QuadMesh_djqmi")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ptetw")

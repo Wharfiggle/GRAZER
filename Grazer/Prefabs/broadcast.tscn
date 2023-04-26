@@ -45,7 +45,8 @@ offset_left = -206.0
 offset_top = 33.0
 offset_right = 220.0
 offset_bottom = 197.0
-text = "Fate. Destiny. Fatestinatey. People toss those words around like tennis balls. Well, I eat balls for breakfast."
+text = "Attention:
+Thank you for your attention"
 label_settings = SubResource("LabelSettings_pg5ty")
 horizontal_alignment = 1
 autowrap_mode = 3
