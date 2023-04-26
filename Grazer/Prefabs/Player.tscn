@@ -68,3 +68,6 @@ cast_shadow = 0
 
 [node name="gun" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75908, 0.828477)
+
+[node name="potions" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42797, 0)

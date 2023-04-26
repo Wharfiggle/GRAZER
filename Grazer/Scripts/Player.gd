@@ -79,6 +79,7 @@ var russelOrRay = WorldSave.getCharacter()
 @onready var gunSound = $gun
 @onready var Steps = $footsteps
 @onready var Vocal = $Voice
+@onready var extraSounds = $potions
 #preloading sound file
 var runSound = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
 var stepsSound = preload("res://sounds/Footsteps/Footsteps/CowboyStep1.wav")
@@ -96,6 +97,9 @@ var reloadEndR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloadC
 var reloadStartS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadOpen.wav")
 var reloadingSoundS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadBullet.wav")
 var reloadEndS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadClose.wav")
+
+var potionPowerDown = preload("res://sounds/New Sound FEX/Elixir-Power/powerdown.wav")
+var potionPowerUP = preload("res://sounds/New Sound FEX/Elixir-Power/powerup.wav")
 
 const GRAVITY = 30
 @export var speed = 8.0
@@ -248,7 +252,9 @@ func _process(delta):
 		potionTimer -= delta
 		if(potionTimer < 0):
 			potionTimer = 0
+			extraSounds.stream = potionPowerDown
 			potionUsed.use(false)
+			extraSounds.play()
 			potionUsed = null
 			hitFlash.set_shader_parameter("amount", 0)
 	
