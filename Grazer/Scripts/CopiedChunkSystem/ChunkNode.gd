@@ -61,7 +61,6 @@ func start(_chunkCoords, chunkTypes:Array = []) -> Array:
 		WorldSave.addChunk(_chunkCoords)
 		loadedBefore = false
 	
-	
 	#else it has been loaded before
 	else:
 		chunkData = WorldSave.retriveData(chunkCoords)
@@ -85,7 +84,6 @@ func start(_chunkCoords, chunkTypes:Array = []) -> Array:
 func _process(_delta):
 	#Because if we try instantiate the scene while its not done it freezes the game
 	#Instead this function tries to check every frame if its done before attempting
-	
 	if(loading):
 		#print(ResourceLoader.load_threaded_get_status(chunkData[0]))
 		if(chunkData[0] == ""):

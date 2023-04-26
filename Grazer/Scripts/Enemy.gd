@@ -31,17 +31,15 @@ var audioArray = [voice1,voice2,voice3]
 
 
 var maxHealth = 15.0
-var health = maxHealth
-var clipSize = 3
-var clip = 3
-var aimTime = 1
-var attackCooldown = 0
-var reloadTime = 3
-var reloadCooldown = 0
+var health = maxHealth #Current health
+var clipSize = 3 #Max loadable bullets
+var clip = 3 #Current bullets loaded
+var aimTime = 1 #Time a gunman takes to aim
+var attackCooldown = 0 #Extra time between shots
+var reloadTime = 3 #Time required to reload
+var reloadCooldown = 0 #Current reloading time
 
 var targetPos = Vector3(0,0,0)
-var dynamicMov = Vector3(0,0,0)
-var dynamicCooldown = 0.0;
 var targetCow = null
 @onready var navAgent = get_node("NavigationAgent3D")
 var path = []
@@ -50,19 +48,16 @@ var baseSpeed = 5.5
 var speed = 1.0
 var followDistance = 7.0 + randf_range(-1,1)
 var fleeDirection = -1 #1 to flee towards position z (backwards), -1 towards negative (forwards)
-var herdRadius = 10 + randf_range(-2,2)
-var currentCircle = 1
+var herdRadius = 10 + randf_range(-2,2) #Distance marauder circles around herd
+var currentCircle = 1 #Used for setting a vector length when circling
 var tVelocity = Vector3.ZERO
 var GRAVITY = 30 #hibernate() sets this to 30, so both need to be changed when modified
 
-#Distance from player when the enemy will stop hibernating
-var wakeUpDistance = 20.0
+var wakeUpDistance = 20.0 #Distance from player when the enemy will stop hibernating
 var canFire = true
 var aiming = false
 var fireDirection
 @export var knockbackMod = 2.0
-#@export var knockbackIFrames = 0.3
-#var knockbackIFramesTimer = 0.0
 @export var knockbackTime = 0.6
 var knockbackTimer = 0.0
 var knockbackVel = Vector3(0,0,0)
@@ -110,6 +105,7 @@ func _ready():
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
+	
 	if(waited == false):
 		waited = true
 		var origPos = position
@@ -171,7 +167,6 @@ func _physics_process(delta):
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
 	
-	#TODO, ENEMY AIMING IS SEPERATE FROM ENEMY ROTATION DIRECTION, FIX
 	var rotateTo
 	if(!aiming):
 		rotateTo = targetPos
@@ -182,6 +177,7 @@ func _physics_process(delta):
 		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + PI,
 		0.1)
 	
+	#Initiate stealing a cow
 	if(marauderType == enemyTypes.thief && currentMode == behaviors.circle):
 		var rn = randi_range(1, 100)
 		if(rn == 1):
@@ -190,7 +186,6 @@ func _physics_process(delta):
 		for i in cows.size():
 			if(position.distance_to(cows[i].position) < dragRange):
 				currentMode = behaviors.cowPursuit
-	
 	
 	if(reloadCooldown > 0):
 		reloadCooldown -= delta
@@ -217,7 +212,7 @@ func _physics_process(delta):
 	if(currentMode == behaviors.hibernate):
 		#print("im hibernating")
 		return
-		
+	
 	#gravity
 	tVelocity.y -= GRAVITY * delta
 	if(is_on_floor()):
@@ -320,11 +315,12 @@ func circle():
 	if(herd == null or herd.numCows <= 0):
 		targetPos = player.position
 		return
+		
 	#variable for determining how far away to place next naviagation point from current position
-	var circleSpeed = 2.0
+	var circleSpeed = 5.0
 	var lerpSpeed = 0.1
 	var herdCenter = herd.findHerdCenter()
-	#Desired position vector based on desired radius
+	#Relational vector from center of herd to enemy
 	var rVec = herdRadius * ((position - herdCenter).normalized())
 	
 	#Dot product math and scaler projection math
@@ -337,8 +333,9 @@ func circle():
 	if(rVec.z == 0):
 		baseB = 0
 	var baseV = Vector3(baseA, 0, baseB)
-	
 	var relate = position - player.position
+	
+	#Used for changing the direction around the circle enemy goes
 	var scaler = ((relate.x * baseV.x) + (relate.z * baseV.z))
 	
 	#if player is far too close to thief (Break Circle)
@@ -351,28 +348,30 @@ func circle():
 		targetPos = position + fleeVector * 5
 		return
 	
-	#If player is close enough to gunman, (Pursuit)
+	#If player is close enough to gunman and gunman is not reloading, (Pursuit)
 	elif(marauderType == enemyTypes.gunman and relate.length() < followDistance + 6 and 
 	reloadCooldown <= 0):
 		currentMode = behaviors.pursuit
 		return
 	
 	#If enemy is too far away from the herd (Enter Circle)
-	elif((herdCenter - position).length() > (2 * followDistance)):
+	elif((herdCenter - position).length() > (2 * followDistance) and !aiming):
 		lerp(speed, 1.0, lerpSpeed) # got an error here. "cannot convert argument 2 from float to Nil"
 	
 	#If enemy feels too close (Flee in circle)
 	else:
 		lerp(speed, 1.0, lerpSpeed)
+	
 	if(scaler > 0):
 		scaler = 1
 	else:
 		scaler = -1
-		
-	if(relate.length() < (herdCenter - position).length()):
-		currentCircle = scaler
-	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
 	
+	if(relate.length() * 2 < (herdCenter - position).length()):
+		currentCircle = scaler
+		pass
+	targetPos = rVec + herdCenter + (baseV.normalized() * circleSpeed * currentCircle)
+	#print("set pos to " + str(targetPos))
 #	if(marauderType == enemyTypes.thief and randi_range(1,1000) <= 1):
 #		currentMode = behaviors.cowPursuit
 
@@ -387,7 +386,7 @@ func pursuit():
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
 	if((spacing < followDistance + 3 and spacing > followDistance) or aiming):
 		#Slowing down in desired range
-		if(speed > 0):
+		if(speed > 0 and !aiming):
 			speed = (spacing - followDistance) / 3.0
 		if (canFire):
 			var direction = transform.origin - player.transform.origin
@@ -401,7 +400,6 @@ func pursuit():
 				readyAim()
 				attackCooldown = 1.0
 				clip -= 1
-				#print("Bullets left: " + str(clip))
 				if(clip <= 0):
 					#setting sound to reload
 					SoundFX.stream = reloadSound
@@ -426,10 +424,12 @@ func pursuit():
 		fleeVector.y = 0
 		fleeVector = fleeVector.normalized()
 		targetPos = global_transform.origin + fleeVector * 5
+	
 	#If thief gets too close
 	elif(marauderType == enemyTypes.thief and spacing < followDistance / 2.0):
 		#print("Panic!")
 		currentMode = behaviors.flee
+	
 	#If gunman is too close, back up
 	elif(marauderType == enemyTypes.gunman and spacing < followDistance / 2.0):
 		var fleeVector = Vector3(0,0,0)
@@ -437,9 +437,13 @@ func pursuit():
 		fleeVector.y = 0
 		fleeVector = fleeVector.normalized()
 		targetPos = global_transform.origin + fleeVector * 5
-
-	elif(speed < 1):
+	
+	elif(speed < 1 and !aiming):
+		targetPos = player.position
 		speed = 1.0
+	
+	else:
+		targetPos = player.position
 
 func cowPursuit():
 	var clip_to_play = audioArray[randi() % audioArray.size()] 
@@ -555,19 +559,24 @@ func readyAim():
 	if(aiming):
 		return
 	aiming = true
-	for i in 6:
-		speed = 1 - i / 7.0
-		aimLerpSpeed = baseAimSpeed * (1 - i / 5.0)
+	targetPos = player.position
+	for i in 60:
+		animation.set("parameters/walkshoot/blend_amount", min(i / 30.0, 1) )
+		speed = 1.0 - ((i / 10.0) + 1.0) / 6.0 
+		if((player.position - position).length() > 1.4 * followDistance):
+			speed *= 2.0
+		if(i > 40):
+			#Turn speed reduction
+			aimLerpSpeed = baseAimSpeed * 0.2
 		if(aimLerpSpeed < 0):
 			aimLerpSpeed = 0
 		if(speed > 1):
-			speed = 1
-#		movementBlend = lerpf(movementBlend, 1, 0.1)
-#		movementBlend = speed
-#		animation.set("parameters/idleWalk/blend_amount", movementBlend)
+			speed = 1.0
 		
-		await get_tree().create_timer(aimTime / 5.0).timeout
+		#Wait fractions of a second to smooth out transition
+		await get_tree().create_timer(aimTime / 59.0).timeout
 	attack()
+	animation.set("parameters/walkshoot/blend_amount", 0 )
 	aiming = false
 	speed = 1.0
 	aimLerpSpeed = baseAimSpeed
@@ -577,7 +586,6 @@ func attack():
 	targetPos = player.global_transform.origin
 	Vocal.stream=clip_to_play
 	
-	
 	if(shootingPoint != null):
 		Vocal.play()
 		#spawns bullet in the direction the muzzle is facing 
@@ -586,9 +594,6 @@ func attack():
 		var direction = transform.origin - player.transform.origin
 		direction = direction.normalized()
 		var looking = atan2(direction.x, direction.z)
-		
-		
-		
 		
 		#var bulletRotation = Vector3(0, atan2(direction.x, direction.z) + PI, 0)
 		b.shoot(self, "enemy", shootingPoint.global_position, Vector3(0, rotation.y, 0), 15.0, 2.0, false)
