@@ -102,6 +102,7 @@ func _ready():
 		itemDrop = itemDropPrefab.instantiate()
 		
 	hitFlash.set_shader_parameter("color", hitColor)
+	animation.set("parameters/walkshoot/blend_amount", 0 )
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
@@ -209,6 +210,7 @@ func _physics_process(delta):
 			[behaviors.hibernate]:
 				hibernate()
 	
+	
 	if(currentMode == behaviors.hibernate):
 		#print("im hibernating")
 		return
@@ -303,6 +305,7 @@ func _physics_process(delta):
 #		knockbackIFramesTimer -= delta
 #		if(knockbackIFramesTimer < 0):
 #			knockbackIFramesTimer = 0
+
 
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
@@ -572,7 +575,13 @@ func readyAim():
 			aimLerpSpeed = 0
 		if(speed > 1):
 			speed = 1.0
-		
+		#Cancels aiming if stunned
+		if(stunTimer > 0 or knockbackTimer > 0):
+			aiming = false
+			animation.set("parameters/walkshoot/blend_amount", 0)
+			speed = 1.0
+			aimLerpSpeed = baseAimSpeed
+			return
 		#Wait fractions of a second to smooth out transition
 		await get_tree().create_timer(aimTime / 59.0).timeout
 	attack()
