@@ -10,7 +10,7 @@ var revolver
 var shootingPoint
 var aimDirection = 0
 var movementBlend = 0.0
-@export var baseAimSpeed = 0.75
+@export var baseAimSpeed = 0.2
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
@@ -34,10 +34,11 @@ var maxHealth = 15.0
 var health = maxHealth #Current health
 var clipSize = 3 #Max loadable bullets
 var clip = 3 #Current bullets loaded
-var aimTime = 1 #Time a gunman takes to aim
+var aimTime = 0.6 #Time a gunman takes to aim
 var attackCooldown = 0 #Extra time between shots
-var reloadTime = 3 #Time required to reload
+var reloadTime = 2.0 #Time required to reload
 var reloadCooldown = 0 #Current reloading time
+var lineOfSightTime = 0.0 #Time with direct line of sight
 
 var targetPos = Vector3(0,0,0)
 var targetCow = null
@@ -156,6 +157,18 @@ func _physics_process(delta):
 	movementBlend = lerpf(movementBlend, speed, 0.1)
 	var temp = 1.0 -  movementBlend
 	animation.set("parameters/idleWalk/blend_amount", max( min(temp, 1), 0 ) )
+	
+	#TODO Line of sight check to make enemy continue to shoot 
+#	if(position - player.position).length() < 2 * followDistance:
+#		var ray_query = PhysicsRayQueryParameters3D.new()
+#		ray_query.from = position
+#		ray_query.to = player.position
+#		#ray_query.hit_from_inside = true
+#		ray_query.set_collision_mask(0b0100)
+#		var collision = get_world_3d().direct_space_state.intersect_ray(ray_query)
+#		print("Col: " + str(collision))
+#		if(collision.is_empty()):
+#			print("Line of sight!")
 	
 	if(hitFlashAmount > 0.1):
 		hitFlash.set_shader_parameter("amount", hitFlashAmount)
@@ -287,9 +300,11 @@ func _physics_process(delta):
 	#knockback timer
 	if(knockbackTimer > 0):
 		knockbackTimer -= delta
+		animation.set("parameters/walkPushed/blend_amount", max(min(1 - (knockbackTimer / knockbackTime), 1.0), 0))
 		if(knockbackTimer < 0):
 			knockbackTimer = 0
 			knockbackStrength = 0
+			animation.set("parameters/walkPushed/blend_amount", 1)
 			stunTimer = stunTime
 		#lerp speed towards 0 on a square root curve
 		var t = knockbackTimer / knockbackTime
@@ -298,8 +313,13 @@ func _physics_process(delta):
 		knock()
 	elif(stunTimer > 0):
 		stunTimer -= delta
+		if(stunTimer < stunTime / 4.0 ):
+			animation.set("parameters/walkPushed/blend_amount", max(min(stunTimer / (stunTime / 4.0), 1), 0))
+			
+	
 		if(stunTimer < 0):
 			stunTimer = 0
+			animation.set("parameters/walkPushed/blend_amount", 0)
 	#knockback iframes timer
 #	elif(knockbackIFramesTimer > 0):
 #		knockbackIFramesTimer -= delta
@@ -394,8 +414,12 @@ func pursuit():
 		if (canFire):
 			var direction = transform.origin - player.transform.origin
 			direction = direction.normalized()
+			print("Aim direction = " + str(aimDirection)) 
+			print("Target direction = " + str(atan2(direction.x, direction.z) + PI))
+			print("Turn Speed = " + str(aimLerpSpeed))
 			aimDirection = lerp_angle(aimDirection, 
 				atan2(direction.x, direction.z) + PI, aimLerpSpeed)
+			
 			var angle_to = direction.dot(transform.basis.z)
 			if angle_to > 0:
 				pass

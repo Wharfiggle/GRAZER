@@ -59,7 +59,7 @@ animation = &"Walk_Liz"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_e7ome"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qt1bu"]
-graph_offset = Vector2(167.2, 0)
+graph_offset = Vector2(300.064, 313.22)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_fvgf6")
 nodes/Animation/position = Vector2(480, 96)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_oy2ry")

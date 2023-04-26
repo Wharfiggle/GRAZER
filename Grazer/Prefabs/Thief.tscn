@@ -16,7 +16,6 @@ radius = 1.25
 script = ExtResource("1_5n2md")
 
 [node name="Model" parent="." instance=ExtResource("3_hqy1x")]
-script = null
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
