@@ -151,6 +151,7 @@ script = ExtResource("15_8jq8n")
 widthOffset = 340.0
 
 [node name="Usable" parent="HerdMenu" instance=ExtResource("15_hq1n4")]
+visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HerdMenu"]
 layout_mode = 1
@@ -517,7 +518,7 @@ offset_top = 62.8726
 offset_right = 186.9
 offset_bottom = 118.873
 grow_horizontal = 2
-text = "Piss cow
+text = "Yellow belly varmint
 +Crit Chance
 +Damage"
 label_settings = SubResource("LabelSettings_4j3ub")
