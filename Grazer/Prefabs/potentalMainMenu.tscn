@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwx3nkku0idnk"]
+[gd_scene load_steps=6 format=3 uid="uid://dwx3nkku0idnk"]
 
 [ext_resource type="Script" path="res://Prefabs/MainMenuScript.gd" id="1_ivsrd"]
 [ext_resource type="Texture2D" uid="uid://d2m0o42qas5dn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/grzrMenuScreenLogo.png" id="2_8ux03"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bybe"]
+bg_color = Color(0.117647, 0.14902, 0.0941176, 1)
+
+[sub_resource type="Gradient" id="Gradient_35e5v"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.161458, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.0377095, 1.10821e-05, 0.197584, 0.196078)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ebvue"]
+gradient = SubResource("Gradient_35e5v")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [node name="Panel" type="Panel"]
 anchors_preset = 15
@@ -9,39 +23,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8bybe")
 script = ExtResource("1_ivsrd")
 
-[node name="playButton" type="Button" parent="."]
+[node name="Orange Vignette" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.0
-offset_top = 151.5
-offset_right = 42.0
-offset_bottom = 182.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play
-"
-
-[node name="credits" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -42.0
-offset_top = 198.0
-offset_right = 42.0
-offset_bottom = 229.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Credits
-"
+texture = SubResource("GradientTexture2D_ebvue")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -59,17 +57,55 @@ grow_vertical = 2
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_8ux03")
 
-[node name="quitButton" type="Button" parent="."]
+[node name="playButton" type="Button" parent="."]
+modulate = Color(1, 0.819608, 0.709804, 1)
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = 245.5
-offset_right = 43.0
-offset_bottom = 276.5
+offset_left = -50.0
+offset_top = 170.0
+offset_right = 50.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play
+"
+
+[node name="credits" type="Button" parent="."]
+modulate = Color(1, 0.858824, 0.768627, 1)
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 220.0
+offset_right = 50.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits
+"
+
+[node name="quitButton" type="Button" parent="."]
+modulate = Color(1, 0.819608, 0.709804, 1)
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 270.0
+offset_right = 40.0
+offset_bottom = 301.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quit"

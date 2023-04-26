@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dr2p0uvxjl7nc"]
+[gd_scene load_steps=5 format=3 uid="uid://dr2p0uvxjl7nc"]
 
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_5pel6"]
+[ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="2_ao8ti"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vo6td"]
+line_spacing = 15.0
+font = ExtResource("2_ao8ti")
+font_size = 32
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b41dx"]
+line_spacing = 15.0
+font = ExtResource("2_ao8ti")
+font_size = 42
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
 
 [node name="credits" type="Control"]
 layout_mode = 3
@@ -13,140 +29,173 @@ script = ExtResource("1_5pel6")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 1282.0
-offset_bottom = 721.0
+offset_right = 1280.0
+offset_bottom = 720.0
 
-[node name="Button" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 669.0
-offset_right = 91.0
-offset_bottom = 708.0
-text = "Back"
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -3.0
+offset_right = -26.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
 
-[node name="Credits" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 16.0
-offset_right = 831.0
-offset_bottom = 156.0
+[node name="Credits" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 100
-text = "Credits"
+text = "C R E D I T S"
+label_settings = SubResource("LabelSettings_vo6td")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="CreditsUnderline" type="Label" parent="Panel/VBoxContainer/Credits"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.0
+offset_top = 20.0
+offset_right = 191.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "________"
+label_settings = SubResource("LabelSettings_vo6td")
 horizontal_alignment = 1
 
-[node name="Art" type="Label" parent="Panel/Credits"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_top = 0.178
-anchor_right = 0.499
-anchor_bottom = 0.178
-offset_left = -63.117
-offset_top = 111.08
-offset_right = 64.883
-offset_bottom = 175.08
+[node name="Art" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Art"
+label_settings = SubResource("LabelSettings_b41dx")
 horizontal_alignment = 1
+vertical_alignment = 2
 
-[node name="Label" type="Label" parent="Panel/Credits/Art"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -632.0
-offset_top = 64.0
-offset_right = -16.0
-offset_bottom = 224.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ArtistNames" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Garretsone, Liz | Concept Art & UI Design 
-Lucero, Jose | Environment Art 
-Ramaley, Howie | Character Artist, Rigger, Technical Artist 
+text = "Sagstetter, Will  |
+Stark, Ethan  |
+Zinnecker, Mae  |
+Garretsone, Liz  | 
+Lucero, Jose  |
+Ramaley, Howie  |
+
+"
+horizontal_alignment = 2
+
+[node name="ArtistRoles" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Project Lead, Art Director, Gameplay Designer
+ Environment Art, Prop Art 
+ Character Artist, Rigger, Technical Artist 
+ Concept Art & UI Design 
+ Environment Art 
+ Character Artist, Rigger, Technical Artist 
+
 "
 
-[node name="Label2" type="Label" parent="Panel/Credits/Art"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -48.0
-offset_top = 64.0
-offset_right = 571.0
-offset_bottom = 224.0
-theme_override_font_sizes/font_size = 20
-text = "Sagstetter, Will | Project Lead, Art Director, Gameplay Designer
-Stark, Ethan | Environment Art, Prop Art 
-Zinnecker, Mae | Character Artist, Rigger, Technical Artist "
-
-[node name="Code" type="Label" parent="Panel/Credits"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_top = 0.178
-anchor_right = 0.499
-anchor_bottom = 0.178
-offset_left = -63.117
-offset_top = 279.08
-offset_right = 65.883
-offset_bottom = 337.08
+[node name="Code" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Code"
+label_settings = SubResource("LabelSettings_b41dx")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Panel/Credits/Code"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -449.0
-offset_top = 56.0
-offset_right = 319.0
-offset_bottom = 184.0
-grow_horizontal = 0
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CodeNames" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Anderson, Ian | Enemy AI Programmer 
-Parker, Molly | Interactions Programmer 
-Southman, Elijah | Programming Lead 
+text = "Southman, Elijah  |
+Anderson, Ian  |
+Parker, Molly  |
 
 "
-horizontal_alignment = 1
+horizontal_alignment = 2
 
-[node name="Other" type="Label" parent="Panel/Credits"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_top = 0.178
-anchor_right = 0.499
-anchor_bottom = 0.178
-offset_left = -63.117
-offset_top = 439.08
-offset_right = 65.883
-offset_bottom = 497.08
+[node name="CodeRoles" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Programming Lead 
+ Enemy AI Programmer 
+ Interactions Programmer 
+
+"
+
+[node name="Other" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Other"
+label_settings = SubResource("LabelSettings_b41dx")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="Panel/Credits/Other"]
-layout_mode = 0
-offset_left = -280.0
-offset_top = 58.0
-offset_right = 48.0
-offset_bottom = 219.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="OtherNames1" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Palarz , Jayden | Sound
-Dimiceli, Bella  | Sound
-Summers, Bradley | Sound
+text = "Palarz , Jayden  |
+Dimiceli, Bella  |
+Summers, Bradley  |
+
+"
+horizontal_alignment = 2
+
+[node name="OtherRoles1" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(198, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Sound
+ Sound            
+ Sound
+
 "
 
-[node name="Label4" type="Label" parent="Panel/Credits/Other"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 58.0
-offset_right = 290.0
-offset_bottom = 213.0
+[node name="OtherNames2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Sara, Last | Website
-Holden, Last | Video
-Isaac , Last	 | Preproduction"
+text = "Sara, Last  |
+Holden, Last  |
+Isaac , Last	  |
 
-[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+"
+horizontal_alignment = 2
+
+[node name="OtherRoles2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Website
+ Video
+ Preproduction
+
+"
+
+[node name="Back" type="Button" parent="Panel"]
+modulate = Color(1, 0.819608, 0.709804, 1)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 660.0
+offset_right = 120.0
+offset_bottom = 700.0
+text = "Back"
+
+[connection signal="pressed" from="Panel/Back" to="." method="_on_button_pressed"]
