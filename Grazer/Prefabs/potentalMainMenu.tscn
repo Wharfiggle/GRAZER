@@ -75,6 +75,5 @@ grow_vertical = 2
 text = "Quit"
 
 [connection signal="pressed" from="playButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="credits" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="quitButton" to="." method="_on_quit_button_pressed"]
