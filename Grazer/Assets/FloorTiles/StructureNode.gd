@@ -73,7 +73,7 @@ func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var distance = abs(position - player.position)
+	var distance = abs(position / tileWidth - terrainController.getPlayerChunk(player.position))
 	
 	#Waits to instantiate scene until ready
 	if(loading and ResourceLoader.load_threaded_get_status(pathname) == 3):
@@ -90,13 +90,20 @@ func _process(_delta):
 		loaded = true
 	
 	#Starts request to load scene when player is close enough
-	var inRange = distance.x <= (width + 2) * tileWidth && distance.z <= (depth + 2) * tileWidth
+	var inRange = distance.x <= (width + 1) && distance.z <= (depth + 1)
+	var outOfRange = distance.x > (width + 2) || distance.z > (depth + 2)
 	if(inRange && !loaded && !loading):
+		print("LOAD")
+		if(tileId == 0):
+			print("LOADING CHECKPOINT")
 		ResourceLoader.load_threaded_request(pathname,"",false, ResourceLoader.CACHE_MODE_REUSE)
 		loading = true
 	#Unloads scene when player is far away enough
 	#elif(distance > (renderRange + 1) * tileWidth and scene != null):
-	elif(!inRange && scene != null):
+	elif(outOfRange && scene != null):
+		print("UNLOAD")
+		if(tileId == 0):
+			print("UNLOADING CHECKPOINT")
 		scene.queue_free()
 		SceneCounter.structureScenes -= 1
 		scene = null

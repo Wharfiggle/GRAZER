@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0xfwabed5xb8"]
+
+[ext_resource type="PackedScene" uid="uid://dh5cgci3oy48s" path="res://Assets/Models/Stone Walls FINAL/wallStraight/rockWallDecimated.fbx" id="1_xj0ap"]
+[ext_resource type="Texture2D" uid="uid://btw56eqjttati" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_BaseColor.png" id="2_wnomj"]
+[ext_resource type="Texture2D" uid="uid://bqp7q8fpbweu" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Height.png" id="3_rwcsl"]
+[ext_resource type="Texture2D" uid="uid://c6cpclp10vb7o" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Normal.png" id="4_7axcb"]
+[ext_resource type="Texture2D" uid="uid://ocacxg8eh0y6" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Roughness.png" id="5_rt4ek"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7es8v"]
+albedo_texture = ExtResource("2_wnomj")
+roughness_texture = ExtResource("5_rt4ek")
+normal_enabled = true
+normal_scale = 1.5
+normal_texture = ExtResource("4_7axcb")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("3_rwcsl")
+
+[node name="rockWallDecimated" instance=ExtResource("1_xj0ap")]
+
+[node name="decim" parent="RootNode" index="0"]
+material_override = SubResource("StandardMaterial3D_7es8v")

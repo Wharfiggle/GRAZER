@@ -18,11 +18,11 @@ var audioArrayRussel = [Russelvoice1,Russelvoice2,Russelvoice3,Russelvoice4]
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	var rayselection = $CharacterSelect/HBoxContainer/rayButton/AudioStreamPlayer2Drayselection
-	var russelselection =  $CharacterSelect/HBoxContainer/russelButton/AudioStreamPlayer2D# Replace with function body.
-	var russleButtion = $CharacterSelect/HBoxContainer/russelButton
-	var raybutton = $CharacterSelect/HBoxContainer/rayButton
+#func _ready():
+#	var rayselection = $CharacterSelect/HBoxContainer/rayButton/AudioStreamPlayer2Drayselection
+#	var russelselection =  $CharacterSelect/HBoxContainer/russelButton/AudioStreamPlayer2D# Replace with function body.
+#	var russleButton = $CharacterSelect/HBoxContainer/russelButton
+#	var rayButton = $CharacterSelect/HBoxContainer/rayButton
 	
 	#var clip_to_play = audioArrayRay[randi() % audioArrayRay.size()] 
 

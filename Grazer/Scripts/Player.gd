@@ -902,5 +902,5 @@ func die():
 	animation.set("parameters/shootAngle/blend_position", 1)
 	#skeleton.physical_bones_start_simulation(phys_bones)
 	if(deathMenu == null):
-		var deathMenu = $"../DeathMenu"
+		deathMenu = $"../DeathMenu"
 	deathMenu.start()
