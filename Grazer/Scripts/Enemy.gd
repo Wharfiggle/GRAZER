@@ -8,7 +8,6 @@ var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
-var aimDirection = 0
 var movementBlend = 0.0
 @export var baseAimSpeed = 0.2
 var aimLerpSpeed = baseAimSpeed
@@ -42,6 +41,7 @@ var lineOfSightTime = 0.0 #Time with direct line of sight
 
 var targetPos = Vector3(0,0,0)
 var targetCow = null
+var dragging = false
 @onready var navAgent = get_node("NavigationAgent3D")
 var path = []
 var pathNode = 0
@@ -186,9 +186,12 @@ func _physics_process(delta):
 		rotateTo = targetPos
 	else:
 		rotateTo = player.position
+	var dragAnimOffset = PI
+	if(dragging):
+		dragAnimOffset = 0
 	rotation.y = lerp_angle(
 		rotation.y,
-		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + PI,
+		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + dragAnimOffset,
 		0.1)
 	
 	#Initiate stealing a cow
@@ -414,11 +417,6 @@ func pursuit():
 		if (canFire):
 			var direction = transform.origin - player.transform.origin
 			direction = direction.normalized()
-			print("Aim direction = " + str(aimDirection)) 
-			print("Target direction = " + str(atan2(direction.x, direction.z) + PI))
-			print("Turn Speed = " + str(aimLerpSpeed))
-			aimDirection = lerp_angle(aimDirection, 
-				atan2(direction.x, direction.z) + PI, aimLerpSpeed)
 			
 			var angle_to = direction.dot(transform.basis.z)
 			if angle_to > 0:
@@ -497,6 +495,8 @@ func cowPursuit():
 	elif(targetCow != null && draggedCow == null):
 		draggedCow = targetCow
 		draggedCow.startDragging(self)
+		dragging = true
+		animation.set("parameters/walkDrag/blend_amount", 1)
 		#print("toFlee")
 		currentMode = behaviors.flee
 		var m = position.z - player.position.z
