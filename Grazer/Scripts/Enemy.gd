@@ -9,7 +9,7 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
 var movementBlend = 0.0
-@export var baseAimSpeed = 0.2
+@export var baseAimSpeed = 0.4
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
@@ -192,7 +192,7 @@ func _physics_process(delta):
 	rotation.y = lerp_angle(
 		rotation.y,
 		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + dragAnimOffset,
-		0.1)
+		aimLerpSpeed)
 	
 	#Initiate stealing a cow
 	if(marauderType == enemyTypes.thief && currentMode == behaviors.circle):
@@ -423,7 +423,7 @@ func pursuit():
 				pass
 			if(attackCooldown <= 0):
 				readyAim()
-				attackCooldown = 1.0
+				attackCooldown = 0
 				clip -= 1
 				if(clip <= 0):
 					#setting sound to reload
@@ -594,7 +594,7 @@ func readyAim():
 			speed *= 2.0
 		if(i > 40):
 			#Turn speed reduction
-			aimLerpSpeed = baseAimSpeed * 0.2
+			aimLerpSpeed = baseAimSpeed
 		if(aimLerpSpeed < 0):
 			aimLerpSpeed = 0
 		if(speed > 1):
