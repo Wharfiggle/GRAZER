@@ -1,12 +1,30 @@
 extends Panel
 
 
+var Rayvoice1 = preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.5.wav")
+var Rayvoice2 = preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.7.wav")
+var Rayvoice3 = preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.9.wav")
+var Rayvoice4 = preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.10.wav")
+var Rayvoice5 = preload("res://sounds/Cowgirl edited/Character Selection/CowGirlVox_GoodPick_.wav")
+
+var audioArrayRay = [Rayvoice1,Rayvoice2,Rayvoice3,Rayvoice4,Rayvoice5]
+
+var Russelvoice1 = preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.7.wav")
+var Russelvoice2 = preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.19.wav")
+var Russelvoice3 = preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.62.wav")
+var Russelvoice4 = preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.65.wav")
+
+var audioArrayRussel = [Russelvoice1,Russelvoice2,Russelvoice3,Russelvoice4]
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var rayselection = $CharacterSelect/HBoxContainer/rayButton/AudioStreamPlayer2Drayselection
 	var russelselection =  $CharacterSelect/HBoxContainer/russelButton/AudioStreamPlayer2D# Replace with function body.
 	var russleButtion = $CharacterSelect/HBoxContainer/russelButton
 	var raybutton = $CharacterSelect/HBoxContainer/rayButton
+	
+	#var clip_to_play = audioArrayRay[randi() % audioArrayRay.size()] 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
