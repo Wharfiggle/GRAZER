@@ -55,7 +55,7 @@ var cowDamageMod = 1.0
 var cowTypes = null
 
 var potions = null
-var inventory = [0, 0, 0, 5, 0, 0]
+var inventory = [0, 0, 0, 0, 0, 0]
 #var inventory = [5, 5, 5, 5, 5, 5]
 @export var potionTime = 25.0
 var potionTimer = 0.0
@@ -88,7 +88,7 @@ var revolverShootSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/re
 var revolverCritSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/CriticalHit1.wav")
 var shotgunShootSound = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/shottyfire.wav")
 var shotgunCritSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/CriticalHit1.wav")
-var usepotionS = preload("res://sounds/New Sound FEX/Elixir-Power/elixirdrink.wav")
+var usepotionS = preload("res://sounds/New Sound FEX/Elixir-Power/elixirdrinkpowerup.wav")
 var damagesound = preload("res://sounds/New Sound FEX/Cowboy/Damage/Cowboy - Bradl#01.47.wav")
 var lungeSound = preload("res://sounds/New Sound FEX/Cowboy/Lunge_attack/Cowboy - Bradl#01.32.wav")
 var reloadStartR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloadOpen.wav")
@@ -100,7 +100,7 @@ var reloadingSoundS = preload("res://sounds/New Sound FEX/Shotgun-20230424T16041
 var reloadEndS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadClose.wav")
 
 var potionPowerDown = preload("res://sounds/New Sound FEX/Elixir-Power/powerdown.wav")
-var potionPowerUP = preload("res://sounds/New Sound FEX/Elixir-Power/powerup.wav")
+#var potionPowerUP = preload("res://sounds/New Sound FEX/Elixir-Power/powerup.wav")
 
 var RayHurtSound = preload("res://sounds/Cowgirl edited/Damage/Cowgirl Damage Take 4#01.3.wav")
 var rayLungesound = preload("res://sounds/Cowgirl edited/Lunges/Lunge#01.3.wav")
@@ -256,9 +256,10 @@ func _process(delta):
 		potionTimer -= delta
 		if(potionTimer < 0):
 			potionTimer = 0
-			extraSounds.stream = potionPowerDown
-			potionUsed.use(false)
+			if(potionUsed != potions[0]):
+				extraSounds.stream = potionPowerDown
 			extraSounds.play()
+			potionUsed.use(false)
 			potionUsed = null
 			hitFlash.set_shader_parameter("amount", 0)
 	
@@ -508,9 +509,9 @@ func usePotion(ind:int):
 		#put sound here
 		Vocal.stream = usepotionS
 		Vocal.play()
-		await Vocal.finished
-		Vocal.stream = potionPowerUP
-		Vocal.play()
+#		await Vocal.finished
+#		Vocal.stream = potionPowerUP
+#		Vocal.play()
 		if(potionUsed != null):
 			potionUsed.use(false)
 		potions[ind].use()

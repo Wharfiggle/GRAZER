@@ -26,7 +26,9 @@ static func retrieveStructureTypes() -> Array:
 	var structures = []
 	
 	#sPathName, sWidth, sHeight
-	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testCheckPoint.tscn", 10, 4]) #checkpoint
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPoint.tscn", 2, 4]) #checkpoint middle
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPointLeft.tscn", 4, 4]) #checkpoint left
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPointRight.tscn", 4, 4]) #checkpoint right
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/EmptyFloor1.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testTile.tscn", 2, 2]) #test
@@ -73,7 +75,16 @@ func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var distance = abs(position / tileWidth - terrainController.getPlayerChunk(player.position))
+	var tileCenter = position / tileWidth
+	tileCenter.x += width / 2.0
+	tileCenter.z -= depth / 2.0
+	var distance = abs(tileCenter - terrainController.getPlayerChunk(player.position))
+
+#	if(tileId == 0):
+#		if((tileCenter).x == terrainController.getPlayerChunk(player.position).x):
+#			print("MATCHED X")
+#		if((tileCenter).z == terrainController.getPlayerChunk(player.position).z):
+#			print("MATCHED Z")
 	
 	#Waits to instantiate scene until ready
 	if(loading and ResourceLoader.load_threaded_get_status(pathname) == 3):
@@ -90,20 +101,20 @@ func _process(_delta):
 		loaded = true
 	
 	#Starts request to load scene when player is close enough
-	var inRange = distance.x <= (width + 1) && distance.z <= (depth + 1)
-	var outOfRange = distance.x > (width + 2) || distance.z > (depth + 2)
+	var inRange = distance.x < (width / 2 + 3) && distance.z < (depth / 2 + 3)
+	var outOfRange = distance.x > (width / 2 + 4) || distance.z > (depth / 2 + 4)
 	if(inRange && !loaded && !loading):
-		print("LOAD")
-		if(tileId == 0):
-			print("LOADING CHECKPOINT")
+		print("LOAD STRUCTURE")
+		#if(tileId == 0):
+		#	print("LOADING CHECKPOINT: distance.x: " + str(distance.x) + " < " + str(width / 2 + 2))
 		ResourceLoader.load_threaded_request(pathname,"",false, ResourceLoader.CACHE_MODE_REUSE)
 		loading = true
 	#Unloads scene when player is far away enough
 	#elif(distance > (renderRange + 1) * tileWidth and scene != null):
 	elif(outOfRange && scene != null):
-		print("UNLOAD")
-		if(tileId == 0):
-			print("UNLOADING CHECKPOINT")
+		print("UNLOAD STRUCTURE")
+		#if(tileId == 0):
+		#	print("UNLOADING CHECKPOINT: distance.x: " + str(distance.x) + " > " + str(width / 2 + 3))
 		scene.queue_free()
 		SceneCounter.structureScenes -= 1
 		scene = null

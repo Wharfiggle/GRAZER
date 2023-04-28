@@ -188,7 +188,7 @@ func _physics_process(delta):
 	else:
 		rotateTo = player.position
 	if(draggedCow != null):
-		print("dragging")
+#		print("dragging")
 		rotateTo = draggedCow.position
 		dragAnimOffset = PI
 	rotation.y = lerp_angle(

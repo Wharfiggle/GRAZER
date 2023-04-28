@@ -1,59 +1,59 @@
-[gd_scene load_steps=98 format=3 uid="uid://btgqdxu7cr58d"]
+[gd_scene load_steps=98 format=3 uid="uid://exqx7nas6a5c"]
 
-[ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_ux8do"]
-[ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_otg7m"]
-[ext_resource type="PackedScene" uid="uid://21bqi8afjpn6" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/Frame Isolated/gateArch.tscn" id="2_xp8xt"]
-[ext_resource type="Texture2D" uid="uid://d4eq57ekgd2ap" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Metallic.png" id="3_0gy31"]
-[ext_resource type="PackedScene" uid="uid://7jwcyssrk7li" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/One Door Isolated/gate2.tscn" id="3_rtin3"]
-[ext_resource type="PackedScene" uid="uid://btc0x7hilb2lx" path="res://Assets/FloorTiles/!Prefabs!/Roads/road 1.tscn" id="4_uf5r1"]
-[ext_resource type="Texture2D" uid="uid://c2yquc8c7bxxf" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Normal.png" id="4_whwis"]
-[ext_resource type="PackedScene" uid="uid://dllt7f1i1tr01" path="res://Assets/FloorTiles/!Prefabs!/Concrete Divider/cementBarricade.tscn" id="5_27ufq"]
-[ext_resource type="Texture2D" uid="uid://ccuovmdnlk6y5" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Roughness.png" id="5_ujvb6"]
-[ext_resource type="PackedScene" uid="uid://d1qgsg7jyyxbt" path="res://Assets/FloorTiles/!Prefabs!/Powerline/powerline.tscn" id="6_b145o"]
-[ext_resource type="PackedScene" uid="uid://bv44d8hiyews2" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_3.tscn" id="7_rnci3"]
-[ext_resource type="PackedScene" uid="uid://b0t156m6xyk5d" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_4.tscn" id="8_u6wyl"]
-[ext_resource type="PackedScene" uid="uid://dyx8qmfqrsuac" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_6.tscn" id="9_ggbat"]
-[ext_resource type="PackedScene" uid="uid://d1k73cs6g14td" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_8.tscn" id="10_cb0r8"]
-[ext_resource type="PackedScene" uid="uid://cpug0ut2xrot4" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_10.tscn" id="11_66xj4"]
-[ext_resource type="PackedScene" uid="uid://dss4pmdp52xfj" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_12.tscn" id="12_oelny"]
-[ext_resource type="PackedScene" uid="uid://cagxngogpkioa" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/RVwPorch.tscn" id="13_r7w5x"]
-[ext_resource type="PackedScene" uid="uid://dur5c8rol4408" path="res://Assets/Models/Porch Man/porch_man.tscn" id="14_o2y1d"]
-[ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="15_auji7"]
-[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="16_q8jj7"]
-[ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="17_s8i53"]
-[ext_resource type="PackedScene" uid="uid://d0chluqj65wur" path="res://Assets/FloorTiles/!Prefabs!/Cacti/organCacti.tscn" id="18_7q3og"]
-[ext_resource type="PackedScene" uid="uid://citoc5snwh525" path="res://Assets/FloorTiles/!Prefabs!/Yucca/juca2.tscn" id="19_n64a4"]
-[ext_resource type="PackedScene" uid="uid://dqsinrlm5521v" path="res://Assets/FloorTiles/!Prefabs!/Water Barrel/waterBarrelV2.tscn" id="20_3fw5r"]
-[ext_resource type="Texture2D" uid="uid://b3enotf83macu" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_BaseColor.png" id="20_l0n16"]
-[ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="21_4euj0"]
-[ext_resource type="Texture2D" uid="uid://ias3xh5psbhh" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Metallic.png" id="21_avw5b"]
-[ext_resource type="Texture2D" uid="uid://xlcgh4oy4qpm" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Normal.png" id="22_h1upn"]
-[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="22_lijh6"]
-[ext_resource type="Texture2D" uid="uid://cv5nyvdgbs8wy" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Roughness.png" id="23_4lbgl"]
-[ext_resource type="Texture2D" uid="uid://behi8yclnwww7" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_BaseColor.png" id="24_k81mf"]
-[ext_resource type="PackedScene" uid="uid://cvioj5lu03uhd" path="res://Assets/FloorTiles/!Prefabs!/Silos/siloV1.tscn" id="24_px3eh"]
-[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="25_bybhi"]
-[ext_resource type="Texture2D" uid="uid://c6f4ujtsge741" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Metallic.png" id="25_soc8u"]
-[ext_resource type="Texture2D" uid="uid://c1vl4c04pfu4r" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Normal.png" id="26_csxus"]
-[ext_resource type="PackedScene" uid="uid://ch61xq358xwbd" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/rv.tscn" id="26_fule2"]
-[ext_resource type="Texture2D" uid="uid://cprlltx8rcmfp" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Roughness.png" id="27_7v7wk"]
-[ext_resource type="Texture2D" uid="uid://btw56eqjttati" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_BaseColor.png" id="31_fe6ic"]
-[ext_resource type="Texture2D" uid="uid://cdletgo1dx0h2" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_BaseColor.png" id="32_7qjyv"]
-[ext_resource type="Texture2D" uid="uid://bqp7q8fpbweu" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Height.png" id="32_secsp"]
-[ext_resource type="Texture2D" uid="uid://cof2smyxqleye" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Metallic.png" id="33_50wrr"]
-[ext_resource type="Texture2D" uid="uid://dm67q636nhjoa" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Metallic.png" id="33_lqnn8"]
-[ext_resource type="Texture2D" uid="uid://bbei46t58gg10" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Normal.png" id="34_av5xh"]
-[ext_resource type="Texture2D" uid="uid://c6cpclp10vb7o" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Normal.png" id="34_ftbmq"]
-[ext_resource type="Texture2D" uid="uid://ocacxg8eh0y6" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Roughness.png" id="35_ehnbp"]
-[ext_resource type="Texture2D" uid="uid://b2sufrkl84c2o" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Roughness.png" id="35_u2rth"]
-[ext_resource type="Texture2D" uid="uid://cqmaeqa6m4lpc" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_BaseColor.png" id="35_ua3k2"]
-[ext_resource type="Texture2D" uid="uid://deka3b5golnh3" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Emissive.png" id="36_4j2wj"]
-[ext_resource type="Texture2D" uid="uid://bxk2ixhb3oi3g" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Metallic.png" id="37_4im26"]
-[ext_resource type="Texture2D" uid="uid://bly1wnslm0vqo" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Normal.png" id="38_exhii"]
-[ext_resource type="Texture2D" uid="uid://bgbvhfjy258uw" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Roughness.png" id="39_u1p1c"]
-[ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="48_3s5uv"]
-[ext_resource type="PackedScene" uid="uid://c6b6t5yx3tyen" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post.tscn" id="49_ak28c"]
-[ext_resource type="PackedScene" uid="uid://cwq17w2fj0kvq" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post_corner.tscn" id="50_75h5k"]
+[ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_j8obc"]
+[ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_hkokk"]
+[ext_resource type="Texture2D" uid="uid://d4eq57ekgd2ap" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Metallic.png" id="3_wu1q3"]
+[ext_resource type="Texture2D" uid="uid://c2yquc8c7bxxf" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Normal.png" id="4_7yilo"]
+[ext_resource type="Texture2D" uid="uid://ccuovmdnlk6y5" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Roughness.png" id="5_ltsx4"]
+[ext_resource type="PackedScene" uid="uid://21bqi8afjpn6" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/Frame Isolated/gateArch.tscn" id="6_wvt8k"]
+[ext_resource type="PackedScene" uid="uid://7jwcyssrk7li" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/One Door Isolated/gate2.tscn" id="7_lpfaj"]
+[ext_resource type="PackedScene" uid="uid://btc0x7hilb2lx" path="res://Assets/FloorTiles/!Prefabs!/Roads/road 1.tscn" id="8_c8x0h"]
+[ext_resource type="PackedScene" uid="uid://dllt7f1i1tr01" path="res://Assets/FloorTiles/!Prefabs!/Concrete Divider/cementBarricade.tscn" id="9_w7l3l"]
+[ext_resource type="PackedScene" uid="uid://d1qgsg7jyyxbt" path="res://Assets/FloorTiles/!Prefabs!/Powerline/powerline.tscn" id="10_f8img"]
+[ext_resource type="PackedScene" uid="uid://bv44d8hiyews2" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_3.tscn" id="11_o6hoo"]
+[ext_resource type="PackedScene" uid="uid://b0t156m6xyk5d" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_4.tscn" id="12_s4xb3"]
+[ext_resource type="PackedScene" uid="uid://dyx8qmfqrsuac" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_6.tscn" id="13_lfnjf"]
+[ext_resource type="PackedScene" uid="uid://d1k73cs6g14td" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_8.tscn" id="14_cp625"]
+[ext_resource type="PackedScene" uid="uid://cpug0ut2xrot4" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_10.tscn" id="15_3d341"]
+[ext_resource type="PackedScene" uid="uid://dss4pmdp52xfj" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_12.tscn" id="16_05iq3"]
+[ext_resource type="PackedScene" uid="uid://cagxngogpkioa" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/RVwPorch.tscn" id="17_75trj"]
+[ext_resource type="PackedScene" uid="uid://dur5c8rol4408" path="res://Assets/Models/Porch Man/porch_man.tscn" id="18_kso5f"]
+[ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="19_6wvt3"]
+[ext_resource type="Texture2D" uid="uid://b3enotf83macu" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_BaseColor.png" id="20_k5xa8"]
+[ext_resource type="Texture2D" uid="uid://ias3xh5psbhh" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Metallic.png" id="21_wwkf0"]
+[ext_resource type="Texture2D" uid="uid://xlcgh4oy4qpm" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Normal.png" id="22_5prb7"]
+[ext_resource type="Texture2D" uid="uid://cv5nyvdgbs8wy" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.001_Roughness.png" id="23_yweb1"]
+[ext_resource type="Texture2D" uid="uid://behi8yclnwww7" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_BaseColor.png" id="24_4ll0g"]
+[ext_resource type="Texture2D" uid="uid://c6f4ujtsge741" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Metallic.png" id="25_ywe2a"]
+[ext_resource type="Texture2D" uid="uid://c1vl4c04pfu4r" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Normal.png" id="26_hu37q"]
+[ext_resource type="Texture2D" uid="uid://cprlltx8rcmfp" path="res://Assets/Models/Cacti FINAL/cacti1/cacti1_Material.002_Roughness.png" id="27_8uak4"]
+[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="28_h3cuv"]
+[ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="29_7n61c"]
+[ext_resource type="PackedScene" uid="uid://d0chluqj65wur" path="res://Assets/FloorTiles/!Prefabs!/Cacti/organCacti.tscn" id="30_ams6i"]
+[ext_resource type="PackedScene" uid="uid://citoc5snwh525" path="res://Assets/FloorTiles/!Prefabs!/Yucca/juca2.tscn" id="31_pj0wg"]
+[ext_resource type="Texture2D" uid="uid://cdletgo1dx0h2" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_BaseColor.png" id="32_el1it"]
+[ext_resource type="Texture2D" uid="uid://dm67q636nhjoa" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Metallic.png" id="33_wpjbl"]
+[ext_resource type="Texture2D" uid="uid://bbei46t58gg10" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Normal.png" id="34_unvlq"]
+[ext_resource type="Texture2D" uid="uid://b2sufrkl84c2o" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Roughness.png" id="35_f03ik"]
+[ext_resource type="PackedScene" uid="uid://dqsinrlm5521v" path="res://Assets/FloorTiles/!Prefabs!/Water Barrel/waterBarrelV2.tscn" id="36_f53ux"]
+[ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="37_v1upi"]
+[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="38_n7xo3"]
+[ext_resource type="PackedScene" uid="uid://cvioj5lu03uhd" path="res://Assets/FloorTiles/!Prefabs!/Silos/siloV1.tscn" id="39_c8p0f"]
+[ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="40_ioryq"]
+[ext_resource type="PackedScene" uid="uid://ch61xq358xwbd" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/rv.tscn" id="41_wa8ie"]
+[ext_resource type="Texture2D" uid="uid://btw56eqjttati" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_BaseColor.png" id="42_pia61"]
+[ext_resource type="Texture2D" uid="uid://bqp7q8fpbweu" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Height.png" id="43_66ufp"]
+[ext_resource type="Texture2D" uid="uid://cof2smyxqleye" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Metallic.png" id="44_4728h"]
+[ext_resource type="Texture2D" uid="uid://c6cpclp10vb7o" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Normal.png" id="45_w7bmv"]
+[ext_resource type="Texture2D" uid="uid://ocacxg8eh0y6" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Roughness.png" id="46_emcf4"]
+[ext_resource type="Texture2D" uid="uid://cqmaeqa6m4lpc" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_BaseColor.png" id="47_k6mj7"]
+[ext_resource type="Texture2D" uid="uid://deka3b5golnh3" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Emissive.png" id="48_6ucvg"]
+[ext_resource type="Texture2D" uid="uid://bxk2ixhb3oi3g" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Metallic.png" id="49_41p30"]
+[ext_resource type="Texture2D" uid="uid://bly1wnslm0vqo" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Normal.png" id="50_v4kbw"]
+[ext_resource type="Texture2D" uid="uid://bgbvhfjy258uw" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Roughness.png" id="51_0yc2t"]
+[ext_resource type="PackedScene" uid="uid://c6b6t5yx3tyen" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post.tscn" id="52_36gmy"]
+[ext_resource type="PackedScene" uid="uid://cwq17w2fj0kvq" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post_corner.tscn" id="53_5o8l0"]
+[ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="54_t7oyu"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -67,16 +67,16 @@ size = Vector3(16, 0.1, 16)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scw33"]
 albedo_color = Color(0.87, 1, 1, 1)
-albedo_texture = ExtResource("1_ux8do")
+albedo_texture = ExtResource("1_j8obc")
 metallic = 1.0
 metallic_specular = 0.0
-metallic_texture = ExtResource("3_0gy31")
-roughness_texture = ExtResource("5_ujvb6")
+metallic_texture = ExtResource("3_wu1q3")
+roughness_texture = ExtResource("5_ltsx4")
 emission_enabled = true
-emission_texture = ExtResource("2_otg7m")
+emission_texture = ExtResource("2_hkokk")
 normal_enabled = true
 normal_scale = 0.4
-normal_texture = ExtResource("4_whwis")
+normal_texture = ExtResource("4_7yilo")
 uv1_scale = Vector3(35, 14, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yjk6"]
@@ -119,12 +119,12 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lavwr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36h55"]
-albedo_texture = ExtResource("20_l0n16")
+albedo_texture = ExtResource("20_k5xa8")
 metallic = 1.0
-metallic_texture = ExtResource("21_avw5b")
-roughness_texture = ExtResource("23_4lbgl")
+metallic_texture = ExtResource("21_wwkf0")
+roughness_texture = ExtResource("23_yweb1")
 normal_enabled = true
-normal_texture = ExtResource("22_h1upn")
+normal_texture = ExtResource("22_5prb7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5v83"]
 resource_name = "Material.002"
@@ -164,12 +164,12 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_04iqm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4d4v"]
-albedo_texture = ExtResource("24_k81mf")
+albedo_texture = ExtResource("24_4ll0g")
 metallic = 1.0
-metallic_texture = ExtResource("25_soc8u")
-roughness_texture = ExtResource("27_7v7wk")
+metallic_texture = ExtResource("25_ywe2a")
+roughness_texture = ExtResource("27_8uak4")
 normal_enabled = true
-normal_texture = ExtResource("26_csxus")
+normal_texture = ExtResource("26_hu37q")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bm4pe"]
 resource_name = "lambert1"
@@ -211,12 +211,12 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mexwm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jde53"]
-albedo_texture = ExtResource("32_7qjyv")
+albedo_texture = ExtResource("32_el1it")
 metallic = 1.0
-metallic_texture = ExtResource("33_lqnn8")
-roughness_texture = ExtResource("35_u2rth")
+metallic_texture = ExtResource("33_wpjbl")
+roughness_texture = ExtResource("35_f03ik")
 normal_enabled = true
-normal_texture = ExtResource("34_av5xh")
+normal_texture = ExtResource("34_unvlq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjs7v"]
 resource_name = "decim"
@@ -258,13 +258,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bnt16")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4ajr"]
-albedo_texture = ExtResource("31_fe6ic")
+albedo_texture = ExtResource("42_pia61")
 metallic = 1.0
-metallic_texture = ExtResource("33_50wrr")
-roughness_texture = ExtResource("35_ehnbp")
+metallic_texture = ExtResource("44_4728h")
+roughness_texture = ExtResource("46_emcf4")
 normal_enabled = true
-normal_texture = ExtResource("34_ftbmq")
-heightmap_texture = ExtResource("32_secsp")
+normal_texture = ExtResource("45_w7bmv")
+heightmap_texture = ExtResource("43_66ufp")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qf6m"]
 size = Vector3(23.7529, 9.57821, 15.6295)
@@ -450,13 +450,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bnt16")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewxgt"]
-albedo_texture = ExtResource("31_fe6ic")
+albedo_texture = ExtResource("42_pia61")
 metallic = 1.0
-metallic_texture = ExtResource("33_50wrr")
-roughness_texture = ExtResource("35_ehnbp")
+metallic_texture = ExtResource("44_4728h")
+roughness_texture = ExtResource("46_emcf4")
 normal_enabled = true
-normal_texture = ExtResource("34_ftbmq")
-heightmap_texture = ExtResource("32_secsp")
+normal_texture = ExtResource("45_w7bmv")
+heightmap_texture = ExtResource("43_66ufp")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2buc7"]
 size = Vector3(20.8916, 9.57821, 18.2331)
@@ -504,20 +504,20 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2m1rm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l4ie"]
-albedo_texture = ExtResource("35_ua3k2")
+albedo_texture = ExtResource("47_k6mj7")
 metallic = 1.0
-metallic_texture = ExtResource("37_4im26")
-roughness_texture = ExtResource("39_u1p1c")
-emission_texture = ExtResource("36_4j2wj")
+metallic_texture = ExtResource("49_41p30")
+roughness_texture = ExtResource("51_0yc2t")
+emission_texture = ExtResource("48_6ucvg")
 normal_enabled = true
-normal_texture = ExtResource("38_exhii")
+normal_texture = ExtResource("50_v4kbw")
 
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 4, 72, 0, -24)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 4, 72, 0, -24)
 shape = SubResource("1")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -525,102 +525,102 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 0)
 navigation_mesh = SubResource("4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 4, 16, 0, -24)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 4, 16, 0, -24)
 mesh = SubResource("BoxMesh_c07mh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_scw33")
 
-[node name="Gate-Archf" parent="NavigationRegion3D" instance=ExtResource("2_xp8xt")]
+[node name="Gate-Archf" parent="NavigationRegion3D" instance=ExtResource("6_wvt8k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4346, 0.0500002, -3.98283)
 
-[node name="Gate-lf" parent="NavigationRegion3D" instance=ExtResource("3_rtin3")]
+[node name="Gate-lf" parent="NavigationRegion3D" instance=ExtResource("7_lpfaj")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 13, 0.25, -4)
 
-[node name="Gate-rf" parent="NavigationRegion3D" instance=ExtResource("3_rtin3")]
+[node name="Gate-rf" parent="NavigationRegion3D" instance=ExtResource("7_lpfaj")]
 transform = Transform3D(0.975003, 0, -0.222195, 0, 1, 0, 0.222195, 0, 0.975003, 16.5, 0.25, -4.78)
 
-[node name="Gate-Archb" parent="NavigationRegion3D" instance=ExtResource("2_xp8xt")]
+[node name="Gate-Archb" parent="NavigationRegion3D" instance=ExtResource("6_wvt8k")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.609, 0.0500002, -43.4154)
 
-[node name="Gate-rb" parent="NavigationRegion3D" instance=ExtResource("3_rtin3")]
+[node name="Gate-rb" parent="NavigationRegion3D" instance=ExtResource("7_lpfaj")]
 transform = Transform3D(0.579551, 0, 0.814936, 0, 1, 0, -0.814936, 0, 0.579551, 20, 0.25, -43.5)
 
-[node name="Gate-lb" parent="NavigationRegion3D" instance=ExtResource("3_rtin3")]
+[node name="Gate-lb" parent="NavigationRegion3D" instance=ExtResource("7_lpfaj")]
 transform = Transform3D(0.383828, 0, -0.923405, 0, 1, 0, 0.923405, 0, 0.383828, 11.8421, 0.25, -46.7682)
 
-[node name="road" parent="NavigationRegion3D" instance=ExtResource("4_uf5r1")]
+[node name="road" parent="NavigationRegion3D" instance=ExtResource("8_c8x0h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4586, 0.0500002, -0.959993)
 
-[node name="Cement_Barricade" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.991349, 0, 0.131253, 0, 1, 0, -0.131253, 0, 0.991349, 21.3551, 0.0500002, -3.91652)
 
-[node name="Cement_Barricade17" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade17" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.986706, 0, 0.162517, 0, 1, 0, -0.162517, 0, 0.986706, 22.2764, 1.01508, -4.13549)
 
-[node name="Cement_Barricade2" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade2" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.988881, 0.0494076, -0.140263, -0.048918, 0.998779, 0.00693854, 0.140435, 0, 0.99009, 23.1751, 0.0500002, -4.3329)
 
-[node name="Cement_Barricade3" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade3" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6153, 0.0499992, -43.4589)
 
-[node name="Cement_Barricade5" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade5" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.887574, 0, -0.460665, 0, 1, 0, 0.460665, 0, 0.887574, 23.9969, 0.0499992, -43.1228)
 
-[node name="Cement_Barricade6" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade6" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.983832, 0, -0.179094, 0, 1, 0, 0.179094, 0, 0.983832, 22.9685, 1.0189, -43.4766)
 
-[node name="Cement_Barricade4" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade4" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.986277, 0, 0.165099, 0, 1, 0, -0.165099, 0, 0.986277, 7.2995, 0.0499992, -43.1728)
 
-[node name="Cement_Barricade13" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade13" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.984159, 0, -0.177291, 0, 1, 0, 0.177291, 0, 0.984159, 9.70618, 0.0499992, -43.1728)
 
-[node name="Cement_Barricade14" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade14" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.989809, 0, 0.142404, 0, 1, 0, -0.142404, 0, 0.989809, 12.0795, 0.0499992, -43.1728)
 
-[node name="Cement_Barricade15" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade15" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.997644, 0, -0.0686073, 0, 1, 0, 0.0686073, 0, 0.997644, 8.51283, 1.05954, -43.1728)
 
-[node name="Cement_Barricade16" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade16" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.986788, 0, 0.162017, 0, 1, 0, -0.162017, 0, 0.986788, 10.8861, 1.05954, -43.1728)
 
-[node name="Powerline2" parent="NavigationRegion3D" instance=ExtResource("6_b145o")]
+[node name="Powerline2" parent="NavigationRegion3D" instance=ExtResource("10_f8img")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6085, 0.0500002, 1.40751)
 
-[node name="Buildings 3" parent="NavigationRegion3D" instance=ExtResource("7_rnci3")]
+[node name="Buildings 3" parent="NavigationRegion3D" instance=ExtResource("11_o6hoo")]
 transform = Transform3D(-0.312352, 0, 0.949967, 0, 1, 0, -0.949967, 0, -0.312352, 3.81059, 0.197431, -5.12162)
 
-[node name="Buildings 4" parent="NavigationRegion3D" instance=ExtResource("8_u6wyl")]
+[node name="Buildings 4" parent="NavigationRegion3D" instance=ExtResource("12_s4xb3")]
 transform = Transform3D(-0.989402, 0, -0.145202, 0, 1, 0, 0.145202, 0, -0.989402, 26.737, 0.0499992, -22.4625)
 
-[node name="Buildings 6" parent="NavigationRegion3D" instance=ExtResource("9_ggbat")]
+[node name="Buildings 6" parent="NavigationRegion3D" instance=ExtResource("13_lfnjf")]
 transform = Transform3D(0.846435, 0, -0.532492, 0, 1, 0, 0.532492, 0, 0.846435, 1.86003, 0.0499973, -23.1052)
 
-[node name="Buildings 8" parent="NavigationRegion3D" instance=ExtResource("10_cb0r8")]
+[node name="Buildings 8" parent="NavigationRegion3D" instance=ExtResource("14_cp625")]
 transform = Transform3D(0.990531, 0, 0.137289, 0, 1, 0, -0.137289, 0, 0.990531, 27.3497, 0.0500011, -6.52761)
 
-[node name="Buildings 10" parent="NavigationRegion3D" instance=ExtResource("11_66xj4")]
+[node name="Buildings 10" parent="NavigationRegion3D" instance=ExtResource("15_3d341")]
 transform = Transform3D(-0.224713, 0, -0.974425, 0, 1, 0, 0.974425, 0, -0.224713, 4.28251, 0.0499992, -43.8199)
 
-[node name="Buildings 12" parent="NavigationRegion3D" instance=ExtResource("12_oelny")]
+[node name="Buildings 12" parent="NavigationRegion3D" instance=ExtResource("16_05iq3")]
 transform = Transform3D(0.236855, 0, 0.971545, 0, 1, 0, -0.971545, 0, 0.236855, 26.8748, 0.0499973, -42.3464)
 
-[node name="Porch" parent="NavigationRegion3D" instance=ExtResource("13_r7w5x")]
+[node name="Porch" parent="NavigationRegion3D" instance=ExtResource("17_75trj")]
 transform = Transform3D(0.817497, 0, -0.575933, 0, 1, 0, 0.575933, 0, 0.817497, 11.8037, 0.0499973, -20.0455)
 
-[node name="Porch Man" parent="NavigationRegion3D/Porch" instance=ExtResource("14_o2y1d")]
+[node name="Porch Man" parent="NavigationRegion3D/Porch" instance=ExtResource("18_kso5f")]
 transform = Transform3D(0.974601, 0, 0.223947, 0, 1, 0, -0.223947, 0, 0.974601, 2.37709, 0.00234395, -1.12265)
 
-[node name="DryBush" parent="NavigationRegion3D" instance=ExtResource("15_auji7")]
+[node name="DryBush" parent="NavigationRegion3D" instance=ExtResource("19_6wvt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0874, 0.0499992, 3.09228)
 
-[node name="DryBush2" parent="NavigationRegion3D" instance=ExtResource("15_auji7")]
+[node name="DryBush2" parent="NavigationRegion3D" instance=ExtResource("19_6wvt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4556, 0.0499992, 1.43137)
 
-[node name="DryBush3" parent="NavigationRegion3D" instance=ExtResource("15_auji7")]
+[node name="DryBush3" parent="NavigationRegion3D" instance=ExtResource("19_6wvt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6413, 0.0499992, -32.5074)
 
-[node name="DryBush5" parent="NavigationRegion3D" instance=ExtResource("15_auji7")]
+[node name="DryBush5" parent="NavigationRegion3D" instance=ExtResource("19_6wvt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.81311, 0.0499992, -49.8907)
 
 [node name="cacti3" type="Node3D" parent="NavigationRegion3D"]
@@ -1366,25 +1366,25 @@ mesh = SubResource("ArrayMesh_yek4u")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_v4d4v")
 
-[node name="cacti7" parent="NavigationRegion3D" instance=ExtResource("16_q8jj7")]
+[node name="cacti7" parent="NavigationRegion3D" instance=ExtResource("28_h3cuv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.652, 0.0499992, -45.1838)
 
-[node name="cactiNopal" parent="NavigationRegion3D" instance=ExtResource("17_s8i53")]
+[node name="cactiNopal" parent="NavigationRegion3D" instance=ExtResource("29_7n61c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.69357, 0.0499992, -48.1441)
 
-[node name="Organcacti_Nopal" parent="NavigationRegion3D" instance=ExtResource("18_7q3og")]
+[node name="Organcacti_Nopal" parent="NavigationRegion3D" instance=ExtResource("30_ams6i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8645, 0.0499992, -15.3708)
 
-[node name="Cement_Barricade7" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade7" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(-0.163601, 0, -0.986526, 0, 1, 0, 0.986526, 0, -0.163601, 27.4102, 0.0500002, -13.1013)
 
-[node name="Cement_Barricade8" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade8" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.0112921, 0, -0.999936, 0, 1, 0, 0.999936, 0, 0.0112921, 28.3558, 0.0500002, -17.8946)
 
-[node name="Juca2" parent="NavigationRegion3D" instance=ExtResource("19_n64a4")]
+[node name="Juca2" parent="NavigationRegion3D" instance=ExtResource("31_pj0wg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5166, 0.0499992, -38.9037)
 
-[node name="Powerline3" parent="NavigationRegion3D" instance=ExtResource("6_b145o")]
+[node name="Powerline3" parent="NavigationRegion3D" instance=ExtResource("10_f8img")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6637, 0.0499973, -12.2447)
 
 [node name="Powerline4" type="Node3D" parent="NavigationRegion3D"]
@@ -1397,79 +1397,79 @@ mesh = SubResource("ArrayMesh_amtxh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_jde53")
 
-[node name="Powerline5" parent="NavigationRegion3D" instance=ExtResource("6_b145o")]
+[node name="Powerline5" parent="NavigationRegion3D" instance=ExtResource("10_f8img")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6244, 0.0499992, -39.0314)
 
-[node name="Powerline6" parent="NavigationRegion3D" instance=ExtResource("6_b145o")]
+[node name="Powerline6" parent="NavigationRegion3D" instance=ExtResource("10_f8img")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0912, 0.0499992, -51.7484)
 
-[node name="Organcacti_Nopal2" parent="NavigationRegion3D" instance=ExtResource("18_7q3og")]
+[node name="Organcacti_Nopal2" parent="NavigationRegion3D" instance=ExtResource("30_ams6i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66241, 0.0499992, -29.5524)
 
-[node name="Water_Barrel-v2" parent="NavigationRegion3D" instance=ExtResource("20_3fw5r")]
+[node name="Water_Barrel-v2" parent="NavigationRegion3D" instance=ExtResource("36_f53ux")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5908, 0.0499992, -17.1096)
 
-[node name="Water_Barrel-v3" parent="NavigationRegion3D" instance=ExtResource("20_3fw5r")]
+[node name="Water_Barrel-v3" parent="NavigationRegion3D" instance=ExtResource("36_f53ux")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5908, 0.0499992, -17.8934)
 
-[node name="Water_Barrel-v4" parent="NavigationRegion3D" instance=ExtResource("20_3fw5r")]
+[node name="Water_Barrel-v4" parent="NavigationRegion3D" instance=ExtResource("36_f53ux")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5908, 0.0499992, -18.7089)
 
-[node name="Water_Barrel-v6" parent="NavigationRegion3D" instance=ExtResource("20_3fw5r")]
+[node name="Water_Barrel-v6" parent="NavigationRegion3D" instance=ExtResource("36_f53ux")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9551, 0.0616858, -18.2824)
 
-[node name="Water_Barrel-v5" parent="NavigationRegion3D" instance=ExtResource("20_3fw5r")]
+[node name="Water_Barrel-v5" parent="NavigationRegion3D" instance=ExtResource("36_f53ux")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3211, 1.13269, -18.3283)
 
-[node name="stone1" parent="NavigationRegion3D" instance=ExtResource("21_4euj0")]
+[node name="stone1" parent="NavigationRegion3D" instance=ExtResource("37_v1upi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.39507, 0.0499992, -34.6641)
 
-[node name="stone10" parent="NavigationRegion3D" instance=ExtResource("22_lijh6")]
+[node name="stone10" parent="NavigationRegion3D" instance=ExtResource("38_n7xo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14565, -0.244835, -40.8917)
 
-[node name="stone13" parent="NavigationRegion3D" instance=ExtResource("22_lijh6")]
+[node name="stone13" parent="NavigationRegion3D" instance=ExtResource("38_n7xo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79811, -0.244828, 1.02773)
 
-[node name="stone14" parent="NavigationRegion3D" instance=ExtResource("22_lijh6")]
+[node name="stone14" parent="NavigationRegion3D" instance=ExtResource("38_n7xo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2929, -0.244832, -6.75485)
 
-[node name="stone15" parent="NavigationRegion3D" instance=ExtResource("22_lijh6")]
+[node name="stone15" parent="NavigationRegion3D" instance=ExtResource("38_n7xo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1593, -0.244832, -16.0207)
 
-[node name="stone16" parent="NavigationRegion3D" instance=ExtResource("22_lijh6")]
+[node name="stone16" parent="NavigationRegion3D" instance=ExtResource("38_n7xo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6852, -0.244832, -31.8532)
 
-[node name="stone17" parent="NavigationRegion3D" instance=ExtResource("22_lijh6")]
+[node name="stone17" parent="NavigationRegion3D" instance=ExtResource("38_n7xo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3362, -0.244832, -23.5043)
 
-[node name="stone18" parent="NavigationRegion3D" instance=ExtResource("22_lijh6")]
+[node name="stone18" parent="NavigationRegion3D" instance=ExtResource("38_n7xo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.4118, -0.244828, -3.53368)
 
-[node name="stone19" parent="NavigationRegion3D" instance=ExtResource("22_lijh6")]
+[node name="stone19" parent="NavigationRegion3D" instance=ExtResource("38_n7xo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.6646, -0.244824, -41.9345)
 
-[node name="Silo_V1" parent="NavigationRegion3D" instance=ExtResource("24_px3eh")]
+[node name="Silo_V1" parent="NavigationRegion3D" instance=ExtResource("39_c8p0f")]
 transform = Transform3D(0.404104, 0, -0.914713, 0, 1, 0, 0.914713, 0, 0.404104, 2.76227, 0.0499973, -15.7959)
 
-[node name="Cement_Barricade9" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade9" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.0860777, 0, 0.996288, 0, 1, 0, -0.996288, 0, 0.0860777, 2.41269, 0.0500002, -8.97353)
 
-[node name="Cement_Barricade10" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade10" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.190021, 0, 0.98178, 0, 1, 0, -0.98178, 0, 0.190021, 2.656, 0.0500002, -11.4391)
 
-[node name="Windmill" parent="NavigationRegion3D" instance=ExtResource("25_bybhi")]
+[node name="Windmill" parent="NavigationRegion3D" instance=ExtResource("40_ioryq")]
 transform = Transform3D(0.785652, 0, 0.618669, 0, 1, 0, -0.618669, 0, 0.785652, 6.73634, 0.0500002, -10.091)
 
-[node name="RV" parent="NavigationRegion3D" instance=ExtResource("26_fule2")]
+[node name="RV" parent="NavigationRegion3D" instance=ExtResource("41_wa8ie")]
 transform = Transform3D(0.0166217, 0.939101, -0.34324, 0.998962, -0.00103571, 0.0455419, 0.0424129, -0.343641, -0.938143, 24.7351, 1.59212, -31.1147)
 
-[node name="RV2" parent="NavigationRegion3D" instance=ExtResource("26_fule2")]
+[node name="RV2" parent="NavigationRegion3D" instance=ExtResource("41_wa8ie")]
 transform = Transform3D(0.0425187, 0.380008, -0.924006, 0.998962, -0.00103571, 0.0455419, 0.0163493, -0.924983, -0.379657, 8.19961, 1.59212, -4.36327)
 
-[node name="Cement_Barricade11" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade11" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(-0.238771, 0, 0.971076, 0, 1, 0, -0.971076, 0, -0.238771, 26.841, 0.0499997, -35.2371)
 
-[node name="Cement_Barricade12" parent="NavigationRegion3D" instance=ExtResource("5_27ufq")]
+[node name="Cement_Barricade12" parent="NavigationRegion3D" instance=ExtResource("9_w7l3l")]
 transform = Transform3D(0.248622, 0, 0.968601, 0, 1, 0, -0.968601, 0, 0.248622, 26.9758, 0.0500002, -37.7277)
 
 [node name="wallStraight" type="Node3D" parent="NavigationRegion3D"]
@@ -1670,21 +1670,21 @@ mesh = SubResource("ArrayMesh_lhw1q")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_0l4ie")
 
-[node name="Fence_Post" parent="NavigationRegion3D" instance=ExtResource("49_ak28c")]
+[node name="Fence_Post" parent="NavigationRegion3D" instance=ExtResource("52_36gmy")]
 transform = Transform3D(0.822561, 0, -0.568677, 0, 1, 0, 0.568677, 0, 0.822561, 8.3767, 0.0499992, -19.1846)
 
-[node name="Fence_Post2" parent="NavigationRegion3D" instance=ExtResource("49_ak28c")]
+[node name="Fence_Post2" parent="NavigationRegion3D" instance=ExtResource("52_36gmy")]
 transform = Transform3D(0.322662, 0, -0.946514, 0, 1, 0, 0.946514, 0, 0.322662, 6.84676, 0.0499992, -20.3044)
 
-[node name="Fence_Post3" parent="NavigationRegion3D" instance=ExtResource("49_ak28c")]
+[node name="Fence_Post3" parent="NavigationRegion3D" instance=ExtResource("52_36gmy")]
 transform = Transform3D(-0.30744, 0, -0.951568, 0, 1, 0, 0.951568, 0, -0.30744, 6.24866, 0.0499992, -22.0813)
 
-[node name="Fence_Post4" parent="NavigationRegion3D" instance=ExtResource("49_ak28c")]
+[node name="Fence_Post4" parent="NavigationRegion3D" instance=ExtResource("52_36gmy")]
 transform = Transform3D(-0.566291, 0, -0.824205, 0, 1, 0, 0.824205, 0, -0.566291, 6.89054, 0.0499992, -23.9058)
 
-[node name="Fence_Post_Corner" parent="NavigationRegion3D" instance=ExtResource("50_75h5k")]
+[node name="Fence_Post_Corner" parent="NavigationRegion3D" instance=ExtResource("53_5o8l0")]
 transform = Transform3D(-0.597681, 0, -0.801734, 0, 1, 0, 0.801734, 0, -0.597681, 7.98611, 0.0499997, -25.4739)
 
-[node name="CowSpawner" parent="." instance=ExtResource("48_3s5uv")]
+[node name="CowSpawner" parent="." instance=ExtResource("54_t7oyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.524, 0.0500488, -33.8739)
 cowType = 3

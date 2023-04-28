@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ckbdr4i3h6vgn"
+path="res://.godot/imported/elixirdrinkpowerup.wav-b99ceca513f47e248a2b44e92011308a.sample"
+
+[deps]
+
+source_file="res://sounds/New Sound FEX/Elixir-Power/elixirdrinkpowerup.wav"
+dest_files=["res://.godot/imported/elixirdrinkpowerup.wav-b99ceca513f47e248a2b44e92011308a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
