@@ -861,6 +861,15 @@ func knock():
 			knocked = true
 
 func updateHealth(newHP:float):
+	if(newHP < hitpoints):
+		if(russelOrRay == "Russel"):
+			Vocal.stream = damagesound
+			if(!Vocal.playing):
+				Vocal.play()
+		if(russelOrRay == "Ray"):
+			Vocal.stream = RayHurtSound
+			if(!Vocal.playing):
+				Vocal.play()
 	hitpoints = newHP
 	MainHud._on_health_update_(hitpoints / maxHitpoints)
 	healthCounter.updateHealth(hitpoints)
@@ -872,14 +881,6 @@ func updateHealth(newHP:float):
 func damage_taken(damage:float, from:String, _inCritHit:bool = false, _inBullet:Node = null) -> bool:
 	if(from != "player"):
 		print("player damaged")
-		if(russelOrRay == "Russel"):
-			Vocal.stream = damagesound
-			if(!Vocal.playing):
-				Vocal.play()
-		if(russelOrRay == "Ray"):
-			Vocal.stream = RayHurtSound
-			if(!Vocal.playing):
-				Vocal.play()
 #		hitFlashAmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.35)
@@ -892,6 +893,18 @@ func healFromBullet(damageDone):
 	updateHealth(hitpoints + damageDone * lifeLeach)
 		
 func die():
+	var level = get_node("../AllTerrain")
+	var thieves = 0
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	for i in enemies:
+		if(i.marauderType == 1):
+			i.currentMode = 2
+		elif(i.draggedCow != null || i.currentMode != 2):
+			thieves += 1
+	for i in herd.getNumCows():
+		thieves -= 1
+		if(thieves <= 0):
+			level.spawnMarauder(false)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]

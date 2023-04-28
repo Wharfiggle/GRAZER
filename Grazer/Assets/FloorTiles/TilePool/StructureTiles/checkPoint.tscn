@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://btgqdxu7cr58d"]
+[gd_scene load_steps=43 format=3 uid="uid://btgqdxu7cr58d"]
 
 [ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_ux8do"]
 [ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_otg7m"]
@@ -101,6 +101,9 @@ metallic_texture = ExtResource("33_lqnn8")
 roughness_texture = ExtResource("35_u2rth")
 normal_enabled = true
 normal_texture = ExtResource("34_av5xh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v6vst"]
+size = Vector3(1, 3.91473, 4.85978)
 
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 0, 8)
@@ -237,8 +240,16 @@ transform = Transform3D(-0.566291, 0, -0.824205, 0, 1, 0, 0.824205, 0, -0.566291
 [node name="Fence_Post_Corner" parent="." instance=ExtResource("50_75h5k")]
 transform = Transform3D(-0.597681, 0, -0.801734, 0, 1, 0, 0.801734, 0, -0.597681, 63.9861, 0.0499997, -25.4739)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.597681, 0, -0.801734, 0, 1, 0, 0.801734, 0, -0.597681, 63.9861, 0.0499997, -25.4739)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.295071, 1.9556, -2.34032)
+shape = SubResource("BoxShape3D_v6vst")
+
 [node name="LeftStuff" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Buildings 3" parent="LeftStuff" instance=ExtResource("7_rnci3")]
 transform = Transform3D(-0.312352, 0, 0.949967, 0, 1, 0, -0.949967, 0, -0.312352, 59.8106, 0.197431, -5.12162)

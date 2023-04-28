@@ -15,7 +15,7 @@ normal_enabled = true
 normal_texture = ExtResource("4_22lem")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yn4o1"]
-size = Vector3(2.5, 7.03634, 4.5)
+size = Vector3(2.21606, 7.03634, 4.22069)
 
 [node name="stone1" instance=ExtResource("1_w1xa2")]
 

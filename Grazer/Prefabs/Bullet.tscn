@@ -53,7 +53,6 @@ material_override = SubResource("StandardMaterial3D_0lsm5")
 cast_shadow = 0
 
 [node name="Boom" type="AudioStreamPlayer3D" parent="."]
-volume_db = -12.0
 autoplay = true
 bus = &"GunShots"
 

@@ -243,16 +243,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.1003
-offset_top = 62.8726
-offset_right = 186.9
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
 offset_bottom = 118.873
 grow_horizontal = 2
-text = "Just your average cattle.
-No special effects."
+text = "Just your average cattle.            No special effects."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="MakeTradeCommon" type="TextureButton" parent="HerdMenu/VBoxContainer/Common"]
 visible = false
@@ -378,16 +377,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.1003
-offset_top = 62.8726
-offset_right = 186.9
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
 offset_bottom = 118.873
 grow_horizontal = 2
-text = "Like a cow, but redder.
-+Cow Drag Resistance"
+text = "It'll embolden your herd.           +Cow Drag Resistance"
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="MakeTradeRed" type="TextureButton" parent="HerdMenu/VBoxContainer/Red"]
 visible = false
@@ -513,14 +511,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.1003
-offset_top = 62.8726
-offset_right = 186.9
-offset_bottom = 118.873
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
+offset_bottom = 146.873
 grow_horizontal = 2
-text = "Yellow belly varmint
-+Crit Chance
-+Damage"
+text = "The gambler's favorite.                +Crit Chance                    +Damage"
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -649,14 +645,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.1003
-offset_top = 62.8726
-offset_right = 186.9
-offset_bottom = 118.873
+offset_left = -68.0
+offset_top = 62.873
+offset_right = 192.0
+offset_bottom = 174.873
 grow_horizontal = 2
-text = "No way it's redder!?!?!?!?
-+Cow Drag Resistance
-+Speed"
+text = "It'll lead your herd with confidence.                                +Cow Drag Resistance           +Speed"
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -785,14 +779,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.1003
-offset_top = 62.8726
-offset_right = 186.9
-offset_bottom = 118.873
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
+offset_bottom = 146.873
 grow_horizontal = 2
-text = "Transformer cow
-+Cow Drag Resistance
-+Max Health"
+text = "You'll feel safer while it's around. +Cow Drag Resistance         +Max Health"
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -921,15 +913,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.1003
-offset_top = 62.8726
-offset_right = 186.9
-offset_bottom = 118.873
+offset_left = -68.0
+offset_top = 62.873
+offset_right = 192.0
+offset_bottom = 202.873
 grow_horizontal = 2
-text = "God cow
-++Crit Chance
-++Damage
-++Max Health"
+text = "The cow of kings, the king of cows. ++Crit Chance                                  ++Damage                                        ++Max Health"
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -1002,6 +991,7 @@ grow_vertical = 2
 script = ExtResource("24_adsx1")
 
 [node name="Label" type="Label" parent="DeathMenu"]
+modulate = Color(0.784314, 0, 0, 1)
 z_index = 101
 layout_mode = 1
 anchors_preset = 5
@@ -1030,7 +1020,8 @@ offset_top = 335.0
 offset_right = 60.0
 offset_bottom = 385.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("19_u5bqv")
+theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Restart"
 
@@ -1046,7 +1037,8 @@ offset_top = 400.0
 offset_right = 55.0
 offset_bottom = 440.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("19_u5bqv")
+theme_override_font_sizes/font_size = 20
 disabled = true
 text = "Main Menu"
 

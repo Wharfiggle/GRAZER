@@ -68,7 +68,7 @@ transform = Transform3D(-0.938595, 0, -0.34502, 0, 1, 0, 0.34502, 0, -0.938595, 
 transform = Transform3D(0.391543, 0, -0.395537, 0, 0.958, 0, 0.310957, 0, 0.498043, 5.92453, 0.0611202, 4.18284)
 
 [node name="cacti1" parent="NavigationRegion3D" instance=ExtResource("7_n43b4")]
-transform = Transform3D(0.7, 0, 0, 0, 1.29138, 0, 0, 0, 0.7, -0.906606, 0.0500002, 5.99265)
+transform = Transform3D(0.7, 0, 0, 0, 1.29138, 0, 0, 0, 0.7, -0.906606, 0.0500002, 5.57378)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.41109, 0.0019908, 4.34813)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkvenwjord5ry"
+path="res://.godot/imported/ShootingWarning.wav-2909a2f817967c0968b9d711be182ace.sample"
+
+[deps]
+
+source_file="res://sounds/Enemy Stuff/ShootingWarning.wav"
+dest_files=["res://.godot/imported/ShootingWarning.wav-2909a2f817967c0968b9d711be182ace.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

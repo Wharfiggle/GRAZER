@@ -71,6 +71,7 @@ label_settings = SubResource("LabelSettings_vo6td")
 horizontal_alignment = 1
 
 [node name="Art" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Art"
@@ -90,9 +91,7 @@ Stark, Ethan  |
 Zinnecker, Mae  |
 Garretsone, Liz  | 
 Lucero, Jose  |
-Ramaley, Howie  |
-
-"
+Ramaley, Howie  |"
 horizontal_alignment = 2
 
 [node name="ArtistRoles" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
@@ -103,17 +102,16 @@ text = "Project Lead, Art Director, Gameplay Designer
  Character Artist, Rigger, Technical Artist 
  Concept Art & UI Design 
  Environment Art 
- Character Artist, Rigger, Technical Artist 
-
-"
+ Character Artist, Rigger, Technical Artist "
 
 [node name="Code" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Code"
 label_settings = SubResource("LabelSettings_b41dx")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -124,9 +122,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Southman, Elijah  |
 Anderson, Ian  |
-Parker, Molly  |
-
-"
+Parker, Molly  |"
 horizontal_alignment = 2
 
 [node name="CodeRoles" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
@@ -134,17 +130,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = " Programming Lead 
  Enemy AI Programmer 
- Interactions Programmer 
-
-"
+ Interactions Programmer "
 
 [node name="Other" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Other"
 label_settings = SubResource("LabelSettings_b41dx")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -155,9 +150,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Palarz , Jayden  |
 Dimiceli, Bella  |
-Summers, Bradley  |
-
-"
+Summers, Bradley  |"
 horizontal_alignment = 2
 
 [node name="OtherRoles1" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
@@ -166,18 +159,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = " Sound
  Sound            
- Sound
-
-"
+ Sound"
 
 [node name="OtherNames2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Sara, Last  |
-Holden, Last  |
-Isaac , Last	  |
-
-"
+text = "Moen, Sara  |
+Anderson, Holden  |
+Guggisberg, Isaac  |"
 horizontal_alignment = 2
 
 [node name="OtherRoles2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
@@ -186,9 +175,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = " Website
  Video
- Preproduction
-
-"
+ Preproduction"
 
 [node name="Back" type="Button" parent="Panel"]
 modulate = Color(1, 0.819608, 0.709804, 1)
@@ -197,6 +184,8 @@ offset_left = 20.0
 offset_top = 660.0
 offset_right = 120.0
 offset_bottom = 700.0
+theme_override_fonts/font = ExtResource("2_ao8ti")
+theme_override_font_sizes/font_size = 24
 text = "Back"
 
 [connection signal="pressed" from="Panel/Back" to="." method="_on_button_pressed"]

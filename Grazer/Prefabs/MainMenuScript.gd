@@ -1,31 +1,29 @@
+#Elijah Southman
+
 extends Panel
 
+var audioArRay = [
+	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.5.wav"),
+	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.7.wav"),
+	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.9.wav"),
+	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.10.wav"),
+	preload("res://sounds/Cowgirl edited/Character Selection/CowGirlVox_GoodPick_.wav")]
+var audioArRussel = [
+	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.7.wav"),
+	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.19.wav"),
+	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.62.wav"),
+	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.65.wav")]
+var music = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
+@onready var musicPlayer = $AudioStreamPlayer2D
+@onready var raySound = $CharacterSelect/RayAudio
+@onready var russelSound = $CharacterSelect/RusselAudio
+var rng = RandomNumberGenerator.new()
+var selected = false
 
-var Rayvoice1 = preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.5.wav")
-var Rayvoice2 = preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.7.wav")
-var Rayvoice3 = preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.9.wav")
-var Rayvoice4 = preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.10.wav")
-var Rayvoice5 = preload("res://sounds/Cowgirl edited/Character Selection/CowGirlVox_GoodPick_.wav")
-
-var audioArrayRay = [Rayvoice1,Rayvoice2,Rayvoice3,Rayvoice4,Rayvoice5]
-
-var Russelvoice1 = preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.7.wav")
-var Russelvoice2 = preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.19.wav")
-var Russelvoice3 = preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.62.wav")
-var Russelvoice4 = preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.65.wav")
-
-var audioArrayRussel = [Russelvoice1,Russelvoice2,Russelvoice3,Russelvoice4]
-
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#	var rayselection = $CharacterSelect/HBoxContainer/rayButton/AudioStreamPlayer2Drayselection
-#	var russelselection =  $CharacterSelect/HBoxContainer/russelButton/AudioStreamPlayer2D# Replace with function body.
-#	var russleButton = $CharacterSelect/HBoxContainer/russelButton
-#	var rayButton = $CharacterSelect/HBoxContainer/rayButton
-	
-	#var clip_to_play = audioArrayRay[randi() % audioArrayRay.size()] 
-
+func _ready():
+	rng.randomize()
+	musicPlayer.set_stream(music)
+	musicPlayer.play(4.61)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -33,10 +31,7 @@ func _process(_delta):
 		_on_quit_button_pressed()
 	if(Input.is_action_just_pressed("Interact")):
 		_on_button_pressed()
-	
-	
-	
-
+		
 
 func _on_button_pressed():
 	var charSelect = $CharacterSelect
@@ -53,12 +48,22 @@ func _on_credits_pressed():
 	get_tree().change_scene_to_file("res://Levels/credits.tscn")
 
 func _on_russel_button_pressed():
-	WorldSave.setCharacter(true)
-	get_tree().change_scene_to_file("res://Levels/Level.tscn")
+	if(selected == false):
+		selected = true
+		WorldSave.setCharacter(true)
+		russelSound.stream = audioArRussel[rng.randi_range(0, audioArRussel.size() - 1)]
+		russelSound.play()
+		await russelSound.finished
+		get_tree().change_scene_to_file("res://Levels/Level.tscn")
 
 func _on_ray_button_pressed():
-	WorldSave.setCharacter(false)
-	get_tree().change_scene_to_file("res://Levels/Level.tscn")
+	if(selected == false):
+		selected = true
+		WorldSave.setCharacter(false)
+		raySound.stream = audioArRay[rng.randi_range(0, audioArRay.size() - 1)]
+		raySound.play()
+		await raySound.finished
+		get_tree().change_scene_to_file("res://Levels/Level.tscn")
 	
 
 

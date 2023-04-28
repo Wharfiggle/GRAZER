@@ -9,7 +9,7 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
 var movementBlend = 0.0
-@export var baseAimSpeed = 0.5
+@export var baseAimSpeed = 0.4
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
@@ -21,12 +21,14 @@ var itemDrop = null
 #soundFile Preload
 var reloadSound = preload("res://sounds/gunsounds/Reload.wav")
 var revolverShootSound = preload("res://sounds/gunsounds/Copy of revolverfire.wav")
-var damagesound= preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox5.wav")
-var deathSound = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox6.wav")
-var voice1 = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox4.wav")
-var voice2 = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox2.wav")
-var voice3 = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox1.wav")
-var audioArray = [voice1,voice2,voice3]
+var damagesound = [
+	preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox5.wav"),
+	preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox2.wav"),
+	preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox1.wav")]
+var deathSound = preload("res://sounds/Enemy Stuff/MarauderGrunt3.wav")
+var cowStealSound = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox4.wav")
+var shootingVoice = preload("res://sounds/Enemy Stuff/MarauderShooting.wav")
+var shootingSFX = preload("res://sounds/Enemy Stuff/ShootingWarning.wav")
 
 
 var maxHealth = 15.0
@@ -153,6 +155,9 @@ func _physics_process(delta):
 					print("couldn't find valid location for enemy to spawn in, deleting")
 					queue_free()
 					SceneCounter.marauders -= 1
+	
+	if(draggedCow == null):
+		animation.set("parameters/walkDrag/blend_amount", 0)
 	
 	movementBlend = lerpf(movementBlend, speed, 0.1)
 	var temp = 1.0 -  movementBlend
@@ -429,7 +434,7 @@ func pursuit():
 				clip -= 1
 				if(clip <= 0):
 					#setting sound to reload
-					SoundFX.stream = reloadSound
+					#SoundFX.stream = reloadSound
 					#SoundFX.play()
 					#print("Reloading")
 					clip = clipSize
@@ -473,16 +478,13 @@ func pursuit():
 		targetPos = player.position
 
 func cowPursuit():
-	var clip_to_play = audioArray[randi() % audioArray.size()] 
-	Vocal.stream=clip_to_play
-	Vocal.play()
 	#Marauder runs towards closest cow and attempts to lasso when in range
 	#If successful, or cowboy gets too close, the marauder switches to flee mode.
 	speed = 1.0
 	if(herd == null):
-			herd = get_node(NodePath("/root/Level/Herd"))
-			if(herd == null):
-				return
+		herd = get_node(NodePath("/root/Level/Herd"))
+		if(herd == null):
+			return
 	
 	#if(targetCow == null):
 	targetCow = herd.getClosestCow(position)
@@ -495,6 +497,8 @@ func cowPursuit():
 	if(targetCow != null && position.distance_to(targetCow.position) > dragRange):
 		targetPos = targetCow.position
 	elif(targetCow != null && draggedCow == null):
+		Vocal.stream = cowStealSound
+		Vocal.play()
 		draggedCow = targetCow
 		draggedCow.startDragging(self)
 		dragging = true
@@ -587,6 +591,10 @@ func _on_timer_timeout():
 func readyAim():
 	if(aiming):
 		return
+	Vocal.stream = shootingVoice
+	Vocal.play()
+	SoundFX.stream = shootingSFX
+	SoundFX.play()
 	aiming = true
 	targetPos = player.position
 	for i in 60:
@@ -616,13 +624,10 @@ func readyAim():
 	speed = 1.0
 	aimLerpSpeed = baseAimSpeed
 
-func attack():
-	var clip_to_play = audioArray[randi() % audioArray.size()] 
+func attack(): 
 	targetPos = player.global_transform.origin
-	Vocal.stream=clip_to_play
 	
 	if(shootingPoint != null):
-		Vocal.play()
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
 		
@@ -691,16 +696,17 @@ func die():
 	health = -100000
 
 func updateHealth(newHP:float):
+	if(newHP < health):
+		Vocal.stream = damagesound[randi_range(0, damagesound.size() - 1)]
+		Vocal.play()
 	health = newHP
 	if(health <= 0):
 		die()
 
 func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
 	if(from != "enemy"):
-		Vocal.stream = damagesound
-		if(!Vocal.playing):
-			Vocal.play(0.13)
 		updateHealth(health - damage)
+#		stunTimer = stunTime / 10
 		hitFlashAmount = 1
 		critHit = inCritHit
 		if(!critHit):

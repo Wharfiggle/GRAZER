@@ -21,15 +21,26 @@ var trailEnd = 0
 var bulletStopExtend = 0
 var trailColor = Color(1, 167 / 255.0, 0)
 var critHit = false
+@onready var boom = $Boom
+var hitSound = preload("res://sounds/Enemy Stuff/BulletImpact(Enemy).wav")
+var player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	raycast.target_position = Vector3(0, -muzzle_velocity / 60.0, 0)
+	
 
 func shoot(inSource:Node3D, inFrom:String, inPosition:Vector3, inRotation:Vector3, 
 inRange:float, inDamage:float, inCritHit:bool = false, inColor:Color = Color(-1,-1,-1), inSpeed:float = 150.0):
 	source = inSource
 	source.get_parent().add_child(self)
+	if(source.is_in_group("Player")):
+		player = source
+	else:
+		player = get_node(NodePath("/root/Level/Player"))
+#	if(boom.stream != null):
+#		player.extraSounds.set_stream(boom.stream)
+#		player.extraSounds.play(.55)
 	from = inFrom
 	global_position = inPosition
 	startPos = inPosition
@@ -92,6 +103,9 @@ func _physics_process(_delta):
 				if(!canHit):
 					hitBody = null
 				else: #hits only if object doesn't have damage_taken or damage_taken returns true
+					if(source == player):
+						player.extraSounds.stream = hitSound
+						player.extraSounds.play()
 					hitPoint = raycast.get_collision_point() + velocity.normalized() * bulletStopExtend
 		elif(hitPoint != null): #if hitPoint was set last frame, move to hitPoint
 			position = hitPoint
