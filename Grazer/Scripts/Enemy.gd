@@ -9,7 +9,7 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
 var movementBlend = 0.0
-@export var baseAimSpeed = 0.4
+@export var baseAimSpeed = 0.5
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
