@@ -173,14 +173,10 @@ texture_pressed = ExtResource("4_0frun")
 texture_hover = ExtResource("6_113ie")
 texture_click_mask = ExtResource("8_wdt6q")
 
-[node name="RusselAudio" type="AudioStreamPlayer2D" parent="CharacterSelect"]
+[node name="selectAudio" type="AudioStreamPlayer2D" parent="CharacterSelect"]
 position = Vector2(363, 230)
 scale = Vector2(0.19, 0.19)
 volume_db = 15.0
-
-[node name="RayAudio" type="AudioStreamPlayer2D" parent="CharacterSelect"]
-position = Vector2(363, 230)
-scale = Vector2(0.19, 0.19)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = 8.0

@@ -15,10 +15,12 @@ var audioArRussel = [
 	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.65.wav")]
 var music = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
 @onready var musicPlayer = $AudioStreamPlayer2D
-@onready var raySound = $CharacterSelect/RayAudio
-@onready var russelSound = $CharacterSelect/RusselAudio
+#@onready var raySound = $CharacterSelect/RayAudio
+@onready var SelectSound = $CharacterSelect/selectAudio
 var rng = RandomNumberGenerator.new()
 var selected = false
+@onready var RayButton = $CharacterSelect/rayButton
+@onready var RussleButton = $CharacterSelect/russelButton
 
 func _ready():
 	rng.randomize()
@@ -32,6 +34,18 @@ func _process(_delta):
 	if(Input.is_action_just_pressed("Interact")):
 		_on_button_pressed()
 		
+		
+	
+	#if (RayButton.is_hovered()):
+	#	SelectSound.stream =audioArRay[randi_range(0, audioArRay.size() - 1)]
+	#	SelectSound.play()
+	
+	#elif (RayButton):
+	#	SelectSound.stream =audioArRussel[randi_range(0, audioArRussel.size() - 1)]
+	#	SelectSound.play()
+	
+	
+	
 
 func _on_button_pressed():
 	var charSelect = $CharacterSelect
@@ -51,18 +65,18 @@ func _on_russel_button_pressed():
 	if(selected == false):
 		selected = true
 		WorldSave.setCharacter(true)
-		russelSound.stream = audioArRussel[rng.randi_range(0, audioArRussel.size() - 1)]
-		russelSound.play()
-		await russelSound.finished
+		SelectSound.stream = audioArRussel[rng.randi_range(0, audioArRussel.size() - 1)]
+		SelectSound.play()
+		await SelectSound.finished
 		get_tree().change_scene_to_file("res://Levels/Level.tscn")
 
 func _on_ray_button_pressed():
 	if(selected == false):
 		selected = true
 		WorldSave.setCharacter(false)
-		raySound.stream = audioArRay[rng.randi_range(0, audioArRay.size() - 1)]
-		raySound.play()
-		await raySound.finished
+		SelectSound.stream = audioArRay[rng.randi_range(0, audioArRay.size() - 1)]
+		SelectSound.play()
+		await SelectSound.finished
 		get_tree().change_scene_to_file("res://Levels/Level.tscn")
 	
 
