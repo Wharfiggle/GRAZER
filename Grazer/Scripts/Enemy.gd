@@ -182,13 +182,15 @@ func _physics_process(delta):
 		herd = get_node(NodePath("/root/Level/Herd"))
 	
 	var rotateTo
+	var dragAnimOffset = PI
 	if(!aiming):
 		rotateTo = targetPos
 	else:
 		rotateTo = player.position
-	var dragAnimOffset = PI
-	if(dragging):
-		dragAnimOffset = 0
+	if(draggedCow != null):
+		print("dragging")
+		rotateTo = draggedCow.position
+		dragAnimOffset = PI
 	rotation.y = lerp_angle(
 		rotation.y,
 		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + dragAnimOffset,
@@ -668,6 +670,7 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 	if(draggedCow != null):
 		draggedCow.stopDragging(self)
 		draggedCow = null
+		dragging = false
 		currentMode = behaviors.cowPursuit
 	return result
 
