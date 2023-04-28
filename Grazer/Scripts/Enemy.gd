@@ -29,6 +29,8 @@ var deathSound = preload("res://sounds/Enemy Stuff/MarauderGrunt3.wav")
 var cowStealSound = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox4.wav")
 var shootingVoice = preload("res://sounds/Enemy Stuff/MarauderShooting.wav")
 var shootingSFX = preload("res://sounds/Enemy Stuff/ShootingWarning.wav")
+var lungeImpact = preload("res://sounds/Implement These/LungeImpact.wav")
+var AmbushMusic = preload("res://sounds/Implement These/MarauderMusic.wav")
 
 
 var maxHealth = 15.0
@@ -653,6 +655,7 @@ func knock():
 	for enemy in enemies:
 		if(enemy != self && enemy.has_method("knockback")):
 			enemy.knockback(position, knockbackVel.length(), false)
+			
 
 func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 	#print("enemy knockback: " + str(damageSourcePos))
@@ -661,6 +664,8 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 #		return
 #	#activate knockback and IFrames timers
 #	knockbackIFramesTimer = knockbackIFrames
+	SoundFX.stream = lungeImpact
+	SoundFX.play()
 	var result = (knockbackTimer == 0)
 	if(knockbackTimer > 0 && kSpeed <= knockbackStrength):
 		return result
