@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwx3nkku0idnk"]
+[gd_scene load_steps=12 format=3 uid="uid://dwx3nkku0idnk"]
 
 [ext_resource type="Script" path="res://Prefabs/MainMenuScript.gd" id="1_ivsrd"]
 [ext_resource type="Texture2D" uid="uid://d2m0o42qas5dn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/grzrMenuScreenLogo.png" id="2_8ux03"]
+[ext_resource type="Texture2D" uid="uid://6e143ko3smr5" path="res://Assets/Images/Ray.png" id="3_huhhm"]
+[ext_resource type="Texture2D" uid="uid://cdkobgmaimv1a" path="res://Assets/Images/Russel.png" id="4_0frun"]
+[ext_resource type="Texture2D" uid="uid://dlqsdcwvnqjmb" path="res://Assets/Images/RayHighlight.png" id="4_3j3bl"]
+[ext_resource type="BitMap" uid="uid://cw7j77afavfta" path="res://Assets/Images/RayClickMask.png" id="5_vhqxr"]
+[ext_resource type="Texture2D" uid="uid://cygel02nuxne3" path="res://Assets/Images/RusselHighlight.png" id="6_113ie"]
+[ext_resource type="BitMap" uid="uid://bhf1agksjgog2" path="res://Assets/Images/RusselClickMask.png" id="8_wdt6q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bybe"]
 bg_color = Color(0.117647, 0.14902, 0.0941176, 1)
@@ -120,46 +126,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelect"]
+[node name="rayButton" type="TextureButton" parent="CharacterSelect"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -285.0
+offset_top = -340.0
+offset_right = 2586.0
+offset_bottom = 2940.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 200
-
-[node name="russelButton" type="Button" parent="CharacterSelect/HBoxContainer"]
-modulate = Color(0.980392, 0.490196, 0, 1)
-z_index = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
+scale = Vector2(0.2, 0.2)
 disabled = true
-text = "Play as Russel"
+texture_normal = ExtResource("3_huhhm")
+texture_pressed = ExtResource("3_huhhm")
+texture_hover = ExtResource("4_3j3bl")
+texture_click_mask = ExtResource("5_vhqxr")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterSelect/HBoxContainer/russelButton"]
-volume_db = 4.04
-
-[node name="rayButton" type="Button" parent="CharacterSelect/HBoxContainer"]
-modulate = Color(0.980392, 0.490196, 0, 1)
-z_index = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-disabled = true
-text = "Play as Ray
-"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterSelect/HBoxContainer/rayButton"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterSelect/rayButton"]
 volume_db = 4.566
+
+[node name="russelButton" type="TextureButton" parent="CharacterSelect"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = -156.0
+offset_right = 2262.0
+offset_bottom = 2424.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+disabled = true
+texture_normal = ExtResource("4_0frun")
+texture_pressed = ExtResource("4_0frun")
+texture_hover = ExtResource("6_113ie")
+texture_click_mask = ExtResource("8_wdt6q")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterSelect/russelButton"]
+volume_db = 4.04
 
 [connection signal="pressed" from="playButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="quitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="CharacterSelect/HBoxContainer/russelButton" to="." method="_on_russel_button_pressed"]
-[connection signal="pressed" from="CharacterSelect/HBoxContainer/rayButton" to="." method="_on_ray_button_pressed"]
+[connection signal="pressed" from="CharacterSelect/rayButton" to="." method="_on_ray_button_pressed"]
+[connection signal="pressed" from="CharacterSelect/russelButton" to="." method="_on_russel_button_pressed"]

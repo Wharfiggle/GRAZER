@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://cw7j77afavfta"
+path="res://.godot/imported/RayClickMask.png-01a95b56640299c00ac23f123a93f874.res"
+
+[deps]
+
+source_file="res://Assets/Images/RayClickMask.png"
+dest_files=["res://.godot/imported/RayClickMask.png-01a95b56640299c00ac23f123a93f874.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

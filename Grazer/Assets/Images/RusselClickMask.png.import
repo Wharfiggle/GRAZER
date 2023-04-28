@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bhf1agksjgog2"
+path="res://.godot/imported/RusselClickMask.png-4a219c2eab91ede0c7ea842b6842b4c8.res"
+
+[deps]
+
+source_file="res://Assets/Images/RusselClickMask.png"
+dest_files=["res://.godot/imported/RusselClickMask.png-4a219c2eab91ede0c7ea842b6842b4c8.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

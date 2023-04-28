@@ -41,8 +41,8 @@ func _process(_delta):
 func _on_button_pressed():
 	var charSelect = $CharacterSelect
 	charSelect.visible = true
-	charSelect.get_child(0).get_child(0).disabled = false
-	charSelect.get_child(0).get_child(1).disabled = false
+	charSelect.get_child(0).disabled = false
+	charSelect.get_child(1).disabled = false
 	
 func _on_quit_button_pressed():
 	
