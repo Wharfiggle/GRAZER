@@ -139,6 +139,8 @@ func _physics_process(delta):
 					validLoc = false
 			if(validLoc):
 				position.y = 0.1
+				var level = get_node(NodePath("/root/Level"))
+				#implement sound: use level to fade in from normal music to fight music
 				print("enemy spawn tries: " + str(tries))
 			else:
 				position.y = 30
@@ -271,7 +273,7 @@ func _physics_process(delta):
 				herd.removeCow(draggedCow)
 				draggedCow.queue_free()
 				SceneCounter.cows -= 1
-				queue_free()
+				delete()
 				SceneCounter.marauders -= 1
 	
 	if(position.y < -0.5):
@@ -284,7 +286,7 @@ func _physics_process(delta):
 				herd.removeCow(draggedCow)
 				draggedCow.queue_free()
 				SceneCounter.cows -= 1
-			queue_free()
+			delete()
 			SceneCounter.marauders -= 1
 	else:
 		silhouette.set_albedo(silhouetteColor)
@@ -338,7 +340,13 @@ func _physics_process(delta):
 #		if(knockbackIFramesTimer < 0):
 #			knockbackIFramesTimer = 0
 
-
+func delete():
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	if(enemies.size() <= 1):
+		var level = get_node(NodePath("/root/Level/"))
+		#implement sound: use level to fade out from enemy music to normal music here
+	queue_free()
+	
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
 	targetPos = position
@@ -543,7 +551,7 @@ func flee():
 				i.draggedCow = null
 			herd.removeCow(cowTemp)
 			cowTemp.queue_free()
-			leadDragger.queue_free()
+			leadDragger.delete()
 			SceneCounter.cows -= 1
 			SceneCounter.marauders -= 1
 
@@ -669,6 +677,9 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 	var result = (knockbackTimer == 0)
 	if(knockbackTimer > 0 && kSpeed <= knockbackStrength):
 		return result
+		
+	#implement sound: play knockback sound here
+		
 	knockbackTimer = knockbackTime
 	#set knockbackVel to the direction vector * speed
 	knockbackVel = damageSourcePos.direction_to(self.position)
@@ -697,7 +708,7 @@ func die():
 			get_node("/root/Level").add_child(itemDrop)
 			itemDrop.position = position
 			itemDrop = null
-		queue_free()
+		delete()
 	health = -100000
 
 func updateHealth(newHP:float):
