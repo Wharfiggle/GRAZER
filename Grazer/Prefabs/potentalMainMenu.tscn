@@ -50,7 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_ebvue")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -123,7 +123,7 @@ theme_override_fonts/font = ExtResource("3_l7kb6")
 theme_override_font_sizes/font_size = 24
 text = "Quit"
 
-[node name="CharacterSelect" type="Panel" parent="."]
+[node name="CharacterSelect" type="Control" parent="."]
 visible = false
 z_index = 10
 layout_mode = 1
@@ -141,13 +141,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -297.0
-offset_top = -364.0
-offset_right = 2574.0
-offset_bottom = 2916.0
+offset_left = -264.0
+offset_top = -326.0
+offset_right = 2607.0
+offset_bottom = 2954.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.19, 0.19)
+scale = Vector2(0.18, 0.18)
 disabled = true
 texture_normal = ExtResource("3_huhhm")
 texture_pressed = ExtResource("3_huhhm")
@@ -162,13 +162,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -277.0
-offset_top = -130.0
-offset_right = 2251.0
-offset_bottom = 2450.0
+offset_left = -244.0
+offset_top = -105.0
+offset_right = 2284.0
+offset_bottom = 2475.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.19, 0.19)
+scale = Vector2(0.18, 0.18)
 disabled = true
 texture_normal = ExtResource("4_0frun")
 texture_pressed = ExtResource("4_0frun")

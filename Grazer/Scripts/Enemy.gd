@@ -92,6 +92,8 @@ var dragRange = 2.0
 var escapeRange = 18
 var waited = false
 
+var lastGroundedPosition = position
+
 func _ready():
 	self.add_to_group('DespawnAtCheckpoint')
 	self.add_to_group('Enemy')
@@ -104,7 +106,7 @@ func _ready():
 	
 	rng.randomize()
 	var rn = rng.randf()
-	if(rn <= 0.1):
+	if(rn <= 0.15):
 		itemDrop = itemDropPrefab.instantiate()
 		
 	hitFlash.set_shader_parameter("color", hitColor)
@@ -275,6 +277,8 @@ func _physics_process(delta):
 				SceneCounter.cows -= 1
 				delete()
 				SceneCounter.marauders -= 1
+	else:
+		lastGroundedPosition = Vector3(position.x, 0, position.z)
 	
 	if(position.y < -0.5):
 		#print("no silhouette for me: " + str(position.y))
@@ -712,7 +716,7 @@ func die():
 			draggedCow.stopDragging(self)
 		if(itemDrop != null):
 			level.add_child(itemDrop)
-			itemDrop.position = position
+			itemDrop.position = lastGroundedPosition
 			itemDrop = null
 		delete()
 	health = -100000

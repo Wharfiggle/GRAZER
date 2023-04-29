@@ -280,7 +280,7 @@ func _process(delta):
 		equippedClipSize = shotgunClipSize
 	
 	if(!reloading):
-		if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize):
+		if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize && active):
 			startReload()
 		if(equippedClip <= 0):
 			startReload()

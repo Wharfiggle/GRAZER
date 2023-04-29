@@ -72,7 +72,7 @@ class CowType:
 			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
 		elif(id == 5): #moxie
 			player.critChance += 0.2 * undoMod
-			player.cowDamageMod += 0.2 * undoMod
+			player.cowDamageMod += 0.25 * undoMod
 			player.maxHitpoints += 4 * undoMod
 			if(useOrUndo):
 				player.hitpoints += 4
@@ -103,7 +103,7 @@ class Item:
 		elif(id == 6): 
 			name = "Recovery Elixir"
 			description = "Heals 50% of your health."
-			cost = 4
+			cost = 2
 		elif(id == 7): 
 			name = "Bulletstorm"
 			description = "You reload instantly."
