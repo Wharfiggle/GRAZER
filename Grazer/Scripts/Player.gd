@@ -30,6 +30,8 @@ var dodgeBufferTimer = 0.0
 var knocked = false
 var movementBlend = 0.0
 
+var volume = 1
+
 #Reload variables
 var currentReloadTime = 0
 var revolverClip = 6
@@ -704,6 +706,8 @@ func _physics_process(delta):
 			if(Vocal.stream != lungeSound):
 				Vocal.stream = lungeSound
 				if(!Vocal.playing):
+					Vocal.volume_db = volume-15
+					print(Vocal.volume_db)
 					Vocal.play()
 		if(russelOrRay == "Ray"):
 			if(Vocal.stream != rayLungesound):
@@ -859,6 +863,7 @@ func knock():
 				enemy.damage_taken(4 * cowDamageMod, "player", false)
 			camera.add_trauma(0.3)
 			knocked = true
+			Vocal.volume_db = volume
 
 func updateHealth(newHP:float):
 	if(newHP < hitpoints):
