@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuxvl0rlaxfi3"]
+
+[ext_resource type="Script" path="res://Scripts/UICursor.gd" id="1_rq3pw"]
+[ext_resource type="Texture2D" uid="uid://d1yre0r6jnnpj" path="res://Assets/Images/cursorIcon.png" id="2_r4fg5"]
+
+[node name="UICursor" type="Control"]
+visible = false
+z_index = 2000
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_rq3pw")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -8.0
+offset_top = -3.0
+offset_right = 89.0
+offset_bottom = 100.0
+scale = Vector2(0.55, 0.55)
+mouse_filter = 2
+texture = ExtResource("2_r4fg5")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -3.0
+offset_top = 5.0
+offset_right = 94.0
+offset_bottom = 108.0
+scale = Vector2(0.45, 0.45)
+mouse_filter = 2
+texture = ExtResource("2_r4fg5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 91.0
+offset_bottom = 103.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("2_r4fg5")

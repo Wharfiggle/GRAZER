@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcorhitij0ix2"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_cfl6f"]
 [ext_resource type="PackedScene" uid="uid://d1d36qeyhbvr3" path="res://Assets/Models/marauder/marauderRed.tscn" id="2_gsgy7"]
-[ext_resource type="Script" path="res://Prefabs/HitBox.gd" id="4_tnfkf"]
+[ext_resource type="Script" path="res://Scripts/HitBox.gd" id="4_tnfkf"]
+
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6dqm1"]
 

@@ -109,7 +109,8 @@ var potionPowerDown = preload("res://sounds/New Sound FEX/Elixir-Power/powerdown
 var RayHurtSound = preload("res://sounds/Cowgirl edited/Damage/Cowgirl Damage Take 4#01.3.wav")
 var rayLungesound = preload("res://sounds/Cowgirl edited/Lunges/Lunge#01.3.wav")
 
-var whistle = preload("res://sounds/newSounds/Whistle/Whistle1.wav")
+var whistle1 = preload("res://sounds/newSounds/Whistle/Whistle1.wav")
+var whistle2 = preload("res://sounds/newSounds/Whistle/Whistle2.wav")
 
 const GRAVITY = 30
 @export var speed = 8.0
@@ -157,7 +158,6 @@ var lastGroundedPosition = position
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.add_to_group('Player')
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	healthCounter.updateHealth(hitpoints)
 	lineSight = lineSightMesh.duplicate()
 	lineSightNode.mesh = lineSight
@@ -473,7 +473,9 @@ func _process(delta):
 				herd.spawnCow(i)
 		
 		if(Input.is_action_just_pressed("Follow Wait") && active):
-			Vocal.stream = whistle
+			Vocal.stream = whistle2
+			if(herd.follow):
+				Vocal.stream = whistle1
 			Vocal.play()
 			herd.toggleFollow()
 	else:
@@ -925,7 +927,6 @@ func die():
 		thieves -= 1
 		if(thieves <= 0):
 			terrain.spawnMarauder(false)
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]
 	active = false

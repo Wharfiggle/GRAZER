@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnd6srcpx5l7x"]
+[gd_scene load_steps=3 format=3 uid="uid://dnd6srcpx5l7x"]
 
-[ext_resource type="PackedScene" uid="uid://dwx3nkku0idnk" path="res://Prefabs/potentalMainMenu.tscn" id="1_dm4o7"]
+[ext_resource type="PackedScene" uid="uid://plf4rr5dnc10" path="res://Prefabs/potentalMainMenu.tscn" id="1_dm4o7"]
+[ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="2_0inhe"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Panel" parent="." instance=ExtResource("1_dm4o7")]
+
+[node name="UICursor" parent="." instance=ExtResource("2_0inhe")]
+active = true

@@ -31,6 +31,8 @@ var wheelRadius = 200
 var hover = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 var menuOpen = preload("res://sounds/New Sound FEX/UI/MenuSlideIn.wav")
 var menuClose = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
+@onready var uiCursor = get_node(NodePath("/root/Level/UICursor"))
+
 func toggleItemWheel():
 	if(!visible):
 		for i in cells.size():
@@ -45,14 +47,13 @@ func toggleItemWheel():
 		soundMaker.stream = menuOpen
 		soundMaker.play()
 		visible = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		viewport.warp_mouse(viewport.get_visible_rect().size / 2)
+		uiCursor.setActive(true, viewport.get_visible_rect().size / 2)
 		get_tree().paused = true
 	elif(visible):
 		soundMaker.stream = menuClose
 		soundMaker.play()
 		visible = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		uiCursor.setActive(false)
 		highlight = [0, 0, 0, 0, 0, 0]
 		for i in cells.size():
 			cells[i].modulate.a = origTransparency
@@ -63,23 +64,26 @@ func toggleItemWheel():
 func _process(_delta):
 	if(Input.is_action_just_pressed("ItemWheel") && player.active):
 		toggleItemWheel()
-	if(visible && (Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
-	&& selected != -1 && player.inventory[selected] > 0):
-		player.usePotion(selected)
-		toggleItemWheel()
 	if(visible):
-		var stickVec = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
-		if(stickVec.length() > 0.3):
-			var selectAngle = atan2(stickVec.x, stickVec.y)
-			selectAngle = fmod(selectAngle + PI - PI / 6.0, PI * 2)
-			selectAngle = 2 * PI - selectAngle
-			selectAngle = fmod(selectAngle, PI * 2)
-			selected = selectAngle / (PI / 3.0) as int
-		else:
-			var mousePos = viewport.get_mouse_position()
-			mousePos -= viewport.get_visible_rect().size / 2
-			if(mousePos.length() > wheelRadius):
-				selected = -1
+		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
+		&& selected != -1 && player.inventory[selected] > 0):
+			player.usePotion(selected)
+			toggleItemWheel()
+		if(Input.is_action_just_pressed("dodge")):
+			toggleItemWheel()
+		
+#		var stickVec = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
+#		if(stickVec.length() > 0.3):
+#			var selectAngle = atan2(stickVec.x, stickVec.y)
+#			selectAngle = fmod(selectAngle + PI - PI / 6.0, PI * 2)
+#			selectAngle = 2 * PI - selectAngle
+#			selectAngle = fmod(selectAngle, PI * 2)
+#			selected = selectAngle / (PI / 3.0) as int
+#		else:
+		var mousePos = viewport.get_mouse_position()
+		mousePos -= viewport.get_visible_rect().size / 2
+		if(mousePos.length() > wheelRadius):
+			selected = -1
 		
 		if(selected != -1):
 			elixirName.text = player.potions[selected].name

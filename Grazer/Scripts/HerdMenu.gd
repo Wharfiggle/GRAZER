@@ -23,6 +23,7 @@ var trading = false
 	$VBoxContainer/Moxie
 ]
 var numCowTypes = null
+@onready var uiCursor = get_node(NodePath("/root/Level/UICursor"))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,15 +33,15 @@ func use():
 	active = !active
 	enterExitTimer = enterExitTime
 	if(active):
+		uiCursor.setActive(true)
 		updateNumCowTypes()
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		var newMousePos = Vector2(
 			viewport.get_visible_rect().size.x - widthOffset,
 			viewport.get_visible_rect().size.y / 2)
 		viewport.warp_mouse(newMousePos)
 		player.active = false
 	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		uiCursor.setActive(false)
 		player.active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

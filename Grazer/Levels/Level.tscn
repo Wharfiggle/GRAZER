@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=39 format=3 uid="uid://diy7osedw50gn"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -8,13 +8,12 @@
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="8_kp882"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="9"]
-[ext_resource type="Script" path="res://Levels/LoopSound.gd" id="10_apc26"]
 [ext_resource type="PackedScene" uid="uid://bxmokm0w5pjrq" path="res://Prefabs/fog_volume.tscn" id="11_1gwt8"]
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="12_3pmhn"]
 [ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
-[ext_resource type="Script" path="res://Levels/HerdMenu.gd" id="15_8jq8n"]
-[ext_resource type="PackedScene" uid="uid://dra5buej3kycq" path="res://Prefabs/Usable.tscn" id="15_hq1n4"]
+[ext_resource type="Script" path="res://Scripts/HerdMenu.gd" id="15_07h73"]
+[ext_resource type="PackedScene" path="res://Prefabs/Usable.tscn" id="15_hq1n4"]
 [ext_resource type="Texture2D" uid="uid://d8guaa20j25s" path="res://Assets/Images/hud/herdExchangeWholeTab.png" id="15_xkkar"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="16_leqkn"]
 [ext_resource type="Texture2D" uid="uid://dvsyjajaobag1" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemCollapsed.png" id="18_u7k13"]
@@ -23,13 +22,15 @@
 [ext_resource type="Texture2D" uid="uid://cf5xep6d18eqo" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/elixir menu/shopElixirCowHeadCost.png" id="21_vsota"]
 [ext_resource type="Texture2D" uid="uid://b7u23a48obmro" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemExpandedInfoStageButton.png" id="22_0573l"]
 [ext_resource type="Texture2D" uid="uid://cxgt8ygd822tr" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/MakeTradeHover.png" id="22_vsqqn"]
-[ext_resource type="Script" path="res://Levels/DeathMenu.gd" id="24_adsx1"]
+[ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="23_5p5jq"]
 [ext_resource type="AudioStream" uid="uid://crtrdbfpgkmwl" path="res://sounds/Music/WildsMusic.wav" id="24_eux13"]
 [ext_resource type="AudioStream" uid="uid://ctinn75mya67b" path="res://sounds/New Sound FEX/Ambiance/outsidedesert.wav" id="25_0aix7"]
+[ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="25_onhah"]
 [ext_resource type="AudioStream" uid="uid://cxcaba7koqgv2" path="res://sounds/Music/EnemyMusic.wav" id="26_chugg"]
 [ext_resource type="AudioStream" uid="uid://dbtr4w6ph4xuw" path="res://sounds/Music/OutpostMusic.wav" id="27_iuswt"]
 [ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="28_h45dm"]
 [ext_resource type="AudioStream" uid="uid://dgl3cdn3cctem" path="res://sounds/Music/DeathMusic.wav" id="29_713a0"]
+[ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="31_7rkun"]
 
 [sub_resource type="Gradient" id="Gradient_x61s1"]
 interpolation_mode = 2
@@ -150,7 +151,7 @@ grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.667, 0.667)
 texture = ExtResource("15_xkkar")
-script = ExtResource("15_8jq8n")
+script = ExtResource("15_07h73")
 widthOffset = 340.0
 
 [node name="Usable" parent="HerdMenu" instance=ExtResource("15_hq1n4")]
@@ -1002,7 +1003,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("24_adsx1")
+script = ExtResource("23_5p5jq")
 
 [node name="Label" type="Label" parent="DeathMenu"]
 modulate = Color(0.784314, 0, 0, 1)
@@ -1060,41 +1061,44 @@ process_mode = 3
 stream = ExtResource("24_eux13")
 volume_db = -12.0
 bus = &"background "
-script = ExtResource("10_apc26")
+script = ExtResource("25_onhah")
 
 [node name="EnemyMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("26_chugg")
 volume_db = -10.0
 bus = &"background "
-script = ExtResource("10_apc26")
+script = ExtResource("25_onhah")
 
 [node name="OutpostMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("27_iuswt")
 volume_db = -12.0
 bus = &"background "
-script = ExtResource("10_apc26")
+script = ExtResource("25_onhah")
 
 [node name="ShopMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("28_h45dm")
 volume_db = -12.0
 bus = &"background "
-script = ExtResource("10_apc26")
+script = ExtResource("25_onhah")
 
 [node name="DeathMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("29_713a0")
 volume_db = -8.0
 bus = &"background "
-script = ExtResource("10_apc26")
+script = ExtResource("25_onhah")
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_0aix7")
 volume_db = 4.0
 autoplay = true
-script = ExtResource("10_apc26")
+script = ExtResource("25_onhah")
+
+[node name="UICursor" parent="." instance=ExtResource("31_7rkun")]
+process_mode = 3
 
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Common/MakeTradeCommon" to="HerdMenu" method="_on_make_trade_common_pressed"]

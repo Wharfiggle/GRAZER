@@ -1,20 +1,22 @@
-[gd_scene load_steps=19 format=3 uid="uid://vgtr3tesewb6"]
+[gd_scene load_steps=21 format=3 uid="uid://c6gnutuh5h4m4"]
 
-[ext_resource type="PackedScene" uid="uid://8vqw1t8xn8gm" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_1.tscn" id="2_m4w52"]
-[ext_resource type="PackedScene" uid="uid://81tdkywtx00y" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_2.tscn" id="3_wbykj"]
-[ext_resource type="PackedScene" uid="uid://bv44d8hiyews2" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_3.tscn" id="4_u3ko8"]
-[ext_resource type="PackedScene" uid="uid://b0t156m6xyk5d" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_4.tscn" id="5_2kkhw"]
-[ext_resource type="PackedScene" uid="uid://jq2mjebpgw58" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_5.tscn" id="6_4djg1"]
-[ext_resource type="PackedScene" uid="uid://dyx8qmfqrsuac" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_6.tscn" id="7_efveq"]
-[ext_resource type="PackedScene" uid="uid://dfa44vxsddhn1" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_7.tscn" id="8_ca5we"]
-[ext_resource type="PackedScene" uid="uid://d1k73cs6g14td" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_8.tscn" id="9_ta7jv"]
-[ext_resource type="PackedScene" uid="uid://cd8e00dyamxcx" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_9.tscn" id="10_ngu3i"]
-[ext_resource type="PackedScene" uid="uid://cpug0ut2xrot4" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_10.tscn" id="11_yskj5"]
-[ext_resource type="PackedScene" uid="uid://h701twm7a42r" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_11.tscn" id="12_i78bt"]
-[ext_resource type="PackedScene" uid="uid://dss4pmdp52xfj" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_12.tscn" id="13_4omdq"]
-[ext_resource type="PackedScene" uid="uid://04xi0dji04u" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_13.tscn" id="14_tbbc5"]
-[ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="15_6rg1h"]
-[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="15_s3012"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_opbc5"]
+[ext_resource type="PackedScene" uid="uid://8vqw1t8xn8gm" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_1.tscn" id="2_exdp1"]
+[ext_resource type="PackedScene" uid="uid://81tdkywtx00y" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_2.tscn" id="3_nbv13"]
+[ext_resource type="PackedScene" uid="uid://bv44d8hiyews2" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_3.tscn" id="4_bfqlt"]
+[ext_resource type="PackedScene" uid="uid://b0t156m6xyk5d" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_4.tscn" id="5_fd4oi"]
+[ext_resource type="PackedScene" uid="uid://jq2mjebpgw58" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_5.tscn" id="6_itkfo"]
+[ext_resource type="PackedScene" uid="uid://dyx8qmfqrsuac" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_6.tscn" id="7_q3aik"]
+[ext_resource type="PackedScene" uid="uid://dfa44vxsddhn1" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_7.tscn" id="8_gpu40"]
+[ext_resource type="PackedScene" uid="uid://d1k73cs6g14td" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_8.tscn" id="9_p8u8y"]
+[ext_resource type="PackedScene" uid="uid://cd8e00dyamxcx" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_9.tscn" id="10_om2i6"]
+[ext_resource type="PackedScene" uid="uid://cpug0ut2xrot4" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_10.tscn" id="11_i5v50"]
+[ext_resource type="PackedScene" uid="uid://h701twm7a42r" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_11.tscn" id="12_knpu1"]
+[ext_resource type="PackedScene" uid="uid://dss4pmdp52xfj" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_12.tscn" id="13_uttre"]
+[ext_resource type="PackedScene" uid="uid://04xi0dji04u" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_13.tscn" id="14_hfdx8"]
+[ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="15_7dn7e"]
+[ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="16_xwyxy"]
+[ext_resource type="PackedScene" uid="uid://cebdnkuyb0ogo" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/ItemSpawner.tscn" id="17_w5b0g"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_v867l"]
 vertices = PackedVector3Array(8.75, 0.459377, -28.25, 9, 0.459377, -27.25, 9.5, 0.459377, -27, 10, 0.459377, -28.75, 10.25, 0.459377, -31.5, 10, 0.459377, -28.75, 17, 0.459377, -28.75, 17.75, 0.459377, -29.75, 17, 0.459377, -28.75, 17.25, 0.459377, -26.75, 17.75, 0.459377, -27, 17.75, 0.459377, -29.75, 0.5, 0.459377, -31.5, 0.5, 0.459377, -24.25, 1.75, 0.459377, -28, 3, 0.459377, -17.25, 3, 0.459377, -19.25, 1.75, 0.459377, -19.5, 0.5, 0.459377, -17, 0.5, 0.459377, -31.5, 1.75, 0.459377, -28, 6.75, 0.459377, -28.5, 10.25, 0.459377, -31.5, 17.75, 0.459377, -29.75, 20, 0.459377, -30, 20, 0.459377, -31.5, 10.25, 0.459377, -31.5, 6.75, 0.459377, -28.5, 8.75, 0.459377, -28.25, 10, 0.459377, -28.75, 10.25, 0.459377, -31.5, 0.5, 0.459377, -24.25, 0.5, 0.459377, -17, 1.75, 0.459377, -19.5, 1.75, 0.459377, -28, 25, 0.459377, -26, 25.25, 0.459377, -25.25, 26.5, 0.459377, -25, 27, 0.459377, -28.5, 25.25, 0.459377, -28.25, 20, 0.459377, -31.5, 20, 0.459377, -30, 26.75, 0.459377, -30, 31.5, 0.459377, -31.5, 31.5, 0.459377, -31.5, 26.75, 0.459377, -30, 27, 0.459377, -28.5, 26.5, 0.459377, -25, 26.5, 0.459377, -22.75, 31.5, 0.459377, -22.75, 31.5, 0.459377, -31.5, 27, 0.459377, -28.5, 24.75, 0.459377, -25, 25.25, 0.459377, -25.25, 25, 0.459377, -26, 23.5, 0.459377, -26.25, 23.5, 0.459377, -26.25, 23.5, 0.459377, -28.25, 19.5, 0.459377, -28.25, 19.5, 0.459377, -25.25, 21.5, 0.459377, -22, 24.75, 0.459377, -22, 24.75, 0.459377, -25, 23.5, 0.459377, -26.25, 19.5, 0.459377, -25.25, 9.5, 0.459377, -27, 9, 0.459377, -27.25, 8.75, 0.459377, -26.75, 3.5, 0.459377, -19.5, 3, 0.459377, -19.25, 3, 0.459377, -17.25, 5.5, 0.459377, -21, 3.5, 0.459377, -20.75, 3.5, 0.459377, -19.5, 10.75, 0.459377, -16.25, 11.75, 0.459377, -16.5, 11.75, 0.459377, -18.75, 9.75, 0.459377, -19, 7.75, 0.459377, -17.25, 8, 0.459377, -15.75, 8, 0.459377, -15.75, 7.5, 0.459377, -15.5, 10.75, 0.459377, -15.25, 10.75, 0.459377, -16.25, 5.5, 0.459377, -21, 7.75, 0.459377, -17.25, 9.75, 0.459377, -19, 9.5, 0.459377, -27, 8.75, 0.459377, -26.75, 5.25, 0.459377, -22.5, 5.5, 0.459377, -21, 3.5, 0.459377, -19.5, 3, 0.459377, -17.25, 7.75, 0.459377, -17.25, 3.5, 0.459377, -26.75, 3.5, 0.459377, -22.5, 5.25, 0.459377, -22.5, 6.75, 0.459377, -26.5, 8.75, 0.459377, -26.75, 6.75, 0.459377, -26.5, 5.25, 0.459377, -22.5, 17.75, 0.459377, -25, 17.75, 0.459377, -27, 17.25, 0.459377, -26.75, 17.25, 0.459377, -25, 17.25, 0.459377, -20.5, 17.5, 0.459377, -20, 21, 0.459377, -20.5, 21, 0.459377, -21.75, 19.25, 0.459377, -24.75, 15.75, 0.459377, -24.75, 19.25, 0.459377, -24.75, 17.75, 0.459377, -25, 17.25, 0.459377, -25, 15.75, 0.459377, -24.75, 15.75, 0.459377, -24.75, 11.5, 0.459377, -27.25, 11.25, 0.459377, -20.5, 17.25, 0.459377, -20.5, 21.5, 0.459377, -22, 19.5, 0.459377, -25.25, 19.25, 0.459377, -24.75, 21, 0.459377, -21.75, 15.75, 0.459377, -24.75, 15.5, 0.459377, -27.25, 11.5, 0.459377, -27.25, 26.5, 0.459377, -20.5, 25.5, 0.459377, -20.25, 25.75, 0.459377, -17, 27, 0.459377, -16.75, 31.5, 0.459377, -22.75, 26.5, 0.459377, -22.75, 26.5, 0.459377, -20.5, 27, 0.459377, -16.75, 31.5, 0.459377, -14.5, 27, 0.459377, -16.75, 27, 0.459377, -14.5, 31.5, 0.459377, -14.5, 12.5, 0.459377, -16.25, 12.5, 0.459377, -14.75, 14.25, 0.459377, -14.75, 11.75, 0.459377, -18.75, 11.75, 0.459377, -16.5, 12.5, 0.459377, -16.25, 25.25, 0.459377, -16.75, 25.75, 0.459377, -17, 25.5, 0.459377, -20.25, 21, 0.459377, -20.5, 17.5, 0.459377, -20, 17.25, 0.459377, -18.75, 11.75, 0.459377, -18.75, 12.5, 0.459377, -16.25, 14.25, 0.459377, -14.75, 17.25, 0.459377, -18.75, 25.25, 0.459377, -16.75, 25.5, 0.459377, -20.25, 21, 0.459377, -20.5, 17.25, 0.459377, -18.75, 14.5, 0.459377, -14.25, 21, 0.459377, -13.5, 17.25, 0.459377, -18.75, 14.25, 0.459377, -14.75, 14.5, 0.459377, -14.25, 21, 0.459377, -13.5, 25.25, 0.459377, -13.5, 25.25, 0.459377, -16.75, 7.5, 0.459377, -15.5, 5.75, 0.459377, -15.5, 5.75, 0.459377, -13.5, 10.75, 0.459377, -7.5, 10.75, 0.459377, -15.25, 13, 0.459377, -5.25, 13, 0.459377, -7.25, 10.75, 0.459377, -7.5, 3.75, 0.459377, -5.25, 0.5, 0.459377, -4.75, 3.5, 0.459377, -4.75, 3.75, 0.459377, -5.25, 4.25, 0.459377, -13.25, 4, 0.459377, -15.5, 0.5, 0.459377, -15.75, 3.75, 0.459377, -5.25, 10.75, 0.459377, -7.5, 5.75, 0.459377, -13.5, 4.25, 0.459377, -13.25, 25.25, 0.459377, -12, 25.25, 0.459377, -10.5, 26.25, 0.459377, -10.25, 27, 0.459377, -12.25, 31.5, 0.459377, -14.5, 27, 0.459377, -14.5, 27, 0.459377, -12.25, 29.25, 0.459377, -8.25, 31.5, 0.459377, -7.25, 29.25, 0.459377, -8.25, 29.5, 0.459377, -7.25, 31.5, 0.459377, -7.25, 26.25, 0.459377, -10.25, 26.25, 0.459377, -8.25, 29.25, 0.459377, -8.25, 27, 0.459377, -12.25, 14.25, 0.459377, -13.25, 12.5, 0.459377, -13.25, 12.5, 0.459377, -9.25, 17.75, 0.459377, -9, 17.75, 0.459377, -9, 20.5, 0.459377, -12.5, 20.5, 0.459377, -13.25, 14.5, 0.459377, -14.25, 14.25, 0.459377, -13.25, 20.5, 0.459377, -13.25, 21, 0.459377, -13.5, 14.5, 0.459377, -14.25, 24.5, 0.459377, -10.25, 25.25, 0.459377, -10.5, 25.25, 0.459377, -12, 22.5, 0.459377, -8.25, 24.5, 0.459377, -8.25, 24.5, 0.459377, -10.25, 24.5, 0.459377, -10.25, 25.25, 0.459377, -12, 20.75, 0.459377, -12, 22.5, 0.459377, -8.25, 20.75, 0.459377, -12, 20.5, 0.459377, -12.5, 17.75, 0.459377, -9, 18.25, 0.459377, -8.75, 18.25, 0.459377, -8.75, 18.25, 0.459377, -7.75, 22.25, 0.459377, -7.5, 22.5, 0.459377, -8.25, 20.75, 0.459377, -12, 17.25, 0.459377, -1.25, 19, 0.459377, -1, 19.25, 0.459377, -1.5, 17, 0.459377, -5.25, 22.25, 0.459377, -6.75, 22.25, 0.459377, -7.5, 18.25, 0.459377, -7.75, 18, 0.459377, -7.25, 22.75, 0.459377, -6.5, 22.25, 0.459377, -6.75, 18, 0.459377, -7.25, 17, 0.459377, -5.25, 19.25, 0.459377, -1.5, 20.5, 0.459377, -1.5, 20.5, 0.459377, -1.5, 20.75, 0.459377, -1, 22.75, 0.459377, -6.5, 13, 0.459377, -7.25, 13, 0.459377, -5.25, 17, 0.459377, -5.25, 18, 0.459377, -7.25, 31.5, 0.459377, -7.25, 29.5, 0.459377, -7.25, 29.25, 0.459377, -6.5, 26.75, 0.459377, 1.25, 27, 0.459377, 2, 31.5, 0.459377, 2, 20.75, 0.459377, -1, 20.75, 0.459377, 1.25, 26.75, 0.459377, 1.25, 29.25, 0.459377, -6.5, 22.75, 0.459377, -6.5, 5.25, 0.709377, 6.75, 5.5, 0.459377, 4.75, 3.5, 0.459377, 4.5, 2.75, 0.459377, 6.75, 3.5, 0.459377, -4.75, 0.5, 0.459377, -4.75, 0.5, 0.459377, 2, 3.5, 0.459377, 4.5, 0.5, 0.459377, 9, 2.5, 0.709377, 9, 2.75, 0.459377, 6.75, 0.5, 0.459377, 2, 0.5, 0.459377, 9, 2.75, 0.459377, 6.75, 3.5, 0.459377, 4.5, 11.75, 0.459377, 1.25, 12.25, 0.459377, 1, 10.5, 0.459377, -1.5, 9.5, 0.459377, -1.75, 11.75, 0.459377, 3.25, 11.75, 0.459377, 1.25, 9.5, 0.459377, -1.75, 5.5, 0.459377, -3.5, 5.25, 0.459377, 3.25, 9.5, 0.459377, -1.75, 9.5, 0.459377, -3.5, 5.5, 0.459377, -3.5, 17, 0.459377, 4.5, 17.75, 0.459377, 5, 18.75, 0.459377, 5, 19, 0.459377, -1, 17.25, 0.459377, -1.25, 17, 0.459377, -0.75, 16.75, 0.459377, 3.25, 17, 0.459377, 4.5, 18.75, 0.459377, 5, 19.25, 0.459377, 3, 19, 0.459377, -1, 17, 0.459377, -0.75, 11, 0.459377, -1.75, 12.25, 0.459377, 1, 13.5, 0.459377, 1.25, 15.5, 0.459377, -1, 15.5, 0.459377, -3.5, 11, 0.459377, -3.5, 11, 0.459377, -1.75, 10.5, 0.459377, -1.5, 12.25, 0.459377, 1, 13.5, 0.459377, 1.25, 13.5, 0.459377, 3.25, 16.75, 0.459377, 3.25, 17, 0.459377, -0.75, 15.5, 0.459377, -1, 22.75, 0.459377, 7.25, 22.75, 0.459377, 8, 25, 0.459377, 8, 22.25, 0.459377, 7, 22.75, 0.459377, 7.25, 25, 0.459377, 8, 26.75, 0.459377, 3, 23, 0.459377, 3.25, 31.5, 0.459377, 2, 27, 0.459377, 2, 26.75, 0.459377, 3, 26.75, 0.459377, 3, 25, 0.459377, 8, 25.25, 0.459377, 8.75, 31.5, 0.459377, 8.75, 31.5, 0.459377, 2, 12.5, 0.459377, 14.5, 11.5, 0.459377, 14.75, 11.5, 0.459377, 15.5, 22, 0.459377, 15.5, 22, 0.459377, 14.25, 21, 0.459377, 14, 14.25, 0.459377, 13.75, 14, 0.459377, 12.75, 12.5, 0.709377, 12.75, 12.5, 0.459377, 14.5, 21, 0.459377, 7.25, 19.25, 0.459377, 5.25, 19.25, 0.459377, 13.5, 21, 0.459377, 14, 19.25, 0.459377, 3, 18.75, 0.459377, 5, 19.25, 0.459377, 5.25, 14.25, 0.459377, 13.75, 12.5, 0.459377, 14.5, 11.5, 0.459377, 15.5, 22, 0.459377, 15.5, 21, 0.459377, 14, 19.25, 0.459377, 13.5, 22.25, 0.459377, 7, 23, 0.459377, 3.25, 19.25, 0.459377, 3, 19.25, 0.459377, 5.25, 21, 0.459377, 7.25, 12.5, 0.709377, 12.75, 14, 0.459377, 12.75, 14.25, 0.459377, 12, 12.75, 0.459377, 9.5, 5.5, 0.459377, 4.75, 5.25, 0.709377, 6.75, 12.25, 0.459377, 6.75, 17, 0.459377, 4.5, 12.75, 0.459377, 9.5, 14.25, 0.459377, 12, 17.5, 0.459377, 12, 17.75, 0.459377, 5, 17, 0.459377, 4.5, 12.25, 0.459377, 6.75, 11.5, 0.459377, 15.5, 11.5, 0.459377, 14.75, 10.75, 0.459377, 14.5, 6, 0.459377, 14.25, 2.25, 0.459377, 14.25, 0.5, 0.459377, 15.5, 4.25, 0.459377, 8.75, 4.25, 0.709377, 12.75, 6, 0.459377, 12.75, 2.25, 0.459377, 14.25, 2.5, 0.709377, 9, 0.5, 0.459377, 9, 0.5, 0.459377, 15.5, 6, 0.459377, 12.75, 6, 0.459377, 14.25, 10.75, 0.459377, 14.5, 10.75, 0.709377, 8.5, 4.25, 0.459377, 8.75, 6, 0.459377, 12.75, 10.75, 0.459377, 14.5, 22.75, 0.459377, 14, 22, 0.459377, 14.25, 22, 0.459377, 15.5, 25, 0.459377, 9.75, 22.75, 0.459377, 9.75, 22.75, 0.459377, 14, 25, 0.459377, 9.75, 22.75, 0.459377, 14, 22, 0.459377, 15.5, 31.5, 0.459377, 15.5, 31.5, 0.459377, 8.75, 31.5, 0.459377, 8.75, 25.25, 0.459377, 8.75, 25, 0.459377, 9.75)
@@ -43,7 +45,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 1"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = ExtResource("15_s3012")
+surface_material_override/0 = ExtResource("1_opbc5")
 
 [node name="Floor 2" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
@@ -54,7 +56,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 2"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = ExtResource("15_s3012")
+surface_material_override/0 = ExtResource("1_opbc5")
 
 [node name="Floor 3" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
 collision_layer = 3
@@ -64,7 +66,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 3"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = ExtResource("15_s3012")
+surface_material_override/0 = ExtResource("1_opbc5")
 
 [node name="Floor 4" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
@@ -75,7 +77,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 4"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = ExtResource("15_s3012")
+surface_material_override/0 = ExtResource("1_opbc5")
 
 [node name="Floor 5" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
@@ -86,7 +88,7 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 5"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = ExtResource("15_s3012")
+surface_material_override/0 = ExtResource("1_opbc5")
 
 [node name="Floor 6" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -16)
@@ -97,51 +99,96 @@ shape = SubResource("BoxShape3D_w53vf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 6"]
 mesh = SubResource("BoxMesh_bh6h6")
-surface_material_override/0 = ExtResource("15_s3012")
+surface_material_override/0 = ExtResource("1_opbc5")
 
-[node name="Buildings 1" parent="NavigationRegion3D" instance=ExtResource("2_m4w52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5977, 0.0499992, 9.84036)
+[node name="Floor 7" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 16)
+collision_layer = 3
 
-[node name="Buildings 2" parent="NavigationRegion3D" instance=ExtResource("3_wbykj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.74193, 0.0499992, -1.0306)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor 7"]
+shape = SubResource("BoxShape3D_w53vf")
 
-[node name="Buildings 3" parent="NavigationRegion3D" instance=ExtResource("4_u3ko8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54934, 0.0499992, -15.632)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 7"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = ExtResource("1_opbc5")
 
-[node name="Buildings 4" parent="NavigationRegion3D" instance=ExtResource("5_2kkhw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6582, 0.0499992, -24.759)
+[node name="Floor 8" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 0)
+collision_layer = 3
 
-[node name="Buildings 5" parent="NavigationRegion3D" instance=ExtResource("6_4djg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0226, 0.0499992, -24.759)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor 8"]
+shape = SubResource("BoxShape3D_w53vf")
 
-[node name="Buildings 6" parent="NavigationRegion3D" instance=ExtResource("7_efveq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6274, 0.0499992, -10.9267)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 8"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = ExtResource("1_opbc5")
 
-[node name="Buildings 7" parent="NavigationRegion3D" instance=ExtResource("8_ca5we")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0127, 0.0499992, 1.73287)
+[node name="Floor 9" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, -16)
+collision_layer = 3
 
-[node name="Buildings 8" parent="NavigationRegion3D" instance=ExtResource("9_ta7jv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8957, 0.0499992, 10.6816)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor 9"]
+shape = SubResource("BoxShape3D_w53vf")
 
-[node name="Buildings 9" parent="NavigationRegion3D" instance=ExtResource("10_ngu3i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5326, 0.0499992, 9.82127)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor 9"]
+mesh = SubResource("BoxMesh_bh6h6")
+surface_material_override/0 = ExtResource("1_opbc5")
 
-[node name="Buildings 10" parent="NavigationRegion3D" instance=ExtResource("11_yskj5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9349, 0.0499992, -8.06662)
+[node name="Buildings 1" parent="NavigationRegion3D" instance=ExtResource("2_exdp1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5977, 0.0499992, 11.1207)
 
-[node name="Buildings 11" parent="NavigationRegion3D" instance=ExtResource("12_i78bt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9349, 0.0499992, -13.533)
+[node name="Buildings 2" parent="NavigationRegion3D" instance=ExtResource("3_nbv13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99822, 0.0499992, -5.82314)
 
-[node name="Buildings 12" parent="NavigationRegion3D" instance=ExtResource("13_4omdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9349, 0.0499992, -22.0559)
+[node name="Buildings 3" parent="NavigationRegion3D" instance=ExtResource("4_bfqlt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2926, 0.0499992, -28.4236)
 
-[node name="Buildings 13" parent="NavigationRegion3D" instance=ExtResource("14_tbbc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6196, 0.0499992, -28.3154)
+[node name="Buildings 4" parent="NavigationRegion3D" instance=ExtResource("5_fd4oi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.03232, 0.0499992, -15.3683)
 
-[node name="CowSpawner" parent="." instance=ExtResource("15_6rg1h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8298, 0.0499992, -1.39997)
+[node name="Buildings 5" parent="NavigationRegion3D" instance=ExtResource("6_itkfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0068, 0.0499992, -26.1001)
+
+[node name="Buildings 6" parent="NavigationRegion3D" instance=ExtResource("7_q3aik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.8392, 0.0499992, -18.6639)
+
+[node name="Buildings 7" parent="NavigationRegion3D" instance=ExtResource("8_gpu40")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31.3795, 0.0499992, -7.41455)
+
+[node name="Buildings 8" parent="NavigationRegion3D" instance=ExtResource("9_p8u8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.027, 0.0499992, 11.1888)
+
+[node name="Buildings 9" parent="NavigationRegion3D" instance=ExtResource("10_om2i6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7599, 0.0499992, 4.35301)
+
+[node name="Buildings 10" parent="NavigationRegion3D" instance=ExtResource("11_i5v50")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 41.756, 0.0499992, -8.707)
+
+[node name="Buildings 11" parent="NavigationRegion3D" instance=ExtResource("12_knpu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.403, 0.0499992, -16.8069)
+
+[node name="Buildings 12" parent="NavigationRegion3D" instance=ExtResource("13_uttre")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.7407, 0.0499992, -28.2404)
+
+[node name="Buildings 13" parent="NavigationRegion3D" instance=ExtResource("14_hfdx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.45828, 0.0499992, -24.5425)
+
+[node name="CowSpawner" parent="." instance=ExtResource("15_7dn7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6233, 0.0499992, -3.71987)
 spawnChance = 0.5
 
-[node name="CowSpawner2" parent="." instance=ExtResource("15_6rg1h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0425, 0.0499992, -1.19263)
+[node name="CowSpawner2" parent="." instance=ExtResource("15_7dn7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.7696, 0.0499992, 7.70319)
 spawnChance = 0.5
+
+[node name="EnemySpawner" parent="." instance=ExtResource("16_xwyxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2226, 0.0499992, -22.8923)
+gunmanSpawnChance = 0.8
+spawnChance = 0.1
+numEnemies = 8
+timeDelay = 0.5
+
+[node name="ItemSpawner" parent="." instance=ExtResource("17_w5b0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75247, 0.0499992, -20.0579)
+elixirVsUpgradeChance = 0.5
+spawnChance = 0.75

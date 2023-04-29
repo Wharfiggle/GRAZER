@@ -101,7 +101,7 @@ class Item:
 		elif(id == 4): name = "Shotgun Damage Upgrade"
 		elif(id == 5): name = "Shotgun Reload Speed Upgrade"
 		elif(id == 6): 
-			name = "Recovery Elixir"
+			name = "Recovery"
 			description = "Heals 50% of your health."
 			cost = 2
 		elif(id == 7): 

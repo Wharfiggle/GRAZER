@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwx3nkku0idnk"]
+[gd_scene load_steps=15 format=3 uid="uid://plf4rr5dnc10"]
 
-[ext_resource type="Script" path="res://Prefabs/MainMenuScript.gd" id="1_ivsrd"]
+[ext_resource type="Script" path="res://Scripts/MainMenuScript.gd" id="1_2rr3h"]
 [ext_resource type="Texture2D" uid="uid://d2m0o42qas5dn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/grzrMenuScreenLogo.png" id="2_8ux03"]
 [ext_resource type="Texture2D" uid="uid://6e143ko3smr5" path="res://Assets/Images/Ray.png" id="3_huhhm"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="3_l7kb6"]
@@ -10,18 +10,18 @@
 [ext_resource type="Texture2D" uid="uid://cygel02nuxne3" path="res://Assets/Images/RusselHighlight.png" id="6_113ie"]
 [ext_resource type="BitMap" uid="uid://bhf1agksjgog2" path="res://Assets/Images/RusselClickMask.png" id="8_wdt6q"]
 [ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="10_q6im7"]
-[ext_resource type="Script" path="res://Levels/LoopSound.gd" id="11_8c322"]
+[ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="11_knpq3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bybe"]
-bg_color = Color(0.117647, 0.14902, 0.0941176, 1)
+bg_color = Color(0.158067, 0.2, 0.126, 1)
 
-[sub_resource type="Gradient" id="Gradient_35e5v"]
+[sub_resource type="Gradient" id="Gradient_j3f67"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.161458, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0.0377095, 1.10821e-05, 0.197584, 0.196078)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ebvue"]
-gradient = SubResource("Gradient_35e5v")
+gradient = SubResource("Gradient_j3f67")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
@@ -33,9 +33,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8bybe")
-script = ExtResource("1_ivsrd")
+script = ExtResource("1_2rr3h")
 
-[node name="Orange Vignette" type="TextureRect" parent="."]
+[node name="Vignette" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -75,10 +75,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
+offset_left = -63.0
 offset_top = 170.0
-offset_right = 50.0
-offset_bottom = 210.0
+offset_right = 63.0
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_l7kb6")
@@ -95,9 +95,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = 220.0
+offset_top = 230.0
 offset_right = 50.0
-offset_bottom = 260.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_l7kb6")
@@ -113,14 +113,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = 270.0
-offset_right = 40.0
-offset_bottom = 301.0
+offset_left = -37.0
+offset_top = 280.0
+offset_right = 37.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_l7kb6")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "Quit"
 
 [node name="CharacterSelect" type="Control" parent="."]
@@ -188,7 +188,7 @@ scale = Vector2(0.19, 0.19)
 stream = ExtResource("10_q6im7")
 volume_db = 4.0
 autoplay = true
-script = ExtResource("11_8c322")
+script = ExtResource("11_knpq3")
 
 [connection signal="pressed" from="playButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]

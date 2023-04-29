@@ -1,9 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr2p0uvxjl7nc"]
+[gd_scene load_steps=10 format=3 uid="uid://cvjq6phlh0ivv"]
 
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_5pel6"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="2_ao8ti"]
 [ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="3_6pif7"]
-[ext_resource type="Script" path="res://Levels/LoopSound.gd" id="4_vad23"]
+[ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="4_w3c7c"]
+[ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="5_kuaad"]
+
+[sub_resource type="Gradient" id="Gradient_35e5v"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.161458, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.0377095, 1.10821e-05, 0.197584, 0.196078)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yggjc"]
+gradient = SubResource("Gradient_35e5v")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vo6td"]
 line_spacing = 15.0
@@ -35,6 +47,21 @@ layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 
+[node name="Vignette" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yggjc")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -49,6 +76,7 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="Credits" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "C R E D I T S"
@@ -63,9 +91,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -191.0
-offset_top = 20.0
+offset_top = 33.0
 offset_right = 191.0
-offset_bottom = 68.0
+offset_bottom = 81.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 100
 text = "________"
@@ -182,10 +210,10 @@ text = " Website
 [node name="Back" type="Button" parent="Panel"]
 modulate = Color(1, 0.819608, 0.709804, 1)
 layout_mode = 0
-offset_left = 20.0
-offset_top = 660.0
-offset_right = 120.0
-offset_bottom = 700.0
+offset_left = 50.0
+offset_top = 335.0
+offset_right = 176.0
+offset_bottom = 385.0
 theme_override_fonts/font = ExtResource("2_ao8ti")
 theme_override_font_sizes/font_size = 24
 text = "Back"
@@ -193,6 +221,10 @@ text = "Back"
 [node name="CreditsMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6pif7")
 autoplay = true
-script = ExtResource("4_vad23")
+script = ExtResource("4_w3c7c")
+
+[node name="UICursor" parent="." instance=ExtResource("5_kuaad")]
+top_level = true
+active = true
 
 [connection signal="pressed" from="Panel/Back" to="." method="_on_button_pressed"]

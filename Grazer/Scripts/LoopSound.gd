@@ -33,7 +33,7 @@ func _process(delta):
 		t = sqrt(t)
 		set_volume_db(t * (origVolume - -80) - 80)
 		
-		if(!fadingIn): print(volume_db)
+		#if(!fadingIn): print(volume_db)
 	
 func _on_finished():
 	play()
