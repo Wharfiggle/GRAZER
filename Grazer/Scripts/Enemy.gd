@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @onready var player = get_node("/root/Level/Player")
 @onready var terrain = get_node("/root/Level/AllTerrain")
+@onready var levelMusic = get_node("/root/Level/BackgroundPlayer")
 #@onready var nav = get_node("/root/Level/Navigation")
 var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
@@ -31,6 +32,7 @@ var shootingVoice = preload("res://sounds/Enemy Stuff/MarauderShooting.wav")
 var shootingSFX = preload("res://sounds/Enemy Stuff/ShootingWarning.wav")
 var lungeImpact = preload("res://sounds/Implement These/LungeImpact.wav")
 var AmbushMusic = preload("res://sounds/Implement These/MarauderMusic.wav")
+var normalLVmusic = preload("res://sounds/Opening Theme.wav")
 
 
 var maxHealth = 15.0
@@ -141,6 +143,8 @@ func _physics_process(delta):
 				position.y = 0.1
 				var level = get_node(NodePath("/root/Level"))
 				#implement sound: use level to fade in from normal music to fight music
+				levelMusic.stream = AmbushMusic
+				levelMusic.play()
 				print("enemy spawn tries: " + str(tries))
 			else:
 				position.y = 30
@@ -345,6 +349,8 @@ func delete():
 	if(enemies.size() <= 1):
 		var level = get_node(NodePath("/root/Level/"))
 		#implement sound: use level to fade out from enemy music to normal music here
+		levelMusic.stream = normalLVmusic
+		levelMusic.play()
 	queue_free()
 	
 func idle():
