@@ -797,6 +797,11 @@ func updateGunStats():
 	shotgunDamage = gunStats[4]
 	shotgunReloadTime = gunStats[5]
 	
+	if(onRevolver):
+		MainHud._set_ammo_Back(revolverClipSize)
+	else:
+		MainHud._set_ammo_Back(shotgunClipSize)
+	
 
 func setWeaponAndHands(revolver:bool, right:bool):
 	gunRight.get_child(0).get_child(0).visible = false
