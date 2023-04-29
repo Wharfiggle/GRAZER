@@ -155,6 +155,9 @@ var maxAmmo = 0
 var lastGroundedPosition = position
 @onready var deathMenu = $"../DeathMenu"
 
+var deathBlend = 0
+var deathTimer = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.add_to_group('Player')
@@ -209,8 +212,9 @@ func _process(delta):
 	
 	#restart level
 	if(Input.is_action_just_pressed("restart")):
-		WorldSave.reset()
-		get_tree().change_scene_to_file("res://Levels/Level.tscn")
+#		WorldSave.reset()
+#		get_tree().change_scene_to_file("res://Levels/Level.tscn")
+		die()
 		
 	#swap model between ray and russel
 	if(Input.is_action_just_pressed("GenderBend")):
@@ -581,6 +585,14 @@ func _physics_process(delta):
 #			hitFlash.set_shader_parameter("amount", 0.0)
 #			hitFlash.set_shader_parameter("color", hitColor)
 	
+	if(deathTimer > 0):
+		deathTimer -= delta
+		if(deathTimer < 0):
+			deathTimer = 0
+			animation.set("parameters/DeathTime/scale", 0)
+		deathBlend = lerpf(deathBlend, 1, 0.3)
+		animation.set("parameters/DeathBlend/blend_amount", deathBlend)
+	
 	#swap weapon
 	if(active):
 		var swapInput = 0
@@ -592,6 +604,7 @@ func _physics_process(delta):
 			setWeapon(!onRevolver)
 			swapInputFrameCounter = swapInputFrames * swapInput
 			cancelReloading()
+			gunSound.stop()
 		elif(swapInputFrameCounter != 0 && swapInput == 0):
 			swapInputFrameCounter -= swapInputFrameCounter / abs(swapInputFrameCounter)
 	
@@ -900,7 +913,7 @@ func updateHealth(newHP:float):
 
 func damage_taken(damage:float, from:String, _inCritHit:bool = false, _inBullet:Node = null) -> bool:
 	if(from != "player"):
-		print("player damaged")
+#		print("player damaged")
 #		hitFlashAmount = 1
 		Input.start_joy_vibration(0,1,1,0.2)
 		camera.add_trauma(0.35)
@@ -913,6 +926,10 @@ func healFromBullet(damageDone):
 	updateHealth(hitpoints + damageDone * lifeLeach)
 		
 func die():
+	deathTimer = 3.8
+	if(russelOrRay == "Ray"):
+		deathTimer = 3.0
+	animation.set("parameters/Death/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var level = get_node(NodePath("/root/Level"))
 	level.changeMusic(4)
 	var terrain = get_node("../AllTerrain")
@@ -930,11 +947,11 @@ func die():
 	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]
 	active = false
-	rotation.x = PI / 2.0
+#	rotation.x = PI / 2.0
 	lineSightNode.visible = false 
-	animation.set("parameters/idleWalk/blend_amount", 0)
-	animation.set("parameters/walkShoot/blend_amount", 0.1)
-	animation.set("parameters/shootAngle/blend_position", 1)
+#	animation.set("parameters/idleWalk/blend_amount", 0)
+#	animation.set("parameters/walkShoot/blend_amount", 0.1)
+#	animation.set("parameters/shootAngle/blend_position", 1)
 	#skeleton.physical_bones_start_simulation(phys_bones)
 	if(deathMenu == null):
 		deathMenu = $"../DeathMenu"

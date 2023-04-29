@@ -94,6 +94,10 @@ var waited = false
 
 var lastGroundedPosition = position
 
+var deathTime = 1.5
+var deathTimer = 0
+var deathBlend = 0
+
 func _ready():
 	self.add_to_group('DespawnAtCheckpoint')
 	self.add_to_group('Enemy')
@@ -161,6 +165,29 @@ func _physics_process(delta):
 					queue_free()
 					SceneCounter.marauders -= 1
 	
+	if(hitFlashAmount > 0.1):
+		hitFlash.set_shader_parameter("amount", hitFlashAmount)
+		hitFlashAmount = lerpf(hitFlashAmount, 0, 0.3)
+		if(hitFlashAmount < 0.1):
+			critHit = false
+			hitFlash.set_shader_parameter("amount", 0.0)
+	
+	if(deathTimer > 0):
+		deathTimer -= delta
+		if(deathTimer < 0):
+			deathTimer = 0
+			SceneCounter.marauders -= 1
+			if(draggedCow != null):
+				draggedCow.stopDragging(self)
+			if(itemDrop != null):
+				level.add_child(itemDrop)
+				itemDrop.position = lastGroundedPosition
+				itemDrop = null
+			delete()
+		deathBlend = lerpf(deathBlend, 1, 0.3)
+		animation.set("parameters/DeathBlend/blend_amount", deathBlend)
+		return
+	
 	if(draggedCow == null):
 		animation.set("parameters/walkDrag/blend_amount", 0)
 	
@@ -179,14 +206,6 @@ func _physics_process(delta):
 #		print("Col: " + str(collision))
 #		if(collision.is_empty()):
 #			print("Line of sight!")
-	
-	if(hitFlashAmount > 0.1):
-		hitFlash.set_shader_parameter("amount", hitFlashAmount)
-		hitFlashAmount = lerpf(hitFlashAmount, 0, 0.3)
-		if(hitFlashAmount < 0.1):
-
-			critHit = false
-			hitFlash.set_shader_parameter("amount", 0.0)
 	
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
@@ -435,8 +454,6 @@ func pursuit():
 	#If closer than follow distance, back up
 	#If closer than half of follow distance, panic and flee
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
-	if(spacing < 19 && level.currentMusic == 0):
-		level.changeMusic(1, 0.5)
 	if((spacing < followDistance + 3 and spacing > followDistance) or aiming):
 		#Slowing down in desired range
 		if(speed > 0 and !aiming):
@@ -589,15 +606,14 @@ func hibernate():
 #		queue_free()
 #		SceneCounter.marauders -= 1
 	#Wake up distance
-	var chunk = terrainController.getPlayerChunk(position)
-	if(terrain.activeCoord.has(chunk)):
-		currentMode = behaviors.circle
-		baseSpeed = 5.5
-		GRAVITY = 30
-#	if(position.distance_to(player.position) < wakeUpDistance):
-#		currentMode = behaviors.circle
-#		baseSpeed = 5.5
-#		GRAVITY = 30
+	if(position.distance_to(player.position) < wakeUpDistance):
+		var chunk = terrainController.getPlayerChunk(position)
+		if(terrain.activeCoord.has(chunk)):
+			if(level.currentMusic == 0):
+				level.changeMusic(1, 0.5)
+			currentMode = behaviors.circle
+			baseSpeed = 5.5
+			GRAVITY = 30
 
 #navigation function
 func moveTo(_targetPos):
@@ -710,16 +726,10 @@ func die():
 	#changed multiple times because of the shotgun bullets.
 	Vocal.stream = deathSound
 	Vocal.play()
-	if(health > -100000):
-		SceneCounter.marauders -= 1
-		if(draggedCow != null):
-			draggedCow.stopDragging(self)
-		if(itemDrop != null):
-			level.add_child(itemDrop)
-			itemDrop.position = lastGroundedPosition
-			itemDrop = null
-		delete()
-	health = -100000
+	deathTimer = deathTime
+	animation.set("parameters/Death/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	animation.set("parameters/DeathSeek/seek_request", 2)
+	animation.set("parameters/Death/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func updateHealth(newHP:float):
 	if(newHP < health):
@@ -730,7 +740,7 @@ func updateHealth(newHP:float):
 		die()
 
 func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
-	if(from != "enemy"):
+	if(from != "enemy" && deathTimer == 0):
 		updateHealth(health - damage)
 #		stunTimer = stunTime / 10
 		hitFlashAmount = 1

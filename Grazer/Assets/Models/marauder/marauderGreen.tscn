@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d10ffsj5vl3wk"]
+[gd_scene load_steps=32 format=3 uid="uid://d10ffsj5vl3wk"]
 
 [ext_resource type="PackedScene" uid="uid://cnj38oqxbqtp2" path="res://Assets/Models/marauder/Bandit.gltf" id="1_pqrtw"]
 [ext_resource type="Material" uid="uid://dobi1p4ccsh21" path="res://Assets/Models/marauder/texture/skull.tres" id="2_7mw86"]
@@ -34,6 +34,9 @@ animation = &"BANDIT_SHOVED_Liz"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bftif"]
 animation = &"BANDIT_stand up_Liz"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v3fgg"]
+animation = &"Idle (Still)_liz "
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fvgf6"]
 animation = &"Idle_Liz"
 
@@ -41,15 +44,21 @@ animation = &"Idle_Liz"
 filter_enabled = true
 filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Hips", "Armature/Skeleton3D:LeftArm", "Armature/Skeleton3D:LeftForeArm", "Armature/Skeleton3D:LeftHand", "Armature/Skeleton3D:LeftHandIndex1", "Armature/Skeleton3D:LeftHandIndex2", "Armature/Skeleton3D:LeftHandIndex3", "Armature/Skeleton3D:LeftHandRing1", "Armature/Skeleton3D:LeftHandRing2", "Armature/Skeleton3D:LeftHandRing3", "Armature/Skeleton3D:LeftHandThumb1", "Armature/Skeleton3D:LeftHandThumb2", "Armature/Skeleton3D:LeftHandThumb3", "Armature/Skeleton3D:LeftShoulder", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:RightArm", "Armature/Skeleton3D:RightForeArm", "Armature/Skeleton3D:RightHand", "Armature/Skeleton3D:RightHandIndex1", "Armature/Skeleton3D:RightHandIndex2", "Armature/Skeleton3D:RightHandIndex3", "Armature/Skeleton3D:RightHandRing1", "Armature/Skeleton3D:RightHandRing2", "Armature/Skeleton3D:RightHandRing3", "Armature/Skeleton3D:RightHandThumb1", "Armature/Skeleton3D:RightHandThumb2", "Armature/Skeleton3D:RightHandThumb3", "Armature/Skeleton3D:RightShoulder", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Spine1", "Armature/Skeleton3D:Spine2"]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_jlgsd"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_bs44u"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_ic56y"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_4vida"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_apvqe"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hxatp"]
 
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gj1ff"]
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_f7rv7"]
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_bs44u"]
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gj1ff"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q0i1o"]
 animation = &"Death_LH"
@@ -64,7 +73,7 @@ animation = &"Walk_Liz"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_e7ome"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qt1bu"]
-graph_offset = Vector2(1487.96, 116.655)
+graph_offset = Vector2(396.46, 60.9883)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_fvgf6")
 nodes/Animation/position = Vector2(480, 380)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_oy2ry")
@@ -77,8 +86,16 @@ nodes/Animation/position = Vector2(480, 380)
 "nodes/Animation 5/position" = Vector2(720, 672)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_bftif")
 "nodes/Animation 6/position" = Vector2(1000, 780)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_v3fgg")
+"nodes/Animation 7/position" = Vector2(1580, 380)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_7eqda")
 nodes/Blend2/position = Vector2(700, 280)
+nodes/Death/node = SubResource("AnimationNodeOneShot_jlgsd")
+nodes/Death/position = Vector2(1800, 320)
+nodes/DeathBlend/node = SubResource("AnimationNodeBlend2_bs44u")
+nodes/DeathBlend/position = Vector2(2120, 120)
+nodes/DeathSeek/node = SubResource("AnimationNodeTimeSeek_ic56y")
+nodes/DeathSeek/position = Vector2(1620, 500)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_apvqe")
 nodes/OneShot/position = Vector2(1040, 528)
 "nodes/OneShot 2/node" = SubResource("AnimationNodeOneShot_4vida")
@@ -87,20 +104,20 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gj1ff")
 nodes/TimeScale/position = Vector2(460, -20)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_hxatp")
 "nodes/TimeScale 2/position" = Vector2(460, 120)
-nodes/death/node = SubResource("AnimationNodeBlend2_bs44u")
-nodes/death/position = Vector2(1860, 140)
+"nodes/TimeScale 3/node" = SubResource("AnimationNodeTimeScale_f7rv7")
+"nodes/TimeScale 3/position" = Vector2(1960, 220)
 nodes/deathAnim/node = SubResource("AnimationNodeAnimation_q0i1o")
-nodes/deathAnim/position = Vector2(1660, 300)
+nodes/deathAnim/position = Vector2(1460, 540)
 nodes/idleWalk/node = SubResource("AnimationNodeBlend2_6hrub")
 nodes/idleWalk/position = Vector2(976, 112)
-nodes/output/position = Vector2(2100, 120)
+nodes/output/position = Vector2(2300, 120)
 nodes/walk/node = SubResource("AnimationNodeAnimation_2678m")
 nodes/walk/position = Vector2(300, -20)
 nodes/walkDrag/node = SubResource("AnimationNodeBlend2_k3imc")
 nodes/walkDrag/position = Vector2(720, -40)
 nodes/walkPushed/node = SubResource("AnimationNodeBlend2_e7ome")
 nodes/walkPushed/position = Vector2(1480, 160)
-node_connections = [&"output", 0, &"death", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"OneShot", 0, &"Animation 4", &"OneShot", 1, &"Animation 5", &"OneShot 2", 0, &"OneShot", &"OneShot 2", 1, &"Animation 6", &"TimeScale", 0, &"walk", &"TimeScale 2", 0, &"Animation 3", &"death", 0, &"walkPushed", &"death", 1, &"deathAnim", &"idleWalk", 0, &"walkDrag", &"idleWalk", 1, &"Blend2", &"walkDrag", 0, &"TimeScale", &"walkDrag", 1, &"TimeScale 2", &"walkPushed", 0, &"idleWalk", &"walkPushed", 1, &"OneShot 2"]
+node_connections = [&"output", 0, &"DeathBlend", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"OneShot", 0, &"Animation 4", &"OneShot", 1, &"Animation 5", &"OneShot 2", 0, &"OneShot", &"OneShot 2", 1, &"Animation 6", &"TimeScale", 0, &"walk", &"TimeScale 2", 0, &"Animation 3", &"idleWalk", 0, &"walkDrag", &"idleWalk", 1, &"Blend2", &"walkDrag", 0, &"TimeScale", &"walkDrag", 1, &"TimeScale 2", &"walkPushed", 0, &"idleWalk", &"walkPushed", 1, &"OneShot 2", &"DeathBlend", 0, &"walkPushed", &"DeathBlend", 1, &"TimeScale 3", &"Death", 0, &"Animation 7", &"Death", 1, &"DeathSeek", &"TimeScale 3", 0, &"Death", &"DeathSeek", 0, &"deathAnim"]
 
 [node name="Bandit2" instance=ExtResource("1_pqrtw")]
 
@@ -297,13 +314,17 @@ tree_root = SubResource("AnimationNodeBlendTree_qt1bu")
 anim_player = NodePath("..")
 active = true
 parameters/Blend2/blend_amount = 0.0
+parameters/Death/active = false
+parameters/Death/request = 0
+parameters/DeathBlend/blend_amount = 0.0
+parameters/DeathSeek/seek_request = -1.0
 parameters/OneShot/active = false
 parameters/OneShot/request = 0
 "parameters/OneShot 2/active" = false
 "parameters/OneShot 2/request" = 0
 parameters/TimeScale/scale = 1.35
 "parameters/TimeScale 2/scale" = -1.35
-parameters/death/blend_amount = 0.0
+"parameters/TimeScale 3/scale" = 2.0
 parameters/idleWalk/blend_amount = 1.0
 parameters/walkDrag/blend_amount = 0.0
 parameters/walkPushed/blend_amount = 0.0
