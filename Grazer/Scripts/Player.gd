@@ -97,6 +97,8 @@ var reloadStartR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloa
 var reloadingSoundR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloadBullet.wav")
 var reloadEndR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloadClose.wav")
 
+var physicalHurt = preload("res://sounds/LungeImpact.wav")
+
 var reloadStartS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadOpen.wav")
 var reloadingSoundS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadBullet.wav")
 var reloadEndS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadClose.wav")
@@ -766,6 +768,8 @@ func _physics_process(delta):
 			tVelocity.y = -0.1
 		elif(position.y < -10.0):
 			updateHealth(hitpoints - 4)
+			gunSound.stream = physicalHurt
+			gunSound.play()
 			if(active):
 				position = Vector3(lastGroundedPosition.x, 0.5, lastGroundedPosition.z)
 				lastGroundedPosition.y = 0
@@ -903,7 +907,9 @@ func healFromBullet(damageDone):
 	updateHealth(hitpoints + damageDone * lifeLeach)
 		
 func die():
-	var level = get_node("../AllTerrain")
+	var level = get_node(NodePath("/root/Level"))
+	level.changeMusic(4)
+	var terrain = get_node("../AllTerrain")
 	var thieves = 0
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	for i in enemies:
@@ -914,7 +920,7 @@ func die():
 	for i in herd.getNumCows():
 		thieves -= 1
 		if(thieves <= 0):
-			level.spawnMarauder(false)
+			terrain.spawnMarauder(false)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]

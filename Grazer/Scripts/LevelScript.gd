@@ -1,13 +1,14 @@
 #Elijah Southman
 extends Node3D
 
-#audioStream
-@onready var music = $BackgroundPlayer
+@onready var music = [
+	$WildsMusic,
+	$EnemyMusic,
+	$OutpostMusic,
+	$ShopMusic,
+	$DeathMusic]
+var currentMusic = -1
 @onready var ambience = $Ambience
-
-#music
-var sound = preload("res://sounds/Opening Theme.wav")
-var ambientMusic = preload("res://sounds/New Sound FEX/Ambiance/outsidedesert.wav")
 
 @onready var inventory = $ItemWheel
 @onready var player = get_node(NodePath("./Player"))
@@ -268,18 +269,18 @@ func broadcastMessage(message:String, time:float):
 	broadcastTimer = broadcastTime
 	broadcast.get_child(2).text = message
 
+func changeMusic(ind:int, duration:float = 0.5):
+	if(currentMusic != -1 && ind != currentMusic):
+		music[currentMusic].fadeOut(duration)
+	if(ind >= 0 && ind < music.size() && ind != currentMusic):
+		music[ind].fadeIn(duration)
+	currentMusic = ind
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#selecting sound to play
-	music.stream = sound
-	ambience.stream = ambientMusic
-	#Starting sound
-	music.play()
-	ambience.play()
-	inventory.visible = false 
-	
+	changeMusic(0)
+	inventory.visible = false
 	broadcast.position.y -= broadcastHeight
-	
 	rng.randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

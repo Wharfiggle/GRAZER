@@ -87,9 +87,10 @@ func setDragResistance(inDragResistance):
 				i.maxSpeed = min(i.dragSpeed * i.draggers.size() / dragResistance, i.draggers[0].baseSpeed)
 
 #add cow to player's herd
-func addCow(cow):
-	cow.Vocal.stream = moo
-	cow.Vocal.play()
+func addCow(cow, playSound:bool = true):
+	if(playSound):
+		cow.Vocal.stream = moo
+		cow.Vocal.play()
 	cows.append(cow)
 	numCows += 1
 	cowCounter.updateCowNum(numCows)
@@ -121,7 +122,7 @@ func spawnCow(type:int = -1) -> Node:
 #spawn cow at given position
 func spawnCowAtPos(pos:Vector3, type:int = -1) -> Node:
 	var cow = spawnStrayCow(pos, type)
-	addCow(cow)
+	addCow(cow, false)
 	return cow
 #spawn stray cow
 func spawnStrayCow(pos:Vector3, type:int = -1) -> Node:

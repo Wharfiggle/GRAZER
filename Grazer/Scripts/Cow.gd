@@ -346,7 +346,7 @@ func _physics_process(delta):
 					animation.set("parameters/Movement/BlendMove/blend_amount", t)
 		else:
 			if(abs((position - herd.player.position).length()) < 2.5):
-				herd.addCow(self)
+				herd.addCow(self, true)
 		
 		if(draggers.is_empty()):
 			#cows push eachother out of eachother's radius

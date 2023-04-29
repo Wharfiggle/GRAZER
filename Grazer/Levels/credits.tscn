@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr2p0uvxjl7nc"]
+[gd_scene load_steps=7 format=3 uid="uid://dr2p0uvxjl7nc"]
 
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_5pel6"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="2_ao8ti"]
+[ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="3_6pif7"]
+[ext_resource type="Script" path="res://Levels/LoopSound.gd" id="4_vad23"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vo6td"]
 line_spacing = 15.0
@@ -187,5 +189,10 @@ offset_bottom = 700.0
 theme_override_fonts/font = ExtResource("2_ao8ti")
 theme_override_font_sizes/font_size = 24
 text = "Back"
+
+[node name="CreditsMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6pif7")
+autoplay = true
+script = ExtResource("4_vad23")
 
 [connection signal="pressed" from="Panel/Back" to="." method="_on_button_pressed"]

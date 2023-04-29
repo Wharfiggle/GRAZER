@@ -13,8 +13,6 @@ var audioArRussel = [
 	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.19.wav"),
 	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.62.wav"),
 	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.65.wav")]
-var music = preload("res://sounds/Copy of Opening Theme Demo 1.WAV")
-@onready var musicPlayer = $AudioStreamPlayer2D
 @onready var raySound = $CharacterSelect/RayAudio
 @onready var russelSound = $CharacterSelect/RusselAudio
 var rng = RandomNumberGenerator.new()
@@ -22,8 +20,6 @@ var selected = false
 
 func _ready():
 	rng.randomize()
-	musicPlayer.set_stream(music)
-	musicPlayer.play(4.61)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

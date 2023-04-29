@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwx3nkku0idnk"]
+[gd_scene load_steps=15 format=3 uid="uid://dwx3nkku0idnk"]
 
 [ext_resource type="Script" path="res://Prefabs/MainMenuScript.gd" id="1_ivsrd"]
 [ext_resource type="Texture2D" uid="uid://d2m0o42qas5dn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/grzrMenuScreenLogo.png" id="2_8ux03"]
@@ -9,6 +9,8 @@
 [ext_resource type="BitMap" uid="uid://cw7j77afavfta" path="res://Assets/Images/RayClickMask.png" id="5_vhqxr"]
 [ext_resource type="Texture2D" uid="uid://cygel02nuxne3" path="res://Assets/Images/RusselHighlight.png" id="6_113ie"]
 [ext_resource type="BitMap" uid="uid://bhf1agksjgog2" path="res://Assets/Images/RusselClickMask.png" id="8_wdt6q"]
+[ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="10_q6im7"]
+[ext_resource type="Script" path="res://Levels/LoopSound.gd" id="11_8c322"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bybe"]
 bg_color = Color(0.117647, 0.14902, 0.0941176, 1)
@@ -182,8 +184,11 @@ volume_db = 15.0
 position = Vector2(363, 230)
 scale = Vector2(0.19, 0.19)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-volume_db = 8.0
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_q6im7")
+volume_db = 4.0
+autoplay = true
+script = ExtResource("11_8c322")
 
 [connection signal="pressed" from="playButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]

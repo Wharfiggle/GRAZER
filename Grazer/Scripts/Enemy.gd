@@ -3,7 +3,6 @@ extends CharacterBody3D
 
 @onready var player = get_node("/root/Level/Player")
 @onready var terrain = get_node("/root/Level/AllTerrain")
-@onready var levelMusic = get_node("/root/Level/BackgroundPlayer")
 #@onready var nav = get_node("/root/Level/Navigation")
 var bullet = preload("res://Prefabs/Bullet.tscn")
 var smoke = preload("res://Prefabs/Smoke.tscn")
@@ -14,6 +13,8 @@ var movementBlend = 0.0
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
+
+var level = null
 
 #audioStream
 @onready var Steps = $EFootsteps
@@ -30,9 +31,7 @@ var deathSound = preload("res://sounds/Enemy Stuff/MarauderGrunt3.wav")
 var cowStealSound = preload("res://sounds/New Sound FEX/Marauder/Copy of maraudervox4.wav")
 var shootingVoice = preload("res://sounds/Enemy Stuff/MarauderShooting.wav")
 var shootingSFX = preload("res://sounds/Enemy Stuff/ShootingWarning.wav")
-var lungeImpact = preload("res://sounds/Implement These/LungeImpact.wav")
-var AmbushMusic = preload("res://sounds/Implement These/MarauderMusic.wav")
-var normalLVmusic = preload("res://sounds/Opening Theme.wav")
+var lungeImpact = preload("res://sounds/LungeImpact.wav")
 
 
 var maxHealth = 15.0
@@ -113,8 +112,8 @@ func _ready():
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
-	
 	if(waited == false):
+		level = get_node(NodePath("/root/Level"))
 		waited = true
 		var origPos = position
 		var displaceDir = origPos - player.position
@@ -141,10 +140,6 @@ func _physics_process(delta):
 					validLoc = false
 			if(validLoc):
 				position.y = 0.1
-				var level = get_node(NodePath("/root/Level"))
-				#implement sound: use level to fade in from normal music to fight music
-				levelMusic.stream = AmbushMusic
-				levelMusic.play()
 				print("enemy spawn tries: " + str(tries))
 			else:
 				position.y = 30
@@ -273,6 +268,7 @@ func _physics_process(delta):
 			#print("gonna hibernate, my chunk: " + str(chunk) + " activeCoords: " + str(terrain.activeCoord))
 			position.y = 0
 			currentMode = behaviors.hibernate
+			delete(false)
 			if(draggedCow != null):
 				herd.removeCow(draggedCow)
 				draggedCow.queue_free()
@@ -344,14 +340,16 @@ func _physics_process(delta):
 #		if(knockbackIFramesTimer < 0):
 #			knockbackIFramesTimer = 0
 
-func delete():
+func delete(actuallyDelete:bool = true):
 	var enemies = get_tree().get_nodes_in_group("Enemy")
-	if(enemies.size() <= 1):
-		var level = get_node(NodePath("/root/Level/"))
-		#implement sound: use level to fade out from enemy music to normal music here
-		levelMusic.stream = normalLVmusic
-		levelMusic.play()
-	queue_free()
+	var enemyCount = 0
+	for i in enemies:
+		if(i.currentMode != behaviors.hibernate):
+			enemyCount += 1
+	if(enemyCount <= 1 && level.currentMusic == 1):
+		level.changeMusic(0, 1.0)
+	if(actuallyDelete):
+		queue_free()
 	
 func idle():
 	#Marauder sits still, maybe makes occasional random movements
@@ -433,6 +431,8 @@ func pursuit():
 	#If closer than follow distance, back up
 	#If closer than half of follow distance, panic and flee
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
+	if(spacing < 19 && level.currentMusic == 0):
+		level.changeMusic(1, 0.5)
 	if((spacing < followDistance + 3 and spacing > followDistance) or aiming):
 		#Slowing down in desired range
 		if(speed > 0 and !aiming):
@@ -711,7 +711,7 @@ func die():
 		if(draggedCow != null):
 			draggedCow.stopDragging(self)
 		if(itemDrop != null):
-			get_node("/root/Level").add_child(itemDrop)
+			level.add_child(itemDrop)
 			itemDrop.position = position
 			itemDrop = null
 		delete()

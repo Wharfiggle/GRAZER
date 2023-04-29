@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dapc4u84j2cr"]
+[gd_scene load_steps=38 format=3 uid="uid://dapc4u84j2cr"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -24,6 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://b7u23a48obmro" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemExpandedInfoStageButton.png" id="22_0573l"]
 [ext_resource type="Texture2D" uid="uid://cxgt8ygd822tr" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/MakeTradeHover.png" id="22_vsqqn"]
 [ext_resource type="Script" path="res://Levels/DeathMenu.gd" id="24_adsx1"]
+[ext_resource type="AudioStream" uid="uid://crtrdbfpgkmwl" path="res://sounds/Music/WildsMusic.wav" id="24_eux13"]
+[ext_resource type="AudioStream" uid="uid://ctinn75mya67b" path="res://sounds/New Sound FEX/Ambiance/outsidedesert.wav" id="25_0aix7"]
+[ext_resource type="AudioStream" uid="uid://cxcaba7koqgv2" path="res://sounds/Music/EnemyMusic.wav" id="26_chugg"]
+[ext_resource type="AudioStream" uid="uid://dbtr4w6ph4xuw" path="res://sounds/Music/OutpostMusic.wav" id="27_iuswt"]
+[ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="28_h45dm"]
+[ext_resource type="AudioStream" uid="uid://dgl3cdn3cctem" path="res://sounds/Music/DeathMusic.wav" id="29_713a0"]
 
 [sub_resource type="Gradient" id="Gradient_x61s1"]
 interpolation_mode = 2
@@ -57,9 +63,10 @@ font_size = 64
 font_color = Color(0.819608, 0.823529, 0.831373, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1txft"]
+line_spacing = 12.0
 font = ExtResource("19_u5bqv")
-font_size = 24
-shadow_size = 14
+font_size = 36
+shadow_size = 36
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(1, -4)
 
@@ -102,12 +109,6 @@ collision_mask = 33
 [node name="AllTerrain" type="Node3D" parent="."]
 script = ExtResource("4")
 
-[node name="BackgroundPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-volume_db = -12.18
-bus = &"background "
-script = ExtResource("10_apc26")
-
 [node name="Orange Vignette" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -132,8 +133,10 @@ grow_vertical = 2
 color = Color(1, 0.478431, 0.0196078, 0.196078)
 
 [node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
+z_index = 75
 
 [node name="HerdMenu" type="TextureRect" parent="."]
+z_index = 60
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -1002,22 +1005,21 @@ offset_top = 220.0
 offset_right = 103.0
 offset_bottom = 276.0
 grow_horizontal = 2
-text = "There's no hope for survival.
-You are dead."
+text = "You're food for the buzzards."
 label_settings = SubResource("LabelSettings_1txft")
 horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="RestartButton" type="Button" parent="DeathMenu"]
-modulate = Color(1, 0.819608, 0.709804, 1)
+modulate = Color(1, 0.709804, 0.709804, 1)
 z_index = 101
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -50.0
+offset_left = -55.0
 offset_top = 335.0
-offset_right = 60.0
+offset_right = 55.0
 offset_bottom = 385.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("19_u5bqv")
@@ -1026,15 +1028,15 @@ disabled = true
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="DeathMenu"]
-modulate = Color(1, 0.819608, 0.709804, 1)
+modulate = Color(1, 0.709804, 0.709804, 1)
 z_index = 101
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -45.0
+offset_left = -50.0
 offset_top = 400.0
-offset_right = 55.0
+offset_right = 50.0
 offset_bottom = 440.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("19_u5bqv")
@@ -1042,9 +1044,47 @@ theme_override_font_sizes/font_size = 20
 disabled = true
 text = "Main Menu"
 
-[node name="Ambience" type="AudioStreamPlayer" parent="."]
+[node name="WildsMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("24_eux13")
+volume_db = -12.0
+bus = &"background "
+script = ExtResource("10_apc26")
 
-[connection signal="finished" from="BackgroundPlayer" to="BackgroundPlayer" method="_on_finished"]
+[node name="EnemyMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("26_chugg")
+volume_db = -12.0
+bus = &"background "
+script = ExtResource("10_apc26")
+
+[node name="OutpostMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("27_iuswt")
+volume_db = -12.0
+bus = &"background "
+script = ExtResource("10_apc26")
+
+[node name="ShopMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("28_h45dm")
+volume_db = -12.0
+bus = &"background "
+script = ExtResource("10_apc26")
+
+[node name="DeathMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("29_713a0")
+volume_db = -8.0
+bus = &"background "
+script = ExtResource("10_apc26")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_0aix7")
+volume_db = 4.0
+autoplay = true
+script = ExtResource("10_apc26")
+
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Common/MakeTradeCommon" to="HerdMenu" method="_on_make_trade_common_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_mouse_entered"]
@@ -1059,3 +1099,8 @@ text = "Main Menu"
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/MakeTradeMoxie" to="HerdMenu" method="_on_make_trade_moxie_pressed"]
 [connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]
+[connection signal="finished" from="WildsMusic" to="WildsMusic" method="_on_finished"]
+[connection signal="finished" from="EnemyMusic" to="EnemyMusic" method="_on_finished"]
+[connection signal="finished" from="OutpostMusic" to="OutpostMusic" method="_on_finished"]
+[connection signal="finished" from="ShopMusic" to="ShopMusic" method="_on_finished"]
+[connection signal="finished" from="DeathMusic" to="DeathMusic" method="_on_finished"]
