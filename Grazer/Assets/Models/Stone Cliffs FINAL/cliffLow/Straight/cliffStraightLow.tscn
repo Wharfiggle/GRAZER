@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://1e36kw702rq0"]
+
+[ext_resource type="PackedScene" uid="uid://cuw7vmxwons3d" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Straight/cliffStraight low.fbx" id="1_fmxfr"]
+[ext_resource type="Material" uid="uid://h34lo53ssx8o" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Straight/cliffStraightLow.tres" id="2_ma7ax"]
+
+[node name="cliffStraight low" instance=ExtResource("1_fmxfr")]
+
+[node name="Straight low" parent="RootNode" index="0"]
+material_override = ExtResource("2_ma7ax")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccnx64oa6vbqv"]
+[gd_scene load_steps=11 format=3 uid="uid://ccnx64oa6vbqv"]
 
 [ext_resource type="PackedScene" uid="uid://cg14hosmet8b5" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/cliffStraightV4.fbx" id="1_7u5kb"]
 [ext_resource type="Texture2D" uid="uid://xpojevianp14" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_BaseColor.png" id="2_m7bw6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bp4emjrcwtai7" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_Metallic.png" id="4_wii3s"]
 [ext_resource type="Texture2D" uid="uid://cpwwevm3nqbqd" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_Normal.png" id="5_f1y78"]
 [ext_resource type="Texture2D" uid="uid://pqe45elsoex0" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_Roughness.png" id="6_ct26j"]
+[ext_resource type="PackedScene" uid="uid://1e36kw702rq0" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Straight/cliffStraightLow.tscn" id="7_tqjvf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7iu3p"]
 albedo_texture = ExtResource("2_m7bw6")
@@ -23,6 +24,9 @@ size = Vector3(16, 16, 2)
 size = Vector3(1, 5, 16)
 
 [node name="cliffStraightV4" instance=ExtResource("1_7u5kb")]
+
+[node name="RootNode" parent="." index="0"]
+visible = false
 
 [node name="PM3D_Wall_Clif1_1" parent="RootNode" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
@@ -45,3 +49,5 @@ collision_layer = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.5)
 shape = SubResource("BoxShape3D_3xvc2")
+
+[node name="cliffStraight low" parent="." index="3" instance=ExtResource("7_tqjvf")]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://6okjiw6usgma"]
+
+[ext_resource type="PackedScene" uid="uid://bwxukl1hesf0f" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Corner/cliffBend low.fbx" id="1_gyayw"]
+[ext_resource type="Material" uid="uid://cpx06f4h1jwk5" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Corner/cliffCornerLow.tres" id="2_ab8yt"]
+
+[node name="cliffBend low" instance=ExtResource("1_gyayw")]
+
+[node name="Bend low" parent="RootNode" index="0"]
+transform = Transform3D(100, 0, 0, 0, 100, 7.54979e-06, 0, -7.54979e-06, 100, 0, 10.5, 0)
+material_override = ExtResource("2_ab8yt")

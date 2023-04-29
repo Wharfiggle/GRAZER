@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cpx06f4h1jwk5"]
+
+[ext_resource type="Texture2D" uid="uid://c62jlhakplhp7" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Corner/cliffBend low_rock_BaseColor.png" id="1_7ukf4"]
+[ext_resource type="Texture2D" uid="uid://dava2get3pn5f" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Corner/cliffBend low_rock_Metallic.png" id="2_04ku6"]
+[ext_resource type="Texture2D" uid="uid://b7ul73ls3p5sk" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Corner/cliffBend low_rock_Normal.png" id="3_x85i8"]
+[ext_resource type="Texture2D" uid="uid://bm7g4jkd34dat" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Corner/cliffBend low_rock_Roughness.png" id="4_a21dg"]
+
+[resource]
+albedo_texture = ExtResource("1_7ukf4")
+metallic = 1.0
+metallic_texture = ExtResource("2_04ku6")
+roughness_texture = ExtResource("4_a21dg")
+normal_enabled = true
+normal_texture = ExtResource("3_x85i8")
