@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2nunlkp588c1"]
+[gd_scene load_steps=5 format=3 uid="uid://d2nunlkp588c1"]
 
 [ext_resource type="PackedScene" uid="uid://cvs08pumsdn7v" path="res://Assets/Models/Windmill/Windmill.fbx" id="1_uk7mc"]
 [ext_resource type="Material" uid="uid://dt8kfeus1ibyl" path="res://Assets/Models/Windmill/Windmill.tres" id="2_crv2h"]
+[ext_resource type="Script" path="res://Assets/FloorTiles/!Prefabs!/windmill.gd" id="2_rwqgh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vf8p1"]
 height = 5.6595
 radius = 1.16868
 
 [node name="Windmill" instance=ExtResource("1_uk7mc")]
+script = ExtResource("2_rwqgh")
 
 [node name="Windmill_Base" parent="RootNode/Windmill_FULL" index="0"]
 surface_material_override/0 = ExtResource("2_crv2h")
@@ -27,3 +29,4 @@ shape = SubResource("CylinderShape3D_vf8p1")
 
 [node name="AudioPlayer" type="AudioStreamPlayer3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.24084, 0)
+max_distance = 1607.57

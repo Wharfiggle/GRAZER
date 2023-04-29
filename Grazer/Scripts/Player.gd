@@ -109,6 +109,8 @@ var potionPowerDown = preload("res://sounds/New Sound FEX/Elixir-Power/powerdown
 var RayHurtSound = preload("res://sounds/Cowgirl edited/Damage/Cowgirl Damage Take 4#01.3.wav")
 var rayLungesound = preload("res://sounds/Cowgirl edited/Lunges/Lunge#01.3.wav")
 
+var whistle = preload("res://sounds/newSounds/Whistle/Whistle1.wav")
+
 const GRAVITY = 30
 @export var speed = 8.0
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
@@ -471,6 +473,8 @@ func _process(delta):
 				herd.spawnCow(i)
 		
 		if(Input.is_action_just_pressed("Follow Wait") && active):
+			Vocal.stream = whistle
+			Vocal.play()
 			herd.toggleFollow()
 	else:
 		print("there is no herd?")
