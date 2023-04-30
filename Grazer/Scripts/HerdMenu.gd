@@ -24,9 +24,15 @@ var trading = false
 ]
 var numCowTypes = null
 @onready var uiCursor = get_node(NodePath("/root/Level/UICursor"))
+@onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 @export var cowCosts = [1, 3, 3, 6, 6, 12]
 var lastRecordedCowNum = -1
 var totalValue = -1
+var selectedCows = []
+var selectedValue = -1
+var gain = -1
+var change = -1
+var tradeMenu = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -74,7 +80,22 @@ func _process(delta):
 			select(hovered)
 		
 		if(Input.is_action_just_pressed("dodge")):
-			use()
+			if(trading):
+				stopTrade()
+			else:
+				use()
+				
+		if(trading && (Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact"))):
+			var from = camera.project_ray_origin(mousePos)
+			var to = from + camera.project_ray_normal(mousePos) * 100
+			var space = player.get_world_3d().direct_space_state
+			var ray_query = PhysicsRayQueryParameters3D.new()
+			ray_query.from = from
+			ray_query.to = to
+			ray_query.collide_with_areas = true
+			var cow = space.intersect_ray(ray_query).get("collider", null)
+			if(cow.has_method("startDragging")):
+				selectCow(cow)
 
 func _physics_process(_delta):
 	var cowNum = player.herd.getNumCows()
@@ -86,6 +107,8 @@ func _physics_process(_delta):
 		player = get_node(NodePath("/root/Level/Player"))
 
 func unselect(ind:int):
+	if(trading):
+		stopTrade()
 	var children = cowMenus[ind].get_children()
 	for i in children.size():
 		if(i > 2):
@@ -102,7 +125,7 @@ func select(ind:int):
 	selected = ind
 	var children = cowMenus[selected].get_children()
 	for i in children.size():
-		if(i > 2):
+		if(i > 2 && i < 9):
 			children[i].visible = true
 			if("disabled" in children[i]):
 				children[i].disabled = false
@@ -112,12 +135,37 @@ func select(ind:int):
 	
 func startTrade():
 	trading = true
-	
+	tradeMenu = cowMenus[selected].find_child("TradeMenu")
+	tradeMenu.visible = true
+	tradeMenu.get_child(3).disabled = false
+	tradeMenu.get_child(4).disabled = false
+	updateTrade()
+
+func updateTrade():
+	tradeMenu.get_child(0).get_child(0).text = str(selectedValue)
+	gain = selectedValue / cowCosts[selected] as int
+	change = selectedValue % cowCosts[selected]
+	tradeMenu.get_child(0).get_child(0).text = str(selectedValue)
+	tradeMenu.get_child(1).get_child(0).text = str(gain)
+	tradeMenu.get_child(2).get_child(0).text = str(change)
 	
 func stopTrade():
 	trading = false
+	tradeMenu.visible = false
+	tradeMenu.get_child(3).disabled = true
+	tradeMenu.get_child(4).disabled = true
 	
-	
+func selectCow(cow:Node):
+	if(selectedCows.has(cow)):
+		selectedCows.erase(cow)
+		selectedValue -= cowCosts[cow.cowTypeInd]
+		cow.hitFlash.amount = 0
+	else:
+		selectedCows.append(cow)
+		selectedValue += cowCosts[cow.cowTypeInd]
+		cow.hitFlash.amount = 0.25
+		updateTrade()
+		
 func updateNumCowTypes():
 	if(player == null):
 		return
@@ -153,3 +201,6 @@ func _on_moxie_mouse_entered():
 
 func _on_make_trade_pressed():
 	startTrade()
+
+func _on_confirm_trade_pressed():
+	pass

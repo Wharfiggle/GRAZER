@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://chhdmtchnaok"]
+[gd_scene load_steps=13 format=3 uid="uid://c60il7nepfyv1"]
 
 [ext_resource type="PackedScene" uid="uid://21bqi8afjpn6" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/Frame Isolated/gateArch.tscn" id="6_3gyy5"]
 [ext_resource type="PackedScene" uid="uid://7jwcyssrk7li" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/One Door Isolated/gate2.tscn" id="7_nvsmn"]

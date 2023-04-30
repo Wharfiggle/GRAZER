@@ -9,4 +9,4 @@ render_priority = 2
 next_pass = ExtResource("1_8nd1u")
 shader = ExtResource("1_0xsd8")
 shader_parameter/amount = 0.0
-shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/color = Color(0, 0.776471, 0.431373, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://diy7osedw50gn"]
+[gd_scene load_steps=49 format=3 uid="uid://diy7osedw50gn"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -19,13 +19,16 @@
 [ext_resource type="Texture2D" uid="uid://dvsyjajaobag1" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemCollapsed.png" id="18_u7k13"]
 [ext_resource type="Texture2D" uid="uid://6ppeipv72qiw" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemExpandedCowHeadCost.png" id="19_jdc8t"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="19_u5bqv"]
+[ext_resource type="Texture2D" uid="uid://b81acrngu3ylb" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemExpandedCowHeadTypeSymbolBlank.png" id="20_ibyaq"]
 [ext_resource type="Texture2D" uid="uid://cf5xep6d18eqo" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/elixir menu/shopElixirCowHeadCost.png" id="21_vsota"]
 [ext_resource type="Texture2D" uid="uid://b7u23a48obmro" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemExpandedInfoStageButton.png" id="22_0573l"]
 [ext_resource type="Texture2D" uid="uid://cxgt8ygd822tr" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/MakeTradeHover.png" id="22_vsqqn"]
 [ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="23_5p5jq"]
+[ext_resource type="Texture2D" uid="uid://bbgb3d3fj1iah" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdExpandedItemTradeStagewButtonV1.png" id="23_eue71"]
 [ext_resource type="AudioStream" uid="uid://crtrdbfpgkmwl" path="res://sounds/Music/WildsMusic.wav" id="24_eux13"]
 [ext_resource type="Script" path="res://Scripts/WinMenu.gd" id="24_q0sdl"]
 [ext_resource type="AudioStream" uid="uid://ctinn75mya67b" path="res://sounds/New Sound FEX/Ambiance/outsidedesert.wav" id="25_0aix7"]
+[ext_resource type="Texture2D" uid="uid://b226qj13vrxgj" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/shopHerdItemExpandedTradeStageCowValueCounterSymbolBlank.png" id="25_nx0q5"]
 [ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="25_onhah"]
 [ext_resource type="AudioStream" uid="uid://cxcaba7koqgv2" path="res://sounds/Music/EnemyMusic.wav" id="26_chugg"]
 [ext_resource type="AudioStream" uid="uid://dbtr4w6ph4xuw" path="res://sounds/Music/OutpostMusic.wav" id="27_iuswt"]
@@ -54,7 +57,7 @@ font_color = Color(0.819608, 0.823529, 0.831373, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hxfn5"]
 font = ExtResource("19_u5bqv")
-font_size = 36
+font_size = 30
 font_color = Color(0.301961, 0.270588, 0.231373, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4j3ub"]
@@ -66,6 +69,20 @@ font_color = Color(0.819608, 0.823529, 0.831373, 1)
 font = ExtResource("19_u5bqv")
 font_size = 64
 font_color = Color(0.819608, 0.823529, 0.831373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knbsd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxfjh"]
+bg_color = Color(1, 1, 1, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fmcc2"]
+line_spacing = 12.0
+font = ExtResource("19_u5bqv")
+font_size = 52
+shadow_size = 30
+shadow_color = Color(0, 0, 0.137255, 1)
+shadow_offset = Vector2(0, 6)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1txft"]
 line_spacing = 12.0
@@ -161,7 +178,6 @@ script = ExtResource("15_07h73")
 widthOffset = 340.0
 
 [node name="Usable" parent="HerdMenu" instance=ExtResource("15_hq1n4")]
-visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HerdMenu"]
 layout_mode = 1
@@ -217,8 +233,7 @@ visible = false
 modulate = Color(0.760784, 0.709804, 0.607843, 1)
 z_index = 2
 position = Vector2(108, 73)
-scale = Vector2(2, 2)
-texture = ExtResource("19_jdc8t")
+texture = ExtResource("20_ibyaq")
 
 [node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Common"]
 visible = false
@@ -306,6 +321,97 @@ offset_right = 117.961
 offset_bottom = 46.0
 texture = ExtResource("21_vsota")
 
+[node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Common"]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 40.97
+offset_top = 7.4003
+offset_right = 447.97
+offset_bottom = 248.4
+texture = ExtResource("23_eue71")
+
+[node name="Payment" type="Sprite2D" parent="HerdMenu/VBoxContainer/Common/TradeMenu"]
+z_index = 2
+position = Vector2(84, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Common/TradeMenu/Payment"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Common/TradeMenu"]
+modulate = Color(0.760784, 0.709804, 0.607843, 1)
+z_index = 2
+position = Vector2(246, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Common/TradeMenu/Gain"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Change" type="Sprite2D" parent="HerdMenu/VBoxContainer/Common/TradeMenu"]
+z_index = 2
+position = Vector2(324, 109)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Common/TradeMenu/Change"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BackButton" type="Button" parent="HerdMenu/VBoxContainer/Common/TradeMenu"]
+layout_mode = 2
+offset_left = 13.4934
+offset_top = 176.912
+offset_right = 503.493
+offset_bottom = 176.912
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
+[node name="ConfirmTrade" type="Button" parent="HerdMenu/VBoxContainer/Common/TradeMenu"]
+layout_mode = 0
+offset_left = 185.889
+offset_top = 175.414
+offset_right = 389.889
+offset_bottom = 223.414
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
 [node name="Red" type="TextureButton" parent="HerdMenu/VBoxContainer"]
 z_index = 1
 layout_mode = 2
@@ -352,8 +458,7 @@ visible = false
 modulate = Color(0.807843, 0.286275, 0.27451, 1)
 z_index = 2
 position = Vector2(108, 73)
-scale = Vector2(2, 2)
-texture = ExtResource("19_jdc8t")
+texture = ExtResource("20_ibyaq")
 
 [node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Red"]
 visible = false
@@ -441,6 +546,96 @@ offset_right = 117.961
 offset_bottom = 46.0
 texture = ExtResource("21_vsota")
 
+[node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Red"]
+visible = false
+z_index = 2
+offset_left = 40.97
+offset_top = 7.4003
+offset_right = 447.97
+offset_bottom = 248.4
+texture = ExtResource("23_eue71")
+
+[node name="Payment" type="Sprite2D" parent="HerdMenu/VBoxContainer/Red/TradeMenu"]
+z_index = 2
+position = Vector2(84, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Red/TradeMenu/Payment"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Red/TradeMenu"]
+modulate = Color(0.760784, 0.709804, 0.607843, 1)
+z_index = 2
+position = Vector2(246, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Red/TradeMenu/Gain"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Change" type="Sprite2D" parent="HerdMenu/VBoxContainer/Red/TradeMenu"]
+z_index = 2
+position = Vector2(324, 109)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Red/TradeMenu/Change"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BackButton" type="Button" parent="HerdMenu/VBoxContainer/Red/TradeMenu"]
+layout_mode = 2
+offset_left = 13.4934
+offset_top = 176.912
+offset_right = 503.493
+offset_bottom = 176.912
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
+[node name="ConfirmTrade" type="Button" parent="HerdMenu/VBoxContainer/Red/TradeMenu"]
+layout_mode = 0
+offset_left = 185.889
+offset_top = 175.414
+offset_right = 389.889
+offset_bottom = 223.414
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
 [node name="Lucky" type="TextureButton" parent="HerdMenu/VBoxContainer"]
 z_index = 1
 layout_mode = 2
@@ -487,8 +682,7 @@ visible = false
 modulate = Color(0.854902, 0.784314, 0.337255, 1)
 z_index = 2
 position = Vector2(108, 73)
-scale = Vector2(2, 2)
-texture = ExtResource("19_jdc8t")
+texture = ExtResource("20_ibyaq")
 
 [node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Lucky"]
 visible = false
@@ -577,6 +771,96 @@ offset_right = 117.961
 offset_bottom = 46.0
 texture = ExtResource("21_vsota")
 
+[node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Lucky"]
+visible = false
+z_index = 2
+offset_left = 40.97
+offset_top = 7.4003
+offset_right = 447.97
+offset_bottom = 248.4
+texture = ExtResource("23_eue71")
+
+[node name="Payment" type="Sprite2D" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu"]
+z_index = 2
+position = Vector2(84, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu/Payment"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu"]
+modulate = Color(0.760784, 0.709804, 0.607843, 1)
+z_index = 2
+position = Vector2(246, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu/Gain"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Change" type="Sprite2D" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu"]
+z_index = 2
+position = Vector2(324, 109)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu/Change"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BackButton" type="Button" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu"]
+layout_mode = 2
+offset_left = 13.4934
+offset_top = 176.912
+offset_right = 503.493
+offset_bottom = 176.912
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
+[node name="ConfirmTrade" type="Button" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu"]
+layout_mode = 0
+offset_left = 185.889
+offset_top = 175.414
+offset_right = 389.889
+offset_bottom = 223.414
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
 [node name="GrandRed" type="TextureButton" parent="HerdMenu/VBoxContainer"]
 z_index = 1
 layout_mode = 2
@@ -623,8 +907,7 @@ visible = false
 modulate = Color(0.854902, 0.184314, 0.152941, 1)
 z_index = 2
 position = Vector2(108, 73)
-scale = Vector2(2, 2)
-texture = ExtResource("19_jdc8t")
+texture = ExtResource("20_ibyaq")
 
 [node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/GrandRed"]
 visible = false
@@ -713,6 +996,96 @@ offset_right = 117.961
 offset_bottom = 46.0
 texture = ExtResource("21_vsota")
 
+[node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/GrandRed"]
+visible = false
+z_index = 2
+offset_left = 40.97
+offset_top = 7.4003
+offset_right = 447.97
+offset_bottom = 248.4
+texture = ExtResource("23_eue71")
+
+[node name="Payment" type="Sprite2D" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu"]
+z_index = 2
+position = Vector2(84, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu/Payment"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu"]
+modulate = Color(0.760784, 0.709804, 0.607843, 1)
+z_index = 2
+position = Vector2(246, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu/Gain"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Change" type="Sprite2D" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu"]
+z_index = 2
+position = Vector2(324, 109)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu/Change"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BackButton" type="Button" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu"]
+layout_mode = 2
+offset_left = 13.4934
+offset_top = 176.912
+offset_right = 503.493
+offset_bottom = 176.912
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
+[node name="ConfirmTrade" type="Button" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu"]
+layout_mode = 0
+offset_left = 185.889
+offset_top = 175.414
+offset_right = 389.889
+offset_bottom = 223.414
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
 [node name="Ironhide" type="TextureButton" parent="HerdMenu/VBoxContainer"]
 z_index = 1
 layout_mode = 2
@@ -759,8 +1132,7 @@ visible = false
 modulate = Color(0.368627, 0.517647, 0.552941, 1)
 z_index = 2
 position = Vector2(108, 73)
-scale = Vector2(2, 2)
-texture = ExtResource("19_jdc8t")
+texture = ExtResource("20_ibyaq")
 
 [node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Ironhide"]
 visible = false
@@ -849,6 +1221,96 @@ offset_right = 117.961
 offset_bottom = 46.0
 texture = ExtResource("21_vsota")
 
+[node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Ironhide"]
+visible = false
+z_index = 2
+offset_left = 40.97
+offset_top = 7.4003
+offset_right = 447.97
+offset_bottom = 248.4
+texture = ExtResource("23_eue71")
+
+[node name="Payment" type="Sprite2D" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu"]
+z_index = 2
+position = Vector2(84, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu/Payment"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu"]
+modulate = Color(0.760784, 0.709804, 0.607843, 1)
+z_index = 2
+position = Vector2(246, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu/Gain"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Change" type="Sprite2D" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu"]
+z_index = 2
+position = Vector2(324, 109)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu/Change"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BackButton" type="Button" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu"]
+layout_mode = 2
+offset_left = 13.4934
+offset_top = 176.912
+offset_right = 503.493
+offset_bottom = 176.912
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
+[node name="ConfirmTrade" type="Button" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu"]
+layout_mode = 0
+offset_left = 185.889
+offset_top = 175.414
+offset_right = 389.889
+offset_bottom = 223.414
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
 [node name="Moxie" type="TextureButton" parent="HerdMenu/VBoxContainer"]
 z_index = 1
 layout_mode = 2
@@ -895,8 +1357,7 @@ visible = false
 modulate = Color(0.670588, 0.423529, 0.678431, 1)
 z_index = 2
 position = Vector2(108, 73)
-scale = Vector2(2, 2)
-texture = ExtResource("19_jdc8t")
+texture = ExtResource("20_ibyaq")
 
 [node name="Name2" type="Label" parent="HerdMenu/VBoxContainer/Moxie"]
 visible = false
@@ -986,6 +1447,96 @@ offset_right = 117.961
 offset_bottom = 46.0
 texture = ExtResource("21_vsota")
 
+[node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Moxie"]
+visible = false
+z_index = 2
+offset_left = 40.97
+offset_top = 7.4003
+offset_right = 447.97
+offset_bottom = 248.4
+texture = ExtResource("23_eue71")
+
+[node name="Payment" type="Sprite2D" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu"]
+z_index = 2
+position = Vector2(84, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu/Payment"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu"]
+modulate = Color(0.760784, 0.709804, 0.607843, 1)
+z_index = 2
+position = Vector2(246, 108)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu/Gain"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Change" type="Sprite2D" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu"]
+z_index = 2
+position = Vector2(324, 109)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("25_nx0q5")
+
+[node name="Label" type="Label" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu/Change"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -23.7729
+offset_top = -95.7881
+offset_right = 26.2271
+offset_bottom = -55.7881
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BackButton" type="Button" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu"]
+layout_mode = 2
+offset_left = 13.4934
+offset_top = 176.912
+offset_right = 503.493
+offset_bottom = 176.912
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
+[node name="ConfirmTrade" type="Button" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu"]
+layout_mode = 0
+offset_left = 185.889
+offset_top = 175.414
+offset_right = 389.889
+offset_bottom = 223.414
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+disabled = true
+
 [node name="TotalValue" type="Label" parent="HerdMenu"]
 layout_mode = 1
 anchors_preset = 2
@@ -1003,11 +1554,12 @@ vertical_alignment = 1
 
 [node name="BackButton" type="Button" parent="HerdMenu"]
 layout_mode = 0
-offset_left = 43.4779
+offset_left = 370.315
 offset_top = 1010.49
-offset_right = 51.4779
-offset_bottom = 1018.49
-text = "so true bestie"
+offset_right = 480.315
+offset_bottom = 1055.49
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 
 [node name="DeathMenu" type="Panel" parent="."]
 visible = false
@@ -1032,7 +1584,7 @@ offset_right = 103.0
 offset_bottom = 276.0
 grow_horizontal = 2
 text = "You're food for the buzzards."
-label_settings = SubResource("LabelSettings_1txft")
+label_settings = SubResource("LabelSettings_fmcc2")
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -1191,16 +1743,29 @@ process_mode = 3
 
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Common/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Common/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Common/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Red/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Red/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Red/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Lucky" to="HerdMenu" method="_on_lucky_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/GrandRed" to="HerdMenu" method="_on_grand_red_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Ironhide" to="HerdMenu" method="_on_ironhide_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Moxie" to="HerdMenu" method="_on_moxie_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
+[connection signal="pressed" from="HerdMenu/BackButton" to="HerdMenu" method="use"]
 [connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="WinMenu/RestartButton" to="WinMenu" method="_on_restart_button_pressed"]

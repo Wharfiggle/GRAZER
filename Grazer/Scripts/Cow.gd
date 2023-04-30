@@ -68,6 +68,7 @@ var moo1 = preload("res://sounds/Cows/Cows/idlemoo1.wav")
 var moo2 = preload("res://sounds/Cows/Cows/idlemoo2.wav")
 var moo3 = preload("res://sounds/Cows/Cows/idlemoo3.wav")
 var audioArray = [moo1,moo2,moo3]
+@onready var hitFlash = get_node(NodePath("./Model/CowBones/Skeleton3D/Cow")).get_material_override()
 
 var model = null
 var animation = null
