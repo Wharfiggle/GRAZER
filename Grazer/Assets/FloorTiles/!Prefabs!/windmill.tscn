@@ -29,4 +29,5 @@ shape = SubResource("CylinderShape3D_vf8p1")
 
 [node name="AudioPlayer" type="AudioStreamPlayer3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.24084, 0)
+volume_db = -12.0
 max_distance = 1607.57

@@ -6,7 +6,7 @@ var audioArRay = [
 	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.5.wav"),
 	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.7.wav"),
 	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.9.wav"),
-	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.10.wav"),
+#	preload("res://sounds/Cowgirl edited/Character Selection/Character Selection#01.10.wav"),
 	preload("res://sounds/Cowgirl edited/Character Selection/CowGirlVox_GoodPick_.wav")]
 var audioArRussel = [
 	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.7.wav"),
@@ -58,6 +58,7 @@ func _on_russel_button_pressed():
 		WorldSave.setCharacter(true)
 		russelSound.stream = audioArRussel[rng.randi_range(0, audioArRussel.size() - 1)]
 		russelSound.play()
+		Fade.fade_out(1.5)
 		await russelSound.finished
 		get_tree().change_scene_to_file("res://Levels/Level.tscn")
 
@@ -67,6 +68,7 @@ func _on_ray_button_pressed():
 		WorldSave.setCharacter(false)
 		raySound.stream = audioArRay[rng.randi_range(0, audioArRay.size() - 1)]
 		raySound.play()
+		Fade.fade_out(1.5)
 		await raySound.finished
 		get_tree().change_scene_to_file("res://Levels/Level.tscn")
 	

@@ -928,6 +928,8 @@ func healFromBullet(damageDone):
 	updateHealth(hitpoints + damageDone * lifeLeach)
 		
 func die():
+	if(!active):
+		return
 	deathTimer = 3.8
 	if(russelOrRay == "Ray"):
 		deathTimer = 3.0

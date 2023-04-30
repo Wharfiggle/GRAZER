@@ -18,7 +18,7 @@ var speedTransitionRadius = normalSpeedTransitionRadius
 @export var shuffleSpeed = 3.0
 var shuffleTimeCounter = 0
 @export var dragSpeed = 5.5
-@export var dragLookSpeed = 1.0
+@export var dragLookSpeed = 2.0
 @export var dragShake = 0.05
 @export var dragFollowDistance = 1.0
 @export var dragSpeedTransitionRadius = 0.1
@@ -76,6 +76,12 @@ var potionSpeedup = 1.0
 var dragResistance = 1.0
 var cowTypeInd = -1
 
+var gravity = 30
+var hibernate = false
+@onready var terrain = get_node("/root/Level/AllTerrain")
+@onready var level = get_node("/root/Level")
+var speedBoostTimer = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -130,6 +136,14 @@ func setType(ind:int = -1):
 		2: mesh.set("blend_shapes/Out", 1)
 		3: mesh.set("blend_shapes/Way Out", 1)
 		4: mesh.set("blend_shapes/Down", 0)
+
+func setHibernate(inHibernate:bool):
+	hibernate = inHibernate
+	if(hibernate):
+		gravity = 0
+		position.y = 0
+	else:
+		gravity = 30
 
 func startDragging(marauder):
 	isDragged = true
@@ -387,14 +401,30 @@ func _physics_process(delta):
 		herd = get_node("/root/Level/Herd")
 		print("Cow.gd: herd is null")
 		
+	var chunk = terrainController.getPlayerChunk(position)
+	setHibernate(!terrain.activeCoord.has(chunk))
+	
+	speedBoostTimer -= delta
+	if(speedBoostTimer < 0):
+		speedBoostTimer = 0
+	
 	#limit total velocity to not go past maxSpeed
+	var enemySpeedLimit = 1.0
+	var speedBoost = 1.0
+	if(draggers.is_empty()):
+		if(level.currentMusic == 1):
+			enemySpeedLimit = 0.65
+			speedBoostTimer = 1.0
+		elif(speedBoostTimer > 0):
+			speedBoost = 1.5
 	var totalVelocity = tVelocity + Vector3(pushVel.x, 0, pushVel.y)
-	if(totalVelocity.length() > maxSpeed):
-		totalVelocity = totalVelocity.normalized() * maxSpeed
+	if(totalVelocity.length() > maxSpeed * enemySpeedLimit):
+		totalVelocity = totalVelocity.normalized() * maxSpeed * enemySpeedLimit
+	totalVelocity *= speedBoost
 	
 	#gravity, unnaffected by maxSpeed limit
 	if(target != null):
-		tVelocity.y -= 30 * delta
+		tVelocity.y -= gravity * delta
 		if(is_on_floor()):
 			tVelocity.y = -0.1
 		elif(transform.origin.y < -20.0):
@@ -408,6 +438,7 @@ func _physics_process(delta):
 		totalVelocity.y = tVelocity.y
 	else:
 		tVelocity.y = 0
+		totalVelocity.y = 0
 	
 	if(shuffleTimeCounter < 0.01 && shuffleTimeCounter > -0.01):
 		#Normalize animationBlend to range between -1 and 1

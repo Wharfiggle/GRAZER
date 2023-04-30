@@ -98,6 +98,8 @@ var deathTime = 1.5
 var deathTimer = 0
 var deathBlend = 0
 
+@onready var model = get_node(NodePath("./Model"))
+
 func _ready():
 	self.add_to_group('DespawnAtCheckpoint')
 	self.add_to_group('Enemy')
@@ -177,8 +179,6 @@ func _physics_process(delta):
 		if(deathTimer < 0):
 			deathTimer = 0
 			SceneCounter.marauders -= 1
-			if(draggedCow != null):
-				draggedCow.stopDragging(self)
 			if(itemDrop != null):
 				level.add_child(itemDrop)
 				itemDrop.position = lastGroundedPosition
@@ -370,6 +370,7 @@ func delete(actuallyDelete:bool = true):
 		if(i.currentMode != behaviors.hibernate):
 			enemyCount += 1
 	if(enemyCount <= 1 && level.currentMusic == 1):
+		#print("back to normal")
 		level.changeMusic(0, 1.0)
 	if(actuallyDelete):
 		queue_free()
@@ -725,6 +726,10 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 func die():
 	#Changing the health to -100000 is to prevent the counter being
 	#changed multiple times because of the shotgun bullets.
+	position.y -= 50
+	model.position.y += 50
+	if(draggedCow != null):
+		draggedCow.stopDragging(self)
 	Vocal.stream = deathSound
 	Vocal.play()
 	deathTimer = deathTime

@@ -6,7 +6,8 @@ extends Node3D
 	$EnemyMusic,
 	$OutpostMusic,
 	$ShopMusic,
-	$DeathMusic]
+	$DeathMusic,
+	$WinMusic]
 var currentMusic = -1
 @onready var ambience = $Ambience
 
@@ -270,9 +271,12 @@ func broadcastMessage(message:String, time:float):
 	broadcast.get_child(2).text = message
 
 func changeMusic(ind:int, duration:float = 0.5):
-	if(currentMusic != -1 && ind != currentMusic):
+	if(ind == currentMusic):
+		return
+	print("change music to: " + str(ind))
+	if(currentMusic != -1):
 		music[currentMusic].fadeOut(duration)
-	if(ind >= 0 && ind < music.size() && ind != currentMusic):
+	if(ind >= 0 && ind < music.size()):
 		music[ind].fadeIn(duration)
 	currentMusic = ind
 
@@ -282,6 +286,7 @@ func _ready():
 	inventory.visible = false
 	broadcast.position.y -= broadcastHeight
 	rng.randomize()
+	Fade.fade_in()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

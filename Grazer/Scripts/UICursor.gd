@@ -30,7 +30,7 @@ func setPosition(inPos:Vector2):
 func _process(delta):
 	if(!active):
 		return
-		
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var mousePos = viewport.get_mouse_position()
 	var screen = viewport.get_visible_rect()
 	var bound1 = screen.position

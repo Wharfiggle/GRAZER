@@ -49,6 +49,8 @@ func toggleFollow():
 	follow = !follow
 	for i in cows:
 		i.follow = follow
+		if(follow):
+			i.speedBoostTimer = 1.0
 
 #get cow from cows[] array
 func getCow(index) -> Node:

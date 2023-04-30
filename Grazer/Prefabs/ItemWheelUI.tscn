@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b47wmr6w6oykr"]
+[gd_scene load_steps=28 format=3 uid="uid://b47wmr6w6oykr"]
 
 [ext_resource type="Script" path="res://Scripts/ItemWheelUIScript.gd" id="1_f6dx6"]
 [ext_resource type="Texture2D" uid="uid://1mdmi31fa1sd" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/howWheelShadow.png" id="2_er5ar"]
@@ -26,11 +26,17 @@ gradient = SubResource("Gradient_a2ki7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph5km"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s6tp"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47jig"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhv31"]
+bg_color = Color(0.65, 0.65, 0.65, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0ub4"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaekr"]
+bg_color = Color(0.65, 0.65, 0.65, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jgnme"]
 font = ExtResource("6_0fd67")
@@ -59,10 +65,7 @@ gradient = SubResource("Gradient_wt7nc")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38jdd"]
-bg_color = Color(1, 1, 1, 0.686275)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyqjl"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oc8fu"]
 bg_color = Color(1, 1, 1, 1)
 
 [node name="ItemWheel" type="Control"]
@@ -146,8 +149,8 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_0fd67")
 theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_ph5km")
-theme_override_styles/hover = SubResource("StyleBoxFlat_47jig")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8s6tp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhv31")
 text = "Controls"
 
 [node name="MainMenu" type="Button" parent="."]
@@ -166,8 +169,8 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_0fd67")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_47jig")
-theme_override_styles/hover = SubResource("StyleBoxFlat_47jig")
+theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
 text = "Main Menu"
 
 [node name="Cell1" type="TextureButton" parent="."]
@@ -659,8 +662,8 @@ offset_bottom = 1035.28
 theme_override_colors/font_color = Color(0.231373, 0.137255, 0.0745098, 1)
 theme_override_fonts/font = ExtResource("6_0fd67")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_38jdd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wyqjl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_oc8fu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhv31")
 text = "Back"
 
 [connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://diy7osedw50gn"]
+[gd_scene load_steps=43 format=3 uid="uid://diy7osedw50gn"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -32,7 +32,8 @@
 [ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="28_h45dm"]
 [ext_resource type="AudioStream" uid="uid://dgl3cdn3cctem" path="res://sounds/Music/DeathMusic.wav" id="29_713a0"]
 [ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="31_7rkun"]
-[ext_resource type="PackedScene" uid="uid://b52qi0ghc876b" path="res://Assets/FloorTiles/!Prefabs!/WinTrigger.tscn" id="32_054jj"]
+[ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="32_0n3cj"]
+[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/WinTrigger.tscn" id="32_054jj"]
 [ext_resource type="Texture2D" uid="uid://dqe54qrwmp5ed" path="res://Assets/Images/EndScreen.png" id="33_gftir"]
 
 [sub_resource type="Gradient" id="Gradient_x61s1"]
@@ -138,6 +139,7 @@ grow_vertical = 2
 color = Color(1, 0.478431, 0.0196078, 0.196078)
 
 [node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
+visible = false
 z_index = 75
 
 [node name="HerdMenu" type="TextureRect" parent="."]
@@ -262,7 +264,7 @@ label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MakeTradeCommon" type="TextureButton" parent="HerdMenu/VBoxContainer/Common"]
+[node name="MakeTrade" type="TextureButton" parent="HerdMenu/VBoxContainer/Common"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -397,7 +399,7 @@ label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MakeTradeRed" type="TextureButton" parent="HerdMenu/VBoxContainer/Red"]
+[node name="MakeTrade" type="TextureButton" parent="HerdMenu/VBoxContainer/Red"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -533,7 +535,7 @@ label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="MakeTradeLucky" type="TextureButton" parent="HerdMenu/VBoxContainer/Lucky"]
+[node name="MakeTrade" type="TextureButton" parent="HerdMenu/VBoxContainer/Lucky"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -669,7 +671,7 @@ label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="MakeTradeGrandRed" type="TextureButton" parent="HerdMenu/VBoxContainer/GrandRed"]
+[node name="MakeTrade" type="TextureButton" parent="HerdMenu/VBoxContainer/GrandRed"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -805,7 +807,7 @@ label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="MakeTradeIronhide" type="TextureButton" parent="HerdMenu/VBoxContainer/Ironhide"]
+[node name="MakeTrade" type="TextureButton" parent="HerdMenu/VBoxContainer/Ironhide"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -942,7 +944,7 @@ label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="MakeTradeMoxie" type="TextureButton" parent="HerdMenu/VBoxContainer/Moxie"]
+[node name="MakeTrade" type="TextureButton" parent="HerdMenu/VBoxContainer/Moxie"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -998,6 +1000,14 @@ text = "0"
 label_settings = SubResource("LabelSettings_nsy4h")
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="HerdMenu"]
+layout_mode = 0
+offset_left = 43.4779
+offset_top = 1010.49
+offset_right = 51.4779
+offset_bottom = 1018.49
+text = "so true bestie"
 
 [node name="DeathMenu" type="Panel" parent="."]
 visible = false
@@ -1087,7 +1097,13 @@ label_settings = SubResource("LabelSettings_1txft")
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="EndScreen" type="Sprite2D" parent="WinMenu"]
+position = Vector2(639.444, 359.688)
+scale = Vector2(0.66794, 0.66794)
+texture = ExtResource("33_gftir")
+
 [node name="RestartButton" type="Button" parent="WinMenu"]
+process_mode = 3
 z_index = 101
 layout_mode = 1
 anchors_preset = 5
@@ -1104,6 +1120,7 @@ disabled = true
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="WinMenu"]
+process_mode = 3
 z_index = 101
 layout_mode = 1
 anchors_preset = 5
@@ -1118,11 +1135,6 @@ theme_override_fonts/font = ExtResource("19_u5bqv")
 theme_override_font_sizes/font_size = 20
 disabled = true
 text = "Main Menu"
-
-[node name="EndScreen" type="Sprite2D" parent="WinMenu"]
-position = Vector2(639.444, 359.688)
-scale = Vector2(0.66794, 0.66794)
-texture = ExtResource("33_gftir")
 
 [node name="WildsMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -1159,6 +1171,13 @@ volume_db = -8.0
 bus = &"background "
 script = ExtResource("25_onhah")
 
+[node name="WinMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("32_0n3cj")
+volume_db = -8.0
+bus = &"background "
+script = ExtResource("25_onhah")
+
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_0aix7")
 volume_db = 4.0
@@ -1171,17 +1190,17 @@ process_mode = 3
 [node name="Area3D" parent="." instance=ExtResource("32_054jj")]
 
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
-[connection signal="pressed" from="HerdMenu/VBoxContainer/Common/MakeTradeCommon" to="HerdMenu" method="_on_make_trade_common_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Common/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_mouse_entered"]
-[connection signal="pressed" from="HerdMenu/VBoxContainer/Red/MakeTradeRed" to="HerdMenu" method="_on_make_trade_red_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Red/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Lucky" to="HerdMenu" method="_on_lucky_mouse_entered"]
-[connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/MakeTradeLucky" to="HerdMenu" method="_on_make_trade_lucky_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/GrandRed" to="HerdMenu" method="_on_grand_red_mouse_entered"]
-[connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/MakeTradeGrandRed" to="HerdMenu" method="_on_make_trade_grand_red_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Ironhide" to="HerdMenu" method="_on_ironhide_mouse_entered"]
-[connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/MakeTradeIronhide" to="HerdMenu" method="_on_make_trade_ironhide_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Moxie" to="HerdMenu" method="_on_moxie_mouse_entered"]
-[connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/MakeTradeMoxie" to="HerdMenu" method="_on_make_trade_moxie_pressed"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="WinMenu/RestartButton" to="WinMenu" method="_on_restart_button_pressed"]
@@ -1191,3 +1210,4 @@ process_mode = 3
 [connection signal="finished" from="OutpostMusic" to="OutpostMusic" method="_on_finished"]
 [connection signal="finished" from="ShopMusic" to="ShopMusic" method="_on_finished"]
 [connection signal="finished" from="DeathMusic" to="DeathMusic" method="_on_finished"]
+[connection signal="finished" from="WinMusic" to="WinMusic" method="_on_finished"]

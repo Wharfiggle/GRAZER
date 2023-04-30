@@ -24,10 +24,15 @@ var trading = false
 ]
 var numCowTypes = null
 @onready var uiCursor = get_node(NodePath("/root/Level/UICursor"))
+@export var cowCosts = [1, 3, 3, 6, 6, 12]
+var lastRecordedCowNum = -1
+var totalValue = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	position.x = origPos.x + widthOffset
+	for i in cowCosts.size():
+		cowMenus[i].find_child("Cost").text = str(cowCosts[i])
 
 func use():
 	active = !active
@@ -35,6 +40,7 @@ func use():
 	if(active):
 		uiCursor.setActive(true)
 		updateNumCowTypes()
+		updateTotalValue()
 		var newMousePos = Vector2(
 			viewport.get_visible_rect().size.x - widthOffset,
 			viewport.get_visible_rect().size.y / 2)
@@ -46,9 +52,6 @@ func use():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(player == null):
-		player = get_node(NodePath("/root/Level/Player"))
-	
 	if(enterExitTimer > 0):
 		enterExitTimer -= delta
 		if(enterExitTimer <= 0):
@@ -60,7 +63,10 @@ func _process(delta):
 		position.x = origPos.x + widthOffset * t
 	
 	if(active):
-		if(viewport.get_mouse_position().x < viewport.get_visible_rect().size.x - widthOffset):
+		var mousePos = viewport.get_mouse_position()
+		var screen = viewport.get_visible_rect()
+		if(mousePos.x < screen.size.x - widthOffset
+		|| mousePos.y > screen.size.y - 50):
 			hovered = -1
 		
 		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
@@ -69,6 +75,15 @@ func _process(delta):
 		
 		if(Input.is_action_just_pressed("dodge")):
 			use()
+
+func _physics_process(_delta):
+	var cowNum = player.herd.getNumCows()
+	if(cowNum != lastRecordedCowNum && player != null):
+		lastRecordedCowNum = cowNum
+		updateNumCowTypes()
+		updateTotalValue()
+	elif(player == null):
+		player = get_node(NodePath("/root/Level/Player"))
 
 func unselect(ind:int):
 	var children = cowMenus[ind].get_children()
@@ -98,13 +113,14 @@ func select(ind:int):
 func startTrade():
 	trading = true
 	
+	
 func stopTrade():
-	pass
+	trading = false
+	
 	
 func updateNumCowTypes():
 	if(player == null):
 		return
-		
 	numCowTypes = [0, 0, 0, 0, 0, 0]
 	var cows = player.herd.getCows()
 	for i in cows.size():
@@ -112,6 +128,15 @@ func updateNumCowTypes():
 	for i in 6:
 		cowMenus[i].find_child("Num").text = str(numCowTypes[i])
 		cowMenus[i].find_child("Num2").text = str(numCowTypes[i])
+
+func updateTotalValue():
+	if(player == null):
+		return
+	var cows = player.herd.getCows()
+	totalValue = 0
+	for i in cows.size():
+		totalValue += cowCosts[cows[i].cowTypeInd]
+	find_child("TotalValue").text = str(totalValue)
 
 func _on_common_mouse_entered():
 	hovered = 0
@@ -126,15 +151,5 @@ func _on_ironhide_mouse_entered():
 func _on_moxie_mouse_entered():
 	hovered = 5
 
-func _on_make_trade_common_pressed():
-	startTrade()
-func _on_make_trade_red_pressed():
-	startTrade()
-func _on_make_trade_lucky_pressed():
-	startTrade()
-func _on_make_trade_grand_red_pressed():
-	startTrade()
-func _on_make_trade_ironhide_pressed():
-	startTrade()
-func _on_make_trade_moxie_pressed():
+func _on_make_trade_pressed():
 	startTrade()
