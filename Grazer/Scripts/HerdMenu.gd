@@ -76,7 +76,7 @@ func _process(delta):
 		|| mousePos.y > screen.size.y - 50):
 			hovered = -1
 		
-		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
+		if((Input.is_action_just_pressed("shoot")) 
 		&& hovered != -1):
 			select(hovered)
 				
