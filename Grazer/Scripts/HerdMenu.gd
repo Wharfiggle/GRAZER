@@ -76,10 +76,10 @@ func _process(delta):
 		|| mousePos.y > screen.size.y - 50):
 			hovered = -1
 		
-		if((Input.is_action_just_pressed("shoot")) 
+		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact"))
 		&& hovered != -1):
 			select(hovered)
-				
+		
 		if(Input.is_action_just_pressed("dodge")):
 			if(trading):
 				stopTrade()
@@ -101,7 +101,7 @@ func _process(delta):
 				hoveredCow = collider
 			
 			if(hoveredCow != null):
-				if(Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")):
+				if(Input.is_action_just_pressed("shoot")):
 					selectCow(hoveredCow)
 #				elif(Input.is_action_just_pressed("dodge")):
 #					unselectCow(hoveredCow)
@@ -110,7 +110,7 @@ func _process(delta):
 		
 
 func _physics_process(_delta):
-	if(player != null && visible):
+	if(visible && player != null && player.herd != null):
 		var cowNum = player.herd.getNumCows()
 		if(cowNum != lastRecordedCowNum):
 			lastRecordedCowNum = cowNum

@@ -451,6 +451,17 @@ func _process(delta):
 		var cursorScale = worldCursor.scale
 		worldCursor.set_global_rotation(Vector3(worldCursor.rotation.x, PI / 4.0, worldCursor.rotation.z))
 		worldCursor.scale = cursorScale
+		
+		toAdd = toAdd * speed * potionSpeedup
+		if(toAdd.x == 0 and toAdd.z == 0):
+			tVelocity.x = lerp(tVelocity.x,0.0,0.1)
+			tVelocity.z = lerp(tVelocity.z,0.0,0.1)
+			herd.canHuddle = true
+		else:
+			herd.clearHuddle()
+			herd.canHuddle = false
+			tVelocity.x = toAdd.x
+			tVelocity.z = toAdd.z
 	else:
 		worldCursor.visible = false
 		movementBlend = lerpf(movementBlend, 0, 0.1)
@@ -458,17 +469,6 @@ func _process(delta):
 	
 	lineSightNode.global_position = shootingPoint.global_position
 	lineSightNode.global_rotation = Vector3(0, aimDir, 0)
-	
-	toAdd = toAdd * speed * potionSpeedup
-	if(toAdd.x == 0 and toAdd.z == 0):
-		tVelocity.x = lerp(tVelocity.x,0.0,0.1)
-		tVelocity.z = lerp(tVelocity.z,0.0,0.1)
-		herd.canHuddle = true
-	else:
-		herd.clearHuddle()
-		herd.canHuddle = false
-		tVelocity.x = toAdd.x
-		tVelocity.z = toAdd.z
 		
 	#update world cursor position
 	worldCursor.global_position = position + cursorPos

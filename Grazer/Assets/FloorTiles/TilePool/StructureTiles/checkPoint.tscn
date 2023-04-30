@@ -188,6 +188,7 @@ transform = Transform3D(0.974601, 0, 0.223947, 0, 1, 0, -0.223947, 0, 0.974601, 
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Porch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86384, 2.31144, 1.07225)
+visible = false
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_size = 1.0
