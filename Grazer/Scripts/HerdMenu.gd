@@ -27,12 +27,12 @@ var numCowTypes = null
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 @export var cowCosts = [1, 3, 3, 6, 6, 12]
 var lastRecordedCowNum = -1
-var totalValue = -1
+var totalValue = 0
 var hoveredCow = null
 var selectedCows = []
-var selectedValue = -1
-var gain = -1
-var change = -1
+var selectedValue = 0
+var gain = 0
+var change = 0
 var tradeMenu = null
 
 # Called when the node enters the scene tree for the first time.
@@ -110,11 +110,12 @@ func _process(delta):
 		
 
 func _physics_process(_delta):
-	var cowNum = player.herd.getNumCows()
-	if(cowNum != lastRecordedCowNum && player != null):
-		lastRecordedCowNum = cowNum
-		updateNumCowTypes()
-		updateTotalValue()
+	if(player != null && visible):
+		var cowNum = player.herd.getNumCows()
+		if(cowNum != lastRecordedCowNum):
+			lastRecordedCowNum = cowNum
+			updateNumCowTypes()
+			updateTotalValue()
 	elif(player == null):
 		player = get_node(NodePath("/root/Level/Player"))
 
@@ -174,6 +175,11 @@ func stopTrade():
 	var cows = player.herd.getCows()
 	for i in cows:
 		i.uiSelectMode = -1
+	var hoveredCow = null
+	selectedCows.clear()
+	selectedValue = 0
+	gain = 0
+	change = 0
 	
 func selectCow(cow:Node):
 	if(selectedCows.has(cow)):
