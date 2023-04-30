@@ -195,6 +195,9 @@ func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:No
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if(Input.is_action_just_pressed("jump")):
+		graze()
+	
 	if(herd != null):
 		if(target != null || !draggers.is_empty()):
 			var targetVector
@@ -447,3 +450,8 @@ func _physics_process(delta):
 	#	var moveDirection = atan2(totalVelocity.x, totalVelocity.z)
 	#	var dissRad = lookMoveDissonance * 180.0 / PI
 	#	rotation.y = moveDirection + min(max(moveDirection - rotation.y, -dissRad), dissRad)
+
+func graze():
+	animation.set("parameters/conditions/Graze", true)
+	animation.set("parameters/conditions/Not_Graze", false)
+	maxSpeed = 0

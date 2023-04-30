@@ -117,7 +117,7 @@ nodes/walkDrag/node = SubResource("AnimationNodeBlend2_k3imc")
 nodes/walkDrag/position = Vector2(720, -40)
 nodes/walkPushed/node = SubResource("AnimationNodeBlend2_e7ome")
 nodes/walkPushed/position = Vector2(1480, 160)
-node_connections = [&"output", 0, &"DeathBlend", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"OneShot", 0, &"Animation 4", &"OneShot", 1, &"Animation 5", &"OneShot 2", 0, &"OneShot", &"OneShot 2", 1, &"Animation 6", &"TimeScale", 0, &"walk", &"TimeScale 2", 0, &"Animation 3", &"idleWalk", 0, &"walkDrag", &"idleWalk", 1, &"Blend2", &"walkDrag", 0, &"TimeScale", &"walkDrag", 1, &"TimeScale 2", &"walkPushed", 0, &"idleWalk", &"walkPushed", 1, &"OneShot 2", &"DeathBlend", 0, &"walkPushed", &"DeathBlend", 1, &"TimeScale 3", &"Death", 0, &"Animation 7", &"Death", 1, &"DeathSeek", &"TimeScale 3", 0, &"Death", &"DeathSeek", 0, &"deathAnim"]
+node_connections = [&"output", 0, &"DeathBlend", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"Death", 0, &"Animation 7", &"Death", 1, &"DeathSeek", &"DeathBlend", 0, &"walkPushed", &"DeathBlend", 1, &"TimeScale 3", &"DeathSeek", 0, &"deathAnim", &"OneShot", 0, &"Animation 4", &"OneShot", 1, &"Animation 5", &"OneShot 2", 0, &"OneShot", &"OneShot 2", 1, &"Animation 6", &"TimeScale", 0, &"walk", &"TimeScale 2", 0, &"Animation 3", &"TimeScale 3", 0, &"Death", &"idleWalk", 0, &"walkDrag", &"idleWalk", 1, &"Blend2", &"walkDrag", 0, &"TimeScale", &"walkDrag", 1, &"TimeScale 2", &"walkPushed", 0, &"idleWalk", &"walkPushed", 1, &"OneShot 2"]
 
 [node name="Bandit2" instance=ExtResource("1_pqrtw")]
 

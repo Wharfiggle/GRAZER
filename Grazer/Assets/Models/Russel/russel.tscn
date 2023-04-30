@@ -145,7 +145,7 @@ nodes/walkLunge/position = Vector2(1280, 384)
 "nodes/walkReload 2/position" = Vector2(1960, 340)
 nodes/walkShoot/node = SubResource("AnimationNodeBlend2_40ywp")
 nodes/walkShoot/position = Vector2(1072, 384)
-node_connections = [&"output", 0, &"DeathBlend", &"OneShot", 0, &"Animation 2", &"OneShot", 1, &"Animation", &"TimeScale", 0, &"idleWalk", &"idleWalk", 0, &"OneShot", &"idleWalk", 1, &"walk", &"walkEllixir", 0, &"walkLunge", &"walkEllixir", 1, &"Elixir", &"walkLunge", 0, &"walkShoot", &"walkLunge", 1, &"lunge", &"walkReload 2", 0, &"walkEllixir", &"walkReload 2", 1, &"Reload", &"walkShoot", 0, &"TimeScale", &"walkShoot", 1, &"shootAngle", &"Death", 0, &"Animation 4", &"Death", 1, &"Animation 3", &"DeathBlend", 0, &"walkReload 2", &"DeathBlend", 1, &"DeathTime", &"DeathTime", 0, &"Death"]
+node_connections = [&"output", 0, &"DeathBlend", &"Death", 0, &"Animation 4", &"Death", 1, &"Animation 3", &"DeathBlend", 0, &"walkReload 2", &"DeathBlend", 1, &"DeathTime", &"DeathTime", 0, &"Death", &"OneShot", 0, &"Animation 2", &"OneShot", 1, &"Animation", &"TimeScale", 0, &"idleWalk", &"idleWalk", 0, &"OneShot", &"idleWalk", 1, &"walk", &"walkEllixir", 0, &"walkLunge", &"walkEllixir", 1, &"Elixir", &"walkLunge", 0, &"walkShoot", &"walkLunge", 1, &"lunge", &"walkReload 2", 0, &"walkEllixir", &"walkReload 2", 1, &"Reload", &"walkShoot", 0, &"TimeScale", &"walkShoot", 1, &"shootAngle"]
 
 [node name="Model" instance=ExtResource("1_mysin")]
 
@@ -261,7 +261,7 @@ material_override = ExtResource("5_tqku1")
 material_overlay = SubResource("StandardMaterial3D_ivhv8")
 
 [node name="GunRight" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(0.226961, 0.0286368, 0.973483, -0.0614976, 0.997994, -0.01502, -0.971961, -0.0564579, 0.228267, -3.74736, 64.837, -161.487)
+transform = Transform3D(0.22696, 0.0286389, 0.973483, -0.0614974, 0.997994, -0.0150223, -0.971961, -0.0564573, 0.228266, -3.74726, 64.837, -161.487)
 bone_name = "RightHand"
 bone_idx = 22
 
@@ -279,7 +279,7 @@ transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 visible = false
 
 [node name="GunLeft" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="10"]
-transform = Transform3D(0.0862373, 0.0263941, -0.995925, -0.00293284, 0.999651, 0.0262388, 0.99627, 0.00065811, 0.0862846, 4.42787, 64.1278, -161.766)
+transform = Transform3D(0.0862366, 0.0263945, -0.995925, -0.00293269, 0.999651, 0.0262393, 0.99627, 0.000657924, 0.0862839, 4.42788, 64.1279, -161.766)
 bone_name = "LeftHand"
 bone_idx = 9
 

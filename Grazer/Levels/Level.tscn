@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://diy7osedw50gn"]
+[gd_scene load_steps=42 format=3 uid="uid://diy7osedw50gn"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cxgt8ygd822tr" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/herd exchange menu/MakeTradeHover.png" id="22_vsqqn"]
 [ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="23_5p5jq"]
 [ext_resource type="AudioStream" uid="uid://crtrdbfpgkmwl" path="res://sounds/Music/WildsMusic.wav" id="24_eux13"]
+[ext_resource type="Script" path="res://Scripts/WinMenu.gd" id="24_q0sdl"]
 [ext_resource type="AudioStream" uid="uid://ctinn75mya67b" path="res://sounds/New Sound FEX/Ambiance/outsidedesert.wav" id="25_0aix7"]
 [ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="25_onhah"]
 [ext_resource type="AudioStream" uid="uid://cxcaba7koqgv2" path="res://sounds/Music/EnemyMusic.wav" id="26_chugg"]
@@ -31,6 +32,8 @@
 [ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="28_h45dm"]
 [ext_resource type="AudioStream" uid="uid://dgl3cdn3cctem" path="res://sounds/Music/DeathMusic.wav" id="29_713a0"]
 [ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="31_7rkun"]
+[ext_resource type="PackedScene" uid="uid://b52qi0ghc876b" path="res://Assets/FloorTiles/!Prefabs!/WinTrigger.tscn" id="32_054jj"]
+[ext_resource type="Texture2D" uid="uid://dqe54qrwmp5ed" path="res://Assets/Images/EndScreen.png" id="33_gftir"]
 
 [sub_resource type="Gradient" id="Gradient_x61s1"]
 interpolation_mode = 2
@@ -66,9 +69,10 @@ font_color = Color(0.819608, 0.823529, 0.831373, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_1txft"]
 line_spacing = 12.0
 font = ExtResource("19_u5bqv")
-font_size = 36
-shadow_size = 36
-shadow_color = Color(0, 0, 0, 1)
+font_size = 52
+outline_size = 5
+shadow_size = 10
+shadow_color = Color(0, 0, 0.137255, 1)
 shadow_offset = Vector2(1, -4)
 
 [node name="Level" type="Node3D"]
@@ -1056,6 +1060,70 @@ theme_override_font_sizes/font_size = 20
 disabled = true
 text = "Main Menu"
 
+[node name="WinMenu" type="Panel" parent="."]
+visible = false
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_q0sdl")
+
+[node name="Label" type="Label" parent="WinMenu"]
+modulate = Color(0.654902, 0.270588, 0.709804, 1)
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_top = 200.0
+offset_right = 158.0
+offset_bottom = 256.0
+grow_horizontal = 2
+text = "Welcome to the final pasture"
+label_settings = SubResource("LabelSettings_1txft")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="RestartButton" type="Button" parent="WinMenu"]
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 335.0
+offset_right = 55.0
+offset_bottom = 385.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("19_u5bqv")
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="WinMenu"]
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 400.0
+offset_right = 50.0
+offset_bottom = 440.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("19_u5bqv")
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "Main Menu"
+
+[node name="EndScreen" type="Sprite2D" parent="WinMenu"]
+position = Vector2(639.444, 359.688)
+scale = Vector2(0.66794, 0.66794)
+texture = ExtResource("33_gftir")
+
 [node name="WildsMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("24_eux13")
@@ -1100,6 +1168,8 @@ script = ExtResource("25_onhah")
 [node name="UICursor" parent="." instance=ExtResource("31_7rkun")]
 process_mode = 3
 
+[node name="Area3D" parent="." instance=ExtResource("32_054jj")]
+
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Common/MakeTradeCommon" to="HerdMenu" method="_on_make_trade_common_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_mouse_entered"]
@@ -1114,6 +1184,8 @@ process_mode = 3
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/MakeTradeMoxie" to="HerdMenu" method="_on_make_trade_moxie_pressed"]
 [connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="WinMenu/RestartButton" to="WinMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="WinMenu/MainMenuButton" to="WinMenu" method="_on_main_menu_button_pressed"]
 [connection signal="finished" from="WildsMusic" to="WildsMusic" method="_on_finished"]
 [connection signal="finished" from="EnemyMusic" to="EnemyMusic" method="_on_finished"]
 [connection signal="finished" from="OutpostMusic" to="OutpostMusic" method="_on_finished"]
