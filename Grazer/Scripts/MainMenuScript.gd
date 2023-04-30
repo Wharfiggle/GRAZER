@@ -13,9 +13,13 @@ var audioArRussel = [
 	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.19.wav"),
 	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.62.wav"),
 	preload("res://sounds/New Sound FEX/Cowboy/Cowboy_Vox/Cowboy - Bradl#01.65.wav")]
+var menuButtionSound = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
+
 @onready var raySound = $CharacterSelect/RayAudio
 @onready var russelSound = $CharacterSelect/RusselAudio
 @onready var logo = $Logo
+@onready var playButton = $playButton/AudioStreamPlayer2D
+@onready var ceditsButton = $credits/AudioStreamPlayer2D
 var rng = RandomNumberGenerator.new()
 var selected = false
 
@@ -44,13 +48,19 @@ func _on_button_pressed():
 	charSelect.get_child(0).disabled = false
 	charSelect.get_child(1).disabled = false
 	logo.visible = false
-	
+	playButton.stream = menuButtionSound
+	playButton.play()
+	await playButton.finished
 func _on_quit_button_pressed():
 	get_tree().quit()
 	pass # Replace with function body.
 
 func _on_credits_pressed():
+	ceditsButton.stream = menuButtionSound
+	ceditsButton.play()
+	await ceditsButton.finished
 	get_tree().change_scene_to_file("res://Levels/credits.tscn")
+	
 
 func _on_russel_button_pressed():
 	if(selected == false):

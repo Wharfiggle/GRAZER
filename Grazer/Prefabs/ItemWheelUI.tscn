@@ -133,6 +133,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_xnckx")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [node name="Controls" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -172,6 +174,8 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
 text = "Main Menu"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MainMenu"]
 
 [node name="Cell1" type="TextureButton" parent="."]
 process_mode = 3
