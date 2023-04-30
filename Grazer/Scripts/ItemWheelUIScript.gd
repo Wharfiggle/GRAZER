@@ -32,6 +32,7 @@ var hover = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 var menuOpen = preload("res://sounds/New Sound FEX/UI/MenuSlideIn.wav")
 var menuClose = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
 @onready var uiCursor = get_node(NodePath("/root/Level/UICursor"))
+@onready var controls = $ControlsGraphic
 
 func toggleItemWheel():
 	if(!visible):
@@ -50,6 +51,7 @@ func toggleItemWheel():
 		uiCursor.setActive(true, viewport.get_visible_rect().size / 2)
 		get_tree().paused = true
 	elif(visible):
+		controls.visible = false
 		soundMaker.stream = menuClose
 		soundMaker.play()
 		visible = false
@@ -123,3 +125,11 @@ func _on_cell_6_mouse_entered():
 	soundMaker.stream = hover
 	soundMaker.play()
 	selected = 5
+
+func _on_main_menu_pressed():
+	WorldSave.reset()
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Levels/MainMenuScene.tscn")
+
+func _on_controls_pressed():
+	controls.visible = !controls.visible

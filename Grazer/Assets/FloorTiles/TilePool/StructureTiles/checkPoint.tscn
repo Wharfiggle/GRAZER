@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://btgqdxu7cr58d"]
+[gd_scene load_steps=44 format=3 uid="uid://btgqdxu7cr58d"]
 
 [ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_ux8do"]
 [ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_otg7m"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d1k73cs6g14td" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_8.tscn" id="10_cb0r8"]
 [ext_resource type="PackedScene" uid="uid://cpug0ut2xrot4" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_10.tscn" id="11_66xj4"]
 [ext_resource type="PackedScene" uid="uid://dss4pmdp52xfj" path="res://Assets/FloorTiles/!Prefabs!/Buildings/Rubble/buildings_12.tscn" id="12_oelny"]
+[ext_resource type="PackedScene" uid="uid://c2i2h0h73xovk" path="res://Assets/Models/Porch Woman/porch_woman.tscn" id="12_w1c03"]
 [ext_resource type="PackedScene" uid="uid://cagxngogpkioa" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/RVwPorch.tscn" id="13_r7w5x"]
 [ext_resource type="PackedScene" uid="uid://dur5c8rol4408" path="res://Assets/Models/Porch Man/porch_man.tscn" id="14_o2y1d"]
 [ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="15_auji7"]
@@ -179,8 +180,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.6085, 0.0500002, 1.40751)
 [node name="Porch" parent="." instance=ExtResource("13_r7w5x")]
 transform = Transform3D(0.817497, 0, -0.575933, 0, 1, 0, 0.575933, 0, 0.817497, 67.8037, 0.0499973, -20.0455)
 
+[node name="Porch Woman" parent="Porch" instance=ExtResource("12_w1c03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59612, 0, 2.17901)
+
 [node name="Porch Man" parent="Porch" instance=ExtResource("14_o2y1d")]
 transform = Transform3D(0.974601, 0, 0.223947, 0, 1, 0, -0.223947, 0, 0.974601, 2.37709, 0.00234395, -1.12265)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Porch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.40961, 1.26298, 1.40574)
 
 [node name="DryBush2" parent="." instance=ExtResource("15_auji7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4556, 0.0499992, 1.43137)

@@ -15,7 +15,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(!wind.playing):
 		wind.stream = windarray[randi_range(0, windarray.size() - 1)]
 	

@@ -1,27 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2i2h0h73xovk"]
+[gd_scene load_steps=10 format=3 uid="uid://c2i2h0h73xovk"]
 
 [ext_resource type="PackedScene" uid="uid://dgjnraphxcxdq" path="res://Assets/Models/Porch Woman/Porch Woman.fbx" id="1_hv8ir"]
 [ext_resource type="Material" uid="uid://b8c7ephxqhet8" path="res://Assets/Models/Porch Woman/PW Cloth.tres" id="2_mxpq2"]
 [ext_resource type="Material" uid="uid://blx3m7y8nwdkg" path="res://Assets/Models/Porch Woman/PW Skin.tres" id="3_7ty1x"]
+[ext_resource type="Texture2D" uid="uid://0oh2ra0ia0us" path="res://Assets/Models/Porch Woman/Porch Woman_Cloth_BaseColor.png" id="3_8daim"]
+[ext_resource type="Texture2D" uid="uid://bymxlg88lab7m" path="res://Assets/Models/Porch Woman/Porch Woman_Cloth_Metallic.png" id="4_gk0dy"]
+[ext_resource type="Texture2D" uid="uid://bkwiw4q1df2gb" path="res://Assets/Models/Porch Woman/Porch Woman_Cloth_Normal.png" id="5_qeqhl"]
+[ext_resource type="Texture2D" uid="uid://dr1ynyd66tmeq" path="res://Assets/Models/Porch Woman/Porch Woman_Cloth_Roughness.png" id="6_0d0eu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_et85d"]
+albedo_color = Color(0.560784, 0, 0, 1)
+albedo_texture = ExtResource("3_8daim")
+metallic = 1.0
+metallic_texture = ExtResource("4_gk0dy")
+roughness_texture = ExtResource("6_0d0eu")
+normal_enabled = true
+normal_texture = ExtResource("5_qeqhl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8aogq"]
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("3_8daim")
+metallic = 1.0
+metallic_texture = ExtResource("4_gk0dy")
+roughness_texture = ExtResource("6_0d0eu")
+normal_enabled = true
+normal_texture = ExtResource("5_qeqhl")
 
 [node name="Porch Woman" instance=ExtResource("1_hv8ir")]
 
 [node name="Boots003" parent="RootNode" index="0"]
+transform = Transform3D(90.7552, -3.35276e-08, 2.16581e-08, 3.04281e-08, 100, -3.98087e-05, -2.19758e-08, 4.45074e-05, 89.4428, 0.0166727, 0.253875, 0.22233)
 material_override = ExtResource("2_mxpq2")
 
 [node name="Hat003" parent="RootNode" index="1"]
-material_override = ExtResource("2_mxpq2")
+material_override = SubResource("StandardMaterial3D_et85d")
 
 [node name="Pants003" parent="RootNode" index="2"]
+transform = Transform3D(99.0573, -6.10255, 2.73275e-06, 6.03951, 100.091, -4.44234e-05, -2.4031e-08, 4.46307e-05, 100, 0.055672, 0.710211, 0.0511506)
 material_override = ExtResource("2_mxpq2")
 
 [node name="Shirt003" parent="RootNode" index="3"]
-material_override = ExtResource("2_mxpq2")
+transform = Transform3D(87.5279, 5.80705, -2.44664e-06, -5.08208, 100.014, -4.21362e-05, 1.02122e-10, 4.45845e-05, 94.8405, -0.0546934, 1.37452, 0.0273039)
+material_override = SubResource("StandardMaterial3D_8aogq")
 
 [node name="Skin003" parent="RootNode" index="4"]
+transform = Transform3D(93.6147, -3.43074e-08, 2.12672e-08, 3.13868e-08, 102.326, -3.90903e-05, -2.26683e-08, 4.55425e-05, 87.8288, -0.0336201, 1.45167, 0.0480547)
 material_override = ExtResource("3_7ty1x")
 
 [node name="Suspenders001" parent="RootNode" index="5"]
+transform = Transform3D(87.3571, 1.19209e-07, -1.16442e-10, -1.04138e-07, 100, -4.45034e-05, 1.01674e-10, 4.45034e-05, 100, -0.0491837, 1.33811, -0.00366646)
 material_override = ExtResource("2_mxpq2")
 
 [node name="Braid001" parent="RootNode" index="6"]
