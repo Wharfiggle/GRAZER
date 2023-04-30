@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://exqx7nas6a5c"]
+[gd_scene load_steps=98 format=3 uid="uid://exqx7nas6a5c"]
 
 [ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_j8obc"]
 [ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_hkokk"]
@@ -54,7 +54,6 @@
 [ext_resource type="PackedScene" uid="uid://c6b6t5yx3tyen" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post.tscn" id="52_36gmy"]
 [ext_resource type="PackedScene" uid="uid://cwq17w2fj0kvq" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post_corner.tscn" id="53_5o8l0"]
 [ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="54_t7oyu"]
-[ext_resource type="PackedScene" uid="uid://c2i2h0h73xovk" path="res://Assets/Models/Porch Woman/porch_woman.tscn" id="55_27tx3"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -1685,9 +1684,6 @@ transform = Transform3D(-0.566291, 0, -0.824205, 0, 1, 0, 0.824205, 0, -0.566291
 
 [node name="Fence_Post_Corner" parent="NavigationRegion3D" instance=ExtResource("53_5o8l0")]
 transform = Transform3D(-0.597681, 0, -0.801734, 0, 1, 0, 0.801734, 0, -0.597681, 7.98611, 0.0499997, -25.4739)
-
-[node name="Porch Woman" parent="NavigationRegion3D" instance=ExtResource("55_27tx3")]
-transform = Transform3D(0.747624, 0, -0.664122, 0, 1, 0, 0.664122, 0, 0.747624, 13.5749, 0.484376, -18.2576)
 
 [node name="CowSpawner" parent="." instance=ExtResource("54_t7oyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.524, 0.0500488, -33.8739)
