@@ -14,6 +14,8 @@ albedo_texture = ExtResource("3_8daim")
 metallic = 1.0
 metallic_texture = ExtResource("4_gk0dy")
 roughness_texture = ExtResource("6_0d0eu")
+emission_enabled = true
+emission = Color(0.2, 0.13, 0.145167, 1)
 normal_enabled = true
 normal_texture = ExtResource("5_qeqhl")
 
@@ -23,6 +25,8 @@ albedo_texture = ExtResource("3_8daim")
 metallic = 1.0
 metallic_texture = ExtResource("4_gk0dy")
 roughness_texture = ExtResource("6_0d0eu")
+emission_enabled = true
+emission = Color(0.2, 0.068, 0.09, 1)
 normal_enabled = true
 normal_texture = ExtResource("5_qeqhl")
 
