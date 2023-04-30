@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2i2h0h73xovk"]
+
+[ext_resource type="PackedScene" uid="uid://dgjnraphxcxdq" path="res://Assets/Models/Porch Woman/Porch Woman.fbx" id="1_hv8ir"]
+[ext_resource type="Material" uid="uid://b8c7ephxqhet8" path="res://Assets/Models/Porch Woman/PW Cloth.tres" id="2_mxpq2"]
+[ext_resource type="Material" uid="uid://blx3m7y8nwdkg" path="res://Assets/Models/Porch Woman/PW Skin.tres" id="3_7ty1x"]
+
+[node name="Porch Woman" instance=ExtResource("1_hv8ir")]
+
+[node name="Boots003" parent="RootNode" index="0"]
+material_override = ExtResource("2_mxpq2")
+
+[node name="Hat003" parent="RootNode" index="1"]
+material_override = ExtResource("2_mxpq2")
+
+[node name="Pants003" parent="RootNode" index="2"]
+material_override = ExtResource("2_mxpq2")
+
+[node name="Shirt003" parent="RootNode" index="3"]
+material_override = ExtResource("2_mxpq2")
+
+[node name="Skin003" parent="RootNode" index="4"]
+material_override = ExtResource("3_7ty1x")
+
+[node name="Suspenders001" parent="RootNode" index="5"]
+material_override = ExtResource("2_mxpq2")
+
+[node name="Braid001" parent="RootNode" index="6"]
+material_override = ExtResource("3_7ty1x")
+
+[node name="Hair003" parent="RootNode" index="7"]
+material_override = ExtResource("3_7ty1x")
+
+[node name="Glove003" parent="RootNode" index="8"]
+visible = false
+material_override = ExtResource("2_mxpq2")

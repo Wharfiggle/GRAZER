@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://b8c7ephxqhet8"]
+
+[ext_resource type="Texture2D" uid="uid://0oh2ra0ia0us" path="res://Assets/Models/Porch Woman/Porch Woman_Cloth_BaseColor.png" id="1_xc2r0"]
+[ext_resource type="Texture2D" uid="uid://bymxlg88lab7m" path="res://Assets/Models/Porch Woman/Porch Woman_Cloth_Metallic.png" id="2_1y0kb"]
+[ext_resource type="Texture2D" uid="uid://bkwiw4q1df2gb" path="res://Assets/Models/Porch Woman/Porch Woman_Cloth_Normal.png" id="3_u2ekr"]
+[ext_resource type="Texture2D" uid="uid://dr1ynyd66tmeq" path="res://Assets/Models/Porch Woman/Porch Woman_Cloth_Roughness.png" id="4_owaig"]
+
+[resource]
+albedo_texture = ExtResource("1_xc2r0")
+metallic = 1.0
+metallic_texture = ExtResource("2_1y0kb")
+roughness_texture = ExtResource("4_owaig")
+normal_enabled = true
+normal_texture = ExtResource("3_u2ekr")
