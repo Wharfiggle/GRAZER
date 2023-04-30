@@ -18,4 +18,5 @@ func _ready():
 func _process(_delta):
 	if(!wind.playing):
 		wind.stream = windarray[randi_range(0, windarray.size() - 1)]
+		wind.play()
 	

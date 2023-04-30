@@ -86,11 +86,13 @@ var russelOrRay = WorldSave.getCharacter()
 #preloading sound file
 var runSound = preload("res://sounds/Foley files/Foley files (Raw)/Shoe Fast#02.wav")
 var stepsSound = preload("res://sounds/Footsteps/Footsteps/CowboyStep1.wav")
+
 var revolverShootSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/revolverfire.wav")
 var revolverCritSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/CriticalHit1.wav")
 var shotgunShootSound = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/shottyfire.wav")
 var shotgunCritSound = preload("res://sounds/New Sound FEX/Revolver-Impacts/CriticalHit1.wav")
-var usepotionS = preload("res://sounds/New Sound FEX/Elixir-Power/elixirdrinkpowerup.wav")
+
+var usepotionS = preload("res://sounds/newSounds/Elixir-Power/elixirdrink.wav")
 var damagesound = preload("res://sounds/New Sound FEX/Cowboy/Damage/Cowboy - Bradl#01.47.wav")
 var lungeSound = preload("res://sounds/New Sound FEX/Cowboy/Lunge_attack/Cowboy - Bradl#01.32.wav")
 var reloadStartR = preload("res://sounds/New Sound FEX/Revolver-Impacts/RevReloadOpen.wav")
@@ -103,7 +105,7 @@ var reloadStartS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-
 var reloadingSoundS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadBullet.wav")
 var reloadEndS = preload("res://sounds/New Sound FEX/Shotgun-20230424T160416Z-001/Shotgun/ShottyReloadClose.wav")
 
-var potionPowerDown = preload("res://sounds/New Sound FEX/Elixir-Power/powerdown.wav")
+var potionPowerDown = preload("res://sounds/newSounds/Elixir-Power/powerdown.wav")
 #var potionPowerUP = preload("res://sounds/New Sound FEX/Elixir-Power/powerup.wav")
 
 var RayHurtSound = preload("res://sounds/Cowgirl edited/Damage/Cowgirl Damage Take 4#01.3.wav")

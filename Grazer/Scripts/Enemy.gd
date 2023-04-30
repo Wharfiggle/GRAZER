@@ -698,13 +698,14 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 #		return
 #	#activate knockback and IFrames timers
 #	knockbackIFramesTimer = knockbackIFrames
-	SoundFX.stream = lungeImpact
-	SoundFX.play()
+	
 	var result = (knockbackTimer == 0)
 	if(knockbackTimer > 0 && kSpeed <= knockbackStrength):
 		return result
 		
 	#implement sound: play knockback sound here
+	SoundFX.stream = lungeImpact
+	SoundFX.play()
 		
 	knockbackTimer = knockbackTime
 	#set knockbackVel to the direction vector * speed
