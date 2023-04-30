@@ -577,7 +577,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Red/TradeMenu"]
-modulate = Color(0.760784, 0.709804, 0.607843, 1)
+modulate = Color(0.807843, 0.286275, 0.27451, 1)
 z_index = 2
 position = Vector2(246, 108)
 scale = Vector2(1.2, 1.2)
@@ -803,7 +803,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Lucky/TradeMenu"]
-modulate = Color(0.760784, 0.709804, 0.607843, 1)
+modulate = Color(0.854902, 0.784314, 0.337255, 1)
 z_index = 2
 position = Vector2(246, 108)
 scale = Vector2(1.2, 1.2)
@@ -1029,7 +1029,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/GrandRed/TradeMenu"]
-modulate = Color(0.760784, 0.709804, 0.607843, 1)
+modulate = Color(0.854902, 0.184314, 0.152941, 1)
 z_index = 2
 position = Vector2(246, 108)
 scale = Vector2(1.2, 1.2)
@@ -1255,7 +1255,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Ironhide/TradeMenu"]
-modulate = Color(0.760784, 0.709804, 0.607843, 1)
+modulate = Color(0.368627, 0.517647, 0.552941, 1)
 z_index = 2
 position = Vector2(246, 108)
 scale = Vector2(1.2, 1.2)
@@ -1396,9 +1396,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -68.0
+offset_left = -73.0
 offset_top = 62.873
-offset_right = 192.0
+offset_right = 197.0
 offset_bottom = 202.873
 grow_horizontal = 2
 text = "The cow of kings, the king of cows.
@@ -1482,7 +1482,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Gain" type="Sprite2D" parent="HerdMenu/VBoxContainer/Moxie/TradeMenu"]
-modulate = Color(0.760784, 0.709804, 0.607843, 1)
+modulate = Color(0.670588, 0.423529, 0.678431, 1)
 z_index = 2
 position = Vector2(246, 108)
 scale = Vector2(1.2, 1.2)

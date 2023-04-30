@@ -86,6 +86,8 @@ var speedBoostTimer = 0
 var uiSelectMode = -1
 var uiSelectTimeCounter = 0
 
+var stray = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -334,6 +336,7 @@ func _physics_process(delta):
 				disableRayCasts()
 				
 			if(huddling == false && (follow || !draggers.is_empty())):
+#				stopGraze()
 				shuffleTimeCounter = 0
 				#speedTransitionRadius meters FARTHER than targetDistance or more: speed
 				#speedTransitionRadius meters CLOSER than targetDistance or more: -speed
@@ -370,6 +373,7 @@ func _physics_process(delta):
 					shuffleTimeCounter -= delta
 					if(shuffleTimeCounter < 0):
 						shuffleTimeCounter = 0
+#						graze()
 					
 					var startT = min(0.3, shuffleTime - shuffleTimeCounter) / 0.3
 					#print(startT)
@@ -380,9 +384,9 @@ func _physics_process(delta):
 					if(t == -1):
 						animationBlend = -1
 					animation.set("parameters/Movement/BlendMove/blend_amount", t)
-		else:
-			if(abs((position - herd.player.position).length()) < 2.5):
-				herd.addCow(self, true)
+		elif(stray && abs((position - herd.player.position).length()) < 2.5):
+			herd.addCow(self, true)
+			stray = false
 		
 		if(draggers.is_empty()):
 			#cows push eachother out of eachother's radius
@@ -504,4 +508,6 @@ func _physics_process(delta):
 func graze():
 	animation.set("parameters/conditions/Graze", true)
 	animation.set("parameters/conditions/Not_Graze", false)
-	maxSpeed = 0
+func stopGraze():
+	animation.set("parameters/conditions/Graze", false)
+	animation.set("parameters/conditions/Not_Graze", true)
