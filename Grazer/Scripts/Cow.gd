@@ -83,6 +83,9 @@ var hibernate = false
 @onready var level = get_node("/root/Level")
 var speedBoostTimer = 0
 
+var uiSelectMode = -1
+var uiSelectTimeCounter = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -212,6 +215,21 @@ func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:No
 func _physics_process(delta):
 	if(Input.is_action_just_pressed("jump")):
 		graze()
+	
+	if(uiSelectMode != -1):
+		uiSelectTimeCounter += delta
+		var hitFlashAmount = abs( sin( uiSelectTimeCounter * 4) ) * 0.05
+		if(uiSelectMode == 0):
+			hitFlash.set_shader_parameter("color", Color.WHITE)
+		if(uiSelectMode == 1):
+			hitFlashAmount += 0.3
+			hitFlash.set_shader_parameter("color", Color.CYAN)
+		elif(uiSelectMode == 2):
+			hitFlashAmount = 0.4
+			hitFlash.set_shader_parameter("color", Color(0, 200/255.0, 110/255.0, 1))
+		hitFlash.set_shader_parameter("amount", hitFlashAmount)
+	else:
+		hitFlash.set_shader_parameter("amount", 0)
 	
 	if(herd != null):
 		if(target != null || !draggers.is_empty()):

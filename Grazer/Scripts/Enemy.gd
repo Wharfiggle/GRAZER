@@ -179,10 +179,6 @@ func _physics_process(delta):
 		if(deathTimer < 0):
 			deathTimer = 0
 			SceneCounter.marauders -= 1
-			if(itemDrop != null):
-				level.add_child(itemDrop)
-				itemDrop.position = lastGroundedPosition
-				itemDrop = null
 			delete()
 		deathBlend = lerpf(deathBlend, 1, 0.3)
 		animation.set("parameters/DeathBlend/blend_amount", deathBlend)
@@ -730,6 +726,10 @@ func die():
 	model.position.y += 50
 	if(draggedCow != null):
 		draggedCow.stopDragging(self)
+	if(itemDrop != null):
+		level.add_child(itemDrop)
+		itemDrop.position = lastGroundedPosition
+		itemDrop = null
 	Vocal.stream = deathSound
 	Vocal.play()
 	deathTimer = deathTime

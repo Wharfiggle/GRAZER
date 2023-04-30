@@ -28,6 +28,7 @@ var numCowTypes = null
 @export var cowCosts = [1, 3, 3, 6, 6, 12]
 var lastRecordedCowNum = -1
 var totalValue = -1
+var hoveredCow = null
 var selectedCows = []
 var selectedValue = -1
 var gain = -1
@@ -78,24 +79,35 @@ func _process(delta):
 		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
 		&& hovered != -1):
 			select(hovered)
-		
+				
 		if(Input.is_action_just_pressed("dodge")):
 			if(trading):
 				stopTrade()
 			else:
 				use()
-				
-		if(trading && (Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact"))):
-			var from = camera.project_ray_origin(mousePos)
-			var to = from + camera.project_ray_normal(mousePos) * 100
-			var space = player.get_world_3d().direct_space_state
+		
+		if(trading):
+			if(hoveredCow != null):
+				if(hoveredCow.uiSelectMode == 1):
+					hoveredCow.uiSelectMode = 0
+				hoveredCow = null
 			var ray_query = PhysicsRayQueryParameters3D.new()
-			ray_query.from = from
-			ray_query.to = to
-			ray_query.collide_with_areas = true
-			var cow = space.intersect_ray(ray_query).get("collider", null)
-			if(cow.has_method("startDragging")):
-				selectCow(cow)
+			ray_query.from = camera.project_ray_origin(mousePos)
+			ray_query.to = ray_query.from + camera.project_ray_normal(mousePos) * 100
+			ray_query.set_collision_mask(0b1000)
+			var collision = player.get_world_3d().direct_space_state.intersect_ray(ray_query)
+			var collider = collision.get("collider", null)
+			if(!collision.is_empty() && collider.has_method("startDragging")):
+				hoveredCow = collider
+			
+			if(hoveredCow != null):
+				if(Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")):
+					selectCow(hoveredCow)
+#				elif(Input.is_action_just_pressed("dodge")):
+#					unselectCow(hoveredCow)
+				elif(hoveredCow.uiSelectMode == 0):
+					hoveredCow.uiSelectMode = 1
+		
 
 func _physics_process(_delta):
 	var cowNum = player.herd.getNumCows()
@@ -120,6 +132,8 @@ func unselect(ind:int):
 	cowMenus[ind].texture_normal = collapsedMenu
 
 func select(ind:int):
+	if(selected == ind || ind == -1):
+		return
 	if(selected != -1):
 		unselect(selected)
 	selected = ind
@@ -142,29 +156,39 @@ func startTrade():
 	updateTrade()
 
 func updateTrade():
-	tradeMenu.get_child(0).get_child(0).text = str(selectedValue)
 	gain = selectedValue / cowCosts[selected] as int
 	change = selectedValue % cowCosts[selected]
 	tradeMenu.get_child(0).get_child(0).text = str(selectedValue)
 	tradeMenu.get_child(1).get_child(0).text = str(gain)
 	tradeMenu.get_child(2).get_child(0).text = str(change)
+	var cows = player.herd.getCows()
+	for i in cows:
+		if(i.uiSelectMode == -1):
+			i.uiSelectMode = 0
 	
 func stopTrade():
 	trading = false
 	tradeMenu.visible = false
 	tradeMenu.get_child(3).disabled = true
 	tradeMenu.get_child(4).disabled = true
+	var cows = player.herd.getCows()
+	for i in cows:
+		i.uiSelectMode = -1
 	
 func selectCow(cow:Node):
 	if(selectedCows.has(cow)):
-		selectedCows.erase(cow)
-		selectedValue -= cowCosts[cow.cowTypeInd]
-		cow.hitFlash.amount = 0
+		unselectCow(cow)
 	else:
 		selectedCows.append(cow)
 		selectedValue += cowCosts[cow.cowTypeInd]
-		cow.hitFlash.amount = 0.25
+		cow.uiSelectMode = 2
 		updateTrade()
+
+func unselectCow(cow:Node):
+	if(selectedCows.has(cow)):
+		selectedCows.erase(cow)
+		selectedValue -= cowCosts[cow.cowTypeInd]
+		cow.uiSelectMode = 0
 		
 func updateNumCowTypes():
 	if(player == null):
@@ -199,8 +223,8 @@ func _on_ironhide_mouse_entered():
 func _on_moxie_mouse_entered():
 	hovered = 5
 
-func _on_make_trade_pressed():
-	startTrade()
-
 func _on_confirm_trade_pressed():
 	pass
+
+func _on_make_trade_pressed():
+	startTrade()

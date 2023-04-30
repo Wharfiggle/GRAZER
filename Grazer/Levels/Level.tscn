@@ -226,7 +226,7 @@ grow_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Common"]
 visible = false
@@ -260,7 +260,7 @@ offset_bottom = 158.345
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Common"]
 visible = false
@@ -451,7 +451,7 @@ grow_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Red"]
 visible = false
@@ -485,7 +485,7 @@ offset_bottom = 158.345
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Red"]
 visible = false
@@ -549,6 +549,7 @@ texture = ExtResource("21_vsota")
 [node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Red"]
 visible = false
 z_index = 2
+layout_mode = 0
 offset_left = 40.97
 offset_top = 7.4003
 offset_right = 447.97
@@ -675,7 +676,7 @@ grow_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Lucky"]
 visible = false
@@ -709,7 +710,7 @@ offset_bottom = 158.345
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Lucky"]
 visible = false
@@ -774,6 +775,7 @@ texture = ExtResource("21_vsota")
 [node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Lucky"]
 visible = false
 z_index = 2
+layout_mode = 0
 offset_left = 40.97
 offset_top = 7.4003
 offset_right = 447.97
@@ -900,7 +902,7 @@ grow_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/GrandRed"]
 visible = false
@@ -934,7 +936,7 @@ offset_bottom = 158.345
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/GrandRed"]
 visible = false
@@ -999,6 +1001,7 @@ texture = ExtResource("21_vsota")
 [node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/GrandRed"]
 visible = false
 z_index = 2
+layout_mode = 0
 offset_left = 40.97
 offset_top = 7.4003
 offset_right = 447.97
@@ -1125,7 +1128,7 @@ grow_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Ironhide"]
 visible = false
@@ -1159,7 +1162,7 @@ offset_bottom = 158.345
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Ironhide"]
 visible = false
@@ -1224,6 +1227,7 @@ texture = ExtResource("21_vsota")
 [node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Ironhide"]
 visible = false
 z_index = 2
+layout_mode = 0
 offset_left = 40.97
 offset_top = 7.4003
 offset_right = 447.97
@@ -1350,7 +1354,7 @@ grow_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Icon2" type="Sprite2D" parent="HerdMenu/VBoxContainer/Moxie"]
 visible = false
@@ -1384,7 +1388,7 @@ offset_bottom = 158.345
 text = "0"
 label_settings = SubResource("LabelSettings_hxfn5")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="Desc" type="Label" parent="HerdMenu/VBoxContainer/Moxie"]
 visible = false
@@ -1450,6 +1454,7 @@ texture = ExtResource("21_vsota")
 [node name="TradeMenu" type="TextureRect" parent="HerdMenu/VBoxContainer/Moxie"]
 visible = false
 z_index = 2
+layout_mode = 0
 offset_left = 40.97
 offset_top = 7.4003
 offset_right = 447.97
