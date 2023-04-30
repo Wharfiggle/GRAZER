@@ -1,31 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2nunlkp588c1"]
+[gd_scene load_steps=9 format=3 uid="uid://d2nunlkp588c1"]
 
-[ext_resource type="PackedScene" uid="uid://cvs08pumsdn7v" path="res://Assets/Models/Windmill/Windmill.fbx" id="1_uk7mc"]
+[ext_resource type="PackedScene" uid="uid://dtsl42cphw6xt" path="res://Assets/Models/Windmill/windmill anim.fbx" id="1_rb3r4"]
 [ext_resource type="Material" uid="uid://dt8kfeus1ibyl" path="res://Assets/Models/Windmill/Windmill.tres" id="2_crv2h"]
-[ext_resource type="Script" path="res://Assets/FloorTiles/!Prefabs!/windmill.gd" id="2_rwqgh"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_vf8p1"]
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_w10ij"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l266x"]
+animation = &"Windmill_Spin|Fin"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jgo8m"]
+animation = &"Windmill_Fin|Fin"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3gg8f"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d7m2t"]
+graph_offset = Vector2(-528.086, 60.8024)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_w10ij")
+nodes/Add2/position = Vector2(40, 140)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_jgo8m")
+nodes/Animation/position = Vector2(-300, 120)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l266x")
+"nodes/Animation 2/position" = Vector2(-380, 240)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_3gg8f")
+nodes/TimeScale/position = Vector2(-160, 240)
+nodes/output/position = Vector2(300, 140)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"TimeScale", &"TimeScale", 0, &"Animation 2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o6gbw"]
 height = 5.6595
 radius = 1.16868
 
-[node name="Windmill" instance=ExtResource("1_uk7mc")]
-script = ExtResource("2_rwqgh")
+[node name="windmill anim" instance=ExtResource("1_rb3r4")]
 
-[node name="Windmill_Base" parent="RootNode/Windmill_FULL" index="0"]
-surface_material_override/0 = ExtResource("2_crv2h")
+[node name="Windmill_Base" parent="RootNode/Windmill" index="0"]
+material_override = ExtResource("2_crv2h")
 
-[node name="Windmill_Fin" parent="RootNode/Windmill_FULL/Windmill_Rotate" index="0"]
-surface_material_override/0 = ExtResource("2_crv2h")
+[node name="Windmill_Rotate" parent="RootNode/Windmill" index="1"]
+transform = Transform3D(1, -7.10543e-15, -2.32831e-10, 7.10543e-15, 1, 5.16988e-23, 2.32831e-10, -5.33531e-23, 1, 0, 0, 0)
 
-[node name="Windmill_Spin" parent="RootNode/Windmill_FULL/Windmill_Rotate" index="1"]
-surface_material_override/0 = ExtResource("2_crv2h")
+[node name="Windmill_Fin" parent="RootNode/Windmill/Windmill_Rotate" index="0"]
+transform = Transform3D(0.99869, -7.10077e-15, -0.051172, 7.10077e-15, 1, -1.818e-16, 0.051172, -1.818e-16, 0.99869, 0.000935968, 4.87787, 0.000650904)
+material_override = ExtResource("2_crv2h")
+
+[node name="Windmill_Spin" parent="RootNode/Windmill/Windmill_Rotate/Windmill_Fin" index="0"]
+transform = Transform3D(0.999998, -0.00131279, 0.00173596, 0.00131279, 0.999999, 2.27883e-06, -0.00173596, 1.25283e-10, 0.999999, -0.00133064, 0.362698, 0.474582)
+material_override = ExtResource("2_crv2h")
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" index="0"]
+tree_root = SubResource("AnimationNodeBlendTree_d7m2t")
+anim_player = NodePath("..")
+active = true
+parameters/Add2/add_amount = 1.0
+parameters/TimeScale/scale = 1.76
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59158, 0)
-shape = SubResource("CylinderShape3D_vf8p1")
+shape = SubResource("CylinderShape3D_o6gbw")
 
 [node name="AudioPlayer" type="AudioStreamPlayer3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.24084, 0)
