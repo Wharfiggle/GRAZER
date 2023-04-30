@@ -51,9 +51,9 @@ func _process(delta):
 		var leftStick = Vector2(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
 		var rightStick = Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
 		var stick = null
-		if(leftStick.length() > 0.1):
+		if(leftStick.length() > 0.2):
 			stick = leftStick
-		elif(rightStick.length() > 0.1):
+		elif(rightStick.length() > 0.2):
 			stick = rightStick
 		if(stick != null):
 			var newPos = global_position + stick * speed * delta
