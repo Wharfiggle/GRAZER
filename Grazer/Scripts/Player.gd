@@ -724,6 +724,7 @@ func _physics_process(delta):
 		if(dodgeBufferTimer < 0):
 			dodgeBufferTimer = 0
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
+		herd.clearHuddle()
 		Input.start_joy_vibration(0,0.6,0.6,.1)
 		if(russelOrRay == "Russel"):
 			if(Vocal.stream != lungeSound):

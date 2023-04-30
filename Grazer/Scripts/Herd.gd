@@ -123,7 +123,11 @@ func spawnCow(type:int = -1) -> Node:
 	return cow
 #spawn cow at given position
 func spawnCowAtPos(pos:Vector3, type:int = -1) -> Node:
-	var cow = spawnStrayCow(pos, type)
+	var cow = cowPrefab.instantiate()
+	cow.setType(type)
+	add_child(cow)
+	SceneCounter.cows += 1
+	cow.position = pos
 	addCow(cow, false)
 	return cow
 #spawn stray cow
@@ -133,6 +137,7 @@ func spawnStrayCow(pos:Vector3, type:int = -1) -> Node:
 	add_child(cow)
 	SceneCounter.cows += 1
 	cow.position = pos
+	cow.stray = true
 	return cow
 
 #get target for cows to follow, either player's position or center of huddle

@@ -157,8 +157,10 @@ class Item:
 			player.updateGunStats()
 			levelScript.broadcastMessage(description, 3.0)
 		elif(id == 6): #health
+			print(player.hitpoints)
 			player.updateHealth(player.hitpoints + 0.5 * player.maxHitpoints)
 			player.hitFlash.set_shader_parameter("color", Color(0.5, 1, 0.5))
+			print(player.hitpoints)
 #			player.hitFlashAmount = 1.0
 		elif(id == 7): #bulletstorm
 			player.bulletstorm = useOrUndo
@@ -266,9 +268,12 @@ func getRandomItem(potionVsUpgradeChance:float = 0.5) -> Item:
 		return getRandomUpgrade()
 
 func broadcastMessage(message:String, time:float):
+	if(message == broadcast.get_child(2).text):
+		broadcastTimer = max(time + broadcastStartExitTime, broadcastTimer)
+	else:
+		broadcastTimer = broadcastTime
+		broadcast.get_child(2).text = message
 	broadcastTime = time + 2 * broadcastStartExitTime
-	broadcastTimer = broadcastTime
-	broadcast.get_child(2).text = message
 
 func changeMusic(ind:int, duration:float = 0.5):
 	if(ind == currentMusic):
