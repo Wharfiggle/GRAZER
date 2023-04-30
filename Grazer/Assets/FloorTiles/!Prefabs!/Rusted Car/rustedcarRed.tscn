@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://biqonf6by5hjy"]
+
+[ext_resource type="PackedScene" uid="uid://s2s6ltdnw0h1" path="res://Assets/Models/rustedCar FINAL/Rustedcar.fbx" id="1_lgc6k"]
+[ext_resource type="Texture2D" uid="uid://dgd7e2nrsnqog" path="res://Assets/Models/rustedCar FINAL/Rustedcar_red_BaseColor.png" id="2_fr48g"]
+[ext_resource type="Texture2D" uid="uid://defvn2qhcy6si" path="res://Assets/Models/rustedCar FINAL/Rustedcar_lambert1_Metallic.png" id="3_guvfn"]
+[ext_resource type="Texture2D" uid="uid://dcq11upjxhx05" path="res://Assets/Models/rustedCar FINAL/Rustedcar_lambert1_Normal.png" id="4_o7q7d"]
+[ext_resource type="Texture2D" uid="uid://clssh2auw7wts" path="res://Assets/Models/rustedCar FINAL/Rustedcar_lambert1_Roughness.png" id="5_iw5nq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rmfu"]
+albedo_texture = ExtResource("2_fr48g")
+metallic = 1.0
+metallic_texture = ExtResource("3_guvfn")
+roughness_texture = ExtResource("5_iw5nq")
+normal_enabled = true
+normal_texture = ExtResource("4_o7q7d")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wrxow"]
+size = Vector3(2.27849, 4.14144, 5.49702)
+
+[node name="Rustedcar" instance=ExtResource("1_lgc6k")]
+
+[node name="CarBody001" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5rmfu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.701023, 0.114084)
+shape = SubResource("BoxShape3D_wrxow")

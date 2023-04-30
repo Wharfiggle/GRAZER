@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ckvo0ct17q6ef"]
+[gd_scene load_steps=41 format=3 uid="uid://t34l5leqmnqu"]
 
 [ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_14jcj"]
 [ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_mvrrt"]
