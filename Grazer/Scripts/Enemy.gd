@@ -34,7 +34,7 @@ var shootingSFX = preload("res://sounds/Enemy Stuff/ShootingWarning.wav")
 var lungeImpact = preload("res://sounds/LungeImpact.wav")
 
 
-var maxHealth = 15.0
+var maxHealth = 9.0
 var health = maxHealth #Current health
 var clipSize = 3 #Max loadable bullets
 var clip = 3 #Current bullets loaded
