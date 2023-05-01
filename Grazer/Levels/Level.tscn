@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cclwr76l2moqf"]
+[gd_scene load_steps=37 format=3 uid="uid://cclwr76l2moqf"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="12_3pmhn"]
 [ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
 [ext_resource type="Environment" uid="uid://5rhjn7giur73" path="res://default_env.tres" id="16_leqkn"]
+[ext_resource type="FontFile" uid="uid://claanka6fj8mt" path="res://Assets/Font/Bronco Valley/OpenType-TT/Bronco.ttf" id="18_a0jb1"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="19_u5bqv"]
 [ext_resource type="PackedScene" path="res://Prefabs/ElixirGunMenu.tscn" id="20_bkmh5"]
 [ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="23_5p5jq"]
@@ -55,12 +56,11 @@ shadow_offset = Vector2(0, 6)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1txft"]
 line_spacing = 12.0
-font = ExtResource("19_u5bqv")
-font_size = 52
+font = ExtResource("18_a0jb1")
+font_size = 100
 outline_size = 5
-shadow_size = 10
+shadow_size = 25
 shadow_color = Color(0, 0, 0.137255, 1)
-shadow_offset = Vector2(1, -4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x4scn"]
 size = Vector3(32, 0.1, 48)
@@ -211,7 +211,6 @@ disabled = true
 text = "Main Menu"
 
 [node name="WinMenu" type="Panel" parent="."]
-visible = false
 z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
@@ -221,7 +220,7 @@ grow_vertical = 2
 script = ExtResource("24_q0sdl")
 
 [node name="Label" type="Label" parent="WinMenu"]
-modulate = Color(0.654902, 0.270588, 0.709804, 1)
+modulate = Color(0.913725, 0.839216, 0.647059, 1)
 z_index = 101
 layout_mode = 1
 anchors_preset = 5
@@ -232,13 +231,13 @@ offset_top = 200.0
 offset_right = 158.0
 offset_bottom = 256.0
 grow_horizontal = 2
-text = "Welcome to the final pasture"
+text = "YOU WIN"
 label_settings = SubResource("LabelSettings_1txft")
 horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="EndScreen" type="Sprite2D" parent="WinMenu"]
-position = Vector2(639.444, 359.688)
+position = Vector2(861, 358)
 scale = Vector2(0.66794, 0.66794)
 texture = ExtResource("33_gftir")
 

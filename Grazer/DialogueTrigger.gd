@@ -63,7 +63,6 @@ func start():
 	textBox.visible = true
 
 func use():
-	print("used")
 	if(!started):
 		start()
 	nextText()
