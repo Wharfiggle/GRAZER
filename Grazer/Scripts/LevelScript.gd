@@ -23,7 +23,7 @@ var broadcastTime = 0.0
 var gunStats = [ 
 	#capacity	 	damage					reload speed
 	[8, 10, 12], 	[3.5, 4.0, 4.5], 		[0.85, 0.7, 0.55],  #revolver
-	[3, 4, 5], 	 	[0.75, 1.0, 1.25], 		[1.05, 0.9, 0.75] ] #shotgun
+	[3, 4, 5], 	 	[0.73, 0.86, 1.0], 		[1.05, 0.9, 0.75] ] #shotgun
 var itemTextures = [
 	preload("res://Assets/Images/revolvUpgradeIcon.png"),
 	preload("res://Assets/Images/shotgunUpgradeIcon.png"),
@@ -115,7 +115,7 @@ class Item:
 			cost = 2
 		elif(id == 9): 
 			name = "Roadrunner"
-			description = "Increase you and your herd's speed by 50%."
+			description = "Increases you and your herd's speed by 50%."
 			cost = 3
 		elif(id == 10): 
 			name = "Liquid Luck"
@@ -130,11 +130,11 @@ class Item:
 		wepLevel = inLevel
 		gunStats = inGunStats
 		if(wepLevel == 1):
-			cost = 10
+			cost = 3
 		elif(wepLevel == 2):
-			cost = 15
+			cost = 6
 		elif(wepLevel == 3):
-			cost = 20
+			cost = 9
 		if(id == 0 || id == 1 || id == 2): #revolverCapacity, revolverDamage, revolverReload
 			if(id == 0):
 				description = "Upgraded Revolver Capacity to Level: " + str(wepLevel)

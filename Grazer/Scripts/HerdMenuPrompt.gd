@@ -1,3 +1,5 @@
+#Elijah Southman
+
 extends Node3D
 
 @onready var herdMenu = get_node(NodePath("/root/Level/HerdMenu"))

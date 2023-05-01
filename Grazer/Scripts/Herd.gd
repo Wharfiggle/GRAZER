@@ -104,6 +104,7 @@ func addCow(cow, playSound:bool = true):
 	cow.potionSpeedup = potionSpeedup
 	cow.herd = self
 	player.cowTypes[cow.cowTypeInd].use()
+	clearHuddle()
 
 #remove cow from player's herd
 func removeCow(cow):

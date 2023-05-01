@@ -71,7 +71,9 @@ func toggleItemWheel():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if(Input.is_action_just_pressed("ItemWheel") && player.active):
-		toggleItemWheel()
+		var egm = get_node(NodePath("/root/Level/ElixirGunMenu"))
+		if((egm == null || !egm.active) || !Input.is_action_just_pressed("SwapMenu")):
+			toggleItemWheel()
 	if(visible):
 		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact")) 
 		&& selected != -1 && player.inventory[selected] > 0):

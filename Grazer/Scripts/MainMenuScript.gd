@@ -68,7 +68,7 @@ func _on_russel_button_pressed():
 		WorldSave.setCharacter(true)
 		russelSound.stream = audioArRussel[rng.randi_range(0, audioArRussel.size() - 1)]
 		russelSound.play()
-		Fade.fade_out(1.5)
+		Fade.fade_out(1.0)
 		await russelSound.finished
 		get_tree().change_scene_to_file("res://Levels/Level.tscn")
 
@@ -78,7 +78,7 @@ func _on_ray_button_pressed():
 		WorldSave.setCharacter(false)
 		raySound.stream = audioArRay[rng.randi_range(0, audioArRay.size() - 1)]
 		raySound.play()
-		Fade.fade_out(1.5)
+		Fade.fade_out(1.0)
 		await raySound.finished
 		get_tree().change_scene_to_file("res://Levels/Level.tscn")
 	

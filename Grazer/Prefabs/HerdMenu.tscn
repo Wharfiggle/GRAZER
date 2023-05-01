@@ -54,7 +54,6 @@ grow_vertical = 2
 scale = Vector2(0.667, 0.667)
 texture = ExtResource("1_tr236")
 script = ExtResource("2_w8rnq")
-widthOffset = 340.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -1452,32 +1451,26 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="mouse_entered" from="VBoxContainer/Common" to="." method="_on_common_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/Common" to="." method="_on_common_pressed"]
 [connection signal="pressed" from="VBoxContainer/Common/MakeTrade" to="." method="_on_make_trade_pressed"]
 [connection signal="pressed" from="VBoxContainer/Common/TradeMenu/BackButton" to="." method="stopTrade"]
 [connection signal="pressed" from="VBoxContainer/Common/TradeMenu/ConfirmTrade" to="." method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Red" to="." method="_on_red_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/Red" to="." method="_on_red_pressed"]
 [connection signal="pressed" from="VBoxContainer/Red/MakeTrade" to="." method="_on_make_trade_pressed"]
 [connection signal="pressed" from="VBoxContainer/Red/TradeMenu/BackButton" to="." method="stopTrade"]
 [connection signal="pressed" from="VBoxContainer/Red/TradeMenu/ConfirmTrade" to="." method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Lucky" to="." method="_on_lucky_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/Lucky" to="." method="_on_lucky_pressed"]
 [connection signal="pressed" from="VBoxContainer/Lucky/MakeTrade" to="." method="_on_make_trade_pressed"]
 [connection signal="pressed" from="VBoxContainer/Lucky/TradeMenu/BackButton" to="." method="stopTrade"]
 [connection signal="pressed" from="VBoxContainer/Lucky/TradeMenu/ConfirmTrade" to="." method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/GrandRed" to="." method="_on_grand_red_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/GrandRed" to="." method="_on_grand_red_pressed"]
 [connection signal="pressed" from="VBoxContainer/GrandRed/MakeTrade" to="." method="_on_make_trade_pressed"]
 [connection signal="pressed" from="VBoxContainer/GrandRed/TradeMenu/BackButton" to="." method="stopTrade"]
 [connection signal="pressed" from="VBoxContainer/GrandRed/TradeMenu/ConfirmTrade" to="." method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Ironhide" to="." method="_on_ironhide_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/Ironhide" to="." method="_on_ironhide_pressed"]
 [connection signal="pressed" from="VBoxContainer/Ironhide/MakeTrade" to="." method="_on_make_trade_pressed"]
 [connection signal="pressed" from="VBoxContainer/Ironhide/TradeMenu/BackButton" to="." method="stopTrade"]
 [connection signal="pressed" from="VBoxContainer/Ironhide/TradeMenu/ConfirmTrade" to="." method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Moxie" to="." method="_on_moxie_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/Moxie" to="." method="_on_moxie_pressed"]
 [connection signal="pressed" from="VBoxContainer/Moxie/MakeTrade" to="." method="_on_make_trade_pressed"]
 [connection signal="pressed" from="VBoxContainer/Moxie/TradeMenu/BackButton" to="." method="stopTrade"]
 [connection signal="pressed" from="VBoxContainer/Moxie/TradeMenu/ConfirmTrade" to="." method="_on_confirm_trade_pressed"]

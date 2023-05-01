@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://diy7osedw50gn"]
+[gd_scene load_steps=38 format=3 uid="uid://diy7osedw50gn"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
 [ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="16_leqkn"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="19_u5bqv"]
+[ext_resource type="PackedScene" uid="uid://dcspo5f48r7j0" path="res://Prefabs/ElixirGunMenu.tscn" id="20_bkmh5"]
 [ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="23_5p5jq"]
 [ext_resource type="AudioStream" uid="uid://crtrdbfpgkmwl" path="res://sounds/Music/WildsMusic.wav" id="24_eux13"]
 [ext_resource type="Script" path="res://Scripts/WinMenu.gd" id="24_q0sdl"]
@@ -25,6 +26,8 @@
 [ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="28_h45dm"]
 [ext_resource type="AudioStream" uid="uid://dgl3cdn3cctem" path="res://sounds/Music/DeathMusic.wav" id="29_713a0"]
 [ext_resource type="PackedScene" uid="uid://cmfm0bmhtxo1h" path="res://Prefabs/HerdMenu.tscn" id="29_gvm3s"]
+[ext_resource type="Script" path="res://Scripts/ElixirGunMenuPrompt.gd" id="30_xgl2e"]
+[ext_resource type="PackedScene" path="res://Prefabs/Usable.tscn" id="31_1iheo"]
 [ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="31_7rkun"]
 [ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="32_0n3cj"]
 [ext_resource type="Texture2D" uid="uid://dqe54qrwmp5ed" path="res://Assets/Images/EndScreen.png" id="33_gftir"]
@@ -277,6 +280,8 @@ text = "Main Menu"
 
 [node name="HerdMenu" parent="." instance=ExtResource("29_gvm3s")]
 
+[node name="ElixirGunMenu" parent="." instance=ExtResource("20_bkmh5")]
+
 [node name="WildsMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("24_eux13")
@@ -327,6 +332,12 @@ script = ExtResource("25_onhah")
 
 [node name="UICursor" parent="." instance=ExtResource("31_7rkun")]
 process_mode = 3
+
+[node name="ElixirGunMenuPrompt" type="Node3D" parent="."]
+script = ExtResource("30_xgl2e")
+
+[node name="Usable" parent="ElixirGunMenuPrompt" instance=ExtResource("31_1iheo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2236, -0.90479, 63.7089)
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 56)

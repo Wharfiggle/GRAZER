@@ -4,7 +4,7 @@ extends TextureRect
 
 @export var enterExitTime = 0.2
 var enterExitTimer = 0.0
-@export var widthOffset: float
+@export var widthOffset = 340
 @onready var origPos = position
 var active = false
 @onready var viewport = get_viewport()
@@ -37,16 +37,13 @@ var change = 0
 var tradeMenu = null
 @export var maxCows = 30
 
-@onready var menuSoundsB=$AudioStreamPlayer
-
+@onready var menuSoundsB = $AudioStreamPlayer
 var openSound = preload("res://sounds/New Sound FEX/UI/MenuSlideIn.wav")
 var closeSound = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
 var tradeSound = preload("res://sounds/New Sound FEX/UI/cow menu/CowOfferTrade.wav")
 var tradeCancel = preload("res://sounds/New Sound FEX/UI/cow menu/CowMenuBack.wav")
-var tradeConfer = preload("res://sounds/New Sound FEX/UI/cow menu/CowConfirmTrade.wav")
+var tradeConfirm = preload("res://sounds/New Sound FEX/UI/cow menu/CowConfirmTrade.wav")
 var cowClick = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,20 +52,19 @@ func _ready():
 		cowMenus[i].find_child("Cost").text = str(cowCosts[i])
 
 func use():
-
 	stopTrade()
 	active = !active
 	enterExitTimer = enterExitTime
 	if(active):
 		menuSoundsB.stream = openSound
 		menuSoundsB.play()
-		uiCursor.setActive(true)
 		updateNumCowTypes()
 		updateTotalValue()
 		var newMousePos = Vector2(
 			viewport.get_visible_rect().size.x - widthOffset,
 			viewport.get_visible_rect().size.y / 2)
-		viewport.warp_mouse(newMousePos)
+		uiCursor.global_position = newMousePos
+		uiCursor.setActive(true, newMousePos)
 		player.active = false
 	else:
 		menuSoundsB.stream =closeSound
@@ -163,6 +159,8 @@ func select(ind:int):
 		return
 	if(selected != -1):
 		unselect(selected)
+	menuSoundsB.stream = cowClick
+	menuSoundsB.play()
 	selected = ind
 	var children = cowMenus[selected].get_children()
 	for i in children.size():
@@ -201,11 +199,8 @@ func updateTrade():
 		confirmTradeButton.modulate = Color(1.0, 1.0, 1.0)
 	
 func stopTrade():
-	
 	if(!trading):
 		return
-		
-	
 	trading = false
 	tradeMenu.visible = false
 	tradeMenu.get_child(3).disabled = true
@@ -229,7 +224,7 @@ func confirmTrade():
 	for i in 6:
 		var ind = 5 - i
 		var num = remainingChange / cowCosts[ind] as int
-		remainingChange = change % cowCosts[ind] 
+		remainingChange = remainingChange % cowCosts[ind] 
 		for j in num:
 			var cow = player.herd.spawnCow(ind)
 #			cow.target = player.position
@@ -275,26 +270,20 @@ func updateTotalValue():
 	find_child("TotalValue").text = str(totalValue)
 
 func _on_common_mouse_entered():
-	
 	hovered = 0
 func _on_red_mouse_entered():
-	
 	hovered = 1
 func _on_lucky_mouse_entered():
-	
 	hovered = 2
 func _on_grand_red_mouse_entered():
-	
 	hovered = 3
 func _on_ironhide_mouse_entered():
-	
 	hovered = 4
 func _on_moxie_mouse_entered():
-	
 	hovered = 5
 
 func _on_confirm_trade_pressed():
-	menuSoundsB.stream =tradeConfer
+	menuSoundsB.stream = tradeConfirm
 	menuSoundsB.play()
 	confirmTrade()
 
@@ -302,33 +291,3 @@ func _on_make_trade_pressed():
 	menuSoundsB.stream =tradeSound
 	menuSoundsB.play()
 	startTrade()
-
-
-func _on_common_pressed():
-	menuSoundsB.stream =cowClick
-	menuSoundsB.play()
-
-
-func _on_red_pressed():
-	menuSoundsB.stream =cowClick
-	menuSoundsB.play()
-
-
-func _on_lucky_pressed():
-	menuSoundsB.stream =cowClick
-	menuSoundsB.play()
-
-
-func _on_grand_red_pressed():
-	menuSoundsB.stream =cowClick
-	menuSoundsB.play()
-
-
-func _on_ironhide_pressed():
-	menuSoundsB.stream =cowClick
-	menuSoundsB.play()
-
-
-func _on_moxie_pressed():
-	menuSoundsB.stream =cowClick
-	menuSoundsB.play()

@@ -352,10 +352,10 @@ transform = Transform3D(0.248622, 0, 0.968601, 0, 1, 0, -0.968601, 0, 0.248622, 
 script = ExtResource("36_hag1j")
 
 [node name="Usable" parent="HerdMenuPrompt" instance=ExtResource("36_qqwns")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.3447, -0.90479, -18.9132)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.9218, -0.90479, -19.8219)
 
 [node name="ElixirGunMenuPrompt" type="Node3D" parent="."]
 script = ExtResource("38_db5gv")
 
 [node name="Usable" parent="ElixirGunMenuPrompt" instance=ExtResource("36_qqwns")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.1302, -0.90479, -15.6758)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.7373, -0.90479, -15.2927)

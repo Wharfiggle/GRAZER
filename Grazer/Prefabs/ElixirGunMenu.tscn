@@ -1,0 +1,1592 @@
+[gd_scene load_steps=25 format=3 uid="uid://dcspo5f48r7j0"]
+
+[ext_resource type="Texture2D" uid="uid://dppcao06jpcr6" path="res://Assets/Images/hud/shopWholeWeaponsTab_oneShadow.png" id="1_bmoht"]
+[ext_resource type="Script" path="res://Scripts/ElixirGunMenu.gd" id="2_63ndt"]
+[ext_resource type="Script" path="res://Scripts/GunMenu.gd" id="3_qsgwr"]
+[ext_resource type="Texture2D" uid="uid://bvnc87di0kt4i" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/weapons menu/shopWeaponRevolvItemCollapsed.png" id="4_bfkha"]
+[ext_resource type="Texture2D" uid="uid://cpj0kf402te13" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/weapons menu/shopWeaponRevolvItemExpanded.png" id="4_hqjx0"]
+[ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="5_7vdsp"]
+[ext_resource type="Texture2D" uid="uid://bbv3cgtefj68x" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/weapons menu/shopWeaponUpgradedDot.png" id="6_vpwsd"]
+[ext_resource type="Texture2D" uid="uid://ca4c8r7pkfx3s" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/weapons menu/shopWeaponUpgradeSlotItemSelectedV1.png" id="8_olwdd"]
+[ext_resource type="Texture2D" uid="uid://cf5xep6d18eqo" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/elixir menu/shopElixirCowHeadCost.png" id="9_5bqeh"]
+[ext_resource type="Script" path="res://Scripts/ElixirMenu.gd" id="10_js6nd"]
+[ext_resource type="Texture2D" uid="uid://b6o1jbdaljbc4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/weapons menu/shopWeaponShotgunItemCollapsed.png" id="10_nclm7"]
+[ext_resource type="Texture2D" uid="uid://dmrb03npkxbib" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/weapons menu/shopWeaponShotgunItemExpanded.png" id="11_7irom"]
+[ext_resource type="Texture2D" uid="uid://dahjqgyp70bi4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/elixir menu/shopElixirItemCollapsed.png" id="11_in527"]
+[ext_resource type="Texture2D" uid="uid://bsghh8v6kkvoi" path="res://Assets/Images/remedyElixir.png" id="12_2n25k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m38i6"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3b01g"]
+bg_color = Color(1, 1, 1, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jk6to"]
+font = ExtResource("5_7vdsp")
+font_size = 64
+font_color = Color(0.819608, 0.823529, 0.831373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nsy4h"]
+font = ExtResource("5_7vdsp")
+font_size = 48
+font_color = Color(0.819608, 0.823529, 0.831373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4j3ub"]
+font = ExtResource("5_7vdsp")
+font_size = 24
+font_color = Color(0.819608, 0.823529, 0.831373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hxfn5"]
+font = ExtResource("5_7vdsp")
+font_size = 30
+font_color = Color(0.301961, 0.270588, 0.231373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ng3do"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7jiy"]
+bg_color = Color(1, 1, 1, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knbsd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxfjh"]
+bg_color = Color(1, 1, 1, 0.392157)
+
+[node name="ElixirGunMenu" type="TextureRect"]
+z_index = 60
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -338.0
+offset_top = -360.0
+offset_right = 171.0
+offset_bottom = 721.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("1_bmoht")
+script = ExtResource("2_63ndt")
+
+[node name="GunMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 18.9999
+offset_top = 192.0
+offset_right = 509.0
+offset_bottom = 985.0
+theme_override_constants/separation = 18
+script = ExtResource("3_qsgwr")
+
+[node name="Revolver" type="TextureButton" parent="GunMenu"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("4_bfkha")
+texture_pressed = ExtResource("4_hqjx0")
+stretch_mode = 5
+
+[node name="Pips" type="Control" parent="GunMenu/Revolver"]
+visible = false
+z_index = 3
+layout_mode = 2
+anchors_preset = 0
+offset_left = 48.4664
+offset_top = 562.336
+offset_right = 456.466
+offset_bottom = 562.336
+
+[node name="TextureRect" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -397.0
+offset_right = 57.0
+offset_bottom = -357.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect2" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -358.0
+offset_right = 57.0
+offset_bottom = -318.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect3" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -319.0
+offset_right = 57.0
+offset_bottom = -279.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect4" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -255.086
+offset_right = 57.0
+offset_bottom = -215.086
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect5" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -216.105
+offset_right = 57.0
+offset_bottom = -176.105
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect6" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -177.125
+offset_right = 57.0
+offset_bottom = -137.125
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect7" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -112.657
+offset_right = 57.0
+offset_bottom = -72.6566
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect8" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -75.1754
+offset_right = 57.0
+offset_bottom = -35.1754
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect9" type="TextureRect" parent="GunMenu/Revolver/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -36.1949
+offset_right = 57.0
+offset_bottom = 3.80505
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="Sections" type="VBoxContainer" parent="GunMenu/Revolver"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -441.534
+offset_top = 136.336
+offset_right = -33.5336
+offset_bottom = 578.336
+grow_horizontal = 0
+theme_override_constants/separation = -20
+
+[node name="Capacity" type="TextureRect" parent="GunMenu/Revolver/Sections"]
+layout_mode = 2
+texture = ExtResource("8_olwdd")
+
+[node name="UpgradeCapacity" type="Button" parent="GunMenu/Revolver/Sections/Capacity"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -162.0
+offset_top = 89.0
+offset_right = -30.0
+offset_bottom = 132.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
+
+[node name="Cost" type="Label" parent="GunMenu/Revolver/Sections/Capacity"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 290.0
+offset_top = -130.0
+offset_right = 365.0
+offset_bottom = -62.0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="GunMenu/Revolver/Sections/Capacity/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Name" type="Label" parent="GunMenu/Revolver/Sections/Capacity"]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 13.0
+offset_right = 247.0
+offset_bottom = 89.0
+text = "Capacity"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="GunMenu/Revolver/Sections/Capacity"]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 87.0
+offset_right = 234.0
+offset_bottom = 143.0
+text = "Shoot longer.
++2 Clip Capacity"
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Damage" type="TextureRect" parent="GunMenu/Revolver/Sections"]
+layout_mode = 2
+texture = ExtResource("8_olwdd")
+
+[node name="UpgradeDamage" type="Button" parent="GunMenu/Revolver/Sections/Damage"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -75.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
+
+[node name="Cost" type="Label" parent="GunMenu/Revolver/Sections/Damage"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 290.0
+offset_top = -130.0
+offset_right = 365.0
+offset_bottom = -62.0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="GunMenu/Revolver/Sections/Damage/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Name" type="Label" parent="GunMenu/Revolver/Sections/Damage"]
+offset_left = 60.0
+offset_top = 13.0
+offset_right = 247.0
+offset_bottom = 89.0
+text = "Damage"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="GunMenu/Revolver/Sections/Damage"]
+offset_left = 60.0
+offset_top = 87.0
+offset_right = 234.0
+offset_bottom = 143.0
+text = "Shoot harder.
++15% damage."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Reload" type="TextureRect" parent="GunMenu/Revolver/Sections"]
+layout_mode = 2
+texture = ExtResource("8_olwdd")
+
+[node name="UpgradeReload" type="Button" parent="GunMenu/Revolver/Sections/Reload"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -74.0
+offset_right = -32.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
+
+[node name="Cost" type="Label" parent="GunMenu/Revolver/Sections/Reload"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 290.0
+offset_top = -130.0
+offset_right = 365.0
+offset_bottom = -62.0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="GunMenu/Revolver/Sections/Reload/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Name" type="Label" parent="GunMenu/Revolver/Sections/Reload"]
+offset_left = 60.0
+offset_top = 13.0
+offset_right = 247.0
+offset_bottom = 89.0
+text = "Reload"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="GunMenu/Revolver/Sections/Reload"]
+offset_left = 60.0
+offset_top = 87.0
+offset_right = 234.0
+offset_bottom = 143.0
+text = "Reload faster.
++15% reload speed."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Shotgun" type="TextureButton" parent="GunMenu"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("10_nclm7")
+texture_pressed = ExtResource("11_7irom")
+stretch_mode = 5
+
+[node name="Pips" type="Control" parent="GunMenu/Shotgun"]
+visible = false
+z_index = 3
+layout_mode = 2
+anchors_preset = 0
+offset_left = 48.4664
+offset_top = 562.336
+offset_right = 456.466
+offset_bottom = 562.336
+
+[node name="TextureRect" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -397.0
+offset_right = 57.0
+offset_bottom = -357.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect2" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -358.0
+offset_right = 57.0
+offset_bottom = -318.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect3" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -319.0
+offset_right = 57.0
+offset_bottom = -279.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect4" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -255.086
+offset_right = 57.0
+offset_bottom = -215.086
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect5" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -216.105
+offset_right = 57.0
+offset_bottom = -176.105
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect6" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -177.125
+offset_right = 57.0
+offset_bottom = -137.125
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect7" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -112.657
+offset_right = 57.0
+offset_bottom = -72.6566
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect8" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -75.1754
+offset_right = 57.0
+offset_bottom = -35.1754
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="TextureRect9" type="TextureRect" parent="GunMenu/Shotgun/Pips"]
+visible = false
+layout_mode = 1
+offset_left = 17.0
+offset_top = -36.1949
+offset_right = 57.0
+offset_bottom = 3.80505
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vpwsd")
+
+[node name="Sections" type="VBoxContainer" parent="GunMenu/Shotgun"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -441.534
+offset_top = 136.336
+offset_right = -33.5336
+offset_bottom = 578.336
+grow_horizontal = 0
+theme_override_constants/separation = -20
+
+[node name="Capacity" type="TextureRect" parent="GunMenu/Shotgun/Sections"]
+layout_mode = 2
+texture = ExtResource("8_olwdd")
+
+[node name="UpgradeCapacity" type="Button" parent="GunMenu/Shotgun/Sections/Capacity"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -162.0
+offset_top = 89.0
+offset_right = -30.0
+offset_bottom = 132.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
+
+[node name="Cost" type="Label" parent="GunMenu/Shotgun/Sections/Capacity"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 290.0
+offset_top = -130.0
+offset_right = 365.0
+offset_bottom = -62.0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="GunMenu/Shotgun/Sections/Capacity/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Name" type="Label" parent="GunMenu/Shotgun/Sections/Capacity"]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 13.0
+offset_right = 247.0
+offset_bottom = 89.0
+text = "Capacity"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="GunMenu/Shotgun/Sections/Capacity"]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 87.0
+offset_right = 234.0
+offset_bottom = 143.0
+text = "Shoot longer.
++2 Clip Capacity"
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Damage" type="TextureRect" parent="GunMenu/Shotgun/Sections"]
+layout_mode = 2
+texture = ExtResource("8_olwdd")
+
+[node name="UpgradeDamage" type="Button" parent="GunMenu/Shotgun/Sections/Damage"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -75.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
+
+[node name="Cost" type="Label" parent="GunMenu/Shotgun/Sections/Damage"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 290.0
+offset_top = -130.0
+offset_right = 365.0
+offset_bottom = -62.0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="GunMenu/Shotgun/Sections/Damage/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Name" type="Label" parent="GunMenu/Shotgun/Sections/Damage"]
+offset_left = 60.0
+offset_top = 13.0
+offset_right = 247.0
+offset_bottom = 89.0
+text = "Damage"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="GunMenu/Shotgun/Sections/Damage"]
+offset_left = 60.0
+offset_top = 87.0
+offset_right = 234.0
+offset_bottom = 143.0
+text = "Shoot harder.
++15% damage."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Reload" type="TextureRect" parent="GunMenu/Shotgun/Sections"]
+layout_mode = 2
+texture = ExtResource("8_olwdd")
+
+[node name="UpgradeReload" type="Button" parent="GunMenu/Shotgun/Sections/Reload"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -74.0
+offset_right = -32.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
+
+[node name="Cost" type="Label" parent="GunMenu/Shotgun/Sections/Reload"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 290.0
+offset_top = -130.0
+offset_right = 365.0
+offset_bottom = -62.0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="GunMenu/Shotgun/Sections/Reload/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Name" type="Label" parent="GunMenu/Shotgun/Sections/Reload"]
+offset_left = 60.0
+offset_top = 13.0
+offset_right = 247.0
+offset_bottom = 89.0
+text = "Reload"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="GunMenu/Shotgun/Sections/Reload"]
+offset_left = 60.0
+offset_top = 87.0
+offset_right = 234.0
+offset_bottom = 143.0
+text = "Reload faster.
++15% reload speed."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="ElixirMenu" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+offset_left = 19.0
+offset_top = 192.0
+offset_right = 509.0
+offset_bottom = 985.0
+theme_override_constants/separation = 18
+script = ExtResource("10_js6nd")
+
+[node name="Remedy" type="TextureButton" parent="ElixirMenu"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("11_in527")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="ElixirMenu/Remedy"]
+z_index = 2
+position = Vector2(82, 46)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_2n25k")
+
+[node name="Name" type="Label" parent="ElixirMenu/Remedy"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="ElixirMenu/Remedy"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 371.0
+offset_top = -59.0
+offset_right = 468.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon2" type="Sprite2D" parent="ElixirMenu/Remedy"]
+visible = false
+z_index = 2
+position = Vector2(108, 80)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("12_2n25k")
+
+[node name="Name2" type="Label" parent="ElixirMenu/Remedy"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="ElixirMenu/Remedy"]
+visible = false
+layout_mode = 1
+offset_left = 117.0
+offset_top = 115.0
+offset_right = 214.0
+offset_bottom = 155.0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="ElixirMenu/Remedy"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "piss in a bottle"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buy" type="Button" parent="ElixirMenu/Remedy"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -95.0
+offset_right = -62.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
+
+[node name="Cost" type="Label" parent="ElixirMenu/Remedy"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="ElixirMenu/Remedy/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Bulletstorm" type="TextureButton" parent="ElixirMenu"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("11_in527")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="ElixirMenu/Bulletstorm"]
+z_index = 2
+position = Vector2(82, 46)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_2n25k")
+
+[node name="Name" type="Label" parent="ElixirMenu/Bulletstorm"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="ElixirMenu/Bulletstorm"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 371.0
+offset_top = -59.0
+offset_right = 468.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon2" type="Sprite2D" parent="ElixirMenu/Bulletstorm"]
+visible = false
+z_index = 2
+position = Vector2(108, 80)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("12_2n25k")
+
+[node name="Name2" type="Label" parent="ElixirMenu/Bulletstorm"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="ElixirMenu/Bulletstorm"]
+visible = false
+layout_mode = 1
+offset_left = 117.0
+offset_top = 115.0
+offset_right = 214.0
+offset_bottom = 155.0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="ElixirMenu/Bulletstorm"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "piss in a bottle"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buy" type="Button" parent="ElixirMenu/Bulletstorm"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -95.0
+offset_right = -62.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
+
+[node name="Cost" type="Label" parent="ElixirMenu/Bulletstorm"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="ElixirMenu/Bulletstorm/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="LifeLeech" type="TextureButton" parent="ElixirMenu"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("11_in527")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="ElixirMenu/LifeLeech"]
+z_index = 2
+position = Vector2(82, 46)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_2n25k")
+
+[node name="Name" type="Label" parent="ElixirMenu/LifeLeech"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="ElixirMenu/LifeLeech"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 371.0
+offset_top = -59.0
+offset_right = 468.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon2" type="Sprite2D" parent="ElixirMenu/LifeLeech"]
+visible = false
+z_index = 2
+position = Vector2(108, 80)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("12_2n25k")
+
+[node name="Name2" type="Label" parent="ElixirMenu/LifeLeech"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="ElixirMenu/LifeLeech"]
+visible = false
+layout_mode = 1
+offset_left = 117.0
+offset_top = 115.0
+offset_right = 214.0
+offset_bottom = 155.0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="ElixirMenu/LifeLeech"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "piss in a bottle"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buy" type="Button" parent="ElixirMenu/LifeLeech"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -95.0
+offset_right = -62.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
+
+[node name="Cost" type="Label" parent="ElixirMenu/LifeLeech"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="ElixirMenu/LifeLeech/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Roadrunner" type="TextureButton" parent="ElixirMenu"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("11_in527")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="ElixirMenu/Roadrunner"]
+z_index = 2
+position = Vector2(82, 46)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_2n25k")
+
+[node name="Name" type="Label" parent="ElixirMenu/Roadrunner"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="ElixirMenu/Roadrunner"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 371.0
+offset_top = -59.0
+offset_right = 468.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon2" type="Sprite2D" parent="ElixirMenu/Roadrunner"]
+visible = false
+z_index = 2
+position = Vector2(108, 80)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("12_2n25k")
+
+[node name="Name2" type="Label" parent="ElixirMenu/Roadrunner"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="ElixirMenu/Roadrunner"]
+visible = false
+layout_mode = 1
+offset_left = 117.0
+offset_top = 115.0
+offset_right = 214.0
+offset_bottom = 155.0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="ElixirMenu/Roadrunner"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "piss in a bottle"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buy" type="Button" parent="ElixirMenu/Roadrunner"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -95.0
+offset_right = -62.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
+
+[node name="Cost" type="Label" parent="ElixirMenu/Roadrunner"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="ElixirMenu/Roadrunner/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Lucky" type="TextureButton" parent="ElixirMenu"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("11_in527")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="ElixirMenu/Lucky"]
+z_index = 2
+position = Vector2(82, 46)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_2n25k")
+
+[node name="Name" type="Label" parent="ElixirMenu/Lucky"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="ElixirMenu/Lucky"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 371.0
+offset_top = -59.0
+offset_right = 468.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon2" type="Sprite2D" parent="ElixirMenu/Lucky"]
+visible = false
+z_index = 2
+position = Vector2(108, 80)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("12_2n25k")
+
+[node name="Name2" type="Label" parent="ElixirMenu/Lucky"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="ElixirMenu/Lucky"]
+visible = false
+layout_mode = 1
+offset_left = 117.0
+offset_top = 115.0
+offset_right = 214.0
+offset_bottom = 155.0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="ElixirMenu/Lucky"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "piss in a bottle"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buy" type="Button" parent="ElixirMenu/Lucky"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -95.0
+offset_right = -62.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
+
+[node name="Cost" type="Label" parent="ElixirMenu/Lucky"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="ElixirMenu/Lucky/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="Dauntless" type="TextureButton" parent="ElixirMenu"]
+z_index = 1
+layout_mode = 2
+texture_normal = ExtResource("11_in527")
+stretch_mode = 5
+
+[node name="Icon" type="Sprite2D" parent="ElixirMenu/Dauntless"]
+z_index = 2
+position = Vector2(82, 46)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_2n25k")
+
+[node name="Name" type="Label" parent="ElixirMenu/Dauntless"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 132.424
+offset_top = -64.6072
+offset_right = 263.424
+offset_bottom = -12.6072
+grow_vertical = 0
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+vertical_alignment = 2
+
+[node name="Num" type="Label" parent="ElixirMenu/Dauntless"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 371.0
+offset_top = -59.0
+offset_right = 468.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon2" type="Sprite2D" parent="ElixirMenu/Dauntless"]
+visible = false
+z_index = 2
+position = Vector2(108, 80)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("12_2n25k")
+
+[node name="Name2" type="Label" parent="ElixirMenu/Dauntless"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.1003
+offset_top = 13.3973
+offset_right = 186.9
+offset_bottom = 65.3973
+grow_horizontal = 2
+text = "jarate"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 1
+
+[node name="Num2" type="Label" parent="ElixirMenu/Dauntless"]
+visible = false
+layout_mode = 1
+offset_left = 117.0
+offset_top = 115.0
+offset_right = 214.0
+offset_bottom = 155.0
+text = "0"
+label_settings = SubResource("LabelSettings_hxfn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="ElixirMenu/Dauntless"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 62.873
+offset_right = 187.0
+offset_bottom = 118.873
+grow_horizontal = 2
+text = "piss in a bottle"
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buy" type="Button" parent="ElixirMenu/Dauntless"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -95.0
+offset_right = -62.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
+
+[node name="Cost" type="Label" parent="ElixirMenu/Dauntless"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -76.0
+offset_right = 203.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_jk6to")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CostSymbol" type="TextureRect" parent="ElixirMenu/Dauntless/Cost"]
+layout_mode = 0
+offset_left = 77.9611
+offset_top = -3.05176e-05
+offset_right = 117.961
+offset_bottom = 46.0
+texture = ExtResource("9_5bqeh")
+
+[node name="TotalValue" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 43.4781
+offset_top = -70.5051
+offset_right = 134.478
+offset_bottom = -18.5051
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_nsy4h")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 370.315
+offset_top = 1010.49
+offset_right = 480.315
+offset_bottom = 1055.49
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+
+[node name="SwapMenuLeft" type="Button" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 114.0
+offset_right = 118.0
+offset_bottom = 146.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+
+[node name="SwapMenuRight" type="Button" parent="."]
+layout_mode = 0
+offset_left = 423.0
+offset_top = 112.0
+offset_right = 475.0
+offset_bottom = 144.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+
+[node name="SwapMenuLeft2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 12.0
+offset_right = 200.0
+offset_bottom = 73.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+
+[node name="SwapMenuRight2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 344.828
+offset_top = 11.994
+offset_right = 435.828
+offset_bottom = 72.994
+theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="mouse_entered" from="GunMenu/Revolver" to="GunMenu" method="_on_revolver_mouse_entered"]
+[connection signal="pressed" from="GunMenu/Revolver/Sections/Capacity/UpgradeCapacity" to="GunMenu" method="_on_revolver_upgrade_capacity_pressed"]
+[connection signal="pressed" from="GunMenu/Revolver/Sections/Damage/UpgradeDamage" to="GunMenu" method="_on_revolver_upgrade_damage_pressed"]
+[connection signal="pressed" from="GunMenu/Revolver/Sections/Reload/UpgradeReload" to="GunMenu" method="_on_revolver_upgrade_reload_pressed"]
+[connection signal="mouse_entered" from="GunMenu/Shotgun" to="GunMenu" method="_on_shotgun_mouse_entered"]
+[connection signal="pressed" from="GunMenu/Shotgun/Sections/Capacity/UpgradeCapacity" to="GunMenu" method="_on_shotgun_upgrade_capacity_pressed"]
+[connection signal="pressed" from="GunMenu/Shotgun/Sections/Damage/UpgradeDamage" to="GunMenu" method="_on_shotgun_upgrade_damage_pressed"]
+[connection signal="pressed" from="GunMenu/Shotgun/Sections/Reload/UpgradeReload" to="GunMenu" method="_on_shotgun_upgrade_reload_pressed"]
+[connection signal="mouse_entered" from="ElixirMenu/Remedy" to="ElixirMenu" method="_on_remedy_mouse_entered"]
+[connection signal="pressed" from="ElixirMenu/Remedy/Buy" to="ElixirMenu" method="_on_buy_pressed"]
+[connection signal="mouse_entered" from="ElixirMenu/Bulletstorm" to="ElixirMenu" method="_on_bulletstorm_mouse_entered"]
+[connection signal="pressed" from="ElixirMenu/Bulletstorm/Buy" to="ElixirMenu" method="_on_buy_pressed"]
+[connection signal="mouse_entered" from="ElixirMenu/LifeLeech" to="ElixirMenu" method="_on_life_leech_mouse_entered"]
+[connection signal="pressed" from="ElixirMenu/LifeLeech/Buy" to="ElixirMenu" method="_on_buy_pressed"]
+[connection signal="mouse_entered" from="ElixirMenu/Roadrunner" to="ElixirMenu" method="_on_roadrunner_mouse_entered"]
+[connection signal="pressed" from="ElixirMenu/Roadrunner/Buy" to="ElixirMenu" method="_on_buy_pressed"]
+[connection signal="mouse_entered" from="ElixirMenu/Lucky" to="ElixirMenu" method="_on_lucky_mouse_entered"]
+[connection signal="pressed" from="ElixirMenu/Lucky/Buy" to="ElixirMenu" method="_on_buy_pressed"]
+[connection signal="mouse_entered" from="ElixirMenu/Dauntless" to="ElixirMenu" method="_on_dauntless_mouse_entered"]
+[connection signal="pressed" from="ElixirMenu/Dauntless/Buy" to="ElixirMenu" method="_on_buy_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="use"]
+[connection signal="pressed" from="SwapMenuLeft" to="." method="swapMenu"]
+[connection signal="pressed" from="SwapMenuRight" to="." method="swapMenu"]
+[connection signal="pressed" from="SwapMenuLeft2" to="." method="_on_swap_menu_left_2_pressed"]
+[connection signal="pressed" from="SwapMenuRight2" to="." method="_on_swap_menu_right_2_pressed"]

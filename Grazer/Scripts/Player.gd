@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var invincible = true
+var invincible = false
 
 # Declare member variables here. Examples:
 var bullet = preload("res://Prefabs/Bullet.tscn")
@@ -65,7 +65,7 @@ var inventory = [0, 0, 0, 0, 0, 0]
 var potionTimer = 0.0
 var potionUsed
 var lifeLeach = 0.0
-var potionSpeedup = 3.0
+var potionSpeedup = 1.0
 var alwaysCrit = false
 var critChance = 0.1
 var dauntless = false
@@ -917,7 +917,7 @@ func knock():
 #			Vocal.volume_db = volume
 
 func updateHealth(newHP:float):
-	if(newHP < hitpoints):
+	if(newHP < hitpoints && newHP < maxHitpoints):
 		if(russelOrRay == "Russel"):
 			Vocal.stream = damagesound
 			if(!Vocal.playing):
