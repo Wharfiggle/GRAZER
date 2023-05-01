@@ -201,3 +201,4 @@ script = ExtResource("11_knpq3")
 [connection signal="pressed" from="quitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CharacterSelect/rayButton" to="." method="_on_ray_button_pressed"]
 [connection signal="pressed" from="CharacterSelect/russelButton" to="." method="_on_russel_button_pressed"]
+[connection signal="finished" from="MainMenuMusic" to="MainMenuMusic" method="_on_finished"]

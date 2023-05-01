@@ -30,6 +30,7 @@ func setPosition(inPos:Vector2):
 func _process(delta):
 	if(!active):
 		return
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var mousePos = viewport.get_mouse_position()
 	var screen = viewport.get_visible_rect()
@@ -64,7 +65,19 @@ func _process(delta):
 		
 	if(Input.is_action_just_pressed("Interact")):
 		var a = InputEventMouseButton.new()
+		var screenSize = DisplayServer.window_get_size() as Vector2
 		a.position = global_position
+		a.position *= screenSize / Vector2(1280.0, 720.0)
+#		var xratio = 1 / (1280 / screenSize.x)
+#		var yratio = 1 / (720 / screenSize.y)
+#		if(yratio < xratio):
+#			var blackBar = (screenSize.x - (1280.0 * yratio)) / 2.0
+#			a.position.x += blackBar
+#			print("x " + str(blackBar))
+#		if(yratio > xratio):
+#			var blackBar = (screenSize.y - (720.0 * xratio)) / 2.0
+#			a.position.y += blackBar
+#			print("y " + str(blackBar))
 		a.button_index = MOUSE_BUTTON_LEFT
 		a.pressed = true
 		Input.parse_input_event(a)
