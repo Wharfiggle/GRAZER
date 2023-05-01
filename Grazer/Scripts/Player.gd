@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var invincible = false
+var invincible = true
 
 # Declare member variables here. Examples:
 var bullet = preload("res://Prefabs/Bullet.tscn")
@@ -63,7 +63,7 @@ var inventory = [0, 0, 0, 0, 0, 0]
 var potionTimer = 0.0
 var potionUsed
 var lifeLeach = 0.0
-var potionSpeedup = 1.0
+var potionSpeedup = 3.0
 var alwaysCrit = false
 var critChance = 0.1
 var dauntless = false
@@ -119,7 +119,7 @@ const GRAVITY = 30
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
-var moveDir = 0.0
+var moveDir = PI * 5.0 / 8.0
 var prevAimDir = [0, 0, 0, 0, 0]
 var aimDir = 0.0
 var aimSwivel = 0.0
@@ -213,10 +213,10 @@ func _process(delta):
 				cowTypes.append(level.CowType.new(i, self))
 	
 	#restart level
-	if(Input.is_action_just_pressed("restart")):
-#		WorldSave.reset()
-#		get_tree().change_scene_to_file("res://Levels/Level.tscn")
-		die()
+#	if(Input.is_action_just_pressed("restart")):
+##		WorldSave.reset()
+##		get_tree().change_scene_to_file("res://Levels/Level.tscn")
+#		die()
 		
 	#swap model between ray and russel
 	if(Input.is_action_just_pressed("GenderBend")):
@@ -226,7 +226,7 @@ func _process(delta):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
 		for i in 5:
-			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1), position.y, position.z + (rng.randf() * 2 - 1)), 0)
+			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
 		
 	if(herd.getNumCows() < 1 and !invincible):
 		die()
@@ -325,7 +325,7 @@ func _process(delta):
 		animation.set("parameters/walkReload 2/blend_amount", t)
 	
 	#shoot gun input buffer
-	if(Input.is_action_just_pressed("shoot") && dodgeTimer == 0 && !dauntless && !reloading):
+	if(active && Input.is_action_just_pressed("shoot") && dodgeTimer == 0 && !dauntless && !reloading):
 		shootBufferTimer = shootBufferTime
 	
 	#shoot gun

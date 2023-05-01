@@ -8,4 +8,8 @@
 [node name="Panel" parent="." instance=ExtResource("1_dm4o7")]
 
 [node name="UICursor" parent="." instance=ExtResource("2_0inhe")]
+offset_left = 740.0
+offset_top = 558.0
+offset_right = 780.0
+offset_bottom = 598.0
 active = true

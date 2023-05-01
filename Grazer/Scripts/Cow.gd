@@ -387,6 +387,7 @@ func _physics_process(delta):
 		elif(stray && abs((position - herd.player.position).length()) < 2.5):
 			herd.addCow(self, true)
 			stray = false
+			self.remove_from_group('DespawnAtCheckpoint')
 		
 		if(draggers.is_empty()):
 			#cows push eachother out of eachother's radius

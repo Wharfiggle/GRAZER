@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://btgqdxu7cr58d"]
+[gd_scene load_steps=47 format=3 uid="uid://btgqdxu7cr58d"]
 
 [ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_ux8do"]
 [ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_otg7m"]
@@ -33,6 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://dm67q636nhjoa" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Metallic.png" id="33_lqnn8"]
 [ext_resource type="Texture2D" uid="uid://bbei46t58gg10" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Normal.png" id="34_av5xh"]
 [ext_resource type="Texture2D" uid="uid://b2sufrkl84c2o" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Roughness.png" id="35_u2rth"]
+[ext_resource type="Script" path="res://Scripts/HerdMenuPrompt.gd" id="36_hag1j"]
+[ext_resource type="PackedScene" path="res://Prefabs/Usable.tscn" id="36_qqwns"]
+[ext_resource type="Script" path="res://Scripts/ElixirGunMenuPrompt.gd" id="38_db5gv"]
 [ext_resource type="PackedScene" uid="uid://c6b6t5yx3tyen" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post.tscn" id="49_ak28c"]
 [ext_resource type="PackedScene" uid="uid://cwq17w2fj0kvq" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post_corner.tscn" id="50_75h5k"]
 
@@ -344,3 +347,15 @@ transform = Transform3D(-0.238771, 0, 0.971076, 0, 1, 0, -0.971076, 0, -0.238771
 
 [node name="Cement_Barricade12" parent="RightStuff" instance=ExtResource("5_27ufq")]
 transform = Transform3D(0.248622, 0, 0.968601, 0, 1, 0, -0.968601, 0, 0.248622, 82.9758, 0.0500002, -37.7277)
+
+[node name="HerdMenuPrompt" type="Node3D" parent="."]
+script = ExtResource("36_hag1j")
+
+[node name="Usable" parent="HerdMenuPrompt" instance=ExtResource("36_qqwns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.3447, -0.90479, -18.9132)
+
+[node name="ElixirGunMenuPrompt" type="Node3D" parent="."]
+script = ExtResource("38_db5gv")
+
+[node name="Usable" parent="ElixirGunMenuPrompt" instance=ExtResource("36_qqwns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.4846, -0.90479, -16.577)

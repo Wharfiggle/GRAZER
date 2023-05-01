@@ -30,6 +30,7 @@ static func retrieveStructureTypes() -> Array:
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPointLeft.tscn", 4, 4]) #checkpoint left
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPointRight.tscn", 4, 4]) #checkpoint right
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/startArea.tscn", 2, 3]) #start area
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/finalFieldNoGrass.tscn", 2, 2])
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/EmptyFloor1.tscn", 2, 2]) #test
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/testTile.tscn", 2, 2]) #test
@@ -43,7 +44,6 @@ static func retrieveStructureTypes() -> Array:
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/organCactus1.tscn", 1, 1])
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/ruins.tscn", 3, 3])
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/cliffPitV2.tscn", 1, 1])
-	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/finalField.tscn", 2, 2])
 	
 	# * ^ ADD NEW STRUCTURES HERE ^ *
 	#sPathname is the path to the scene. Right click and click "Copy Path" in the explorer to get it

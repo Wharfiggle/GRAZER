@@ -57,7 +57,7 @@ var revolution_distance = 8.0
 @onready var activeCoord = []
 @onready var activeChunks = []
 
-var numLevels = 3
+var numLevels = 4
 const mapWidth = 5
 @export var levelLength = 15 #How many tiles until a checkpoint is set
 var structures = []
@@ -218,10 +218,11 @@ func _get_chunk_key(coords : Vector3):
 #reserve empty space in the regular chunk system for them (so they don't overlap normal tiles)
 #and places the StructureNodes that load in the structure when the play gets close enough
 func generateStructures():
+	addStructure(3, Vector3(mapWidth - 1, 0, 4))
 	#Loop for levels
-	for l in numLevels:
+	for l in numLevels + 1:
 		#Generate the check points
-		if(l < numLevels):
+		if(l < numLevels + 1):
 			var placed = false
 			var origin = Vector3()
 #			origin.x = -checkWidth / 2
@@ -234,7 +235,10 @@ func generateStructures():
 			placed = checkPlacement(1, origin * tileWidth)
 			#If it found valid coordinates, proceed to adding the structure
 			if(placed):
-				addStructure(0, origin)
+				if(l == numLevels):
+					addStructure(4, origin) #final field
+				else:
+					addStructure(0, origin)
 				addStructure(1, originLeft)
 				addStructure(2, originRight)
 				print("added checkpoint at " + str(origin))
@@ -258,7 +262,7 @@ func generateStructures():
 			var loops = 50
 			var origin = Vector3()
 			#TODO Maybe change from complete random to a more balenced spread of structures?
-			var id = randi_range(3, structureTypes.size() - 1)
+			var id = randi_range(5, structureTypes.size() - 1)
 			var structureInfo = structureTypes[id]
 			while(!placed and !failed):
 				origin.x = randi_range(-mapWidth + 1 , mapWidth - structureInfo[1])

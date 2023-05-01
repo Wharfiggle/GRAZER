@@ -10,7 +10,7 @@ extends Control
 #from the ItemWheelUI prefab back into Level.
 #It will just arbitrarily work again.
 
-var menuButtionSound = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
+var menuButtonSound = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 var sound = preload("res://sounds/New Sound FEX/UI/extra sounds/Ui_pitch1.wav")
 
 @onready var controlB=$AudioStreamPlayer2D
@@ -133,7 +133,7 @@ func _on_cell_6_mouse_entered():
 	selected = 5
 
 func _on_main_menu_pressed():
-	MMB.stream = menuButtionSound
+	MMB.stream = menuButtonSound
 	MMB.play()
 	await MMB.finished
 	WorldSave.reset()
@@ -142,7 +142,7 @@ func _on_main_menu_pressed():
 
 func _on_controls_pressed():
 	if(controls.visible==true):
-		controlB.stream = menuButtionSound
+		controlB.stream = menuButtonSound
 		controlB.play()
 		await controlB.finished
 	else :

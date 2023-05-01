@@ -68,6 +68,7 @@ transform = Transform3D(0.610671, 0, -0.791885, 0, 1, 0, 0.791885, 0, 0.610671, 
 shape = SubResource("BoxShape3D_vgtfm")
 
 [node name="EnemySpawner" parent="Trigger" instance=ExtResource("5_ujdw8")]
+spawnChance = 0.5
 numEnemies = 5
 timeDelay = 0.25
 spawnAtEdgeOfScreen = true

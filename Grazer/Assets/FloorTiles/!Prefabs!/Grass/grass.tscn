@@ -4,8 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://camtfkxcap4rl" path="res://Assets/Models/Grass/GrassTexture.png" id="2_2kiwl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxw2e"]
-transparency = 1
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("2_2kiwl")
+billboard_mode = 1
+billboard_keep_scale = true
 
 [node name="grassline" instance=ExtResource("1_lqkbd")]
 

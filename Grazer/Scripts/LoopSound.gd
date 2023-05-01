@@ -10,11 +10,13 @@ func fadeOut(transition_duration = 0.5):
 	transitionTime = transition_duration
 	transitionTimer = transitionTime
 	fadingIn = false
+	volume_db = origVolume
 
 func fadeIn(transition_duration = 0.5):
 	transitionTime = transition_duration
 	transitionTimer = transitionTime
 	fadingIn = true
+	volume_db = -80
 
 func _ready():
 	if(!autoplay):

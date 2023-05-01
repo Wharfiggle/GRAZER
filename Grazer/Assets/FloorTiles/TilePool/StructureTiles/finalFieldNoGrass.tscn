@@ -1,0 +1,525 @@
+[gd_scene load_steps=22 format=3 uid="uid://dbwoh1673maxr"]
+
+[ext_resource type="Texture2D" uid="uid://bytwrnbsis5e3" path="res://Assets/Images/FinalGrass.png" id="1_bd2s0"]
+[ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_kgjyh"]
+[ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_k4a38"]
+[ext_resource type="PackedScene" uid="uid://21bqi8afjpn6" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/Frame Isolated/gateArch.tscn" id="2_yl0th"]
+[ext_resource type="PackedScene" uid="uid://7jwcyssrk7li" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/One Door Isolated/gate2.tscn" id="3_s6fww"]
+[ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="4_mqme4"]
+[ext_resource type="Texture2D" uid="uid://c2yquc8c7bxxf" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Normal.png" id="4_wlv41"]
+[ext_resource type="Texture2D" uid="uid://ccuovmdnlk6y5" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Roughness.png" id="5_cgmax"]
+[ext_resource type="PackedScene" uid="uid://c41nldgjrdemf" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stoneArch.tscn" id="5_wranl"]
+[ext_resource type="PackedScene" uid="uid://d0xfwabed5xb8" path="res://Assets/FloorTiles/!Prefabs!/Walls/rock_wall_decimated.tscn" id="6_nb0j0"]
+[ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="8_3motg"]
+[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/WinTrigger.tscn" id="12_fo4om"]
+[ext_resource type="Texture2D" uid="uid://camtfkxcap4rl" path="res://Assets/Models/Grass/GrassTexture.png" id="13_b36uv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m76iq"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfreb"]
+albedo_color = Color(0.870588, 1, 1, 1)
+albedo_texture = ExtResource("1_kgjyh")
+metallic_specular = 0.0
+roughness_texture = ExtResource("5_cgmax")
+emission_texture = ExtResource("2_k4a38")
+normal_enabled = true
+normal_scale = 0.4
+normal_texture = ExtResource("4_wlv41")
+uv1_scale = Vector3(7, 7, 7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svggx"]
+transparency = 1
+albedo_color = Color(1, 0.647059, 1, 0.905882)
+albedo_texture = ExtResource("1_bd2s0")
+
+[sub_resource type="BoxMesh" id="BoxMesh_b5vmv"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7plb"]
+resource_name = "Material.006"
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 1)
+metallic = 0.4
+roughness = 0.272166
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gxff5"]
+_surfaces = [{
+"aabb": AABB(-0.0841957, -0.000507288, 1.96412e-06, 0.16001, 0.16001, 1e-05),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0),
+"name": "Material.006",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(71, 63, 155, 61, 14, 82, 35, 62, 92, 207, 3, 54, 205, 110, 172, 189, 14, 82, 35, 62, 92, 207, 3, 54, 205, 110, 172, 189, 133, 251, 4, 186, 92, 207, 3, 54, 71, 63, 155, 61, 133, 251, 4, 186, 92, 207, 3, 54)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_32137"]
+resource_name = "Root Scene_dirt|grassimage|Dupli|"
+_surfaces = [{
+"aabb": AABB(-0.0841957, -0.000507288, 1.96412e-06, 0.16001, 0.16001, 1e-05),
+"attribute_data": PackedByteArray(0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0),
+"material": SubResource("StandardMaterial3D_t7plb"),
+"name": "Material.006",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(71, 63, 155, 61, 14, 82, 35, 62, 92, 207, 3, 54, 255, 127, 255, 127, 255, 255, 255, 191, 205, 110, 172, 189, 14, 82, 35, 62, 92, 207, 3, 54, 255, 127, 255, 127, 255, 255, 255, 191, 205, 110, 172, 189, 133, 251, 4, 186, 92, 207, 3, 54, 255, 127, 255, 127, 255, 255, 255, 191, 71, 63, 155, 61, 133, 251, 4, 186, 92, 207, 3, 54, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_gxff5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxw2e"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("13_b36uv")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[node name="Level" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 8, 0, 8)
+shape = SubResource("BoxShape3D_m76iq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, -2, 8, 0, 8)
+material_override = SubResource("StandardMaterial3D_tfreb")
+material_overlay = SubResource("StandardMaterial3D_svggx")
+mesh = SubResource("BoxMesh_b5vmv")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_tfreb")
+
+[node name="Gate-Archf" parent="." instance=ExtResource("2_yl0th")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0565, 0.0500002, 8.5479)
+
+[node name="Gate-lf" parent="." instance=ExtResource("3_s6fww")]
+transform = Transform3D(-0.785651, 0, -0.618669, 0, 1, 0, 0.618669, 0, -0.785651, 12.8166, 0.25, 8.59201)
+
+[node name="Gate-rf" parent="." instance=ExtResource("3_s6fww")]
+transform = Transform3D(-0.83926, 0, 0.543731, 0, 1, 0, -0.543731, 0, -0.83926, 22.2538, 0.25, 10.6218)
+
+[node name="stone1" parent="." instance=ExtResource("4_mqme4")]
+transform = Transform3D(-0.505236, 0, 0.862981, 0, 1, 0, -0.862981, 0, -0.505236, 22.8011, -0.703075, -3.63992)
+
+[node name="stoneArch" parent="." instance=ExtResource("5_wranl")]
+transform = Transform3D(-4.15258e-08, 0, -0.95, 0, 0.95, 0, 0.95, 0, -4.15258e-08, 21.6882, 0, 6.97868)
+
+[node name="rockWallDecimated" parent="." instance=ExtResource("6_nb0j0")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 26.5074, -3.49906, -2.96323)
+
+[node name="rockWallDecimated2" parent="." instance=ExtResource("6_nb0j0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.76581, -1.62674, -2.96323)
+
+[node name="DryBush" parent="." instance=ExtResource("8_3motg")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.855, 0.0499992, 12.5404)
+
+[node name="WinTrigger" parent="." instance=ExtResource("12_fo4om")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5219, 0.683743, 10.1777)
+
+[node name="grassline" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7665, 0.210412, -3.00066)
+
+[node name="RootNode" type="Node3D" parent="grassline"]
+
+[node name="grass4" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(5.65685, -3.24464, 4.63382, 0, 6.55322, 4.58861, -5.65685, -3.24464, 4.63382, -8.44239, -0.10148, 2.26399)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass5" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(5.34226, -6.44052, 7.82033, 0, 13.008, 7.74403, -5.34226, -6.44052, 7.82033, -7.17454, -0.10148, 0.866041)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass6" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(4.23907, -6.0402, 5.76281, 0, 12.1994, 5.70659, -4.23907, -6.0402, 5.76281, -8.68115, -0.10148, 1.34556)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass37" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(2.66183, -4.12636, 5.38215, 0, 6.07497, 3.88496, -10.6309, -1.03318, 1.34761, -4.00873, -0.10148, 0.813846)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass38" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(2.51379, -8.19073, 9.08326, 0, 12.0587, 6.5565, -10.0397, -2.05083, 2.27431, -3.64013, -0.10148, -1.74282)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass39" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(1.99469, -7.68161, 6.69347, 0, 11.3091, 4.8315, -7.96648, -1.92336, 1.67594, -4.68576, -0.10148, -0.10465)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(5.65685, -3.24464, 4.63382, 0, 6.55322, 4.58861, -5.65685, -3.24464, 4.63382, -0.409372, -0.10148, 2.26399)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass2" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(5.65685, -4.40628, 5.79547, 0, 8.89939, 5.73892, -5.65685, -4.40628, 5.79547, -0.409372, -0.10148, 1.1587)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass3" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(3.49541, -3.87074, 4.17686, 0, 7.81776, 4.1361, -3.49541, -3.87074, 4.17686, -1.18197, -0.10148, 1.62254)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass40" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-1.82518, -4.46759, 6.38039, 0, 6.55322, 4.58861, -7.78901, 1.04688, -1.4951, 0.816559, -0.10148, -0.974242)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass41" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-1.82518, -6.06708, 7.97987, 1.42109e-14, 8.89939, 5.73892, -7.78901, 1.42168, -1.8699, -0.122702, -0.10148, -1.55688)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass42" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-1.12779, -5.32968, 5.75118, -7.10543e-15, 7.81776, 4.1361, -4.81289, 1.24889, -1.34766, -0.135798, -0.10148, -0.65583)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass43" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-2.66856, -4.19013, 6.9463, 0, 6.14622, 4.9956, -11.3882, 0.98186, -1.62771, -1.71757, -0.10148, -0.932442)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass44" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-2.66856, -5.69028, 8.68765, 2.07774e-14, 8.34669, 6.24794, -11.3882, 1.33338, -2.03575, -2.65683, -0.10148, -1.7916)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass45" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-1.64892, -4.99868, 6.26129, -1.03887e-14, 7.33223, 4.50296, -7.03684, 1.17132, -1.46719, -2.66992, -0.10148, -0.462911)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass7" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(10.5711, -3.45314, 3.52975, 0, 6.97434, 3.49531, -10.5711, -3.45314, 3.52975, -6.34688, -0.10148, -2.18528)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass8" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(10.5711, -4.68944, 4.41462, 0, 9.47128, 4.37155, -10.5711, -4.68944, 4.41462, -6.34688, -0.10148, -4.01431)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass9" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(6.53199, -4.11948, 3.18167, 0, 8.32014, 3.15062, -6.53199, -4.11948, 3.18167, -7.42249, -0.10148, -3.24674)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass13" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(18.3318, -1.22709, 1.02791, 0, 7.50153, 3.08094, -4.40445, -5.10728, 4.27828, -10.2206, -0.10148, -6.25748)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass14" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(18.3318, -1.66642, 1.2856, 0, 10.1872, 3.85329, -4.40445, -6.93579, 5.3508, -9.06188, -0.10148, -7.51746)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass15" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(11.3273, -1.46388, 0.926547, 0, 8.94906, 2.77711, -2.72154, -6.09281, 3.85638, -10.6606, -0.10148, -7.44258)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass16" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(14.9593, 3.19694, -2.67802, -1.36582e-07, 7.50153, 3.08094, 11.4749, -4.16769, 3.4912, -6.43784, -0.10148, -8.13808)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass17" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(14.9592, 4.34151, -3.34937, -2.67845e-07, 10.1872, 3.85329, 11.4749, -5.65981, 4.36641, -4.72945, -0.10148, -8.03049)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass18" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(9.24344, 3.81384, -2.41393, -3.28691e-09, 8.94906, 2.77711, 7.09043, -4.97191, 3.14692, -5.7937, -0.10148, -9.22579)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass19" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(14.9593, 3.19694, -2.67802, -1.36582e-07, 7.50153, 3.08094, 11.4749, -4.16769, 3.4912, 2.48717, -0.10148, -8.13808)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass20" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(14.9592, 4.34151, -3.34937, -2.67845e-07, 10.1872, 3.85329, 11.4749, -5.65981, 4.36641, 4.19556, -0.10148, -8.03049)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass21" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(9.24344, 3.81384, -2.41393, -3.28691e-09, 8.94906, 2.77711, 7.09043, -4.97191, 3.14692, 3.13131, -0.10148, -9.22579)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass25" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(14.9593, 3.19694, -2.67802, -1.36582e-07, 7.50153, 3.08094, 11.4749, -4.16769, 3.4912, 0.013382, -0.10148, -5.30279)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass26" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(14.9592, 4.34151, -3.34937, -2.67845e-07, 10.1872, 3.85329, 11.4749, -5.65981, 4.36641, 1.72178, -0.10148, -5.19519)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass27" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(9.24344, 3.81384, -2.41393, -3.28691e-09, 8.94906, 2.77711, 7.09043, -4.97191, 3.14692, 0.65753, -0.10148, -6.3905)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass28" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(16.5157, -2.53336, 2.12216, -5.82403e-07, 7.50153, 3.08094, -9.0931, -4.60132, 3.85445, -4.95632, -0.10148, -4.78012)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass29" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(16.5157, -3.44036, 2.65415, -7.13665e-07, 10.1872, 3.85329, -9.09309, -6.24868, 4.82071, -4.17183, -0.10148, -6.30156)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass30" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(10.2052, -3.02221, 1.91288, -3.28691e-09, 8.94906, 2.77711, -5.61869, -5.48921, 3.47434, -5.69386, -0.10148, -5.8068)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass31" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(9.67157, -4.50884, 3.77697, -8.53398e-07, 7.50153, 3.08094, -16.1837, -2.69453, 2.25716, -9.25069, -0.10148, -2.93941)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass32" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(9.67158, -6.12309, 4.72382, -1.00955e-06, 10.1872, 3.85329, -16.1837, -3.65922, 2.823, -9.341, -0.10148, -4.6488)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass33" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(5.97614, -5.37888, 3.40451, 1.64163e-07, 8.94906, 2.77711, -10.0001, -3.21448, 2.03457, -10.4055, -0.10148, -3.4537)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass34" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(0.291772, -4.51814, 3.31755, -1.12804e-06, 6.45366, 2.32336, -15.9195, -0.0828086, 0.0608042, -1.23693, -0.10148, -3.31122)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass35" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(0.291775, -6.13572, 4.14921, -8.52591e-07, 8.76419, 2.9058, -15.9195, -0.112455, 0.0760471, -1.94497, -0.10148, -4.52765)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass36" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(0.18029, -5.38998, 2.99039, 2.64484e-07, 7.69899, 2.09424, -9.83679, -0.0987872, 0.0548075, -2.19625, -0.10148, -3.20305)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass22" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(18.7086, -2.41934, 3.95409, -6.33804e-07, 8.41609, 6.74394, -8.4233, -5.37348, 8.78226, -1.03897, -0.10148, -8.01326)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass23" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(18.7086, -3.28551, 4.94534, -7.76652e-07, 11.4292, 8.43457, -8.4233, -7.2973, 10.9839, 0.207563, -0.10148, -8.78968)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass46" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(0.18029, -5.38998, 2.99039, 2.64484e-07, 7.69899, 2.09424, -9.83679, -0.0987872, 0.0548075, -13.6481, -0.10148, -3.62527)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass47" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(18.7086, -2.41934, 3.95409, -6.33804e-07, 8.41609, 6.74394, -8.4233, -5.37348, 8.78226, -12.4909, -0.10148, -8.43548)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass48" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(18.7086, -3.28551, 4.94534, -7.76652e-07, 11.4292, 8.43457, -8.4233, -7.2973, 10.9839, -11.2443, -0.10148, -9.2119)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass49" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-8.39465, -2.81135, 1.55975, 2.69857e-07, 7.69899, 2.09424, -5.13076, 4.59978, -2.55198, -4.52398, -0.10148, -4.31404)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass50" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(2.19593, -5.85916, 9.57603, -6.6155e-07, 8.41609, 6.74394, -20.3996, -0.630715, 1.03082, -8.08825, -0.10148, -7.74529)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass51" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(2.19593, -7.95685, 11.9766, -7.48906e-07, 11.4292, 8.43457, -20.3996, -0.856522, 1.28923, -8.12756, -0.10148, -9.21332)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass52" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-8.93119, -2.26113, 1.25449, 3.94947e-07, 7.69899, 2.09424, -4.1266, 4.89377, -2.71508, 1.7027, -0.10148, -3.13016)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass55" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-14.1952, -1.93432, 1.42504, 6.27729e-07, 6.5862, 2.37897, -6.55882, 4.18644, -3.08422, 3.39419, -0.10148, -4.94918)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass56" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-14.1952, -1.93432, 1.42504, 6.27729e-07, 6.5862, 2.37897, -6.55882, 4.18644, -3.08422, 3.39419, -0.10148, -4.94918)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass53" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-0.175466, -5.89279, 9.631, -6.6155e-07, 8.41609, 6.74394, -20.5167, 0.0503967, -0.0823672, -2.77867, -0.10148, -8.04487)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass54" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(-0.175462, -8.00252, 12.0454, -6.94012e-07, 11.4292, 8.43457, -20.5167, 0.068441, -0.103017, -2.98732, -0.10148, -9.49854)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass24" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(11.5602, -2.88618, 3.56416, -3.577e-09, 10.0401, 6.07889, -5.20482, -6.41038, 7.91619, -1.93933, -0.10148, -8.59143)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass10" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(8.01729, -2.46808, 6.2177, 0, 4.9848, 6.15703, -8.01729, -2.46808, 6.2177, -2.07319, -0.10148, -5.31035)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass11" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(8.01729, -3.3517, 7.7764, 0, 6.76945, 7.70052, -8.01729, -3.3517, 7.7764, -2.07319, -0.10148, -6.41564)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[node name="grass12" type="MeshInstance3D" parent="grassline/RootNode"]
+transform = Transform3D(4.95394, -2.94433, 5.60454, 0, 5.94669, 5.54985, -4.95394, -2.94433, 5.60454, -3.30171, -0.10148, -5.9518)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_32137")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sxw2e")
+
+[editable path="WinTrigger"]

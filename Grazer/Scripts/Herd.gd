@@ -138,6 +138,7 @@ func spawnStrayCow(pos:Vector3, type:int = -1) -> Node:
 	SceneCounter.cows += 1
 	cow.position = pos
 	cow.stray = true
+	cow.add_to_group('DespawnAtCheckpoint')
 	return cow
 
 #get target for cows to follow, either player's position or center of huddle
