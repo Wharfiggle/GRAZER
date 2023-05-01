@@ -18,3 +18,4 @@ func _on_body_entered(body):
 		await Fade.fade_out(3).finished
 		winScreen.start()
 		Fade.fade_in()
+		winScreen.pan()
