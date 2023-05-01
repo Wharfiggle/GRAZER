@@ -268,12 +268,12 @@ func getRandomItem(potionVsUpgradeChance:float = 0.5) -> Item:
 		return getRandomUpgrade()
 
 func broadcastMessage(message:String, time:float):
+	broadcastTime = time + 2 * broadcastStartExitTime
 	if(message == broadcast.get_child(2).text):
 		broadcastTimer = max(time + broadcastStartExitTime, broadcastTimer)
 	else:
 		broadcastTimer = broadcastTime
 		broadcast.get_child(2).text = message
-	broadcastTime = time + 2 * broadcastStartExitTime
 
 func changeMusic(ind:int, duration:float = 0.5):
 	if(ind == currentMusic):
@@ -306,6 +306,7 @@ func _process(delta):
 		broadcastTimer -= delta
 		if(broadcastTimer < 0):
 			broadcastTimer = 0
+			broadcast.get_child(2).text = "wee woo wee woo"
 		var startT = 1.0 - min(1.0, (broadcastTime - broadcastTimer) / broadcastStartExitTime)
 		var endT = 1.0 - min(1.0, broadcastTimer / broadcastStartExitTime)
 		var t = startT

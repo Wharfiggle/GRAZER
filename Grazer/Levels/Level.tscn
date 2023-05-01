@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://diy7osedw50gn"]
+[gd_scene load_steps=50 format=3 uid="uid://diy7osedw50gn"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -38,6 +38,11 @@
 [ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="32_0n3cj"]
 [ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/WinTrigger.tscn" id="32_054jj"]
 [ext_resource type="Texture2D" uid="uid://dqe54qrwmp5ed" path="res://Assets/Images/EndScreen.png" id="33_gftir"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b8kx2"]
+font = ExtResource("19_u5bqv")
+font_size = 24
+font_color = Color(0.235294, 0.14902, 0.0901961, 1)
 
 [sub_resource type="Gradient" id="Gradient_x61s1"]
 interpolation_mode = 2
@@ -102,7 +107,24 @@ script = ExtResource("1_ilocr")
 offset_bottom = 26.0001
 
 [node name="Cow Counter" parent="." instance=ExtResource("12")]
-visible = false
+z_index = 30
+offset_left = 23.0
+offset_top = 67.0
+offset_right = 82.0
+offset_bottom = 103.0
+text = "30"
+label_settings = SubResource("LabelSettings_b8kx2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Cow Counter"]
+show_behind_parent = true
+offset_left = -1.0
+offset_top = -19.0
+offset_right = 58.0
+offset_bottom = 63.0
+scale = Vector2(1, 0.7)
+texture = ExtResource("25_nx0q5")
 
 [node name="Health Counter" parent="." instance=ExtResource("3_8ivn4")]
 visible = false
