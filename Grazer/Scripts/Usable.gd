@@ -18,7 +18,7 @@ func _process(_delta):
 		parent.use()
 	
 	var targAlpha = 0
-	if(!inRange):
+	if(!inRange || !active):
 		targAlpha = 1.0
 	interactGraphic.transparency = lerpf(interactGraphic.transparency, targAlpha, 0.2)
 	

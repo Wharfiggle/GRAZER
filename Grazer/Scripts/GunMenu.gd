@@ -78,7 +78,7 @@ func updateUpgrades():
 			if(upgrade.wepLevel == -1 || upgrade.wepLevel > j):
 				pips[3 * (i % 3) + j].visible = true
 		var buyButton = section.get_child(0)
-		print("id: " + str(i) + ", cost: " + str(gunCosts[i]) + ", funds: " + str(parent.totalValue))
+		#print("id: " + str(i) + ", cost: " + str(gunCosts[i]) + ", funds: " + str(parent.totalValue))
 		if(upgrade.wepLevel == -1 || gunCosts[i] >= parent.totalValue):
 			buyButton.disabled = true
 			buyButton.modulate = Color(1.0, 0.75, 0.75)

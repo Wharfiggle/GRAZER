@@ -56,6 +56,7 @@ func use():
 	active = !active
 	enterExitTimer = enterExitTime
 	if(active):
+		level.changeMusic(3)
 		menuSoundsB.stream = openSound
 		menuSoundsB.play()
 		updateNumCowTypes()
@@ -67,6 +68,7 @@ func use():
 		uiCursor.setActive(true, newMousePos)
 		player.active = false
 	else:
+		level.changeMusic(2)
 		menuSoundsB.stream =closeSound
 		menuSoundsB.play()
 		uiCursor.setActive(false)
