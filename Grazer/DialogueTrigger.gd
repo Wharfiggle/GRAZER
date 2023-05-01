@@ -2,7 +2,7 @@ extends Area3D
 @export var id = 0
 var talking = false
 var textDelay = 4.0
-var timer = 0
+var timer = 5
 @onready var porchMan = get_parent()
 
 #Make this a child of the talking porchman
@@ -10,7 +10,7 @@ var tutorial = []
 var checkPoint = []
 var index = -1
 var textArray
-var started = false
+var started = true
 @onready var silentBox = preload("res://Assets/Images/SpeechBubbles/silenceBox.png")
 var pointPoint
 @onready var textBox = $"../TextBox"
@@ -60,14 +60,11 @@ func start():
 	started = true
 	visible = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func use():
+	timer = -1
+	next()
 	
-	if(Input.is_action_just_pressed("Interact") and player.position.distance_to(position) < 100):
-		timer = 0
-	
-	timer -= delta
-	#Switch sprite to next textbox after time
+func next():
 	if(started and textBox != null and timer < 0 and index < textArray.size() - 1):
 		index += 1
 		timer = textArray[index][1] * 3
@@ -80,8 +77,18 @@ func _process(delta):
 	elif(started and textBox != null and timer < 0):
 		visible = false
 		started = false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	
+#	if(Input.is_action_just_pressed("Interact") and player.position.distance_to(position) < 100):
+#		timer = 0
+	
+	timer -= delta
+	#Switch sprite to next textbox after time
+	next()
 	
 
-func _on_body_entered(body):
-	if(body.is_in_group('Player') and !started):
-		start()
+#func _on_body_entered(body):
+#	if(body.is_in_group('Player') and !started):
+#		start()
