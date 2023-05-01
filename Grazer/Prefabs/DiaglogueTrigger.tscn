@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bribybkarixfu"]
+
+[ext_resource type="Script" path="res://DialogueTrigger.gd" id="1_cvhhh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qsijg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t7gbv"]
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_cvhhh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_qsijg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+visible = false
+mesh = SubResource("CylinderMesh_t7gbv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

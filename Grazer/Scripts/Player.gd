@@ -165,7 +165,7 @@ var deathTimer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.add_to_group('Player')
-	healthCounter.updateHealth(hitpoints)
+	#healthCounter.updateHealth(hitpoints)
 	lineSight = lineSightMesh.duplicate()
 	lineSightNode.mesh = lineSight
 	lineSight.prepareForColorChange(lineSightNode)
@@ -928,7 +928,7 @@ func updateHealth(newHP:float):
 				Vocal.play()
 	hitpoints = newHP
 	MainHud._on_health_update_(hitpoints / maxHitpoints)
-	healthCounter.updateHealth(hitpoints)
+	#healthCounter.updateHealth(hitpoints)
 	if(hitpoints <= 0 and !invincible):
 		die()
 	if(hitpoints > maxHitpoints):

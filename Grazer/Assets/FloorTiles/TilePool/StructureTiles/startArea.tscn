@@ -1,9 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://baia22mlx2ndf"]
+[gd_scene load_steps=34 format=3 uid="uid://baia22mlx2ndf"]
 
 [ext_resource type="PackedScene" uid="uid://d0xfwabed5xb8" path="res://Assets/FloorTiles/!Prefabs!/Walls/rock_wall_decimated.tscn" id="12_xvcqw"]
 [ext_resource type="PackedScene" uid="uid://dmombb06cyng6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="13_f34wr"]
+[ext_resource type="PackedScene" uid="uid://bribybkarixfu" path="res://Prefabs/DiaglogueTrigger.tscn" id="14_4og65"]
 [ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="14_gixhr"]
 [ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="15_5ty3t"]
+[ext_resource type="Texture2D" uid="uid://vv6m4iy0wi1i" path="res://Assets/Images/SpeechBubbles/silenceBox.png" id="15_p8g01"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="15_xnf5g"]
 [ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="16_xagq1"]
 [ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="17_pl7fx"]
@@ -15,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dur5c8rol4408" path="res://Assets/Models/Porch Man/porch_man.tscn" id="23_u5ktt"]
 [ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="24_8050b"]
 [ext_resource type="PackedScene" uid="uid://v00bm1qrsgji" path="res://Assets/FloorTiles/!Prefabs!/Rusted Car/rustedcarCream.tscn" id="24_jsn0s"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6_noColl.tscn" id="25_ykmj6"]
+[ext_resource type="PackedScene" uid="uid://8khtr2r30nb0" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6_noColl.tscn" id="25_ykmj6"]
 [ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="26_m6hao"]
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="27_ivust"]
 [ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="28_l5ghf"]
@@ -332,6 +334,16 @@ transform = Transform3D(0.143699, 0, -0.373297, 0, 0.4, 0, 0.373297, 0, 0.143699
 
 [node name="Porch Man" parent="." instance=ExtResource("23_u5ktt")]
 transform = Transform3D(0.544712, 0, -0.838623, 0, 1, 0, 0.838623, 0, 0.544712, 16.6448, 0.81123, -7.91645)
+
+[node name="Area3D" parent="Porch Man" instance=ExtResource("14_4og65")]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 1.61987, 0, -0.127094)
+
+[node name="TextBox" type="Sprite3D" parent="Porch Man"]
+transform = Transform3D(-0.415653, -1.12211, 1.60253, 0, 1.6383, 1.14715, -1.95633, 0.238409, -0.340483, 3.26853, 3.93927, -1.04862)
+lod_bias = 0.001
+centered = false
+billboard = 1
+texture = ExtResource("15_p8g01")
 
 [node name="Rustedcar" parent="." instance=ExtResource("24_jsn0s")]
 transform = Transform3D(-0.532847, 0, 0.846212, 0, 1, 0, -0.846212, 0, -0.532847, 16.4013, -0.212473, -8.46577)
