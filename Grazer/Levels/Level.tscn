@@ -1566,6 +1566,8 @@ offset_bottom = 1055.49
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HerdMenu"]
+
 [node name="DeathMenu" type="Panel" parent="."]
 visible = false
 z_index = 100
@@ -1747,26 +1749,32 @@ process_mode = 3
 [node name="Area3D" parent="." instance=ExtResource("32_054jj")]
 
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Common" to="HerdMenu" method="_on_common_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Common/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Common/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Common/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Red" to="HerdMenu" method="_on_red_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Red/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Red/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Red/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Lucky" to="HerdMenu" method="_on_lucky_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky" to="HerdMenu" method="_on_lucky_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Lucky/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/GrandRed" to="HerdMenu" method="_on_grand_red_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed" to="HerdMenu" method="_on_grand_red_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/GrandRed/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Ironhide" to="HerdMenu" method="_on_ironhide_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide" to="HerdMenu" method="_on_ironhide_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Ironhide/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
 [connection signal="mouse_entered" from="HerdMenu/VBoxContainer/Moxie" to="HerdMenu" method="_on_moxie_mouse_entered"]
+[connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie" to="HerdMenu" method="_on_moxie_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/MakeTrade" to="HerdMenu" method="_on_make_trade_pressed"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/TradeMenu/BackButton" to="HerdMenu" method="stopTrade"]
 [connection signal="pressed" from="HerdMenu/VBoxContainer/Moxie/TradeMenu/ConfirmTrade" to="HerdMenu" method="_on_confirm_trade_pressed"]
