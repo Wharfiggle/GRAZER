@@ -429,6 +429,7 @@ func _physics_process(delta):
 		var chunk = terrainController.getPlayerChunk(position)
 		setHibernate(!terrain.activeCoord.has(chunk))
 	else:
+		setHibernate(true)
 		terrain = get_node("/root/Level/AllTerrain")
 	
 	speedBoostTimer -= delta

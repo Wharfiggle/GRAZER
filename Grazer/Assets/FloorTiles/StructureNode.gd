@@ -21,6 +21,7 @@ var instance
 
 var spawnChanceMod = 1.0
 var spawnPrefabs = []
+var tcontrol = null
 
 static func retrieveStructureTypes() -> Array:
 	var structures = []
@@ -71,9 +72,10 @@ func setStructureData(id:int, structureTypes:Array = []) -> Array:
 	depth = info[2]
 	return structures
 
-func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array):
+func setSpawnerVariables(inSpawnChanceMod:float, inSpawnPrefabs:Array, inTControl:Node):
 	spawnChanceMod = inSpawnChanceMod
 	spawnPrefabs = inSpawnPrefabs
+	tcontrol = inTControl
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -115,6 +117,9 @@ func _process(_delta):
 	#elif(distance > (renderRange + 1) * tileWidth and scene != null):
 	elif(outOfRange && scene != null):
 		print("UNLOAD STRUCTURE")
+#		var activeStructInd = tcontrol.activeStructs.find(self)
+#		tcontrol.activeStructs.remove_at(activeStructInd)
+#		tcontrol.activeStructCoord.remove_at(activeStructInd)
 		#if(tileId == 0):
 		#	print("UNLOADING CHECKPOINT: distance.x: " + str(distance.x) + " > " + str(width / 2 + 3))
 		scene.queue_free()

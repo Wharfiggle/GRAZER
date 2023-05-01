@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxmokm0w5pjrq"]
 
 [sub_resource type="FogMaterial" id="FogMaterial_akt85"]
+density = 5.0
 albedo = Color(1, 0.956863, 0.890196, 1)
 
 [node name="FogVolume" type="FogVolume"]

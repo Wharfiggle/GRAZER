@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://diy7osedw50gn"]
+[gd_scene load_steps=35 format=3 uid="uid://diy7osedw50gn"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -60,6 +60,9 @@ outline_size = 5
 shadow_size = 10
 shadow_color = Color(0, 0, 0.137255, 1)
 shadow_offset = Vector2(1, -4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x4scn"]
+size = Vector3(32, 0.1, 48)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_ilocr")
@@ -324,6 +327,12 @@ script = ExtResource("25_onhah")
 
 [node name="UICursor" parent="." instance=ExtResource("31_7rkun")]
 process_mode = 3
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 56)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_x4scn")
 
 [connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]

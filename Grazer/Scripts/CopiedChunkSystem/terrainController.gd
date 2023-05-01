@@ -54,6 +54,8 @@ var chunkLoaded = false
 var circumnavigation = false
 var revolution_distance = 8.0
 
+#var activeStructCoord = []
+#var activeStructs = []
 @onready var activeCoord = []
 @onready var activeChunks = []
 
@@ -332,8 +334,10 @@ func addStructure(id, chunkCoords):
 	#Places structure node in correct place on map
 	
 	var instance = structureNode.instantiate()
+#	activeStructCoord.append(chunkCoords)
+#	activeStructs.append(instance)
 	SceneCounter.structureNodes += 1
-	instance.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab])
+	instance.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab], self)
 	get_node(NodePath("/root/Level/AllTerrain")).add_child(instance)
 	instance.position = chunkCoords * tileWidth
 	instance.setStructureData(id, structureTypes)

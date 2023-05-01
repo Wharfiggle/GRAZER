@@ -358,4 +358,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.3447, -0.90479, -18.9132)
 script = ExtResource("38_db5gv")
 
 [node name="Usable" parent="ElixirGunMenuPrompt" instance=ExtResource("36_qqwns")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.4846, -0.90479, -16.577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.1302, -0.90479, -15.6758)

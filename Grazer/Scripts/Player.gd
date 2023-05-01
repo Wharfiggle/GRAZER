@@ -31,8 +31,8 @@ var knocked = false
 var movementBlend = 0.0
 
 #var volume = 1
-var hibernate = false
-@onready var terrain = get_node("/root/Level/AllTerrain")
+#var hibernate = false
+#@onready var terrain = get_node("/root/Level/AllTerrain")
 
 #Reload variables
 var currentReloadTime = 0
@@ -156,7 +156,7 @@ var swapInputFrames = 5
 var swapInputFrameCounter = 0
 var active = true
 var maxAmmo = 0
-var lastGroundedPosition = position
+@onready var lastGroundedPosition = position
 @onready var deathMenu = $"../DeathMenu"
 
 var deathBlend = 0
@@ -589,11 +589,15 @@ func _physics_process(delta):
 #			hitFlash.set_shader_parameter("amount", 0.0)
 #			hitFlash.set_shader_parameter("color", hitColor)
 	
-	if(terrain != null):
-		var chunk = terrainController.getPlayerChunk(position)
-		setHibernate(!terrain.activeCoord.has(chunk))
-	else:
-		terrain = get_node("/root/Level/AllTerrain")
+#	if(terrain != null):
+#		var chunk = terrainController.getPlayerChunk(position)
+#		print(chunk)
+#		var activeInd = terrain.activeCoord.find(chunk)
+#		setHibernate(activeInd == -1 || terrain.activeChunks[activeInd].loading != false)
+#		print(terrain.activeChunks[activeInd])
+#	else:
+#		setHibernate(true)
+#		terrain = get_node("/root/Level/AllTerrain")
 	
 	if(deathTimer > 0):
 		deathTimer -= delta
@@ -823,13 +827,13 @@ func _physics_process(delta):
 			else:
 				lastGroundedPosition.y += 1
 
-func setHibernate(inHibernate:bool):
-	hibernate = inHibernate
-	if(hibernate):
-		GRAVITY = 0
-		position.y = 0
-	else:
-		GRAVITY = 30
+#func setHibernate(inHibernate:bool):
+#	hibernate = inHibernate
+#	if(hibernate):
+#		GRAVITY = 0
+#		position.y = 0
+#	else:
+#		GRAVITY = 30
 
 func updateGunStats():
 	revolverClipSize = gunStats[0]
