@@ -84,7 +84,6 @@ func _ready():
 
 func spawnMarauder(gunman:bool):
 	#screen height and width in units, 15.0 = camera.size()
-
 	var camSize = 15.0
 	if(camera != null):
 		camSize = camera.size
