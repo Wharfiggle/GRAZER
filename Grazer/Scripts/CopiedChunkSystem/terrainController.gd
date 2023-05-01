@@ -218,7 +218,7 @@ func _get_chunk_key(coords : Vector3):
 #reserve empty space in the regular chunk system for them (so they don't overlap normal tiles)
 #and places the StructureNodes that load in the structure when the play gets close enough
 func generateStructures():
-	addStructure(3, Vector3(mapWidth - 1, 0, 4))
+	addStructure(3, Vector3(0, 0, 4))
 	#Loop for levels
 	for l in numLevels + 1:
 		#Generate the check points

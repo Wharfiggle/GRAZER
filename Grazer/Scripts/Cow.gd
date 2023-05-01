@@ -425,8 +425,11 @@ func _physics_process(delta):
 		herd = get_node("/root/Level/Herd")
 		print("Cow.gd: herd is null")
 		
-	var chunk = terrainController.getPlayerChunk(position)
-	setHibernate(!terrain.activeCoord.has(chunk))
+	if(terrain != null):
+		var chunk = terrainController.getPlayerChunk(position)
+		setHibernate(!terrain.activeCoord.has(chunk))
+	else:
+		terrain = get_node("/root/Level/AllTerrain")
 	
 	speedBoostTimer -= delta
 	if(speedBoostTimer < 0):

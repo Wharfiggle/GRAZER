@@ -291,7 +291,7 @@ func _ready():
 	inventory.visible = false
 	broadcast.position.y -= broadcastHeight
 	rng.randomize()
-	Fade.fade_in()
+	Fade.fade_in(3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

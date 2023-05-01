@@ -110,7 +110,7 @@ current = true
 size = 16.0
 
 [node name="Player" parent="." instance=ExtResource("9")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 78.6878, 10, 64.1144)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.9956, 10, 64.1144)
 collision_mask = 33
 
 [node name="DirectionalLight3D" parent="." instance=ExtResource("8_kp882")]

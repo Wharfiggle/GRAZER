@@ -30,7 +30,9 @@ var dodgeBufferTimer = 0.0
 var knocked = false
 var movementBlend = 0.0
 
-var volume = 1
+#var volume = 1
+var hibernate = false
+@onready var terrain = get_node("/root/Level/AllTerrain")
 
 #Reload variables
 var currentReloadTime = 0
@@ -114,7 +116,7 @@ var rayLungesound = preload("res://sounds/Cowgirl edited/Lunges/Lunge#01.3.wav")
 var whistle1 = preload("res://sounds/newSounds/Whistle/Whistle1.wav")
 var whistle2 = preload("res://sounds/newSounds/Whistle/Whistle2.wav")
 
-const GRAVITY = 30
+var GRAVITY = 30
 @export var speed = 8.0
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
@@ -587,6 +589,12 @@ func _physics_process(delta):
 #			hitFlash.set_shader_parameter("amount", 0.0)
 #			hitFlash.set_shader_parameter("color", hitColor)
 	
+	if(terrain != null):
+		var chunk = terrainController.getPlayerChunk(position)
+		setHibernate(!terrain.activeCoord.has(chunk))
+	else:
+		terrain = get_node("/root/Level/AllTerrain")
+	
 	if(deathTimer > 0):
 		deathTimer -= delta
 		if(deathTimer < 0):
@@ -814,6 +822,14 @@ func _physics_process(delta):
 				lastGroundedPosition = Vector3(position.x, 0, position.z)
 			else:
 				lastGroundedPosition.y += 1
+
+func setHibernate(inHibernate:bool):
+	hibernate = inHibernate
+	if(hibernate):
+		GRAVITY = 0
+		position.y = 0
+	else:
+		GRAVITY = 30
 
 func updateGunStats():
 	revolverClipSize = gunStats[0]
