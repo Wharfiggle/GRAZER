@@ -19,6 +19,9 @@ var broadcastTime = 0.0
 @onready var broadcast = get_node(NodePath("./Broadcast"))
 @export var broadcastHeight = 200
 @onready var broadcastOrigPos = broadcast.position
+@onready var windPlayer = $windPlayer
+
+var wind = preload("res://sounds/New Sound FEX/Ambiance/windloop(storm).wav")
 #levels [1, 2, 3]
 var gunStats = [ 
 	#capacity	 	damage					reload speed
@@ -292,6 +295,9 @@ func _ready():
 	broadcast.position.y -= broadcastHeight
 	rng.randomize()
 	Fade.fade_in(3.0)
+	
+	windPlayer.stream = wind
+	windPlayer.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

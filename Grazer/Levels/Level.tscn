@@ -345,6 +345,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 56)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 shape = SubResource("BoxShape3D_x4scn")
 
+[node name="windPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -11.0
+bus = &"background "
+
 [connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="WinMenu/RestartButton" to="WinMenu" method="_on_restart_button_pressed"]
