@@ -29,7 +29,7 @@ var openSound = preload("res://sounds/New Sound FEX/UI/MenuSlideIn.wav")
 var closeSound = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
 var tradeSound = preload("res://sounds/New Sound FEX/UI/cow menu/CowOfferTrade.wav")
 var tradeCancel = preload("res://sounds/New Sound FEX/UI/cow menu/CowMenuBack.wav")
-var tradeConfirm = preload("res://sounds/New Sound FEX/UI/cow menu/CowConfirmTrade.wav")
+var tradeConfirm = preload("res://sounds/New Sound FEX/UI/extra sounds/Ui_pitch5.wav")
 var cowClick = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 
 # Called when the node enters the scene tree for the first time.
