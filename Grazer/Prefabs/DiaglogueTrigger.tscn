@@ -7,6 +7,7 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_t7gbv"]
 
 [node name="Area3D" type="Area3D"]
+visible = false
 script = ExtResource("1_cvhhh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

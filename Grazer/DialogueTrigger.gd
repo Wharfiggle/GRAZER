@@ -3,6 +3,7 @@ extends Area3D
 var talking = false
 var textDelay = 4.0
 var timer = 5
+var next = false
 @onready var porchMan = get_parent()
 
 #Make this a child of the talking porchman
@@ -58,36 +59,32 @@ func _ready():
 
 func start():
 	started = true
-	visible = true
+	#visible = true
+	textBox.visible = true
 
 func use():
-	timer = -1
-	next()
-	
-func next():
-	if(started and textBox != null and timer < 0 and index < textArray.size() - 1):
+	print("used")
+	if(!started):
+		start()
+	nextText()
+
+func nextText():
+	if(started and textBox != null and index < textArray.size() - 1):
 		index += 1
-		timer = textArray[index][1] * 3
+		#timer = textArray[index][1] * 3
 		textBox.set_texture(load(textArray[index][0]))
 		if(textArray[index][0] == "res://Assets/Images/SpeechBubbles/tutorialScript/Asset18.png"):
 			textBox.scale = Vector3(1.3,1.3,1.3)
 		elif(textArray[index][0] == "res://Assets/Images/SpeechBubbles/tutorialScript/Asset 20.png"):
 			textBox.scale = Vector3(2,2,2)
 	#Hide when done talking
-	elif(started and textBox != null and timer < 0):
+	elif(started and textBox != null):
 		visible = false
 		started = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-#	if(Input.is_action_just_pressed("Interact") and player.position.distance_to(position) < 100):
-#		timer = 0
-	
-	timer -= delta
-	#Switch sprite to next textbox after time
-	next()
-	
+	pass
 
 #func _on_body_entered(body):
 #	if(body.is_in_group('Player') and !started):
