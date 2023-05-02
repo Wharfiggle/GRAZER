@@ -25,6 +25,8 @@ func use():
 		level.changeMusic(0)
 	await Fade.fade_out(1).finished
 	player.position.z -= 7
+	if(!exit):
+		player.hitpoints = player.maxHitpoints
 	var cows = player.herd.getCows()
 	var cowPos = player.position
 	cowPos.z += 2
