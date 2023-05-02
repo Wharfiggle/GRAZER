@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtfmrm20ruq5u" path="res://Prefabs/FPSCounter.tscn" id="2_c6l00"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://huhbvm4nip6t" path="res://Assets/Images/cowCounter.png" id="6_mmeut"]
+[ext_resource type="Texture2D" uid="uid://bxyxkq7a5m6fw" path="res://Assets/Images/cowCounter.png" id="6_mmeut"]
 [ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="8_kp882"]
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bxmokm0w5pjrq" path="res://Prefabs/fog_volume.tscn" id="11_1gwt8"]
@@ -16,7 +16,7 @@
 [ext_resource type="Environment" uid="uid://5rhjn7giur73" path="res://default_env.tres" id="16_leqkn"]
 [ext_resource type="FontFile" uid="uid://claanka6fj8mt" path="res://Assets/Font/Bronco Valley/OpenType-TT/Bronco.ttf" id="18_a0jb1"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="19_u5bqv"]
-[ext_resource type="PackedScene" path="res://Prefabs/ElixirGunMenu.tscn" id="20_bkmh5"]
+[ext_resource type="PackedScene" uid="uid://dcspo5f48r7j0" path="res://Prefabs/ElixirGunMenu.tscn" id="20_bkmh5"]
 [ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="23_5p5jq"]
 [ext_resource type="AudioStream" uid="uid://crtrdbfpgkmwl" path="res://sounds/Music/WildsMusic.wav" id="24_eux13"]
 [ext_resource type="Script" path="res://Scripts/WinMenu.gd" id="24_q0sdl"]
@@ -211,6 +211,7 @@ disabled = true
 text = "Main Menu"
 
 [node name="WinMenu" type="Panel" parent="."]
+visible = false
 z_index = 100
 anchors_preset = 15
 anchor_right = 1.0

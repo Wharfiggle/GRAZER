@@ -24,6 +24,12 @@ func use():
 	else:
 		level.changeMusic(0)
 	await Fade.fade_out(1).finished
+	var delete = get_tree().get_nodes_in_group("DespawnAtCheckpoint")
+	for i in delete:
+		if(i.has_method("delete")):
+			i.delete()
+		else:
+			i.queue_free()
 	player.position.z -= 7
 	if(!exit):
 		player.hitpoints = player.maxHitpoints
