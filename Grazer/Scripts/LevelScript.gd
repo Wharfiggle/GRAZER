@@ -159,7 +159,7 @@ class Item:
 			player.gunStats[id] = gunStats[id][wepLevel - 1]
 			player.updateGunStats()
 			levelScript.broadcastMessage(description, 3.0)
-		elif(id == 6): #health
+		elif(id == 6 && useOrUndo): #health
 			print(player.hitpoints)
 			player.updateHealth(player.hitpoints + 0.5 * player.maxHitpoints)
 			player.hitFlash.set_shader_parameter("color", Color(0.5, 1, 0.5))

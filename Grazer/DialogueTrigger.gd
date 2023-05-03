@@ -56,6 +56,8 @@ func _ready():
 		textArray = tutorial
 	elif(id == 1):
 		textArray = checkPoint
+		
+	use()
 
 func start():
 	started = true
