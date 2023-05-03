@@ -210,7 +210,7 @@ func stopTrade():
 	var cows = player.herd.getCows()
 	for i in cows:
 		i.uiSelectMode = -1
-	var hoveredCow = null
+	hoveredCow = null
 	selectedCows.clear()
 	selectedValue = 0
 	gain = 0

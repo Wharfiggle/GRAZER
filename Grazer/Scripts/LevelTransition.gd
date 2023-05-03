@@ -32,7 +32,7 @@ func use():
 			i.queue_free()
 	player.position.z -= 7
 	if(!exit):
-		player.hitpoints = player.maxHitpoints
+		player.updateHealth(player.maxHitpoints)
 	var cows = player.herd.getCows()
 	var cowPos = player.position
 	cowPos.z += 2
