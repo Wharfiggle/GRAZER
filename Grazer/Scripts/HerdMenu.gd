@@ -51,7 +51,9 @@ func _ready():
 	for i in cowCosts.size():
 		cowMenus[i].find_child("Cost").text = str(cowCosts[i])
 
-func use():
+func use(turnOff:bool = false):
+	if(turnOff && !active):
+		return
 	stopTrade()
 	active = !active
 	enterExitTimer = enterExitTime
@@ -101,7 +103,7 @@ func _process(delta):
 			if(trading):
 				stopTrade()
 			else:
-				use()
+				use(true)
 		
 		if(trading):
 			if(hoveredCow != null):

@@ -82,6 +82,7 @@ script = ExtResource("3_qsgwr")
 [node name="Revolver" type="TextureButton" parent="GunMenu"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("4_bfkha")
 texture_pressed = ExtResource("4_hqjx0")
 stretch_mode = 5
@@ -213,6 +214,7 @@ offset_top = 89.0
 offset_right = -30.0
 offset_bottom = 132.0
 grow_horizontal = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
 
@@ -279,6 +281,7 @@ offset_right = -32.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
 
@@ -345,6 +348,7 @@ offset_right = -32.0
 offset_bottom = -31.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
 
@@ -397,6 +401,7 @@ autowrap_mode = 2
 [node name="Shotgun" type="TextureButton" parent="GunMenu"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("10_nclm7")
 texture_pressed = ExtResource("11_7irom")
 stretch_mode = 5
@@ -528,6 +533,7 @@ offset_top = 89.0
 offset_right = -30.0
 offset_bottom = 132.0
 grow_horizontal = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
 
@@ -594,6 +600,7 @@ offset_right = -32.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
 
@@ -660,6 +667,7 @@ offset_right = -32.0
 offset_bottom = -31.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_m38i6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3b01g")
 
@@ -722,6 +730,7 @@ script = ExtResource("10_js6nd")
 [node name="Remedy" type="TextureButton" parent="ElixirMenu"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("11_in527")
 stretch_mode = 5
 
@@ -824,6 +833,7 @@ offset_right = -62.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
 
@@ -854,6 +864,7 @@ texture = ExtResource("9_5bqeh")
 [node name="Bulletstorm" type="TextureButton" parent="ElixirMenu"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("11_in527")
 stretch_mode = 5
 
@@ -956,6 +967,7 @@ offset_right = -62.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
 
@@ -986,6 +998,7 @@ texture = ExtResource("9_5bqeh")
 [node name="LifeLeech" type="TextureButton" parent="ElixirMenu"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("11_in527")
 stretch_mode = 5
 
@@ -1088,6 +1101,7 @@ offset_right = -62.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
 
@@ -1118,6 +1132,7 @@ texture = ExtResource("9_5bqeh")
 [node name="Roadrunner" type="TextureButton" parent="ElixirMenu"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("11_in527")
 stretch_mode = 5
 
@@ -1220,6 +1235,7 @@ offset_right = -62.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
 
@@ -1250,6 +1266,7 @@ texture = ExtResource("9_5bqeh")
 [node name="Lucky" type="TextureButton" parent="ElixirMenu"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("11_in527")
 stretch_mode = 5
 
@@ -1352,6 +1369,7 @@ offset_right = -62.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
 
@@ -1382,6 +1400,7 @@ texture = ExtResource("9_5bqeh")
 [node name="Dauntless" type="TextureButton" parent="ElixirMenu"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("11_in527")
 stretch_mode = 5
 
@@ -1484,6 +1503,7 @@ offset_right = -62.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ng3do")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q7jiy")
 
@@ -1532,6 +1552,7 @@ offset_left = 370.315
 offset_top = 1010.49
 offset_right = 480.315
 offset_bottom = 1055.49
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 
@@ -1541,6 +1562,7 @@ offset_left = 66.0
 offset_top = 114.0
 offset_right = 118.0
 offset_bottom = 146.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 
@@ -1550,6 +1572,7 @@ offset_left = 423.0
 offset_top = 112.0
 offset_right = 475.0
 offset_bottom = 144.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 
@@ -1559,6 +1582,7 @@ offset_left = 109.0
 offset_top = 12.0
 offset_right = 200.0
 offset_bottom = 73.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 
@@ -1568,6 +1592,7 @@ offset_left = 344.828
 offset_top = 11.994
 offset_right = 435.828
 offset_bottom = 72.994
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 

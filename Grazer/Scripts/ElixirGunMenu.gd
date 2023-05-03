@@ -37,7 +37,9 @@ func _ready():
 	position.x = origPos.x + widthOffset
 	
 
-func use():
+func use(turnOff:bool = false):
+	if(turnOff && !active):
+		return
 	active = !active
 	enterExitTimer = enterExitTime
 	if(active):
@@ -90,7 +92,7 @@ func _process(delta):
 		if(Input.is_action_just_pressed("SwapMenu")):
 			swapMenu()
 		elif(Input.is_action_just_pressed("dodge")):
-			use()
+			use(true)
 
 func setMenu(elixir:bool):
 	if(elixir && !onElixirMenu):

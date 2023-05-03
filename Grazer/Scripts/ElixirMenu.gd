@@ -47,9 +47,9 @@ func _process(delta):
 func _physics_process(_delta):
 	if(selected != -1 && parent.active && visible):
 		var buyButton = menus[selected].find_child("Buy")
-		if(parent.totalValue <= parent.player.potions[selected].cost || numElixirTypes[selected] > maxElixirs):
-			if(numElixirTypes[selected] > maxElixirs):
-				parent.level.broadcastMessage("Invalid Trade: Can't have more than " + maxElixirs + " of any elixir.", 0.1)
+		if(parent.totalValue <= parent.player.potions[selected].cost || numElixirTypes[selected] >= maxElixirs):
+			if(numElixirTypes[selected] >= maxElixirs):
+				parent.level.broadcastMessage("Invalid Trade: Can't have more than " + str(maxElixirs) + " of any elixir.", 0.1)
 			else:
 				parent.level.broadcastMessage("Invalid Trade: Insufficient cows.", 0.1)
 			buyButton.disabled = true

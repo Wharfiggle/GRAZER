@@ -218,8 +218,8 @@ func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:No
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if(Input.is_action_just_pressed("jump")):
-		graze()
+#	if(Input.is_action_just_pressed("jump")):
+#		graze()
 	
 	if(uiSelectMode != -1):
 		uiSelectTimeCounter += delta
