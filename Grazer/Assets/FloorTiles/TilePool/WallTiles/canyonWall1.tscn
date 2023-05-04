@@ -129,6 +129,5 @@ transform = Transform3D(0.0127724, 0.0956694, -0.175169, 0.134683, -0.133672, -0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("9_ygsfb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.47537, 0.0500007, -5.4203)
-gunmanSpawnChance = 1.0
-spawnChance = 0.2
+spawnChance = 0.1
 numEnemies = 5

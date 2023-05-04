@@ -91,6 +91,9 @@ var stray = false
 @onready var offscreenIndicator = find_child("OffscreenIndicator")
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 
+var fallTimer = 0
+var startFallY = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -484,6 +487,18 @@ func _physics_process(delta):
 		set_velocity(totalVelocity * potionSpeedup)
 	set_up_direction(Vector3.UP)
 	move_and_slide()
+	
+	if(position.y < -0.01):
+		if(fallTimer == 0):
+			startFallY = position.y
+		fallTimer += 1
+		if(fallTimer > 10):
+			if(abs(startFallY - position.y) < 0.1):
+				position.y = 0
+			fallTimer = 0
+	else:
+		fallTimer = 0
+		
 	
 #	if(offscreenIndicator != null && camera != null):
 #		var camSize = camera.size

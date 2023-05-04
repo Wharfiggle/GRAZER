@@ -41,12 +41,10 @@ texture = ExtResource("2_ewwuc")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = -206.0
+offset_left = -243.0
 offset_top = 33.0
-offset_right = 220.0
+offset_right = 257.0
 offset_bottom = 197.0
-text = "Attention:
-Thank you for your attention"
+text = "Attention: Thank you for your attention"
 label_settings = SubResource("LabelSettings_pg5ty")
 horizontal_alignment = 1
-autowrap_mode = 3

@@ -54,7 +54,6 @@ transform = Transform3D(-0.237486, 0.398207, 0.187168, 0.0856535, -0.166782, 0.4
 transform = Transform3D(-0.166692, -0.190667, -0.54393, 0.146547, 0.533593, -0.231954, 0.557438, -0.197294, -0.101673, 13.0904, -0.938748, 7.62489)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_qo1ip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74449, 0.0500007, 0.685781)
-gunmanSpawnChance = 1.0
-spawnChance = 0.2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1024, 0.0500007, 1.62326)
+spawnChance = 0.1
 numEnemies = 5

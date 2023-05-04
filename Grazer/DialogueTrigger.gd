@@ -78,10 +78,10 @@ func nextText():
 			textBox.scale = Vector3(1.3,1.3,1.3)
 		elif(textArray[index][0] == "res://Assets/Images/SpeechBubbles/tutorialScript/Asset 20.png"):
 			textBox.scale = Vector3(2,2,2)
-	#Hide when done talking
-	elif(started and textBox != null):
-		visible = false
-		started = false
+		#Hide when done talking
+		if(index == textArray.size() - 1):
+			visible = false
+			started = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

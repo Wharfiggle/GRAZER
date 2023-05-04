@@ -15,6 +15,7 @@ func _on_body_entered(body):
 		print("Player win")
 		get_node(NodePath("/root/Level")).changeMusic(5, 3.0)
 		triggered = true
+		body.potionSpeedup = 0.5
 		await Fade.fade_out(3).finished
 		winScreen.start()
 		Fade.fade_in()

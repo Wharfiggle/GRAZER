@@ -963,7 +963,7 @@ func die():
 	for i in enemies:
 		if(i.marauderType == 1):
 			i.currentMode = 2
-		elif(i.draggedCow != null || i.currentMode != 2):
+		elif(i.draggedCow != null || (i.currentMode != 7 && i.currentMode != 2)):
 			thieves += 1
 	for i in herd.getNumCows():
 		thieves -= 1

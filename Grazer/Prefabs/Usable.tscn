@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://bin30v0rfeimx"]
 
 [ext_resource type="Script" path="res://Scripts/Usable.gd" id="1_02raw"]
 [ext_resource type="Texture2D" uid="uid://b86jfncuxpn5s" path="res://Assets/Images/interactPrompt.png" id="2_vyoio"]
 
-
 [sub_resource type="QuadMesh" id="QuadMesh_djqmi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptetw"]
+render_priority = 10
 transparency = 1
+no_depth_test = true
 shading_mode = 0
 albedo_texture = ExtResource("2_vyoio")
 billboard_mode = 1

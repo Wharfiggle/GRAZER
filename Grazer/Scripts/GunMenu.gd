@@ -75,7 +75,7 @@ func updateUpgrades():
 		gunCosts[i] = upgrade.cost
 		var pips = menus[i / 3].find_child("Pips").get_children()
 		for j in 3:
-			if(upgrade.wepLevel == -1 || upgrade.wepLevel > j):
+			if(upgrade.wepLevel == -1 || upgrade.wepLevel > j + 1):
 				pips[3 * (i % 3) + j].visible = true
 		var buyButton = section.get_child(0)
 		#print("id: " + str(i) + ", cost: " + str(gunCosts[i]) + ", funds: " + str(parent.totalValue))

@@ -66,7 +66,6 @@ theme_override_constants/separation = 18
 [node name="Common" type="TextureButton" parent="VBoxContainer"]
 z_index = 1
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("4_nk6n8")
 stretch_mode = 5
 
@@ -145,9 +144,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -73.0
+offset_left = -63.0
 offset_top = 62.873
-offset_right = 197.0
+offset_right = 187.0
 offset_bottom = 118.873
 grow_horizontal = 2
 text = "Just your average cattle.
@@ -170,7 +169,6 @@ offset_right = -56.1409
 offset_bottom = -31.1859
 grow_horizontal = 0
 grow_vertical = 0
-focus_mode = 0
 texture_normal = ExtResource("8_cjxu4")
 texture_pressed = ExtResource("8_cjxu4")
 texture_hover = ExtResource("9_t8rf5")
@@ -277,7 +275,6 @@ offset_left = 13.0
 offset_top = 177.0
 offset_right = 113.0
 offset_bottom = 227.0
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -288,7 +285,6 @@ offset_left = 185.889
 offset_top = 175.414
 offset_right = 389.889
 offset_bottom = 223.414
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -296,7 +292,6 @@ disabled = true
 [node name="Red" type="TextureButton" parent="VBoxContainer"]
 z_index = 1
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("4_nk6n8")
 stretch_mode = 5
 
@@ -375,13 +370,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -73.0
+offset_left = -63.0
 offset_top = 62.873
-offset_right = 197.0
+offset_right = 187.0
 offset_bottom = 118.873
 grow_horizontal = 2
 text = "It'll embolden your herd.
-+Cow Drag Resistance"
++Cow Drag Resistance."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -400,7 +395,6 @@ offset_right = -56.1409
 offset_bottom = -31.1859
 grow_horizontal = 0
 grow_vertical = 0
-focus_mode = 0
 texture_normal = ExtResource("8_cjxu4")
 texture_pressed = ExtResource("8_cjxu4")
 texture_hover = ExtResource("9_t8rf5")
@@ -507,7 +501,6 @@ offset_left = 13.0
 offset_top = 177.0
 offset_right = 113.0
 offset_bottom = 227.0
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -518,7 +511,6 @@ offset_left = 185.889
 offset_top = 175.414
 offset_right = 389.889
 offset_bottom = 223.414
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -526,7 +518,6 @@ disabled = true
 [node name="Lucky" type="TextureButton" parent="VBoxContainer"]
 z_index = 1
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("4_nk6n8")
 stretch_mode = 5
 
@@ -605,14 +596,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -73.0
+offset_left = -63.0
 offset_top = 62.873
-offset_right = 197.0
+offset_right = 187.0
 offset_bottom = 146.873
 grow_horizontal = 2
 text = "The gambler's favorite.
-+Crit Chance
-+Damage"
++Crit Chance.
++Damage."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -631,7 +622,6 @@ offset_right = -56.1409
 offset_bottom = -31.1859
 grow_horizontal = 0
 grow_vertical = 0
-focus_mode = 0
 texture_normal = ExtResource("8_cjxu4")
 texture_pressed = ExtResource("8_cjxu4")
 texture_hover = ExtResource("9_t8rf5")
@@ -738,7 +728,6 @@ offset_left = 13.0
 offset_top = 177.0
 offset_right = 113.0
 offset_bottom = 227.0
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -749,7 +738,6 @@ offset_left = 185.889
 offset_top = 175.414
 offset_right = 389.889
 offset_bottom = 223.414
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -757,7 +745,6 @@ disabled = true
 [node name="GrandRed" type="TextureButton" parent="VBoxContainer"]
 z_index = 1
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("4_nk6n8")
 stretch_mode = 5
 
@@ -836,14 +823,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -88.0
+offset_left = -68.0
 offset_top = 62.873
-offset_right = 212.0
+offset_right = 192.0
 offset_bottom = 174.873
 grow_horizontal = 2
 text = "It'll lead your herd with confidence.
-+Cow Drag Resistance
-+Speed"
++Cow Drag Resistance.
++Speed."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -862,7 +849,6 @@ offset_right = -56.1409
 offset_bottom = -31.1859
 grow_horizontal = 0
 grow_vertical = 0
-focus_mode = 0
 texture_normal = ExtResource("8_cjxu4")
 texture_pressed = ExtResource("8_cjxu4")
 texture_hover = ExtResource("9_t8rf5")
@@ -969,7 +955,6 @@ offset_left = 13.0
 offset_top = 177.0
 offset_right = 113.0
 offset_bottom = 227.0
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -980,7 +965,6 @@ offset_left = 185.889
 offset_top = 175.414
 offset_right = 389.889
 offset_bottom = 223.414
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -988,7 +972,6 @@ disabled = true
 [node name="Ironhide" type="TextureButton" parent="VBoxContainer"]
 z_index = 1
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("4_nk6n8")
 stretch_mode = 5
 
@@ -1067,14 +1050,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -73.0
+offset_left = -63.0
 offset_top = 62.873
-offset_right = 197.0
+offset_right = 187.0
 offset_bottom = 146.873
 grow_horizontal = 2
 text = "You'll feel safer while it's around.
-+Cow Drag Resistance
-+Max Health"
++Cow Drag Resistance.
++Max Health."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -1093,7 +1076,6 @@ offset_right = -56.1409
 offset_bottom = -31.1859
 grow_horizontal = 0
 grow_vertical = 0
-focus_mode = 0
 texture_normal = ExtResource("8_cjxu4")
 texture_pressed = ExtResource("8_cjxu4")
 texture_hover = ExtResource("9_t8rf5")
@@ -1200,7 +1182,6 @@ offset_left = 13.0
 offset_top = 177.0
 offset_right = 113.0
 offset_bottom = 227.0
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -1211,7 +1192,6 @@ offset_left = 185.889
 offset_top = 175.414
 offset_right = 389.889
 offset_bottom = 223.414
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -1219,7 +1199,6 @@ disabled = true
 [node name="Moxie" type="TextureButton" parent="VBoxContainer"]
 z_index = 1
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("4_nk6n8")
 stretch_mode = 5
 
@@ -1298,15 +1277,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -83.0
+offset_left = -73.0
 offset_top = 62.873
-offset_right = 207.0
+offset_right = 197.0
 offset_bottom = 202.873
 grow_horizontal = 2
 text = "The cow of kings, the king of cows.
-++Crit Chance
-++Damage
-++Max Health"
+++Crit Chance.
+++Damage.
+++Max Health."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -1325,7 +1304,6 @@ offset_right = -56.1409
 offset_bottom = -31.1859
 grow_horizontal = 0
 grow_vertical = 0
-focus_mode = 0
 texture_normal = ExtResource("8_cjxu4")
 texture_pressed = ExtResource("8_cjxu4")
 texture_hover = ExtResource("9_t8rf5")
@@ -1432,7 +1410,6 @@ offset_left = 13.0
 offset_top = 177.0
 offset_right = 113.0
 offset_bottom = 227.0
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -1443,7 +1420,6 @@ offset_left = 185.889
 offset_top = 175.414
 offset_right = 389.889
 offset_bottom = 223.414
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 disabled = true
@@ -1469,7 +1445,6 @@ offset_left = 370.315
 offset_top = 1010.49
 offset_right = 480.315
 offset_bottom = 1055.49
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_knbsd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vxfjh")
 

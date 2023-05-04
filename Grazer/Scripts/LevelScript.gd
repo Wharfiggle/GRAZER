@@ -60,26 +60,26 @@ class CowType:
 		var undoMod = 1
 		if(!useOrUndo): undoMod = -1
 		if(id == 1): #red
-			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
+			player.herd.setDragResistance(player.herd.dragResistance + 0.2 * undoMod)
 		elif(id == 2): #lucky
-			player.critChance += 0.05 * undoMod
-			player.cowDamageMod += 0.1 * undoMod
+			player.critChance += 0.1 * undoMod
+			player.cowDamageMod += 0.2 * undoMod
 		elif(id == 3): #grand red
-			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
-			player.potionSpeedup += 0.1 * undoMod
+			player.herd.setDragResistance(player.herd.dragResistance + 0.2 * undoMod)
+			player.potionSpeedup += 0.2 * undoMod
 			player.herd.setPotionSpeedup(player.potionSpeedup)
 		elif(id == 4): #ironhide
-			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
-			player.maxHitpoints += 2 * undoMod
-			if(useOrUndo):
-				player.hitpoints += 2
-			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
-		elif(id == 5): #moxie
-			player.critChance += 0.2 * undoMod
-			player.cowDamageMod += 0.25 * undoMod
+			player.herd.setDragResistance(player.herd.dragResistance + 0.2 * undoMod)
 			player.maxHitpoints += 4 * undoMod
 			if(useOrUndo):
 				player.hitpoints += 4
+			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
+		elif(id == 5): #moxie
+			player.critChance += 0.4 * undoMod
+			player.cowDamageMod += 0.5 * undoMod
+			player.maxHitpoints += 8 * undoMod
+			if(useOrUndo):
+				player.hitpoints += 8
 			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
 			
 
