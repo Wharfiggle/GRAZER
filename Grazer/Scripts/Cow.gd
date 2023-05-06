@@ -88,7 +88,7 @@ var uiSelectTimeCounter = 0
 
 var stray = false
 
-@onready var offscreenIndicator = find_child("OffscreenIndicator")
+var offscreenIndicator = null
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 
 var fallTimer = 0
@@ -499,28 +499,25 @@ func _physics_process(delta):
 	else:
 		fallTimer = 0
 		
-	
-#	if(offscreenIndicator != null && camera != null):
-#		var camSize = camera.size
-#		var scrHei = camSize / cos(55.0 * PI / 180.0)
-#		var scrWid = camSize / 9.0 * 16.0 #only works with 16:9 aspect ratio
-#		var bound1 = Vector3(
-#			-scrWid / 2.0 + 1, 0,
-#			-scrHei / 2.0 + 1 / cos(55.0 * PI / 180.0))
-#		bound1 = Vector3(
-#			cos(-PI/4.0) * bound1.x - sin(-PI/4.0) * bound1.z, 0,
-#			sin(-PI/4.0) * bound1.x + cos(-PI/4.0) * bound1.z)
-#		var bound2 = -bound1
-#		bound1 /= 2
-#		bound1 /= 2
-#		bound1 += camera.position - camera.camOffset
-#		bound2 += camera.position - camera.camOffset
+	if(offscreenIndicator != null && camera != null):
+		var scrHei = camera.size
+		var wrldHei = scrHei / cos(55.0 * PI / 180.0)
+		var scrWid = scrHei / 9.0 * 16.0 #only works with 16:9 aspect ratio
+		var bound1 = Vector3(
+			-scrWid / 2.0, 0,
+			(-scrHei / 2.0) / cos(55.0 * PI / 180.0))
+		bound1 = Vector3(
+			cos(-PI/4.0) * bound1.x - sin(-PI/4.0) * bound1.z, 0,
+			sin(-PI/4.0) * bound1.x + cos(-PI/4.0) * bound1.z)
+		var bound2 = -bound1
+		bound1 += camera.position - camera.camOffset
+		bound2 += camera.position - camera.camOffset
 #		offscreenIndicator.global_position = Vector3(
 #			cos(-PI/4.0) * position.x - sin(-PI/4.0) * position.z, 0,
 #			sin(-PI/4.0) * position.x + cos(-PI/4.0) * position.z)
-#		offscreenIndicator.global_position = Vector3(
-#			min(max(offscreenIndicator.global_position.x, bound1.x), bound2.x), 0,
-#			min(max(offscreenIndicator.global_position.z, bound1.z), bound2.z))
+		offscreenIndicator.global_position = Vector3(
+			min(max(offscreenIndicator.global_position.x, bound1.x), bound2.x), 0,
+			min(max(offscreenIndicator.global_position.z, bound1.z), bound2.z))
 #		var fromCenter = global_position - (camera.position - camera.camOffset)
 #		fromCenter.y = 0
 #		var radx = bound1.x
@@ -529,9 +526,11 @@ func _physics_process(delta):
 #		if(fromCenter.length() < toEdge.length()):
 #			offscreenIndicator.global_position = toEdge
 		#offscreenIndicator.global_position += Vector3(randf() * 10 - 5, 0, randf() * 10 - 5)
-#	else:
-#		offscreenIndicator = find_child("OffscreenIndicator")
-#		camera = get_node(NodePath("/root/Level/Camera3D"))
+	else:
+		offscreenIndicator = find_child("OffscreenIndicator")
+		self.remove_child(offscreenIndicator)
+		get_node(NodePath("/root/Level")).add_child(offscreenIndicator)
+		camera = get_node(NodePath("/root/Level/Camera3D"))
 	
 	#make cow's model look in the direction it's moving
 	if((totalVelocity.x > 0.01 || totalVelocity.x < -0.01 
