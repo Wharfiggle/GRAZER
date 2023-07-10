@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyguxljrfvspi"]
+
+[ext_resource type="PackedScene" uid="uid://bti673ey15ett" path="res://Assets/Models/Bridges/junction/bridge_T.fbx" id="1_tgrxr"]
+[ext_resource type="Material" uid="uid://bt7vw7n8vhe0t" path="res://Assets/Models/Bridges/junction/bridgeJunctionTop.tres" id="2_4em3u"]
+[ext_resource type="Material" uid="uid://cp3rx5hw0gpok" path="res://Assets/Models/Bridges/junction/bridgeJunctionBottom.tres" id="3_qweta"]
+
+[node name="bridge_T" instance=ExtResource("1_tgrxr")]
+
+[node name="RootNode" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.873, 0)
+
+[node name="Plank009" parent="RootNode" index="0"]
+material_override = ExtResource("2_4em3u")
+
+[node name="sideSuport010" parent="RootNode" index="1"]
+material_override = ExtResource("3_qweta")

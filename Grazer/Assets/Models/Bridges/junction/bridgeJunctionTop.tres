@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bt7vw7n8vhe0t"]
+
+[ext_resource type="Texture2D" uid="uid://dyh08iv5cg4qx" path="res://Assets/Models/Bridges/junction/bridge_T_Material.001_BaseColor.png" id="1_kvyd8"]
+[ext_resource type="Texture2D" uid="uid://8co8g3kybnim" path="res://Assets/Models/Bridges/junction/bridge_T_Material.001_Metallic.png" id="2_6lyow"]
+[ext_resource type="Texture2D" uid="uid://b15lxwqvgeouv" path="res://Assets/Models/Bridges/junction/bridge_T_Material.001_Normal.png" id="3_78wlq"]
+[ext_resource type="Texture2D" uid="uid://cmficco476mws" path="res://Assets/Models/Bridges/junction/bridge_T_Material.001_Roughness.png" id="4_6ncua"]
+
+[resource]
+albedo_texture = ExtResource("1_kvyd8")
+metallic = 1.0
+metallic_texture = ExtResource("2_6lyow")
+roughness_texture = ExtResource("4_6ncua")
+normal_enabled = true
+normal_texture = ExtResource("3_78wlq")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dultjoud6cv78"
-path.s3tc="res://.godot/imported/bridge_Straight_Material.001_Roughness.png-2551320b80f56e38eb87865232eef6b7.s3tc.ctex"
+uid="uid://c74ttgckmmdod"
+path.s3tc="res://.godot/imported/bridge_Curve_Metallic.png-e000262b5ff43e03f28df8dba8822c4f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/Bridges FINAL/straight/bridge_Straight_Material.001_Roughness.png"
-dest_files=["res://.godot/imported/bridge_Straight_Material.001_Roughness.png-2551320b80f56e38eb87865232eef6b7.s3tc.ctex"]
+source_file="res://Assets/Models/Bridges/curve/bridge_Curve_Metallic.png"
+dest_files=["res://.godot/imported/bridge_Curve_Metallic.png-e000262b5ff43e03f28df8dba8822c4f.s3tc.ctex"]
 
 [params]
 

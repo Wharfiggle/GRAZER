@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://j2udbpfglb4h"
-path.s3tc="res://.godot/imported/bridge_Straight_Material.001_Normal.png-24005ee910dcf7f65bc2ad2b7605b9fd.s3tc.ctex"
+path.s3tc="res://.godot/imported/bridge_Straight_Material.001_Normal.png-8556ddbc8457819dfa4799f66dc1ce39.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/Bridges FINAL/straight/bridge_Straight_Material.001_Normal.png"
-dest_files=["res://.godot/imported/bridge_Straight_Material.001_Normal.png-24005ee910dcf7f65bc2ad2b7605b9fd.s3tc.ctex"]
+source_file="res://Assets/Models/Bridges/straight/bridge_Straight_Material.001_Normal.png"
+dest_files=["res://.godot/imported/bridge_Straight_Material.001_Normal.png-8556ddbc8457819dfa4799f66dc1ce39.s3tc.ctex"]
 
 [params]
 

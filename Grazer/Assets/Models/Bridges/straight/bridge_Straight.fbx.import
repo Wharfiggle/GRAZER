@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bhkwtxenc47g8"
-path="res://.godot/imported/T-bridge.fbx-10fccb884f25dd72b04c17b1e914b0e4.scn"
+uid="uid://do7hj3psgvj20"
+path="res://.godot/imported/bridge_Straight.fbx-ebc621050a28816bc1bc17d2cee7ab67.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Bridges & trails/T-bridge.fbx"
-dest_files=["res://.godot/imported/T-bridge.fbx-10fccb884f25dd72b04c17b1e914b0e4.scn"]
+source_file="res://Assets/Models/Bridges/straight/bridge_Straight.fbx"
+dest_files=["res://.godot/imported/bridge_Straight.fbx-ebc621050a28816bc1bc17d2cee7ab67.scn"]
 
 [params]
 

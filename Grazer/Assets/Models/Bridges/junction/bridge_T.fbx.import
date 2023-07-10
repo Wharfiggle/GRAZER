@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c0cvykbh63qk7"
-path="res://.godot/imported/curveBridge.fbx-c4c6b3991c6f2839f5509f051409c380.scn"
+uid="uid://bti673ey15ett"
+path="res://.godot/imported/bridge_T.fbx-c32dee070cb889a206d7122dbe832dcc.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Bridges & trails/curveBridge.fbx"
-dest_files=["res://.godot/imported/curveBridge.fbx-c4c6b3991c6f2839f5509f051409c380.scn"]
+source_file="res://Assets/Models/Bridges/junction/bridge_T.fbx"
+dest_files=["res://.godot/imported/bridge_T.fbx-c32dee070cb889a206d7122dbe832dcc.scn"]
 
 [params]
 
