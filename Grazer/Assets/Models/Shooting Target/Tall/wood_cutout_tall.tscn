@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtpfhvp8l7jbt"]
+
+[ext_resource type="PackedScene" uid="uid://ytt6i8sua1vh" path="res://Assets/Models/Shooting Target/Tall/Wood Cutout Tall.fbx" id="1_47t7n"]
+[ext_resource type="Material" uid="uid://dxkqcucfpi2re" path="res://Assets/Models/Shooting Target/Tall/Wood Cutout Tall.tres" id="2_bosma"]
+
+[node name="Wood Cutout Tall" instance=ExtResource("1_47t7n")]
+
+[node name="Sign Tall" parent="RootNode" index="0"]
+material_override = ExtResource("2_bosma")

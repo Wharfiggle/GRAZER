@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2i2h0h73xovk"]
+[gd_scene load_steps=9 format=3 uid="uid://c2i2h0h73xovk"]
 
 [ext_resource type="PackedScene" uid="uid://dgjnraphxcxdq" path="res://Assets/Models/Porch Woman/Porch Woman.fbx" id="1_hv8ir"]
 [ext_resource type="Material" uid="uid://b8c7ephxqhet8" path="res://Assets/Models/Porch Woman/PW Cloth.tres" id="2_mxpq2"]
@@ -18,16 +18,6 @@ emission = Color(0.2, 0.13, 0.145167, 1)
 normal_enabled = true
 normal_texture = ExtResource("5_qeqhl")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8aogq"]
-albedo_color = Color(1, 0, 0, 1)
-albedo_texture = ExtResource("3_8daim")
-metallic = 1.0
-metallic_texture = ExtResource("4_gk0dy")
-roughness_texture = ExtResource("6_0d0eu")
-emission = Color(0.2, 0.068, 0.09, 1)
-normal_enabled = true
-normal_texture = ExtResource("5_qeqhl")
-
 [node name="Porch Woman" instance=ExtResource("1_hv8ir")]
 
 [node name="Boots003" parent="RootNode" index="0"]
@@ -43,7 +33,7 @@ material_override = ExtResource("2_mxpq2")
 
 [node name="Shirt003" parent="RootNode" index="3"]
 transform = Transform3D(87.5279, 5.80705, -2.44664e-06, -5.08208, 100.014, -4.21362e-05, 1.02122e-10, 4.45845e-05, 94.8405, -0.0546934, 1.37452, 0.0273039)
-material_override = SubResource("StandardMaterial3D_8aogq")
+material_override = ExtResource("2_mxpq2")
 
 [node name="Skin003" parent="RootNode" index="4"]
 transform = Transform3D(93.6147, -3.43074e-08, 2.12672e-08, 3.13868e-08, 102.326, -3.90903e-05, -2.26683e-08, 4.55425e-05, 87.8288, -0.0336201, 1.45167, 0.0480547)

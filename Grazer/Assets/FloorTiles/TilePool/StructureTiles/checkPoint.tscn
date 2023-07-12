@@ -354,13 +354,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.7373, -0.90479, -15.2927)
 transform = Transform3D(0.817497, 0, -0.575933, 0, 1, 0, 0.575933, 0, 0.817497, 2.8037, 0.0499973, 1.9545)
 
 [node name="Porch Woman" parent="ShopRV/Porch" instance=ExtResource("12_w1c03")]
-transform = Transform3D(0.987381, 0, 0.158365, 0, 1, 0, -0.158365, 0, 0.987381, 3.07751, 0, 2.06898)
+transform = Transform3D(0.987381, 0, 0.158365, 0, 1, 0, -0.158365, 0, 0.987381, 2.78347, -1.19209e-07, 2.02804)
 
 [node name="Porch Man" parent="ShopRV/Porch" instance=ExtResource("14_o2y1d")]
 transform = Transform3D(0.974601, 0, 0.223947, 0, 1, 0, -0.223947, 0, 0.974601, 2.37709, 0.00234395, -1.12265)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="ShopRV/Porch"]
-transform = Transform3D(0.999199, 0.0283056, 0.0282943, -0.0283056, -4.38861e-08, 0.999599, 0.0282942, -0.999599, 0.000801164, 2.12925, 2.88196, 0.717995)
+transform = Transform3D(0.903203, 0.128868, -0.409411, 0.426962, -0.367344, 0.826294, -0.0439117, -0.921115, -0.386807, 2.1078, 2.88196, 1.46998)
+light_energy = 3.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 1
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="ShopRV/Porch"]
+transform = Transform3D(0.981364, 0.0270418, -0.190248, 0.173968, 0.295458, 0.939382, 0.0816131, -0.954973, 0.285247, 1.89752, 2.88196, 0.364614)
 light_energy = 3.0
 light_volumetric_fog_energy = 0.0
 light_bake_mode = 1

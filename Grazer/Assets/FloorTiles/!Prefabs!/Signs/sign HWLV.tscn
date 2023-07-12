@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv71eqbohjii7"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="PackedScene" uid="uid://clm22058drcbq" path="res://Assets/Models/Signs/sign.fbx" id="1_e145p"]
 [ext_resource type="Texture2D" uid="uid://dsn065rjy3o5y" path="res://Assets/Models/Signs/Textures/sign_HW Las Vegas_BaseColor.png" id="2_mrgtc"]
 [ext_resource type="Texture2D" uid="uid://c8c0yrk8u5vx3" path="res://Assets/Models/Signs/Textures/sign_HW Las Vegas_Metallic.png" id="3_yhtue"]
 [ext_resource type="Texture2D" uid="uid://dlljuccydd565" path="res://Assets/Models/Signs/Textures/sign_HW Las Vegas_Normal.png" id="4_vmvcb"]
 [ext_resource type="Texture2D" uid="uid://wxdhy70gsun3" path="res://Assets/Models/Signs/Textures/sign_HW Las Vegas_Roughness.png" id="5_di0b3"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yyhw5"]
 albedo_texture = ExtResource("2_mrgtc")

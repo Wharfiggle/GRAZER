@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://c4b2ld6u0a0qh" path="res://Assets/Models/Shooting Target/Short/Wood CutOUt_Sign_BaseColor.png" id="1_0maqq"]
+[ext_resource type="Texture2D" uid="uid://dulun2r1gdrbi" path="res://Assets/Models/Shooting Target/Short/Wood CutOUt_Sign_Metallic.png" id="2_8ts2i"]
+[ext_resource type="Texture2D" uid="uid://c77rdawmpf5tg" path="res://Assets/Models/Shooting Target/Short/Wood CutOUt_Sign_Normal.png" id="3_gnib7"]
+[ext_resource type="Texture2D" uid="uid://d3to5uvdsthhl" path="res://Assets/Models/Shooting Target/Short/Wood CutOUt_Sign_Roughness.png" id="4_4kprj"]
+
+[resource]
+albedo_texture = ExtResource("1_0maqq")
+metallic = 1.0
+metallic_texture = ExtResource("2_8ts2i")
+roughness_texture = ExtResource("4_4kprj")
+normal_enabled = true
+normal_texture = ExtResource("3_gnib7")

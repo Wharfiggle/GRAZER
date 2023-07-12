@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dxkqcucfpi2re"]
+
+[ext_resource type="Texture2D" uid="uid://dupyud56opwkp" path="res://Assets/Models/Shooting Target/Tall/Wood Cutout Tall_Sign Tall_BaseColor.png" id="1_i8p34"]
+
+[resource]
+albedo_texture = ExtResource("1_i8p34")
+normal_enabled = true
