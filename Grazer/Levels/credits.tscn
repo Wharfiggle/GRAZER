@@ -113,26 +113,79 @@ vertical_alignment = 2
 layout_mode = 2
 alignment = 1
 
-[node name="ArtistNames" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ArtistNames" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Sagstetter, Will  |
-Stark, Ethan  |
-Zinnecker, Mae  |
-Garretsone, Liz  | 
-Lucero, Jose  |
-Ramaley, Howie  |"
+text = "Sagstetter, Will  |"
 horizontal_alignment = 2
 
-[node name="ArtistRoles" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="ArtistNames2" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Project Lead, Art Director, Gameplay Designer
- Environment Art, Prop Art 
- Character Artist, Rigger, Technical Artist 
- Concept Art & UI Design 
- Environment Art 
- Character Artist, Rigger, Technical Artist "
+text = "Stark, Ethan  |"
+horizontal_alignment = 2
+
+[node name="ArtistNames3" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Zinnecker, Mae  |"
+horizontal_alignment = 2
+
+[node name="ArtistNames4" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Garretsone, Liz  |"
+horizontal_alignment = 2
+
+[node name="ArtistNames5" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Lucero, Jose  |"
+horizontal_alignment = 2
+
+[node name="ArtistNames6" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Ramaley, Howie  |"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ArtistRoles" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Project Lead, Art Director, Gameplay Designer"
+
+[node name="ArtistRoles2" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Environment Art, Prop Art"
+
+[node name="ArtistRoles3" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Character Artist, Rigger, Technical Artist"
+
+[node name="ArtistRoles4" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Concept Art & UI Design"
+
+[node name="ArtistRoles5" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Environment Art"
+
+[node name="ArtistRoles6" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Character Artist, Rigger, Technical Artist"
 
 [node name="Code" type="Label" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 65)
@@ -147,20 +200,45 @@ vertical_alignment = 2
 layout_mode = 2
 alignment = 1
 
-[node name="CodeNames" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CodeNames" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Southman, Elijah  |
-Anderson, Ian  |
-Parker, Molly  |"
+text = "Southman, Elijah  |"
 horizontal_alignment = 2
 
-[node name="CodeRoles" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+[node name="CodeNames2" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = " Programming Lead 
- Enemy AI Programmer 
- Interactions Programmer "
+text = "Anderson, Ian  |"
+horizontal_alignment = 2
+
+[node name="CodeNames3" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Parker, Molly  |"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="CodeRoles" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Programming Lead"
+
+[node name="CodeRoles2" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Enemy AI Programmer"
+
+[node name="CodeRoles3" type="Label" parent="Panel/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Interactions Programmer"
 
 [node name="Other" type="Label" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 65)
@@ -175,37 +253,93 @@ vertical_alignment = 2
 layout_mode = 2
 alignment = 1
 
-[node name="OtherNames1" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="OtherNames1" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Palarz , Jayden  |
-Dimiceli, Bella  |
-Summers, Bradley  |"
+text = "Palarz , Jayden  |"
 horizontal_alignment = 2
 
-[node name="OtherRoles1" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+[node name="OtherNames2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Dimiceli, Bella  |"
+horizontal_alignment = 2
+
+[node name="OtherNames3" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Summers, Bradley  |"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="OtherRoles1" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 custom_minimum_size = Vector2(198, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = " Sound
- Sound            
- Sound"
+text = " Sound"
 
-[node name="OtherNames2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+[node name="OtherRoles2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(198, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Moen, Sara  |
-Anderson, Holden  |
-Guggisberg, Isaac  |"
+text = " Sound"
+
+[node name="OtherRoles3" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(198, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Sound"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="OtherNames2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Moen, Sara  |"
 horizontal_alignment = 2
 
-[node name="OtherRoles2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+[node name="OtherNames3" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Anderson, Holden  |"
+horizontal_alignment = 2
+
+[node name="OtherNames4" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Guggisberg, Isaac  |"
+horizontal_alignment = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="OtherRoles2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer4"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = " Website
- Video
- Preproduction"
+text = " Website"
+
+[node name="OtherRoles3" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Video"
+
+[node name="OtherRoles4" type="Label" parent="Panel/VBoxContainer/HBoxContainer3/VBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Preproduction"
 
 [node name="Back" type="Button" parent="Panel"]
 modulate = Color(1, 0.819608, 0.709804, 1)

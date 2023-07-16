@@ -257,8 +257,16 @@ offset_left = 60.0
 offset_top = 87.0
 offset_right = 234.0
 offset_bottom = 143.0
-text = "Shoot longer.
-+2 Clip Capacity."
+text = "Shoot longer."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Desc2" type="Label" parent="GunMenu/Revolver/Sections/Capacity/Desc"]
+layout_mode = 1
+offset_top = 25.0
+offset_right = 174.0
+offset_bottom = 81.0
+text = "+2 Clip Capacity."
 label_settings = SubResource("LabelSettings_4j3ub")
 autowrap_mode = 2
 
@@ -323,8 +331,16 @@ offset_left = 60.0
 offset_top = 87.0
 offset_right = 234.0
 offset_bottom = 143.0
-text = "Shoot harder.
-+15% damage."
+text = "Shoot harder."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Desc2" type="Label" parent="GunMenu/Revolver/Sections/Damage/Desc"]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 174.0
+offset_bottom = 81.0
+text = "+15% damage."
 label_settings = SubResource("LabelSettings_4j3ub")
 autowrap_mode = 2
 
@@ -389,8 +405,16 @@ offset_left = 60.0
 offset_top = 87.0
 offset_right = 234.0
 offset_bottom = 143.0
-text = "Reload faster.
-+15% reload speed."
+text = "Reload faster."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Desc2" type="Label" parent="GunMenu/Revolver/Sections/Reload/Desc"]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 174.0
+offset_bottom = 81.0
+text = "+15% reload speed."
 label_settings = SubResource("LabelSettings_4j3ub")
 autowrap_mode = 2
 
@@ -572,8 +596,16 @@ offset_left = 60.0
 offset_top = 87.0
 offset_right = 234.0
 offset_bottom = 143.0
-text = "Shoot longer.
-+1 Clip Capacity."
+text = "Shoot longer."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Desc2" type="Label" parent="GunMenu/Shotgun/Sections/Capacity/Desc"]
+layout_mode = 1
+offset_top = 25.0
+offset_right = 174.0
+offset_bottom = 81.0
+text = "+1 Clip Capacity."
 label_settings = SubResource("LabelSettings_4j3ub")
 autowrap_mode = 2
 
@@ -638,8 +670,16 @@ offset_left = 60.0
 offset_top = 87.0
 offset_right = 234.0
 offset_bottom = 143.0
-text = "Shoot harder.
-+15% damage."
+text = "Shoot harder."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Desc2" type="Label" parent="GunMenu/Shotgun/Sections/Damage/Desc"]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 174.0
+offset_bottom = 81.0
+text = "+15% damage."
 label_settings = SubResource("LabelSettings_4j3ub")
 autowrap_mode = 2
 
@@ -704,8 +744,16 @@ offset_left = 60.0
 offset_top = 87.0
 offset_right = 234.0
 offset_bottom = 143.0
-text = "Reload faster.
-+15% reload speed."
+text = "Reload faster."
+label_settings = SubResource("LabelSettings_4j3ub")
+autowrap_mode = 2
+
+[node name="Desc2" type="Label" parent="GunMenu/Shotgun/Sections/Reload/Desc"]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 174.0
+offset_bottom = 81.0
+text = "+15% reload speed."
 label_settings = SubResource("LabelSettings_4j3ub")
 autowrap_mode = 2
 

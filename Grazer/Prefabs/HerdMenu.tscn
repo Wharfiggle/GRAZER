@@ -149,8 +149,22 @@ offset_top = 62.873
 offset_right = 187.0
 offset_bottom = 118.873
 grow_horizontal = 2
-text = "Just your average cattle.
-No special effects."
+text = "Just your average cattle."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Desc2" type="Label" parent="VBoxContainer/Common/Desc"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "No special effects."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -375,8 +389,22 @@ offset_top = 62.873
 offset_right = 187.0
 offset_bottom = 118.873
 grow_horizontal = 2
-text = "It'll embolden your herd.
-+Cow Drag Resistance."
+text = "It'll embolden your herd."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Desc2" type="Label" parent="VBoxContainer/Red/Desc"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "+Cow Drag Resistance."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -601,9 +629,37 @@ offset_top = 62.873
 offset_right = 187.0
 offset_bottom = 146.873
 grow_horizontal = 2
-text = "The gambler's favorite.
-+Crit Chance.
-+Damage."
+text = "The gambler's favorite."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc2" type="Label" parent="VBoxContainer/Lucky/Desc"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 109.0
+grow_horizontal = 2
+text = "+Crit Chance."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc3" type="Label" parent="VBoxContainer/Lucky/Desc/Desc2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 109.0
+grow_horizontal = 2
+text = "+Damage."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -828,9 +884,37 @@ offset_top = 62.873
 offset_right = 192.0
 offset_bottom = 174.873
 grow_horizontal = 2
-text = "It'll lead your herd with confidence.
-+Cow Drag Resistance.
-+Speed."
+text = "It'll lead your herd with confidence."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc2" type="Label" parent="VBoxContainer/GrandRed/Desc"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 25.0
+offset_right = 130.0
+offset_bottom = 137.0
+grow_horizontal = 2
+text = "+Cow Drag Resistance."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc3" type="Label" parent="VBoxContainer/GrandRed/Desc/Desc2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 25.0
+offset_right = 130.0
+offset_bottom = 137.0
+grow_horizontal = 2
+text = "+Speed."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -1055,9 +1139,37 @@ offset_top = 62.873
 offset_right = 187.0
 offset_bottom = 146.873
 grow_horizontal = 2
-text = "You'll feel safer while it's around.
-+Cow Drag Resistance.
-+Max Health."
+text = "You'll feel safer while it's around."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc2" type="Label" parent="VBoxContainer/Ironhide/Desc"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 109.0
+grow_horizontal = 2
+text = "+Cow Drag Resistance."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc3" type="Label" parent="VBoxContainer/Ironhide/Desc/Desc2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 109.0
+grow_horizontal = 2
+text = "+Max Health."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -1282,10 +1394,52 @@ offset_top = 62.873
 offset_right = 197.0
 offset_bottom = 202.873
 grow_horizontal = 2
-text = "The cow of kings, the king of cows.
-++Crit Chance.
-++Damage.
-++Max Health."
+text = "The cow of kings, the king of cows."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc2" type="Label" parent="VBoxContainer/Moxie/Desc"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 25.0
+offset_right = 135.0
+offset_bottom = 165.0
+grow_horizontal = 2
+text = "++Crit Chance."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc3" type="Label" parent="VBoxContainer/Moxie/Desc/Desc2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 25.0
+offset_right = 135.0
+offset_bottom = 165.0
+grow_horizontal = 2
+text = "++Damage."
+label_settings = SubResource("LabelSettings_4j3ub")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc4" type="Label" parent="VBoxContainer/Moxie/Desc/Desc2/Desc3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 25.0
+offset_right = 135.0
+offset_bottom = 165.0
+grow_horizontal = 2
+text = "++Max Health."
 label_settings = SubResource("LabelSettings_4j3ub")
 horizontal_alignment = 1
 autowrap_mode = 3
