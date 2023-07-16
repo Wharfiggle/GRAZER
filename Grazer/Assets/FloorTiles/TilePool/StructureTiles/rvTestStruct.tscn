@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://704kk7squq3v"]
+[gd_scene load_steps=14 format=3 uid="uid://704kk7squq3v"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_timjs"]
 [ext_resource type="PackedScene" uid="uid://cagxngogpkioa" path="res://Assets/FloorTiles/!Prefabs!/RVwPorch/RVwPorch.tscn" id="2_k2jmr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="4_683b6"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="5_ujdw8"]
 [ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="6_ealdy"]
+[ext_resource type="Texture2D" uid="uid://bmjms8gqi1go3" path="res://Assets/Images/empress of bostonia.png" id="7_8l54r"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_v867l"]
 vertices = PackedVector3Array(15.75, 0.343635, 5, 18.5, 0.343635, 3.5, 18.5, 0.343635, 0.5, 9.5, 0.343635, 0.5, 11, 0.343635, 9, 15.75, 0.343635, 5, 9.5, 0.343635, 0.5, 0.5, 0.343635, 0.5, 0.5, 0.343635, 9, 18.5, 0.343635, 0.5, 18.5, 0.343635, 3.5, 19.5, 0.343635, 3.75, 25, 0.343635, 0.5, 18.5, 0.343635, 0.5, 19.5, 0.343635, 3.75, 21.5, 0.343635, 6.5, 25, 0.343635, 0.5, 21.5, 0.343635, 6.5, 21.5, 0.343635, 7.25, 31.5, 0.343635, 7.25, 31.5, 0.343635, 0.5, 15.5, 4.34363, 13, 18, 4.09363, 11.5, 17.5, 4.34363, 10, 17.5, 4.34363, 10, 20, 4.34363, 8.25, 19.25, 4.34363, 6.5, 12.25, 4.34363, 8.75, 15.5, 4.34363, 13, 17.5, 4.34363, 10, 19.25, 4.34363, 6.5, 17.5, 4.34363, 4.5, 12.25, 4.34363, 8, 18.25, 0.343635, 12.25, 17.25, 1.09363, 12, 17.25, 0.343635, 13, 19.75, 0.343635, 11, 18.5, 0.343635, 11.5, 18.25, 0.343635, 12.25, 21.5, 0.343635, 7.25, 19.25, 0.343635, 9.25, 19.75, 0.343635, 9.75, 17.25, 0.343635, 13, 15.5, 0.343635, 13.75, 15.5, 0.343635, 15.5, 21.5, 0.343635, 7.25, 19.75, 0.343635, 9.75, 19.75, 0.343635, 11, 23.5, 0.343635, 15.5, 31.5, 0.343635, 15.5, 31.5, 0.343635, 7.25, 18.25, 0.343635, 12.25, 17.25, 0.343635, 13, 15.5, 0.343635, 15.5, 18.25, 0.343635, 12.25, 15.5, 0.343635, 15.5, 23.5, 0.343635, 15.5, 19.75, 0.343635, 11, 11, 0.343635, 10.75, 11.5, 0.343635, 10.25, 11, 0.343635, 10, 14.5, 0.343635, 13.25, 14.5, 0.343635, 12.75, 13.25, 0.343635, 13, 15.5, 0.343635, 13.75, 14.5, 0.343635, 13.25, 13.25, 0.343635, 13, 15.5, 0.343635, 15.5, 13.25, 0.343635, 13, 12.75, 0.343635, 12, 11, 0.343635, 12, 8, 0.343635, 15.5, 11, 0.343635, 10.75, 11, 0.343635, 10, 15.5, 0.343635, 15.5, 13.25, 0.343635, 13, 11, 0.343635, 12, 8, 0.343635, 15.5, 8, 0.343635, 15.5, 11, 0.343635, 10, 11, 0.343635, 9, 0.5, 0.343635, 9, 0.5, 0.343635, 15.5, 8, 0.343635, 15.5, 11, 0.343635, 12, 11, 0.343635, 10.75, 17.75, 1.09363, 10.25, 18.5, 1.09363, 10.5, 18.5, 1.09363, 10, 16.75, 1.09363, 11.75, 16.75, 1.09363, 11.25, 16.25, 1.09363, 11.25, 15.5, 1.09363, 11.75)
@@ -19,6 +20,11 @@ size = Vector3(16, 0.1, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vgtfm"]
 size = Vector3(5.80696, 5.97023, 7.76724)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gsvel"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrbdb"]
+albedo_texture = ExtResource("7_8l54r")
 
 [node name="Level" type="Node3D"]
 
@@ -75,3 +81,8 @@ spawnAtEdgeOfScreen = true
 
 [node name="CowSpawner" parent="." instance=ExtResource("6_ealdy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4662, 0.0500002, 9.31863)
+
+[node name="empress of bostonia" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.783096, -0.621386, 0.0252733, -0.016075, -0.0204005, -0.999663, 0.621693, -0.783239, 0.00598701, 15.1809, 2.00453, 6.44208)
+mesh = SubResource("PlaneMesh_gsvel")
+surface_material_override/0 = SubResource("StandardMaterial3D_hrbdb")
