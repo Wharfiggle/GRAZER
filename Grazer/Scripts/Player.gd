@@ -162,6 +162,8 @@ var maxAmmo = 0
 var deathBlend = 0
 var deathTimer = 0
 
+@export var canHaveNoCows = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.add_to_group('Player')
@@ -227,11 +229,14 @@ func _process(delta):
 	if(herd == null):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
-		for i in 5:
-			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
+		#spawn cows at start
+		#for i in 5:
+		#	herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
 		
-	if(herd.getNumCows() < 1 and !invincible):
+	if(herd.getNumCows() < 1 and !canHaveNoCows and !invincible):
 		die()
+	elif(herd.getNumCows() > 0):
+		canHaveNoCows = false
 	
 	if(lineSightTimer > 0):
 		lineSightTimer -= delta
