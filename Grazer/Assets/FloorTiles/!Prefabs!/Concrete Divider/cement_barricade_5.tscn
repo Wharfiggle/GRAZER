@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b81msacsemg4l"]
+
+[ext_resource type="PackedScene" uid="uid://cyl2u1beg6jgq" path="res://Assets/Models/Concrete Divider FINAL/var/Cement Barricade 5.fbx" id="1_vxp7b"]
+[ext_resource type="Material" uid="uid://cnuk8gyhfp1la" path="res://Assets/Models/Concrete Divider FINAL/var/Cement Barricade.tres" id="2_0lipd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5y78"]
+size = Vector3(2.19311, 0.650614, 0.548079)
+
+[node name="Cement Barricade 5" instance=ExtResource("1_vxp7b")]
+
+[node name="Cement_Barricade004" parent="RootNode" index="0"]
+material_override = ExtResource("2_0lipd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335612, 0)
+shape = SubResource("BoxShape3D_a5y78")

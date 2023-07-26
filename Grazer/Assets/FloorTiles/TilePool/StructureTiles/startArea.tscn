@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dur5c8rol4408" path="res://Assets/Models/Porch Man/porch_man.tscn" id="23_u5ktt"]
 [ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="24_8050b"]
 [ext_resource type="PackedScene" uid="uid://v00bm1qrsgji" path="res://Assets/FloorTiles/!Prefabs!/Rusted Car/rustedcarCream.tscn" id="24_jsn0s"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6_noColl.tscn" id="25_ykmj6"]
+[ext_resource type="PackedScene" uid="uid://8khtr2r30nb0" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6_noColl.tscn" id="25_ykmj6"]
 [ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="26_m6hao"]
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="27_ivust"]
 [ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="28_l5ghf"]

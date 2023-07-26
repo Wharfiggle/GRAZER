@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cnuk8gyhfp1la"]
+
+[ext_resource type="Texture2D" uid="uid://btsjsbi77p6hy" path="res://Assets/Models/Concrete Divider FINAL/var/Cement Barricade_BaseColor.png" id="1_1r841"]
+[ext_resource type="Texture2D" uid="uid://p2vv306hjucd" path="res://Assets/Models/Concrete Divider FINAL/var/Cement Barricade_Metallic.png" id="2_2ka7j"]
+[ext_resource type="Texture2D" uid="uid://bysgyumc1kcy6" path="res://Assets/Models/Concrete Divider FINAL/var/Cement Barricade_Normal.png" id="3_gubsp"]
+[ext_resource type="Texture2D" uid="uid://xsdmd41qj8qs" path="res://Assets/Models/Concrete Divider FINAL/var/Cement Barricade_Roughness.png" id="4_qdday"]
+
+[resource]
+albedo_texture = ExtResource("1_1r841")
+metallic = 1.0
+metallic_texture = ExtResource("2_2ka7j")
+roughness_texture = ExtResource("4_qdday")
+normal_enabled = true
+normal_texture = ExtResource("3_gubsp")

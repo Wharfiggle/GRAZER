@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://b8eyb0mche8yy"]
 
 [ext_resource type="PackedScene" uid="uid://cdp7s3nwbqjlg" path="res://Assets/Models/Shooting Target/Short/Wood CutOuts.fbx" id="1_s2nwg"]
 [ext_resource type="Material" path="res://Assets/Models/Shooting Target/Short/Shooting Target.tres" id="2_u4i4d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_732rq"]
+size = Vector3(1, 2.38466, 0.548487)
 
 [node name="Wood CutOuts" instance=ExtResource("1_s2nwg")]
 
 [node name="Sign" parent="RootNode" index="0"]
 material_override = ExtResource("2_u4i4d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12621, -0.223804)
+shape = SubResource("BoxShape3D_732rq")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b23gd5woxhud"
-path="res://.godot/imported/RV_lambert1_Emissive.png-bf0743cf01792ea1790d0cf48c5e1b7d.ctex"
+uid="uid://do4c18ghiunv"
+path="res://.godot/imported/RV_lambert1_Blue-cream.png-548fede5469be552d9262e2ee43340fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Models/RVwPorch FINAL/RV/RV_lambert1_Emissive.png"
-dest_files=["res://.godot/imported/RV_lambert1_Emissive.png-bf0743cf01792ea1790d0cf48c5e1b7d.ctex"]
+source_file="res://Assets/Models/RVwPorch FINAL/RV/RV_lambert1_Blue-cream.png"
+dest_files=["res://.godot/imported/RV_lambert1_Blue-cream.png-548fede5469be552d9262e2ee43340fb.ctex"]
 
 [params]
 
