@@ -1,7 +1,9 @@
 <h1> GRAZER </h1>
 
 <h2>This Game is about:</h2>
-GRAZER is a postapocalyptic Wild West isometric, roguelike shooter game where you play as a grizzled cowboy as he ventures across a harsh, toxic desert with his herd of cattle and protects them from ambushes of savage Marauders!
+GRAZER is a 3D Western shooter set in the near post-apocalyptic future. You play as an intrepid gunslinging rancher accompanied by your loyal herd of cattle as you venture across the barren outskirts of Nevada in search of a pasture fit for your herd to graze. 
+But beware, the route you travel is riddled with vicious bandits who will hunt you tirelessly until they’ve stolen every single one of your precious cattle!
+Defend your herd, barter for useful items and upgrades, reach the Final Field, and become the most powerful gunslinger in the West!
 
 <h2>These people are involved in the making:</h2>
 <ul>
@@ -20,9 +22,9 @@ Other
 <li>Palarz , Jayden | Sound</li>
 <li>Dimiceli, Bella | Sound</li>
 <li>Summers, Bradley | Sound</li>
-<li>Sara, Last | Website</li>
-<li>Holden, Last | Video</li>
-<li>Isaac , Last | Preproduction</li>
+<li>Moen, Sara | Website</li>
+<li>Anderson, Holden | Video</li>
+<li>Guggisberg, Isaac | Preproduction</li>
 </ul>
 
 <h2>Controls:</h2>
