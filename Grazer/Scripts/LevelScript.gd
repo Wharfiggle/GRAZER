@@ -50,12 +50,13 @@ class CowType:
 	func _init(inId:int, inPlayer:Node):
 		id = inId
 		player = inPlayer
-		if(id == 0): cost = 1
-		elif(id == 1): cost = 3
-		elif(id == 2): cost = 3
-		elif(id == 3): cost = 6
-		elif(id == 4): cost = 6
-		elif(id == 5): cost = 12
+		#Cow Costs:
+		if(id == 0): cost = 1 	#common
+		elif(id == 1): cost = 2 #red
+		elif(id == 2): cost = 2	#lucky
+		elif(id == 3): cost = 3 #grand red
+		elif(id == 4): cost = 3 #ironhide
+		elif(id == 5): cost = 5 #moxie
 	func use(useOrUndo:bool = true):
 		var undoMod = 1
 		if(!useOrUndo): undoMod = -1
@@ -85,8 +86,8 @@ class CowType:
 
 class Item:
 	var id
-	var name = "dork"
-	var description = ":^O)"
+	var name = "the stinker"
+	var description = ":^(] []))"
 	var icon
 	var cost = 0
 	var player
@@ -104,9 +105,10 @@ class Item:
 		elif(id == 3): name = "Shotgun Capacity Upgrade"
 		elif(id == 4): name = "Shotgun Damage Upgrade"
 		elif(id == 5): name = "Shotgun Reload Speed Upgrade"
+		#Potion Costs:
 		elif(id == 6): 
 			name = "Recovery"
-			description = "Heals 50% of your health."
+			description = "Heals all of your health."
 			cost = 2
 		elif(id == 7): 
 			name = "Bulletstorm"
@@ -132,12 +134,13 @@ class Item:
 		levelScript = inLevelScript
 		wepLevel = inLevel
 		gunStats = inGunStats
+		#Weapon Upgrade Costs:
 		if(wepLevel == 1):
-			cost = 3
+			cost = 1
 		elif(wepLevel == 2):
-			cost = 6
+			cost = 2
 		elif(wepLevel == 3):
-			cost = 9
+			cost = 3
 		if(id == 0 || id == 1 || id == 2): #revolverCapacity, revolverDamage, revolverReload
 			if(id == 0):
 				description = "Upgraded Revolver Capacity to Level: " + str(wepLevel)
@@ -161,7 +164,7 @@ class Item:
 			levelScript.broadcastMessage(description, 3.0)
 		elif(id == 6 && useOrUndo): #health
 			print(player.hitpoints)
-			player.updateHealth(player.hitpoints + 0.5 * player.maxHitpoints)
+			player.updateHealth(player.hitpoints + 1.0 * player.maxHitpoints)
 			player.hitFlash.set_shader_parameter("color", Color(0.5, 1, 0.5))
 			print(player.hitpoints)
 #			player.hitFlashAmount = 1.0

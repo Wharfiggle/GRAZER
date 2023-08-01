@@ -26,7 +26,7 @@ var numCowTypes = null
 @onready var uiCursor = get_node(NodePath("/root/Level/UICursor"))
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 @onready var level = get_node(NodePath("/root/Level"))
-@export var cowCosts = [1, 3, 3, 6, 6, 12]
+var cowCosts = [-1, -1, -1, -1, -1, -1]
 var lastRecordedCowNum = -1
 var totalValue = 0
 var hoveredCow = null
@@ -48,8 +48,6 @@ var cowClick = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	position.x = origPos.x + widthOffset
-	for i in cowCosts.size():
-		cowMenus[i].find_child("Cost").text = str(cowCosts[i])
 
 func use(turnOff:bool = false):
 	if(turnOff && !active):
@@ -129,6 +127,14 @@ func _process(delta):
 		
 
 func _physics_process(_delta):
+	if(player != null && cowCosts[0] == -1):
+		if(player.cowTypes != null):
+			for i in player.cowTypes.size():
+				cowCosts[i] = player.cowTypes[i].cost
+				cowMenus[i].find_child("Cost").text = str(cowCosts[i])
+	else:
+		player = get_node(NodePath("/root/Level/Player"))
+		
 	if(visible && player != null && player.herd != null && level != null):
 		var cowNum = player.herd.getNumCows()
 		if(cowNum != lastRecordedCowNum):
@@ -140,8 +146,6 @@ func _physics_process(_delta):
 				level.broadcastMessage("Invalid Trade: Results in zero cows.", 0.1)
 			if(maxCows < player.herd.getNumCows() + gain + change - selectedCows.size()):
 				level.broadcastMessage("Invalid Trade: You cannot exceed " + str(maxCows) + " cows.", 0.1)
-	elif(player == null):
-		player = get_node(NodePath("/root/Level/Player"))
 	elif(level == null):
 		level = get_node(NodePath("/root/Level"))
 

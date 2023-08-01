@@ -12,7 +12,7 @@ var onElixirMenu = false
 @onready var gunMenu = find_child("GunMenu")
 @onready var viewport = get_viewport()
 @onready var player = get_node(NodePath("/root/Level/Player"))
-@export var cowCosts = [1, 3, 3, 6, 6, 12]
+var cowCosts = [-1, -1, -1, -1, -1, -1]
 var elixirMenuTexture = preload("res://Assets/Images/hud/shopWholeElixirTab_oneShadow.png")
 var gunMenuTexture = preload("res://Assets/Images/hud/shopWholeWeaponsTab_oneShadow.png")
 var hovered = -1
@@ -35,7 +35,6 @@ var cowClick = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	position.x = origPos.x + widthOffset
-	
 
 func use(turnOff:bool = false):
 	if(turnOff && !active):
@@ -60,13 +59,18 @@ func use(turnOff:bool = false):
 		player.active = true
 
 func _physics_process(_delta):
+	if(player != null && cowCosts[0] == -1):
+		if(player.cowTypes != null):
+			for i in player.cowTypes.size():
+				cowCosts[i] = player.cowTypes[i].cost
+	else:
+		player = get_node(NodePath("/root/Level/Player"))
+	
 	if(visible && player != null && player.herd != null && level != null):
 		var cowNum = player.herd.getNumCows()
 		if(cowNum != lastRecordedCowNum):
 			lastRecordedCowNum = cowNum
 			updateTotalValue()
-	elif(player == null):
-		player = get_node(NodePath("/root/Level/Player"))
 	elif(level == null):
 		level = get_node(NodePath("/root/Level"))
 
