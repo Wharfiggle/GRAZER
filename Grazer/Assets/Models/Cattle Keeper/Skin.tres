@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://c3mgt1tc8osyf"]
+
+[ext_resource type="Texture2D" uid="uid://btweytcvwdkq8" path="res://Assets/Models/Cattle Keeper/Cattle Keeper_Skin_BaseColor.png" id="1_hc4y6"]
+[ext_resource type="Texture2D" uid="uid://wd652fkdsicd" path="res://Assets/Models/Cattle Keeper/Cattle Keeper_Skin_Metallic.png" id="2_ep2hp"]
+[ext_resource type="Texture2D" uid="uid://c86it0qcxg45y" path="res://Assets/Models/Cattle Keeper/Cattle Keeper_Skin_Normal.png" id="3_4jjau"]
+[ext_resource type="Texture2D" uid="uid://ce5b44m67m87q" path="res://Assets/Models/Cattle Keeper/Cattle Keeper_Skin_Roughness.png" id="4_3ou63"]
+
+[resource]
+albedo_texture = ExtResource("1_hc4y6")
+metallic = 1.0
+metallic_texture = ExtResource("2_ep2hp")
+roughness_texture = ExtResource("4_3ou63")
+normal_enabled = true
+normal_texture = ExtResource("3_4jjau")
