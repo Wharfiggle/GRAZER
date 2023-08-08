@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b47wmr6w6oykr"]
+[gd_scene load_steps=19 format=3 uid="uid://b47wmr6w6oykr"]
 
 [ext_resource type="Script" path="res://Scripts/ItemWheelUIScript.gd" id="1_f6dx6"]
 [ext_resource type="Texture2D" uid="uid://1mdmi31fa1sd" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/howWheelShadow.png" id="2_er5ar"]
@@ -12,8 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cfhp3iro2becj" path="res://Assets/Images/dustkickerElixir.png" id="10_oapbm"]
 [ext_resource type="Texture2D" uid="uid://cyhnfktrfkge1" path="res://Assets/Images/liquidluckElixir.png" id="11_kioe0"]
 [ext_resource type="Texture2D" uid="uid://boomrdkedmbnw" path="res://Assets/Images/dauntlessElixir.png" id="12_goenk"]
-[ext_resource type="Texture2D" uid="uid://c0v0q5qpxvspg" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/controlsKey/controlsKeyV7.png" id="14_ncwab"]
-[ext_resource type="Texture2D" uid="uid://b5xvjiaoug3pn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/controlsKey/controlsKeyShadow.png" id="14_xwgwk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g20qm"]
 
@@ -25,18 +23,6 @@ colors = PackedColorArray(0, 0, 0, 0.156863, 0, 0, 0, 0.862745)
 gradient = SubResource("Gradient_a2ki7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s6tp"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhv31"]
-bg_color = Color(0.65, 0.65, 0.65, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0ub4"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaekr"]
-bg_color = Color(0.65, 0.65, 0.65, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jgnme"]
 font = ExtResource("6_0fd67")
@@ -55,18 +41,6 @@ font_size = 30
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 2)
-
-[sub_resource type="Gradient" id="Gradient_wt7nc"]
-offsets = PackedFloat32Array(0.0104167, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.862745)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fi7mb"]
-gradient = SubResource("Gradient_wt7nc")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oc8fu"]
-bg_color = Color(1, 1, 1, 1)
 
 [node name="ItemWheel" type="Control"]
 process_mode = 3
@@ -100,23 +74,6 @@ pivot_offset = Vector2(225, 225)
 texture = ExtResource("2_er5ar")
 expand_mode = 1
 
-[node name="BrownGradient2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 524.0
-offset_top = 146.0
-offset_right = 974.0
-offset_bottom = 596.0
-grow_horizontal = 0
-grow_vertical = 0
-pivot_offset = Vector2(225, 225)
-texture = ExtResource("2_er5ar")
-expand_mode = 1
-
 [node name="BlackVignette" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_g20qm")
 layout_mode = 1
@@ -134,48 +91,6 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_xnckx")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-
-[node name="Controls" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 634.0
-offset_top = 313.0
-offset_right = 834.0
-offset_bottom = 393.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_0fd67")
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_8s6tp")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uhv31")
-text = "Controls"
-
-[node name="MainMenu" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 709.333
-offset_top = 412.0
-offset_right = 834.333
-offset_bottom = 462.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_0fd67")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
-text = "Main Menu"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MainMenu"]
 
 [node name="Cell1" type="TextureButton" parent="."]
 process_mode = 3
@@ -624,58 +539,9 @@ label_settings = SubResource("LabelSettings_34q72")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ControlsGraphic" type="TextureRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_g20qm")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -851.0
-offset_top = -480.0
-offset_right = 1069.0
-offset_bottom = 600.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.89, 0.89)
-texture = SubResource("GradientTexture2D_fi7mb")
-
-[node name="ControlsGradient" type="TextureRect" parent="ControlsGraphic"]
-layout_mode = 1
-offset_left = 1.1235
-offset_right = 1922.12
-offset_bottom = 1086.0
-texture = ExtResource("14_xwgwk")
-
-[node name="ControlsGraphicText" type="TextureRect" parent="ControlsGraphic/ControlsGradient"]
-layout_mode = 0
-offset_left = 176.906
-offset_top = 23.97
-offset_right = 1684.91
-offset_bottom = 995.97
-texture = ExtResource("14_ncwab")
-
-[node name="BackButton" type="Button" parent="ControlsGraphic/ControlsGradient"]
-layout_mode = 0
-offset_left = 869.663
-offset_top = 975.281
-offset_right = 1039.66
-offset_bottom = 1035.28
-theme_override_colors/font_color = Color(0.231373, 0.137255, 0.0745098, 1)
-theme_override_fonts/font = ExtResource("6_0fd67")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_oc8fu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uhv31")
-text = "Back"
-
-[connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="mouse_entered" from="Cell1" to="." method="_on_cell_1_mouse_entered"]
 [connection signal="mouse_entered" from="Cell2" to="." method="_on_cell_2_mouse_entered"]
 [connection signal="mouse_entered" from="Cell3" to="." method="_on_cell_3_mouse_entered"]
 [connection signal="mouse_entered" from="Cell4" to="." method="_on_cell_4_mouse_entered"]
 [connection signal="mouse_entered" from="Cell5" to="." method="_on_cell_5_mouse_entered"]
 [connection signal="mouse_entered" from="Cell6" to="." method="_on_cell_6_mouse_entered"]
-[connection signal="pressed" from="ControlsGraphic/ControlsGradient/BackButton" to="." method="_on_controls_pressed"]

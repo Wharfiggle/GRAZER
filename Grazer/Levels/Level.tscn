@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cclwr76l2moqf"]
+[gd_scene load_steps=38 format=3 uid="uid://cclwr76l2moqf"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="12_3pmhn"]
 [ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="13_1ubf2"]
+[ext_resource type="PackedScene" uid="uid://8v4p26gkfffe" path="res://Prefabs/PauseMenuUI.tscn" id="16_6i4tb"]
 [ext_resource type="Environment" uid="uid://5rhjn7giur73" path="res://default_env.tres" id="16_leqkn"]
 [ext_resource type="FontFile" uid="uid://claanka6fj8mt" path="res://Assets/Font/Bronco Valley/OpenType-TT/Bronco.ttf" id="18_a0jb1"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="19_u5bqv"]
@@ -144,6 +145,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.478431, 0.0196078, 0.196078)
+
+[node name="PauseMenuUI" parent="." instance=ExtResource("16_6i4tb")]
+visible = false
+z_index = 100
 
 [node name="ItemWheel" parent="." instance=ExtResource("13_1ubf2")]
 visible = false

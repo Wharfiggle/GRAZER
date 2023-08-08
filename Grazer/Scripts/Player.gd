@@ -59,7 +59,7 @@ var cowDamageMod = 1.0
 var cowTypes = null
 
 var potions = null
-var inventory = [0, 0, 0, 0, 0, 0]
+var inventory = [2, 2, 2, 2, 2, 2]
 #var inventory = [5, 5, 5, 5, 5, 5]
 @export var potionTime = 25.0
 var potionTimer = 0.0
@@ -161,6 +161,7 @@ var maxAmmo = 0
 
 var deathBlend = 0
 var deathTimer = 0
+var dead = false
 
 @export var canHaveNoCows = true
 
@@ -334,6 +335,12 @@ func _process(delta):
 	#shoot gun input buffer
 	if(active && Input.is_action_just_pressed("shoot") && dodgeTimer == 0 && !dauntless && !reloading):
 		shootBufferTimer = shootBufferTime
+	elif(Input.is_action_just_pressed("shoot")):
+		print("tried to shoot, but couldn't because ")
+		if(!active): print(" not active ")
+		if(dodgeTimer != 0): print(" dodgeTimer not zero ")
+		if(dauntless): print(" dauntless ")
+		if(reloading): print(" reloading ")
 	
 	#shoot gun
 	if(active && shootBufferTimer > 0 && shootTimer == 0 && equippedClip > 0):
@@ -954,8 +961,9 @@ func healFromBullet(damageDone):
 	updateHealth(hitpoints + damageDone * lifeLeach)
 		
 func die():
-	if(!active):
+	if(dead):
 		return
+	dead = true
 	deathTimer = 3.8
 	if(russelOrRay == "Ray"):
 		deathTimer = 3.0

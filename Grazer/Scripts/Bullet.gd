@@ -24,10 +24,13 @@ var critHit = false
 @onready var boom = $Boom
 var hitSound = preload("res://sounds/Enemy Stuff/BulletImpact(Enemy).wav")
 var player
+var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	raycast.target_position = Vector3(0, -muzzle_velocity / 60.0, 0)
+	rng.randomize()
+	bulletStopExtend = rng.randf_range(0, 1)
 	
 
 func shoot(inSource:Node3D, inFrom:String, inPosition:Vector3, inRotation:Vector3, 

@@ -187,7 +187,6 @@ texture_click_mask = ExtResource("9_pkvey")
 [node name="RusselAudio" type="AudioStreamPlayer2D" parent="Panel/CharacterSelect"]
 position = Vector2(363, 230)
 scale = Vector2(0.19, 0.19)
-volume_db = 15.0
 
 [node name="RayAudio" type="AudioStreamPlayer2D" parent="Panel/CharacterSelect"]
 position = Vector2(363, 230)

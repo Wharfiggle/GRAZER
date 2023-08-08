@@ -15,7 +15,8 @@ func setActive(inActive:bool, inPos:Vector2 = Vector2(-1, -1)):
 	active = inActive
 	if(active && inPos != Vector2(-1, -1)):
 		setPosition(inPos)
-		prevMousePos = inPos
+		prevMousePos = global_position
+		viewport.warp_mouse(global_position)
 	visible = active
 	
 func setPosition(inPos:Vector2):
@@ -42,6 +43,7 @@ func _process(delta):
 		if(prevMousePos == Vector2(-1, -1)):
 			setPosition(mousePos)
 		else:
+			print(str(mousePos) + " " + str(prevMousePos))
 			setPosition(global_position + mousePos - prevMousePos)
 		prevMousePos = mousePos
 	else:
