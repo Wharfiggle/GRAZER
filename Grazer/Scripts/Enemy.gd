@@ -108,7 +108,7 @@ func _ready():
 	if(marauderType == enemyTypes.gunman):
 		revolver = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight/RevolverOffset/Revolver"))
 	else:
-		maxHealth = 12.0
+		maxHealth = 13.0
 		health = maxHealth
 	if(revolver != null):
 		shootingPoint = revolver.find_child("ShootingPoint")

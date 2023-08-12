@@ -67,7 +67,7 @@ var potionUsed
 var lifeLeach = 0.0
 var potionSpeedup = 1.0
 var alwaysCrit = false
-var critChance = 0.1
+var critChance = 0.05
 var dauntless = false
 var bulletstorm = false
 var bulletColor = Color(1, 1, 0)
