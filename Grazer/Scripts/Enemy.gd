@@ -290,8 +290,7 @@ func _physics_process(delta):
 			currentMode = behaviors.hibernate
 			delete(false)
 			if(draggedCow != null):
-				herd.removeCow(draggedCow)
-				draggedCow.queue_free()
+				herd.deleteCow(draggedCow)
 				SceneCounter.cows -= 1
 				delete()
 				SceneCounter.marauders -= 1
@@ -576,8 +575,7 @@ func flee():
 					i.currentMode = behaviors.circle
 				i.targetCow = null
 				i.draggedCow = null
-			herd.removeCow(cowTemp)
-			cowTemp.queue_free()
+			herd.deleteCow(cowTemp)
 			leadDragger.delete()
 			SceneCounter.cows -= 1
 			SceneCounter.marauders -= 1

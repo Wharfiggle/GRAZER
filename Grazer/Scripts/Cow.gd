@@ -206,6 +206,7 @@ func idle():
 	var clip_to_play = audioArray[randi() % audioArray.size()] 
 	Vocal.stream=clip_to_play
 	Vocal.play()
+
 #equation for diagonal length of screen
 #var rectWid = 15 / cos(55 * PI / 180)
 #var rectHei = 15 / 9 * 16
@@ -466,8 +467,7 @@ func _physics_process(delta):
 			for i in draggers:
 				if(i != null):
 					stopDragging(i)
-			herd.removeCow(self)
-			queue_free()
+			herd.deleteCow(self)
 			SceneCounter.cows -= 1
 		totalVelocity.y = tVelocity.y
 	else:
@@ -499,25 +499,38 @@ func _physics_process(delta):
 	else:
 		fallTimer = 0
 		
-	if(offscreenIndicator != null && camera != null):
-		var scrHei = camera.size
-		var wrldHei = scrHei / cos(55.0 * PI / 180.0)
-		var scrWid = scrHei / 9.0 * 16.0 #only works with 16:9 aspect ratio
-		var bound1 = Vector3(
-			-scrWid / 2.0, 0,
-			(-scrHei / 2.0) / cos(55.0 * PI / 180.0))
-		bound1 = Vector3(
-			cos(-PI/4.0) * bound1.x - sin(-PI/4.0) * bound1.z, 0,
-			sin(-PI/4.0) * bound1.x + cos(-PI/4.0) * bound1.z)
-		var bound2 = -bound1
-		bound1 += camera.position - camera.camOffset
-		bound2 += camera.position - camera.camOffset
-#		offscreenIndicator.global_position = Vector3(
-#			cos(-PI/4.0) * position.x - sin(-PI/4.0) * position.z, 0,
-#			sin(-PI/4.0) * position.x + cos(-PI/4.0) * position.z)
-		offscreenIndicator.global_position = Vector3(
-			min(max(offscreenIndicator.global_position.x, bound1.x), bound2.x), 0,
-			min(max(offscreenIndicator.global_position.z, bound1.z), bound2.z))
+	if(!stray && offscreenIndicator != null && camera != null):
+		var edgeMargin = 1.0
+		var scrHei = camera.size #height of screen in meters
+		var scrWid = scrHei / 9.0 * 16.0 #only works with 16:9 aspect ratio. screen ratio is fixed so its fine
+		scrHei -= edgeMargin * 2
+		scrWid -= edgeMargin * 2
+		var wrldHei = scrHei / cos(55.0 * PI / 180.0) #height of world shown on screen due to camera pitch
+		
+		var bound1 = Vector2( #top left
+			-scrWid / 2.0,
+			-wrldHei / 2.0)
+		var bound2 = -bound1 #bottom right
+		
+		offscreenIndicator.global_position = global_position
+		var indctr = offscreenIndicator.global_position - (camera.position - camera.camOffset)
+		indctr = Vector2( #rotate by 45 degrees to compensate for camera angle yaw
+			cos(PI/4.0) * indctr.x - sin(PI/4.0) * indctr.z,
+			sin(PI/4.0) * indctr.x + cos(PI/4.0) * indctr.z)
+		var clampedIndctr = Vector2( #clamp into screen bounds
+			min(max(indctr.x, bound1.x), bound2.x),
+			min(max(indctr.y, bound1.y), bound2.y))
+		var indctrDiff = clampedIndctr - indctr
+		indctrDiff = Vector2( #rotate back
+			cos(-PI/4.0) * indctrDiff.x - sin(-PI/4.0) * indctrDiff.y,
+			sin(-PI/4.0) * indctrDiff.x + cos(-PI/4.0) * indctrDiff.y)
+		
+		if(indctrDiff.length() > 0):
+			offscreenIndicator.global_position += Vector3(indctrDiff.x, 0, indctrDiff.y)
+			offscreenIndicator.visible = true
+		else:
+			offscreenIndicator.visible = false
+
 #		var fromCenter = global_position - (camera.position - camera.camOffset)
 #		fromCenter.y = 0
 #		var radx = bound1.x
@@ -525,11 +538,11 @@ func _physics_process(delta):
 #		var toEdge = Vector3(fromCenter.normalized().x * radx, 0, fromCenter.normalized().y * rady)
 #		if(fromCenter.length() < toEdge.length()):
 #			offscreenIndicator.global_position = toEdge
-		#offscreenIndicator.global_position += Vector3(randf() * 10 - 5, 0, randf() * 10 - 5)
-	else:
+	elif(offscreenIndicator == null):
 		offscreenIndicator = find_child("OffscreenIndicator")
 		self.remove_child(offscreenIndicator)
 		get_node(NodePath("/root/Level")).add_child(offscreenIndicator)
+	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
 	
 	#make cow's model look in the direction it's moving

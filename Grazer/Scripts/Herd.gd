@@ -118,6 +118,11 @@ func removeCow(cow):
 		cow.idle()
 		player.cowTypes[cow.cowTypeInd].use(false)
 
+func deleteCow(cow):
+	removeCow(cow)
+	cow.offscreenIndicator.queue_free()
+	cow.queue_free()
+
 #spawn a cow in center of herd
 func spawnCow(type:int = -1) -> Node:
 	var cow = spawnCowAtPos(findHerdCenter(), type)
