@@ -27,9 +27,9 @@ static func retrieveStructureTypes() -> Array:
 	var structures = []
 	
 	#sPathName, sWidth, sHeight
-	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPoint.tscn", 2, 4]) #checkpoint middle
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPointV2.tscn", 2, 4]) #checkpoint middle
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPointLeft.tscn", 4, 4]) #checkpoint left
-	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPointRight.tscn", 4, 4]) #checkpoint right
+	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/checkPointRightV2.tscn", 4, 4]) #checkpoint right
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/startArea.tscn", 2, 3]) #start area
 	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/finalFieldNoGrass.tscn", 2, 2])
 #	structures.append(["res://Assets/FloorTiles/TilePool/StructureTiles/structure2.tscn", 2, 1])

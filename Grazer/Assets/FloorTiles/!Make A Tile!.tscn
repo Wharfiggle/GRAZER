@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="6_55euo"]
 [ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="7_h31pw"]
 [ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="8_4nkwo"]
-[ext_resource type="Environment" uid="uid://didmt6oshahc0" path="res://default_env.tres" id="8_j3wbu"]
+[ext_resource type="Environment" uid="uid://5rhjn7giur73" path="res://default_env.tres" id="8_j3wbu"]
 [ext_resource type="PackedScene" uid="uid://bxmokm0w5pjrq" path="res://Prefabs/fog_volume.tscn" id="9_ed27k"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="15_8l4ug"]
 
