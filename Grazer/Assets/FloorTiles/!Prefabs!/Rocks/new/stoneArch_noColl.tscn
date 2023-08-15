@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://whn5521vq33"]
+
+[ext_resource type="PackedScene" uid="uid://dbot4xhidabj1" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch.fbx" id="1_xs12n"]
+[ext_resource type="Texture2D" uid="uid://b0xyvv1okp8c1" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch_Material_BaseColor.png" id="2_ba25n"]
+[ext_resource type="Texture2D" uid="uid://j47gumdw7q45" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch_Material_Metallic.png" id="3_n1qrg"]
+[ext_resource type="Texture2D" uid="uid://bb4st8thikl0n" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch_Material_Normal.png" id="4_cilpp"]
+[ext_resource type="Texture2D" uid="uid://c1t0x5kklroke" path="res://Assets/Models/Rocks FINAL/stoneArch/stoneArch_Material_Roughness.png" id="5_p41tu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj48r"]
+albedo_texture = ExtResource("2_ba25n")
+metallic = 1.0
+metallic_texture = ExtResource("3_n1qrg")
+roughness_texture = ExtResource("5_p41tu")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("4_cilpp")
+
+[node name="stoneArch" instance=ExtResource("1_xs12n")]
+
+[node name="Plane" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kj48r")

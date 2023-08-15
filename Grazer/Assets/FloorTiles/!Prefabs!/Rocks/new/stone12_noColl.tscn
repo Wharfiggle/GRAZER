@@ -1,0 +1,22 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7abtbl0q8low"]
+
+[ext_resource type="PackedScene" uid="uid://bjah70i3n330a" path="res://Assets/Models/Rocks FINAL/stone12/stone12.fbx" id="1_8u0gl"]
+[ext_resource type="Texture2D" uid="uid://cqmaeqa6m4lpc" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_BaseColor.png" id="2_oxsbo"]
+[ext_resource type="Texture2D" uid="uid://deka3b5golnh3" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Emissive.png" id="3_hgs5w"]
+[ext_resource type="Texture2D" uid="uid://bxk2ixhb3oi3g" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Metallic.png" id="4_rt2b0"]
+[ext_resource type="Texture2D" uid="uid://bly1wnslm0vqo" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Normal.png" id="5_2v414"]
+[ext_resource type="Texture2D" uid="uid://bgbvhfjy258uw" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Roughness.png" id="6_io27f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l4ie"]
+albedo_texture = ExtResource("2_oxsbo")
+metallic = 1.0
+metallic_texture = ExtResource("4_rt2b0")
+roughness_texture = ExtResource("6_io27f")
+emission_texture = ExtResource("3_hgs5w")
+normal_enabled = true
+normal_texture = ExtResource("5_2v414")
+
+[node name="stone12" instance=ExtResource("1_8u0gl")]
+
+[node name="bigstone1" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0l4ie")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://wrj7bwpeixdh"]
+[gd_scene load_steps=22 format=3 uid="uid://wrj7bwpeixdh"]
 
 [ext_resource type="PackedScene" uid="uid://bdfitt6fxqiit" path="res://Assets/FloorTiles/!Prefabs!/Cliff TriCorner/triCornerCliff.tscn" id="10_lyumt"]
-[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="14_y5w6k"]
-[ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="15_1bt5c"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="11_wvslq"]
 [ext_resource type="Texture2D" uid="uid://btw56eqjttati" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_BaseColor.png" id="16_kip3a"]
 [ext_resource type="Texture2D" uid="uid://bqp7q8fpbweu" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Height.png" id="17_aee54"]
 [ext_resource type="Texture2D" uid="uid://cof2smyxqleye" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Metallic.png" id="18_4opet"]
@@ -12,15 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://1e36kw702rq0" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Straight/cliffStraightLow.tscn" id="22_lklld"]
 
 [sub_resource type="BoxShape3D" id="1"]
-size = Vector3(16, 0.1, 16)
+size = Vector3(14.2544, 0.1, 16.784)
 
 [sub_resource type="NavigationMesh" id="4"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1qf6m"]
-size = Vector3(23.7529, 9.57821, 15.6295)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7yits"]
-size = Vector3(44.3668, 9.57821, 12.2312)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imygq"]
 resource_name = "decim"
@@ -103,7 +96,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_oioqc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1j06"]
-size = Vector3(21.37, 9.57821, 12.2312)
+size = Vector3(19.3466, 9.57821, 10.8863)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bqj1v"]
 resource_name = "Root Scene_decim"
@@ -126,12 +119,15 @@ shadow_mesh = SubResource("ArrayMesh_fblmu")
 [sub_resource type="BoxShape3D" id="BoxShape3D_eytkc"]
 size = Vector3(23.7529, 9.57821, 12.4376)
 
+[sub_resource type="BoxMesh" id="BoxMesh_gx1wn"]
+size = Vector3(16, 0.1, 16)
+
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88, 0, 8)
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 120, 0, -24)
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 142.568, 0, -8)
 shape = SubResource("1")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -143,15 +139,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9858, 0.0499992, 0.343535)
 
 [node name="RootNode" type="Node3D" parent="NavigationRegion3D/cacti3"]
 
-[node name="cacti7" parent="NavigationRegion3D" instance=ExtResource("14_y5w6k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.652, 0.0499992, -45.1838)
-
-[node name="stone19" parent="NavigationRegion3D" instance=ExtResource("15_1bt5c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.6646, -0.244824, -41.9345)
-
-[node name="stone17" parent="NavigationRegion3D" instance=ExtResource("15_1bt5c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3362, -0.244832, -23.5043)
-
 [node name="wallStraight" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 39.6003, 0.05, -9.69718)
 
@@ -159,10 +146,6 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 39.600
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight"]
 collision_layer = 19
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.37594, 4.34772, -3.37689)
-shape = SubResource("BoxShape3D_1qf6m")
 
 [node name="wallStraight6" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.569825, 0, -0.821766, 0, 1, 0, 0.821766, 0, -0.569825, 39.6003, 0.05, -19.3844)
@@ -172,17 +155,13 @@ transform = Transform3D(-0.569825, 0, -0.821766, 0, 1, 0, 0.821766, 0, -0.569825
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight6"]
 collision_layer = 19
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight6/StaticBody3D"]
-transform = Transform3D(0.997614, 0, -0.0690425, 0, 1, 0, 0.0690425, 0, 0.997614, -10.2676, 4.34772, -3.40503)
-shape = SubResource("BoxShape3D_7yits")
-
 [node name="wallStraight7" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.828776, -0.0531411, 0.557051, -0.0695261, 0.997546, -0.00827735, -0.555244, -0.0455896, -0.830437, 66.1874, 0.614655, -40.8492)
 
 [node name="RootNode" type="Node3D" parent="NavigationRegion3D/wallStraight7"]
 
 [node name="decim" type="MeshInstance3D" parent="NavigationRegion3D/wallStraight7/RootNode"]
-transform = Transform3D(1.79624, -0.11562, -0.0120378, 0.109145, 1.74161, -0.441454, 0.0400026, 0.439802, 1.74498, -7.51952, -9.33504, -0.541634)
+transform = Transform3D(1.79624, -0.11562, -0.0120377, 0.109145, 1.74161, -0.441454, 0.0400027, 0.439802, 1.74498, -11.1987, -9.63713, -6.0443)
 mesh = SubResource("ArrayMesh_r8qbo")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
@@ -190,17 +169,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight7"]
 collision_layer = 19
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight7/StaticBody3D"]
-transform = Transform3D(0.994811, 0.000482511, 0.101745, -0.00120593, 0.999978, 0.00704809, -0.101741, -0.00713433, 0.994787, -12.5457, 4.31018, -3.65075)
-shape = SubResource("BoxShape3D_7yits")
-
 [node name="wallStraight2" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(-1.1628, 0, 0.29646, 0, 1.2, 0, -0.29646, 0, -1.1628, 60.6039, 0.05, -8.49244)
 
 [node name="RootNode" type="Node3D" parent="NavigationRegion3D/wallStraight2"]
 
 [node name="decim" type="MeshInstance3D" parent="NavigationRegion3D/wallStraight2/RootNode"]
-transform = Transform3D(0.999809, -0.023447, -0.0009755, 0.0195391, 1.1938, 0.0995918, -0.000975475, -0.11951, 0.995028, 0, 0, 0)
+transform = Transform3D(0.999809, -0.023447, -0.00097549, 0.0195391, 1.1938, 0.0995918, -0.000975505, -0.11951, 0.995028, -0.910986, 0, -3.57315)
+mesh = SubResource("ArrayMesh_8h5o7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
+
+[node name="decim2" type="MeshInstance3D" parent="NavigationRegion3D/wallStraight2/RootNode"]
+transform = Transform3D(-0.983816, 0.0442517, -0.175347, 0.0195391, 1.1938, 0.0995918, 0.178114, 0.113464, -0.979456, -2.21737, -7.32866, -12.4754)
 mesh = SubResource("ArrayMesh_8h5o7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
@@ -209,7 +190,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86259, 4.34772, -3.4994)
+transform = Transform3D(0.982382, 0, 0.186884, 0, 1, 0, -0.186884, 0, 0.982382, -1.84135, 4.46836, -8.24194)
 shape = SubResource("BoxShape3D_i1j06")
 
 [node name="wallStraight3" type="Node3D" parent="NavigationRegion3D"]
@@ -218,7 +199,13 @@ transform = Transform3D(-2, 0, -2.41593e-07, 0, 1.6, 0, 3.01992e-07, 0, -1.6, 87
 [node name="RootNode" type="Node3D" parent="NavigationRegion3D/wallStraight3"]
 
 [node name="decim" type="MeshInstance3D" parent="NavigationRegion3D/wallStraight3/RootNode"]
-transform = Transform3D(-1.16323, 0.063384, -0.241454, 0.0322666, 1.39513, 0.0789047, 0.293023, 0.097992, -0.967198, -1.61681, -0.836221, -6.57752)
+transform = Transform3D(1.18749, -0.0215039, -0.143235, 0.0322666, 1.39513, 0.0789047, 0.169831, -0.114706, 0.986537, -2.03279, -0.836221, -1.81504)
+mesh = SubResource("ArrayMesh_bqj1v")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
+
+[node name="decim2" type="MeshInstance3D" parent="NavigationRegion3D/wallStraight3/RootNode"]
+transform = Transform3D(0.138172, -0.113143, 0.981752, 0.0381948, 1.3891, 0.0780941, -1.41322, 0.026481, 0.0980961, -3.02909, -4.88091, 13.6147)
 mesh = SubResource("ArrayMesh_bqj1v")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
@@ -227,7 +214,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight3/StaticBody3D"]
-transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, 0, 0, 1, 0, 4.34772, -3.37689)
+transform = Transform3D(0.994955, 0, -0.100327, 0, 0.999997, 0, 0.100327, 0, 0.994952, -2.08447, 4.50501, -5.53642)
+shape = SubResource("BoxShape3D_eytkc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight3/StaticBody3D"]
+transform = Transform3D(-0.0153757, 0, 0.999879, 0, 0.999995, 0, -0.99988, 0, -0.0153757, -7.4179, 4.24117, 15.0228)
 shape = SubResource("BoxShape3D_eytkc")
 
 [node name="CowSpawner" parent="." instance=ExtResource("21_qp544")]
@@ -239,3 +230,31 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 95.35,
 
 [node name="triCornerCliff_FixedV1_UV3" parent="." instance=ExtResource("10_lyumt")]
 transform = Transform3D(-0.0492779, 0, 0.597973, 0, 1, 0, -0.597973, 0, -0.0492779, 84.4238, -15.95, 3.50349)
+
+[node name="cliffStraight low2" parent="." instance=ExtResource("22_lklld")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 111.295, -15.95, 0.599874)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 0)
+mesh = SubResource("BoxMesh_gx1wn")
+surface_material_override/0 = ExtResource("11_wvslq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 144, 0, 0)
+mesh = SubResource("BoxMesh_gx1wn")
+surface_material_override/0 = ExtResource("11_wvslq")
+
+[node name="cliffStraight low3" parent="." instance=ExtResource("22_lklld")]
+transform = Transform3D(1.05255, 0, 0, 0, 1, 0, 0, 0, 1, 88.0474, -15.95, -48.8629)
+
+[node name="cliffStraight low4" parent="." instance=ExtResource("22_lklld")]
+transform = Transform3D(1.05255, 0, 0, 0, 1, 0, 0, 0, 1, 105.205, -15.95, -48.8629)
+
+[node name="cliffStraight low5" parent="." instance=ExtResource("22_lklld")]
+transform = Transform3D(1.05255, 0, 0, 0, 1, 0, 0, 0, 1, 122.285, -15.95, -48.8629)
+
+[node name="cliffStraight low6" parent="." instance=ExtResource("22_lklld")]
+transform = Transform3D(0.602732, 0, 0, 0, 1, 0, 0, 0, 0.929991, 134.759, -15.95, -49.4032)
+
+[node name="triCornerCliff_FixedV1_UV4" parent="." instance=ExtResource("10_lyumt")]
+transform = Transform3D(-0.0135552, 0, -0.926204, 0, 1, 0, 0.607137, 0, -0.0206789, 144.203, -15.95, -51.4294)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ukrfr1j63pht"]
+[gd_scene load_steps=34 format=3 uid="uid://ukrfr1j63pht"]
 
 [ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="6_u5w8h"]
 [ext_resource type="Texture2D" uid="uid://btw56eqjttati" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_BaseColor.png" id="7_8ado8"]
@@ -11,9 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://ocacxg8eh0y6" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Roughness.png" id="11_g6m04"]
 [ext_resource type="PackedScene" uid="uid://b7bhsrgtyxgr6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1_noCol.tscn" id="11_phv80"]
 [ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="12_3fxk3"]
+[ext_resource type="PackedScene" uid="uid://dmombb06cyng6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="12_6t84b"]
+[ext_resource type="PackedScene" uid="uid://d0chluqj65wur" path="res://Assets/FloorTiles/!Prefabs!/Cacti/organCacti.tscn" id="13_rdkli"]
+[ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="14_k0i4v"]
 
 [sub_resource type="BoxShape3D" id="1"]
-size = Vector3(12.1627, 0.1, 7.6591)
+size = Vector3(16.108, 0.1, 7.6591)
 
 [sub_resource type="NavigationMesh" id="4"]
 vertices = PackedVector3Array(-57.6096, 7.94711, -28.3368, -55.6096, 7.69711, -28.3368, -55.6096, 7.69711, -30.3368, -57.6096, 8.19711, -30.3368, -59.6096, 8.19711, -29.3368, -57.6096, 8.19711, -36.3368, -56.6096, 8.69711, -42.3368, -61.6096, 8.44711, -38.3368, -61.6096, 8.19711, -36.3368, -60.6096, 7.19711, -18.3368, -58.6096, 7.44711, -18.3368, -58.6096, 7.94711, -21.3368, -62.6096, 7.19711, -24.3368, -58.6096, 8.94711, -45.3368, -58.6096, 8.44711, -47.3368, -63.6096, 8.69711, -46.3368, -62.6096, 7.19711, -24.3368, -58.6096, 7.94711, -21.3368, -56.6096, 7.94711, -22.3368, -57.6096, 7.94711, -28.3368, -59.6096, 8.19711, -29.3368, -58.6096, 8.44711, -47.3368, -55.6096, 7.94711, -47.3368, -56.6096, 6.94711, -53.3368, -64.6096, 7.94711, -29.3368, -59.6096, 8.19711, -29.3368, -57.6096, 8.19711, -30.3368, -57.6096, 8.19711, -36.3368, -61.6096, 8.19711, -36.3368, -65.6096, 7.69711, -34.3368, -58.6096, 8.94711, -45.3368, -63.6096, 8.69711, -46.3368, -63.6096, 8.44711, -38.3368, -61.6096, 8.44711, -38.3368, -56.6096, 8.69711, -42.3368, -58.6096, 8.44711, -47.3368, -56.6096, 6.94711, -53.3368, -61.6096, 7.19711, -53.3368, -63.6096, 7.44711, -51.3368, -63.6096, 8.69711, -46.3368, -29.6096, 15.6971, -29.3368, -29.6096, 15.6971, -31.3368, -31.6096, 16.1971, -31.3368, -35.6096, 16.4471, -30.3368, -34.6096, 15.9471, -28.3368, -42.6096, 15.9471, -24.3368, -47.6096, 15.9471, -23.3368, -43.6096, 15.4471, -17.3368, -40.6096, 15.6971, -18.3368, -35.6096, 14.4471, -21.3368, -36.6096, 15.1971, -24.3368, -39.6096, 15.1971, -24.3368, -35.6096, 15.1971, -25.3368, -36.6096, 15.1971, -24.3368, -33.6096, 14.4471, -21.3368, -30.6096, 14.1971, -23.3368, -31.6096, 15.1971, -26.3368, -34.6096, 15.4471, -26.3368, -35.6096, 15.1971, -25.3368, -33.6096, 14.4471, -21.3368, -37.6096, 15.6971, -37.3368, -39.6096, 15.9471, -31.3368, -35.6096, 16.4471, -30.3368, -31.6096, 16.1971, -31.3368, -30.6096, 15.6971, -36.3368, -34.1096, 16.1971, -36.8368, -38.6096, 16.1971, -34.3368, -40.6096, 15.6971, -18.3368, -38.6096, 14.9471, -16.3368, -35.6096, 14.4471, -21.3368, -42.6096, 15.9471, -24.3368, -41.6096, 14.9471, -30.3368, -44.6096, 14.9471, -30.3368, -47.6096, 15.9471, -23.3368, -35.6096, 16.4471, -30.3368, -39.6096, 15.9471, -31.3368, -35.6096, 15.1971, -25.3368, -34.6096, 15.4471, -26.3368, -37.6096, 15.9471, -28.3368, -35.6096, 15.1971, -25.3368, -40.6096, 15.4471, -26.3368, -42.6096, 15.9471, -24.3368, -36.6096, 15.1971, -24.3368, -39.6096, 15.1971, -24.3368, -64.6096, 7.19711, -27.3368, -64.6096, 6.44711, -24.3368, -62.6096, 7.19711, -25.3368, -44.6096, 14.4471, -13.3368, -45.6096, 13.9471, -16.3368, -47.6096, 14.1971, -14.3368, -45.6096, 14.4471, -9.33681, -47.6096, 14.1971, -14.3368, -48.6096, 14.1971, -16.3368, -50.6096, 13.6971, -15.3368, -45.6096, 14.4471, -9.33681, -37.6096, 13.6971, -12.3368, -37.6096, 14.4471, -15.3368, -44.6096, 14.4471, -13.3368, -45.6096, 14.4471, -9.33681, -41.1096, 13.6971, -14.3368, -45.6096, 15.4471, -0.336815, -43.6096, 15.1971, 1.66319, -43.6096, 15.9471, -1.33681, -45.6096, 15.4471, -0.336815, -43.6096, 15.9471, -1.33681, -46.6096, 15.1971, -1.33681, -51.6096, 15.9471, -3.33681, -53.6096, 15.4471, -1.33681, -52.6096, 15.4471, 0.663185, -45.6096, 15.4471, -0.336815, -46.6096, 15.1971, -1.33681, -49.1096, 14.6971, 0.163185, -48.6096, 15.6971, -7.33681, -53.6096, 15.9471, -6.33681, -51.6096, 15.9471, -3.33681, -48.6096, 15.6971, -4.33681, -46.6096, 15.1971, -1.33681, -48.6096, 15.6971, -4.33681, -51.6096, 15.9471, -3.33681, -41.6096, 16.6971, -5.33681, -42.6096, 16.1971, -7.33681, -44.6096, 16.1971, -5.33681, -44.6096, 16.4471, -3.33681, -41.6096, 16.6971, -2.33681, -41.6096, 16.6971, -2.33681, -41.6096, 16.1971, 0.663185, -38.6096, 16.1971, 0.663185, -41.6096, 16.6971, -2.33681, -38.6096, 16.1971, 0.663185, -36.6096, 16.1971, -2.33681, -36.6096, 16.1971, -6.33681, -41.6096, 16.6971, -5.33681, -58.6096, 13.9471, 3.66319, -57.6096, 13.6971, 5.66319, -54.6096, 13.4471, 4.66319, -62.6096, 13.4471, 0.663185, -62.6096, 13.4471, 3.66319, -58.6096, 13.9471, 3.66319, -58.6096, 13.9471, 3.66319, -54.6096, 13.4471, 4.66319, -58.6096, 13.9471, -2.33681, -62.6096, 13.4471, 0.663185)
@@ -188,7 +191,7 @@ transform = Transform3D(4.06353, 0, 0, 0, 1, 0, 0, 0, 4, 16.4504, 0, -7.09355)
 shape = SubResource("1")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 31.768, 0, -24)
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 23.8558, 0, -41)
 shape = SubResource("1")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -207,7 +210,7 @@ transform = Transform3D(0.100483, 0, -0.994939, 0, 1, 0, 0.994939, 0, 0.100483, 
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight8/StaticBody3D"]
-transform = Transform3D(0.984178, 0, 0.177188, 0, 1, 0, -0.177188, 0, 0.984178, -7.40961, 4.34772, -4.8633)
+transform = Transform3D(0.959969, 0, -0.280115, 0, 1, 0, 0.280115, 0, 0.959969, -4.03751, 4.81885, -5.02728)
 shape = SubResource("BoxShape3D_jwlmo")
 
 [node name="wallStraight9" type="Node3D" parent="NavigationRegion3D"]
@@ -223,6 +226,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
 
 [node name="decim2" type="MeshInstance3D" parent="NavigationRegion3D/wallStraight9/RootNode"]
 transform = Transform3D(-1.56921, -0.190197, -0.973594, -0.146032, 1.58774, -0.159536, 1.23137, -0.0540842, -1.25963, 3.94999, 0.0212312, 17.4011)
+mesh = SubResource("ArrayMesh_0ipvh")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
+
+[node name="decim3" type="MeshInstance3D" parent="NavigationRegion3D/wallStraight9/RootNode"]
+transform = Transform3D(-1.68011, -0.0957848, 1.47792, -0.190979, 1.99413, -0.00970756, -1.8414, -0.119424, -1.34747, 7.42677, -4.58868, -8.01123)
 mesh = SubResource("ArrayMesh_0ipvh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
@@ -263,7 +272,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight5/StaticBody3D"]
-transform = Transform3D(0.999215, 0, 0.0396261, 0, 1, 0, -0.0396261, 0, 0.999215, 7.61636, 4.34772, -3.84092)
+transform = Transform3D(0.987922, 0, 0.154952, 0, 1, 0, -0.154952, 0, 0.987922, 7.61636, 4.84082, -3.65743)
+shape = SubResource("BoxShape3D_1qf6m")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight5/StaticBody3D"]
+transform = Transform3D(0.99784, 0, -0.0656992, 0, 1, 0, 0.0656992, 0, 0.99784, -9.4026, 4.84082, 18.7139)
+shape = SubResource("BoxShape3D_1qf6m")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight5/StaticBody3D"]
+transform = Transform3D(1, 0, 0.0011694, 0, 1, 0, -0.0011694, 0, 1, 3.07951, 4.84082, 18.8539)
+shape = SubResource("BoxShape3D_1qf6m")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight5/StaticBody3D"]
+transform = Transform3D(0.996802, 0, 0.0799206, 0, 1, 0, -0.0799206, 0, 0.996802, -11.5007, 4.84082, -1.40155)
 shape = SubResource("BoxShape3D_1qf6m")
 
 [node name="wallStraight10" type="Node3D" parent="NavigationRegion3D"]
@@ -329,6 +350,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, -32)
 mesh = SubResource("BoxMesh_m76qk")
 surface_material_override/0 = ExtResource("8_24rtv")
 
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, -48)
+mesh = SubResource("BoxMesh_m76qk")
+surface_material_override/0 = ExtResource("8_24rtv")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -48)
+mesh = SubResource("BoxMesh_m76qk")
+surface_material_override/0 = ExtResource("8_24rtv")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+mesh = SubResource("BoxMesh_m76qk")
+surface_material_override/0 = ExtResource("8_24rtv")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, -48)
+mesh = SubResource("BoxMesh_m76qk")
+surface_material_override/0 = ExtResource("8_24rtv")
+
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, -32)
 mesh = SubResource("BoxMesh_m76qk")
@@ -341,7 +382,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.6895, -15.95, -1.09412)
 transform = Transform3D(-0.600115, 0, -0.0656824, 0, 1, 0, 0.0387341, 0, -1.01763, 51.8299, -15.95, 0.495732)
 
 [node name="decim" type="MeshInstance3D" parent="cliffStraight low2"]
-transform = Transform3D(1.33368, -0.0587063, 0.262042, 0.0269635, 1.31814, 0.103159, -0.353393, -0.120981, 0.996801, 7.08068, 13.4428, 12.7594)
+transform = Transform3D(1.3334, -0.0588034, 0.262842, 0.0269635, 1.31814, 0.103159, -0.354464, -0.120934, 0.99659, 7.08068, 13.4428, 12.7594)
 mesh = SubResource("ArrayMesh_00evc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_5cvuf")
@@ -354,3 +395,15 @@ transform = Transform3D(0.664101, 0, 0.0348091, 0, 1, 0, -0.0360361, 0, 0.641488
 
 [node name="stone1" parent="." instance=ExtResource("11_phv80")]
 transform = Transform3D(2.9946, 0, 0.179905, 0, 3.84762, 0, -0.179905, 0, 2.9946, 44.3602, -14.7161, -7.8165)
+
+[node name="stone12" parent="." instance=ExtResource("12_6t84b")]
+transform = Transform3D(-0.746801, 0, -0.665048, 0, 1, 0, 0.665048, 0, -0.746801, 51.9631, -1.03362, -18.0446)
+
+[node name="Organcacti_Nopal" parent="." instance=ExtResource("13_rdkli")]
+transform = Transform3D(0.248014, 0, 0.968757, 0, 1, 0, -0.968757, 0, 0.248014, 54.638, 6.69881, -11.0465)
+
+[node name="cacti1" parent="." instance=ExtResource("14_k0i4v")]
+transform = Transform3D(0.965518, 0.260336, 3.04036e-09, -0.238034, 0.882804, -0.404966, -0.105427, 0.391002, 0.914332, 56.4679, 2.97605, -16.3836)
+
+[node name="cacti2" parent="." instance=ExtResource("14_k0i4v")]
+transform = Transform3D(0.579311, 0.156202, 6.88101e-10, -0.156033, 0.578687, -0.0278454, -0.00724916, 0.0268852, 0.599353, 56.4679, 3.12552, -18.0547)
