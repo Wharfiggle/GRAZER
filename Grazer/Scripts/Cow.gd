@@ -511,6 +511,13 @@ func _physics_process(delta):
 			-scrWid / 2.0,
 			-wrldHei / 2.0)
 		var bound2 = -bound1 #bottom right
+		#move down a bit to look better
+		bound1.y += 1.0
+		bound2.y += 1.0
+		
+		var healthCorner = Vector2(-7.5, -9.5)
+		var gunCorner = Vector2(-8.5, 10)
+		#var healthCorner = Vector2(0, 0)
 		
 		offscreenIndicator.global_position = global_position
 		var indctr = offscreenIndicator.global_position - (camera.position - camera.camOffset)
@@ -521,14 +528,28 @@ func _physics_process(delta):
 			min(max(indctr.x, bound1.x), bound2.x),
 			min(max(indctr.y, bound1.y), bound2.y))
 		var indctrDiff = clampedIndctr - indctr
-		indctrDiff = Vector2( #rotate back
-			cos(-PI/4.0) * indctrDiff.x - sin(-PI/4.0) * indctrDiff.y,
-			sin(-PI/4.0) * indctrDiff.x + cos(-PI/4.0) * indctrDiff.y)
+		var nonzeroDiff = false
+		if(indctrDiff.length() > 0): #offscreen
+			nonzeroDiff = true
+			if(clampedIndctr.x < healthCorner.x && clampedIndctr.y < healthCorner.y):
+				if(abs(indctrDiff.x) > abs(indctrDiff.y)):
+					indctrDiff.x += scrWid / 2.0 + healthCorner.x
+				else:
+					indctrDiff.y += wrldHei / 2.0 + healthCorner.y
+			elif(clampedIndctr.x < gunCorner.x && clampedIndctr.y > gunCorner.y):
+				if(abs(indctrDiff.x) > abs(indctrDiff.y)):
+					indctrDiff.x += scrWid / 2.0 + gunCorner.x
+				else:
+					indctrDiff.y -= wrldHei / 2.0 - gunCorner.y
+				
+			indctrDiff = Vector2( #rotate back
+				cos(-PI/4.0) * indctrDiff.x - sin(-PI/4.0) * indctrDiff.y,
+				sin(-PI/4.0) * indctrDiff.x + cos(-PI/4.0) * indctrDiff.y)
 		
-		if(indctrDiff.length() > 0):
+		if(nonzeroDiff): #offscreen
 			offscreenIndicator.global_position += Vector3(indctrDiff.x, 0, indctrDiff.y)
 			offscreenIndicator.visible = true
-		else:
+		else: #not offscreen
 			offscreenIndicator.visible = false
 
 #		var fromCenter = global_position - (camera.position - camera.camOffset)
