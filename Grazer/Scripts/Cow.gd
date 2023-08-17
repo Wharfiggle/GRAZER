@@ -148,6 +148,7 @@ func setType(ind:int = -1):
 		2: mesh.set("blend_shapes/Out", 1)
 		3: mesh.set("blend_shapes/Way Out", 1)
 		4: mesh.set("blend_shapes/Down", 0)
+	
 
 func setHibernate(inHibernate:bool):
 	hibernate = inHibernate
@@ -515,7 +516,7 @@ func _physics_process(delta):
 		bound1.y += 1.0
 		bound2.y += 1.0
 		
-		var healthCorner = Vector2(-7.5, -9.5)
+		var healthCorner = Vector2(-7.5, -10.5)
 		var gunCorner = Vector2(-8.5, 10)
 		#var healthCorner = Vector2(0, 0)
 		
@@ -529,7 +530,7 @@ func _physics_process(delta):
 			min(max(indctr.y, bound1.y), bound2.y))
 		var indctrDiff = clampedIndctr - indctr
 		var nonzeroDiff = false
-		if(indctrDiff.length() > 0): #offscreen
+		if(indctrDiff.length() > edgeMargin): #offscreen
 			nonzeroDiff = true
 			if(clampedIndctr.x < healthCorner.x && clampedIndctr.y < healthCorner.y):
 				if(abs(indctrDiff.x) > abs(indctrDiff.y)):
@@ -561,8 +562,19 @@ func _physics_process(delta):
 #			offscreenIndicator.global_position = toEdge
 	elif(offscreenIndicator == null):
 		offscreenIndicator = find_child("OffscreenIndicator")
-		self.remove_child(offscreenIndicator)
-		get_node(NodePath("/root/Level")).add_child(offscreenIndicator)
+		if(offscreenIndicator != null):
+			self.remove_child(offscreenIndicator)
+			get_node(NodePath("/root/Level")).add_child(offscreenIndicator)
+			var indMat = offscreenIndicator.get_child(0).get_surface_override_material(0).duplicate()
+			match(cowTypeInd):
+				0: indMat.albedo_color = Color(194.0 / 255.0, 181.0 / 255.0, 155.0 / 255.0)
+				1: indMat.albedo_color = Color(206.0 / 255.0, 73.0 / 255.0, 70.0 / 255.0)
+				2: indMat.albedo_color = Color(218.0 / 255.0, 200.0 / 255.0, 86.0 / 255.0)
+				3: indMat.albedo_color = Color(218.0 / 255.0, 47.0 / 255.0, 39.0 / 255.0)
+				4: indMat.albedo_color = Color(94.0 / 255.0, 132.0 / 255.0, 141.0 / 255.0)
+				5: indMat.albedo_color = Color(171.0 / 255.0, 108.0 / 255.0, 173.0 / 255.0)
+			offscreenIndicator.get_child(0).set_surface_override_material(0, indMat)
+			print("cow type " + str(cowTypeInd))
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
 	

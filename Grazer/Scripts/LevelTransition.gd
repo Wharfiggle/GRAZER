@@ -29,6 +29,8 @@ func use():
 		if(i.has_method("delete")):
 			i.delete()
 		else:
+			if(i.offscreenIndicator != null):
+				i.offscreenIndicator.queue_free()
 			i.queue_free()
 	player.position.z -= 7
 	if(!exit):

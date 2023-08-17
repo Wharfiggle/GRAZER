@@ -43,7 +43,7 @@ func _process(delta):
 		if(prevMousePos == Vector2(-1, -1)):
 			setPosition(mousePos)
 		else:
-			print(str(mousePos) + " " + str(prevMousePos))
+			#print(str(mousePos) + " " + str(prevMousePos))
 			setPosition(global_position + mousePos - prevMousePos)
 		prevMousePos = mousePos
 	else:
