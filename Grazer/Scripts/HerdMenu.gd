@@ -237,8 +237,8 @@ func confirmTrade():
 			var cow = player.herd.spawnCow(ind)
 #			cow.target = player.position
 	for i in selectedCows.size():
-		player.herd.removeCow(selectedCows[i])
-		selectedCows[i].queue_free()
+		#player.herd.removeCow(selectedCows[i])
+		selectedCows[i].delete()
 	stopTrade()
 	
 func selectCow(cow:Node):

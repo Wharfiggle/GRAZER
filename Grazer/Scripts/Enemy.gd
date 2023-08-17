@@ -304,8 +304,8 @@ func _physics_process(delta):
 #			revolver.get_node("./RootNode/Revolver_FULL/Revolver").get_material_override().get_next_pass().albdeo_color = Color(0, 0, 0, 0)
 		if(position.y < -20):
 			if(draggedCow != null):
-				herd.removeCow(draggedCow)
-				draggedCow.queue_free()
+				#herd.removeCow(draggedCow)
+				draggedCow.delete()
 				SceneCounter.cows -= 1
 			delete()
 			SceneCounter.marauders -= 1

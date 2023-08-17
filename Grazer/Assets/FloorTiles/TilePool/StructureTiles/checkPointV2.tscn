@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cvrmy4nr00d0u"]
+[gd_scene load_steps=42 format=3 uid="uid://cvrmy4nr00d0u"]
 
 [ext_resource type="PackedScene" uid="uid://21bqi8afjpn6" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/Frame Isolated/gateArch.tscn" id="6_orocb"]
 [ext_resource type="PackedScene" uid="uid://7jwcyssrk7li" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/One Door Isolated/gate2.tscn" id="7_ur1f4"]
@@ -47,6 +47,9 @@ size = Vector3(16, 0.1, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d33u6"]
 size = Vector3(1.1493, 1, 0.505285)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8g3b"]
+size = Vector3(10, 5, 7)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2l58e"]
 size = Vector3(1.74377, 2.2933, 1.41914)
@@ -367,6 +370,15 @@ transform = Transform3D(1.08555, 0, -0.392911, 0, 0.892884, 0, 0.986285, 0, 0.43
 
 [node name="Rustedcar" parent="." instance=ExtResource("25_pxxi2")]
 transform = Transform3D(1.16041, 0, -0.305684, 0, 1.2, 0, 0.305684, 0, 1.16041, 85.4874, -0.233438, -18.0538)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 68.3024, -0.20458, -38.5173)
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.988378, -0.0115679, -0.151576, 0.0162594, 0.999425, 0.0297491, 0.151144, -0.0318679, 0.987998, 3.19195, 0.937717, -0.227261)
+shape = SubResource("BoxShape3D_v8g3b")
+disabled = true
 
 [node name="sign" parent="." instance=ExtResource("26_3x3uf")]
 transform = Transform3D(0.190732, 0.0126744, 0.98156, 0.143917, 0.988751, -0.0407325, -0.971035, 0.149032, 0.186763, 68.3024, -0.20458, -38.5173)

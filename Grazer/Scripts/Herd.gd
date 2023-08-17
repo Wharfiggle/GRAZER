@@ -119,9 +119,8 @@ func removeCow(cow):
 		player.cowTypes[cow.cowTypeInd].use(false)
 
 func deleteCow(cow):
-	removeCow(cow)
-	cow.offscreenIndicator.queue_free()
-	cow.queue_free()
+	#removeCow(cow)
+	cow.delete()
 
 #spawn a cow in center of herd
 func spawnCow(type:int = -1) -> Node:

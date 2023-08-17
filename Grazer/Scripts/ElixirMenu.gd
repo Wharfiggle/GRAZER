@@ -135,8 +135,8 @@ func _on_buy_pressed():
 			var cow = parent.player.herd.spawnCow(ind)
 			cow.target = parent.player.position
 	for i in spentCows:
-		parent.player.herd.removeCow(i)
-		i.queue_free()
+		#parent.player.herd.removeCow(i)
+		i.delete()
 	parent.player.inventory[selected] += 1
 	parent.updateTotalValue()
 	updateNumElixirTypes()

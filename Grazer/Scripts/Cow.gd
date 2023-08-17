@@ -221,6 +221,19 @@ func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:No
 			bullet.bulletStopExtend = 0.5
 		return true
 
+func delete():
+	if(herd != null):
+		herd.removeCow(self)
+	else:
+		herd = get_node("/root/Level/Herd")
+		if(herd != null):
+			herd.removeCow(self)
+		else:
+			push_error("could not find herd to remove deleted cow from")
+	if(offscreenIndicator != null):
+		offscreenIndicator.queue_free()
+	queue_free()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 #	if(Input.is_action_just_pressed("jump")):
