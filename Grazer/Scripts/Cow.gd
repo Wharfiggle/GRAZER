@@ -64,10 +64,11 @@ var isDragged = false
 @onready var Vocal = $moo
 #SoundFiles PreLoad
 var stressed = preload("res://sounds/Cows/Cows/cowstressed.wav")
-var moo1 = preload("res://sounds/Cows/Cows/idlemoo1.wav")
-var moo2 = preload("res://sounds/Cows/Cows/idlemoo2.wav")
-var moo3 = preload("res://sounds/Cows/Cows/idlemoo3.wav")
-var audioArray = [moo1,moo2,moo3]
+var moos = [preload("res://sounds/Cows/Cows/idlemoo1.wav"),
+preload("res://sounds/Cows/Cows/idlemoo2.wav"),
+preload("res://sounds/Cows/Cows/idlemoo3.wav")]
+var moo = null
+#var audioArray = [moo1,moo2,moo3]
 @onready var hitFlash = get_node(NodePath("./Model/CowBones/Skeleton3D/Cow")).get_material_override()
 
 var model = null
@@ -89,6 +90,13 @@ var uiSelectTimeCounter = 0
 var stray = false
 
 var offscreenIndicator = null
+@export var mooIndicatorTime = 3.0
+var mooIndicatorTimer = 0
+var redPulseTime = 0
+@export var mooBaseTime = 15.0
+@export var mooVariantTime = 10.0
+var mooTime = 0.0
+var mooTimer = 0.0
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 
 var fallTimer = 0
@@ -104,6 +112,13 @@ func _ready():
 		shuffleTime + shuffleTimeRandOffset)
 	targetRandOffset = rng.randf_range(-targetRandOffset, targetRandOffset)
 	
+	mooTime = rng.randf_range(
+		mooBaseTime - mooVariantTime,
+		mooBaseTime + mooVariantTime)
+	mooTimer = mooTime
+	
+	moo = moos[rng.randi_range(0, moos.size() - 1)]
+	
 	#var phys_bones = ["Tail_1", "Ear_Upper_r", "Ear_Upper_l"]
 	#var phys_bones = ["Tail_1"]
 	#var phys_bones = ["Tail_1", "Ear_Base_r", "Ear_Base_l"]
@@ -118,6 +133,10 @@ func _ready():
 	
 	if(cowTypeInd == -1):
 		setType()
+	
+func makeMoo():
+	Vocal.stream = moo
+	Vocal.play()
 	
 func setType(ind:int = -1):
 	model = get_node(NodePath("./Model"))
@@ -151,6 +170,7 @@ func setType(ind:int = -1):
 	
 
 func setHibernate(inHibernate:bool):
+	#hijack to teleport cow back to edge of screen
 	hibernate = inHibernate
 	if(hibernate):
 		gravity = 0
@@ -204,9 +224,9 @@ func idle():
 	target = null
 	followingHerd = false
 	animation.set("parameters/Movement/BlendMove/blend_amount", -1)
-	var clip_to_play = audioArray[randi() % audioArray.size()] 
-	Vocal.stream=clip_to_play
-	Vocal.play()
+	#var clip_to_play = audioArray[randi() % audioArray.size()] 
+	#Vocal.stream=clip_to_play
+	#Vocal.play()
 
 #equation for diagonal length of screen
 #var rectWid = 15 / cos(55 * PI / 180)
@@ -236,8 +256,20 @@ func delete():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-#	if(Input.is_action_just_pressed("jump")):
-#		graze()
+#	if(Input.is_action_just_pressed("shoot")):
+#		mooIndicatorTimer = mooIndicatorTime
+	
+	if(mooTimer > 0):
+		mooTimer -= delta
+		if(mooTimer < 0):
+			mooTimer = 0
+			if(stray):
+				makeMoo()
+				mooTime = rng.randf_range(
+				mooBaseTime - mooVariantTime,
+				mooBaseTime + mooVariantTime)
+				mooTimer = mooTime
+				mooIndicatorTimer = mooIndicatorTime
 	
 	if(uiSelectMode != -1):
 		uiSelectTimeCounter += delta
@@ -512,9 +544,16 @@ func _physics_process(delta):
 			fallTimer = 0
 	else:
 		fallTimer = 0
+	
+	var separated = !stray && draggers.is_empty() && follow #if cow goes offscreen, isn't a stray, and isn't being stolen, we want to teleport it back to the player on the edge of the screen.
+	#section for calculating where the offscreen indicators should go on the edge of the screen
+	if(( separated || !stray || mooIndicatorTimer > 0 ) && offscreenIndicator != null && camera != null):
+		#if cow is not being dragged and goes far enough off screen (indctrdff.length() > ~7) then teleport to where new indicator location would be (with edgeMargin = ~-2) and initiate enemy relocation procedure to see if it's a valid location
+		var mooInd = offscreenIndicator.get_child(0)
+		var stealInd = offscreenIndicator.get_child(1)
 		
-	if(!stray && offscreenIndicator != null && camera != null):
 		var edgeMargin = 1.0
+		if(separated): edgeMargin = -2.0
 		var scrHei = camera.size #height of screen in meters
 		var scrWid = scrHei / 9.0 * 16.0 #only works with 16:9 aspect ratio. screen ratio is fixed so its fine
 		scrHei -= edgeMargin * 2
@@ -542,30 +581,57 @@ func _physics_process(delta):
 			min(max(indctr.x, bound1.x), bound2.x),
 			min(max(indctr.y, bound1.y), bound2.y))
 		var indctrDiff = clampedIndctr - indctr
-		var nonzeroDiff = false
-		if(indctrDiff.length() > edgeMargin): #offscreen
-			nonzeroDiff = true
-			if(clampedIndctr.x < healthCorner.x && clampedIndctr.y < healthCorner.y):
-				if(abs(indctrDiff.x) > abs(indctrDiff.y)):
-					indctrDiff.x += scrWid / 2.0 + healthCorner.x
-				else:
-					indctrDiff.y += wrldHei / 2.0 + healthCorner.y
-			elif(clampedIndctr.x < gunCorner.x && clampedIndctr.y > gunCorner.y):
-				if(abs(indctrDiff.x) > abs(indctrDiff.y)):
-					indctrDiff.x += scrWid / 2.0 + gunCorner.x
-				else:
-					indctrDiff.y -= wrldHei / 2.0 - gunCorner.y
+		
+		if(indctrDiff.length() > 0): #offscreen
+			if(!separated):
+				if(clampedIndctr.x < healthCorner.x && clampedIndctr.y < healthCorner.y):
+					if(abs(indctrDiff.x) > abs(indctrDiff.y)):
+						indctrDiff.x += scrWid / 2.0 + healthCorner.x
+					else:
+						indctrDiff.y += wrldHei / 2.0 + healthCorner.y
+				elif(clampedIndctr.x < gunCorner.x && clampedIndctr.y > gunCorner.y):
+					if(abs(indctrDiff.x) > abs(indctrDiff.y)):
+						indctrDiff.x += scrWid / 2.0 + gunCorner.x
+					else:
+						indctrDiff.y -= wrldHei / 2.0 - gunCorner.y
 				
 			indctrDiff = Vector2( #rotate back
 				cos(-PI/4.0) * indctrDiff.x - sin(-PI/4.0) * indctrDiff.y,
 				sin(-PI/4.0) * indctrDiff.x + cos(-PI/4.0) * indctrDiff.y)
-		
-		if(nonzeroDiff): #offscreen
+				
 			offscreenIndicator.global_position += Vector3(indctrDiff.x, 0, indctrDiff.y)
-			offscreenIndicator.visible = true
-		else: #not offscreen
-			offscreenIndicator.visible = false
-
+			if(separated && indctrDiff.length() > 8):
+				global_position = offscreenIndicator.global_position
+			elif(!stray):
+				mooInd.visible = true
+				stealInd.visible = true
+		elif(!stray): #not offscreen
+			mooInd.visible = false
+			stealInd.visible = false
+			
+		var size = max(0.5, 1.0 - (indctrDiff.length() / 50.0))
+		offscreenIndicator.scale = Vector3(size, size, size)
+			
+		if(mooIndicatorTimer > 0):
+			mooIndicatorTimer -= delta
+			var mooMat = mooInd.get_surface_override_material(0)
+			if(mooIndicatorTimer < 0):
+				mooIndicatorTimer = 0
+				mooInd.visible = false
+				mooMat.albedo_color = Color(1, 0, 0, 1)
+			else:
+				mooInd.visible = true
+				var t = 0
+				if(mooIndicatorTimer > mooIndicatorTime / 2.0): 
+					t = 1.0 - (mooIndicatorTimer - mooIndicatorTime / 2.0) / (mooIndicatorTime / 2.0)
+				else:
+					t = mooIndicatorTimer / (mooIndicatorTime / 2.0)
+				mooMat.albedo_color = Color(1, 1, 1, sqrt(t))
+		else:
+			redPulseTime += delta
+			size = (1.0 / size) * 0.5 + abs(sin(redPulseTime * 5))
+			mooInd.scale = Vector3(size, size, size) / 2.0
+			
 #		var fromCenter = global_position - (camera.position - camera.camOffset)
 #		fromCenter.y = 0
 #		var radx = bound1.x
@@ -578,7 +644,7 @@ func _physics_process(delta):
 		if(offscreenIndicator != null):
 			self.remove_child(offscreenIndicator)
 			get_node(NodePath("/root/Level")).add_child(offscreenIndicator)
-			var indMat = offscreenIndicator.get_child(0).get_surface_override_material(0).duplicate()
+			var indMat = offscreenIndicator.get_child(1).get_surface_override_material(0).duplicate()
 			match(cowTypeInd):
 				0: indMat.albedo_color = Color(194.0 / 255.0, 181.0 / 255.0, 155.0 / 255.0)
 				1: indMat.albedo_color = Color(206.0 / 255.0, 73.0 / 255.0, 70.0 / 255.0)
@@ -586,10 +652,14 @@ func _physics_process(delta):
 				3: indMat.albedo_color = Color(218.0 / 255.0, 47.0 / 255.0, 39.0 / 255.0)
 				4: indMat.albedo_color = Color(94.0 / 255.0, 132.0 / 255.0, 141.0 / 255.0)
 				5: indMat.albedo_color = Color(171.0 / 255.0, 108.0 / 255.0, 173.0 / 255.0)
-			offscreenIndicator.get_child(0).set_surface_override_material(0, indMat)
+			offscreenIndicator.get_child(1).set_surface_override_material(0, indMat)
 			print("cow type " + str(cowTypeInd))
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
+	else:
+		#everything is set as it should be, but no conditions for calculating offscreen indicators are true
+		offscreenIndicator.get_child(0).visible = false
+		offscreenIndicator.get_child(1).visible = false
 	
 	#make cow's model look in the direction it's moving
 	if((totalVelocity.x > 0.01 || totalVelocity.x < -0.01 

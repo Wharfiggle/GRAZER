@@ -27,6 +27,8 @@ var time = 0.0
 @onready var camera = self
 @onready var initialRotation = camera.rotation as Vector3
 
+#@onready var uiCam = $"SubViewportContainer/SubViewport/3DUICamera"
+
 func _process(delta):
 	time += delta
 	trauma = max(trauma - delta * trauamaReducRate, 0.0)
@@ -37,6 +39,7 @@ func _process(delta):
 	cameraRotDelta.z = maxZ * get_shake_intensity() * get_noise_from_seed(2)
 	cameraRotDelta *= PI / 180.0
 	camera.rotation = initialRotation + cameraRotDelta
+	#uiCam.global_rotation = global_rotation
 
 func add_trauma(in_trauma_amount : float):
 	trauma = clamp(trauma + in_trauma_amount, 0.0, 0.4)
@@ -56,6 +59,7 @@ func _ready():
 		followTarget = get_parent()
 	camOffset = self.position
 	pos = self.position
+	#uiCam.global_transform = global_transform
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -65,6 +69,7 @@ func _physics_process(delta):
 		pos = followTarget.global_position + posDelta.normalized() * maxOffset
 	#pos = followTarget.global_translation
 	self.position = pos + camOffset
+	#iCam.global_position = global_position
 #	if(incrementalCamera):
 #		self.position -= Vector3(
 #		#42 units accross the screen horizontally with camera size 30

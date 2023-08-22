@@ -123,7 +123,7 @@ func _ready():
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
-	if(waited == false):
+	if(waited == false): #only happens once after _ready() is complete
 		level = get_node(NodePath("/root/Level"))
 		waited = true
 		var origPos = position
@@ -661,7 +661,7 @@ func readyAim():
 func attack(): 
 	targetPos = player.global_transform.origin
 	
-	if(shootingPoint != null):
+	if(shootingPoint != null && deathTimer == 0):
 		#spawns bullet in the direction the muzzle is facing 
 		var b = bullet.instantiate()
 		
@@ -679,7 +679,7 @@ func attack():
 		smokeInstance.position = Vector3.ZERO
 		smokeInstance.get_child(0).emitting = true
 		smokeInstance.get_child(1).emitting = true
-	else:
+	elif(shootingPoint == null):
 		shootingPoint = revolver.find_child("ShootingPoint")
 
 func knock():

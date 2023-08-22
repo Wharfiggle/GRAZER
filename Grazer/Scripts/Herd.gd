@@ -6,7 +6,6 @@ extends Node3D
 @onready var player = get_node(NodePath("/root/Level/Player"))
 @onready var cowCounter = get_node(NodePath("/root/Level/Cow Counter"))
 var cowPrefab = preload("res://Prefabs/Cow.tscn")
-var moo = preload("res://sounds/Cows/Cows/idlemoo2.wav")
 var cows = []
 #number of total cows
 var numCows = 0
@@ -91,8 +90,7 @@ func setDragResistance(inDragResistance):
 #add cow to player's herd
 func addCow(cow, playSound:bool = true):
 	if(playSound):
-		cow.Vocal.stream = moo
-		cow.Vocal.play()
+		cow.makeMoo()
 	cows.append(cow)
 	numCows += 1
 	cowCounter.updateCowNum(numCows)
