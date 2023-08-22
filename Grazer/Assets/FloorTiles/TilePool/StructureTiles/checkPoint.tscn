@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://btgqdxu7cr58d"]
+[gd_scene load_steps=57 format=3 uid="uid://btgqdxu7cr58d"]
 
 [ext_resource type="Texture2D" uid="uid://bgb3gfupuncrt" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_BaseColor.png" id="1_ux8do"]
 [ext_resource type="Texture2D" uid="uid://dhuc1dta2w4s2" path="res://Assets/Materials/groundTxtr2/Ground_Tile_lambert1_Emissive.png" id="2_otg7m"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bin30v0rfeimx" path="res://Prefabs/Usable.tscn" id="36_qqwns"]
 [ext_resource type="PackedScene" uid="uid://bb6mal2lx7yeq" path="res://Assets/Models/Cattle Keeper/temp.tscn" id="38_c8w27"]
 [ext_resource type="Script" path="res://Scripts/ElixirGunMenuPrompt.gd" id="38_db5gv"]
+[ext_resource type="PackedScene" uid="uid://bvbxks05sa410" path="res://Assets/Models/Shop Keeper/shop_keeper.tscn" id="39_60flx"]
 [ext_resource type="PackedScene" uid="uid://b81msacsemg4l" path="res://Assets/FloorTiles/!Prefabs!/Concrete Divider/cement_barricade_5.tscn" id="39_nh6h6"]
 [ext_resource type="Script" path="res://Scripts/LevelTransition.gd" id="39_rvu4q"]
 [ext_resource type="PackedScene" uid="uid://dqrl5ivbkkkjt" path="res://Assets/FloorTiles/!Prefabs!/Concrete Divider/cement_barricade_2.tscn" id="40_qhrnt"]
@@ -335,6 +336,7 @@ visible = false
 
 [node name="Porch Man" parent="ShopRV/Porch" instance=ExtResource("14_o2y1d")]
 transform = Transform3D(0.974601, 0, 0.223947, 0, 1, 0, -0.223947, 0, 0.974601, 2.37709, 0.00234395, -1.12265)
+visible = false
 
 [node name="SpotLight3D" type="SpotLight3D" parent="ShopRV/Porch"]
 transform = Transform3D(0.903203, 0.128868, -0.409411, 0.426962, -0.367344, 0.826294, -0.0439117, -0.921115, -0.386807, 2.1078, 2.88196, 1.46998)
@@ -350,6 +352,9 @@ light_bake_mode = 1
 
 [node name="Temp" parent="ShopRV/Porch" instance=ExtResource("38_c8w27")]
 transform = Transform3D(-0.579892, 0, 0.814693, 0, 1, 0, -0.814693, 0, -0.579892, 2.38783, 2.38419e-07, 2.97238)
+
+[node name="Shop Keeper" parent="ShopRV/Porch" instance=ExtResource("39_60flx")]
+transform = Transform3D(0.57706, 0, 0.816701, 0, 1, 0, -0.816701, 0, 0.57706, 2.15797, 0.456803, -1.06065)
 
 [node name="LevelTransition" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 69, 0.25, -4)

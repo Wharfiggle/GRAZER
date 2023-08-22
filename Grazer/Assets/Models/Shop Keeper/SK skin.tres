@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://c45ewvq4a0xm0"]
+
+[ext_resource type="Texture2D" uid="uid://l4pi35w0scek" path="res://Assets/Models/Shop Keeper/Shop Keeper_skin_BaseColor.png" id="1_sq2l1"]
+[ext_resource type="Texture2D" uid="uid://bj8wv2mkjmu7q" path="res://Assets/Models/Shop Keeper/Shop Keeper_skin_Metallic.png" id="2_qg75d"]
+[ext_resource type="Texture2D" uid="uid://bx1vwbuia74lj" path="res://Assets/Models/Shop Keeper/Shop Keeper_skin_Normal.png" id="3_2kfyi"]
+[ext_resource type="Texture2D" uid="uid://dp0unbygryism" path="res://Assets/Models/Shop Keeper/Shop Keeper_skin_Roughness.png" id="4_xmgpl"]
+
+[resource]
+albedo_texture = ExtResource("1_sq2l1")
+metallic = 1.0
+metallic_texture = ExtResource("2_qg75d")
+roughness_texture = ExtResource("4_xmgpl")
+normal_enabled = true
+normal_texture = ExtResource("3_2kfyi")

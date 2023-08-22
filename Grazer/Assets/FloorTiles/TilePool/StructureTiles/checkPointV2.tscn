@@ -1,8 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://cvrmy4nr00d0u"]
+[gd_scene load_steps=43 format=3 uid="uid://cvrmy4nr00d0u"]
 
 [ext_resource type="PackedScene" uid="uid://21bqi8afjpn6" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/Frame Isolated/gateArch.tscn" id="6_orocb"]
 [ext_resource type="PackedScene" uid="uid://7jwcyssrk7li" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/One Door Isolated/gate2.tscn" id="7_ur1f4"]
 [ext_resource type="PackedScene" uid="uid://btc0x7hilb2lx" path="res://Assets/FloorTiles/!Prefabs!/Roads/road 1.tscn" id="8_tqdss"]
+[ext_resource type="PackedScene" uid="uid://bvbxks05sa410" path="res://Assets/Models/Shop Keeper/shop_keeper.tscn" id="11_nl1ap"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="12_nnxg0"]
 [ext_resource type="PackedScene" uid="uid://1e36kw702rq0" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Straight/cliffStraightLow.tscn" id="13_7n0ra"]
 [ext_resource type="PackedScene" uid="uid://bdfitt6fxqiit" path="res://Assets/FloorTiles/!Prefabs!/Cliff TriCorner/triCornerCliff.tscn" id="14_8n5ts"]
@@ -17,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c7abtbl0q8low" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12_noColl.tscn" id="24_0nl7u"]
 [ext_resource type="PackedScene" uid="uid://whn5521vq33" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stoneArch_noColl.tscn" id="24_nrjhd"]
 [ext_resource type="PackedScene" uid="uid://csy4naknt1lqt" path="res://Assets/FloorTiles/!Prefabs!/Rusted Car/rustedcarGreen.tscn" id="25_pxxi2"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Signs/sign HWLV.tscn" id="26_3x3uf"]
+[ext_resource type="PackedScene" uid="uid://dxr3ff1xoyrhr" path="res://Assets/FloorTiles/!Prefabs!/Signs/sign HWLV.tscn" id="26_3x3uf"]
 [ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="27_71560"]
 [ext_resource type="PackedScene" uid="uid://c6b6t5yx3tyen" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post.tscn" id="28_uypap"]
 [ext_resource type="PackedScene" uid="uid://cwq17w2fj0kvq" path="res://Assets/FloorTiles/!Prefabs!/Fence/fence_post_corner.tscn" id="29_wkfxn"]
@@ -108,14 +109,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5423, 0, 21.3879)
 script = ExtResource("32_3db60")
 
 [node name="Usable" parent="ShopRV/HerdMenuPrompt" instance=ExtResource("33_gy2ln")]
-transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 69.8788, -0.90479, -23.5368)
+transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 70.8097, -0.904791, -24.5809)
 
 [node name="ElixirGunMenuPrompt" type="Node3D" parent="ShopRV"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5824, 0, 21.4415)
 script = ExtResource("34_4fg7e")
 
 [node name="Usable" parent="ShopRV/ElixirGunMenuPrompt" instance=ExtResource("33_gy2ln")]
-transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 66.8265, -0.90479, -19.9356)
+transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 68.0398, -0.90479, -20.474)
 
 [node name="Porch" parent="ShopRV" instance=ExtResource("35_3hk6l")]
 transform = Transform3D(0.899247, 0, -0.633526, 0, 1.1, 0, 0.633526, 0, 0.899247, 1.35512, 0.0499973, -2.95367)
@@ -126,6 +127,7 @@ visible = false
 
 [node name="Porch Man" parent="ShopRV/Porch" instance=ExtResource("37_xieb1")]
 transform = Transform3D(0.974601, 0, 0.223947, 0, 1, 0, -0.223947, 0, 0.974601, 2.37709, 0.00234395, -1.12265)
+visible = false
 
 [node name="SpotLight3D" type="SpotLight3D" parent="ShopRV/Porch"]
 transform = Transform3D(0.903203, 0.128868, -0.409411, 0.426962, -0.367344, 0.826294, -0.0439117, -0.921115, -0.386807, 2.1078, 2.88196, 1.46998)
@@ -142,7 +144,10 @@ light_volumetric_fog_energy = 0.0
 light_bake_mode = 1
 
 [node name="Temp" parent="ShopRV/Porch" instance=ExtResource("38_71ovh")]
-transform = Transform3D(-0.579892, 0, 0.814693, 0, 1, 0, -0.814693, 0, -0.579892, 2.38783, 2.38419e-07, 2.97238)
+transform = Transform3D(-0.579892, 0, 0.814693, 0, 0.999999, 0, -0.814693, 0, -0.579892, 2.63625, 2.38419e-07, -2.4678)
+
+[node name="Shop Keeper" parent="ShopRV/Porch" instance=ExtResource("11_nl1ap")]
+transform = Transform3D(0.0170692, 0, 0.999854, 0, 0.999995, 0, -0.999854, 0, 0.0170692, 2.79767, 0.0274294, 1.69372)
 
 [node name="LevelTransition" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 69, 0.25, -4)
