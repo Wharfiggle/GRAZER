@@ -62,6 +62,7 @@ var isDragged = false
 #AudioStreams
 @onready var Steps = $walking
 @onready var Vocal = $moo
+@onready var vocalVol = Vocal.volume_db
 #SoundFiles PreLoad
 var stressed = preload("res://sounds/Cows/Cows/cowstressed.wav")
 var moos = [preload("res://sounds/Cows/Cows/idlemoo1.wav"),
@@ -102,8 +103,12 @@ var mooTimer = 0.0
 var fallTimer = 0
 var startFallY = 0
 
+var stealingIconVisible = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Vocal.volume_db = 2.0
+	
 	rng.randomize()
 	#accelerationDampening = rng.randf_range(accelerationDampening - accDampRandOffset, accelerationDampening + accDampRandOffset)
 	#accelerationModifier = rng.randf_range(accelerationModifier - 0.05, accelerationDampening + 0.05)
@@ -438,6 +443,7 @@ func _physics_process(delta):
 						animationBlend = -1
 					animation.set("parameters/Movement/BlendMove/blend_amount", t)
 		elif(stray && abs((position - herd.player.position).length()) < 2.5):
+			Vocal.volume_db = vocalVol
 			herd.addCow(self, true)
 			stray = false
 			self.remove_from_group('DespawnAtCheckpoint')
@@ -547,7 +553,7 @@ func _physics_process(delta):
 	
 	var separated = !stray && draggers.is_empty() && follow #if cow goes offscreen, isn't a stray, and isn't being stolen, we want to teleport it back to the player on the edge of the screen.
 	#section for calculating where the offscreen indicators should go on the edge of the screen
-	if(( separated || !stray || mooIndicatorTimer > 0 ) && offscreenIndicator != null && camera != null):
+	if(( separated || !draggers.is_empty() || mooIndicatorTimer > 0 ) && offscreenIndicator != null && camera != null):
 		#if cow is not being dragged and goes far enough off screen (indctrdff.length() > ~7) then teleport to where new indicator location would be (with edgeMargin = ~-2) and initiate enemy relocation procedure to see if it's a valid location
 		var mooInd = offscreenIndicator.get_child(0)
 		var stealInd = offscreenIndicator.get_child(1)
@@ -602,19 +608,25 @@ func _physics_process(delta):
 			offscreenIndicator.global_position += Vector3(indctrDiff.x, 0, indctrDiff.y)
 			if(separated && indctrDiff.length() > 8):
 				global_position = offscreenIndicator.global_position
+				print("cow teleport back to player")
 			elif(!stray):
 				mooInd.visible = true
 				stealInd.visible = true
+				stealingIconVisible = true
 		elif(!stray): #not offscreen
 			mooInd.visible = false
 			stealInd.visible = false
+			stealingIconVisible = false
 			
-		var size = max(0.5, 1.0 - (indctrDiff.length() / 50.0))
+		var maxDist = 50.0
+		if(mooIndicatorTimer > 0):
+			maxDist = 100.0
+		var size = max(0.5, 1.0 - (indctrDiff.length() / maxDist))
 		offscreenIndicator.scale = Vector3(size, size, size)
 			
 		if(mooIndicatorTimer > 0):
 			mooIndicatorTimer -= delta
-			var mooMat = mooInd.get_surface_override_material(0)
+			var mooMat = mooInd.get_surface_override_material(0).duplicate()
 			if(mooIndicatorTimer < 0):
 				mooIndicatorTimer = 0
 				mooInd.visible = false
@@ -627,6 +639,7 @@ func _physics_process(delta):
 				else:
 					t = mooIndicatorTimer / (mooIndicatorTime / 2.0)
 				mooMat.albedo_color = Color(1, 1, 1, sqrt(t))
+			mooInd.set_surface_override_material(0, mooMat)
 		else:
 			redPulseTime += delta
 			size = (1.0 / size) * 0.5 + abs(sin(redPulseTime * 5))

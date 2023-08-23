@@ -19,7 +19,8 @@ var maxHitpoints = 20.0
 var hitpoints = maxHitpoints
 var Smoke = preload("res://Prefabs/Smoke.tscn")
 var tVelocity = Vector3(0,0,0)
-@export var dodgeSpeed = 15.0
+@export var dodgeSpeed = 7
+@export var dodgeSpeedIncrease = 10
 var dodgeVel = Vector3(0,0,0)
 @export var dodgeTime = 0.5
 var dodgeTimer = 0.0
@@ -59,7 +60,7 @@ var cowDamageMod = 1.0
 var cowTypes = null
 
 var potions = null
-var inventory = [2, 2, 2, 2, 2, 2]
+var inventory = [0, 0, 0, 0, 0, 0]
 #var inventory = [5, 5, 5, 5, 5, 5]
 @export var potionTime = 25.0
 var potionTimer = 0.0
@@ -67,12 +68,18 @@ var potionUsed
 var lifeLeach = 0.0
 var potionSpeedup = 1.0
 var alwaysCrit = false
-var critChance = 0.05
+var startCritChance = 0.05
+var critChance = startCritChance
 var dauntless = false
 var bulletstorm = false
 var bulletColor = Color(1, 1, 0)
 var lineSightColor = Color(1, 1, 1)
 var critColor = Color(0, 0, 0)
+var luckies = 0
+var grandReds = 0
+var startLungeEffectiveness = 0.8
+var lungeEffectiveness = startLungeEffectiveness
+var justKnocked = []
 
 var russelOrRay = WorldSave.getCharacter()
 
@@ -233,6 +240,10 @@ func _process(delta):
 		#spawn cows at start
 		#for i in 5:
 		#	herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
+#		for i in 6:
+#			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), i)
+		for i in 5:
+			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 3)
 		
 	if(herd.getNumCows() < 1 and !canHaveNoCows and !invincible):
 		die()
@@ -767,7 +778,8 @@ func _physics_process(delta):
 			dodgeCooldownTimer = 0.001
 		dodgeTimer = dodgeTime
 		dodgeBufferTimer = 0
-		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed
+		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * (dodgeSpeed + dodgeSpeedIncrease * lungeEffectiveness)
+		justKnocked.clear()
 	if(dodgeTimer > 0):
 		dodgeTimer -= delta
 		if(dauntless):
@@ -786,7 +798,7 @@ func _physics_process(delta):
 			if(knocked):
 				knockMod = 0.5
 			#print(Vector3(sin(moveDir), 0, cos(moveDir)))
-			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * dodgeSpeed * t * knockMod
+			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * (dodgeSpeed + dodgeSpeedIncrease * lungeEffectiveness) * t * knockMod
 		if(dauntless):
 			dodgeVel *= 1.5
 		knock()
@@ -916,14 +928,33 @@ func setWeapon(revolver:bool):
 func findHerdCenter() -> Vector3:
 	return herd.findHerdCenter()
 
+func setLuckies(l):
+	luckies = l
+	critChance = startCritChance
+	var currentCritMod = 0.1
+	for i in luckies:
+		if(i > 0):
+			currentCritMod -= 0.1 * currentCritMod
+		critChance += currentCritMod
+	
+func setGrandReds(gr):
+	grandReds = gr
+	lungeEffectiveness = startLungeEffectiveness
+	var currentLungeMod = 0.4
+	for i in grandReds:
+		if(i > 0):
+			currentLungeMod -= 0.2 * currentLungeMod
+		lungeEffectiveness += currentLungeMod
+
 func knock():
 	var enemies = knockbox.get_overlapping_bodies()
 	for enemy in enemies:
-		if enemy.has_method("knockback"):
+		if enemy.has_method("knockback") && !justKnocked.has(enemy):
 			#print("player knockback: " + str(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir))))
-			var newKnockback = enemy.knockback(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true)
+			var newKnockback = enemy.knockback(enemy.global_position - Vector3(sin(moveDir), 0, cos(moveDir)), dodgeVel.length(), true, lungeEffectiveness)
 			if(dauntless && newKnockback):
 				enemy.damage_taken(4 * cowDamageMod, "player", false)
+			justKnocked.append(enemy)
 			camera.add_trauma(0.3)
 			knocked = true
 #			Vocal.volume_db = volume

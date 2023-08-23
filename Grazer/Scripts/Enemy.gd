@@ -9,7 +9,7 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
 var movementBlend = 0.0
-@export var baseAimSpeed = 0.4
+@export var baseAimSpeed = 0.3
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
@@ -69,7 +69,8 @@ var knockbackTimer = 0.0
 var knockbackVel = Vector3(0,0,0)
 var knockbackStrength = 0
 @onready var knockbox = $knockbox
-@export var stunTime = 1.0
+@export var defaultStunTime = 1.0
+var stunTime = defaultStunTime
 var stunTimer = 0
 var critHit = false
 @export var hitColor = Color(1, 1, 0)
@@ -88,9 +89,11 @@ enum enemyTypes {thief, gunman}
 var rng = RandomNumberGenerator.new()
 @onready var herd = get_node(NodePath("/root/Level/Herd"))
 var draggedCow = null
-var dragRange = 2.0
-var escapeRange = 18
+@export var dragRange = 2.0
+@export var escapeRange = 10
 var waited = false
+@export var stealTime = 5.0
+var stealTimer = 0.0
 
 var lastGroundedPosition = position
 
@@ -115,7 +118,7 @@ func _ready():
 	
 	rng.randomize()
 	var rn = rng.randf()
-	if(rn <= 0.15):
+	if(rn <= 0.05):
 		itemDrop = itemDropPrefab.instantiate()
 		
 	hitFlash.set_shader_parameter("color", hitColor)
@@ -250,11 +253,11 @@ func _physics_process(delta):
 			[behaviors.cowPursuit]:
 				cowPursuit()
 			[behaviors.flee]:
-				flee()
+				flee(delta)
 			[behaviors.retreat]:
 				retreat()
 			[behaviors.hibernate]:
-				hibernate()
+				hibernate(delta)
 	
 	
 	if(currentMode == behaviors.hibernate):
@@ -289,11 +292,11 @@ func _physics_process(delta):
 			position.y = 0
 			currentMode = behaviors.hibernate
 			delete(false)
-			if(draggedCow != null):
-				herd.deleteCow(draggedCow)
-				SceneCounter.cows -= 1
-				delete()
-				SceneCounter.marauders -= 1
+#			if(draggedCow != null):
+#				herd.deleteCow(draggedCow)
+#				SceneCounter.cows -= 1
+#				delete()
+#				SceneCounter.marauders -= 1
 	else:
 		lastGroundedPosition = Vector3(position.x, 0, position.z)
 	
@@ -545,7 +548,7 @@ func cowPursuit():
 		fleeDirection = m / abs(m)
 
 #Running away to despawn
-func flee():
+func flee(delta):
 	#Marauder runs away from cowboy towards offscreen until it despawns.
 	#If is currently lassoed to a cow, move speed is slowed.
 	#If health gets too low, sever lasso and attempt to escape.
@@ -564,21 +567,13 @@ func flee():
 		var distPlayer = spacing #sqrt(pow(player.position.x - position.x, 2) + pow(player.position.y - position.y, 2))
 		var centerHerd = herd.findHerdCenter()
 		var distCenterHerd = centerHerd.distance_to(player.position) #sqrt(pow(player.position.x - centerHerd.x, 2) + pow(player.position.y - centerHerd.y, 2))
-		if(distPlayer > escapeRange && distCenterHerd > escapeRange):
-			var leadDragger = null
-			var cowTemp = draggedCow
-			for i in draggedCow.draggers:
-				if(leadDragger == null):
-					leadDragger = i
-				else:
-					#print("toCircle")
-					i.currentMode = behaviors.circle
-				i.targetCow = null
-				i.draggedCow = null
-			herd.deleteCow(cowTemp)
-			leadDragger.delete()
-			SceneCounter.cows -= 1
-			SceneCounter.marauders -= 1
+		#if(distPlayer > escapeRange && distCenterHerd > escapeRange):
+		if(draggedCow.stealingIconVisible):
+			stealTimer += delta
+			if(stealTimer >= stealTime):
+				stealCow()
+		else:
+			stealTimer = 0
 
 #Temporarily retreat
 func retreat():
@@ -596,9 +591,29 @@ func retreat():
 	if(spacing > 3 * followDistance && health > 0.3 * maxHealth):
 			currentMode = behaviors.circle
 
-func hibernate():
+func stealCow():
+	var leadDragger = null
+	var cowTemp = draggedCow
+	for i in draggedCow.draggers:
+		if(leadDragger == null):
+			leadDragger = i
+		else:
+			#print("toCircle")
+			i.currentMode = behaviors.circle
+		i.targetCow = null
+		i.draggedCow = null
+	herd.deleteCow(cowTemp)
+	leadDragger.delete()
+	SceneCounter.cows -= 1
+	SceneCounter.marauders -= 1
+
+func hibernate(delta):
 	GRAVITY = 0
 	baseSpeed = 0
+	if(draggedCow != null && draggedCow.stealingIconVisible):
+		stealTimer += delta
+		if(stealTimer >= stealTime):
+			stealCow()
 	#Despawn distance
 #	if(position.distance_to(player.position) > 200):
 #		queue_free()
@@ -689,7 +704,7 @@ func knock():
 			enemy.knockback(position, knockbackVel.length(), false)
 			
 
-func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
+func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool, lungeEffectiveness:float = 1.0) -> bool:
 	#print("enemy knockback: " + str(damageSourcePos))
 	#prevents knockback until knockbackIFramesTimer is zero
 #	if(knockbackIFramesTimer > 0):
@@ -718,6 +733,7 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool) -> bool:
 		draggedCow = null
 		dragging = false
 		currentMode = behaviors.cowPursuit
+	stunTime = defaultStunTime * lungeEffectiveness
 	return result
 
 func die():

@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="27_ivust"]
 [ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="28_l5ghf"]
 [ext_resource type="PackedScene" uid="uid://btc0x7hilb2lx" path="res://Assets/FloorTiles/!Prefabs!/Roads/road 1.tscn" id="29_4il28"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/Signs/sign HWLV.tscn" id="30_ymou4"]
+[ext_resource type="PackedScene" uid="uid://dxr3ff1xoyrhr" path="res://Assets/FloorTiles/!Prefabs!/Signs/sign HWLV.tscn" id="30_ymou4"]
 [ext_resource type="PackedScene" uid="uid://dllt7f1i1tr01" path="res://Assets/FloorTiles/!Prefabs!/Concrete Divider/cementBarricade.tscn" id="31_8vmo6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w53vf"]

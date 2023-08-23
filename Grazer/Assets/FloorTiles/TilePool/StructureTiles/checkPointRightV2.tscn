@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="21_qp544"]
 [ext_resource type="PackedScene" uid="uid://1e36kw702rq0" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Straight/cliffStraightLow.tscn" id="22_lklld"]
 
-[sub_resource type="BoxShape3D" id="1"]
-size = Vector3(14.2544, 0.1, 16.784)
+[sub_resource type="BoxShape3D" id="BoxShape3D_j3asd"]
+size = Vector3(16, 0.1, 12)
 
 [sub_resource type="NavigationMesh" id="4"]
 
@@ -126,34 +126,13 @@ size = Vector3(16, 0.1, 16)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88, 0, 8)
 collision_layer = 19
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 142.568, 0, -8)
-shape = SubResource("1")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 136, 0, -16)
+shape = SubResource("BoxShape3D_j3asd")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 0)
 navigation_mesh = SubResource("4")
-
-[node name="cacti3" type="Node3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9858, 0.0499992, 0.343535)
-
-[node name="RootNode" type="Node3D" parent="NavigationRegion3D/cacti3"]
-
-[node name="wallStraight" type="Node3D" parent="NavigationRegion3D"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 39.6003, 0.05, -9.69718)
-
-[node name="RootNode" type="Node3D" parent="NavigationRegion3D/wallStraight"]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight"]
-collision_layer = 19
-
-[node name="wallStraight6" type="Node3D" parent="NavigationRegion3D"]
-transform = Transform3D(-0.569825, 0, -0.821766, 0, 1, 0, 0.821766, 0, -0.569825, 39.6003, 0.05, -19.3844)
-
-[node name="RootNode" type="Node3D" parent="NavigationRegion3D/wallStraight6"]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight6"]
-collision_layer = 19
 
 [node name="wallStraight7" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.828776, -0.0531411, 0.557051, -0.0695261, 0.997546, -0.00827735, -0.555244, -0.0455896, -0.830437, 66.1874, 0.614655, -40.8492)
@@ -211,6 +190,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 19
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight3/StaticBody3D"]
@@ -222,7 +202,8 @@ transform = Transform3D(-0.0153757, 0, 0.999879, 0, 0.999995, 0, -0.99988, 0, -0
 shape = SubResource("BoxShape3D_eytkc")
 
 [node name="CowSpawner" parent="." instance=ExtResource("21_qp544")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.524, 0.0500488, -33.8739)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.56, 29.7823, 2.36544)
+spawnChance = 0.0
 cowType = 3
 
 [node name="cliffStraight low" parent="." instance=ExtResource("22_lklld")]

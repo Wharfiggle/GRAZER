@@ -16,7 +16,7 @@ func _process(_delta):
 
 func use():
 	if(!exit):
-		terrain.spawnChanceMod += 0.5
+		terrain.spawnChanceMod += 0.65
 	usable.active = false
 	player.active = false
 	if(!exit):

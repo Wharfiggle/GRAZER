@@ -61,26 +61,35 @@ class CowType:
 		var undoMod = 1
 		if(!useOrUndo): undoMod = -1
 		if(id == 1): #red
-			player.herd.setDragResistance(player.herd.dragResistance + 0.2 * undoMod)
+			player.herd.setDragResistance(player.herd.dragResistance + 0.3 * undoMod)
 		elif(id == 2): #lucky
-			player.critChance += 0.1 * undoMod
-			player.cowDamageMod += 0.2 * undoMod
+			#player.critChance += 0.1 * undoMod
+			player.setLuckies(player.luckies + undoMod)
+			print("!!!!little FUCKER: CRIT CHANCE: " + str(player.critChance))
+			#player.cowDamageMod += 0.2 * undoMod
 		elif(id == 3): #grand red
-			player.herd.setDragResistance(player.herd.dragResistance + 0.2 * undoMod)
-			player.potionSpeedup += 0.2 * undoMod
-			player.herd.setPotionSpeedup(player.potionSpeedup)
+			#increase spawn chance of more cows?
+			player.setGrandReds(player.grandReds + undoMod)
+			print("!!!!medium FUCKER: Lunge Effectiveness: " + str(player.lungeEffectiveness))
+			#player.herd.setDragResistance(player.herd.dragResistance + 0.5 * undoMod)
+			#player.potionSpeedup += 0.2 * undoMod
+			#player.herd.setPotionSpeedup(player.potionSpeedup)
 		elif(id == 4): #ironhide
-			player.herd.setDragResistance(player.herd.dragResistance + 0.2 * undoMod)
+			#player.herd.setDragResistance(player.herd.dragResistance + 0.2 * undoMod)
 			player.maxHitpoints += 4 * undoMod
 			if(useOrUndo):
 				player.hitpoints += 4
 			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
 		elif(id == 5): #moxie
-			player.critChance += 0.4 * undoMod
-			player.cowDamageMod += 0.5 * undoMod
-			player.maxHitpoints += 8 * undoMod
+			#player.critChance += 0.1 * undoMod
+			player.setLuckies(player.luckies + undoMod)
+			print("!!!!BIG FUCKER: CRIT CHANCE: " + str(player.critChance))
+			#player.cowDamageMod += 0.5 * undoMod
+			player.potionSpeedup += 0.15 * undoMod
+			player.herd.setPotionSpeedup(player.potionSpeedup)
+			player.maxHitpoints += 2 * undoMod
 			if(useOrUndo):
-				player.hitpoints += 8
+				player.hitpoints += 5
 			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
 			
 

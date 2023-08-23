@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dcspo5f48r7j0"]
+[gd_scene load_steps=29 format=3 uid="uid://dcspo5f48r7j0"]
 
 [ext_resource type="Texture2D" uid="uid://dppcao06jpcr6" path="res://Assets/Images/hud/shopWholeWeaponsTab_oneShadow.png" id="1_bmoht"]
 [ext_resource type="Script" path="res://Scripts/ElixirGunMenu.gd" id="2_63ndt"]
@@ -14,6 +14,18 @@
 [ext_resource type="Texture2D" uid="uid://dmrb03npkxbib" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/weapons menu/shopWeaponShotgunItemExpanded.png" id="11_7irom"]
 [ext_resource type="Texture2D" uid="uid://dahjqgyp70bi4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/shop and herd exchange menus/elixir menu/shopElixirItemCollapsed.png" id="11_in527"]
 [ext_resource type="Texture2D" uid="uid://bsghh8v6kkvoi" path="res://Assets/Images/remedyElixir.png" id="12_2n25k"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q6qrk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o5wq0"]
+blend_mode = 4
+
+[sub_resource type="Gradient" id="Gradient_x6j16"]
+colors = PackedColorArray(0, 0, 0, 0, 0.101961, 0.0627451, 0.0392157, 0.901961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qrdwn"]
+gradient = SubResource("Gradient_x6j16")
+fill_to = Vector2(0.0550459, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m38i6"]
 bg_color = Color(1, 1, 1, 0)
@@ -55,6 +67,7 @@ bg_color = Color(1, 1, 1, 0.392157)
 
 [node name="ElixirGunMenu" type="TextureRect"]
 z_index = 60
+material = SubResource("CanvasItemMaterial_q6qrk")
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -69,6 +82,16 @@ grow_vertical = 2
 scale = Vector2(0.667, 0.667)
 texture = ExtResource("1_bmoht")
 script = ExtResource("2_63ndt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+z_index = -1
+material = SubResource("CanvasItemMaterial_o5wq0")
+layout_mode = 0
+offset_left = -562.219
+offset_right = -52.2189
+offset_bottom = 1081.0
+texture = SubResource("GradientTexture2D_qrdwn")
 
 [node name="GunMenu" type="VBoxContainer" parent="."]
 layout_mode = 1
