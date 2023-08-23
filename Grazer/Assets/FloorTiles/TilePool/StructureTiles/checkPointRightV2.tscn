@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://wrj7bwpeixdh"]
+[gd_scene load_steps=21 format=3 uid="uid://wrj7bwpeixdh"]
 
 [ext_resource type="PackedScene" uid="uid://bdfitt6fxqiit" path="res://Assets/FloorTiles/!Prefabs!/Cliff TriCorner/triCornerCliff.tscn" id="10_lyumt"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="11_wvslq"]
@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://ocacxg8eh0y6" path="res://Assets/Models/Stone Walls FINAL/wallStraight/wallStraightSculptDecim_decim_Roughness.png" id="20_b76ef"]
 [ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="21_qp544"]
 [ext_resource type="PackedScene" uid="uid://1e36kw702rq0" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Straight/cliffStraightLow.tscn" id="22_lklld"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_j3asd"]
-size = Vector3(16, 0.1, 12)
 
 [sub_resource type="NavigationMesh" id="4"]
 
@@ -95,8 +92,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_oioqc")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i1j06"]
-size = Vector3(19.3466, 9.57821, 10.8863)
+[sub_resource type="BoxShape3D" id="BoxShape3D_loi0u"]
+size = Vector3(64, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eytkc"]
+size = Vector3(64, 10, 16)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bqj1v"]
 resource_name = "Root Scene_decim"
@@ -116,9 +116,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fblmu")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_eytkc"]
-size = Vector3(23.7529, 9.57821, 12.4376)
-
 [sub_resource type="BoxMesh" id="BoxMesh_gx1wn"]
 size = Vector3(16, 0.1, 16)
 
@@ -126,16 +123,12 @@ size = Vector3(16, 0.1, 16)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88, 0, 8)
 collision_layer = 19
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 136, 0, -16)
-shape = SubResource("BoxShape3D_j3asd")
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 0)
 navigation_mesh = SubResource("4")
 
 [node name="wallStraight7" type="Node3D" parent="NavigationRegion3D"]
-transform = Transform3D(-0.828776, -0.0531411, 0.557051, -0.0695261, 0.997546, -0.00827735, -0.555244, -0.0455896, -0.830437, 66.1874, 0.614655, -40.8492)
+transform = Transform3D(-0.828776, -0.0531411, 0.557051, -0.0695261, 0.997546, -0.00827729, -0.555244, -0.0455896, -0.830437, 66.1874, 0.614655, -40.8492)
 
 [node name="RootNode" type="Node3D" parent="NavigationRegion3D/wallStraight7"]
 
@@ -144,9 +137,6 @@ transform = Transform3D(1.79624, -0.11562, -0.0120377, 0.109145, 1.74161, -0.441
 mesh = SubResource("ArrayMesh_r8qbo")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight7"]
-collision_layer = 19
 
 [node name="wallStraight2" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(-1.1628, 0, 0.29646, 0, 1.2, 0, -0.29646, 0, -1.1628, 60.6039, 0.05, -8.49244)
@@ -165,12 +155,16 @@ mesh = SubResource("ArrayMesh_8h5o7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight2"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="NavigationRegion3D"]
 collision_layer = 19
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight2/StaticBody3D"]
-transform = Transform3D(0.982382, 0, 0.186884, 0, 1, 0, -0.186884, 0, 0.982382, -1.84135, 4.46836, -8.24194)
-shape = SubResource("BoxShape3D_i1j06")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D2"]
+transform = Transform3D(1, 0, -7.10543e-14, 0, 0.999996, 0, -2.84217e-13, 0, 0.999996, 80, 5, 3)
+shape = SubResource("BoxShape3D_loi0u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D2"]
+transform = Transform3D(-4.37113e-08, 0, 0.999997, 0, 0.999995, 0, -0.999998, 0, -4.37113e-08, 104, 5, -24)
+shape = SubResource("BoxShape3D_eytkc")
 
 [node name="wallStraight3" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(-2, 0, -2.41593e-07, 0, 1.6, 0, 3.01992e-07, 0, -1.6, 87.1337, 0.05, -11.2263)
@@ -188,18 +182,6 @@ transform = Transform3D(0.138172, -0.113143, 0.981752, 0.0381948, 1.3891, 0.0780
 mesh = SubResource("ArrayMesh_bqj1v")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j4ajr")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-collision_layer = 19
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight3/StaticBody3D"]
-transform = Transform3D(0.994955, 0, -0.100327, 0, 0.999997, 0, 0.100327, 0, 0.994952, -2.08447, 4.50501, -5.53642)
-shape = SubResource("BoxShape3D_eytkc")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight3/StaticBody3D"]
-transform = Transform3D(-0.0153757, 0, 0.999879, 0, 0.999995, 0, -0.99988, 0, -0.0153757, -7.4179, 4.24117, 15.0228)
-shape = SubResource("BoxShape3D_eytkc")
 
 [node name="CowSpawner" parent="." instance=ExtResource("21_qp544")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.56, 29.7823, 2.36544)

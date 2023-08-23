@@ -238,12 +238,12 @@ func _process(delta):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
 		#spawn cows at start
-		#for i in 5:
-		#	herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
+#		for i in 5:
+#			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
 #		for i in 6:
 #			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), i)
-		for i in 5:
-			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 3)
+#		for i in 5:
+#			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 3)
 		
 	if(herd.getNumCows() < 1 and !canHaveNoCows and !invincible):
 		die()
