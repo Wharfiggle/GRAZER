@@ -12,7 +12,7 @@ extends Control
 
 var menuButtonSound = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 var sound = preload("res://sounds/New Sound FEX/UI/extra sounds/Ui_pitch1.wav")
-var hover = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
+#var hover = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 var menuOpen = preload("res://sounds/New Sound FEX/UI/MenuSlideIn.wav")
 var menuClose = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
 
@@ -24,6 +24,9 @@ var menuClose = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
 @onready var soundMaker = $"item sounds"
 @onready var uiCursor = get_node(NodePath("/root/Level/UICursor"))
 @onready var controls = $ControlsGraphic
+
+@onready var musicVol = 0
+@onready var sfxVol = 0
 
 func togglePause():
 	if(!visible):
@@ -72,4 +75,10 @@ func _on_controls_pressed():
 
 	controls.visible = !controls.visible
 
-	
+func _on_toggle_music_pressed():
+	soundMaker.stream = menuButtonSound
+	soundMaker.play()
+
+func _on_toggle_sfx_pressed():
+	soundMaker.stream = menuButtonSound
+	soundMaker.play()

@@ -53,7 +53,7 @@ class CowType:
 		#Cow Costs:
 		if(id == 0): cost = 1 	#common
 		elif(id == 1): cost = 2 #red
-		elif(id == 2): cost = 2	#lucky
+		elif(id == 2): cost = 2 #lucky
 		elif(id == 3): cost = 3 #grand red
 		elif(id == 4): cost = 3 #ironhide
 		elif(id == 5): cost = 5 #moxie
