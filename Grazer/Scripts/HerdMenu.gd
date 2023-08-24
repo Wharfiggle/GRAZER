@@ -44,6 +44,7 @@ var tradeSound = preload("res://sounds/New Sound FEX/UI/cow menu/CowOfferTrade.w
 var tradeCancel = preload("res://sounds/New Sound FEX/UI/cow menu/CowMenuBack.wav")
 var tradeConfirm = preload("res://sounds/New Sound FEX/UI/cow menu/CowConfirmTrade.wav")
 var cowClick = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
+var cowTurnedOn = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -120,6 +121,8 @@ func _process(delta):
 			if(hoveredCow != null):
 				if(Input.is_action_just_pressed("shoot")):
 					selectCow(hoveredCow)
+				elif(Input.is_action_pressed("shoot")):
+					selectCow(hoveredCow, true)
 #				elif(Input.is_action_just_pressed("dodge")):
 #					unselectCow(hoveredCow)
 				elif(hoveredCow.uiSelectMode == 0):
@@ -241,17 +244,22 @@ func confirmTrade():
 		selectedCows[i].delete()
 	stopTrade()
 	
-func selectCow(cow:Node):
+func selectCow(cow:Node, held:bool = false):
 	if(selectedCows.has(cow)):
-		unselectCow(cow)
+		if(!held || !cowTurnedOn):
+			unselectCow(cow)
+			cowTurnedOn = false
 	else:
-		selectedCows.append(cow)
-		selectedValue += cowCosts[cow.cowTypeInd]
-		cow.uiSelectMode = 2
-		updateTrade()
+		if(!held || cowTurnedOn):
+			selectedCows.append(cow)
+			selectedValue += cowCosts[cow.cowTypeInd]
+			cow.uiSelectMode = 2
+			updateTrade()
+			cowTurnedOn = true
 
 func unselectCow(cow:Node):
 	if(selectedCows.has(cow)):
+		cowTurnedOn = false
 		selectedCows.erase(cow)
 		selectedValue -= cowCosts[cow.cowTypeInd]
 		cow.uiSelectMode = 0

@@ -213,11 +213,11 @@ func stopDragging(marauder):
 		speedTransitionRadius = normalSpeedTransitionRadius
 	animation.set("parameters/conditions/Drag", false)
 	animation.set("parameters/conditions/Not_Drag", true)
-	
+
 func enableRayCasts():
 	for i in rayCasts:
 		i.enabled = true
-	
+
 func disableRayCasts():
 	for i in rayCasts:
 		i.enabled = false
@@ -588,7 +588,8 @@ func _physics_process(delta):
 			min(max(indctr.y, bound1.y), bound2.y))
 		var indctrDiff = clampedIndctr - indctr
 		
-		if(indctrDiff.length() > 0): #offscreen
+		var edgeRef = max(0, edgeMargin)
+		if(indctrDiff.length() > edgeRef): #offscreen
 			if(!separated):
 				if(clampedIndctr.x < healthCorner.x && clampedIndctr.y < healthCorner.y):
 					if(abs(indctrDiff.x) > abs(indctrDiff.y)):
@@ -600,7 +601,7 @@ func _physics_process(delta):
 						indctrDiff.x += scrWid / 2.0 + gunCorner.x
 					else:
 						indctrDiff.y -= wrldHei / 2.0 - gunCorner.y
-				
+		
 			indctrDiff = Vector2( #rotate back
 				cos(-PI/4.0) * indctrDiff.x - sin(-PI/4.0) * indctrDiff.y,
 				sin(-PI/4.0) * indctrDiff.x + cos(-PI/4.0) * indctrDiff.y)

@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://v4flm3cieuvj"]
+
+[ext_resource type="PackedScene" uid="uid://cx2i3uej18u76" path="res://Assets/Models/Outpost Gate FINAL/Door/Gate-2.fbx" id="1_fnay3"]
+[ext_resource type="Texture2D" uid="uid://bijebmooyh8p1" path="res://Assets/Models/Outpost Gate FINAL/Door/Gate-2_lambert1_BaseColor.png" id="2_72cl0"]
+[ext_resource type="Texture2D" uid="uid://5hvkfr4gxccq" path="res://Assets/Models/Outpost Gate FINAL/Door/Gate-2_lambert1_Emissive.png" id="3_pffd0"]
+[ext_resource type="Texture2D" uid="uid://dt2pl877y5xxw" path="res://Assets/Models/Outpost Gate FINAL/Door/Gate-2_lambert1_Metallic.png" id="4_xyk2j"]
+[ext_resource type="Texture2D" uid="uid://b8xbn1ogvniw5" path="res://Assets/Models/Outpost Gate FINAL/Door/Gate-2_lambert1_Normal.png" id="5_8vn0j"]
+[ext_resource type="Texture2D" uid="uid://d0civtdnnlkww" path="res://Assets/Models/Outpost Gate FINAL/Door/Gate-2_lambert1_Roughness.png" id="6_b3b50"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t50q1"]
+albedo_texture = ExtResource("2_72cl0")
+metallic = 1.0
+metallic_texture = ExtResource("4_xyk2j")
+roughness_texture = ExtResource("6_b3b50")
+emission_enabled = true
+emission_texture = ExtResource("3_pffd0")
+normal_enabled = true
+normal_texture = ExtResource("5_8vn0j")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1lilo"]
+size = Vector3(3.50043, 3.22794, 0.388144)
+
+[node name="Gate-2" instance=ExtResource("1_fnay3")]
+
+[node name="RootNode" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.42, 0, 0)
+
+[node name="pCube75" parent="RootNode/Gate_2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal6" parent="RootNode/Gate_2" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal7" parent="RootNode/Gate_2" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal8" parent="RootNode/Gate_2" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal9" parent="RootNode/Gate_2" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal10" parent="RootNode/Gate_2" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal11" parent="RootNode/Gate_2" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal12" parent="RootNode/Gate_2" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal13" parent="RootNode/Gate_2" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="pasted__Wavy_Metal14" parent="RootNode/Gate_2" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t50q1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.42, 0, 0)
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70919, 1.53823, 0)
+shape = SubResource("BoxShape3D_1lilo")

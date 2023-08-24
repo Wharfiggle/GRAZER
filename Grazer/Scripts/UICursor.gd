@@ -7,6 +7,10 @@ extends Control
 @onready var prevMousePos = Vector2(-1, -1)
 var stickMoved = false
 
+@onready var screenSize = DisplayServer.window_get_size() as Vector2
+
+var mouseEvent = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = active
@@ -66,10 +70,8 @@ func _process(delta):
 			prevMousePos = newPos
 		
 	if(Input.is_action_just_pressed("Interact")):
-		var a = InputEventMouseButton.new()
-		var screenSize = DisplayServer.window_get_size() as Vector2
-		a.position = global_position
-		a.position *= screenSize / Vector2(1280.0, 720.0)
+		mouseEvent = InputEventMouseButton.new()
+		mouseEvent.position = global_position * (screenSize / Vector2(1280.0, 720.0))
 #		var xratio = 1 / (1280 / screenSize.x)
 #		var yratio = 1 / (720 / screenSize.y)
 #		if(yratio < xratio):
@@ -80,9 +82,15 @@ func _process(delta):
 #			var blackBar = (screenSize.y - (720.0 * xratio)) / 2.0
 #			a.position.y += blackBar
 #			print("y " + str(blackBar))
-		a.button_index = MOUSE_BUTTON_LEFT
-		a.pressed = true
-		Input.parse_input_event(a)
-		await get_tree().process_frame
-		a.pressed = false
-		Input.parse_input_event(a)
+		mouseEvent.button_index = MOUSE_BUTTON_LEFT
+		mouseEvent.pressed = true
+		Input.parse_input_event(mouseEvent)
+		#await get_tree().process_frame
+	elif(mouseEvent != null && Input.is_action_pressed("Interact")):
+		mouseEvent.position = global_position * (screenSize / Vector2(1280.0, 720.0))
+		Input.parse_input_event(mouseEvent)
+	elif(mouseEvent != null && Input.is_action_just_released("Interact")):
+		mouseEvent.pressed = false
+		mouseEvent.position = global_position * (screenSize / Vector2(1280.0, 720.0))
+		Input.parse_input_event(mouseEvent)
+		mouseEvent = null
