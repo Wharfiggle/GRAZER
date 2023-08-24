@@ -15,6 +15,12 @@ func _process(_delta):
 		level = get_node(NodePath("/root/Level"))
 
 func use():
+	#make cows getting stolen get stolen now
+#	if(draggedCow != null):
+#				#herd.removeCow(draggedCow)
+#				draggedCow.delete()
+#				SceneCounter.cows -= 1
+	
 	if(!exit):
 		terrain.spawnChanceMod += 0.65
 	usable.active = false

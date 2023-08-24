@@ -31,7 +31,22 @@ func _process(delta):
 		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact"))
 		&& hovered != -1):
 			select(hovered)
-	
+			
+#func _physics_process(_delta):
+#	if(selected != -1 && parent.active && visible):
+#		if(parent.totalValue <= parent.player.potions[selected].cost || numElixirTypes[selected] >= maxElixirs):
+#			if(numElixirTypes[selected] >= maxElixirs):
+#				parent.level.broadcastMessage("Invalid Trade: Can't have more than " + str(maxElixirs) + " of any elixir.", 0.1)
+#			elif(parent.totalValue < parent.player.potions[selected].cost):
+#				parent.level.broadcastMessage("Invalid Trade: Insufficient cows.", 0.1)
+#			else:
+#				parent.level.broadcastMessage("Warning: This purchase will kill you.", 0.1)
+#			buyButton.disabled = true
+#			buyButton.modulate = Color(1.0, 0.75, 0.75)
+#		else:
+#			buyButton.disabled = false
+#			buyButton.modulate = Color(1.0, 1.0, 1.0)
+
 
 func unselect(ind:int):
 	menus[ind].find_child("Pips").visible = false

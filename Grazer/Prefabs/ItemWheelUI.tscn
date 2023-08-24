@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bjl53ahpuq6p3" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/hotWheelElixirBottle.png" id="5_5cs3t"]
 [ext_resource type="Texture2D" uid="uid://bsghh8v6kkvoi" path="res://Assets/Images/remedyElixir.png" id="5_rcxhx"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="6_0fd67"]
-[ext_resource type="Texture2D" uid="uid://d2bbltp8vpdts" path="res://Assets/Images/bulletstormElixir.png" id="8_8kuin"]
+[ext_resource type="Texture2D" uid="uid://fwim0ykphm8c" path="res://Assets/Images/bulletstormElixir.png" id="8_8kuin"]
 [ext_resource type="Texture2D" uid="uid://dtd4xlob0m5f8" path="res://Assets/Images/lifeleachElixir.png" id="9_s4lcp"]
-[ext_resource type="Texture2D" uid="uid://cfhp3iro2becj" path="res://Assets/Images/dustkickerElixir.png" id="10_oapbm"]
+[ext_resource type="Texture2D" uid="uid://dicfvq8m3ie0" path="res://Assets/Images/dustkickerElixir.png" id="10_oapbm"]
 [ext_resource type="Texture2D" uid="uid://cyhnfktrfkge1" path="res://Assets/Images/liquidluckElixir.png" id="11_kioe0"]
 [ext_resource type="Texture2D" uid="uid://boomrdkedmbnw" path="res://Assets/Images/dauntlessElixir.png" id="12_goenk"]
 

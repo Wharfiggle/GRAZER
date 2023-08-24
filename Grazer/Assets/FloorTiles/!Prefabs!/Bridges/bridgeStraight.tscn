@@ -1,17 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://detjptmh7o228"]
+[gd_scene load_steps=4 format=3 uid="uid://detjptmh7o228"]
 
 [ext_resource type="PackedScene" uid="uid://do7hj3psgvj20" path="res://Assets/Models/Bridges/straight/bridge_Straight.fbx" id="1_oj4m6"]
 [ext_resource type="Material" uid="uid://b11lpklqou8x4" path="res://Assets/Models/Bridges/straight/bridgeStraight.tres" id="2_2yl27"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hvinv"]
+size = Vector3(7, 0.1, 4)
+
 [node name="bridge_Straight" instance=ExtResource("1_oj4m6")]
 
-[node name="RootNode" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.872956, 0)
-
 [node name="bridge3" parent="RootNode" index="0"]
+transform = Transform3D(19.455, -6.88887, 2.59951e-07, 3.62693e-08, -0.00017731, -6.06783, 0.811665, 165.121, -6.51008e-06, 0.0646672, -0.182535, -0.103359)
 material_override = ExtResource("2_2yl27")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_hvinv")

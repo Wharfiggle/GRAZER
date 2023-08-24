@@ -33,8 +33,9 @@ var shootingVoice = preload("res://sounds/Enemy Stuff/MarauderShooting.wav")
 var shootingSFX = preload("res://sounds/Enemy Stuff/ShootingWarning.wav")
 var lungeImpact = preload("res://sounds/LungeImpact.wav")
 
-
-var maxHealth = 9.0
+@export var gunmanHealth = 9.0
+@export var thiefHealth = 13.0
+var maxHealth = gunmanHealth
 var health = maxHealth #Current health
 var clipSize = 3 #Max loadable bullets
 var clip = 3 #Current bullets loaded
@@ -50,7 +51,10 @@ var dragging = false
 @onready var navAgent = get_node("NavigationAgent3D")
 var path = []
 var pathNode = 0
-var baseSpeed = 6.5
+@export var gunmanStartSpeed = 6.5
+@export var thiefStartSpeed = 7.5
+var startSpeed = gunmanStartSpeed
+var baseSpeed = startSpeed
 var speed = 1.0
 var followDistance = 7.0 + randf_range(-1,1)
 var fleeDirection = -1 #1 to flee towards position z (backwards), -1 towards negative (forwards)
@@ -110,9 +114,15 @@ func _ready():
 	position.y = 0
 	if(marauderType == enemyTypes.gunman):
 		revolver = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight/RevolverOffset/Revolver"))
-	else:
-		maxHealth = 13.0
+		maxHealth = gunmanHealth
 		health = maxHealth
+		startSpeed = gunmanStartSpeed
+		baseSpeed = startSpeed
+	else:
+		maxHealth = thiefHealth
+		health = maxHealth
+		startSpeed = thiefStartSpeed
+		baseSpeed = startSpeed
 	if(revolver != null):
 		shootingPoint = revolver.find_child("ShootingPoint")
 	
@@ -193,10 +203,6 @@ func _physics_process(delta):
 	if(draggedCow == null):
 		animation.set("parameters/walkDrag/blend_amount", 0)
 	
-	movementBlend = lerpf(movementBlend, speed, 0.1)
-	var temp = 1.0 -  movementBlend
-	animation.set("parameters/idleWalk/blend_amount", max( min(temp, 1), 0 ) )
-	
 	#TODO Line of sight check to make enemy continue to shoot 
 #	if(position - player.position).length() < 2 * followDistance:
 #		var ray_query = PhysicsRayQueryParameters3D.new()
@@ -211,21 +217,6 @@ func _physics_process(delta):
 	
 	if(herd == null):
 		herd = get_node(NodePath("/root/Level/Herd"))
-	
-	var rotateTo
-	var dragAnimOffset = PI
-	if(!aiming):
-		rotateTo = targetPos
-	else:
-		rotateTo = player.position
-	if(draggedCow != null):
-#		print("dragging")
-		rotateTo = draggedCow.position
-		dragAnimOffset = PI
-	rotation.y = lerp_angle(
-		rotation.y,
-		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + dragAnimOffset,
-		aimLerpSpeed)
 	
 	#Initiate stealing a cow
 	if(marauderType == enemyTypes.thief && currentMode == behaviors.circle):
@@ -242,6 +233,7 @@ func _physics_process(delta):
 	if(attackCooldown > 0):
 		attackCooldown -= delta
 	
+	visible = true
 	if(knockbackTimer == 0 && stunTimer == 0):
 		match[currentMode]: #Essentially a switch statement
 			[behaviors.idle]:
@@ -257,12 +249,32 @@ func _physics_process(delta):
 			[behaviors.retreat]:
 				retreat()
 			[behaviors.hibernate]:
+				visible = false
 				hibernate(delta)
 	
 	
 	if(currentMode == behaviors.hibernate):
 		#print("im hibernating")
 		return
+		
+	var rotateTo
+	var dragAnimOffset = PI
+	if(!aiming):
+		rotateTo = targetPos
+	else:
+		rotateTo = player.position
+	if(draggedCow != null):
+#		print("dragging")
+		rotateTo = draggedCow.position
+		dragAnimOffset = PI
+	rotation.y = lerp_angle(
+		rotation.y,
+		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + dragAnimOffset,
+		aimLerpSpeed)
+		
+	movementBlend = lerpf(movementBlend, speed, 0.1)
+	var temp = 1.0 -  movementBlend
+	animation.set("parameters/idleWalk/blend_amount", max( min(temp, 1), 0 ) )
 	
 	#gravity
 	tVelocity.y -= GRAVITY * delta
@@ -625,7 +637,7 @@ func hibernate(delta):
 			if(level.currentMusic == 0):
 				level.changeMusic(1, 0.5)
 			currentMode = behaviors.circle
-			baseSpeed = 5.5
+			baseSpeed = startSpeed
 			GRAVITY = 30
 
 #navigation function

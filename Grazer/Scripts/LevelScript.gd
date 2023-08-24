@@ -61,7 +61,7 @@ class CowType:
 		var undoMod = 1
 		if(!useOrUndo): undoMod = -1
 		if(id == 1): #red
-			player.herd.setDragResistance(player.herd.dragResistance + 0.3 * undoMod)
+			player.herd.setDragResistance(player.herd.dragResistance + 0.15 * undoMod)
 		elif(id == 2): #lucky
 			#player.critChance += 0.1 * undoMod
 			player.setLuckies(player.luckies + undoMod)
@@ -82,14 +82,15 @@ class CowType:
 			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
 		elif(id == 5): #moxie
 			#player.critChance += 0.1 * undoMod
-			player.setLuckies(player.luckies + undoMod)
-			print("!!!!BIG FUCKER: CRIT CHANCE: " + str(player.critChance))
+			#player.setLuckies(player.luckies + undoMod)
+			#print("!!!!BIG FUCKER: CRIT CHANCE: " + str(player.critChance))
+			player.herd.setDragResistance(player.herd.dragResistance + 0.1 * undoMod)
 			#player.cowDamageMod += 0.5 * undoMod
 			player.potionSpeedup += 0.15 * undoMod
 			player.herd.setPotionSpeedup(player.potionSpeedup)
 			player.maxHitpoints += 2 * undoMod
 			if(useOrUndo):
-				player.hitpoints += 5
+				player.hitpoints += 2
 			player.updateHealth(min(player.maxHitpoints, player.hitpoints))
 			
 
@@ -125,12 +126,12 @@ class Item:
 			cost = 3
 		elif(id == 8): 
 			name = "Life Leech"
-			description = "You heal 15% of the damage you deal."
-			cost = 2
+			description = "You heal 20% of the damage you deal."
+			cost = 1
 		elif(id == 9): 
-			name = "Roadrunner"
-			description = "Increases you and your herd's speed by 50%."
-			cost = 3
+			name = "Discombobulate"
+			description = "Stuns all enemies temporarily."
+			cost = 2
 		elif(id == 10): 
 			name = "Liquid Luck"
 			description = "Every shot is a critical hit (double damage)."
@@ -180,14 +181,14 @@ class Item:
 		elif(id == 7): #bulletstorm
 			player.bulletstorm = useOrUndo
 			if(useOrUndo):
-				player.hitFlash.set_shader_parameter("color", Color(1, 0.5, 0))
+				player.hitFlash.set_shader_parameter("color", Color(0.65, 0.85, 1))
 				player.setLineSightColor(Color(0.35, 0.75, 1))
 				player.setBulletColor(Color(0.35, 0.75, 1))
 			else:
 				player.setLineSightColor()
 				player.setBulletColor()
-		elif(id == 8): #life leach
-			player.lifeLeach += 0.15 * undoMod
+		elif(id == 8): #life leech
+			player.lifeLeach += 0.2 * undoMod
 			if(useOrUndo):
 				player.hitFlash.set_shader_parameter("color", Color(1, 0.65, 1))
 				player.setLineSightColor(Color(1, 0.65, 1))
@@ -195,10 +196,12 @@ class Item:
 			else:
 				player.setLineSightColor()
 				player.setBulletColor()
-		elif(id == 9): #dustkicker
-			player.hitFlash.set_shader_parameter("color", Color(0.65, 0.85, 1))
-			player.potionSpeedup += 0.75 * undoMod
+		elif(id == 9): #discombobulate
+			player.hitFlash.set_shader_parameter("color", Color(1, 0.5, 0))
+			#player.potionSpeedup += 0.75 * undoMod
 			player.herd.setPotionSpeedup(player.potionSpeedup)
+			if(useOrUndo):
+				player.stunEnemies()
 		elif(id == 10): #liquid luck
 			player.hitFlash.set_shader_parameter("color", Color(1, 1, 0))
 			player.alwaysCrit = useOrUndo

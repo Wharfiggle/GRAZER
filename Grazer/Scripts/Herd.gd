@@ -99,6 +99,7 @@ func addCow(cow, playSound:bool = true):
 	cow.follow = follow
 	cow.target = getTarget()
 	cow.followingHerd = followingHerd
+	cow.dragResistance = dragResistance
 	cow.potionSpeedup = potionSpeedup
 	cow.herd = self
 	player.cowTypes[cow.cowTypeInd].use()

@@ -80,6 +80,7 @@ var grandReds = 0
 var startLungeEffectiveness = 0.8
 var lungeEffectiveness = startLungeEffectiveness
 var justKnocked = []
+@export var discombobulateTime = 5.0
 
 var russelOrRay = WorldSave.getCharacter()
 
@@ -545,6 +546,12 @@ func setLineSightColor(inColor:Color = Color(1, 1, 1)):
 func setBulletColor(inColor:Color = Color(1, 1, 0)):
 	bulletColor = inColor
 
+func stunEnemies():
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	for i in enemies:
+		if(i.currentMode != i.behaviors.hibernate):
+			i.knockback(position, 1.0, false, discombobulateTime)
+
 func usePotion(ind:int):
 	if(inventory[ind] > 0):
 		#put sound here
@@ -561,7 +568,7 @@ func usePotion(ind:int):
 		if(ind == 0):
 			potionTimer = 1.0
 		elif(ind == 3):
-			potionTimer = 15.0
+			potionTimer = discombobulateTime
 		potionUsed = potions[ind]
 
 func startReload():
