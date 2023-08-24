@@ -1,0 +1,448 @@
+[gd_scene load_steps=46 format=3 uid="uid://f8qhkfkebuj7"]
+
+[ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_lgkpa"]
+[ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="2_vlny0"]
+[ext_resource type="PackedScene" uid="uid://dtfmrm20ruq5u" path="res://Prefabs/FPSCounter.tscn" id="3_jd86r"]
+[ext_resource type="PackedScene" uid="uid://cpwcq3fdlqicu" path="res://Prefabs/CowCounter.tscn" id="4_5ajtx"]
+[ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="5_82f08"]
+[ext_resource type="Texture2D" uid="uid://bxyxkq7a5m6fw" path="res://Assets/Images/cowCounter.png" id="6_1fouu"]
+[ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="7_xc6df"]
+[ext_resource type="PackedScene" uid="uid://bc22uux0dxytn" path="res://Prefabs/MainUI.tscn" id="8_4q5d8"]
+[ext_resource type="Environment" uid="uid://5rhjn7giur73" path="res://default_env.tres" id="9_tdtqs"]
+[ext_resource type="PackedScene" uid="uid://bxmokm0w5pjrq" path="res://Prefabs/fog_volume.tscn" id="10_h8q54"]
+[ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="11_klq4j"]
+[ext_resource type="PackedScene" uid="uid://ct5gqti8xgjyy" path="res://Prefabs/Player.tscn" id="12_3p8td"]
+[ext_resource type="PackedScene" uid="uid://j7n7xxkhx3oe" path="res://Prefabs/DirectionalLight.tscn" id="13_2m115"]
+[ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="14_oj7x4"]
+[ext_resource type="PackedScene" uid="uid://8v4p26gkfffe" path="res://Prefabs/PauseMenuUI.tscn" id="15_vga8l"]
+[ext_resource type="PackedScene" uid="uid://b47wmr6w6oykr" path="res://Prefabs/ItemWheelUI.tscn" id="16_7yxo3"]
+[ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="17_rs1cm"]
+[ext_resource type="Script" path="res://Scripts/WinMenu.gd" id="18_e3sq0"]
+[ext_resource type="FontFile" uid="uid://claanka6fj8mt" path="res://Assets/Font/Bronco Valley/OpenType-TT/Bronco.ttf" id="19_fjtgv"]
+[ext_resource type="Texture2D" uid="uid://dqe54qrwmp5ed" path="res://Assets/Images/EndScreen.png" id="20_w1qdq"]
+[ext_resource type="PackedScene" uid="uid://cmfm0bmhtxo1h" path="res://Prefabs/HerdMenu.tscn" id="21_wm3e4"]
+[ext_resource type="PackedScene" uid="uid://dcspo5f48r7j0" path="res://Prefabs/ElixirGunMenu.tscn" id="22_gchxf"]
+[ext_resource type="AudioStream" uid="uid://crtrdbfpgkmwl" path="res://sounds/Music/WildsMusic.wav" id="23_r4iwi"]
+[ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="24_vckgj"]
+[ext_resource type="AudioStream" uid="uid://cxcaba7koqgv2" path="res://sounds/Music/EnemyMusic.wav" id="25_tnbto"]
+[ext_resource type="AudioStream" uid="uid://dbtr4w6ph4xuw" path="res://sounds/Music/OutpostMusic.wav" id="26_sf23f"]
+[ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="27_hgiic"]
+[ext_resource type="AudioStream" uid="uid://dgl3cdn3cctem" path="res://sounds/Music/DeathMusic.wav" id="28_ppw1k"]
+[ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="29_bnbvj"]
+[ext_resource type="AudioStream" uid="uid://ctinn75mya67b" path="res://sounds/New Sound FEX/Ambiance/outsidedesert.wav" id="30_c8ipq"]
+[ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="31_q4cfk"]
+[ext_resource type="PackedScene" uid="uid://p0an8yq26hw1" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/Trigger.tscn" id="32_tyqvj"]
+[ext_resource type="PackedScene" uid="uid://dc3155bxmkxrn" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/EnemySpawner.tscn" id="33_rdx8g"]
+[ext_resource type="PackedScene" uid="uid://7cdc4kisldw6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/big_stone.tscn" id="34_3yxw3"]
+[ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="35_oowor"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b8kx2"]
+font = ExtResource("5_82f08")
+font_size = 24
+
+[sub_resource type="Gradient" id="Gradient_x61s1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.574257, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.254902, 0.117647, 0.00392157, 0.368627)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w6p3l"]
+gradient = SubResource("Gradient_x61s1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fmcc2"]
+line_spacing = 12.0
+font = ExtResource("5_82f08")
+font_size = 52
+shadow_size = 30
+shadow_color = Color(0, 0, 0.137255, 1)
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1txft"]
+line_spacing = 12.0
+font = ExtResource("19_fjtgv")
+font_size = 100
+outline_size = 5
+shadow_size = 25
+shadow_color = Color(0, 0, 0.137255, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7kcp7"]
+size = Vector3(10.8875, 1.86561, 4.10519)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_gnjfd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jyatg"]
+size = Vector3(1, 5, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ri608"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_frmwc"]
+size = Vector3(16, 0.1, 16)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_lgkpa")
+
+[node name="Broadcast" parent="." instance=ExtResource("2_vlny0")]
+
+[node name="FPS Counter" parent="." instance=ExtResource("3_jd86r")]
+offset_bottom = 26.0001
+
+[node name="Cow Counter" parent="." instance=ExtResource("4_5ajtx")]
+z_index = 30
+offset_left = 72.0
+offset_top = 52.0
+offset_right = 131.0
+offset_bottom = 88.0
+text = "0"
+label_settings = SubResource("LabelSettings_b8kx2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Cow Counter"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -98.0
+offset_top = -37.0
+offset_right = 265.0
+offset_bottom = 173.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_1fouu")
+
+[node name="Health Counter" parent="." instance=ExtResource("7_xc6df")]
+visible = false
+offset_right = 70.0
+
+[node name="GameUI" parent="." instance=ExtResource("8_4q5d8")]
+process_mode = 3
+z_index = 25
+mouse_filter = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("9_tdtqs")
+
+[node name="FogVolume" parent="." instance=ExtResource("10_h8q54")]
+
+[node name="Camera3D" parent="." instance=ExtResource("11_klq4j")]
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
+current = true
+size = 17.0
+
+[node name="Player" parent="." instance=ExtResource("12_3p8td")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 10, 0)
+collision_mask = 33
+
+[node name="DirectionalLight3D" parent="." instance=ExtResource("13_2m115")]
+
+[node name="AllTerrain" type="Node3D" parent="."]
+script = ExtResource("14_oj7x4")
+real = false
+
+[node name="Orange Vignette" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_w6p3l")
+
+[node name="Fanta Mode" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.478431, 0.0196078, 0.196078)
+
+[node name="PauseMenuUI" parent="." instance=ExtResource("15_vga8l")]
+visible = false
+z_index = 100
+
+[node name="ItemWheel" parent="." instance=ExtResource("16_7yxo3")]
+visible = false
+z_index = 75
+
+[node name="DeathMenu" type="Panel" parent="."]
+visible = false
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_rs1cm")
+
+[node name="Label" type="Label" parent="DeathMenu"]
+modulate = Color(0.784314, 0, 0, 1)
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.5
+offset_top = 210.0
+offset_right = 228.5
+offset_bottom = 275.0
+grow_horizontal = 2
+text = "You're food for the buzzards."
+label_settings = SubResource("LabelSettings_fmcc2")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="RestartButton" type="Button" parent="DeathMenu"]
+modulate = Color(1, 0.709804, 0.709804, 1)
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 435.0
+offset_right = 55.0
+offset_bottom = 485.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_82f08")
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="DeathMenu"]
+modulate = Color(1, 0.709804, 0.709804, 1)
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 500.0
+offset_right = 50.0
+offset_bottom = 540.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_82f08")
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "Main Menu"
+
+[node name="WinMenu" type="Panel" parent="."]
+visible = false
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("18_e3sq0")
+
+[node name="Label" type="Label" parent="WinMenu"]
+modulate = Color(0.913725, 0.839216, 0.647059, 1)
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_top = 200.0
+offset_right = 158.0
+offset_bottom = 256.0
+grow_horizontal = 2
+text = "YOU WIN"
+label_settings = SubResource("LabelSettings_1txft")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="EndScreen" type="Sprite2D" parent="WinMenu"]
+position = Vector2(861, 358)
+scale = Vector2(0.66794, 0.66794)
+texture = ExtResource("20_w1qdq")
+
+[node name="RestartButton" type="Button" parent="WinMenu"]
+process_mode = 3
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 335.0
+offset_right = 55.0
+offset_bottom = 385.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_82f08")
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="WinMenu"]
+process_mode = 3
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 400.0
+offset_right = 50.0
+offset_bottom = 440.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_82f08")
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "Main Menu"
+
+[node name="HerdMenu" parent="." instance=ExtResource("21_wm3e4")]
+
+[node name="ElixirGunMenu" parent="." instance=ExtResource("22_gchxf")]
+
+[node name="WildsMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("23_r4iwi")
+volume_db = -10.0
+bus = &"background "
+script = ExtResource("24_vckgj")
+
+[node name="EnemyMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("25_tnbto")
+volume_db = -10.0
+bus = &"background "
+script = ExtResource("24_vckgj")
+
+[node name="OutpostMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("26_sf23f")
+volume_db = -12.0
+bus = &"background "
+script = ExtResource("24_vckgj")
+
+[node name="ShopMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("27_hgiic")
+volume_db = -12.0
+bus = &"background "
+script = ExtResource("24_vckgj")
+
+[node name="DeathMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("28_ppw1k")
+volume_db = -8.0
+bus = &"background "
+script = ExtResource("24_vckgj")
+
+[node name="WinMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("29_bnbvj")
+volume_db = -8.0
+bus = &"background "
+script = ExtResource("24_vckgj")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_c8ipq")
+volume_db = 4.0
+autoplay = true
+script = ExtResource("24_vckgj")
+
+[node name="UICursor" parent="." instance=ExtResource("31_q4cfk")]
+process_mode = 3
+
+[node name="windPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -13.0
+bus = &"background "
+
+[node name="Trigger" parent="." instance=ExtResource("32_tyqvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2275, 0, 6.16659)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+transform = Transform3D(0.897058, 0, 0.441913, 0, 1, 0, -0.441913, 0, 0.897058, -0.708551, 1, -4.74864)
+shape = SubResource("BoxShape3D_7kcp7")
+
+[node name="EnemySpawner" parent="Trigger" instance=ExtResource("33_rdx8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65598, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_gnjfd")
+
+[node name="bigStone" parent="NavigationRegion3D" instance=ExtResource("34_3yxw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17104, 0.0500011, 4.97049)
+
+[node name="Ledges" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Ledge1" type="StaticBody3D" parent="NavigationRegion3D/Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 2.5, 8)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ledges/Ledge1"]
+shape = SubResource("BoxShape3D_jyatg")
+
+[node name="Ledge2" type="StaticBody3D" parent="NavigationRegion3D/Ledges"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 2.5, 24.5)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ledges/Ledge2"]
+shape = SubResource("BoxShape3D_jyatg")
+
+[node name="Floors" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Floor3" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor3"]
+shape = SubResource("BoxShape3D_ri608")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor3"]
+mesh = SubResource("BoxMesh_frmwc")
+surface_material_override/0 = ExtResource("35_oowor")
+
+[node name="Floor4" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor4"]
+shape = SubResource("BoxShape3D_ri608")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor4"]
+mesh = SubResource("BoxMesh_frmwc")
+surface_material_override/0 = ExtResource("35_oowor")
+
+[node name="Floor5" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor5"]
+shape = SubResource("BoxShape3D_ri608")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor5"]
+mesh = SubResource("BoxMesh_frmwc")
+surface_material_override/0 = ExtResource("35_oowor")
+
+[node name="Floor6" type="StaticBody3D" parent="NavigationRegion3D/Floors"]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floors/Floor6"]
+shape = SubResource("BoxShape3D_ri608")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floors/Floor6"]
+mesh = SubResource("BoxMesh_frmwc")
+surface_material_override/0 = ExtResource("35_oowor")
+
+[connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="WinMenu/RestartButton" to="WinMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="WinMenu/MainMenuButton" to="WinMenu" method="_on_main_menu_button_pressed"]
+[connection signal="finished" from="WildsMusic" to="WildsMusic" method="_on_finished"]
+[connection signal="finished" from="EnemyMusic" to="EnemyMusic" method="_on_finished"]
+[connection signal="finished" from="OutpostMusic" to="OutpostMusic" method="_on_finished"]
+[connection signal="finished" from="ShopMusic" to="ShopMusic" method="_on_finished"]
+[connection signal="finished" from="DeathMusic" to="DeathMusic" method="_on_finished"]
+[connection signal="finished" from="WinMusic" to="WinMusic" method="_on_finished"]
+[connection signal="finished" from="Ambience" to="Ambience" method="_on_finished"]

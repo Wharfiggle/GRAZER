@@ -299,7 +299,7 @@ func _physics_process(delta):
 	
 	if(!is_on_floor()):
 		var chunk = terrainController.getPlayerChunk(position)
-		if(!terrain.activeCoord.has(chunk)):
+		if(terrain.real && !terrain.activeCoord.has(chunk)):
 			#print("gonna hibernate, my chunk: " + str(chunk) + " activeCoords: " + str(terrain.activeCoord))
 			position.y = 0
 			currentMode = behaviors.hibernate
@@ -633,7 +633,7 @@ func hibernate(delta):
 	#Wake up distance
 	if(position.distance_to(player.position) < wakeUpDistance):
 		var chunk = terrainController.getPlayerChunk(position)
-		if(terrain.activeCoord.has(chunk)):
+		if(!terrain.real || terrain.activeCoord.has(chunk)):
 			if(level.currentMusic == 0):
 				level.changeMusic(1, 0.5)
 			currentMode = behaviors.circle

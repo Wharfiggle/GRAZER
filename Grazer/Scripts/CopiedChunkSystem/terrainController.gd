@@ -13,6 +13,8 @@ var player
 @onready var structureTypes = tileStructures.retrieveStructureTypes()
 var chunkTypes = chunkTiles.retrieveChunkTypes()
 
+@export var real = true
+
 #var chunkPrefabs = [
 #	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic1.tscn"),
 #	preload("res://Assets/FloorTiles/TilePool/BasicTiles/basic2.tscn"),
@@ -71,6 +73,8 @@ var checkWidth = 10
 var spawnChanceMod = 1.0
 
 func _ready():
+	if(!real):
+		return
 	#checkWidth = structureTypes[1][1] #Gets width of checkpoints
 	#checkLength = structureTypes[1][2] #Gets length
 	#print(checkOverlap(1,Vector3(-1 *16,0,-14 * 16),2, Vector3(1 * 16,0,-15 * 16)))
@@ -118,6 +122,9 @@ func _process(_delta):
 		spawnMarauder(true)
 	if(Input.is_action_just_pressed("debugThief")):
 		spawnMarauder(false)
+	
+	if(!real):
+		return
 	
 	genPlayerPoints()
 	
