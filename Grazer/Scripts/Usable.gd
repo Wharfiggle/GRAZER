@@ -12,7 +12,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if(Input.is_action_just_pressed("Interact") && parent.has_method("use") && inRange
+	if(active && Input.is_action_just_pressed("Interact") && parent.has_method("use") && inRange
 #	&& player.hitpoints > 0 && player.herd.getNumCows() > 0):
 	&& player.active):
 		parent.use()

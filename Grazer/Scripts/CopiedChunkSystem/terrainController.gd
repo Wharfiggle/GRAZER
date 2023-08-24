@@ -98,7 +98,6 @@ func spawnMarauder(gunman:bool):
 		enemy = thiefPrefab.instantiate()
 	else:
 		enemy = gunmanPrefab.instantiate()
-	SceneCounter.marauders += 1
 	var horOrVert = randi_range(0, 1)
 	var topOrBot = randi_range(0, 1)
 	if(topOrBot == 0): topOrBot = -1

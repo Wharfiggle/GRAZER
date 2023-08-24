@@ -107,6 +107,8 @@ var stealingIconVisible = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SceneCounter.cows += 1
+	
 	Vocal.volume_db = 2.0
 	
 	rng.randomize()
@@ -195,6 +197,7 @@ func startDragging(marauder):
 	Vocal.stream = stressed
 	Vocal.play()
 	
+	herd.cowsBeingStolen += 1
 	herd.removeHuddler(self)
 	#Set to disable, because otherwise the cow can't look at the marauder when dragged
 	#disableRayCasts() dont do this, it completely breaks all maneuvering. i fixed the collision layers so they dont look away from the marauders
@@ -202,6 +205,7 @@ func startDragging(marauder):
 	animation.set("parameters/conditions/Not_Drag", false)
 	
 func stopDragging(marauder):
+	herd.cowsBeingStolen -= 1
 	Vocal.stop()
 	isDragged =false
 	draggers.erase(marauder)
@@ -257,6 +261,7 @@ func delete():
 			push_error("could not find herd to remove deleted cow from")
 	if(offscreenIndicator != null):
 		offscreenIndicator.queue_free()
+	SceneCounter.cows -= 1
 	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -520,7 +525,6 @@ func _physics_process(delta):
 				if(i != null):
 					stopDragging(i)
 			herd.deleteCow(self)
-			SceneCounter.cows -= 1
 		totalVelocity.y = tVelocity.y
 	else:
 		tVelocity.y = 0

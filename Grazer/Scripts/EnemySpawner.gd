@@ -52,7 +52,6 @@ func spawnEnemy():
 				instance = prefabs[0].instantiate()
 			else:
 				instance = prefabs[1].instantiate()
-			SceneCounter.marauders += 1
 			get_node("/root/Level").add_child(instance)
 			if(instance != null):
 				instance.global_position = global_position

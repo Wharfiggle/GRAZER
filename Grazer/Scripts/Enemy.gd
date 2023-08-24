@@ -111,6 +111,8 @@ func _ready():
 	self.add_to_group('DespawnAtCheckpoint')
 	self.add_to_group('Enemy')
 	
+	SceneCounter.marauders += 1
+	
 	position.y = 0
 	if(marauderType == enemyTypes.gunman):
 		revolver = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight/RevolverOffset/Revolver"))
@@ -181,7 +183,6 @@ func _physics_process(delta):
 				if(tries == 10):
 					print("couldn't find valid location for enemy to spawn in, deleting")
 					queue_free()
-					SceneCounter.marauders -= 1
 	
 	if(hitFlashAmount > 0.1):
 		hitFlash.set_shader_parameter("amount", hitFlashAmount)
@@ -194,7 +195,6 @@ func _physics_process(delta):
 		deathTimer -= delta
 		if(deathTimer < 0):
 			deathTimer = 0
-			SceneCounter.marauders -= 1
 			delete()
 		deathBlend = lerpf(deathBlend, 1, 0.3)
 		animation.set("parameters/DeathBlend/blend_amount", deathBlend)
@@ -306,9 +306,7 @@ func _physics_process(delta):
 			delete(false)
 #			if(draggedCow != null):
 #				herd.deleteCow(draggedCow)
-#				SceneCounter.cows -= 1
 #				delete()
-#				SceneCounter.marauders -= 1
 	else:
 		lastGroundedPosition = Vector3(position.x, 0, position.z)
 	
@@ -318,12 +316,7 @@ func _physics_process(delta):
 #		if(revolver != null):
 #			revolver.get_node("./RootNode/Revolver_FULL/Revolver").get_material_override().get_next_pass().albdeo_color = Color(0, 0, 0, 0)
 		if(position.y < -20):
-			if(draggedCow != null):
-				#herd.removeCow(draggedCow)
-				draggedCow.delete()
-				SceneCounter.cows -= 1
-			delete()
-			SceneCounter.marauders -= 1
+			die()
 	else:
 		silhouette.set_albedo(silhouetteColor)
 	
@@ -350,26 +343,27 @@ func _physics_process(delta):
 	#knockback timer
 	if(knockbackTimer > 0):
 		knockbackTimer -= delta
-		animation.set("parameters/walkPushed/blend_amount", max(min(1 - (knockbackTimer / knockbackTime), 1.0), 0))
+		var t = knockbackTimer / knockbackTime
+		animation.set("parameters/walkPushed/blend_amount", max(min(1 - t, 1.0), 0))
 		if(knockbackTimer < 0):
 			knockbackTimer = 0
 			knockbackStrength = 0
 			animation.set("parameters/walkPushed/blend_amount", 1)
 			stunTimer = stunTime
 		#lerp speed towards 0 on a square root curve
-		var t = knockbackTimer / knockbackTime
 		t = pow(t, 2)
 		knockbackVel = knockbackVel.normalized() * t * knockbackStrength
 		knock()
+		model.position.z = animation.get("parameters/walkPushed/blend_amount")
 	elif(stunTimer > 0):
 		stunTimer -= delta
-		if(stunTimer < stunTime / 4.0 ):
+		if(stunTimer < stunTime / 4.0):
 			animation.set("parameters/walkPushed/blend_amount", max(min(stunTimer / (stunTime / 4.0), 1), 0))
-			
-	
 		if(stunTimer < 0):
 			stunTimer = 0
 			animation.set("parameters/walkPushed/blend_amount", 0)
+		model.position.z = animation.get("parameters/walkPushed/blend_amount")
+		
 	#knockback iframes timer
 #	elif(knockbackIFramesTimer > 0):
 #		knockbackIFramesTimer -= delta
@@ -386,6 +380,7 @@ func delete(actuallyDelete:bool = true):
 		#print("back to normal")
 		level.changeMusic(0, 1.0)
 	if(actuallyDelete):
+		SceneCounter.marauders -= 1
 		queue_free()
 	
 func idle():
@@ -616,8 +611,6 @@ func stealCow():
 		i.draggedCow = null
 	herd.deleteCow(cowTemp)
 	leadDragger.delete()
-	SceneCounter.cows -= 1
-	SceneCounter.marauders -= 1
 
 func hibernate(delta):
 	GRAVITY = 0
@@ -629,7 +622,6 @@ func hibernate(delta):
 	#Despawn distance
 #	if(position.distance_to(player.position) > 200):
 #		queue_free()
-#		SceneCounter.marauders -= 1
 	#Wake up distance
 	if(position.distance_to(player.position) < wakeUpDistance):
 		var chunk = terrainController.getPlayerChunk(position)
@@ -749,8 +741,6 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool, lungeEff
 	return result
 
 func die():
-	#Changing the health to -100000 is to prevent the counter being
-	#changed multiple times because of the shotgun bullets.
 	position.y -= 50
 	model.position.y += 50
 	if(draggedCow != null):
@@ -777,7 +767,6 @@ func updateHealth(newHP:float):
 func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
 	if(from != "enemy" && deathTimer == 0):
 		updateHealth(health - damage)
-#		stunTimer = stunTime / 10
 		hitFlashAmount = 1
 		critHit = inCritHit
 		if(!critHit):

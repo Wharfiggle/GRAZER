@@ -26,6 +26,8 @@ var potionSpeedup = 1.0
 
 var dragResistance = 1.0
 
+var cowsBeingStolen = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(player == null):
@@ -130,7 +132,6 @@ func spawnCowAtPos(pos:Vector3, type:int = -1) -> Node:
 	var cow = cowPrefab.instantiate()
 	cow.setType(type)
 	add_child(cow)
-	SceneCounter.cows += 1
 	cow.position = pos
 	addCow(cow, false)
 	return cow
@@ -139,7 +140,6 @@ func spawnStrayCow(pos:Vector3, type:int = -1) -> Node:
 	var cow = cowPrefab.instantiate()
 	cow.setType(type)
 	add_child(cow)
-	SceneCounter.cows += 1
 	cow.position = pos
 	cow.stray = true
 	cow.add_to_group('DespawnAtCheckpoint')
