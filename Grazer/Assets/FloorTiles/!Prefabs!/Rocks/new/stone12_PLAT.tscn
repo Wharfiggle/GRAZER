@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://boh8ortfor0a"]
+
+[ext_resource type="PackedScene" uid="uid://bjah70i3n330a" path="res://Assets/Models/Rocks FINAL/stone12/stone12.fbx" id="1_uvktq"]
+[ext_resource type="Texture2D" uid="uid://cqmaeqa6m4lpc" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_BaseColor.png" id="2_fxp48"]
+[ext_resource type="Texture2D" uid="uid://deka3b5golnh3" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Emissive.png" id="3_gkl3e"]
+[ext_resource type="Texture2D" uid="uid://bxk2ixhb3oi3g" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Metallic.png" id="4_0rw6c"]
+[ext_resource type="Texture2D" uid="uid://bly1wnslm0vqo" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Normal.png" id="5_f0h72"]
+[ext_resource type="Texture2D" uid="uid://bgbvhfjy258uw" path="res://Assets/Models/Rocks FINAL/stone12/stone12_Material.001_Roughness.png" id="6_tuf81"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l4ie"]
+albedo_texture = ExtResource("2_fxp48")
+metallic = 1.0
+metallic_texture = ExtResource("4_0rw6c")
+roughness_texture = ExtResource("6_tuf81")
+emission_texture = ExtResource("3_gkl3e")
+normal_enabled = true
+normal_texture = ExtResource("5_f0h72")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sxdia"]
+size = Vector3(0.788811, 1, 0.743463)
+
+[node name="stone12" instance=ExtResource("1_uvktq")]
+
+[node name="bigstone1" parent="RootNode" index="0"]
+transform = Transform3D(8.40471, -1.00658, -146.313, 25.9398, -121.682, 1.99086, -198.133, -15.9734, -5.94588, 0.412427, -1.42425, 0.061481)
+surface_material_override/0 = SubResource("StandardMaterial3D_0l4ie")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 19
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(4.98337, 0, -0.407518, 0, 0.1, 0, 0.407518, 0, 4.98337, 0.430278, 0, -0.336478)
+shape = SubResource("BoxShape3D_sxdia")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(4.99601, 0, 0.1997, 0, 0.1, 0, -0.1997, 0, 4.99601, -0.310161, 0, -0.374882)
+shape = SubResource("BoxShape3D_sxdia")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(4.98954, 0, -0.323184, 0, 0.1, 0, 0.323184, 0, 4.98954, 0.887395, 0, 0.505013)
+shape = SubResource("BoxShape3D_sxdia")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(4.90299, 0, -0.980158, 0, 0.1, 0, 0.980158, 0, 4.90299, -0.0414836, 0, 0.316418)
+shape = SubResource("BoxShape3D_sxdia")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(4.98417, 0, 0.397516, 0, 0.1, 0, -0.397516, 0, 4.98417, 1.11799, 0, 0.52326)
+shape = SubResource("BoxShape3D_sxdia")

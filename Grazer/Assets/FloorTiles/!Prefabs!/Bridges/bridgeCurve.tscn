@@ -1,12 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://16tq6v6n86j4"]
+[gd_scene load_steps=5 format=3 uid="uid://16tq6v6n86j4"]
 
 [ext_resource type="PackedScene" uid="uid://cspepu5hhfkdu" path="res://Assets/Models/Bridges/curve/bridge_Curvefbx.fbx" id="1_1axqs"]
 [ext_resource type="Material" uid="uid://bvti0bv772rmx" path="res://Assets/Models/Bridges/curve/bridgeCurve.tres" id="2_db5yn"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_l1if4"]
+size = Vector3(2.82223, 0.1, 3.23352)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qaka"]
+size = Vector3(3.33397, 1, 1)
+
 [node name="bridge_Curvefbx" instance=ExtResource("1_1axqs")]
 
-[node name="RootNode" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.873, 0)
-
 [node name="bridgeCurve" parent="RootNode" index="0"]
+transform = Transform3D(-19.455, 6.88884, 3.0516e-07, -1.63212e-06, -0.000137908, -6.06783, -0.811661, -165.121, 4.70172e-06, -0.223, -0.174729, -0.061)
 material_override = ExtResource("2_db5yn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(0.777025, 0, -0.62947, 0, 1, 0, 0.62947, 0, 0.777025, -0.540605, 0, 0.421466)
+shape = SubResource("BoxShape3D_l1if4")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(0.332737, 0, -0.94302, 0, 1, 0, 0.94302, 0, 0.332737, -1.52241, 0, -1.02957)
+shape = SubResource("BoxShape3D_l1if4")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, -1.85085, 0, -2.27644)
+shape = SubResource("BoxShape3D_3qaka")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(0.981564, 0, -0.191134, 0, 1, 0, 0.191134, 0, 0.981564, 1.16138, 0, 1.38145)
+shape = SubResource("BoxShape3D_l1if4")
