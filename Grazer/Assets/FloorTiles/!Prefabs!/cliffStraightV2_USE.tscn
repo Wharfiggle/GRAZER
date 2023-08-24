@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccnx64oa6vbqv"]
+[gd_scene load_steps=12 format=3 uid="uid://ccnx64oa6vbqv"]
 
 [ext_resource type="PackedScene" uid="uid://cg14hosmet8b5" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/cliffStraightV4.fbx" id="1_7u5kb"]
 [ext_resource type="Texture2D" uid="uid://xpojevianp14" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_BaseColor.png" id="2_m7bw6"]
@@ -20,6 +20,9 @@ heightmap_texture = ExtResource("3_ff1fj")
 [sub_resource type="BoxShape3D" id="BoxShape3D_jtg2o"]
 size = Vector3(16, 16, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_togj1"]
+size = Vector3(16, 4, 2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_3xvc2"]
 size = Vector3(1, 5, 16)
 
@@ -30,6 +33,7 @@ visible = false
 
 [node name="PM3D_Wall_Clif1_1" parent="RootNode" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_7iu3p")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
@@ -38,6 +42,11 @@ collision_layer = 19
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -7)
 shape = SubResource("BoxShape3D_jtg2o")
+disabled = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 15, -8)
+shape = SubResource("BoxShape3D_togj1")
 
 [node name="Ledges" type="Node3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 10, -8)

@@ -13,6 +13,7 @@ var movementBlend = 0.0
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
+@export var itemDropChance = 0.05
 
 var level = null
 
@@ -130,7 +131,7 @@ func _ready():
 	
 	rng.randomize()
 	var rn = rng.randf()
-	if(rn <= 0.05):
+	if(rn <= itemDropChance):
 		itemDrop = itemDropPrefab.instantiate()
 		
 	hitFlash.set_shader_parameter("color", hitColor)

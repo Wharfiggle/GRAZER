@@ -208,10 +208,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.058
 [node name="cliffStraightV5" parent="NavigationRegion3D" instance=ExtResource("19_kv5oj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.0583, -15.95, -7.90074)
 
-[node name="cliffStraightV6" parent="NavigationRegion3D" instance=ExtResource("19_kv5oj")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.0583, -15.95, -24.4086)
-visible = false
-
 [node name="Porch" parent="NavigationRegion3D" instance=ExtResource("20_vh7gg")]
 transform = Transform3D(1.09992, 0, 0.0134195, 0, 1.1, 0, -0.0134195, 0, 1.09992, 5.37587, 0.0500002, 2.24969)
 

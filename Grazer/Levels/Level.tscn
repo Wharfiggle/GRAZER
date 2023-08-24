@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cclwr76l2moqf"]
+[gd_scene load_steps=39 format=3 uid="uid://cclwr76l2moqf"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://cmfm0bmhtxo1h" path="res://Prefabs/HerdMenu.tscn" id="29_gvm3s"]
 [ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="31_7rkun"]
 [ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="32_0n3cj"]
+[ext_resource type="Script" path="res://Levels/KillMeInASecond.gd" id="32_y58l0"]
 [ext_resource type="Texture2D" uid="uid://dqe54qrwmp5ed" path="res://Assets/Images/EndScreen.png" id="33_gftir"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b8kx2"]
@@ -338,6 +339,8 @@ process_mode = 3
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 56)
+script = ExtResource("32_y58l0")
+time = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 shape = SubResource("BoxShape3D_x4scn")

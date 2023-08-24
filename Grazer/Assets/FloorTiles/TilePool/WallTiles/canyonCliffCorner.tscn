@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3fn6vu61mtss"]
+[gd_scene load_steps=20 format=3 uid="uid://d3fn6vu61mtss"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_8ybqb"]
 [ext_resource type="PackedScene" uid="uid://ccnx64oa6vbqv" path="res://Assets/FloorTiles/!Prefabs!/cliffStraightV2_USE.tscn" id="2_acbrk"]
@@ -71,6 +71,18 @@ heightmap_texture = ExtResource("4_7uph4")
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qf6m"]
 size = Vector3(20, 9.57821, 12.2312)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gq41h"]
+albedo_texture = ExtResource("3_nqd3h")
+metallic = 1.0
+metallic_texture = ExtResource("5_4lk3h")
+roughness_texture = ExtResource("7_g1dme")
+normal_enabled = true
+normal_texture = ExtResource("6_mocfx")
+heightmap_texture = ExtResource("4_7uph4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ddv6d"]
+size = Vector3(20, 25, 12.2312)
+
 [node name="Level" type="Node3D"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -110,6 +122,24 @@ collision_layer = 19
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.34772, -2.95583)
 shape = SubResource("BoxShape3D_1qf6m")
+
+[node name="wallStraight2" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.69919, 0.05, 24.548)
+
+[node name="RootNode" type="Node3D" parent="NavigationRegion3D/wallStraight2"]
+
+[node name="decim" type="MeshInstance3D" parent="NavigationRegion3D/wallStraight2/RootNode"]
+transform = Transform3D(0.876696, 0, 0, 0, 2.34136, 0, 0, 0, 1, 1.4086, -13, 0)
+mesh = SubResource("ArrayMesh_4vw4v")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gq41h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/wallStraight2"]
+collision_layer = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wallStraight2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.65228, -2.95583)
+shape = SubResource("BoxShape3D_ddv6d")
 
 [node name="stone10" parent="." instance=ExtResource("3_sx7ap")]
 transform = Transform3D(0.256335, -0.956616, -0.138486, -0.0856881, -0.165199, 0.982531, -0.962782, -0.239991, -0.124317, 3.47599, -0.283528, 15.7282)
