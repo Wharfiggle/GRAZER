@@ -489,10 +489,10 @@ func _physics_process(delta):
 		herd = get_node("/root/Level/Herd")
 		print("Cow.gd: herd is null")
 		
-	if(terrain != null):
+	if(terrain != null && terrain.real):
 		var chunk = terrainController.getPlayerChunk(position)
 		setHibernate(!terrain.activeCoord.has(chunk))
-	else:
+	elif(terrain.real):
 		setHibernate(true)
 		terrain = get_node("/root/Level/AllTerrain")
 	

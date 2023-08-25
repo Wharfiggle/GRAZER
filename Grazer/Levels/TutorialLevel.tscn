@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://f8qhkfkebuj7"]
+[gd_scene load_steps=116 format=3 uid="uid://f8qhkfkebuj7"]
 
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_lgkpa"]
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="2_vlny0"]
@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://bp4emjrcwtai7" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_Metallic.png" id="67_2qq1l"]
 [ext_resource type="Texture2D" uid="uid://cpwwevm3nqbqd" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_Normal.png" id="68_n5mgf"]
 [ext_resource type="Texture2D" uid="uid://pqe45elsoex0" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_Roughness.png" id="69_r34o2"]
+[ext_resource type="PackedScene" uid="uid://cdj7yef7itdjy" path="res://Assets/Models/Silo/siloV1/Silo_V1.fbx" id="70_kijj1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b8kx2"]
 font = ExtResource("5_82f08")
@@ -495,11 +496,11 @@ mouse_filter = 1
 environment = ExtResource("9_tdtqs")
 
 [node name="FogVolume" parent="." instance=ExtResource("10_h8q54")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 16, -9, 16)
 
 [node name="Camera3D" parent="." instance=ExtResource("11_klq4j")]
-transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 15, 15, 15)
 current = true
-size = 17.0
 
 [node name="Player" parent="." instance=ExtResource("12_3p8td")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 10, 0)
@@ -1360,6 +1361,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 10, -8)
 [node name="Ledge2" type="StaticBody3D" parent="cliffStraightV6/Ledges"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 8.5, 1.499)
 collision_layer = 16
+
+[node name="Silo_V1" parent="." instance=ExtResource("70_kijj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9608, 0.0499992, 12.1203)
 
 [connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]

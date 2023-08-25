@@ -111,7 +111,7 @@ environment = ExtResource("16_leqkn")
 [node name="FogVolume" parent="." instance=ExtResource("11_1gwt8")]
 
 [node name="Camera3D" parent="." instance=ExtResource("2")]
-transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 30, 30, 30)
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 15, 15, 15)
 current = true
 size = 17.0
 
