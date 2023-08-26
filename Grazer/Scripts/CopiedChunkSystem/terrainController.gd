@@ -5,8 +5,7 @@ class_name terrainController
 var playerPath = NodePath("/root/Level/Player")
 var player
 @onready var camera = get_node(NodePath("/root/Level/Camera3D"))
-@onready var gunmanPrefab = preload("res://Prefabs/Gunman.tscn")
-@onready var thiefPrefab = preload("res://Prefabs/Thief.tscn")
+@onready var enemyPrefabs = [preload("res://Prefabs/Gunman.tscn"), preload("res://Prefabs/Thief.tscn")]
 
 @onready var chunkNode = preload("res://Assets/FloorTiles/ChunkNode.tscn")
 @onready var structureNode = preload("res://Assets/FloorTiles/StructureNode.tscn")
@@ -95,9 +94,9 @@ func spawnMarauder(gunman:bool):
 	var scrWid = camSize / 9.0 * 16.0 #only works with 16:9 aspect ratio
 	var enemy
 	if(!gunman):
-		enemy = thiefPrefab.instantiate()
+		enemy = enemyPrefabs[1].instantiate()
 	else:
-		enemy = gunmanPrefab.instantiate()
+		enemy = enemyPrefabs[0].instantiate()
 	var horOrVert = randi_range(0, 1)
 	var topOrBot = randi_range(0, 1)
 	if(topOrBot == 0): topOrBot = -1
@@ -187,7 +186,7 @@ func loadChunk(points):
 				if activeCoord.find(chunkCoords) == -1:
 					var chunk = chunkNode.instantiate()
 					SceneCounter.chunkNodes += 1
-					chunk.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab])
+					chunk.setSpawnerVariables(spawnChanceMod, enemyPrefabs)
 					chunk.transform.origin = chunkCoords * tileWidth
 					activeChunks.append(chunk)
 					activeCoord.append(chunkCoords)
@@ -342,7 +341,7 @@ func addStructure(id, chunkCoords):
 #	activeStructCoord.append(chunkCoords)
 #	activeStructs.append(instance)
 	SceneCounter.structureNodes += 1
-	instance.setSpawnerVariables(spawnChanceMod, [gunmanPrefab, thiefPrefab], self)
+	instance.setSpawnerVariables(spawnChanceMod, enemyPrefabs, self)
 	get_node(NodePath("/root/Level/AllTerrain")).add_child(instance)
 	instance.position = chunkCoords * tileWidth
 	instance.setStructureData(id, structureTypes)

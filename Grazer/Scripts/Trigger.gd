@@ -1,3 +1,5 @@
+#Elijah Southman
+
 extends Area3D
 
 @onready var collider = get_node(NodePath("./CollisionShape3D"))
@@ -6,9 +8,8 @@ var spawners
 var timer = -1.0
 var spawnerInd = 0
 var chanceMod = 0
-#Elijah Southman
-
 var prefabs = []
+@onready var terrain = get_node("/root/Level/AllTerrain")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +32,15 @@ func _ready():
 	collider.disabled = true
 
 func _physics_process(delta):
+	if(prefabs.is_empty()):
+		if(terrain == null):
+			terrain = get_node("/root/Level/AllTerrain")
+		elif(!terrain.real):
+			spawn(terrain.spawnChanceMod, terrain.enemyPrefabs)
+			for i in spawners:
+				i.spawnChance = chanceMod
+				i.prefabs = prefabs
+	
 	if(timer > -1):
 		timer -= delta
 		if(timer <= 0):

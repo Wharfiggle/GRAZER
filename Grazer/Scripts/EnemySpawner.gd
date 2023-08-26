@@ -15,6 +15,8 @@ var levelScript
 var timer = -1.0
 var chanceMod = 0
 var prefabs = []
+@onready var terrain = get_node("/root/Level/AllTerrain")
+var waitedToBeIndependent = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +24,14 @@ func _ready():
 	rng.randomize()
 
 func _physics_process(delta):
+	if(waitedToBeIndependent && prefabs.is_empty()):
+		if(terrain == null):
+			terrain = get_node("/root/Level/AllTerrain")
+		elif(!terrain.real):
+			spawn(terrain.spawnChanceMod, terrain.enemyPrefabs)
+	elif(!waitedToBeIndependent):
+		waitedToBeIndependent = true
+	
 	if(timer > -1):
 		timer -= delta
 		if(timer <= 0):
