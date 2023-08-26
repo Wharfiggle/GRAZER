@@ -496,10 +496,9 @@ mouse_filter = 1
 environment = ExtResource("9_tdtqs")
 
 [node name="FogVolume" parent="." instance=ExtResource("10_h8q54")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 16, -9, 16)
 
 [node name="Camera3D" parent="." instance=ExtResource("11_klq4j")]
-transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 15, 15, 15)
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 22, 22, 22)
 current = true
 
 [node name="Player" parent="." instance=ExtResource("12_3p8td")]

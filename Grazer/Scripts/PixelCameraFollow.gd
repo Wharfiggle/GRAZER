@@ -55,14 +55,16 @@ func get_noise_from_seed(_seed : int) -> float:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	followTarget = get_node(targetNodePath)
-	if(followTarget == null):
-		followTarget = get_parent()
 	camOffset = self.position
 	pos = self.position
 	#uiCam.global_transform = global_transform
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if(followTarget == null):
+		followTarget = get_node(targetNodePath)
+		return
+		
 	pos = lerp(pos, followTarget.global_position, lerpSpeed * delta)
 	var posDelta = pos - followTarget.global_position
 	if(posDelta.length() > maxOffset):

@@ -6,9 +6,10 @@
 noise_type = 0
 
 [node name="Camera3D" type="Camera3D"]
-transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 15, 15, 15)
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573576, -0.707107, -0.40558, 0.579228, 22, 22, 22)
 projection = 1
 size = 15.0
-far = 150.0
+near = 0.001
+far = 1000.0
 script = ExtResource("1")
 noise = SubResource("FastNoiseLite_iihtn")
