@@ -1337,7 +1337,7 @@ transform = Transform3D(0.0757185, 0.827818, 0.720405, 0.0769791, 0.716333, -0.8
 transform = Transform3D(0.559534, 0, -1.06157, 0, 1.2, 0, 1.06157, 0, 0.559534, 15.8641, -0.190849, -4.49545)
 
 [node name="stone3" parent="." instance=ExtResource("60_0vtty")]
-transform = Transform3D(1.48427, 0, 1.18615, 0, 1.9, 0, -1.18615, 0, 1.48427, 52.7856, -10.1494, -9.0848)
+transform = Transform3D(1.17179, 0, 0.936433, 0, 1.9, 0, -0.936433, 0, 1.17179, 53.6909, -10.1494, -6.99039)
 
 [node name="cliffStraightV6" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.7231, -15.95, 7)
