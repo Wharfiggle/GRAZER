@@ -5,6 +5,8 @@ var parent
 var inRange = false
 var active = true
 @onready var player = get_node(NodePath("/root/Level/Player"))
+@export var interactable = true
+@export var shootable = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +23,15 @@ func _process(_delta):
 	if(!inRange || !active):
 		targAlpha = 1.0
 	interactGraphic.transparency = lerpf(interactGraphic.transparency, targAlpha, 0.2)
-	
+
+func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
+	if(from == "player"):
+		print("bullet hit the thing")
+		parent.use()
+		return true
+	else:
+		return false
+
 func _on_body_entered(body):
 	if(body.is_in_group('Player')):
 		inRange = true

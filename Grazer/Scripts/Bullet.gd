@@ -105,7 +105,7 @@ func _physics_process(_delta):
 					canHit = hitBody.damage_taken(0, from, critHit, self)
 				if(!canHit):
 					hitBody = null
-				else: #hits only if object doesn't have damage_taken or damage_taken returns true
+				else: #hits only if object doesn't have damage_taken or damage_taken returns true. otherwise passes through
 					if(source == player):
 						player.extraSounds.stream = hitSound
 						player.extraSounds.play()

@@ -342,7 +342,7 @@ func addStructure(id, chunkCoords):
 #	activeStructs.append(instance)
 	SceneCounter.structureNodes += 1
 	instance.setSpawnerVariables(spawnChanceMod, enemyPrefabs, self)
-	get_node(NodePath("/root/Level/AllTerrain")).add_child(instance)
+	add_child(instance)
 	instance.position = chunkCoords * tileWidth
 	instance.setStructureData(id, structureTypes)
 	

@@ -67,7 +67,7 @@ shadow_color = Color(0, 0, 0.137255, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x4scn"]
 size = Vector3(32, 0.1, 48)
 
-[node name="Level2" type="Node3D"]
+[node name="Level" type="Node3D"]
 script = ExtResource("1_ilocr")
 
 [node name="Broadcast" parent="." instance=ExtResource("1_33qyj")]
