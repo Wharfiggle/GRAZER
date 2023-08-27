@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://pqe45elsoex0" path="res://Assets/Models/Stone Cliffs FINAL/cliffStraightV2/grzrRock2/cliffStraightV4_PM3D_Wall_Clif1_1_Roughness.png" id="6_ct26j"]
 [ext_resource type="PackedScene" uid="uid://1e36kw702rq0" path="res://Assets/Models/Stone Cliffs FINAL/cliffLow/Straight/cliffStraightLow.tscn" id="7_tqjvf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7iu3p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j51ph"]
 albedo_texture = ExtResource("2_m7bw6")
 metallic = 1.0
 metallic_texture = ExtResource("4_wii3s")
@@ -34,7 +34,7 @@ visible = false
 [node name="PM3D_Wall_Clif1_1" parent="RootNode" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 visible = false
-surface_material_override/0 = SubResource("StandardMaterial3D_7iu3p")
+surface_material_override/0 = SubResource("StandardMaterial3D_j51ph")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
 collision_layer = 19

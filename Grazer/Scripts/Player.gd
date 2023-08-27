@@ -389,7 +389,7 @@ func _process(delta):
 			var b = bullet.instantiate()
 			b.shoot(self, "player", shootingPoint.global_position, Vector3(0, aimDir, 0),
 			revolverRange, revolverDamage * critMult * cowDamageMod, critMult > 1, bColor, 150.0)
-			camera.add_trauma(0.22)
+			camera.add_trauma(0.25)
 			if(!critMult == 2.0):
 				boomSound.stream = revolverShootSound
 				boomSound.play(.55)
