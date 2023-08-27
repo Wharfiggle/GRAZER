@@ -1,5 +1,8 @@
-[gd_scene load_steps=54 format=3 uid="uid://cvrmy4nr00d0u"]
+[gd_scene load_steps=57 format=3 uid="uid://cvrmy4nr00d0u"]
 
+[ext_resource type="PackedScene" uid="uid://cc5k6p4dqt4g1" path="res://Assets/Models/NPC/npc 1.tscn" id="1_v0ixf"]
+[ext_resource type="PackedScene" uid="uid://cjft8hs811nlf" path="res://Assets/Models/NPC/npc 2.tscn" id="2_264nt"]
+[ext_resource type="PackedScene" uid="uid://cmytxkkhi8def" path="res://Assets/Models/NPC/npc 3.tscn" id="3_a4iie"]
 [ext_resource type="PackedScene" uid="uid://21bqi8afjpn6" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/Frame Isolated/gateArch.tscn" id="6_orocb"]
 [ext_resource type="PackedScene" uid="uid://7jwcyssrk7li" path="res://Assets/FloorTiles/!Prefabs!/Outpost Gate/One Door Isolated/gate2.tscn" id="7_ur1f4"]
 [ext_resource type="PackedScene" uid="uid://btc0x7hilb2lx" path="res://Assets/FloorTiles/!Prefabs!/Roads/road 1.tscn" id="8_tqdss"]
@@ -121,6 +124,18 @@ size = Vector3(1.74377, 2.2933, 1.41914)
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 0, 8)
 collision_layer = 19
+
+[node name="NPC" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.3449, 0, -30.9175)
+
+[node name="NPC" parent="NPC" instance=ExtResource("1_v0ixf")]
+transform = Transform3D(0.986957, 0, -0.160984, 0, 1, 0, 0.160984, 0, 0.986957, 0.638494, 0, -2.5469)
+
+[node name="NPC2" parent="NPC" instance=ExtResource("2_264nt")]
+transform = Transform3D(0.531132, 0, 0.847289, 0, 1, 0, -0.847289, 0, 0.531132, 0.606607, 1.95336, 12.4593)
+
+[node name="NPC3" parent="NPC" instance=ExtResource("3_a4iie")]
+transform = Transform3D(0.962094, 0, -0.272717, 0, 1, 0, 0.272717, 0, 0.962094, 3.3808, 0.159566, -9.36762)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, -32)

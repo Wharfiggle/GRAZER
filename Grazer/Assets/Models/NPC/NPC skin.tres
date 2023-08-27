@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://2jyf6vaqb8s6"]
+
+[ext_resource type="Texture2D" uid="uid://dexc843k38v3g" path="res://Assets/Models/NPC/NPC_Skin_BaseColor.png" id="1_usoe3"]
+[ext_resource type="Texture2D" uid="uid://cysfh240odgma" path="res://Assets/Models/NPC/NPC_Skin_Metallic.png" id="2_4ol4w"]
+[ext_resource type="Texture2D" uid="uid://dgpseq2c4ml2" path="res://Assets/Models/NPC/NPC_Skin_Normal.png" id="3_msjf2"]
+[ext_resource type="Texture2D" uid="uid://dn5cijkcqfnl" path="res://Assets/Models/NPC/NPC_Skin_Roughness.png" id="4_0yxqs"]
+
+[resource]
+albedo_texture = ExtResource("1_usoe3")
+metallic = 1.0
+metallic_texture = ExtResource("2_4ol4w")
+roughness_texture = ExtResource("4_0yxqs")
+normal_enabled = true
+normal_texture = ExtResource("3_msjf2")
