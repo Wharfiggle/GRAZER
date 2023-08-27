@@ -14,23 +14,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if(active && Input.is_action_just_pressed("Interact") && parent.has_method("use") && inRange
+	if(interactable && active && Input.is_action_just_pressed("Interact") && parent.has_method("use") && inRange
 #	&& player.hitpoints > 0 && player.herd.getNumCows() > 0):
 	&& player.active):
 		parent.use()
 	
 	var targAlpha = 0
-	if(!inRange || !active):
+	if(!inRange || !active || !interactable):
 		targAlpha = 1.0
 	interactGraphic.transparency = lerpf(interactGraphic.transparency, targAlpha, 0.2)
-
-func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
-	if(from == "player"):
-		print("bullet hit the thing")
-		parent.use()
-		return true
-	else:
-		return false
 
 func _on_body_entered(body):
 	if(body.is_in_group('Player')):

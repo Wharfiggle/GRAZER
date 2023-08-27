@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bin30v0rfeimx"]
+[gd_scene load_steps=7 format=3 uid="uid://bin30v0rfeimx"]
 
 [ext_resource type="Script" path="res://Scripts/Usable.gd" id="1_02raw"]
 [ext_resource type="Texture2D" uid="uid://b86jfncuxpn5s" path="res://Assets/Images/interactPrompt.png" id="2_vyoio"]
+[ext_resource type="Script" path="res://Prefabs/UsableShootTarget.gd" id="3_fnbvn"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_djqmi"]
 
@@ -30,6 +31,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ptetw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("SphereShape3D_u0le3")
+
+[node name="StaticBodyForShooting" type="StaticBody3D" parent="."]
+script = ExtResource("3_fnbvn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
