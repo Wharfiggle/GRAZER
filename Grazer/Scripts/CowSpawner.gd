@@ -5,6 +5,8 @@ enum cowTypes {common, red, lucky, grandRed, ironhide, moxie}
 @export var cowType:cowTypes
 var rng = RandomNumberGenerator.new()
 var herd
+var waitedToBeIndependent = false
+@onready var terrain = get_node("/root/Level/AllTerrain")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +14,15 @@ func _ready():
 	rng.randomize()
 	herd = get_node(NodePath("/root/Level/Herd"))
 	global_position.y = 0
+
+func _physics_process(delta):
+	if(waitedToBeIndependent):
+		if(terrain == null):
+			terrain = get_node("/root/Level/AllTerrain")
+		elif(!terrain.real):
+			spawn(terrain.spawnChanceMod, terrain.enemyPrefabs)
+	elif(!waitedToBeIndependent):
+		waitedToBeIndependent = true
 
 func spawn(inChanceMod:float, _inPrefabs:Array):
 	if(herd == null):

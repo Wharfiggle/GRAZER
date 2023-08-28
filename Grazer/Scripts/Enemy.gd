@@ -391,7 +391,8 @@ func delete(actuallyDelete:bool = true):
 	for i in enemies:
 		if(i.currentMode != behaviors.hibernate):
 			enemyCount += 1
-	if(enemyCount <= 1 && level.currentMusic == 1):
+	level = get_node(NodePath("/root/Level"))
+	if(level != null && enemyCount <= 1 && level.currentMusic == 1):
 		#print("back to normal")
 		level.changeMusic(0, 1.0)
 	if(actuallyDelete):
@@ -641,7 +642,9 @@ func hibernate(delta):
 	if(position.distance_to(player.position) < wakeUpDistance):
 		var chunk = terrainController.getPlayerChunk(position)
 		if(!terrain.real || terrain.activeCoord.has(chunk)):
-			if(level.currentMusic == 0):
+			if(level == null):
+				level = get_node(NodePath("/root/Level"))
+			if(level != null && level.currentMusic == 0):
 				level.changeMusic(1, 0.5)
 			currentMode = behaviors.circle
 			baseSpeed = startSpeed

@@ -105,6 +105,11 @@ var startFallY = 0
 
 var stealingIconVisible = false
 
+var fallYouFucker = false
+var deathTimer = 0
+@export var waitToDie = 0.4
+var waitToDieTimer = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SceneCounter.cows += 1
@@ -243,6 +248,10 @@ func idle():
 #var rectDiag = rectWid / sin( arctan( rectWid / rectHei )
 
 func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:Node = null) -> bool:
+	animation.set("parameters/conditions/Death", false)
+	animation.set("parameters/conditions/NotDead", true)
+	animation.set("parameters/conditions/Death", true)
+	animation.set("parameters/conditions/NotDead", false)
 	if(from == "player" && !draggers.is_empty()):
 		return false
 	else:
@@ -519,12 +528,30 @@ func _physics_process(delta):
 		tVelocity.y -= gravity * delta
 		if(is_on_floor()):
 			tVelocity.y = -0.1
-		elif(transform.origin.y < -20.0):
-	#		transform.origin = Vector3(0, 10, 0)
-			for i in draggers:
-				if(i != null):
-					stopDragging(i)
-			herd.deleteCow(self)
+			animation.set("parameters/conditions/Death", false)
+			animation.set("parameters/conditions/NotDead", true)
+			waitToDieTimer = 0
+		else:
+			if(waitToDieTimer == 0):
+				waitToDieTimer = waitToDie
+			elif(waitToDieTimer > 0):
+				waitToDieTimer -= delta
+				if(waitToDieTimer <= 0):
+					deathTimer = 2.0
+					animation.set("parameters/conditions/Death", true)
+					animation.set("parameters/conditions/NotDead", false)
+					makeMoo()
+			elif(deathTimer > 0):
+				deathTimer -= delta
+				if(deathTimer <= 0):
+					animation.set("parameters/DeathTime/scale", 0)
+			Vocal.volume_db = lerpf(Vocal.volume_db, -30, 0.1 * delta)
+			if(transform.origin.y < -100.0):
+#				transform.origin = Vector3(0, 10, 0)
+				for i in draggers:
+					if(i != null):
+						stopDragging(i)
+				herd.deleteCow(self)
 		totalVelocity.y = tVelocity.y
 	else:
 		tVelocity.y = 0
