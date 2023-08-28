@@ -11,6 +11,7 @@ var rng = RandomNumberGenerator.new()
 @export var numEnemies:int
 @export var timeDelay:float
 @export var spawnAtEdgeOfScreen:bool
+@export var sentryMode:bool
 var levelScript
 var timer = -1.0
 var chanceMod = 0
@@ -65,6 +66,7 @@ func spawnEnemy():
 			get_node("/root/Level").add_child(instance)
 			if(instance != null):
 				instance.global_position = global_position
+				instance.sentryMode = sentryMode
 				print("spawning instance successful")
 			else:
 				print("spawning instance unsuccessful")

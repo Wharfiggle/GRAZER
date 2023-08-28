@@ -9,7 +9,8 @@ var smoke = preload("res://Prefabs/Smoke.tscn")
 var revolver
 var shootingPoint
 var movementBlend = 0.0
-@export var baseAimSpeed = 0.3
+@export var defaultBaseAimSpeed = 0.3
+var baseAimSpeed = defaultBaseAimSpeed
 var aimLerpSpeed = baseAimSpeed
 var itemDropPrefab = preload("res://Prefabs/ItemDrop.tscn")
 var itemDrop = null
@@ -38,11 +39,12 @@ var lungeImpact = preload("res://sounds/LungeImpact.wav")
 @export var thiefHealth = 13.0
 var maxHealth = gunmanHealth
 var health = maxHealth #Current health
-var clipSize = 3 #Max loadable bullets
+@export var clipSize = 3 #Max loadable bullets
 var clip = 3 #Current bullets loaded
-var aimTime = 0.6 #Time a gunman takes to aim
+@export var aimTime = 0.6 #Time a gunman takes to aim
 var attackCooldown = 0 #Extra time between shots
-var reloadTime = 2.0 #Time required to reload
+@export var defaultReloadTime = 2.0
+var reloadTime = defaultReloadTime #Time required to reload
 var reloadCooldown = 0 #Current reloading time
 var lineOfSightTime = 0.0 #Time with direct line of sight
 
@@ -57,7 +59,8 @@ var pathNode = 0
 var startSpeed = gunmanStartSpeed
 var baseSpeed = startSpeed
 var speed = 1.0
-var followDistance = 7.0 + randf_range(-1,1)
+@export var defaultFollowDistance = 10.0 + randf_range(-1,1)
+var followDistance = defaultFollowDistance
 var fleeDirection = -1 #1 to flee towards position z (backwards), -1 towards negative (forwards)
 var herdRadius = 10 + randf_range(-2,2) #Distance marauder circles around herd
 var currentCircle = 1 #Used for setting a vector length when circling
@@ -86,7 +89,7 @@ var hitFlashAmount = 0.0
 @onready var silhouetteColor = silhouette.albedo_color
 @onready var animation = get_node(NodePath("./Model/AnimationPlayer/AnimationTree"))
 
-enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit, hibernate}
+enum behaviors {idle, pursuit, flee, retreat, circle, attack, cowPursuit, hibernate, sentry}
 var currentMode = behaviors.hibernate
 enum enemyTypes {thief, gunman}
 @export var marauderType:enemyTypes
@@ -107,6 +110,8 @@ var deathTimer = 0
 var deathBlend = 0
 
 @onready var model = get_node(NodePath("./Model"))
+
+var sentryMode = false
 
 func _ready():
 	self.add_to_group('DespawnAtCheckpoint')
@@ -139,7 +144,7 @@ func _ready():
 
 #Called at set time intervals, delta is time elapsed since last call
 func _physics_process(delta):
-	if(waited == false): #only happens once after _ready() is complete
+	if(waited == false && terrain.real): #only happens once after _ready() is complete
 		level = get_node(NodePath("/root/Level"))
 		waited = true
 		var origPos = position
@@ -184,6 +189,8 @@ func _physics_process(delta):
 				if(tries == 10):
 					print("couldn't find valid location for enemy to spawn in, deleting")
 					queue_free()
+	elif(waited == false):
+		waited = true
 	
 	if(hitFlashAmount > 0.1):
 		hitFlash.set_shader_parameter("amount", hitFlashAmount)
@@ -234,6 +241,9 @@ func _physics_process(delta):
 	if(attackCooldown > 0):
 		attackCooldown -= delta
 	
+	if(sentryMode && currentMode != behaviors.hibernate):
+		currentMode = behaviors.sentry
+	
 	visible = true
 	if(knockbackTimer == 0 && stunTimer == 0):
 		match[currentMode]: #Essentially a switch statement
@@ -252,6 +262,8 @@ func _physics_process(delta):
 			[behaviors.hibernate]:
 				visible = false
 				hibernate(delta)
+			[behaviors.sentry]:
+				sentry()
 	
 	
 	if(currentMode == behaviors.hibernate):
@@ -260,7 +272,7 @@ func _physics_process(delta):
 		
 	var rotateTo
 	var dragAnimOffset = PI
-	if(!aiming):
+	if(!aiming && !sentryMode):
 		rotateTo = targetPos
 	else:
 		rotateTo = player.position
@@ -274,7 +286,9 @@ func _physics_process(delta):
 		aimLerpSpeed)
 		
 	movementBlend = lerpf(movementBlend, speed, 0.1)
-	var temp = 1.0 -  movementBlend
+	var temp = 1.0 - movementBlend
+	if(sentryMode):
+		temp = 1.0
 	animation.set("parameters/idleWalk/blend_amount", max( min(temp, 1), 0 ) )
 	
 	#gravity
@@ -633,6 +647,18 @@ func hibernate(delta):
 			baseSpeed = startSpeed
 			GRAVITY = 30
 
+func sentry():
+	if(!sentryMode):
+		baseSpeed = startSpeed
+		baseAimSpeed = defaultBaseAimSpeed
+		reloadTime = defaultReloadTime
+		currentMode = behaviors.circle
+		return
+	baseSpeed = 0
+	baseAimSpeed = 0.9
+	reloadTime = 1.0
+	pursuit()
+
 #navigation function
 func moveTo(_targetPos):
 	path = NavigationServer3D.map_get_path(get_world_3d().get_navigation_map(),
@@ -700,7 +726,10 @@ func attack():
 		smokeInstance.get_child(0).emitting = true
 		smokeInstance.get_child(1).emitting = true
 	elif(shootingPoint == null):
-		shootingPoint = revolver.find_child("ShootingPoint")
+		if(revolver == null):
+			revolver = get_node(NodePath("./Model/Armature/Skeleton3D/GunRight/RevolverOffset/Revolver"))
+		else:
+			shootingPoint = revolver.find_child("ShootingPoint")
 
 func knock():
 	var enemies = knockbox.get_overlapping_bodies()

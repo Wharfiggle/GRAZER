@@ -550,7 +550,7 @@ func _physics_process(delta):
 		fallTimer += 1
 		if(fallTimer > 10):
 			if(abs(startFallY - position.y) < 0.1):
-				position.y = 0
+				position.y = 1.0
 			fallTimer = 0
 	else:
 		fallTimer = 0
