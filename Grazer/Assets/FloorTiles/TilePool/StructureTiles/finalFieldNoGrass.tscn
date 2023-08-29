@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c41nldgjrdemf" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stoneArch.tscn" id="5_wranl"]
 [ext_resource type="PackedScene" uid="uid://d0xfwabed5xb8" path="res://Assets/FloorTiles/!Prefabs!/Walls/rock_wall_decimated.tscn" id="6_nb0j0"]
 [ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="8_3motg"]
-[ext_resource type="PackedScene" path="res://Assets/FloorTiles/!Prefabs!/WinTrigger.tscn" id="12_fo4om"]
+[ext_resource type="PackedScene" uid="uid://b52qi0ghc876b" path="res://Assets/FloorTiles/!Prefabs!/WinTrigger.tscn" id="12_fo4om"]
 [ext_resource type="Texture2D" uid="uid://camtfkxcap4rl" path="res://Assets/Models/Grass/GrassTexture.png" id="13_b36uv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m76iq"]
@@ -39,7 +39,6 @@ size = Vector3(16, 0.1, 16)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7plb"]
 resource_name = "Material.006"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 metallic = 0.4
 roughness = 0.272166
 
@@ -123,7 +122,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.7658
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.855, 0.0499992, 12.5404)
 
 [node name="WinTrigger" parent="." instance=ExtResource("12_fo4om")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5219, 0.683743, 10.1777)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1007, 2.92006, 10.1777)
 
 [node name="grassline" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7665, 0.210412, -3.00066)

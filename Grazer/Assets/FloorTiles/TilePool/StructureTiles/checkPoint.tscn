@@ -224,14 +224,17 @@ transform = Transform3D(-1.17652, 0, -0.334621, 0, 1, 0, 0.236203, 0, -1.66674, 
 [node name="stone12" parent="LeftStuff" instance=ExtResource("28_dchr8")]
 transform = Transform3D(-0.187832, 0, -0.0686958, 0, 0.2, 0, 0.0686958, 0, -0.187832, 58.3505, -0.127687, -28.8546)
 
-[node name="Silo_V1" parent="LeftStuff" instance=ExtResource("24_px3eh")]
-transform = Transform3D(0.404104, 0, -0.914713, 0, 1, 0, 0.914713, 0, 0.404104, 58.7623, 0.0499973, -15.7959)
-
 [node name="Cement_Barricade9" parent="LeftStuff" instance=ExtResource("5_27ufq")]
 transform = Transform3D(0.0860777, 0, 0.996288, 0, 1, 0, -0.996288, 0, 0.0860777, 58.4127, 0.0500002, -8.97353)
 
 [node name="Cement_Barricade10" parent="LeftStuff" instance=ExtResource("5_27ufq")]
 transform = Transform3D(0.190021, 0, 0.98178, 0, 1, 0, -0.98178, 0, 0.190021, 58.656, 0.0500002, -11.4391)
+
+[node name="siloRotOffset" type="Node3D" parent="LeftStuff"]
+transform = Transform3D(0.839848, -0.341976, 0.421554, 0.25, 0.933013, 0.258819, -0.481825, -0.11198, 0.869083, 58.7623, 0.0499973, -15.7959)
+
+[node name="Silo_V1" parent="LeftStuff/siloRotOffset" instance=ExtResource("24_px3eh")]
+transform = Transform3D(0.404104, 0, -0.914713, 0, 1, 0, 0.914713, 0, 0.404104, 0, 0, 0)
 
 [node name="RightStuff" type="Node3D" parent="."]
 

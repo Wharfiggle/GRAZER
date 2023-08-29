@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/WinTrigger.gd" id="1_lnuhc"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cba3g"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_383p5"]
+size = Vector3(6, 6, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t0s2n"]
 
@@ -10,7 +11,7 @@
 script = ExtResource("1_lnuhc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_cba3g")
+shape = SubResource("BoxShape3D_383p5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
