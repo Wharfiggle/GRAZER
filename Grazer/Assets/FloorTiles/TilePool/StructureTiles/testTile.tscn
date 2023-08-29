@@ -117,7 +117,7 @@ transform = Transform3D(-0.670459, 0, -1.27928, 0, 1, 0, 1.11029, 0, -0.772502, 
 transform = Transform3D(1.15, 0, 0, 0, 1.15, 0, 0, 0, 1.15, 12.3576, 0.0499992, 11.6638)
 
 [node name="Silo_V1" parent="NavigationRegion3D" instance=ExtResource("8_htqr0")]
-transform = Transform3D(1.25, 0, 0, 0, 1.3613, 0, 0, 0, 1.25, 13.7782, 0.0499992, -8.92224)
+transform = Transform3D(1.25, 0, 0, 0, 1.3613, 0, 0, 0, 1.25, 13.7782, -2.10653, -8.92224)
 
 [node name="stone11" parent="." instance=ExtResource("9_1e4ab")]
 transform = Transform3D(-0.677747, 0.0151317, 0.735139, -0.022321, -0.999751, 0, 0.734956, -0.016409, 0.677916, 18.0121, 0.0500002, -6.33829)
