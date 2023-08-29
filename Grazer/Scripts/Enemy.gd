@@ -112,6 +112,7 @@ var deathBlend = 0
 @onready var model = get_node(NodePath("./Model"))
 
 var sentryMode = false
+@export var attackCooldownTime = 0.8
 
 func _ready():
 	self.add_to_group('DespawnAtCheckpoint')
@@ -280,16 +281,19 @@ func _physics_process(delta):
 #		print("dragging")
 		rotateTo = draggedCow.position
 		dragAnimOffset = PI
+		
+	var prevRotationy = rotation.y
 	rotation.y = lerp_angle(
 		rotation.y,
 		atan2(position.x - rotateTo.x, position.z - rotateTo.z) + dragAnimOffset,
 		aimLerpSpeed)
-		
-	movementBlend = lerpf(movementBlend, speed, 0.1)
-	var temp = 1.0 - movementBlend
-	if(sentryMode):
-		temp = 1.0
-	animation.set("parameters/idleWalk/blend_amount", max( min(temp, 1), 0 ) )
+	
+	if(!sentryMode):
+		movementBlend = lerpf(movementBlend, speed, 0.1)
+	else:	
+		movementBlend = lerpf(movementBlend, abs(rotation.y - prevRotationy) * 10, 0.3)
+	var tempBlend = 1.0 - movementBlend
+	animation.set("parameters/idleWalk/blend_amount", max( min(tempBlend, 1), 0 ) )
 	
 	#gravity
 	tVelocity.y -= GRAVITY * delta
@@ -479,7 +483,7 @@ func pursuit():
 	#If closer than follow distance, back up
 	#If closer than half of follow distance, panic and flee
 	var spacing = global_transform.origin.distance_to(player.global_transform.origin)
-	if((spacing < followDistance + 3 and spacing > followDistance) or aiming):
+	if((sentryMode && spacing < followDistance) || (spacing < followDistance + 3 and spacing > followDistance) or aiming):
 		#Slowing down in desired range
 		if(speed > 0 and !aiming):
 			speed = (spacing - followDistance) / 3.0
@@ -492,7 +496,8 @@ func pursuit():
 				pass
 			if(attackCooldown <= 0):
 				readyAim()
-				attackCooldown = 0
+				if(sentryMode):
+					attackCooldown = attackCooldownTime
 				clip -= 1
 				if(clip <= 0):
 					#setting sound to reload
@@ -656,10 +661,12 @@ func sentry():
 		baseAimSpeed = defaultBaseAimSpeed
 		reloadTime = defaultReloadTime
 		currentMode = behaviors.circle
+		followDistance = defaultFollowDistance
 		return
 	baseSpeed = 0
 	baseAimSpeed = 0.9
 	reloadTime = 1.0
+	followDistance = 12
 	pursuit()
 
 #navigation function
