@@ -248,6 +248,8 @@ func idle():
 #var rectDiag = rectWid / sin( arctan( rectWid / rectHei )
 
 func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:Node = null) -> bool:
+	animation.set("parameters/Death/DeathTime/scale", 2.0)
+	animation.set("parameters/Death/DeathTimeSeek/seek_request", 0.5)
 	animation.set("parameters/conditions/Death", false)
 	animation.set("parameters/conditions/NotDead", true)
 	animation.set("parameters/conditions/Death", true)
@@ -538,14 +540,16 @@ func _physics_process(delta):
 				waitToDieTimer -= delta
 				if(waitToDieTimer <= 0):
 					deathTimer = 2.0
+					animation.set("parameters/Death/DeathTime/scale", 1.0)
+					animation.set("parameters/Death/DeathTimeSeek/seek_request", 0.5)
 					animation.set("parameters/conditions/Death", true)
 					animation.set("parameters/conditions/NotDead", false)
 					makeMoo()
 			elif(deathTimer > 0):
 				deathTimer -= delta
 				if(deathTimer <= 0):
-					animation.set("parameters/DeathTime/scale", 0)
-			Vocal.volume_db = lerpf(Vocal.volume_db, -30, 0.1 * delta)
+					animation.set("parameters/Death/DeathTime/scale", 0)
+			Vocal.volume_db = lerpf(Vocal.volume_db, -50, 0.15 * delta)
 			if(transform.origin.y < -100.0):
 #				transform.origin = Vector3(0, 10, 0)
 				for i in draggers:
@@ -566,6 +570,8 @@ func _physics_process(delta):
 	
 	#apply velocity and move
 	set_velocity(totalVelocity)
+	if(fallYouFucker):
+		set_velocity(Vector3(0, totalVelocity.y, 0))
 	if(draggers.is_empty()):
 		set_velocity(totalVelocity * potionSpeedup)
 	set_up_direction(Vector3.UP)
@@ -577,7 +583,7 @@ func _physics_process(delta):
 		fallTimer += 1
 		if(fallTimer > 10):
 			if(abs(startFallY - position.y) < 0.1):
-				position.y = 1.0
+				fallYouFucker = true
 			fallTimer = 0
 	else:
 		fallTimer = 0
