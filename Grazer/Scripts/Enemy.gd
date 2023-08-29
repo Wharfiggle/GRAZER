@@ -664,7 +664,7 @@ func sentry():
 		followDistance = defaultFollowDistance
 		return
 	baseSpeed = 0
-	baseAimSpeed = 0.9
+	baseAimSpeed = 1.0
 	reloadTime = 1.0
 	followDistance = 12
 	pursuit()
