@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bribybkarixfu" path="res://Prefabs/DiaglogueTrigger.tscn" id="14_4og65"]
 [ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="14_gixhr"]
 [ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="15_5ty3t"]
-[ext_resource type="PackedScene" uid="uid://bin30v0rfeimx" path="res://Prefabs/Usable.tscn" id="15_rjc4h"]
+[ext_resource type="PackedScene" path="res://Prefabs/Usable.tscn" id="15_rjc4h"]
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="15_xnf5g"]
 [ext_resource type="Texture2D" uid="uid://vv6m4iy0wi1i" path="res://Assets/Images/SpeechBubbles/silenceBox.png" id="16_g0fxt"]
 [ext_resource type="PackedScene" uid="uid://d0wrupasa0db7" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone10.tscn" id="16_xagq1"]

@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://dydccapu44wlg" path="res://Assets/Models/Fence Textures/Fence Corner Post/Fence_Post_Corner_lambert1_Height.png" id="32_5sjuv"]
 [ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="32_h3qtd"]
 [ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="33_buvc7"]
-[ext_resource type="PackedScene" uid="uid://bin30v0rfeimx" path="res://Prefabs/Usable.tscn" id="33_gy2ln"]
+[ext_resource type="PackedScene" path="res://Prefabs/Usable.tscn" id="33_gy2ln"]
 [ext_resource type="Texture2D" uid="uid://binwm06odh7pn" path="res://Assets/Models/Fence Textures/Fence_Post_lambert1_Normal.png" id="33_x76t2"]
 [ext_resource type="Script" path="res://Scripts/ElixirGunMenuPrompt.gd" id="34_4fg7e"]
 [ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="34_4kvkg"]

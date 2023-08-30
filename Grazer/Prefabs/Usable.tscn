@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bin30v0rfeimx"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Usable.gd" id="1_02raw"]
 [ext_resource type="Texture2D" uid="uid://b86jfncuxpn5s" path="res://Assets/Images/interactPrompt.png" id="2_vyoio"]
-[ext_resource type="Script" path="res://Prefabs/UsableShootTarget.gd" id="3_fnbvn"]
+[ext_resource type="Script" path="res://Scripts/UsableShootTarget.gd" id="3_fnbvn"]
+
 
 [sub_resource type="QuadMesh" id="QuadMesh_djqmi"]
 
