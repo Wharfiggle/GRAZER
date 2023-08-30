@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://fx2g6i0gx2jb"]
+[gd_scene load_steps=8 format=3 uid="uid://ds15g1d150m1a"]
 
-[ext_resource type="Script" path="res://Scripts/lowerableBridge.gd" id="1_s228t"]
-[ext_resource type="Material" uid="uid://b11lpklqou8x4" path="res://Assets/Models/Bridges/straight/bridgeStraight.tres" id="2_2hq8t"]
+[ext_resource type="Script" path="res://Scripts/lowerableBridge.gd" id="1_k4x2y"]
+[ext_resource type="Material" uid="uid://b11lpklqou8x4" path="res://Assets/Models/Bridges/straight/bridgeStraight.tres" id="2_gfr1b"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0r280"]
 top_radius = 0.2
@@ -51,13 +51,12 @@ shadow_mesh = SubResource("ArrayMesh_rg13w")
 size = Vector3(7, 0.1, 3.3225)
 
 [node name="LowerableBridge" type="Node3D"]
-script = ExtResource("1_s228t")
+script = ExtResource("1_k4x2y")
 
 [node name="RotatingPoint" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingPoint"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-visible = false
 mesh = SubResource("CylinderMesh_0r280")
 
 [node name="bridge_Straight" type="Node3D" parent="RotatingPoint"]
@@ -68,7 +67,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="bridge3" type="MeshInstance3D" parent="RotatingPoint/bridge_Straight/RootNode"]
 transform = Transform3D(19.455, -6.88887, 2.59951e-07, 3.62693e-08, -0.00017731, -6.06783, 0.811665, 165.121, -6.51008e-06, 0.0646672, -0.182535, -0.103359)
-material_override = ExtResource("2_2hq8t")
+material_override = ExtResource("2_gfr1b")
 mesh = SubResource("ArrayMesh_7pps3")
 skeleton = NodePath("")
 

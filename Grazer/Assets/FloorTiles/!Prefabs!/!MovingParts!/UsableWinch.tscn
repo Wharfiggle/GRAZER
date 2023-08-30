@@ -19,7 +19,7 @@ billboard_keep_scale = true
 radius = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kchx1"]
-size = Vector3(3, 4, 2)
+size = Vector3(2.1611, 4, 1.16609)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4iwrr"]
 size = Vector3(7, 3, 3)
