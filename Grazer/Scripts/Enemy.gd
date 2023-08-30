@@ -192,6 +192,7 @@ func _physics_process(delta):
 					queue_free()
 	elif(waited == false):
 		defaultFollowDistance = 1.5 + randf_range(-0.5, 0.5)
+		itemDropChance = 0
 		if(!sentryMode):
 			followDistance = defaultFollowDistance
 		waited = true

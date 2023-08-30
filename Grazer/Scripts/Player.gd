@@ -172,6 +172,8 @@ var deathTimer = 0
 var dead = false
 
 @export var canHaveNoCows = true
+@onready var checkpoint = position
+var checkpointCowAmmount = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -1002,16 +1004,21 @@ func die():
 	if(dead):
 		return
 	dead = true
-	deathTimer = 3.8
-	if(russelOrRay == "Ray"):
-		deathTimer = 3.0
+	lineSightNode.visible = false
+	active = false
 	animation.set("parameters/Death/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	var level = get_node(NodePath("/root/Level"))
-	level.changeMusic(4)
 	var terrain = get_node("../AllTerrain")
-	var thieves = 0
-	var enemies = get_tree().get_nodes_in_group("Enemy")
 	if(terrain.real):
+		deathTimer = 3.8
+		if(russelOrRay == "Ray"):
+			deathTimer = 3.0
+		if(deathMenu == null):
+			deathMenu = $"../DeathMenu"
+		deathMenu.start()
+		var level = get_node(NodePath("/root/Level"))
+		level.changeMusic(4)
+		var thieves = 0
+		var enemies = get_tree().get_nodes_in_group("Enemy")
 		for i in enemies:
 			if(i.marauderType == 1):
 				i.currentMode = 2
@@ -1021,15 +1028,26 @@ func die():
 			thieves -= 1
 			if(thieves <= 0):
 				terrain.spawnMarauder(false)
+	else:
+		await Fade.fade_out(3).finished
+		animation.set("parameters/DeathTime/scale", 1)
+		position = checkpoint
+		updateHealth(maxHitpoints)
+		var cows = herd.getCows()
+		for i in cows:
+			i.delete()
+		if(checkpointCowAmmount <= 0 && !canHaveNoCows):
+			checkpointCowAmmount = 1
+		for i in checkpointCowAmmount:
+			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() - 0.5), position.y, position.z + (rng.randf() - 0.5)), 0)
+		deathTimer = 0
+		dead = false
+		active = true
+		Fade.fade_in()
 	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]
-	active = false
-#	rotation.x = PI / 2.0
-	lineSightNode.visible = false 
+#	rotation.x = PI / 2.0 
 #	animation.set("parameters/idleWalk/blend_amount", 0)
 #	animation.set("parameters/walkShoot/blend_amount", 0.1)
 #	animation.set("parameters/shootAngle/blend_position", 1)
 	#skeleton.physical_bones_start_simulation(phys_bones)
-	if(deathMenu == null):
-		deathMenu = $"../DeathMenu"
-	deathMenu.start()

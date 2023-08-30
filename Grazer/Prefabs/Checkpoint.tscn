@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcla0onhx2w38"]
+
+[ext_resource type="Script" path="res://Scripts/CheckpointTrigger.gd" id="1_4iuuy"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_p76us"]
+
+[node name="CheckpointTrigger" type="Area3D"]
+collision_mask = 4
+script = ExtResource("1_4iuuy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_p76us")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
