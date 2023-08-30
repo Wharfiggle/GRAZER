@@ -1011,15 +1011,16 @@ func die():
 	var terrain = get_node("../AllTerrain")
 	var thieves = 0
 	var enemies = get_tree().get_nodes_in_group("Enemy")
-	for i in enemies:
-		if(i.marauderType == 1):
-			i.currentMode = 2
-		elif(i.draggedCow != null || (i.currentMode != 7 && i.currentMode != 2)):
-			thieves += 1
-	for i in herd.getNumCows():
-		thieves -= 1
-		if(thieves <= 0):
-			terrain.spawnMarauder(false)
+	if(terrain.real):
+		for i in enemies:
+			if(i.marauderType == 1):
+				i.currentMode = 2
+			elif(i.draggedCow != null || (i.currentMode != 7 && i.currentMode != 2)):
+				thieves += 1
+		for i in herd.getNumCows():
+			thieves -= 1
+			if(thieves <= 0):
+				terrain.spawnMarauder(false)
 	# all possible bones #var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
 	#testing individual bones #var phys_bones = ["LeftHand", "RightHand"]
 	active = false

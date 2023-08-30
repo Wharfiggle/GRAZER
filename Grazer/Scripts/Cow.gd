@@ -107,7 +107,7 @@ var stealingIconVisible = false
 
 var fallYouFucker = false
 var deathTimer = 0
-@export var waitToDie = 0.4
+@export var waitToDie = 0.1
 var waitToDieTimer = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -540,7 +540,7 @@ func _physics_process(delta):
 				waitToDieTimer -= delta
 				if(waitToDieTimer <= 0):
 					deathTimer = 2.0
-					animation.set("parameters/Death/DeathTime/scale", 1.0)
+					animation.set("parameters/Death/DeathTime/scale", 2.0)
 					animation.set("parameters/Death/DeathTimeSeek/seek_request", 0.5)
 					animation.set("parameters/conditions/Death", true)
 					animation.set("parameters/conditions/NotDead", false)
@@ -572,6 +572,8 @@ func _physics_process(delta):
 	set_velocity(totalVelocity)
 	if(fallYouFucker):
 		set_velocity(Vector3(0, totalVelocity.y, 0))
+		get_node(NodePath("./TopCollider")).disabled = true
+		get_node(NodePath("./BottomCollider")).disabled = true
 	if(draggers.is_empty()):
 		set_velocity(totalVelocity * potionSpeedup)
 	set_up_direction(Vector3.UP)
@@ -584,6 +586,8 @@ func _physics_process(delta):
 		if(fallTimer > 10):
 			if(abs(startFallY - position.y) < 0.1):
 				fallYouFucker = true
+				get_node(NodePath("./TopCollider")).disabled = true
+				get_node(NodePath("./BottomCollider")).disabled = true
 			fallTimer = 0
 	else:
 		fallTimer = 0

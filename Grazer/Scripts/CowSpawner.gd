@@ -7,6 +7,7 @@ var rng = RandomNumberGenerator.new()
 var herd
 var waitedToBeIndependent = false
 @onready var terrain = get_node("/root/Level/AllTerrain")
+@export var strayMoo = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +35,10 @@ func spawn(inChanceMod:float, _inPrefabs:Array):
 	for i in spawnChance + 1 as int:
 		if(spawnChance >= i + 1 || rn < fmod(spawnChance, 1.0)):
 			var offset = Vector3(rng.randf() - 0.5, 0, rng.randf() - 0.5)
-			herd.spawnStrayCow(global_position + offset, cowType)
+			var cow = herd.spawnStrayCow(global_position + offset, cowType)
+			cow.rotation.y = rotation.y
+			if(!strayMoo):
+				cow.mooIndicatorTime = -1
+				cow.mooIndicatorTimer = -1
 			print("spawned cow at " + str(global_position + offset))
 	queue_free()

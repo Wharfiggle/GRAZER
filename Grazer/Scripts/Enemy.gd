@@ -191,6 +191,9 @@ func _physics_process(delta):
 					print("couldn't find valid location for enemy to spawn in, deleting")
 					queue_free()
 	elif(waited == false):
+		defaultFollowDistance = 1.5 + randf_range(-0.5, 0.5)
+		if(!sentryMode):
+			followDistance = defaultFollowDistance
 		waited = true
 	
 	if(hitFlashAmount > 0.1):
