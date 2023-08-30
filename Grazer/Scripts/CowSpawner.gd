@@ -19,6 +19,8 @@ func _physics_process(delta):
 	if(waitedToBeIndependent):
 		if(terrain == null):
 			terrain = get_node("/root/Level/AllTerrain")
+		elif(herd == null):
+			herd = get_node(NodePath("/root/Level/Herd"))
 		elif(!terrain.real):
 			spawn(terrain.spawnChanceMod, terrain.enemyPrefabs)
 	elif(!waitedToBeIndependent):
@@ -34,3 +36,4 @@ func spawn(inChanceMod:float, _inPrefabs:Array):
 			var offset = Vector3(rng.randf() - 0.5, 0, rng.randf() - 0.5)
 			herd.spawnStrayCow(global_position + offset, cowType)
 			print("spawned cow at " + str(global_position + offset))
+	queue_free()
