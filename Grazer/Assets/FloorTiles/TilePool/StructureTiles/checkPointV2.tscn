@@ -225,7 +225,7 @@ light_bake_mode = 1
 transform = Transform3D(-0.579892, 0, 0.814693, 0, 0.999999, 0, -0.814693, 0, -0.579892, 2.63625, 2.38419e-07, -2.4678)
 
 [node name="Shop Keeper" parent="ShopRV/Porch" instance=ExtResource("11_nl1ap")]
-transform = Transform3D(0.0170692, 0, 0.999854, 0, 0.999995, 0, -0.999854, 0, 0.0170692, 2.79767, 0.0274294, 1.69372)
+transform = Transform3D(0.0170693, 0, 0.999854, 0, 0.999995, 0, -0.999854, 0, 0.0170693, 2.79767, 0.0274294, 1.69372)
 
 [node name="LevelTransition" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 69, 0.25, -4)
