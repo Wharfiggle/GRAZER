@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bch55q5sk81g0"]
+[gd_scene load_steps=11 format=3 uid="uid://bch55q5sk81g0"]
 
 [ext_resource type="Script" path="res://Scripts/Usable.gd" id="1_02raw"]
 [ext_resource type="Texture2D" uid="uid://b86jfncuxpn5s" path="res://Assets/Images/interactPrompt.png" id="2_vyoio"]
 [ext_resource type="Script" path="res://Scripts/UsableShootTarget.gd" id="3_fnbvn"]
+[ext_resource type="PackedScene" uid="uid://b68hec6f4c67" path="res://Assets/Models/Levers/Lever/leverBase.tscn" id="4_prf5x"]
+[ext_resource type="PackedScene" uid="uid://bctnikfwr5pae" path="res://Assets/Models/Levers/Lever/lever.tscn" id="5_bq4ea"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_djqmi"]
 
@@ -42,12 +44,20 @@ script = ExtResource("3_fnbvn")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.2, 0)
+visible = false
 mesh = SubResource("BoxMesh_4iwrr")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 1, -1)
 mesh = SubResource("BoxMesh_x1gnm")
 skeleton = NodePath("../..")
+
+[node name="Lever" type="Node3D" parent="."]
+transform = Transform3D(0.638, 0, 0, 0, 0.638, 0, 0, 0, 0.638, 0, 0, 0)
+
+[node name="LeverBase" parent="Lever" instance=ExtResource("4_prf5x")]
+
+[node name="Lever" parent="Lever" instance=ExtResource("5_bq4ea")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

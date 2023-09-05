@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2thhb72o7cqo"]
+
+[ext_resource type="PackedScene" uid="uid://co5wbl1itnavq" path="res://Assets/Models/Levers/Chain Drum/Chain Wheel.fbx" id="1_eqbn1"]
+[ext_resource type="Material" uid="uid://bxqav7coespvh" path="res://Assets/Models/Levers/Chain Drum/Chain Drum.tres" id="2_mdvib"]
+
+[node name="Chain Wheel" instance=ExtResource("1_eqbn1")]
+
+[node name="Drum" parent="RootNode" index="0"]
+visible = false
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link001" parent="RootNode/Drum" index="0"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link002" parent="RootNode/Drum" index="1"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link003" parent="RootNode/Drum" index="2"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link004" parent="RootNode/Drum" index="3"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link005" parent="RootNode/Drum" index="4"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link006" parent="RootNode/Drum" index="5"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link007" parent="RootNode/Drum" index="6"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link008" parent="RootNode/Drum" index="7"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link009" parent="RootNode/Drum" index="8"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link010" parent="RootNode/Drum" index="9"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Chain Link011" parent="RootNode/Drum" index="10"]
+material_override = ExtResource("2_mdvib")
+
+[node name="Cube" parent="RootNode" index="1"]
+material_override = ExtResource("2_mdvib")

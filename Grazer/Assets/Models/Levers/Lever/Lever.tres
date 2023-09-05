@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bbxvub8mnscwm"]
+
+[ext_resource type="Texture2D" uid="uid://ous0mbb7s4tc" path="res://Assets/Models/Levers/Lever/lever_BaseColor.png" id="1_mwd3t"]
+[ext_resource type="Texture2D" uid="uid://bn7fe6s536jg3" path="res://Assets/Models/Levers/Lever/lever_Metallic.png" id="2_2sa13"]
+[ext_resource type="Texture2D" uid="uid://bdsj4x4mmjyq6" path="res://Assets/Models/Levers/Lever/lever_Normal.png" id="3_y5nh8"]
+[ext_resource type="Texture2D" uid="uid://cgevo5c44ojl" path="res://Assets/Models/Levers/Lever/lever_Roughness.png" id="4_j8d6y"]
+
+[resource]
+albedo_texture = ExtResource("1_mwd3t")
+metallic = 1.0
+metallic_texture = ExtResource("2_2sa13")
+roughness_texture = ExtResource("4_j8d6y")
+normal_enabled = true
+normal_texture = ExtResource("3_y5nh8")

@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dr0rxuflnul8b"]
+[gd_scene load_steps=12 format=3 uid="uid://dr0rxuflnul8b"]
 
 [ext_resource type="Script" path="res://Scripts/Usable.gd" id="1_ctyoi"]
 [ext_resource type="Texture2D" uid="uid://b86jfncuxpn5s" path="res://Assets/Images/interactPrompt.png" id="2_h82n6"]
 [ext_resource type="Script" path="res://Scripts/UsableShootTarget.gd" id="3_yskis"]
+[ext_resource type="PackedScene" uid="uid://uirbplu35drr" path="res://Assets/Models/Levers/Chain Drum/chain_wheel.tscn" id="4_tlw0a"]
+[ext_resource type="PackedScene" uid="uid://d2thhb72o7cqo" path="res://Assets/Models/Levers/Chain Drum/chain_wheel holder.tscn" id="5_gj74c"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_djqmi"]
 
@@ -52,6 +54,7 @@ shape = SubResource("BoxShape3D_kchx1")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.8, 0)
+visible = false
 mesh = SubResource("BoxMesh_4iwrr")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
@@ -63,6 +66,17 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -2, 0)
 mesh = SubResource("BoxMesh_x1gnm")
 skeleton = NodePath("../..")
+
+[node name="Chain Wheel" type="Node3D" parent="."]
+transform = Transform3D(0.619, 0, 0, 0, 0.619, 0, 0, 0, 0.619, 0, 0, 0)
+
+[node name="RotationPoint" type="Node3D" parent="Chain Wheel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25353, 0)
+
+[node name="Chain Wheel" parent="Chain Wheel/RotationPoint" instance=ExtResource("4_tlw0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.24546, 0)
+
+[node name="Chain Wheel Holder" parent="Chain Wheel" instance=ExtResource("5_gj74c")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

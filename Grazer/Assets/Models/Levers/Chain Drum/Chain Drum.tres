@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bxqav7coespvh"]
+
+[ext_resource type="Texture2D" uid="uid://blkqnlye4qucw" path="res://Assets/Models/Levers/Chain Drum/Chain Drum_BaseColor.png" id="1_wc4dy"]
+[ext_resource type="Texture2D" uid="uid://c2l0yrr6lqa3g" path="res://Assets/Models/Levers/Chain Drum/Chain Drum_Metallic.png" id="2_h8o0o"]
+[ext_resource type="Texture2D" uid="uid://dird5uoyb0qem" path="res://Assets/Models/Levers/Chain Drum/Chain Drum_Normal.png" id="3_gtdes"]
+[ext_resource type="Texture2D" uid="uid://bu4d1ortxvo8h" path="res://Assets/Models/Levers/Chain Drum/Chain Drum_Roughness.png" id="4_8vr7c"]
+
+[resource]
+albedo_texture = ExtResource("1_wc4dy")
+metallic = 1.0
+metallic_texture = ExtResource("2_h8o0o")
+roughness_texture = ExtResource("4_8vr7c")
+normal_enabled = true
+normal_texture = ExtResource("3_gtdes")

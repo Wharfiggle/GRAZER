@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bctnikfwr5pae"]
+
+[ext_resource type="PackedScene" uid="uid://de05wamq8rjnx" path="res://Assets/Models/Levers/Lever/Lever.fbx" id="1_0immv"]
+[ext_resource type="Material" uid="uid://bbxvub8mnscwm" path="res://Assets/Models/Levers/Lever/Lever.tres" id="2_fb8nl"]
+
+[node name="Lever" instance=ExtResource("1_0immv")]
+
+[node name="Box" parent="RootNode" index="0"]
+visible = false
+material_override = ExtResource("2_fb8nl")
+
+[node name="Lever" parent="RootNode" index="1"]
+material_override = ExtResource("2_fb8nl")
+
+[node name="Cloth" parent="RootNode/Lever" index="0"]
+material_override = ExtResource("2_fb8nl")
