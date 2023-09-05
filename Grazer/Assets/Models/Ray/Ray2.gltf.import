@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bg15r87f3sx4j"
-path="res://.godot/imported/Russel2.gltf-b0d90331f1df92956a42e0e8a17cef24.scn"
+uid="uid://d4ao0n86hcvrq"
+path="res://.godot/imported/Ray2.gltf-f3ac354ba0809b41589dd8d3ffc4ec7d.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Russel/Russel2.gltf"
-dest_files=["res://.godot/imported/Russel2.gltf-b0d90331f1df92956a42e0e8a17cef24.scn"]
+source_file="res://Assets/Models/Ray/Ray2.gltf"
+dest_files=["res://.godot/imported/Ray2.gltf-f3ac354ba0809b41589dd8d3ffc4ec7d.scn"]
 
 [params]
 

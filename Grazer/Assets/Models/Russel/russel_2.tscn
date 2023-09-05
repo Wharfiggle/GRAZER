@@ -1,0 +1,286 @@
+[gd_scene load_steps=30 format=3 uid="uid://bmsssvkxtodhw"]
+
+[ext_resource type="PackedScene" uid="uid://bg15r87f3sx4j" path="res://Assets/Models/Russel/Russel2.gltf" id="1_ggskd"]
+[ext_resource type="Material" uid="uid://fn54vf75rioo" path="res://Assets/Models/Russel/Body.tres" id="2_y34cm"]
+[ext_resource type="Material" uid="uid://db86surtvq6n" path="res://Assets/Models/Russel/Cloth.tres" id="3_qjf6q"]
+[ext_resource type="PackedScene" uid="uid://cy6xi4epix5ju" path="res://Prefabs/Revolver.tscn" id="4_4jqof"]
+[ext_resource type="PackedScene" uid="uid://c865wqlp5lwla" path="res://Prefabs/Shotgun.tscn" id="5_5bvro"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6dbkd"]
+animation = &"L_Arm_PointForward_Hope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sd4id"]
+animation = &"R_Arm_PointBack_Hope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ebqy"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fpe75"]
+animation = &"R_Arm_PointSide_Hope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ubum"]
+animation = &"L_Arm_PointBack_Hope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r0e77"]
+animation = &"L_Arm_PointSide_Hope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcpox"]
+animation = &"R_Arm_PointForward_Hope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fa81n"]
+animation = &"Death_Howie"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fr0ja"]
+animation = &"Potion_Howie"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vjd5u"]
+animation = &"Reload_Howie"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8qwp0"]
+animation = &"RunCycle_Hope"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vr3tl"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_bhx48"]
+filter_enabled = true
+filters = ["Armature Hope/Skeleton3D:Head", "Armature Hope/Skeleton3D:RightHand", "Armature Hope/Skeleton3D:RightHandIndex1", "Armature Hope/Skeleton3D:RightHandIndex2", "Armature Hope/Skeleton3D:RightHandIndex3", "Armature Hope/Skeleton3D:RightHandRing1", "Armature Hope/Skeleton3D:RightHandRing2", "Armature Hope/Skeleton3D:RightHandRing3", "Armature Hope/Skeleton3D:RightHandThumb1", "Armature Hope/Skeleton3D:RightHandThumb2", "Armature Hope/Skeleton3D:RightHandThumb3", "Armature Hope/Skeleton3D:RightLowerArm", "Armature Hope/Skeleton3D:RightShoulder", "Armature Hope/Skeleton3D:RightUpperArm", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:RightHand", "Armature/Skeleton3D:RightHandIndex1", "Armature/Skeleton3D:RightHandIndex2", "Armature/Skeleton3D:RightHandIndex3", "Armature/Skeleton3D:RightHandRing1", "Armature/Skeleton3D:RightHandRing2", "Armature/Skeleton3D:RightHandRing3", "Armature/Skeleton3D:RightHandThumb1", "Armature/Skeleton3D:RightHandThumb2", "Armature/Skeleton3D:RightHandThumb3", "Armature/Skeleton3D:RightLowerArm", "Armature/Skeleton3D:RightShoulder", "Armature/Skeleton3D:RightUpperArm"]
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_s781n"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_hme4p"]
+filter_enabled = true
+filters = ["Armature Hope/Skeleton3D:Head", "Armature Hope/Skeleton3D:LeftHand", "Armature Hope/Skeleton3D:LeftHandIndex1", "Armature Hope/Skeleton3D:LeftHandIndex2", "Armature Hope/Skeleton3D:LeftHandIndex3", "Armature Hope/Skeleton3D:LeftHandRing1", "Armature Hope/Skeleton3D:LeftHandRing2", "Armature Hope/Skeleton3D:LeftHandRing3", "Armature Hope/Skeleton3D:LeftHandThumb1", "Armature Hope/Skeleton3D:LeftHandThumb2", "Armature Hope/Skeleton3D:LeftHandThumb3", "Armature Hope/Skeleton3D:LeftLowerArm", "Armature Hope/Skeleton3D:LeftShoulder", "Armature Hope/Skeleton3D:LeftUpperArm", "Armature Hope/Skeleton3D:Neck", "Armature Hope/Skeleton3D:Spine", "Armature Hope/Skeleton3D:Spine1", "Armature Hope/Skeleton3D:Spine2", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:LeftHand", "Armature/Skeleton3D:LeftHandIndex1", "Armature/Skeleton3D:LeftHandIndex2", "Armature/Skeleton3D:LeftHandIndex3", "Armature/Skeleton3D:LeftHandRing1", "Armature/Skeleton3D:LeftHandRing2", "Armature/Skeleton3D:LeftHandRing3", "Armature/Skeleton3D:LeftHandThumb1", "Armature/Skeleton3D:LeftHandThumb2", "Armature/Skeleton3D:LeftHandThumb3", "Armature/Skeleton3D:LeftLowerArm", "Armature/Skeleton3D:LeftShoulder", "Armature/Skeleton3D:LeftUpperArm", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Spine1", "Armature/Skeleton3D:Spine2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wmkme"]
+animation = &"Lunge_Hit_Hope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fb8ro"]
+animation = &"Lunge_Hit_Hope"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_84ifh"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6nlo6"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_4434q"]
+filter_enabled = true
+filters = ["Armature Hope/Skeleton3D:LeftHand", "Armature Hope/Skeleton3D:LeftHandIndex1", "Armature Hope/Skeleton3D:LeftHandIndex2", "Armature Hope/Skeleton3D:LeftHandIndex3", "Armature Hope/Skeleton3D:LeftHandRing1", "Armature Hope/Skeleton3D:LeftHandRing2", "Armature Hope/Skeleton3D:LeftHandRing3", "Armature Hope/Skeleton3D:LeftHandThumb1", "Armature Hope/Skeleton3D:LeftHandThumb2", "Armature Hope/Skeleton3D:LeftHandThumb3", "Armature Hope/Skeleton3D:LeftLowerArm", "Armature Hope/Skeleton3D:LeftShoulder", "Armature Hope/Skeleton3D:LeftUpperArm", "Armature Hope/Skeleton3D:RightHand", "Armature Hope/Skeleton3D:RightHandIndex1", "Armature Hope/Skeleton3D:RightHandIndex2", "Armature Hope/Skeleton3D:RightHandIndex3", "Armature Hope/Skeleton3D:RightHandRing1", "Armature Hope/Skeleton3D:RightHandRing2", "Armature Hope/Skeleton3D:RightHandRing3", "Armature Hope/Skeleton3D:RightHandThumb1", "Armature Hope/Skeleton3D:RightHandThumb2", "Armature Hope/Skeleton3D:RightHandThumb3", "Armature Hope/Skeleton3D:RightLowerArm", "Armature Hope/Skeleton3D:RightShoulder", "Armature Hope/Skeleton3D:RightUpperArm", "Armature/Skeleton3D:LeftHand", "Armature/Skeleton3D:LeftHandIndex1", "Armature/Skeleton3D:LeftHandIndex2", "Armature/Skeleton3D:LeftHandIndex3", "Armature/Skeleton3D:LeftHandRing1", "Armature/Skeleton3D:LeftHandRing2", "Armature/Skeleton3D:LeftHandRing3", "Armature/Skeleton3D:LeftHandThumb1", "Armature/Skeleton3D:LeftHandThumb2", "Armature/Skeleton3D:LeftHandThumb3", "Armature/Skeleton3D:LeftLowerArm", "Armature/Skeleton3D:LeftShoulder", "Armature/Skeleton3D:LeftUpperArm", "Armature/Skeleton3D:RightHand", "Armature/Skeleton3D:RightHandIndex1", "Armature/Skeleton3D:RightHandIndex2", "Armature/Skeleton3D:RightHandIndex3", "Armature/Skeleton3D:RightHandRing1", "Armature/Skeleton3D:RightHandRing2", "Armature/Skeleton3D:RightHandRing3", "Armature/Skeleton3D:RightHandThumb1", "Armature/Skeleton3D:RightHandThumb2", "Armature/Skeleton3D:RightHandThumb3", "Armature/Skeleton3D:RightLowerArm", "Armature/Skeleton3D:RightShoulder", "Armature/Skeleton3D:RightUpperArm"]
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_47gt2"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_dm6be"]
+filter_enabled = true
+filters = ["Armature Hope/Skeleton3D:HandIK.R", "Armature Hope/Skeleton3D:Head", "Armature Hope/Skeleton3D:Neck", "Armature Hope/Skeleton3D:RightHand", "Armature Hope/Skeleton3D:RightHandIndex1", "Armature Hope/Skeleton3D:RightHandIndex2", "Armature Hope/Skeleton3D:RightHandIndex3", "Armature Hope/Skeleton3D:RightHandRing1", "Armature Hope/Skeleton3D:RightHandRing2", "Armature Hope/Skeleton3D:RightHandRing3", "Armature Hope/Skeleton3D:RightHandThumb1", "Armature Hope/Skeleton3D:RightHandThumb2", "Armature Hope/Skeleton3D:RightHandThumb3", "Armature Hope/Skeleton3D:RightLowerArm", "Armature Hope/Skeleton3D:RightShoulder", "Armature Hope/Skeleton3D:RightUpperArm", "Armature Hope/Skeleton3D:Spine", "Armature Hope/Skeleton3D:Spine1", "Armature Hope/Skeleton3D:Spine2", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:RightHand", "Armature/Skeleton3D:RightHandIndex1", "Armature/Skeleton3D:RightHandIndex2", "Armature/Skeleton3D:RightHandIndex3", "Armature/Skeleton3D:RightHandRing1", "Armature/Skeleton3D:RightHandRing2", "Armature/Skeleton3D:RightHandRing3", "Armature/Skeleton3D:RightHandThumb1", "Armature/Skeleton3D:RightHandThumb2", "Armature/Skeleton3D:RightHandThumb3", "Armature/Skeleton3D:RightLowerArm", "Armature/Skeleton3D:RightShoulder", "Armature/Skeleton3D:RightUpperArm", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Spine1", "Armature/Skeleton3D:Spine2"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_f66gd"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1n3tm"]
+graph_offset = Vector2(1168.65, 108.344)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_hcpox")
+nodes/Animation/position = Vector2(1660, 560)
+"nodes/Animation 10/node" = SubResource("AnimationNodeAnimation_6dbkd")
+"nodes/Animation 10/position" = Vector2(2400, 500)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_sd4id")
+"nodes/Animation 2/position" = Vector2(1660, 360)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_5ebqy")
+"nodes/Animation 3/position" = Vector2(1300, 380)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_fpe75")
+"nodes/Animation 7/position" = Vector2(1660, 460)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_7ubum")
+"nodes/Animation 8/position" = Vector2(2400, 300)
+"nodes/Animation 9/node" = SubResource("AnimationNodeAnimation_r0e77")
+"nodes/Animation 9/position" = Vector2(2400, 400)
+nodes/Death/node = SubResource("AnimationNodeAnimation_fa81n")
+nodes/Death/position = Vector2(4280, 220)
+nodes/Elixir/node = SubResource("AnimationNodeAnimation_fr0ja")
+nodes/Elixir/position = Vector2(3340, 260)
+nodes/Reload/node = SubResource("AnimationNodeAnimation_vjd5u")
+nodes/Reload/position = Vector2(3020, 300)
+nodes/Run/node = SubResource("AnimationNodeAnimation_8qwp0")
+nodes/Run/position = Vector2(1260, 260)
+nodes/deathBlend/node = SubResource("AnimationNodeBlend2_vr3tl")
+nodes/deathBlend/position = Vector2(4480, 120)
+nodes/elixirBlend/node = SubResource("AnimationNodeBlend2_bhx48")
+nodes/elixirBlend/position = Vector2(3520, 160)
+nodes/leftAim/node = SubResource("AnimationNodeBlend3_s781n")
+nodes/leftAim/position = Vector2(2680, 280)
+nodes/leftArmBlend/node = SubResource("AnimationNodeBlend2_hme4p")
+nodes/leftArmBlend/position = Vector2(2820, 200)
+nodes/lunge/node = SubResource("AnimationNodeAnimation_fb8ro")
+nodes/lunge/position = Vector2(3740, 240)
+"nodes/lunge 2/node" = SubResource("AnimationNodeAnimation_wmkme")
+"nodes/lunge 2/position" = Vector2(3740, 360)
+nodes/lungeBlend/node = SubResource("AnimationNodeBlend2_84ifh")
+nodes/lungeBlend/position = Vector2(4100, 140)
+nodes/lungeOS/node = SubResource("AnimationNodeOneShot_6nlo6")
+nodes/lungeOS/position = Vector2(3940, 240)
+nodes/output/position = Vector2(4660, 120)
+nodes/reloadBlend/node = SubResource("AnimationNodeBlend2_4434q")
+nodes/reloadBlend/position = Vector2(3200, 180)
+nodes/rightAim/node = SubResource("AnimationNodeBlend3_47gt2")
+nodes/rightAim/position = Vector2(2040, 300)
+nodes/rightArmBlend/node = SubResource("AnimationNodeBlend2_dm6be")
+nodes/rightArmBlend/position = Vector2(2220, 220)
+nodes/walkIdleBlend/node = SubResource("AnimationNodeBlend2_f66gd")
+nodes/walkIdleBlend/position = Vector2(1500, 240)
+node_connections = [&"output", 0, &"deathBlend", &"deathBlend", 0, &"lungeBlend", &"deathBlend", 1, &"Death", &"elixirBlend", 0, &"reloadBlend", &"elixirBlend", 1, &"Elixir", &"leftAim", 0, &"Animation 8", &"leftAim", 1, &"Animation 9", &"leftAim", 2, &"Animation 10", &"leftArmBlend", 0, &"rightArmBlend", &"leftArmBlend", 1, &"leftAim", &"lungeBlend", 0, &"elixirBlend", &"lungeBlend", 1, &"lungeOS", &"lungeOS", 0, &"lunge", &"lungeOS", 1, &"lunge 2", &"reloadBlend", 0, &"leftArmBlend", &"reloadBlend", 1, &"Reload", &"rightAim", 0, &"Animation 2", &"rightAim", 1, &"Animation 7", &"rightAim", 2, &"Animation", &"rightArmBlend", 0, &"walkIdleBlend", &"rightArmBlend", 1, &"rightAim", &"walkIdleBlend", 0, &"Run", &"walkIdleBlend", 1, &"Animation 3"]
+
+[node name="Russel2" instance=ExtResource("1_ggskd")]
+
+[node name="Skeleton3D" parent="Armature Hope" index="0"]
+bones/0/position = Vector3(8.20523, -24.6189, 11.9031)
+bones/0/rotation = Quaternion(0.775518, -0.0281969, -0.0448323, 0.6291)
+bones/1/rotation = Quaternion(1, -4.55995e-10, 4.37754e-09, -5.39842e-10)
+bones/2/rotation = Quaternion(1, 4.55995e-10, -4.37754e-09, -5.39842e-10)
+bones/3/position = Vector3(-4.94695, 96.8116, -45.8161)
+bones/3/rotation = Quaternion(0.000167825, 0.0114129, -0.014972, 0.999823)
+bones/5/position = Vector3(6.30977, 53.2566, -51.4424)
+bones/5/rotation = Quaternion(0.992255, -0.000566388, -0.0421051, -0.116867)
+bones/7/position = Vector3(-8.81377, 6.02165, 38.5291)
+bones/7/rotation = Quaternion(0.716529, 0.0184124, -0.0179129, 0.697084)
+bones/9/position = Vector3(0.728735, 89.1677, 5.13898)
+bones/9/rotation = Quaternion(0.409056, 0.116594, -0.724563, 0.542298)
+bones/10/position = Vector3(2.67654, 12.7729, 0.890715)
+bones/10/rotation = Quaternion(0.611169, 0.712085, -0.0196488, 0.344996)
+bones/11/rotation = Quaternion(0.737804, 6.56862e-07, -5.40767e-07, 0.675015)
+bones/12/rotation = Quaternion(-0.711019, 0.00444803, 0.026745, 0.70265)
+bones/13/position = Vector3(0.353605, 89.6847, 4.9025)
+bones/14/rotation = Quaternion(-0.010329, 0.00765876, 0.0109021, 0.999858)
+bones/15/rotation = Quaternion(-0.0399086, 0.00825555, 0.00849377, 0.999133)
+bones/16/rotation = Quaternion(0.0584288, -0.0171882, 0.020925, 0.997924)
+bones/18/rotation = Quaternion(-0.0477686, 0.0291505, -0.0728867, 0.995769)
+bones/19/rotation = Quaternion(-0.616128, -0.396975, 0.409476, -0.543256)
+bones/20/position = Vector3(-2.72455e-06, 15.3299, 2.82073e-05)
+bones/20/rotation = Quaternion(0.504521, -0.623161, 0.116083, 0.58622)
+bones/21/position = Vector3(-3.64412e-05, 26.7216, 3.06759e-07)
+bones/21/rotation = Quaternion(0.366415, -0.0795755, 0.132013, 0.917595)
+bones/22/position = Vector3(-5.96216e-07, 22.2233, -3.13935e-06)
+bones/22/rotation = Quaternion(-0.0490968, 0.729259, -0.0847556, 0.677191)
+bones/23/position = Vector3(-2.95059, 6.25007, 2.43315)
+bones/24/position = Vector3(5.24166e-08, 5.05863, -2.41323e-05)
+bones/24/rotation = Quaternion(0.300103, 0.275813, -0.346851, 0.844725)
+bones/25/position = Vector3(-3.52611e-07, 5.16194, 6.81242e-07)
+bones/25/rotation = Quaternion(0.292291, 0.0676254, -0.353269, 0.886112)
+bones/26/position = Vector3(-3.99261, 17.3916, 1.81408)
+bones/26/rotation = Quaternion(0.779618, 0.0727446, 0.0515107, 0.619879)
+bones/27/position = Vector3(-6.13378e-07, 3.92663, 5.75316e-06)
+bones/27/rotation = Quaternion(0.712973, -0.102293, -0.0425605, 0.692383)
+bones/28/position = Vector3(2.97691e-06, 3.59925, 2.1977e-05)
+bones/29/position = Vector3(2.61812e-06, 14.099, -2.09473e-05)
+bones/29/rotation = Quaternion(0.585492, -0.085083, -0.134538, 0.794896)
+bones/30/position = Vector3(-2.64302e-06, 6.96082, -3.79327e-05)
+bones/30/rotation = Quaternion(0.814578, 0.104995, -0.0702394, 0.566132)
+bones/31/position = Vector3(8.72474e-07, 3.49921, 3.75321e-06)
+bones/32/rotation = Quaternion(0.453292, -0.551262, 0.543168, 0.442272)
+bones/33/position = Vector3(2.63218e-08, 15.3299, 7.56282e-06)
+bones/33/rotation = Quaternion(0.355401, 0.351837, 0.461302, 0.732872)
+bones/34/position = Vector3(-3.81686e-07, 26.7216, -2.48998e-06)
+bones/34/rotation = Quaternion(0.318345, 0.0537124, -0.0492709, 0.945169)
+bones/35/position = Vector3(1.35034e-06, 22.2233, -1.17539e-06)
+bones/35/rotation = Quaternion(-0.103117, -0.757604, 0.119081, 0.633421)
+bones/37/position = Vector3(-1.36391e-06, 5.05863, -1.48972e-06)
+bones/37/rotation = Quaternion(0.300103, -0.275813, 0.346851, 0.844725)
+bones/38/position = Vector3(-2.49401e-06, 5.16196, -1.26011e-05)
+bones/38/rotation = Quaternion(0.292291, -0.0676254, 0.353269, 0.886112)
+bones/39/position = Vector3(3.99262, 17.3916, 1.81408)
+bones/39/rotation = Quaternion(0.779618, -0.0727446, -0.0515107, 0.619879)
+bones/40/position = Vector3(1.77156e-06, 3.92665, 1.13968e-05)
+bones/40/rotation = Quaternion(0.712973, 0.102293, 0.0425605, 0.692383)
+bones/41/position = Vector3(-4.79484e-07, 3.59925, 1.54556e-06)
+bones/42/position = Vector3(2.60156e-06, 14.099, 3.38754e-07)
+bones/42/rotation = Quaternion(0.585492, 0.085083, 0.134538, 0.794896)
+bones/43/position = Vector3(6.01437e-06, 6.96082, 4.5275e-06)
+bones/43/rotation = Quaternion(0.814578, -0.104995, 0.0702394, 0.566132)
+bones/44/position = Vector3(-9.46636e-08, 3.49921, -9.92085e-07)
+bones/45/position = Vector3(-0.0543816, 89.1677, 5.13898)
+bones/45/rotation = Quaternion(0.51022, -0.00475519, 0.710735, 0.484262)
+bones/46/position = Vector3(-2.67653, 12.7729, 0.890703)
+bones/46/rotation = Quaternion(-0.193573, 0.643087, 0.34472, -0.655848)
+bones/47/position = Vector3(1.31921e-06, 50.1797, -7.29666e-07)
+bones/47/rotation = Quaternion(0.573859, -7.89312e-07, 4.10187e-07, 0.818954)
+bones/48/rotation = Quaternion(-0.73361, 0.0439175, -0.0265553, 0.67763)
+
+[node name="ArmL" parent="Armature Hope/Skeleton3D" index="0"]
+material_override = ExtResource("2_y34cm")
+
+[node name="ArmR" parent="Armature Hope/Skeleton3D" index="1"]
+material_override = ExtResource("2_y34cm")
+
+[node name="Belt" parent="Armature Hope/Skeleton3D" index="2"]
+material_override = ExtResource("3_qjf6q")
+
+[node name="Boots" parent="Armature Hope/Skeleton3D" index="3"]
+material_override = ExtResource("3_qjf6q")
+
+[node name="Face_Hair" parent="Armature Hope/Skeleton3D" index="4"]
+material_override = ExtResource("2_y34cm")
+
+[node name="Glove" parent="Armature Hope/Skeleton3D" index="5"]
+material_override = ExtResource("3_qjf6q")
+
+[node name="Hair" parent="Armature Hope/Skeleton3D" index="6"]
+material_override = ExtResource("2_y34cm")
+
+[node name="Hat" parent="Armature Hope/Skeleton3D" index="7"]
+material_override = ExtResource("3_qjf6q")
+
+[node name="Head" parent="Armature Hope/Skeleton3D" index="8"]
+material_override = ExtResource("2_y34cm")
+
+[node name="Pants" parent="Armature Hope/Skeleton3D" index="9"]
+material_override = ExtResource("3_qjf6q")
+
+[node name="Shirt" parent="Armature Hope/Skeleton3D" index="10"]
+material_override = ExtResource("3_qjf6q")
+
+[node name="GunRight" type="BoneAttachment3D" parent="Armature Hope/Skeleton3D" index="11"]
+transform = Transform3D(0.186034, -0.230466, 0.955132, 0.952598, -0.195862, -0.2328, 0.240726, 0.953165, 0.183105, -33.3257, -10.8354, -98.5238)
+bone_name = "RightHand"
+bone_idx = 35
+
+[node name="RevolverOffset" type="Node3D" parent="Armature Hope/Skeleton3D/GunRight" index="0"]
+transform = Transform3D(0.203142, 0.976715, -0.068999, 0.0357208, 0.0630298, 0.997372, 0.978497, -0.205073, -0.0220852, 1.29997, 11.6, 1.8)
+
+[node name="Revolver" parent="Armature Hope/Skeleton3D/GunRight/RevolverOffset" index="0" instance=ExtResource("4_4jqof")]
+transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, 0, 0)
+
+[node name="ShotgunOffset" type="Node3D" parent="Armature Hope/Skeleton3D/GunRight" index="1"]
+transform = Transform3D(0.194826, 0.96561, -0.172165, 0.0254393, 0.170495, 0.98503, 0.980508, -0.196289, 0.00865229, 2.50014, 14.5, 2.5)
+
+[node name="Shotgun" parent="Armature Hope/Skeleton3D/GunRight/ShotgunOffset" index="0" instance=ExtResource("5_5bvro")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+visible = false
+
+[node name="GunLeft" type="BoneAttachment3D" parent="Armature Hope/Skeleton3D" index="12"]
+transform = Transform3D(0.186034, -0.230466, 0.955132, 0.952598, -0.195862, -0.2328, 0.240726, 0.953165, 0.183105, -33.3257, -10.8354, -98.5238)
+bone_name = "RightHand"
+bone_idx = 35
+
+[node name="RevolverOffset" type="Node3D" parent="Armature Hope/Skeleton3D/GunLeft" index="0"]
+transform = Transform3D(0.0806526, -0.991564, 0.10147, 0.0273704, 0.103966, 0.994204, -0.996366, -0.0774079, 0.0355246, -1.31248, 11.6363, 1.79798)
+
+[node name="Revolver" parent="Armature Hope/Skeleton3D/GunLeft/RevolverOffset" index="0" instance=ExtResource("4_4jqof")]
+transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, 0, 0)
+visible = false
+
+[node name="ShotgunOffset" type="Node3D" parent="Armature Hope/Skeleton3D/GunLeft" index="1"]
+transform = Transform3D(0.089244, -0.990811, 0.101637, 0.0254452, 0.104278, 0.994223, -0.995685, -0.0861423, 0.0345176, 0, 14.5, 2.5)
+
+[node name="Shotgun" parent="Armature Hope/Skeleton3D/GunLeft/ShotgunOffset" index="0" instance=ExtResource("5_5bvro")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+visible = false
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" index="0"]
+tree_root = SubResource("AnimationNodeBlendTree_1n3tm")
+anim_player = NodePath("..")
+active = true
+parameters/deathBlend/blend_amount = 0.0
+parameters/elixirBlend/blend_amount = 0.0
+parameters/leftAim/blend_amount = 1.0
+parameters/leftArmBlend/blend_amount = 0.0
+parameters/lungeBlend/blend_amount = 0.0
+parameters/lungeOS/active = false
+parameters/lungeOS/request = 0
+parameters/reloadBlend/blend_amount = 0.0
+parameters/rightAim/blend_amount = 1.0
+parameters/rightArmBlend/blend_amount = 0.0
+parameters/walkIdleBlend/blend_amount = 0.0
