@@ -33,7 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bbei46t58gg10" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Normal.png" id="34_av5xh"]
 [ext_resource type="Texture2D" uid="uid://b2sufrkl84c2o" path="res://Assets/Models/Powerline FINAL/Powerline_lambert1_Roughness.png" id="35_u2rth"]
 [ext_resource type="Script" path="res://Scripts/HerdMenuPrompt.gd" id="36_hag1j"]
-[ext_resource type="PackedScene" uid="uid://bin30v0rfeimx" path="res://Prefabs/Usable.tscn" id="36_qqwns"]
+[ext_resource type="PackedScene" path="res://Prefabs/Usable.tscn" id="36_qqwns"]
 [ext_resource type="PackedScene" uid="uid://bb6mal2lx7yeq" path="res://Assets/Models/Cattle Keeper/temp.tscn" id="38_c8w27"]
 [ext_resource type="Script" path="res://Scripts/ElixirGunMenuPrompt.gd" id="38_db5gv"]
 [ext_resource type="PackedScene" uid="uid://bvbxks05sa410" path="res://Assets/Models/Shop Keeper/shop_keeper.tscn" id="39_60flx"]

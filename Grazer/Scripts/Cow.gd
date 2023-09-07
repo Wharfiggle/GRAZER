@@ -191,6 +191,8 @@ func setHibernate(inHibernate:bool):
 		gravity = 30
 
 func startDragging(marauder):
+	if(!isDragged):
+		herd.cowsBeingStolen += 1
 	isDragged = true
 	draggers.append(marauder)
 	maxSpeed = min(dragSpeed * draggers.size(), draggers[0].baseSpeed) / dragResistance
@@ -201,8 +203,6 @@ func startDragging(marauder):
 		#if(!Vocal.is_playing()):
 	Vocal.stream = stressed
 	Vocal.play()
-	
-	herd.cowsBeingStolen += 1
 	herd.removeHuddler(self)
 	#Set to disable, because otherwise the cow can't look at the marauder when dragged
 	#disableRayCasts() dont do this, it completely breaks all maneuvering. i fixed the collision layers so they dont look away from the marauders
@@ -210,9 +210,10 @@ func startDragging(marauder):
 	animation.set("parameters/conditions/Not_Drag", false)
 	
 func stopDragging(marauder):
-	herd.cowsBeingStolen -= 1
+	if(isDragged):
+		herd.cowsBeingStolen -= 1
 	Vocal.stop()
-	isDragged =false
+	isDragged = false
 	draggers.erase(marauder)
 	marauder.draggedCow = null
 	if(draggers.size() == 0):
@@ -262,6 +263,8 @@ func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:No
 		return true
 
 func delete():
+	if(isDragged):
+		herd.cowsBeingStolen -= 1
 	if(herd != null):
 		herd.removeCow(self)
 	else:
@@ -594,7 +597,7 @@ func _physics_process(delta):
 	
 	var separated = !stray && draggers.is_empty() && follow #if cow goes offscreen, isn't a stray, and isn't being stolen, we want to teleport it back to the player on the edge of the screen.
 	#section for calculating where the offscreen indicators should go on the edge of the screen
-	if(( separated || !draggers.is_empty() || mooIndicatorTimer > 0 ) && offscreenIndicator != null && camera != null):
+	if(( true ||separated || !draggers.is_empty() || mooIndicatorTimer > 0 ) && offscreenIndicator != null && camera != null):
 		#if cow is not being dragged and goes far enough off screen (indctrdff.length() > ~7) then teleport to where new indicator location would be (with edgeMargin = ~-2) and initiate enemy relocation procedure to see if it's a valid location
 		var mooInd = offscreenIndicator.get_child(0)
 		var stealInd = offscreenIndicator.get_child(1)
@@ -615,7 +618,7 @@ func _physics_process(delta):
 		bound1.y += 1.0
 		bound2.y += 1.0
 		
-		var healthCorner = Vector2(-7.5, -10.5)
+		var healthCorner = Vector2(-7.5, -10.0)
 		var gunCorner = Vector2(-8.5, 10)
 		#var healthCorner = Vector2(0, 0)
 		
@@ -629,19 +632,46 @@ func _physics_process(delta):
 			min(max(indctr.y, bound1.y), bound2.y))
 		var indctrDiff = clampedIndctr - indctr
 		
+#		if(mooIndicatorTimer > delta):
+#			var origScrHei = camera.size
+#			var origScrWid = scrHei / 9.0 * 16.0
+#			var origWrldHei = origScrHei / cos(55.0 * PI / 180.0)
+#			var origBound1 = Vector2( #top left
+#				-origScrWid / 2.0,
+#				-origWrldHei / 2.0)
+#			var origBound2 = -origBound1 #bottom right
+##			origBound1.y += 1.0
+##			origBound2.y += 1.0
+#			var clampedMooIndctr = Vector2(
+#				min(max(indctr.x, origBound1.x), origBound2.x),
+#				min(max(indctr.y, origBound1.y), origBound2.y))
+#			var mooIndctrDiff = clampedMooIndctr - indctr
+#			mooIndctrDiff = Vector2(
+#				cos(-PI/4.0) * mooIndctrDiff.x - sin(-PI/4.0) * mooIndctrDiff.y,
+#				sin(-PI/4.0) * mooIndctrDiff.x + cos(-PI/4.0) * mooIndctrDiff.y)
+#			mooInd.global_position = global_position + Vector3(mooIndctrDiff.x, 0, mooIndctrDiff.y)
+		
 		var edgeRef = max(0, edgeMargin)
 		if(indctrDiff.length() > edgeRef): #offscreen
 			if(!separated):
 				if(clampedIndctr.x < healthCorner.x && clampedIndctr.y < healthCorner.y):
 					if(abs(indctrDiff.x) > abs(indctrDiff.y)):
-						indctrDiff.x += scrWid / 2.0 + healthCorner.x
+#						indctrDiff.x += scrWid / 2.0 + healthCorner.x
+						indctrDiff.x = -scrWid / 2.0 -indctr.x
+						indctrDiff.y = healthCorner.y - indctr.y
 					else:
-						indctrDiff.y += wrldHei / 2.0 + healthCorner.y
+#						indctrDiff.y += wrldHei / 2.0 + healthCorner.y
+						indctrDiff.x = healthCorner.x - indctr.x
+						indctrDiff.y = -wrldHei / 2.0 - indctr.y
 				elif(clampedIndctr.x < gunCorner.x && clampedIndctr.y > gunCorner.y):
 					if(abs(indctrDiff.x) > abs(indctrDiff.y)):
-						indctrDiff.x += scrWid / 2.0 + gunCorner.x
+#						indctrDiff.x += scrWid / 2.0 + gunCorner.x
+						indctrDiff.x = -scrWid / 2.0 -indctr.x
+						indctrDiff.y = gunCorner.y - indctr.y
 					else:
-						indctrDiff.y -= wrldHei / 2.0 - gunCorner.y
+#						indctrDiff.y -= wrldHei / 2.0 - gunCorner.y
+						indctrDiff.x = gunCorner.x - indctr.x
+						indctrDiff.y = wrldHei / 2.0 - indctr.y
 		
 			indctrDiff = Vector2( #rotate back
 				cos(-PI/4.0) * indctrDiff.x - sin(-PI/4.0) * indctrDiff.y,
@@ -674,6 +704,18 @@ func _physics_process(delta):
 				mooInd.visible = false
 				mooMat.albedo_color = Color(1, 0, 0, 1)
 			else:
+#				var newMooPos = Vector2(0, 0)
+#				if(indctrDiff.x > 0):
+#					newMooPos.x -= edgeMargin * 1.0 / mooInd.scale.x
+#				elif(indctrDiff.x < 0):
+#					newMooPos.x += edgeMargin * 1.0 / mooInd.scale.x
+#				if(indctrDiff.y > 0):
+#					newMooPos.y -= edgeMargin * 1.0 / mooInd.scale.x
+#				elif(indctrDiff.y < 0):
+#					newMooPos.y += edgeMargin * 1.0 / mooInd.scale.x
+#				mooInd.position = Vector3( #rotate by 45 degrees to compensate for camera angle yaw
+#					cos(0) * newMooPos.x - sin(0) * newMooPos.y, 0,
+#					sin(0) * newMooPos.x + cos(0) * newMooPos.y)
 				mooInd.visible = true
 				var t = 0
 				if(mooIndicatorTimer > mooIndicatorTime / 2.0): 
