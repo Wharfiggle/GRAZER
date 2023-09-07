@@ -76,9 +76,21 @@ func _on_controls_pressed():
 	controls.visible = !controls.visible
 
 func _on_toggle_music_pressed():
+	var buses = []
+	buses.append(AudioServer.get_bus_index("Music"))
+	for i in buses:
+		AudioServer.set_bus_mute(i, not AudioServer.is_bus_mute(i))
 	soundMaker.stream = menuButtonSound
 	soundMaker.play()
 
 func _on_toggle_sfx_pressed():
+	var buses = []
+	buses.append(AudioServer.get_bus_index("SoundFXMain"))
+	buses.append(AudioServer.get_bus_index("GunShots"))
+	buses.append(AudioServer.get_bus_index("Ambience"))
+	buses.append(AudioServer.get_bus_index("Voices"))
+	buses.append(AudioServer.get_bus_index("EnemyVoice"))
+	for i in buses:
+		AudioServer.set_bus_mute(i, not AudioServer.is_bus_mute(i))
 	soundMaker.stream = menuButtonSound
 	soundMaker.play()

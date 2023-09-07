@@ -104,6 +104,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_xnckx")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SoundFXMain"
 
 [node name="Controls" type="Button" parent="."]
 layout_mode = 1
@@ -187,8 +188,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
 text = "Main Menu"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MainMenu"]
+bus = &"SoundFXMain"
 
 [node name="item sounds" type="AudioStreamPlayer2D" parent="."]
+bus = &"SoundFXMain"
 
 [node name="ElixirName" type="Label" parent="."]
 layout_mode = 1

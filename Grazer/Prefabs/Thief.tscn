@@ -47,12 +47,13 @@ shape = SubResource("SphereShape3D_ho5wn")
 
 [node name="EFootsteps" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0534151, 0)
-bus = &"soundFXMain"
+bus = &"SoundFXMain"
 
 [node name="EVoice" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59139, 0)
-bus = &"enemyVoice"
+bus = &"EnemyVoice"
 
 [node name="ESoundFX" type="AudioStreamPlayer3D" parent="."]
+bus = &"SoundFXMain"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

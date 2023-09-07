@@ -9,3 +9,4 @@
 [node name="Cow" parent="CowBones/Skeleton3D" index="0"]
 material_override = ExtResource("2_gasqy")
 mesh = ExtResource("3_vhq06")
+blend_shapes/Up = 0.0

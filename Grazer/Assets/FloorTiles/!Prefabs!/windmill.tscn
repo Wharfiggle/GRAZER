@@ -39,11 +39,11 @@ material_override = ExtResource("2_crv2h")
 transform = Transform3D(1, -7.10543e-15, -2.32831e-10, 7.10543e-15, 1, 5.16988e-23, 2.32831e-10, -5.33531e-23, 1, 0, 0, 0)
 
 [node name="Windmill_Fin" parent="RootNode/Windmill/Windmill_Rotate" index="0"]
-transform = Transform3D(0.985265, -7.05308e-15, 0.171035, 7.05308e-15, 1, 6.07639e-16, -0.171035, 6.07639e-16, 0.985265, 0.000935968, 4.87787, 0.000650904)
+transform = Transform3D(0.997062, -7.09499e-15, -0.0765927, 7.09499e-15, 1, -2.72112e-16, 0.0765927, -2.72112e-16, 0.997062, 0.000935968, 4.87787, 0.000650904)
 material_override = ExtResource("2_crv2h")
 
 [node name="Windmill_Spin" parent="RootNode/Windmill/Windmill_Rotate/Windmill_Fin" index="0"]
-transform = Transform3D(0.986366, -0.164562, 0.00169172, 0.164562, 0.986367, 0.000282241, -0.0017151, -1.74623e-10, 0.999999, -0.00133064, 0.362698, 0.474582)
+transform = Transform3D(0.986347, -0.164678, 0.00169171, 0.164677, 0.986348, 0.000282443, -0.00171513, -1.16415e-10, 0.999999, -0.00133064, 0.362698, 0.474582)
 material_override = ExtResource("2_crv2h")
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" index="0"]
@@ -64,3 +64,4 @@ shape = SubResource("CylinderShape3D_o6gbw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.24084, 0)
 volume_db = -12.0
 max_distance = 1607.57
+bus = &"Ambience"

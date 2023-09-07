@@ -290,52 +290,57 @@ text = "Main Menu"
 process_mode = 3
 stream = ExtResource("24_eux13")
 volume_db = -10.0
-bus = &"background "
+bus = &"Music "
 script = ExtResource("25_onhah")
 
 [node name="EnemyMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("26_chugg")
 volume_db = -10.0
-bus = &"background "
+bus = &"Music "
 script = ExtResource("25_onhah")
 
 [node name="OutpostMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("27_iuswt")
 volume_db = -12.0
-bus = &"background "
+bus = &"Music "
 script = ExtResource("25_onhah")
 
 [node name="ShopMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("28_h45dm")
 volume_db = -12.0
-bus = &"background "
+bus = &"Music "
 script = ExtResource("25_onhah")
 
 [node name="DeathMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("29_713a0")
 volume_db = -8.0
-bus = &"background "
+bus = &"Music "
 script = ExtResource("25_onhah")
 
 [node name="WinMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("32_0n3cj")
 volume_db = -8.0
-bus = &"background "
+bus = &"Music "
 script = ExtResource("25_onhah")
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_0aix7")
 volume_db = 4.0
 autoplay = true
+bus = &"Ambience"
 script = ExtResource("25_onhah")
 
 [node name="UICursor" parent="." instance=ExtResource("31_7rkun")]
 process_mode = 3
+
+[node name="windPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -13.0
+bus = &"Ambience"
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 56)
@@ -344,10 +349,6 @@ time = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 shape = SubResource("BoxShape3D_x4scn")
-
-[node name="windPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -13.0
-bus = &"background "
 
 [connection signal="pressed" from="DeathMenu/RestartButton" to="DeathMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MainMenuButton" to="DeathMenu" method="_on_main_menu_button_pressed"]
