@@ -521,12 +521,14 @@ func setModel(inRusselOrRay:bool):
 	WorldSave.setCharacter(inRusselOrRay)
 	var model = get_node(NodePath("./" + russelOrRay))
 	model.visible = false
+	model.get_node(NodePath("./AnimationPlayer")).stop()
 	if(inRusselOrRay):
 		russelOrRay = "Russel"
 	else:
 		russelOrRay = "Ray"
 	model = get_node(NodePath("./" + russelOrRay))
 	model.visible = true
+	model.get_node(NodePath("./AnimationPlayer")).play()
 	hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/Pants")).get_material_override()
 	gunRight = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunRight"))
 	gunLeft = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunLeft"))
