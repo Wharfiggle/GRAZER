@@ -2,6 +2,7 @@
 
 [resource]
 transparency = 1
+no_depth_test = true
 shading_mode = 0
 disable_ambient_light = true
 distance_fade_max_distance = 5.0

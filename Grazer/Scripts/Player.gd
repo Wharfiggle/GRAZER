@@ -148,7 +148,7 @@ var onRevolver = true
 @onready var lineSightRaycast = shootingPoint.get_child(0)
 @onready var lineSightMesh = preload("res://Prefabs/BulletTrailMesh.tres")
 @onready var lineSightNode = get_node("./LineOfSight")
-@export var lineSightTransparency = 0.5
+@export var lineSightTransparency = 0.25
 @export var lineSightTime = 0.8
 var lineSightTimer = 0.0
 var lineSight
@@ -182,10 +182,10 @@ func _ready():
 	#healthCounter.updateHealth(hitpoints)
 	lineSight = lineSightMesh.duplicate()
 	lineSightNode.mesh = lineSight
-	lineSight.prepareForColorChange(lineSightNode)
+	lineSight.prepareForColorChange(lineSightNode, true)
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 	shotgunSpread = shotgunSpread * PI / 180.0
-	lineSightNode.transparency = lineSightTransparency
+	lineSight.updateMaxOpacity(1.0 - lineSightTransparency)
 	
 	gunStats[0] = revolverClipSize
 	gunStats[1] = revolverDamage
@@ -259,7 +259,8 @@ func _process(delta):
 		if(lineSightTimer < 0):
 			lineSightTimer = 0
 		if(onRevolver):
-			lineSightNode.transparency = sqrt(sqrt(lineSightTimer / lineSightTime)) * (1.0 - lineSightTransparency) + lineSightTransparency
+			var transp = sqrt(sqrt(lineSightTimer / lineSightTime)) * (1.0 - lineSightTransparency) + lineSightTransparency
+			lineSight.updateMaxOpacity(1.0 - transp)
 			
 	if(shootTimer > 0):
 		shootTimer -= delta
@@ -663,6 +664,7 @@ func _physics_process(delta):
 		lineSight.updateTrail([Vector3.ZERO, Vector3(0, 0, dist)])
 	else:
 		lineSight.updateTrail([Vector3.ZERO, Vector3(0, 0, revolverRange)])
+	lineSight.updateCamCenter(position)
 	
 	#player looks where mouse is pointed but projected to isometric view
 	if(camera != null && active):
@@ -933,7 +935,7 @@ func setWeaponAndHands(revolver:bool, right:bool):
 	shootingPoint = gun.find_child("ShootingPoint")
 	lineSightRaycast = shootingPoint.get_child(0)
 	if(onRevolver):
-		lineSightNode.transparency = lineSightTransparency
+		lineSight.updateMaxOpacity(1.0 - lineSightTransparency)
 		MainHud._ammo_update_(revolverClip)
 		MainHud._set_ammo_Back(revolverClipSize)
 		MainHud._set_weapon_image_(revolverimage)

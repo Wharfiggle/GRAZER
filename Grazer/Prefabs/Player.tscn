@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ct5gqti8xgjyy"]
+[gd_scene load_steps=11 format=3 uid="uid://ct5gqti8xgjyy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_h6u35"]
 [ext_resource type="Texture2D" uid="uid://q0x4hf1334dn" path="res://Assets/Images/mouseCursor.png" id="2_jape7"]
-[ext_resource type="Material" uid="uid://d3p7llyr4jt8" path="res://Assets/Materials/glow_material.tres" id="3_k7ui3"]
 [ext_resource type="PackedScene" uid="uid://bmsssvkxtodhw" path="res://Assets/Models/Russel/russel_2.tscn" id="3_nv5o2"]
 [ext_resource type="PackedScene" uid="uid://c21nwetcmabuk" path="res://Assets/Models/Ray/ray_2.tscn" id="4_hf1tj"]
+[ext_resource type="Shader" path="res://Levels/FadeTowardsEdge.gdshader" id="5_fmxe7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vl5hc"]
 
@@ -19,6 +19,15 @@ no_depth_test = true
 shading_mode = 0
 albedo_texture = ExtResource("2_jape7")
 disable_receive_shadows = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xf10g"]
+render_priority = 0
+shader = ExtResource("5_fmxe7")
+shader_parameter/camCenter = Vector3(0, 0, 0)
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/fadeMod = 4.0
+shader_parameter/fadeDist = 3.0
+shader_parameter/maxOpacity = 1.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 5
@@ -62,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70047, 0.0811439)
 visible = false
 
 [node name="LineOfSight" type="MeshInstance3D" parent="."]
-material_override = ExtResource("3_k7ui3")
+material_override = SubResource("ShaderMaterial_xf10g")
 cast_shadow = 0
 
 [node name="gun" type="AudioStreamPlayer3D" parent="."]
