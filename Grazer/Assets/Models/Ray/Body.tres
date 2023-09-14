@@ -7,7 +7,6 @@
 
 [resource]
 transparency = 4
-depth_draw_mode = 1
 albedo_color = Color(0.611765, 0.486275, 0.486275, 1)
 albedo_texture = ExtResource("1_57q8g")
 metallic = 1.0

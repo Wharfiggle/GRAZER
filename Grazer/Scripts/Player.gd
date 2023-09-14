@@ -86,7 +86,7 @@ var russelOrRay = WorldSave.getCharacter()
 
 #@export var hitColor:Color
 #var hitFlashAmount = 0.0
-@onready var hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/Pants")).get_material_override()
+@onready var hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature" + (" Hope" if russelOrRay=="Russel" else "") + "/Skeleton3D/Pants" + ("001" if russelOrRay=="Ray" else ""))).get_material_override()
 @onready var healthCounter = get_node(NodePath("/root/Level/Health Counter"))
 #audioStreams
 @onready var gunSound = $gun
@@ -133,9 +133,10 @@ var moveDir = PI * 5.0 / 8.0
 var prevAimDir = [0, 0, 0, 0, 0]
 var aimDir = 0.0
 var aimSwivel = 0.0
+var handTransition = 0.0
 @export var swivelSpeed = 0.2
-@onready var gunRight = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunRight"))
-@onready var gunLeft = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunLeft"))
+@onready var gunRight = get_node(NodePath("./"+russelOrRay+"/Armature" + (" Hope" if russelOrRay=="Russel" else "") + "/Skeleton3D/GunRight"))
+@onready var gunLeft = get_node(NodePath("./"+russelOrRay+"/Armature" + (" Hope" if russelOrRay=="Russel" else "") + "/Skeleton3D/GunLeft"))
 var rightHand = true
 var onRevolver = true
 @export var shotgunRandOffset = 0.1
@@ -152,7 +153,7 @@ var onRevolver = true
 var lineSightTimer = 0.0
 var lineSight
 @onready var animation = get_node(NodePath("./"+russelOrRay+"/AnimationPlayer/AnimationTree"))
-@onready var skeleton = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D"))
+@onready var skeleton = get_node(NodePath("./"+russelOrRay+"/Armature" + (" Hope" if russelOrRay=="Russel" else "") + "/Skeleton3D"))
 @onready var worldCursor = get_node(NodePath("./WorldCursor"))
 #@export var cursorSpinSpeed = 1.0
 #@export var cursorSpinTime = 1.0
@@ -284,7 +285,7 @@ func _process(delta):
 		elif(potionTimer > pTime - endTime - startTime):
 			blend = 1 - ((potionTimer - (pTime - startTime)) / -endTime)
 			blend = sqrt(blend)
-		animation.set("parameters/walkEllixir/blend_amount", blend)
+		animation.set("parameters/elixirBlend/blend_amount", blend)
 		var t = potionTimer / potionTime
 		hitFlash.set_shader_parameter("amount", abs( sin( sqrt(t) * 100) ) / 10)
 		potionTimer -= delta
@@ -344,7 +345,7 @@ func _process(delta):
 				gunSound.stream = reloadEndS
 				gunSound.play()
 		t = 1 - pow(t, 4)
-		animation.set("parameters/walkReload 2/blend_amount", t)
+		animation.set("parameters/reloadBlend/blend_amount", t)
 	
 	#shoot gun input buffer
 	if(active && Input.is_action_just_pressed("shoot") && dodgeTimer == 0 && !dauntless && !reloading):
@@ -466,8 +467,8 @@ func _process(delta):
 	
 	if(active):
 		#adjust walking animation speed to match speed
-		movementBlend = lerpf(movementBlend, toAdd.length(), 0.1)
-		animation.set("parameters/idleWalk/blend_amount", movementBlend)
+		movementBlend = lerpf(movementBlend, 1.0 - toAdd.length(), 0.1)
+		animation.set("parameters/walkIdleBlend/blend_amount", movementBlend)
 		if(toAdd != Vector3.ZERO):
 			moveDir = atan2(toAdd.x, toAdd.z)
 		
@@ -493,7 +494,7 @@ func _process(delta):
 	else:
 		worldCursor.visible = false
 		movementBlend = lerpf(movementBlend, 0, 0.1)
-		animation.set("parameters/idleWalk/blend_amount", movementBlend)
+		animation.set("parameters/walkIdleBlend/blend_amount", movementBlend)
 	
 	lineSightNode.global_position = shootingPoint.global_position
 	lineSightNode.global_rotation = Vector3(0, aimDir, 0)
@@ -529,11 +530,11 @@ func setModel(inRusselOrRay:bool):
 	model = get_node(NodePath("./" + russelOrRay))
 	model.visible = true
 	model.get_node(NodePath("./AnimationPlayer")).play()
-	hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/Pants")).get_material_override()
-	gunRight = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunRight"))
-	gunLeft = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D/GunLeft"))
+	hitFlash = get_node(NodePath("./"+russelOrRay+"/Armature" + (" Hope" if russelOrRay=="Russel" else "") + "/Skeleton3D/Pants" + ("001" if russelOrRay=="Ray" else ""))).get_material_override()
+	gunRight = get_node(NodePath("./"+russelOrRay+"/Armature" + (" Hope" if russelOrRay=="Russel" else "") + "/Skeleton3D/GunRight"))
+	gunLeft = get_node(NodePath("./"+russelOrRay+"/Armature" + (" Hope" if russelOrRay=="Russel" else "") + "/Skeleton3D/GunLeft"))
 	animation = get_node(NodePath("./"+russelOrRay+"/AnimationPlayer/AnimationTree"))
-	skeleton = get_node(NodePath("./"+russelOrRay+"/Armature/Skeleton3D"))
+	skeleton = get_node(NodePath("./"+russelOrRay+"/Armature" + (" Hope" if russelOrRay=="Russel" else "") + "/Skeleton3D"))
 	setWeaponAndHands(onRevolver, rightHand)
 #	var gun = gunRight
 #	if(!rightHand):
@@ -595,12 +596,12 @@ func startReload():
 
 func cancelReloading():
 	reloading = false
-	animation.set("parameters/walkReload 2/blend_amount", 0)
+	animation.set("parameters/reloadBlend/blend_amount", 0)
 	currentReloadTime = 0
 	idleTime = 0
 
 func finishReloading():
-	animation.set("parameters/walkReload 2/blend_amount", 0)
+	animation.set("parameters/reloadBlend/blend_amount", 0)
 	print("Finished Reloading")
 	reloading = false
 	idleTime = 0
@@ -741,19 +742,37 @@ func _physics_process(delta):
 			aimSwivel = fmod(2 * PI + aimDir - rotation.y + PI, 2 * PI) / (2 * PI)
 			aimSwivel = -(aimSwivel * 2 - 1)
 			aimSwivel = lerpf(prevAimSwivel, aimSwivel, swivelSpeed)
-			if(aimSwivel <= 0):
-				setHands(false) #left hand
-			else:
-				setHands(true) #right hand
-			animation.set("parameters/shootAngle/blend_position", aimSwivel)
+			var prevHandTransition = handTransition
+			handTransition = lerpf(prevHandTransition, 0, swivelSpeed/2)
+			var justSwitched = false
+			if(aimSwivel <= 0): #left hand
+				if(prevAimSwivel > 0):
+					handTransition = 2
+					justSwitched = true
+					setHands(false)
+				var armBlend = 1.0 - (max(1.0, handTransition) - 1.0)
+				animation.set("parameters/leftAim/blend_amount", (aimSwivel * 2 + 1)) # * armBlend + 1 - armBlend
+				animation.set("parameters/leftArmBlend/blend_amount", armBlend)
+				animation.set("parameters/rightArmBlend/blend_amount", min(1.0, handTransition))
+			else: #right hand
+				if(prevAimSwivel <= 0):
+					handTransition = 2
+					justSwitched = true
+					setHands(true)
+				var armBlend = 1.0 - (max(1.0, handTransition) - 1.0)
+				animation.set("parameters/rightAim/blend_amount", -(aimSwivel * 2 - 1))
+				animation.set("parameters/leftArmBlend/blend_amount", min(1.0, handTransition))
+				animation.set("parameters/rightArmBlend/blend_amount", armBlend)
 			#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 			var gun = shootingPoint.get_parent()
 			var gunScale = gun.scale
-			if(abs(prevAimSwivel - aimSwivel) < 0.01):
-				#do this when arms are aiming same direction as cursor to fix gun slowly becoming offset
-				gun.set_global_rotation(Vector3(0, aimDir, 0))
-			else:
-				gun.set_global_rotation(Vector3(0, gun.global_rotation.y, 0))
+			gun.set_global_rotation(Vector3(0, aimDir, 0))
+			#i dont remember why i did this since just always setting rotation.y to aimDir works better
+#			if(abs(prevAimSwivel - aimSwivel) < 0.01):
+#				#do this when arms are aiming same direction as cursor to fix gun slowly becoming offset
+#				gun.set_global_rotation(Vector3(0, aimDir, 0))
+#			else:
+#				gun.set_global_rotation(Vector3(0, gun.global_rotation.y, 0))
 			gun.scale = gunScale
 		else:
 			lineSightNode.visible = false
@@ -798,7 +817,7 @@ func _physics_process(delta):
 		if(dodgeTimer < 0):
 			dodgeTimer = 0
 			Vocal.stream = null
-			animation.set("parameters/walkLunge/blend_amount", 0)
+			animation.set("parameters/lungeBlend/blend_amount", 0)
 			knocked = false
 			dodgeVel = Vector3.ZERO
 			tVelocity = Vector3.ZERO
@@ -821,7 +840,7 @@ func _physics_process(delta):
 		else:
 			blend = dodgeTimer / (dodgeTime - startTime)
 			blend = blend
-		animation.set("parameters/walkLunge/blend_amount", blend)
+		animation.set("parameters/lungeBlend/blend_amount", blend)
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
 		if(dodgeCooldownTimer < 0):
