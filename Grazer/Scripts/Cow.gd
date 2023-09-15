@@ -597,7 +597,7 @@ func _physics_process(delta):
 	
 	var separated = !stray && draggers.is_empty() && follow #if cow goes offscreen, isn't a stray, and isn't being stolen, we want to teleport it back to the player on the edge of the screen.
 	#section for calculating where the offscreen indicators should go on the edge of the screen
-	if(( true ||separated || !draggers.is_empty() || mooIndicatorTimer > 0 ) && offscreenIndicator != null && camera != null):
+	if(( separated || !draggers.is_empty() || mooIndicatorTimer > 0 ) && offscreenIndicator != null && camera != null):
 		#if cow is not being dragged and goes far enough off screen (indctrdff.length() > ~7) then teleport to where new indicator location would be (with edgeMargin = ~-2) and initiate enemy relocation procedure to see if it's a valid location
 		var mooInd = offscreenIndicator.get_child(0)
 		var stealInd = offscreenIndicator.get_child(1)

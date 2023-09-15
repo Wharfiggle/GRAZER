@@ -98,7 +98,7 @@ func addCow(cow, playSound:bool = true):
 	cowCounter.updateCowNum(numCows)
 	if(cow.get_parent() != self):
 		add_child(cow)
-	cow.follow = follow
+	#cow.follow = follow
 	cow.target = getTarget()
 	cow.followingHerd = followingHerd
 	cow.dragResistance = dragResistance
