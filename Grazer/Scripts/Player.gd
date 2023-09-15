@@ -1032,9 +1032,9 @@ func die():
 	animation.set("parameters/Death/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var terrain = get_node("../AllTerrain")
 	if(terrain.real):
-		deathTimer = 3.8
+		deathTimer = 3.0
 		if(russelOrRay == "Ray"):
-			deathTimer = 3.0
+			deathTimer = 2.5
 		if(deathMenu == null):
 			deathMenu = $"../DeathMenu"
 		deathMenu.start()
@@ -1053,7 +1053,7 @@ func die():
 				terrain.spawnMarauder(false)
 	else:
 		await Fade.fade_out(3).finished
-		animation.set("parameters/DeathTime/scale", 1)
+		animation.set("parameters/DeathTime/scale", 1.5)
 		position = checkpoint
 		updateHealth(maxHitpoints)
 		var cows = herd.getCows()
