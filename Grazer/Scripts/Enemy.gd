@@ -418,6 +418,7 @@ func circle():
 	#when the cowboy gets close.
 	if(herd == null or herd.numCows <= 0):
 		targetPos = player.position
+	if(marauderType == enemyTypes.thief):
 		return
 		
 	#variable for determining how far away to place next naviagation point from current position
