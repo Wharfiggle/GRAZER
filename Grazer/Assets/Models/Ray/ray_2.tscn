@@ -209,7 +209,7 @@ material_override = ExtResource("2_no1bu")
 material_overlay = ExtResource("2_wpjv6")
 
 [node name="Hair001" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(100.274, -3.57383e-07, -9.81795e-07, 3.57382e-07, 100.274, -3.58608e-05, 9.81795e-07, 3.57674e-05, 100.274, 0.354363, 9.19049, -165.562)
+transform = Transform3D(100.274, -3.57383e-07, -9.81795e-07, 3.57382e-07, 100.274, -3.58608e-05, 9.81795e-07, 3.57674e-05, 100.274, 0.354363, 9.19048, -165.562)
 bone_idx = 20
 
 [node name="Hair001" parent="Armature/Skeleton3D/Hair001" index="0"]
@@ -245,7 +245,7 @@ material_override = ExtResource("2_no1bu")
 material_overlay = ExtResource("3_bhykb")
 
 [node name="GunRight" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(0.146767, 0.0281608, 0.98877, -0.0551958, 0.998271, -0.0202383, -0.98763, -0.0516055, 0.148068, -4.03406, 55.1575, -142.122)
+transform = Transform3D(0.146767, 0.0281621, 0.98877, -0.0551963, 0.998271, -0.0202398, -0.98763, -0.0516057, 0.148067, -4.03399, 55.1575, -142.122)
 bone_name = "RightHand"
 bone_idx = 37
 
@@ -263,7 +263,7 @@ transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 visible = false
 
 [node name="GunLeft" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="10"]
-transform = Transform3D(0.802141, -0.236596, -0.548263, 0.161042, 0.96985, -0.182913, 0.575009, 0.0584289, 0.816058, 18.0938, 53.3771, -131.581)
+transform = Transform3D(0.802141, -0.236596, -0.548263, 0.161043, 0.96985, -0.182912, 0.575009, 0.0584278, 0.816058, 18.0937, 53.3771, -131.581)
 bone_name = "LeftHand"
 bone_idx = 24
 

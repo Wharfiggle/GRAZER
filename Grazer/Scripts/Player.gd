@@ -175,6 +175,8 @@ var dead = false
 @export var canHaveNoCows = true
 @onready var checkpoint = position
 var checkpointCowAmmount = 0
+@export var noRevolver = false
+@export var noShotgun = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -186,6 +188,9 @@ func _ready():
 	lineSightRaycast.target_position = Vector3(0, 0, revolverRange)
 	shotgunSpread = shotgunSpread * PI / 180.0
 	lineSight.updateMaxOpacity(1.0 - lineSightTransparency)
+	
+	if(noRevolver or noShotgun):
+		setWeaponAndHands(onRevolver, rightHand)
 	
 	gunStats[0] = revolverClipSize
 	gunStats[1] = revolverDamage
@@ -242,8 +247,8 @@ func _process(delta):
 		herd = herdPrefab.instantiate()
 		get_node(NodePath("/root/Level")).add_child(herd)
 		#spawn cows at start
-#		for i in 5:
-#			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
+		for i in 5:
+			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
 #		for i in 6:
 #			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), i)
 #		for i in 5:
@@ -254,13 +259,15 @@ func _process(delta):
 	elif(herd.getNumCows() > 0):
 		canHaveNoCows = false
 	
-	if(lineSightTimer > 0):
+	if(lineSightTimer > 0 && !noRevolver):
 		lineSightTimer -= delta
 		if(lineSightTimer < 0):
 			lineSightTimer = 0
 		if(onRevolver):
 			var transp = sqrt(sqrt(lineSightTimer / lineSightTime)) * (1.0 - lineSightTransparency) + lineSightTransparency
 			lineSight.updateMaxOpacity(1.0 - transp)
+	else:
+		lineSight.updateMaxOpacity(0)
 			
 	if(shootTimer > 0):
 		shootTimer -= delta
@@ -302,14 +309,17 @@ func _process(delta):
 	#Temp var to allow easier comparisions
 	var equippedClip
 	var equippedClipSize
-	if(onRevolver):
+	if(onRevolver && !noRevolver):
 		equippedClip = revolverClip
 		equippedClipSize = revolverClipSize
-	else:
+	elif(!onRevolver && !noShotgun):
 		equippedClip = shotgunClip
 		equippedClipSize = shotgunClipSize
+	else:
+		equippedClip = -1
+		equippedClipSize = -1
 	
-	if(!reloading):
+	if(!reloading and !(noRevolver and noShotgun)):
 		if(Input.is_action_just_pressed("reload") and equippedClip < equippedClipSize && active):
 			startReload()
 		if(equippedClip <= 0):
@@ -644,7 +654,7 @@ func _physics_process(delta):
 		animation.set("parameters/DeathBlend/blend_amount", deathBlend)
 	
 	#swap weapon
-	if(active):
+	if(active && !noRevolver && !noShotgun):
 		var swapInput = 0
 		if(Input.is_action_just_released("SwapWeapon")): swapInput = 1
 		elif(Input.is_action_just_released("SwapWeaponDown")): swapInput = -1
@@ -747,8 +757,15 @@ func _physics_process(delta):
 			var prevHandTransition = handTransition
 			handTransition = lerpf(prevHandTransition, 0, swivelSpeed/2)
 			var justSwitched = false
-			if(aimSwivel <= 0): #left hand
-				if(prevAimSwivel > 0):
+			if(noRevolver and noShotgun):
+				animation.set("parameters/rightAim/blend_amount", 0)
+				animation.set("parameters/leftArmBlend/blend_amount", 0)
+				animation.set("parameters/rightArmBlend/blend_amount", 0)
+				animation.set("parameters/leftAim/blend_amount", 0)
+				animation.set("parameters/leftArmBlend/blend_amount", 0)
+				animation.set("parameters/rightArmBlend/blend_amount", 0)
+			elif(aimSwivel <= 0): #left hand
+				if(prevAimSwivel > 0 or rightHand == null):
 					handTransition = 2
 					justSwitched = true
 					setHands(false)
@@ -757,7 +774,7 @@ func _physics_process(delta):
 				animation.set("parameters/leftArmBlend/blend_amount", armBlend)
 				animation.set("parameters/rightArmBlend/blend_amount", min(1.0, handTransition))
 			else: #right hand
-				if(prevAimSwivel <= 0):
+				if(prevAimSwivel <= 0 or rightHand == null):
 					handTransition = 2
 					justSwitched = true
 					setHands(true)
@@ -765,6 +782,7 @@ func _physics_process(delta):
 				animation.set("parameters/rightAim/blend_amount", -(aimSwivel * 2 - 1))
 				animation.set("parameters/leftArmBlend/blend_amount", min(1.0, handTransition))
 				animation.set("parameters/rightArmBlend/blend_amount", armBlend)
+			print(rightHand)
 			#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 			var gun = shootingPoint.get_parent()
 			var gunScale = gun.scale
@@ -910,6 +928,15 @@ func setWeaponAndHands(revolver:bool, right:bool):
 	gunRight.get_child(1).get_child(0).visible = false
 	gunLeft.get_child(0).get_child(0).visible = false
 	gunLeft.get_child(1).get_child(0).visible = false
+	if(noRevolver and noShotgun):
+		MainHud._ammo_update_(0)
+		MainHud._set_ammo_Back(0)
+		MainHud._set_weapon_image_(null)
+		MainHud.move_ammoHold_(true)
+	if(revolver && noRevolver):
+		return
+	elif(!revolver && noShotgun):
+		return
 #	var oldGun = gunRight
 #	if(!rightHand):
 #		oldGun = gunLeft

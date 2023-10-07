@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://dkm3egb128it6"]
+
+[ext_resource type="Script" path="res://Scripts/WeaponPickup.gd" id="1_86wmi"]
+[ext_resource type="Texture2D" uid="uid://2pwvxhea01x2" path="res://Assets/Images/shotgunUpgradeIcon.png" id="2_ccarn"]
+[ext_resource type="PackedScene" uid="uid://c865wqlp5lwla" path="res://Prefabs/Shotgun.tscn" id="3_b8y8g"]
+
+[sub_resource type="Gradient" id="Gradient_u6gqg"]
+colors = PackedColorArray(1, 0.816667, 0, 0.392157, 1, 0.815686, 0, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddqrq"]
+gradient = SubResource("Gradient_u6gqg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46pkl"]
+resource_local_to_scene = true
+render_priority = -1
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 2
+alpha_antialiasing_edge = 0.35
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0.815686, 0, 0.588235)
+albedo_texture = ExtResource("2_ccarn")
+detail_enabled = true
+detail_albedo = SubResource("GradientTexture2D_ddqrq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnoyl"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+diffuse_mode = 3
+albedo_texture = ExtResource("2_ccarn")
+emission = Color(0.254902, 0.254902, 0, 1)
+rim_enabled = true
+rim = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_fijkr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arqog"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.8
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_ccarn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_08leh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5g8nm"]
+
+[node name="ItemDrop" type="Area3D"]
+transform = Transform3D(1.41421, 0, 1.41422, 0, 2, 0, -1.41421, 0, 1.41422, 0, 0, 0)
+script = ExtResource("1_86wmi")
+bobStrength = 0.0
+revolverPickup = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_46pkl")
+material_overlay = SubResource("StandardMaterial3D_pnoyl")
+mesh = SubResource("QuadMesh_fijkr")
+
+[node name="ShadowCaster" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.9407e-08, 0, 1, -7.45058e-09, 1, -1.49012e-08, -1, 5.96046e-08, -5.96046e-08, 0, 0.75, 5.96046e-08)
+visible = false
+material_override = SubResource("StandardMaterial3D_arqog")
+cast_shadow = 3
+mesh = SubResource("QuadMesh_08leh")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("SphereShape3D_5g8nm")
+
+[node name="Shotgun" parent="." instance=ExtResource("3_b8y8g")]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0.75, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
