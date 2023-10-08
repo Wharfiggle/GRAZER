@@ -172,7 +172,7 @@ var deathBlend = 0
 var deathTimer = 0
 var dead = false
 
-@export var canHaveNoCows = true
+@export var canHaveNoCows = false
 @onready var checkpoint = position
 var checkpointCowAmmount = 0
 @export var noRevolver = false
@@ -268,7 +268,7 @@ func _process(delta):
 		if(onRevolver):
 			var transp = sqrt(sqrt(lineSightTimer / lineSightTime)) * (1.0 - lineSightTransparency) + lineSightTransparency
 			lineSight.updateMaxOpacity(1.0 - transp)
-	elif(noRevolver):
+	elif(noRevolver || !onRevolver):
 		lineSight.updateMaxOpacity(0)
 	else:
 		lineSight.updateMaxOpacity(1.0 - lineSightTransparency)
