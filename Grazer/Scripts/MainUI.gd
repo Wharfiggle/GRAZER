@@ -62,8 +62,12 @@ func _on_max_health_update_(maxHealth):
 func _set_weapon_image_(image):
 	if(image == null):
 		Wimage.visible = false
+		ammoHolder.visible = false
+		AHBack.visible = false
 	else:
 		Wimage.visible = true
+		ammoHolder.visible = true
+		AHBack.visible = true
 		Wimage.set_texture(image)
 
 func move_ammoHold_ (weapon:bool):

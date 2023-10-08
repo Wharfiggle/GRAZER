@@ -179,6 +179,7 @@ var checkpointCowAmmount = 0
 @export var noShotgun = false
 @onready var healthPulse = $"../HealthPulse".material
 var healthPulseIntensity = 0.0
+var resetHealthPulse = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -213,7 +214,6 @@ func _ready():
 	MainHud._ammo_update_(revolverClip)
 	MainHud._set_ammo_Back(revolverClipSize)
 	
-	
 	#HealthBar._on_max_health_update_(10)
 
 	#var phys_bones = ["Hips", "Spine", "Spine 1", "Spine2", "Neck", "LeftShoulder", "LeftArm", "leftForeArm", "LeftHand", "RightShoulder", "RightArm", "RightForeArm", "RightUpLeg", "LeftFoot", "RightFoot"]
@@ -221,6 +221,14 @@ func _ready():
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(healthPulse != null):
+		if(resetHealthPulse):
+			healthPulse.set_shader_parameter("intensity", 0)
+			resetHealthPulse = false
+			print("shouldve happened")
+	else:
+		healthPulse = $"../HealthPulse".material
+	
 	if(Input.is_action_just_pressed("printSceneCounter")):
 		SceneCounter.printCounters()
 	
@@ -512,7 +520,7 @@ func _process(delta):
 			tVelocity.z = toAdd.z
 	else:
 		worldCursor.visible = false
-		movementBlend = lerpf(movementBlend, 0, 0.1)
+		movementBlend = lerpf(movementBlend, 1, 0.1)
 		animation.set("parameters/walkIdleBlend/blend_amount", movementBlend)
 	
 	lineSightNode.global_position = shootingPoint.global_position
@@ -1035,6 +1043,7 @@ func updateHealth(newHP:float):
 			Vocal.stream = RayHurtSound
 			if(!Vocal.playing):
 				Vocal.play()
+	var increased = newHP > hitpoints
 	hitpoints = newHP
 	MainHud._on_health_update_(hitpoints / maxHitpoints)
 	#healthCounter.updateHealth(hitpoints)
@@ -1043,8 +1052,8 @@ func updateHealth(newHP:float):
 		if(healthRatio < 0.5):
 			healthPulseIntensity = lerpf(healthPulseIntensity, 1.2 - healthRatio, 0.3)
 			healthPulse.set_shader_parameter("intensity", healthPulseIntensity)
-	else:
-		healthPulse = $"../HealthPulse".material
+		elif(increased):
+			resetHealthPulse = true
 	if(hitpoints <= 0 and !invincible):
 		die()
 	if(hitpoints > maxHitpoints):
@@ -1074,8 +1083,8 @@ func die():
 	var terrain = get_node("../AllTerrain")
 	if(terrain.real):
 		deathTimer = 3.0
-		if(russelOrRay == "Ray"):
-			deathTimer = 2.5
+		#if(russelOrRay == "Ray"):
+		#	deathTimer = 2.5
 		if(deathMenu == null):
 			deathMenu = $"../DeathMenu"
 		deathMenu.start()
@@ -1094,6 +1103,7 @@ func die():
 				terrain.spawnMarauder(false)
 	else:
 		await Fade.fade_out(3).finished
+		resetHealthPulse = true
 		animation.set("parameters/DeathTime/scale", 1.5)
 		position = checkpoint
 		updateHealth(maxHitpoints)
