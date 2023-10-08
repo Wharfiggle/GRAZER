@@ -21,7 +21,7 @@ fill_from = Vector2(0.5, 0.5)
 bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhv31"]
-bg_color = Color(0.65, 0.65, 0.65, 1)
+bg_color = Color(0.5, 0.5, 0.5, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0ub4"]
 bg_color = Color(1, 1, 1, 1)
@@ -134,12 +134,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -120.0
-offset_top = -250.0
+offset_top = -210.0
 offset_right = -20.0
-offset_bottom = -185.0
+offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_k8g8n")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
@@ -154,12 +155,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 20.0
-offset_top = -250.0
+offset_top = -210.0
 offset_right = 120.0
-offset_bottom = -185.0
+offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_k8g8n")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")

@@ -76,10 +76,12 @@ func _on_controls_pressed():
 	controls.visible = !controls.visible
 
 func _on_toggle_music_pressed():
+	var level = get_node(NodePath("/root/Level"))
 	var buses = []
 	buses.append(AudioServer.get_bus_index("Music"))
 	for i in buses:
 		AudioServer.set_bus_mute(i, not AudioServer.is_bus_mute(i))
+		level.muteMusic(AudioServer.is_bus_mute(i))
 	soundMaker.stream = menuButtonSound
 	soundMaker.play()
 

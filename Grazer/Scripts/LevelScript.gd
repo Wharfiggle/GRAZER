@@ -302,6 +302,10 @@ func changeMusic(ind:int, duration:float = 0.5):
 	if(ind >= 0 && ind < music.size()):
 		music[ind].fadeIn(duration)
 	currentMusic = ind
+	
+func muteMusic(mute:bool = true):
+	for i in music:
+		i.mute(mute)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
