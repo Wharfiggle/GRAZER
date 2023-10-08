@@ -177,6 +177,8 @@ var dead = false
 var checkpointCowAmmount = 0
 @export var noRevolver = false
 @export var noShotgun = false
+@onready var healthPulse = $"../HealthPulse".material
+var healthPulseIntensity = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -266,8 +268,10 @@ func _process(delta):
 		if(onRevolver):
 			var transp = sqrt(sqrt(lineSightTimer / lineSightTime)) * (1.0 - lineSightTransparency) + lineSightTransparency
 			lineSight.updateMaxOpacity(1.0 - transp)
-	else:
+	elif(noRevolver):
 		lineSight.updateMaxOpacity(0)
+	else:
+		lineSight.updateMaxOpacity(1.0 - lineSightTransparency)
 			
 	if(shootTimer > 0):
 		shootTimer -= delta
@@ -1031,6 +1035,13 @@ func updateHealth(newHP:float):
 	hitpoints = newHP
 	MainHud._on_health_update_(hitpoints / maxHitpoints)
 	#healthCounter.updateHealth(hitpoints)
+	if(healthPulse != null):
+		var healthRatio = hitpoints / maxHitpoints
+		if(healthRatio < 0.5):
+			healthPulseIntensity = lerpf(healthPulseIntensity, 1.2 - healthRatio, 0.3)
+			healthPulse.set_shader_parameter("intensity", healthPulseIntensity)
+	else:
+		healthPulse = $"../HealthPulse".material
 	if(hitpoints <= 0 and !invincible):
 		die()
 	if(hitpoints > maxHitpoints):

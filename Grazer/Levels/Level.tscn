@@ -1,10 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://cclwr76l2moqf"]
+[gd_scene load_steps=40 format=3 uid="uid://cclwr76l2moqf"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dtfmrm20ruq5u" path="res://Prefabs/FPSCounter.tscn" id="2_c6l00"]
-[ext_resource type="Shader" path="res://Levels/HealthFlash.gdshader" id="2_ybbi6"]
+[ext_resource type="PackedScene" uid="uid://gg5n65wh44oy" path="res://Prefabs/HealthPulse.tscn" id="2_y7tso"]
 [ext_resource type="PackedScene" uid="uid://cldod6x8jvoco" path="res://Prefabs/HealthCounter.tscn" id="3_8ivn4"]
 [ext_resource type="Script" path="res://Scripts/CopiedChunkSystem/terrainController.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://bxyxkq7a5m6fw" path="res://Assets/Images/cowCounter.png" id="6_mmeut"]
@@ -33,14 +33,6 @@
 [ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="32_0n3cj"]
 [ext_resource type="Script" path="res://Levels/KillMeInASecond.gd" id="32_y58l0"]
 [ext_resource type="Texture2D" uid="uid://dqe54qrwmp5ed" path="res://Assets/Images/EndScreen.png" id="33_gftir"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_guaj6"]
-shader = ExtResource("2_ybbi6")
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
-shader_parameter/vignette_rgb = Quaternion(0, 0, 0, 1)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_jqc6d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b8kx2"]
 font = ExtResource("19_u5bqv")
@@ -79,14 +71,7 @@ size = Vector3(32, 0.1, 48)
 [node name="Level" type="Node3D"]
 script = ExtResource("1_ilocr")
 
-[node name="HealthPulse" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_guaj6")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_jqc6d")
+[node name="HealthPulse" parent="." instance=ExtResource("2_y7tso")]
 
 [node name="Broadcast" parent="." instance=ExtResource("1_33qyj")]
 

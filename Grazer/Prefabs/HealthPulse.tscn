@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://gg5n65wh44oy"]
+
+[ext_resource type="Shader" path="res://Levels/HealthFlash.gdshader" id="1_3cv42"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_guaj6"]
+shader = ExtResource("1_3cv42")
+shader_parameter/intensity = 0.0
+shader_parameter/opacity = 0.5
+shader_parameter/rgb = Quaternion(1, 0, 0.5, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jqc6d"]
+
+[node name="HealthPulse" type="TextureRect"]
+material = SubResource("ShaderMaterial_guaj6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_jqc6d")
