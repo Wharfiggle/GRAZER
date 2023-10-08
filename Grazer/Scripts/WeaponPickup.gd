@@ -29,7 +29,6 @@ func _on_body_entered(body):
 				player.setWeapon(true)
 				player.rightHand = null
 			else:
-				player.noRevolver = false
 				player.noShotgun = false
 				player.setWeapon(false)
 				player.rightHand = null
