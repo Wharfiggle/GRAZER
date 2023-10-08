@@ -315,10 +315,6 @@ func _process(delta):
 	elif(!onRevolver && !noShotgun):
 		equippedClip = shotgunClip
 		equippedClipSize = shotgunClipSize
-	elif(onRevolver && !noShotgun):
-		setWeapon(false)
-	elif(!onRevolver && !noRevolver):
-		setWeapon(true)
 	else:
 		equippedClip = -1
 		equippedClipSize = -1
@@ -786,6 +782,7 @@ func _physics_process(delta):
 				animation.set("parameters/rightAim/blend_amount", -(aimSwivel * 2 - 1))
 				animation.set("parameters/leftArmBlend/blend_amount", min(1.0, handTransition))
 				animation.set("parameters/rightArmBlend/blend_amount", armBlend)
+			print(rightHand)
 			#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 			var gun = shootingPoint.get_parent()
 			var gunScale = gun.scale
