@@ -17,6 +17,7 @@ var time = 0.0
 @export var spinSpeed = 2.0
 var waited = false
 var player
+@onready var pickupSound = $PickupSound
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,6 +49,7 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	if(waited):
 		if(body.is_in_group('Player')):
+			pickupSound.play()
 			if(item.wepLevel == -1):
 				player.inventory[item.id - 6] += 1
 				levelScript.broadcastMessage("Obtained " + item.name + " Elixir", 3.0)

@@ -60,7 +60,7 @@ var revolution_distance = 8.0
 @onready var activeCoord = []
 @onready var activeChunks = []
 
-var numLevels = 4
+var numLevels = 3
 const mapWidth = 5
 @export var levelLength = 15 #How many tiles until a checkpoint is set
 var structures = []

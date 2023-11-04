@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwkcp316seq05"]
+[gd_scene load_steps=13 format=3 uid="uid://dwkcp316seq05"]
 
 [ext_resource type="Script" path="res://Scripts/WeaponPickup.gd" id="1_khh5a"]
 [ext_resource type="Texture2D" uid="uid://c02uctmpv3isd" path="res://Assets/Images/revolvUpgradeIcon.png" id="2_5kis3"]
 [ext_resource type="PackedScene" uid="uid://cy6xi4epix5ju" path="res://Prefabs/Revolver.tscn" id="3_gtgjy"]
+[ext_resource type="AudioStream" uid="uid://c7amgqw3ddoia" path="res://sounds/MDEV/422709__niamhd00145229__inspect-item.wav" id="4_tsfje"]
 
 [sub_resource type="Gradient" id="Gradient_u6gqg"]
 colors = PackedColorArray(1, 0.816667, 0, 0.392157, 1, 0.815686, 0, 0.392157)
@@ -77,5 +78,9 @@ shape = SubResource("SphereShape3D_5g8nm")
 
 [node name="Revolver" parent="." instance=ExtResource("3_gtgjy")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, 0)
+
+[node name="PickupSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.500001, 0, 0, 0, 0.5, 4.02331e-07, 0, -7.45058e-09, 0.499998, 0, 1, 0)
+stream = ExtResource("4_tsfje")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

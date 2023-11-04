@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxv63ajpdyrdm"]
+[gd_scene load_steps=12 format=3 uid="uid://cxv63ajpdyrdm"]
 
 [ext_resource type="Script" path="res://Scripts/ItemDrop.gd" id="1_vqyld"]
 [ext_resource type="Texture2D" uid="uid://cijaryf7osjxm" path="res://Assets/Images/canimakeanestinyou.png" id="2_ol5mp"]
+[ext_resource type="AudioStream" uid="uid://c7amgqw3ddoia" path="res://sounds/MDEV/422709__niamhd00145229__inspect-item.wav" id="3_th842"]
 
 [sub_resource type="Gradient" id="Gradient_u6gqg"]
 colors = PackedColorArray(1, 0.816667, 0, 0.392157, 1, 0.815686, 0, 0.392157)
@@ -75,5 +76,9 @@ skeleton = NodePath("../MeshInstance3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("SphereShape3D_5g8nm")
+
+[node name="PickupSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.500001, 0, 0, 0, 0.5, 4.02331e-07, 0, -7.45058e-09, 0.499998, 0, 1, 0)
+stream = ExtResource("3_th842")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

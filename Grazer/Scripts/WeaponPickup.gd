@@ -10,6 +10,7 @@ var waited = false
 var levelScript
 var player
 @export var revolverPickup = true
+@onready var pickupSound = $PickupSound
 
 func _physics_process(delta):
 	if(!waited):

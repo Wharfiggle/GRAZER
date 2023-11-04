@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkm3egb128it6"]
+[gd_scene load_steps=13 format=3 uid="uid://dkm3egb128it6"]
 
 [ext_resource type="Script" path="res://Scripts/WeaponPickup.gd" id="1_86wmi"]
 [ext_resource type="Texture2D" uid="uid://2pwvxhea01x2" path="res://Assets/Images/shotgunUpgradeIcon.png" id="2_ccarn"]
 [ext_resource type="PackedScene" uid="uid://c865wqlp5lwla" path="res://Prefabs/Shotgun.tscn" id="3_b8y8g"]
+[ext_resource type="AudioStream" uid="uid://c7amgqw3ddoia" path="res://sounds/MDEV/422709__niamhd00145229__inspect-item.wav" id="4_i4avj"]
 
 [sub_resource type="Gradient" id="Gradient_u6gqg"]
 colors = PackedColorArray(1, 0.816667, 0, 0.392157, 1, 0.815686, 0, 0.392157)
@@ -78,5 +79,9 @@ shape = SubResource("SphereShape3D_5g8nm")
 
 [node name="Shotgun" parent="." instance=ExtResource("3_b8y8g")]
 transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0.75, 0)
+
+[node name="PickupSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.500001, 0, 0, 0, 0.5, 4.02331e-07, 0, -7.45058e-09, 0.499998, 0, 1, 0)
+stream = ExtResource("4_i4avj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

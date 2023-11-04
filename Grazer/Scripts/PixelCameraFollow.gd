@@ -14,6 +14,7 @@ var pos
 @export var maxOffset = 1.0
 
 @export var trauamaReducRate = 1.0
+var minTrauma = 0.0
 var trauma = 0.0
 var time = 0.0
 
@@ -42,7 +43,10 @@ func _process(delta):
 	#uiCam.global_rotation = global_rotation
 
 func add_trauma(in_trauma_amount : float):
-	trauma = clamp(trauma + in_trauma_amount, 0.0, 0.4)
+	trauma = clamp(trauma + in_trauma_amount, minTrauma, 0.4)
+
+func set_min_trauma(t:float):
+	minTrauma = t
 
 func get_shake_intensity() -> float:
 	return trauma * trauma

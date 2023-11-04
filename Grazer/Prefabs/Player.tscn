@@ -25,8 +25,8 @@ render_priority = 0
 shader = ExtResource("5_fmxe7")
 shader_parameter/camCenter = Vector3(0, 0, 0)
 shader_parameter/color = Vector3(1, 1, 1)
-shader_parameter/fadeMod = 4.0
-shader_parameter/fadeDist = 3.0
+shader_parameter/fadeMod = 1.0
+shader_parameter/fadeDist = 8.0
 shader_parameter/maxOpacity = 1.0
 
 [node name="Player" type="CharacterBody3D"]
