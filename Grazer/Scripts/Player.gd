@@ -232,7 +232,7 @@ func _process(delta):
 		if(armsLowering < 0.01):
 			armsLowering = 0.0
 		playerIdlingTimer -= delta
-		if(playerIdlingTimer < 0):
+		if(playerIdlingTimer <= 0):
 			switchIdle(true)
 	else:
 		armsLowering = lerp(armsLowering, 1.0, 0.3)
@@ -289,7 +289,7 @@ func _process(delta):
 	
 	if(lineSightTimer > 0 && !noRevolver):
 		lineSightTimer -= delta
-		if(lineSightTimer < 0):
+		if(lineSightTimer <= 0):
 			lineSightTimer = 0
 		if(onRevolver):
 			var transp = sqrt(sqrt(lineSightTimer / lineSightTime)) * (1.0 - lineSightTransparency) + lineSightTransparency
@@ -301,11 +301,11 @@ func _process(delta):
 			
 	if(shootTimer > 0):
 		shootTimer -= delta
-		if(shootTimer < 0):
+		if(shootTimer <= 0):
 			shootTimer = 0
 	if(shootBufferTimer > 0):
 		shootBufferTimer -= delta
-		if(shootBufferTimer < 0):
+		if(shootBufferTimer <= 0):
 			shootBufferTimer = 0
 			
 	if(potionTimer > 0):
@@ -327,7 +327,7 @@ func _process(delta):
 		var t = potionTimer / potionTime
 		hitFlash.set_shader_parameter("amount", abs( sin( sqrt(t) * 100) ) / 10)
 		potionTimer -= delta
-		if(potionTimer < 0):
+		if(potionTimer <= 0):
 			potionTimer = 0
 			if(potionUsed != potions[0]):
 				extraSounds.stream = potionPowerDown
@@ -686,7 +686,7 @@ func _physics_process(delta):
 	
 	if(deathTimer > 0):
 		deathTimer -= delta
-		if(deathTimer < 0):
+		if(deathTimer <= 0):
 			deathTimer = 0
 			animation.set("parameters/DeathTime/scale", 0)
 		deathBlend = lerpf(deathBlend, 1, 0.3)
@@ -856,7 +856,7 @@ func _physics_process(delta):
 		dodgeBufferTimer = dodgeBufferTime
 	elif(dodgeBufferTimer > 0):
 		dodgeBufferTimer -= delta
-		if(dodgeBufferTimer < 0):
+		if(dodgeBufferTimer <= 0):
 			dodgeBufferTimer = 0
 	if(active && dodgeBufferTimer > 0 && dodgeCooldownTimer == 0):
 		herd.clearHuddle()
@@ -884,7 +884,7 @@ func _physics_process(delta):
 		dodgeTimer -= delta
 		if(dauntless):
 			dodgeTimer -= delta * 0.5
-		if(dodgeTimer < 0):
+		if(dodgeTimer <= 0):
 			dodgeTimer = 0
 			Vocal.stream = null
 			animation.set("parameters/lungeBlend/blend_amount", 0)
@@ -913,7 +913,7 @@ func _physics_process(delta):
 		animation.set("parameters/lungeBlend/blend_amount", blend)
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
-		if(dodgeCooldownTimer < 0):
+		if(dodgeCooldownTimer <= 0):
 			dodgeCooldownTimer = 0
 	
 	if(active):

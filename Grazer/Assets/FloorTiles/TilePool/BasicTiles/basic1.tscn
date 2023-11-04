@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b66yihrlihrt7"]
+[gd_scene load_steps=12 format=3 uid="uid://b66yihrlihrt7"]
 
 [ext_resource type="Material" uid="uid://c23pdgloa1ahr" path="res://Assets/Materials/GroundMat.tres" id="1_mjuoe"]
 [ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="2_yb4l6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="6_a6g3t"]
 [ext_resource type="PackedScene" uid="uid://bey4mphmvig4w" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone1.tscn" id="7_jorfd"]
 [ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="7_qkq11"]
+[ext_resource type="PackedScene" uid="uid://cebdnkuyb0ogo" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/ItemSpawner.tscn" id="8_wh1cj"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(16, 0.1, 16)
@@ -62,3 +63,30 @@ gunmanSpawnChance = 0.4
 spawnChance = 0.1
 numEnemies = 4
 timeDelay = 0.2
+
+[node name="ItemSpawner" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09281, 0.0500002, -2.01261)
+
+[node name="ItemSpawner2" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.38126, 0.0500002, -2.01261)
+
+[node name="ItemSpawner3" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86905, 0.0500002, 0.832324)
+
+[node name="ItemSpawner4" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09281, 0.0500002, -6.14333)
+
+[node name="ItemSpawner5" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56991, 0.0500002, -2.01261)
+
+[node name="ItemSpawner6" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24996, 0.0500002, -2.01261)
+
+[node name="ItemSpawner7" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.845055, 0.0500002, -6.69171)
+
+[node name="ItemSpawner8" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.54864, 0.0500002, -4.46356)
+
+[node name="ItemSpawner9" parent="." instance=ExtResource("8_wh1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09281, 0.0500002, 2.59039)

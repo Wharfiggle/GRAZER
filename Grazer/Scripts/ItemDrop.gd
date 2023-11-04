@@ -18,6 +18,8 @@ var time = 0.0
 var waited = false
 var player
 @onready var pickupSound = $PickupSound
+var killTime = 0.25
+var killTimer = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,6 +44,12 @@ func _physics_process(delta):
 		get_child(1).visible = true
 		waited = true
 	
+	if(killTimer > 0):
+		killTimer -= delta
+		if(killTimer <= 0):
+			queue_free()
+			SceneCounter.items -= 1
+	
 	time += delta
 	position.y = sin(time * bobSpeed) * bobStrength
 	rotation.y += spinSpeed * delta
@@ -55,5 +63,4 @@ func _on_body_entered(body):
 				levelScript.broadcastMessage("Obtained " + item.name + " Elixir", 3.0)
 			else:
 				item.use(true)
-			queue_free()
-			SceneCounter.items -= 1
+			killTimer = killTime
