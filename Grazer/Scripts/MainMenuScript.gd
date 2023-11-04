@@ -25,6 +25,7 @@ var selected = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	rng.randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

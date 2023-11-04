@@ -182,6 +182,11 @@ var checkpointCowAmmount = 0
 var healthPulseIntensity = 0.0
 var resetHealthPulse = true
 
+var playerIdlingTime = 3.0
+var playerIdlingTimer = 1.5
+var playerIdling = false
+var armsLowering = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.add_to_group('Player')
@@ -222,11 +227,21 @@ func _ready():
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(!playerIdling):
+		armsLowering = lerp(armsLowering, 0.0, 0.3)
+		if(armsLowering < 0.01):
+			armsLowering = 0.0
+		playerIdlingTimer -= delta
+		if(playerIdlingTimer < 0):
+			switchIdle(true)
+	else:
+		armsLowering = lerp(armsLowering, 1.0, 0.3)
+	animation.set("parameters/AnimIdleBlend/blend_amount", armsLowering)
+	
 	if(healthPulse != null):
 		if(resetHealthPulse):
 			healthPulse.set_shader_parameter("intensity", 0)
 			resetHealthPulse = false
-			print("shouldve happened")
 	else:
 		healthPulse = $"../HealthPulse".material
 	
@@ -395,6 +410,8 @@ func _process(delta):
 			reloading = false
 		idleTime = 0
 		
+		switchIdle(false)
+		
 		shootBufferTimer = 0
 		Input.start_joy_vibration(0,1,1,0.07)
 		var smokeInstance = smoke.instantiate()
@@ -463,24 +480,16 @@ func _process(delta):
 	var toAdd = Vector3()
 	if(!(Input.is_action_pressed("moveRight") and Input.is_action_pressed("moveLeft"))):
 		if(Input.is_action_pressed("moveRight")):
-			#if (!Steps.playing):
-			#Steps.play()
 			toAdd.x += 1
 			toAdd.z += -1
 		elif(Input.is_action_pressed("moveLeft")):
-			
-			#Steps.play()
 			toAdd.x += -1
 			toAdd.z += 1
 	if(!(Input.is_action_pressed("moveDown") and Input.is_action_pressed("moveUp"))):
 		if(Input.is_action_pressed("moveDown")):
-			
-			#Steps.play()
 			toAdd.x += 1
 			toAdd.z += 1
 		elif(Input.is_action_pressed("moveUp")):
-			
-			#Steps.play()
 			toAdd.x += -1
 			toAdd.z += -1
 	var stickToAdd = Vector3(Input.get_joy_axis(0, JOY_AXIS_LEFT_X), 0, Input.get_joy_axis(0, JOY_AXIS_LEFT_Y))
@@ -517,6 +526,7 @@ func _process(delta):
 			tVelocity.z = lerp(tVelocity.z,0.0,0.1)
 			herd.canHuddle = true
 		else:
+			switchIdle(false)
 			herd.clearHuddle()
 			herd.canHuddle = false
 			tVelocity.x = toAdd.x
@@ -545,6 +555,16 @@ func _process(delta):
 			herd.toggleFollow()
 	else:
 		print("there is no herd?")
+
+func switchIdle(idling:bool):
+	print("switched to " + str(idling))
+	print(playerIdlingTimer)
+	if(idling != playerIdling):
+		if(!idling):
+			playerIdlingTimer = playerIdlingTime
+			playerIdling = false
+		else:
+			playerIdling = true
 
 func setModel(inRusselOrRay:bool):
 	if(inRusselOrRay == (russelOrRay == "Russel")):
@@ -706,9 +726,11 @@ func _physics_process(delta):
 		if(rightStick.length() > 0.6):
 			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
 			worldCursor.visible = false
+			switchIdle(false)
 		elif(leftStick.length() > 0.3):
 			aimDir = -atan2(leftStick.z, leftStick.x) - PI * 5.0 / 4.0
 			worldCursor.visible = false
+			switchIdle(false)
 		#get aimDir based on mouse movement
 		elif(prevMousePos != mousePos || worldCursor.visible):
 			#old method involving raycasts. expensive and collided with non-ground objects
@@ -722,6 +744,8 @@ func _physics_process(delta):
 				#ray_query.collide_with_areas = true
 				#var aimAt = space.intersect_ray(ray_query).get("position", Vector3(0, 0, 0))
 				#angle from the camera plane to the ground plane
+			if(prevMousePos != mousePos):
+				switchIdle(false)
 			var camAngle = camera.rotation.x
 			if(camAngle < 0):
 				camAngle = PI/2.0 + fmod(camAngle, PI/2.0)
@@ -752,7 +776,7 @@ func _physics_process(delta):
 		if(aimDir < 0):
 			aimDir = 2 * PI + aimDir
 		var realAimDir = aimDir
-		#account for crossover from 0 to 2PI or vice versa
+		#account for crossover from 0 to 2 * PI or vice versa
 		var aimDelta = aimDir - prevAimDir[0]
 		if(abs(aimDelta) >= PI):
 			var mod = aimDelta / abs(aimDelta)
@@ -778,11 +802,9 @@ func _physics_process(delta):
 			var justSwitched = false
 			if(noRevolver and noShotgun):
 				animation.set("parameters/rightAim/blend_amount", 0)
-				animation.set("parameters/leftArmBlend/blend_amount", 0)
 				animation.set("parameters/rightArmBlend/blend_amount", 0)
 				animation.set("parameters/leftAim/blend_amount", 0)
 				animation.set("parameters/leftArmBlend/blend_amount", 0)
-				animation.set("parameters/rightArmBlend/blend_amount", 0)
 			elif(aimSwivel <= 0): #left hand
 				if(prevAimSwivel > 0 or rightHand == null):
 					handTransition = 2
@@ -801,10 +823,18 @@ func _physics_process(delta):
 				animation.set("parameters/rightAim/blend_amount", -(aimSwivel * 2 - 1))
 				animation.set("parameters/leftArmBlend/blend_amount", min(1.0, handTransition))
 				animation.set("parameters/rightArmBlend/blend_amount", armBlend)
+			if(armsLowering > 0):
+				lineSightNode.visible = false
+				var t = 1.0 - armsLowering
+				animation.set("parameters/rightAim/blend_amount", t)
+				animation.set("parameters/rightArmBlend/blend_amount", t)
+				animation.set("parameters/leftAim/blend_amount", t)
+				animation.set("parameters/leftArmBlend/blend_amount", t)
 			#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 			var gun = shootingPoint.get_parent()
 			var gunScale = gun.scale
-			gun.set_global_rotation(Vector3(0, aimDir, 0))
+			if(armsLowering == 0):
+				gun.set_global_rotation(Vector3(0, aimDir, 0))
 			#i dont remember why i did this since just always setting rotation.y to aimDir works better
 #			if(abs(prevAimSwivel - aimSwivel) < 0.01):
 #				#do this when arms are aiming same direction as cursor to fix gun slowly becoming offset
@@ -822,6 +852,7 @@ func _physics_process(delta):
 	
 	#dodging
 	if(Input.is_action_just_pressed("dodge") && active):
+		switchIdle(false)
 		dodgeBufferTimer = dodgeBufferTime
 	elif(dodgeBufferTimer > 0):
 		dodgeBufferTimer -= delta
