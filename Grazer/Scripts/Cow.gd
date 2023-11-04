@@ -285,7 +285,7 @@ func _physics_process(delta):
 	
 	if(mooTimer > 0):
 		mooTimer -= delta
-		if(mooTimer < 0):
+		if(mooTimer <= 0):
 			mooTimer = 0
 			if(stray):
 				makeMoo()
@@ -699,7 +699,7 @@ func _physics_process(delta):
 		if(mooIndicatorTimer > 0):
 			mooIndicatorTimer -= delta
 			var mooMat = mooInd.get_surface_override_material(0).duplicate()
-			if(mooIndicatorTimer < 0):
+			if(mooIndicatorTimer <= 0):
 				mooIndicatorTimer = 0
 				mooInd.visible = false
 				mooMat.albedo_color = Color(1, 0, 0, 1)

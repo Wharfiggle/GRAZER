@@ -329,7 +329,7 @@ func _process(delta):
 	#make broadcast message move smoothly on and off screen
 	if(broadcastTimer > 0):
 		broadcastTimer -= delta
-		if(broadcastTimer < 0):
+		if(broadcastTimer <= 0):
 			broadcastTimer = 0
 			broadcast.get_child(2).text = "wee woo wee woo"
 		var startT = 1.0 - min(1.0, (broadcastTime - broadcastTimer) / broadcastStartExitTime)

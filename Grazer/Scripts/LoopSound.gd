@@ -35,7 +35,7 @@ func _ready():
 func _process(delta):
 	if(transitionTimer > 0 || transitionTimer == transitionTime):
 		transitionTimer -= delta
-		if(transitionTimer < 0):
+		if(transitionTimer <= 0):
 			transitionTimer = 0
 		
 		var t = transitionTimer / transitionTime

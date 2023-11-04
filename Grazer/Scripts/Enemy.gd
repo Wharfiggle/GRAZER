@@ -207,7 +207,7 @@ func _physics_process(delta):
 	
 	if(deathTimer > 0):
 		deathTimer -= delta
-		if(deathTimer < 0):
+		if(deathTimer <= 0):
 			deathTimer = 0
 			delete()
 		deathBlend = lerpf(deathBlend, 1, 0.3)
@@ -369,7 +369,7 @@ func _physics_process(delta):
 		knockbackTimer -= delta
 		var t = knockbackTimer / knockbackTime
 		animation.set("parameters/walkPushed/blend_amount", max(min(1 - t, 1.0), 0))
-		if(knockbackTimer < 0):
+		if(knockbackTimer <= 0):
 			knockbackTimer = 0
 			knockbackStrength = 0
 			animation.set("parameters/walkPushed/blend_amount", 1)
@@ -383,7 +383,7 @@ func _physics_process(delta):
 		stunTimer -= delta
 		if(stunTimer < stunTime / 4.0):
 			animation.set("parameters/walkPushed/blend_amount", max(min(stunTimer / (stunTime / 4.0), 1), 0))
-		if(stunTimer < 0):
+		if(stunTimer <= 0):
 			stunTimer = 0
 			animation.set("parameters/walkPushed/blend_amount", 0)
 		model.position.z = animation.get("parameters/walkPushed/blend_amount")
@@ -391,7 +391,7 @@ func _physics_process(delta):
 	#knockback iframes timer
 #	elif(knockbackIFramesTimer > 0):
 #		knockbackIFramesTimer -= delta
-#		if(knockbackIFramesTimer < 0):
+#		if(knockbackIFramesTimer <= 0):
 #			knockbackIFramesTimer = 0
 
 func delete(actuallyDelete:bool = true):
