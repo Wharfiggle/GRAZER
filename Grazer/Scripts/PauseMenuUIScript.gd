@@ -15,7 +15,7 @@ var sound = preload("res://sounds/New Sound FEX/UI/extra sounds/Ui_pitch1.wav")
 #var hover = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 var menuOpen = preload("res://sounds/New Sound FEX/UI/MenuSlideIn.wav")
 var menuClose = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
-var fullscreen = true
+var fullscreen = false
 
 @onready var controlB = $AudioStreamPlayer2D
 @onready var MMB = $MainMenu/AudioStreamPlayer2D
@@ -43,6 +43,13 @@ func togglePause():
 		visible = false
 		uiCursor.setActive(false, Vector2(0, 0))
 		get_tree().paused = false
+
+func _ready():
+	if(WorldSave.fullscreen == null):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		fullscreen = true
+	else:
+		fullscreen = WorldSave.fullscreen
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -102,5 +109,7 @@ func _on_toggle_fullscreen_pressed():
 	fullscreen = !fullscreen
 	if(fullscreen):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		WorldSave.fullscreen = true
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		WorldSave.fullscreen = false

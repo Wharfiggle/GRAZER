@@ -232,7 +232,7 @@ func _process(delta):
 		if(armsLowering < 0.01):
 			armsLowering = 0.0
 		playerIdlingTimer -= delta
-		if(playerIdlingTimer <= 0):
+		if(playerIdlingTimer <= 0 or (noRevolver and noShotgun)):
 			switchIdle(true)
 	else:
 		armsLowering = lerp(armsLowering, 1.0, 0.3)
@@ -275,8 +275,9 @@ func _process(delta):
 		#spawn cows at start
 		var terrain = get_node("../AllTerrain")
 		if(terrain.real):
-			for i in 5:
-				herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), 0)
+			var newCows = WorldSave.cows
+			for i in len(newCows):
+				herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), newCows[i])
 #		for i in 6:
 #			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), i)
 #		for i in 5:
@@ -404,13 +405,13 @@ func _process(delta):
 	
 	#shoot gun
 	if(active && shootBufferTimer > 0 && shootTimer == 0 && equippedClip > 0):
+		switchIdle(false)
+		
 		#If currently reloading, cancel reload
 		if(reloading):
 			currentReloadTime = 0
 			reloading = false
 		idleTime = 0
-		
-		switchIdle(false)
 		
 		shootBufferTimer = 0
 		Input.start_joy_vibration(0,1,1,0.07)
@@ -726,7 +727,8 @@ func _physics_process(delta):
 		if(rightStick.length() > 0.6):
 			aimDir = -atan2(rightStick.z, rightStick.x) - PI * 5.0 / 4.0
 			worldCursor.visible = false
-			switchIdle(false)
+			if(!noRevolver or !noShotgun):
+				switchIdle(false)
 		elif(leftStick.length() > 0.3):
 			aimDir = -atan2(leftStick.z, leftStick.x) - PI * 5.0 / 4.0
 			worldCursor.visible = false
@@ -745,7 +747,8 @@ func _physics_process(delta):
 				#var aimAt = space.intersect_ray(ray_query).get("position", Vector3(0, 0, 0))
 				#angle from the camera plane to the ground plane
 			if(prevMousePos != mousePos):
-				switchIdle(false)
+				if(!noRevolver or !noShotgun):
+					switchIdle(false)
 			var camAngle = camera.rotation.x
 			if(camAngle < 0):
 				camAngle = PI/2.0 + fmod(camAngle, PI/2.0)
@@ -805,6 +808,7 @@ func _physics_process(delta):
 				animation.set("parameters/rightArmBlend/blend_amount", 0)
 				animation.set("parameters/leftAim/blend_amount", 0)
 				animation.set("parameters/leftArmBlend/blend_amount", 0)
+				armsLowering = 1.0
 			elif(aimSwivel <= 0): #left hand
 				if(prevAimSwivel > 0 or rightHand == null):
 					handTransition = 2
