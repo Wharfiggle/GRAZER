@@ -96,3 +96,6 @@ func _on_toggle_sfx_pressed():
 		AudioServer.set_bus_mute(i, not AudioServer.is_bus_mute(i))
 	soundMaker.stream = menuButtonSound
 	soundMaker.play()
+
+#func _on_toggle_fullscreen_pressed():
+#	OS.set_window_fullscreen(!OS.window_fullscreen)

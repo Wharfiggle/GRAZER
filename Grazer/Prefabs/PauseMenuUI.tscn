@@ -168,6 +168,27 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
 text = "SFX"
 
+[node name="ToggleFullscreen" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 150.0
+offset_right = 65.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_k8g8n")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
+text = "Fullscreen"
+
 [node name="MainMenu" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -270,5 +291,6 @@ text = "Back"
 [connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="ToggleMusic" to="." method="_on_toggle_music_pressed"]
 [connection signal="pressed" from="ToggleSFX" to="." method="_on_toggle_sfx_pressed"]
+[connection signal="pressed" from="ToggleFullscreen" to="." method="_on_toggle_music_pressed"]
 [connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="ControlsGraphic/ControlsGradient/BackButton" to="." method="_on_controls_pressed"]
