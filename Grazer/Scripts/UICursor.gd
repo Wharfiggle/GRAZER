@@ -36,6 +36,8 @@ func _process(delta):
 	if(!active):
 		return
 	
+	screenSize = DisplayServer.window_get_size() as Vector2
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var mousePos = viewport.get_mouse_position()
 	var screen = viewport.get_visible_rect()
