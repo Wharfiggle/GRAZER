@@ -291,6 +291,6 @@ text = "Back"
 [connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="ToggleMusic" to="." method="_on_toggle_music_pressed"]
 [connection signal="pressed" from="ToggleSFX" to="." method="_on_toggle_sfx_pressed"]
-[connection signal="pressed" from="ToggleFullscreen" to="." method="_on_toggle_music_pressed"]
+[connection signal="pressed" from="ToggleFullscreen" to="." method="_on_toggle_fullscreen_pressed"]
 [connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="ControlsGraphic/ControlsGradient/BackButton" to="." method="_on_controls_pressed"]

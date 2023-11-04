@@ -774,7 +774,7 @@ func _physics_process(delta):
 			aimSwivel = -(aimSwivel * 2 - 1)
 			aimSwivel = lerpf(prevAimSwivel, aimSwivel, swivelSpeed)
 			var prevHandTransition = handTransition
-			handTransition = lerpf(prevHandTransition, 0, swivelSpeed/2)
+			handTransition = lerpf(prevHandTransition, 0, swivelSpeed / 2)
 			var justSwitched = false
 			if(noRevolver and noShotgun):
 				animation.set("parameters/rightAim/blend_amount", 0)

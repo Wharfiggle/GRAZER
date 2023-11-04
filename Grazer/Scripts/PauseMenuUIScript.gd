@@ -15,6 +15,7 @@ var sound = preload("res://sounds/New Sound FEX/UI/extra sounds/Ui_pitch1.wav")
 #var hover = preload("res://sounds/New Sound FEX/UI/Scroll.wav")
 var menuOpen = preload("res://sounds/New Sound FEX/UI/MenuSlideIn.wav")
 var menuClose = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
+var fullscreen = true
 
 @onready var controlB = $AudioStreamPlayer2D
 @onready var MMB = $MainMenu/AudioStreamPlayer2D
@@ -97,5 +98,9 @@ func _on_toggle_sfx_pressed():
 	soundMaker.stream = menuButtonSound
 	soundMaker.play()
 
-#func _on_toggle_fullscreen_pressed():
-#	OS.set_window_fullscreen(!OS.window_fullscreen)
+func _on_toggle_fullscreen_pressed():
+	fullscreen = !fullscreen
+	if(fullscreen):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
