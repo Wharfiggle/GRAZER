@@ -13,17 +13,19 @@ var camOffset
 var pos
 @export var maxOffset = 1.0
 
-@export var trauamaReducRate = 1.0
-var minTrauma = 0.0
+@export var traumaReducRate = 1.0
+var idleSway = 0.5
 var trauma = 0.0
-var time = 0.0
 
 @export var maxX = 10.0
 @export var maxY = 10.0
 @export var maxZ = 5.0
 
 @export var noise : FastNoiseLite
-@export var noiseSpeed = 50.0
+@export var noiseSpeedTrauma = 50.0
+@export var noiseSpeedIdle = 2.0
+var timeTrauma = 0.0
+var timeIdle = 0.0
 
 @onready var camera = self
 @onready var initialRotation = camera.rotation as Vector3
@@ -31,29 +33,38 @@ var time = 0.0
 #@onready var uiCam = $"SubViewportContainer/SubViewport/3DUICamera"
 
 func _process(delta):
-	time += delta
-	trauma = max(trauma - delta * trauamaReducRate, 0.0)
+	timeIdle += delta * noiseSpeedIdle
+	timeTrauma += delta * noiseSpeedTrauma
+	
+	trauma = max(trauma - delta * traumaReducRate, 0.0)
 
 	var cameraRotDelta = Vector3.ZERO
-	cameraRotDelta.x = maxX * get_shake_intensity() * get_noise_from_seed(0)
-	cameraRotDelta.y = maxY * get_shake_intensity() * get_noise_from_seed(1)
-	cameraRotDelta.z = maxZ * get_shake_intensity() * get_noise_from_seed(2)
+	cameraRotDelta.x = maxX * get_shake_intensity() * get_noise_from_seed(0, timeTrauma)
+	cameraRotDelta.y = maxY * get_shake_intensity() * get_noise_from_seed(1, timeTrauma)
+	cameraRotDelta.z = maxZ * get_shake_intensity() * get_noise_from_seed(2, timeTrauma)
 	cameraRotDelta *= PI / 180.0
-	camera.rotation = initialRotation + cameraRotDelta
+	var cameraSwayDelta = Vector3.ZERO
+	cameraSwayDelta.x = 5.0 * PI / 180.0 * idleSway * idleSway * get_noise_from_seed(0, timeIdle)
+	cameraSwayDelta.y = 5.0 * PI / 180.0 * idleSway * idleSway * get_noise_from_seed(1, timeIdle)
+	cameraSwayDelta.z = 5.0 * PI / 180.0 * idleSway * idleSway * get_noise_from_seed(2, timeIdle)
+	camera.rotation = initialRotation + cameraRotDelta + cameraSwayDelta
 	#uiCam.global_rotation = global_rotation
 
 func add_trauma(in_trauma_amount : float):
-	trauma = clamp(trauma + in_trauma_amount, minTrauma, 0.4)
+	trauma = clamp(trauma + in_trauma_amount, 0.0, 0.4)
 
-func set_min_trauma(t:float):
-	minTrauma = t
+func set_idle_sway(i:float):
+	idleSway = i
+	
+func set_idle_sway_speed(nsi:float):
+	noiseSpeedIdle = nsi
 
 func get_shake_intensity() -> float:
 	return trauma * trauma
 
-func get_noise_from_seed(_seed : int) -> float:
+func get_noise_from_seed(_seed : int, _time : float) -> float:
 	noise.seed = _seed
-	return noise.get_noise_1d(time * noiseSpeed)
+	return noise.get_noise_1d(_time)
 
 
 # Called when the node enters the scene tree for the first time.

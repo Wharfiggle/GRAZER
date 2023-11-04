@@ -128,7 +128,8 @@ var GRAVITY = 30
 @export var speed = 8.0
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
-@onready var camera = get_node(NodePath("/root/Level/Camera3D"))
+#@onready var camera = get_node(NodePath("/root/Level/Camera3D"))
+var camera = null
 var moveDir = PI * 5.0 / 8.0
 var prevAimDir = [0, 0, 0, 0, 0]
 var aimDir = 0.0
@@ -815,6 +816,7 @@ func _physics_process(delta):
 			lineSightNode.visible = false
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
+		camera.set_idle_sway(0.5)
 	else:
 		worldCursor.visible = false
 	
@@ -857,7 +859,7 @@ func _physics_process(delta):
 			animation.set("parameters/lungeBlend/blend_amount", 0)
 			knocked = false
 			dodgeVel = Vector3.ZERO
-			tVelocity = Vector3.ZERO
+			#tVelocity = Vector3.ZERO
 		else:
 			var t = dodgeTimer / dodgeTime
 			t = sqrt(t)
@@ -865,7 +867,7 @@ func _physics_process(delta):
 			if(knocked):
 				knockMod = 0.5
 			#print(Vector3(sin(moveDir), 0, cos(moveDir)))
-			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * (dodgeSpeed + dodgeSpeedIncrease * lungeEffectiveness) * t * knockMod
+			dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * max(speed * potionSpeedup, (dodgeSpeed + dodgeSpeedIncrease * lungeEffectiveness) * t * knockMod)
 		if(dauntless):
 			dodgeVel *= 1.5
 		knock()
