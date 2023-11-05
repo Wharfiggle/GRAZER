@@ -53,6 +53,7 @@ func _physics_process(_delta):
 			elif(parent.totalValue < parent.player.potions[selected].cost):
 				parent.level.broadcastMessage("Invalid Trade: Insufficient cows.", 0.1)
 			else:
+				print("jahysgdjahsgdjhasgd")
 				parent.level.broadcastMessage("Warning: This purchase will kill you.", 0.1)
 			buyButton.disabled = true
 			buyButton.modulate = Color(1.0, 0.75, 0.75)

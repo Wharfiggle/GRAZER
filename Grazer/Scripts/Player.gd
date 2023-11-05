@@ -22,7 +22,7 @@ var tVelocity = Vector3(0,0,0)
 @export var dodgeSpeed = 12
 @export var dodgeSpeedIncrease = 5
 var dodgeVel = Vector3(0,0,0)
-@export var dodgeTime = 0.5
+@export var dodgeTime = 0.65
 var dodgeTimer = 0.0
 @export var dodgeCooldownTime = 0.7
 var dodgeCooldownTimer = 0.0
@@ -235,7 +235,7 @@ func _process(delta):
 		if(playerIdlingTimer <= 0 or (noRevolver and noShotgun)):
 			switchIdle(true)
 	else:
-		armsLowering = lerp(armsLowering, 1.0, 0.3)
+		armsLowering = lerp(armsLowering, 1.0, 0.1)
 	animation.set("parameters/AnimIdleBlend/blend_amount", armsLowering)
 	
 	if(healthPulse != null):
@@ -374,7 +374,7 @@ func _process(delta):
 			currentReloadTime = 0
 			finishReloading()
 		
-		var startTime = 0.1
+		var startTime = 0.2
 		var rTime = revolverReloadTime
 		if(!onRevolver):
 			rTime = shotgunReloadTime
@@ -558,8 +558,8 @@ func _process(delta):
 		print("there is no herd?")
 
 func switchIdle(idling:bool):
-	print("switched to " + str(idling))
-	print(playerIdlingTimer)
+	#print("switched to " + str(idling))
+	#print(playerIdlingTimer)
 	if(idling != playerIdling):
 		if(!idling):
 			playerIdlingTimer = playerIdlingTime
@@ -830,10 +830,16 @@ func _physics_process(delta):
 			if(armsLowering > 0):
 				lineSightNode.visible = false
 				var t = 1.0 - armsLowering
-				animation.set("parameters/rightAim/blend_amount", t)
-				animation.set("parameters/rightArmBlend/blend_amount", t)
-				animation.set("parameters/leftAim/blend_amount", t)
-				animation.set("parameters/leftArmBlend/blend_amount", t)
+				if(rightHand):
+					animation.set("parameters/rightAim/blend_amount", t)
+					animation.set("parameters/rightArmBlend/blend_amount", t)
+					animation.set("parameters/leftAim/blend_amount", 0)
+					animation.set("parameters/leftArmBlend/blend_amount", 0)
+				else:
+					animation.set("parameters/rightAim/blend_amount", 0)
+					animation.set("parameters/rightArmBlend/blend_amount", 0)
+					animation.set("parameters/leftAim/blend_amount", t)
+					animation.set("parameters/leftArmBlend/blend_amount", t)
 			#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 			var gun = shootingPoint.get_parent()
 			var gunScale = gun.scale
@@ -881,6 +887,7 @@ func _physics_process(delta):
 		if(dauntless):
 			dodgeCooldownTimer = 0.001
 		dodgeTimer = dodgeTime
+		animation.set("parameters/lungeOS/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		dodgeBufferTimer = 0
 		dodgeVel = Vector3(sin(moveDir), 0, cos(moveDir)) * (dodgeSpeed + dodgeSpeedIncrease * lungeEffectiveness)
 		justKnocked.clear()
@@ -911,9 +918,10 @@ func _physics_process(delta):
 		var blend = 0
 		if(dodgeTimer > dodgeTime - startTime):
 			blend = 1 - ((dodgeTimer - (dodgeTime - startTime)) / startTime)
+			blend = 1.0
 		else:
 			blend = dodgeTimer / (dodgeTime - startTime)
-			blend = blend
+		print(blend)
 		animation.set("parameters/lungeBlend/blend_amount", blend)
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta

@@ -28,6 +28,12 @@ var fullscreen = false
 
 @onready var musicVol = 0
 @onready var sfxVol = 0
+@onready var fullscreenButton = $PauseBackground/Fullscreen
+@onready var musicButton = $PauseBackground/Music
+@onready var sfxButton = $PauseBackground/SFX
+
+var toggleTrue = preload("res://Assets/Images/NewUI/Asset_6.png")
+var toggleFalse = preload("res://Assets/Images/NewUI/Asset_7.png")
 
 func togglePause():
 	if(!visible):
@@ -48,8 +54,10 @@ func _ready():
 	if(WorldSave.fullscreen == null):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		fullscreen = true
+		fullscreenButton.texture_normal = toggleTrue
 	else:
 		fullscreen = WorldSave.fullscreen
+		fullscreenButton.texture_normal = toggleFalse
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -83,33 +91,48 @@ func _on_controls_pressed():
 
 	controls.visible = !controls.visible
 
-func _on_toggle_music_pressed():
+func _on_music_pressed():
 	var level = get_node(NodePath("/root/Level"))
 	var buses = []
 	buses.append(AudioServer.get_bus_index("Music"))
+	var mute = not AudioServer.is_bus_mute(buses[0])
 	for i in buses:
-		AudioServer.set_bus_mute(i, not AudioServer.is_bus_mute(i))
-		level.muteMusic(AudioServer.is_bus_mute(i))
+		AudioServer.set_bus_mute(i, mute)
+	level.muteMusic(mute)
 	soundMaker.stream = menuButtonSound
 	soundMaker.play()
+	if(mute):
+		musicButton.texture_normal = toggleFalse
+	else:
+		musicButton.texture_normal = toggleTrue
 
-func _on_toggle_sfx_pressed():
+func _on_sfx_pressed():
 	var buses = []
 	buses.append(AudioServer.get_bus_index("SoundFXMain"))
 	buses.append(AudioServer.get_bus_index("GunShots"))
 	buses.append(AudioServer.get_bus_index("Ambience"))
 	buses.append(AudioServer.get_bus_index("Voices"))
 	buses.append(AudioServer.get_bus_index("EnemyVoice"))
+	var mute = not AudioServer.is_bus_mute(buses[0])
 	for i in buses:
-		AudioServer.set_bus_mute(i, not AudioServer.is_bus_mute(i))
+		AudioServer.set_bus_mute(i, mute)
 	soundMaker.stream = menuButtonSound
 	soundMaker.play()
+	if(mute):
+		sfxButton.texture_normal = toggleFalse
+	else:
+		sfxButton.texture_normal = toggleTrue
 
-func _on_toggle_fullscreen_pressed():
+func _on_fullscreen_pressed():
 	fullscreen = !fullscreen
 	if(fullscreen):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		WorldSave.fullscreen = true
+		fullscreenButton.texture_normal = toggleTrue
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		WorldSave.fullscreen = false
+		fullscreenButton.texture_normal = toggleFalse
+
+func _on_resume_pressed():
+	togglePause()
