@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://bp3w668uq45mn"]
+
+[ext_resource type="PackedScene" uid="uid://crupfam3u2txn" path="res://Assets/Models/tutorialSign/sign.fbx" id="1_nss83"]
+[ext_resource type="Texture2D" uid="uid://dd7k40scmeymu" path="res://Assets/Models/tutorialSign/signNew_standardSurface1_BaseColor.png" id="2_q48gb"]
+[ext_resource type="Texture2D" uid="uid://bgx4tq3h5co7e" path="res://Assets/Models/tutorialSign/signNew_standardSurface1_Normal.png" id="3_0b720"]
+[ext_resource type="Texture2D" uid="uid://bf7oagjl1ao7f" path="res://Assets/Models/tutorialSign/signNew_standardSurface1_Roughness.png" id="4_we523"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rragr"]
+albedo_texture = ExtResource("2_q48gb")
+roughness_texture = ExtResource("4_we523")
+normal_enabled = true
+normal_texture = ExtResource("3_0b720")
+
+[node name="sign" instance=ExtResource("1_nss83")]
+
+[node name="pCube3" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rragr")
