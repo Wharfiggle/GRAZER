@@ -18,13 +18,14 @@ var menuClose = preload("res://sounds/New Sound FEX/UI/MenuSlideOutedited.wav")
 var fullscreen = false
 
 @onready var controlB = $AudioStreamPlayer2D
-@onready var MMB = $MainMenu/AudioStreamPlayer2D
+@onready var MMB = $PauseBackground/MainMenu/AudioStreamPlayer2D
 
 @onready var player = get_node(NodePath("/root/Level/Player"))
 @onready var viewport = get_viewport()
 @onready var soundMaker = $"item sounds"
 @onready var uiCursor = get_node(NodePath("/root/Level/UICursor"))
 @onready var controls = $ControlsGraphic
+@onready var pauseBackground = $PauseBackground
 
 @onready var musicVol = 0
 @onready var sfxVol = 0
@@ -84,12 +85,14 @@ func _on_controls_pressed():
 		controlB.stream = menuButtonSound
 		controlB.play()
 		await controlB.finished
+		
 	else :
 		controlB.stream = sound
 		controlB.play()
 		await controlB.finished
 
 	controls.visible = !controls.visible
+	pauseBackground.visible = !controls.visible
 
 func _on_music_pressed():
 	var level = get_node(NodePath("/root/Level"))

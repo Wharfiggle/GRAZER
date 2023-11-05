@@ -1,17 +1,28 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnd6srcpx5l7x"]
+[gd_scene load_steps=27 format=3 uid="uid://dnd6srcpx5l7x"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenuScript.gd" id="1_daij6"]
 [ext_resource type="Texture2D" uid="uid://d2m0o42qas5dn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/grzrMenuScreenLogo.png" id="2_0g8jf"]
 [ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="2_0inhe"]
-[ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="3_2iwob"]
+[ext_resource type="Texture2D" uid="uid://c3tdho13bsfda" path="res://Assets/Images/NewUI/Asset_29.png" id="3_86cbd"]
 [ext_resource type="Texture2D" uid="uid://6e143ko3smr5" path="res://Assets/Images/Ray.png" id="4_5ls4r"]
+[ext_resource type="Texture2D" uid="uid://cc82qiaa0gxap" path="res://Assets/Images/NewUI/Asset_31.png" id="4_15j0d"]
 [ext_resource type="Texture2D" uid="uid://dlqsdcwvnqjmb" path="res://Assets/Images/RayHighlight.png" id="5_gvldk"]
+[ext_resource type="Texture2D" uid="uid://vm636qtt8nf0" path="res://Assets/Images/NewUI/Asset_30.png" id="5_qppom"]
 [ext_resource type="BitMap" uid="uid://cw7j77afavfta" path="res://Assets/Images/RayClickMask.png" id="6_76doq"]
+[ext_resource type="Texture2D" uid="uid://bpf7s0kkqi4wb" path="res://Assets/Images/NewUI/Asset_32.png" id="6_ijmbl"]
 [ext_resource type="Texture2D" uid="uid://cdkobgmaimv1a" path="res://Assets/Images/Russel.png" id="7_ew0fe"]
+[ext_resource type="Texture2D" uid="uid://kjfemfai4qu" path="res://Assets/Images/NewUI/Asset_34.png" id="7_jiv66"]
 [ext_resource type="Texture2D" uid="uid://cygel02nuxne3" path="res://Assets/Images/RusselHighlight.png" id="8_cehfv"]
+[ext_resource type="Texture2D" uid="uid://1v136l6dei4n" path="res://Assets/Images/NewUI/Asset_33.png" id="8_chgn6"]
 [ext_resource type="BitMap" uid="uid://bhf1agksjgog2" path="res://Assets/Images/RusselClickMask.png" id="9_pkvey"]
+[ext_resource type="Texture2D" uid="uid://cd5x5mwfsj1dq" path="res://Assets/Images/NewUI/Asset_35.png" id="9_xkqne"]
+[ext_resource type="Texture2D" uid="uid://cj5omnvbx3tq2" path="res://Assets/Images/NewUI/Asset_37.png" id="10_jl1cx"]
 [ext_resource type="AudioStream" uid="uid://dad24pt3ne2w7" path="res://sounds/Music/OpeningMusic.wav" id="10_r0y2n"]
+[ext_resource type="Texture2D" uid="uid://cx8s3elris5r1" path="res://Assets/Images/NewUI/Asset_36.png" id="11_88o2k"]
 [ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="11_oo8js"]
+[ext_resource type="Texture2D" uid="uid://x0jdtik81t7a" path="res://Assets/Images/NewUI/Asset_38.png" id="12_d8x3c"]
+[ext_resource type="Texture2D" uid="uid://b6ekrc057tuyg" path="res://Assets/Images/NewUI/Asset_41.png" id="13_en27c"]
+[ext_resource type="Texture2D" uid="uid://cfnjbq10fomka" path="res://Assets/Images/NewUI/Asset_40.png" id="14_3y7k3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bybe"]
 bg_color = Color(0.158067, 0.2, 0.126, 1)
@@ -60,18 +71,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -232.0
-offset_top = -315.0
-offset_right = 236.0
-offset_bottom = 265.0
+offset_left = -233.0
+offset_top = -344.0
+offset_right = 235.0
+offset_bottom = 236.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.73, 0.73)
 pivot_offset = Vector2(234, 0)
 texture = ExtResource("2_0g8jf")
 
-[node name="playButton" type="Button" parent="Panel"]
-modulate = Color(1, 0.819608, 0.709804, 1)
+[node name="playButton" type="TextureButton" parent="Panel"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 8
@@ -79,21 +89,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -63.0
-offset_top = 130.0
-offset_right = 63.0
-offset_bottom = 180.0
+offset_left = -103.0
+offset_top = 108.0
+offset_right = 173.0
+offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_2iwob")
-theme_override_font_sizes/font_size = 24
-text = "Play"
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("3_86cbd")
+texture_pressed = ExtResource("4_15j0d")
+texture_hover = ExtResource("5_qppom")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Panel/playButton"]
 volume_db = 7.0
 
-[node name="tutorialButton" type="Button" parent="Panel"]
-modulate = Color(1, 0.843137, 0.439216, 1)
+[node name="tutorialButton" type="TextureButton" parent="Panel"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 8
@@ -101,20 +111,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -63.0
-offset_top = 190.0
-offset_right = 63.0
-offset_bottom = 240.0
+offset_left = -103.0
+offset_top = 167.0
+offset_right = 176.0
+offset_bottom = 232.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_2iwob")
-theme_override_font_sizes/font_size = 24
-text = "Play Tutorial"
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("6_ijmbl")
+texture_pressed = ExtResource("7_jiv66")
+texture_hover = ExtResource("8_chgn6")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Panel/tutorialButton"]
 
-[node name="credits" type="Button" parent="Panel"]
-modulate = Color(1, 0.858824, 0.768627, 1)
+[node name="credits" type="TextureButton" parent="Panel"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 8
@@ -122,21 +132,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = 250.0
-offset_right = 50.0
-offset_bottom = 290.0
+offset_left = -103.0
+offset_top = 227.0
+offset_right = 173.0
+offset_bottom = 294.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_2iwob")
-theme_override_font_sizes/font_size = 24
-text = "Credits"
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("9_xkqne")
+texture_pressed = ExtResource("10_jl1cx")
+texture_hover = ExtResource("11_88o2k")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Panel/credits"]
 volume_db = 7.0
 
-[node name="quitButton" type="Button" parent="Panel"]
-modulate = Color(1, 0.819608, 0.709804, 1)
+[node name="quitButton" type="TextureButton" parent="Panel"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 8
@@ -144,15 +154,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = 300.0
-offset_right = 37.0
-offset_bottom = 330.0
+offset_left = -104.0
+offset_top = 288.0
+offset_right = 172.0
+offset_bottom = 355.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_2iwob")
-theme_override_font_sizes/font_size = 20
-text = "Quit"
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("12_d8x3c")
+texture_pressed = ExtResource("13_en27c")
+texture_hover = ExtResource("14_3y7k3")
 
 [node name="CharacterSelect" type="Control" parent="Panel"]
 visible = false
@@ -227,10 +238,10 @@ offset_right = 780.0
 offset_bottom = 598.0
 active = true
 
-[connection signal="pressed" from="Panel/playButton" to="Panel" method="_on_button_pressed" flags=18]
+[connection signal="pressed" from="Panel/playButton" to="Panel" method="_on_button_pressed"]
 [connection signal="pressed" from="Panel/tutorialButton" to="Panel" method="_on_tutorial_button_pressed"]
-[connection signal="pressed" from="Panel/credits" to="Panel" method="_on_credits_pressed" flags=18]
-[connection signal="pressed" from="Panel/quitButton" to="Panel" method="_on_quit_button_pressed" flags=18]
+[connection signal="pressed" from="Panel/credits" to="Panel" method="_on_credits_pressed"]
+[connection signal="pressed" from="Panel/quitButton" to="Panel" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Panel/CharacterSelect/rayButton" to="Panel" method="_on_ray_button_pressed" flags=18]
 [connection signal="pressed" from="Panel/CharacterSelect/russelButton" to="Panel" method="_on_russel_button_pressed" flags=18]
 [connection signal="finished" from="Panel/MainMenuMusic" to="Panel/MainMenuMusic" method="_on_finished" flags=18]

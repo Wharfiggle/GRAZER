@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvjq6phlh0ivv"]
+[gd_scene load_steps=14 format=3 uid="uid://cvjq6phlh0ivv"]
 
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_5pel6"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="2_ao8ti"]
+[ext_resource type="Texture2D" uid="uid://ctdvi26ff3uf8" path="res://Assets/Images/NewUI/creditsV1.png" id="3_2opgv"]
 [ext_resource type="AudioStream" uid="uid://b66s5rnjg6qjc" path="res://sounds/Music/ShopMusic.wav" id="3_6pif7"]
+[ext_resource type="Texture2D" uid="uid://cobve2j2drss0" path="res://Assets/Images/NewUI/Asset_17.png" id="3_xllcl"]
+[ext_resource type="Texture2D" uid="uid://bvyqk2yfe2yua" path="res://Assets/Images/NewUI/Asset_19.png" id="4_r8ok5"]
 [ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="4_w3c7c"]
+[ext_resource type="Texture2D" uid="uid://6lvj2u6mxwda" path="res://Assets/Images/NewUI/Asset_18.png" id="5_ia1tg"]
 [ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="5_kuaad"]
 
 [sub_resource type="Gradient" id="Gradient_35e5v"]
@@ -63,6 +67,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_yggjc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -341,16 +346,33 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = " Preproduction"
 
-[node name="Back" type="Button" parent="Panel"]
-modulate = Color(1, 0.819608, 0.709804, 1)
-layout_mode = 0
-offset_left = 50.0
-offset_top = 335.0
-offset_right = 176.0
-offset_bottom = 385.0
-theme_override_fonts/font = ExtResource("2_ao8ti")
-theme_override_font_sizes/font_size = 24
-text = "Back"
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -594.0
+offset_top = 34.0
+offset_right = 990.0
+offset_bottom = 904.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_2opgv")
+
+[node name="Back" type="TextureButton" parent="Panel"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 267.0
+offset_top = 617.0
+offset_right = 543.0
+offset_bottom = 684.0
+grow_horizontal = 2
+texture_normal = ExtResource("3_xllcl")
+texture_pressed = ExtResource("4_r8ok5")
+texture_hover = ExtResource("5_ia1tg")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Panel/Back"]
 

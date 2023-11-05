@@ -83,9 +83,9 @@ offset_bottom = 26.0001
 [node name="Cow Counter" parent="." instance=ExtResource("12")]
 z_index = 30
 offset_left = 72.0
-offset_top = 52.0
+offset_top = 60.0
 offset_right = 131.0
-offset_bottom = 88.0
+offset_bottom = 96.0
 text = "0"
 label_settings = SubResource("LabelSettings_b8kx2")
 horizontal_alignment = 1
@@ -182,24 +182,6 @@ offset_bottom = 330.0
 grow_horizontal = 2
 texture = ExtResource("19_qyj2t")
 
-[node name="Label" type="Label" parent="DeathMenu"]
-visible = false
-modulate = Color(0.784314, 0, 0, 1)
-z_index = 101
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -228.5
-offset_top = 210.0
-offset_right = 228.5
-offset_bottom = 275.0
-grow_horizontal = 2
-text = "You're food for the buzzards."
-label_settings = SubResource("LabelSettings_fmcc2")
-horizontal_alignment = 1
-vertical_alignment = 2
-
 [node name="RestartButton" type="Button" parent="DeathMenu"]
 modulate = Color(1, 0.709804, 0.709804, 1)
 z_index = 101
@@ -234,6 +216,24 @@ theme_override_font_sizes/font_size = 20
 disabled = true
 text = "Main Menu"
 
+[node name="Label" type="Label" parent="DeathMenu"]
+visible = false
+modulate = Color(0.784314, 0, 0, 1)
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.5
+offset_top = 210.0
+offset_right = 228.5
+offset_bottom = 275.0
+grow_horizontal = 2
+text = "You're food for the buzzards."
+label_settings = SubResource("LabelSettings_fmcc2")
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="WinMenu" type="Panel" parent="."]
 visible = false
 z_index = 100
@@ -256,24 +256,6 @@ offset_right = 369.0
 offset_bottom = 230.0
 grow_horizontal = 2
 texture = ExtResource("21_0kux6")
-
-[node name="Label" type="Label" parent="WinMenu"]
-visible = false
-modulate = Color(0.913725, 0.839216, 0.647059, 1)
-z_index = 101
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -158.0
-offset_top = 200.0
-offset_right = 158.0
-offset_bottom = 256.0
-grow_horizontal = 2
-text = "YOU WIN"
-label_settings = SubResource("LabelSettings_1txft")
-horizontal_alignment = 1
-vertical_alignment = 2
 
 [node name="EndScreen" type="Sprite2D" parent="WinMenu"]
 position = Vector2(861, 358)
@@ -313,6 +295,24 @@ theme_override_fonts/font = ExtResource("19_u5bqv")
 theme_override_font_sizes/font_size = 20
 disabled = true
 text = "Main Menu"
+
+[node name="Label" type="Label" parent="WinMenu"]
+visible = false
+modulate = Color(0.913725, 0.839216, 0.647059, 1)
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_top = 200.0
+offset_right = 158.0
+offset_bottom = 319.0
+grow_horizontal = 2
+text = "YOU WIN"
+label_settings = SubResource("LabelSettings_1txft")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="HerdMenu" parent="." instance=ExtResource("29_gvm3s")]
 

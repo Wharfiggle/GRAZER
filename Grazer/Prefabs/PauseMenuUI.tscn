@@ -1,9 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://8v4p26gkfffe"]
+[gd_scene load_steps=23 format=3 uid="uid://8v4p26gkfffe"]
 
 [ext_resource type="Script" path="res://Scripts/PauseMenuUIScript.gd" id="1_4tn5s"]
 [ext_resource type="Texture2D" uid="uid://1mdmi31fa1sd" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/elixirHotWheel/howWheelShadow.png" id="2_dp87i"]
 [ext_resource type="Texture2D" uid="uid://21i7c7wta0px" path="res://Assets/Images/NewUI/Asset_5.png" id="3_b2hn0"]
-[ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="3_k8g8n"]
 [ext_resource type="Texture2D" uid="uid://b4t60xief8rpo" path="res://Assets/Images/NewUI/Asset_8.png" id="4_bddgm"]
 [ext_resource type="Texture2D" uid="uid://cwgm2bixv5c2v" path="res://Assets/Images/NewUI/Asset_10.png" id="5_deeoo"]
 [ext_resource type="Texture2D" uid="uid://dvjdkydhsywwb" path="res://Assets/Images/NewUI/Asset_9.png" id="6_7hgej"]
@@ -13,9 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://bhbsd8as36kkx" path="res://Assets/Images/NewUI/Asset_14.png" id="10_mmci5"]
 [ext_resource type="Texture2D" uid="uid://bcu284ntms1df" path="res://Assets/Images/NewUI/Asset_16.png" id="11_uven2"]
 [ext_resource type="Texture2D" uid="uid://dxmmt5ahakn2r" path="res://Assets/Images/NewUI/Asset_15.png" id="12_oo55u"]
-[ext_resource type="Texture2D" uid="uid://b5xvjiaoug3pn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/controlsKey/controlsKeyShadow.png" id="13_dsv6b"]
 [ext_resource type="Texture2D" uid="uid://cef87jys35b1k" path="res://Assets/Images/NewUI/Asset_6.png" id="13_wx88a"]
-[ext_resource type="Texture2D" uid="uid://c0v0q5qpxvspg" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/controlsKey/controlsKeyV7.png" id="14_1bst7"]
+[ext_resource type="Texture2D" uid="uid://6evxrsoswh3t" path="res://Assets/Images/NewUI/controlSchemeV1.png" id="14_byldi"]
+[ext_resource type="Texture2D" uid="uid://cobve2j2drss0" path="res://Assets/Images/NewUI/Asset_17.png" id="15_77wtn"]
+[ext_resource type="Texture2D" uid="uid://bvyqk2yfe2yua" path="res://Assets/Images/NewUI/Asset_19.png" id="16_3mwaf"]
+[ext_resource type="Texture2D" uid="uid://6lvj2u6mxwda" path="res://Assets/Images/NewUI/Asset_18.png" id="17_qp0ov"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g20qm"]
 
@@ -28,29 +29,14 @@ gradient = SubResource("Gradient_a2ki7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s6tp"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhv31"]
-bg_color = Color(0.5, 0.5, 0.5, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0ub4"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaekr"]
-bg_color = Color(0.65, 0.65, 0.65, 1)
-
 [sub_resource type="Gradient" id="Gradient_wt7nc"]
 offsets = PackedFloat32Array(0.0104167, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.862745)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fi7mb"]
 gradient = SubResource("Gradient_wt7nc")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oc8fu"]
-bg_color = Color(1, 1, 1, 1)
 
 [node name="PauseMenuUI" type="Control"]
 process_mode = 3
@@ -170,6 +156,11 @@ texture_normal = ExtResource("10_mmci5")
 texture_pressed = ExtResource("11_uven2")
 texture_hover = ExtResource("12_oo55u")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PauseBackground/MainMenu"]
+position = Vector2(-1142.74, -220.824)
+scale = Vector2(1.17647, 1.17647)
+bus = &"SoundFXMain"
+
 [node name="Fullscreen" type="TextureButton" parent="PauseBackground"]
 layout_mode = 1
 anchors_preset = 8
@@ -215,112 +206,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("13_wx88a")
 
-[node name="Controls" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1122.67
-offset_top = -266.667
-offset_right = -922.667
-offset_bottom = -186.667
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_k8g8n")
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_8s6tp")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uhv31")
-text = "Controls"
-
-[node name="ToggleMusic" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1134.67
-offset_top = -358.667
-offset_right = -1034.67
-offset_bottom = -293.667
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_k8g8n")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
-text = "Music"
-
-[node name="ToggleSFX" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1012.0
-offset_top = -361.333
-offset_right = -912.0
-offset_bottom = -296.333
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_k8g8n")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
-text = "SFX"
-
-[node name="ToggleFullscreen" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1089.33
-offset_top = -92.0
-offset_right = -959.333
-offset_bottom = -27.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_k8g8n")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
-text = "Fullscreen"
-
-[node name="MainMenu" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1089.33
-offset_top = -158.667
-offset_right = -959.333
-offset_bottom = -108.667
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_k8g8n")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_m0ub4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gaekr")
-text = "Main Menu"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MainMenu"]
-bus = &"SoundFXMain"
-
 [node name="item sounds" type="AudioStreamPlayer2D" parent="."]
 bus = &"SoundFXMain"
 
@@ -347,28 +232,31 @@ layout_mode = 1
 offset_left = 1.1235
 offset_right = 1922.12
 offset_bottom = 1086.0
-texture = ExtResource("13_dsv6b")
 
 [node name="ControlsGraphicText" type="TextureRect" parent="ControlsGraphic/ControlsGradient"]
 layout_mode = 0
-offset_left = 176.906
+offset_left = 143.071
 offset_top = 23.97
-offset_right = 1684.91
+offset_right = 1651.08
 offset_bottom = 995.97
-texture = ExtResource("14_1bst7")
+texture = ExtResource("14_byldi")
 
-[node name="BackButton" type="Button" parent="ControlsGraphic/ControlsGradient"]
-layout_mode = 0
-offset_left = 869.663
-offset_top = 975.281
-offset_right = 1039.66
-offset_bottom = 1035.28
-theme_override_colors/font_color = Color(0.231373, 0.137255, 0.0745098, 1)
-theme_override_fonts/font = ExtResource("3_k8g8n")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_oc8fu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uhv31")
-text = "Back"
+[node name="BackButton" type="TextureButton" parent="ControlsGraphic/ControlsGradient"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = -118.21
+offset_right = 138.0
+offset_bottom = -51.2097
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("15_77wtn")
+texture_pressed = ExtResource("16_3mwaf")
+texture_hover = ExtResource("17_qp0ov")
 
 [connection signal="pressed" from="PauseBackground/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseBackground/Controls" to="." method="_on_controls_pressed"]
@@ -376,9 +264,4 @@ text = "Back"
 [connection signal="pressed" from="PauseBackground/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="PauseBackground/Music" to="." method="_on_music_pressed"]
 [connection signal="pressed" from="PauseBackground/SFX" to="." method="_on_sfx_pressed"]
-[connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="ToggleMusic" to="." method="_on_toggle_music_pressed"]
-[connection signal="pressed" from="ToggleSFX" to="." method="_on_toggle_sfx_pressed"]
-[connection signal="pressed" from="ToggleFullscreen" to="." method="_on_toggle_fullscreen_pressed"]
-[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="ControlsGraphic/ControlsGradient/BackButton" to="." method="_on_controls_pressed"]

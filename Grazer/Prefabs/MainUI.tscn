@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bc22uux0dxytn"]
 
 [ext_resource type="Script" path="res://Scripts/MainUI.gd" id="1_f6sgc"]
-[ext_resource type="Texture2D" uid="uid://bf44dkwn285mh" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/rim.png" id="2_qjtpp"]
-[ext_resource type="Texture2D" uid="uid://bysfqdo0vgg8w" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/healthFullLength.png" id="3_w4k82"]
+[ext_resource type="Texture2D" uid="uid://c2wljnv6dr00i" path="res://Assets/Images/NewUI/Asset_2.png" id="2_sx5v5"]
+[ext_resource type="Texture2D" uid="uid://kv0dpekfiboe" path="res://Assets/Images/NewUI/Asset_1.png" id="3_ero24"]
+[ext_resource type="Texture2D" uid="uid://uge588ukybm3" path="res://Assets/Images/NewUI/Asset_3.png" id="4_4e3ht"]
 [ext_resource type="Texture2D" uid="uid://2dkxbrqxj2b4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/shadow.png" id="4_gk0em"]
-[ext_resource type="Texture2D" uid="uid://cnf6lf3fv0jhp" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/damageFullLength.png" id="5_bi53q"]
 [ext_resource type="Texture2D" uid="uid://csqut4gymbsr3" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/weaponHUD/revolvEquip.png" id="6_nmetx"]
 
 [node name="GameUI" type="Control"]
@@ -50,26 +50,32 @@ scale = Vector2(0.5, 0.5)
 [node name="TextureProgressBar2" type="TextureProgressBar" parent="Control/HBoxContainer/Bars/bar/Node2D"]
 show_behind_parent = true
 z_index = 2
-offset_right = 554.0
-offset_bottom = 41.0
+offset_left = -24.0
+offset_top = -22.0
+offset_right = 530.0
+offset_bottom = 19.0
+scale = Vector2(1.75, 1.75)
 step = 0.0
 value = 100.0
-texture_progress = ExtResource("3_w4k82")
+texture_progress = ExtResource("2_sx5v5")
 texture_progress_offset = Vector2(14, 9)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Control/HBoxContainer/Bars/bar/Node2D"]
 show_behind_parent = true
 z_index = 1
-offset_left = 5.0
-offset_right = 559.0
-offset_bottom = 41.0
+offset_left = -86.0
+offset_top = -64.0
+offset_right = 468.0
+offset_bottom = 66.0
+scale = Vector2(1.75, 1.75)
 step = 0.0
 value = 100.0
-texture_under = ExtResource("2_qjtpp")
-texture_progress = ExtResource("5_bi53q")
-texture_progress_offset = Vector2(9, 9)
+texture_under = ExtResource("3_ero24")
+texture_progress = ExtResource("4_4e3ht")
+texture_progress_offset = Vector2(50, 33)
 
 [node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Bars/bar/Node2D/TextureProgressBar"]
+visible = false
 show_behind_parent = true
 layout_mode = 2
 offset_left = -70.0
