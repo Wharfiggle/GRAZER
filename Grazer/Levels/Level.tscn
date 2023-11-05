@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cclwr76l2moqf"]
+[gd_scene load_steps=42 format=3 uid="uid://cclwr76l2moqf"]
 
 [ext_resource type="PackedScene" uid="uid://bw8vk16r3ew0" path="res://Prefabs/broadcast.tscn" id="1_33qyj"]
 [ext_resource type="Script" path="res://Scripts/LevelScript.gd" id="1_ilocr"]
@@ -17,8 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://8v4p26gkfffe" path="res://Prefabs/PauseMenuUI.tscn" id="16_6i4tb"]
 [ext_resource type="Environment" uid="uid://5rhjn7giur73" path="res://default_env.tres" id="16_leqkn"]
 [ext_resource type="FontFile" uid="uid://claanka6fj8mt" path="res://Assets/Font/Bronco Valley/OpenType-TT/Bronco.ttf" id="18_a0jb1"]
+[ext_resource type="Texture2D" uid="uid://0ham40sftave" path="res://Assets/Images/NewUI/Asset_25.png" id="19_qyj2t"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="19_u5bqv"]
 [ext_resource type="PackedScene" uid="uid://dcspo5f48r7j0" path="res://Prefabs/ElixirGunMenu.tscn" id="20_bkmh5"]
+[ext_resource type="Texture2D" uid="uid://170a46wq3c72" path="res://Assets/Images/NewUI/Asset_26.png" id="21_0kux6"]
 [ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="23_5p5jq"]
 [ext_resource type="AudioStream" uid="uid://crtrdbfpgkmwl" path="res://sounds/Music/WildsMusic.wav" id="24_eux13"]
 [ext_resource type="Script" path="res://Scripts/WinMenu.gd" id="24_q0sdl"]
@@ -168,7 +170,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("23_5p5jq")
 
+[node name="TextureRect" type="TextureRect" parent="DeathMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.5
+offset_top = 200.0
+offset_right = 360.5
+offset_bottom = 330.0
+grow_horizontal = 2
+texture = ExtResource("19_qyj2t")
+
 [node name="Label" type="Label" parent="DeathMenu"]
+visible = false
 modulate = Color(0.784314, 0, 0, 1)
 z_index = 101
 layout_mode = 1
@@ -229,7 +244,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("24_q0sdl")
 
+[node name="TextureRect" type="TextureRect" parent="WinMenu"]
+z_index = 101
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -369.0
+offset_top = 100.0
+offset_right = 369.0
+offset_bottom = 230.0
+grow_horizontal = 2
+texture = ExtResource("21_0kux6")
+
 [node name="Label" type="Label" parent="WinMenu"]
+visible = false
 modulate = Color(0.913725, 0.839216, 0.647059, 1)
 z_index = 101
 layout_mode = 1

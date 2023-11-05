@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bw8vk16r3ew0"]
+[gd_scene load_steps=6 format=3 uid="uid://bw8vk16r3ew0"]
 
 [ext_resource type="Texture2D" uid="uid://bvww2vp1sw1lk" path="res://Assets/Images/HealthShadow.png" id="1_3px2p"]
+[ext_resource type="Texture2D" uid="uid://xmxy82f6kru6" path="res://Assets/Images/NewUI/Asset_27.png" id="1_7q538"]
 [ext_resource type="Texture2D" uid="uid://2dkxbrqxj2b4" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/healthBar/shadow.png" id="2_ewwuc"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="3_qbwri"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pg5ty"]
 font = ExtResource("3_qbwri")
-font_size = 28
-font_color = Color(1, 0.882353, 0, 1)
+font_size = 24
+font_color = Color(0.980392, 0.823529, 0.396078, 1)
 
 [node name="Broadcast" type="Control"]
 z_index = 50
@@ -21,7 +22,22 @@ offset_right = 20.0
 offset_bottom = 48.0
 grow_horizontal = 2
 
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(0.784314, 0.784314, 0.784314, 0.843137)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 5.0
+offset_right = 368.0
+offset_bottom = 123.0
+grow_horizontal = 2
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_7q538")
+
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 modulate = Color(0.392157, 0.588235, 0.392157, 0.392157)
 layout_mode = 0
 offset_left = -258.0
@@ -30,7 +46,22 @@ offset_bottom = 130.0
 scale = Vector2(0.75, 0.6)
 texture = ExtResource("1_3px2p")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -249.0
+offset_top = 47.0
+offset_right = 251.0
+offset_bottom = 211.0
+grow_horizontal = 2
+text = "Trade Failed: Max Elixirs Reached"
+label_settings = SubResource("LabelSettings_pg5ty")
+horizontal_alignment = 1
+
 [node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
 modulate = Color(0.392157, 0.588235, 0.392157, 1)
 layout_mode = 0
 offset_left = -258.0
@@ -38,13 +69,3 @@ offset_right = 433.0
 offset_bottom = 130.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_ewwuc")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = -243.0
-offset_top = 33.0
-offset_right = 257.0
-offset_bottom = 197.0
-text = "Attention: Thank you for your attention"
-label_settings = SubResource("LabelSettings_pg5ty")
-horizontal_alignment = 1
