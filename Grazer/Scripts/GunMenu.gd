@@ -86,7 +86,10 @@ func updateUpgrades():
 		var upgrade = parent.level.getUpgrade(i)
 		upgrades.append(upgrade)
 		var section = menus[i / 3].find_child("Sections").get_child(i % 3)
-		section.find_child("Cost").text = str(upgrade.cost)
+		var costText = section.find_child("Cost")
+		costText.text = str(upgrade.cost)
+		if(upgrade.id != i):
+			costText.visible = false
 		gunCosts[i] = upgrade.cost
 		var pips = menus[i / 3].find_child("Pips").get_children()
 		for j in 3:

@@ -689,8 +689,11 @@ func _physics_process(delta):
 		deathTimer -= delta
 		if(deathTimer <= 0):
 			deathTimer = 0
-			animation.set("parameters/DeathTime/scale", 0)
-		deathBlend = lerpf(deathBlend, 1, 0.3)
+			var terrain = get_node("../AllTerrain")
+			if(terrain.real):
+				animation.set("parameters/DeathTime/scale", 0)
+		print(deathBlend)
+		deathBlend = lerpf(deathBlend, 1, 0.1)
 		animation.set("parameters/DeathBlend/blend_amount", deathBlend)
 	
 	#swap weapon
@@ -827,19 +830,6 @@ func _physics_process(delta):
 				animation.set("parameters/rightAim/blend_amount", -(aimSwivel * 2 - 1))
 				animation.set("parameters/leftArmBlend/blend_amount", min(1.0, handTransition))
 				animation.set("parameters/rightArmBlend/blend_amount", armBlend)
-			if(armsLowering > 0):
-				lineSightNode.visible = false
-				var t = 1.0 - armsLowering
-				if(rightHand):
-					animation.set("parameters/rightAim/blend_amount", t)
-					animation.set("parameters/rightArmBlend/blend_amount", t)
-					animation.set("parameters/leftAim/blend_amount", 0)
-					animation.set("parameters/leftArmBlend/blend_amount", 0)
-				else:
-					animation.set("parameters/rightAim/blend_amount", 0)
-					animation.set("parameters/rightArmBlend/blend_amount", 0)
-					animation.set("parameters/leftAim/blend_amount", t)
-					animation.set("parameters/leftArmBlend/blend_amount", t)
 			#correct gun angle to be parallel with ground plane, but match rotation with aimSwivel
 			var gun = shootingPoint.get_parent()
 			var gunScale = gun.scale
@@ -859,6 +849,21 @@ func _physics_process(delta):
 		camera.set_idle_sway(0.5)
 	else:
 		worldCursor.visible = false
+	
+	#lower arms for idle
+	if(armsLowering > 0):
+		lineSightNode.visible = false
+		var t = 1.0 - armsLowering
+		if(rightHand):
+			animation.set("parameters/rightAim/blend_amount", t)
+			animation.set("parameters/rightArmBlend/blend_amount", t)
+			animation.set("parameters/leftAim/blend_amount", 0)
+			animation.set("parameters/leftArmBlend/blend_amount", 0)
+		else:
+			animation.set("parameters/rightAim/blend_amount", 0)
+			animation.set("parameters/rightArmBlend/blend_amount", 0)
+			animation.set("parameters/leftAim/blend_amount", t)
+			animation.set("parameters/leftArmBlend/blend_amount", t)
 	
 	#dodging
 	if(Input.is_action_just_pressed("dodge") && active):
@@ -917,11 +922,9 @@ func _physics_process(delta):
 		var startTime = 0.1
 		var blend = 0
 		if(dodgeTimer > dodgeTime - startTime):
-			blend = 1 - ((dodgeTimer - (dodgeTime - startTime)) / startTime)
-			blend = 1.0
+			blend = 1 - ((dodgeTimer - (dodgeTime - startTime)) / (startTime))
 		else:
 			blend = dodgeTimer / (dodgeTime - startTime)
-		print(blend)
 		animation.set("parameters/lungeBlend/blend_amount", blend)
 	elif(dodgeCooldownTimer > 0):
 		dodgeCooldownTimer -= delta
@@ -1082,6 +1085,7 @@ func knock():
 
 func updateHealth(newHP:float):
 	if(newHP < hitpoints && newHP < maxHitpoints):
+		switchIdle(false)
 		if(russelOrRay == "Russel"):
 			Vocal.stream = damagesound
 			if(!Vocal.playing):
@@ -1128,13 +1132,15 @@ func die():
 	active = false
 	animation.set("parameters/Death/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var terrain = get_node("../AllTerrain")
-	if(terrain.real):
+	deathTimer = 1.8
+	if(hitpoints == 0):
 		deathTimer = 3.0
+	if(terrain.real):
 		#if(russelOrRay == "Ray"):
 		#	deathTimer = 2.5
 		if(deathMenu == null):
 			deathMenu = $"../DeathMenu"
-		deathMenu.start()
+		deathMenu.start(hitpoints == 0)
 		var level = get_node(NodePath("/root/Level"))
 		level.changeMusic(4)
 		var thieves = 0
@@ -1151,7 +1157,6 @@ func die():
 	else:
 		await Fade.fade_out(3).finished
 		resetHealthPulse = true
-		animation.set("parameters/DeathTime/scale", 1.5)
 		position = checkpoint
 		updateHealth(maxHitpoints)
 		var cows = herd.getCows()
@@ -1162,6 +1167,9 @@ func die():
 		for i in checkpointCowAmmount:
 			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() - 0.5), position.y, position.z + (rng.randf() - 0.5)), 0)
 		deathTimer = 0
+		animation.set("parameters/DeathTime/scale", 1.5)
+		animation.set("parameters/DeathBlend/blend_amount", 0.0)
+		deathBlend = 0
 		dead = false
 		active = true
 		Fade.fade_in()

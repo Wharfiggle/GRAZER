@@ -5,7 +5,7 @@ extends Area3D
 var time = 0.0
 @export var bobSpeed = 3.0
 @export var bobStrength = 0.15
-@export var spinSpeed = 2.0
+@export var spinSpeed = -2.0
 var waited = false
 var levelScript
 var player

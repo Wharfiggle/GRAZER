@@ -116,11 +116,11 @@ class Item:
 		elif(id == 4): name = "Shotgun Damage Upgrade"
 		elif(id == 5): name = "Shotgun Reload Speed Upgrade"
 		#Potion Costs:
-		elif(id == 6): 
+		elif(id == 6):
 			name = "Recovery"
 			description = "Heals all of your health."
 			cost = 2
-		elif(id == 7): 
+		elif(id == 7):
 			name = "Bulletstorm"
 			description = "You reload instantly."
 			cost = 3

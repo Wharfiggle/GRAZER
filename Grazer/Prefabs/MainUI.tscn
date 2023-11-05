@@ -50,9 +50,9 @@ scale = Vector2(0.5, 0.5)
 [node name="TextureProgressBar2" type="TextureProgressBar" parent="Control/HBoxContainer/Bars/bar/Node2D"]
 show_behind_parent = true
 z_index = 2
-offset_left = 4.00002
+offset_left = -7.99998
 offset_top = -3.99997
-offset_right = 558.0
+offset_right = 546.0
 offset_bottom = 37.0
 scale = Vector2(1.25, 1.25)
 step = 0.0
@@ -63,9 +63,9 @@ texture_progress_offset = Vector2(14, 9)
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Control/HBoxContainer/Bars/bar/Node2D"]
 show_behind_parent = true
 z_index = 1
-offset_left = -40.0
+offset_left = -52.0
 offset_top = -34.0
-offset_right = 514.0
+offset_right = 502.0
 offset_bottom = 96.0
 scale = Vector2(1.25, 1.25)
 step = 0.0
