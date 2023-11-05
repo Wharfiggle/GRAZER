@@ -228,7 +228,7 @@ func _ready():
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(!playerIdling):
-		armsLowering = lerp(armsLowering, 0.0, 0.3)
+		armsLowering = lerp(armsLowering, 0.0, 0.8)
 		if(armsLowering < 0.01):
 			armsLowering = 0.0
 		playerIdlingTimer -= delta

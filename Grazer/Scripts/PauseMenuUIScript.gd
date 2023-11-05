@@ -50,6 +50,7 @@ func togglePause():
 		visible = false
 		uiCursor.setActive(false, Vector2(0, 0))
 		get_tree().paused = false
+		pauseBackground.visible = true
 
 func _ready():
 	if(WorldSave.fullscreen == null):
