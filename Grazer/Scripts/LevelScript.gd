@@ -118,11 +118,11 @@ class Item:
 		#Potion Costs:
 		elif(id == 6):
 			name = "Recovery"
-			description = "Heals all of your health."
+			description = "Heals all of your Health."
 			cost = 2
 		elif(id == 7):
 			name = "Bulletstorm"
-			description = "You reload instantly."
+			description = "You Reload instantly."
 			cost = 3
 		elif(id == 8): 
 			name = "Life Leech"
@@ -130,15 +130,15 @@ class Item:
 			cost = 1
 		elif(id == 9): 
 			name = "Discombobulate"
-			description = "Stuns all enemies temporarily."
+			description = "Stuns all Bandits temporarily."
 			cost = 2
 		elif(id == 10): 
 			name = "Liquid Luck"
-			description = "Every shot is a critical hit (double damage)."
+			description = "Every shot is a critical hit."
 			cost = 1
 		elif(id == 11): 
 			name = "Dauntless"
-			description = "Your lunges are much faster and deadly, but you cannot shoot."
+			description = "Your Dash becomes fast and deadly, but you cannot Shoot."
 			cost = 3
 	func initUpgrade(inLevelScript:Node, inLevel:int, inGunStats:Array):
 		levelScript = inLevelScript
@@ -153,7 +153,7 @@ class Item:
 			cost = 3
 		if(id == 0 || id == 1 || id == 2): #revolverCapacity, revolverDamage, revolverReload
 			if(id == 0):
-				description = "Upgraded Revolver Capacity to Level: " + str(wepLevel)
+				description = "Upgraded Revolver Capacity to LVL: " + str(wepLevel)
 			elif(id == 1):
 				description = "Upgraded Revolver Damage to Level: " + str(wepLevel)
 			elif(id == 2):
