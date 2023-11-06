@@ -129,8 +129,12 @@ var GRAVITY = 30
 var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 #@onready var camera = get_node(NodePath("/root/Level/Camera3D"))
+
 var camera = null
 var maxZoom = null
+@export var minZoom = 10.0
+var targetZoom = maxZoom
+
 var moveDir = PI * 5.0 / 8.0
 var prevAimDir = [0, 0, 0, 0, 0]
 var aimDir = 0.0
@@ -250,17 +254,25 @@ func _process(delta):
 		SceneCounter.printCounters()
 	
 	#zoom in to make action more prominent
-	if(camera != null && false):
+	if(camera != null):
 		var enemies = get_tree().get_nodes_in_group("Enemy")
 		var farthest = null
 		var maxDistance = (maxZoom / 2) / cos(55.0 * PI / 180.0)
+		var minDistance = (minZoom / 2) / cos(55.0 * PI / 180.0)
 		for i in enemies:
 			var dist = (position - i.position).length()
-			if(dist < maxDistance):
-				if(farthest == null || dist < farthest):
-					farthest = dist
-		if(farthest != null):
-			camera.size = farthest * 2
+			if(dist < maxDistance || i.draggedCow != null):
+				if(farthest == null || dist > farthest):
+					farthest = min(max(dist, minDistance), maxDistance)
+		if(farthest != null && !dead):
+			targetZoom = farthest * 2 * cos(55.0 * PI / 180.0)
+		else:
+			targetZoom = maxZoom
+			
+		if(targetZoom > camera.size):
+			camera.size = lerpf(camera.size, targetZoom, 0.2)
+		else:
+			camera.size = lerpf(camera.size, targetZoom, 0.01)
 	
 	#set up list of potions and cow types, only happens once after level is done initializing
 	if(potions == null):
@@ -1116,7 +1128,7 @@ func updateHealth(newHP:float):
 	if(healthPulse != null):
 		var healthRatio = hitpoints / maxHitpoints
 		if(healthRatio < 0.5):
-			healthPulseIntensity = lerpf(healthPulseIntensity, 1.2 - healthRatio, 0.3)
+			healthPulseIntensity = lerpf(healthPulseIntensity, 0.8 - healthRatio, 0.3)
 			healthPulse.set_shader_parameter("intensity", healthPulseIntensity)
 		elif(increased):
 			resetHealthPulse = true

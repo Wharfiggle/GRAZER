@@ -50,7 +50,7 @@ func _physics_process(_delta):
 		var disable = true
 		if(parent.totalValue <= parent.player.potions[selected].cost || numElixirTypes[selected] >= maxElixirs):
 			if(numElixirTypes[selected] >= maxElixirs):
-				parent.level.broadcastMessage("Invalid Trade: Can't have more than " + str(maxElixirs) + " of any elixir.", 0.1)
+				parent.level.broadcastMessage("Invalid Trade: Can't exceed " + str(maxElixirs) + " of any elixir.", 0.1)
 			elif(parent.totalValue < parent.player.potions[selected].cost):
 				parent.level.broadcastMessage("Invalid Trade: Insufficient cows.", 0.1)
 			else:
