@@ -25,7 +25,8 @@ func _ready():
 	
 	
 	#Dialogue for the tutorial porch man
-	tutorial.append(["res://Assets/Images/SpeechBubbles/tutorialScript/Asset 11.png", 2])
+	#tutorial.append(["res://Assets/Images/SpeechBubbles/tutorialScript/Asset 11.png", 2])
+	tutorial.append(["res://Assets/Images/NewUI/Asset_50.png", 2])
 	tutorial.append(["res://Assets/Images/SpeechBubbles/tutorialScript/Asset 12.png", 2])
 	tutorial.append(["res://Assets/Images/SpeechBubbles/tutorialScript/Asset 13.png", 2])
 	tutorial.append(["res://Assets/Images/SpeechBubbles/tutorialScript/Asset 14.png", 2])

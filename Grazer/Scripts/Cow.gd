@@ -178,7 +178,7 @@ func setType(ind:int = -1):
 		1: mesh.set("blend_shapes/Down", 1)
 		2: mesh.set("blend_shapes/Out", 1)
 		3: mesh.set("blend_shapes/Way Out", 1)
-		4: mesh.set("blend_shapes/Down", 0)
+		4: mesh.set("blend_shapes/Up", 1)
 	
 
 func setHibernate(inHibernate:bool):
@@ -250,7 +250,7 @@ func idle():
 
 func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:Node = null) -> bool:
 	animation.set("parameters/Death/DeathTime/scale", 2.0)
-	animation.set("parameters/Death/DeathTimeSeek/seek_request", 0.5)
+	animation.set("parameters/Death/DeathTimeSeek/seek_request", 0.25)
 	animation.set("parameters/conditions/Death", false)
 	animation.set("parameters/conditions/NotDead", true)
 	animation.set("parameters/conditions/Death", true)
@@ -544,7 +544,7 @@ func _physics_process(delta):
 				if(waitToDieTimer <= 0):
 					deathTimer = 2.0
 					animation.set("parameters/Death/DeathTime/scale", 2.0)
-					animation.set("parameters/Death/DeathTimeSeek/seek_request", 0.5)
+					animation.set("parameters/Death/DeathTimeSeek/seek_request", 0.0)
 					animation.set("parameters/conditions/Death", true)
 					animation.set("parameters/conditions/NotDead", false)
 					makeMoo()

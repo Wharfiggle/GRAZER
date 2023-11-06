@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cc82qiaa0gxap" path="res://Assets/Images/NewUI/Asset_31.png" id="4_15j0d"]
 [ext_resource type="Texture2D" uid="uid://dlqsdcwvnqjmb" path="res://Assets/Images/RayHighlight.png" id="5_gvldk"]
 [ext_resource type="Texture2D" uid="uid://vm636qtt8nf0" path="res://Assets/Images/NewUI/Asset_30.png" id="5_qppom"]
+[ext_resource type="Texture2D" uid="uid://odnuclhd8cq" path="res://Assets/Images/NewUI/Asset_51.png" id="6_6ltdh"]
 [ext_resource type="BitMap" uid="uid://cw7j77afavfta" path="res://Assets/Images/RayClickMask.png" id="6_76doq"]
-[ext_resource type="Texture2D" uid="uid://bpf7s0kkqi4wb" path="res://Assets/Images/NewUI/Asset_32.png" id="6_ijmbl"]
+[ext_resource type="Texture2D" uid="uid://cr0diafhygrdg" path="res://Assets/Images/NewUI/Asset_53.png" id="7_5iaqt"]
 [ext_resource type="Texture2D" uid="uid://cdkobgmaimv1a" path="res://Assets/Images/Russel.png" id="7_ew0fe"]
-[ext_resource type="Texture2D" uid="uid://kjfemfai4qu" path="res://Assets/Images/NewUI/Asset_34.png" id="7_jiv66"]
+[ext_resource type="Texture2D" uid="uid://bg3vogjgky8sh" path="res://Assets/Images/NewUI/Asset_52.png" id="8_2aipn"]
 [ext_resource type="Texture2D" uid="uid://cygel02nuxne3" path="res://Assets/Images/RusselHighlight.png" id="8_cehfv"]
-[ext_resource type="Texture2D" uid="uid://1v136l6dei4n" path="res://Assets/Images/NewUI/Asset_33.png" id="8_chgn6"]
 [ext_resource type="BitMap" uid="uid://bhf1agksjgog2" path="res://Assets/Images/RusselClickMask.png" id="9_pkvey"]
 [ext_resource type="Texture2D" uid="uid://cd5x5mwfsj1dq" path="res://Assets/Images/NewUI/Asset_35.png" id="9_xkqne"]
 [ext_resource type="Texture2D" uid="uid://cj5omnvbx3tq2" path="res://Assets/Images/NewUI/Asset_37.png" id="10_jl1cx"]
@@ -118,9 +118,9 @@ offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.65, 0.65)
-texture_normal = ExtResource("6_ijmbl")
-texture_pressed = ExtResource("7_jiv66")
-texture_hover = ExtResource("8_chgn6")
+texture_normal = ExtResource("6_6ltdh")
+texture_pressed = ExtResource("7_5iaqt")
+texture_hover = ExtResource("8_2aipn")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Panel/tutorialButton"]
 
