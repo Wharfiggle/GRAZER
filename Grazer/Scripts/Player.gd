@@ -130,6 +130,7 @@ var herdPrefab = preload("res://Prefabs/Herd.tscn")
 var herd
 #@onready var camera = get_node(NodePath("/root/Level/Camera3D"))
 var camera = null
+var maxZoom = null
 var moveDir = PI * 5.0 / 8.0
 var prevAimDir = [0, 0, 0, 0, 0]
 var aimDir = 0.0
@@ -247,6 +248,19 @@ func _process(delta):
 	
 	if(Input.is_action_just_pressed("printSceneCounter")):
 		SceneCounter.printCounters()
+	
+	#zoom in to make action more prominent
+	if(camera != null && false):
+		var enemies = get_tree().get_nodes_in_group("Enemy")
+		var farthest = null
+		var maxDistance = (maxZoom / 2) / cos(55.0 * PI / 180.0)
+		for i in enemies:
+			var dist = (position - i.position).length()
+			if(dist < maxDistance):
+				if(farthest == null || dist < farthest):
+					farthest = dist
+		if(farthest != null):
+			camera.size = farthest * 2
 	
 	#set up list of potions and cow types, only happens once after level is done initializing
 	if(potions == null):
@@ -847,6 +861,7 @@ func _physics_process(delta):
 	elif(camera == null):
 		camera = get_node(NodePath("/root/Level/Camera3D"))
 		camera.set_idle_sway(0.5)
+		maxZoom = camera.size
 	else:
 		worldCursor.visible = false
 	

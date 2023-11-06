@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 @onready var player = get_node("/root/Level/Player")
 @onready var terrain = get_node("/root/Level/AllTerrain")
 #@onready var nav = get_node("/root/Level/Navigation")
@@ -79,6 +78,8 @@ var knockbackStrength = 0
 @onready var knockbox = $knockbox
 @export var defaultStunTime = 1.0
 var stunTime = defaultStunTime
+var stunAnimTime = 0.7
+var playedStunGetUp = false
 var stunTimer = 0
 var critHit = false
 @export var hitColor = Color(1, 1, 0)
@@ -113,6 +114,8 @@ var deathBlend = 0
 
 var sentryMode = false
 @export var attackCooldownTime = 0.8
+
+@onready var stunRotation = rotation.y
 
 func _ready():
 	self.add_to_group('DespawnAtCheckpoint')
@@ -317,6 +320,7 @@ func _physics_process(delta):
 	
 	set_velocity(tVelocity)
 	if(knockbackTimer > 0 || stunTimer > 0):
+		rotation.y = stunRotation
 		set_velocity(Vector3(knockbackVel.x, tVelocity.y, knockbackVel.z))
 	set_up_direction(Vector3.UP)
 	move_and_slide()
@@ -368,7 +372,12 @@ func _physics_process(delta):
 	if(knockbackTimer > 0):
 		knockbackTimer -= delta
 		var t = knockbackTimer / knockbackTime
-		animation.set("parameters/walkPushed/blend_amount", max(min(1 - t, 1.0), 0))
+		#animation.set("parameters/walkPushed/blend_amount", max(min(1 - pow(t, 2), 1.0), 0))
+		animation.set("parameters/walkPushed/blend_amount", 1.0)
+		if(!playedStunGetUp && knockbackTimer + stunTime < stunAnimTime):
+			playedStunGetUp = true
+			animation.set("parameters/KnockDownOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+			animation.set("parameters/GetUpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		if(knockbackTimer <= 0):
 			knockbackTimer = 0
 			knockbackStrength = 0
@@ -381,9 +390,15 @@ func _physics_process(delta):
 		model.position.z = animation.get("parameters/walkPushed/blend_amount")
 	elif(stunTimer > 0):
 		stunTimer -= delta
-		if(stunTimer < stunTime / 4.0):
-			animation.set("parameters/walkPushed/blend_amount", max(min(stunTimer / (stunTime / 4.0), 1), 0))
+		if(!playedStunGetUp && stunTimer < stunAnimTime):
+			playedStunGetUp = true
+			animation.set("parameters/KnockDownOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+			animation.set("parameters/GetUpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		#if(stunTimer < stunTime / 4.0):
+			#animation.set("parameters/walkPushed/blend_amount", max(min(stunTimer / (stunTime / 4.0), 1), 0))
+			#animation.set("parameters/walkPushed/blend_amount", 1.0)
 		if(stunTimer <= 0):
+			playedStunGetUp = false
 			stunTimer = 0
 			animation.set("parameters/walkPushed/blend_amount", 0)
 		model.position.z = animation.get("parameters/walkPushed/blend_amount")
@@ -771,8 +786,12 @@ func knockback(damageSourcePos:Vector3, kSpeed:float, useModifier:bool, lungeEff
 	SoundFX.play()
 		
 	knockbackTimer = knockbackTime
+	animation.set("parameters/GetUpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	animation.set("parameters/KnockDownOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	#set knockbackVel to the direction vector * speed
 	knockbackVel = damageSourcePos.direction_to(self.position)
+	stunRotation = atan2(-knockbackVel.x, -knockbackVel.z)
+	rotation.y = stunRotation
 	knockbackVel.y = 0
 	knockbackStrength = kSpeed
 	if(useModifier):

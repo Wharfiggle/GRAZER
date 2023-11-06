@@ -6,6 +6,7 @@ var parent
 @export var origWheelRotation = 1800 * PI / 180
 @onready var targetRotation = origWheelRotation
 @onready var usable = $Usable
+var atRotation = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,16 +15,20 @@ func _ready():
 func _process(delta):
 	if(wheel != null):
 		wheel.rotation.x = lerpf(wheel.rotation.x, targetRotation, 0.3)
-		if(abs(wheel.rotation.x - targetRotation) < 0.01):
+		if(abs(wheel.rotation.x - targetRotation) < 0.1):
 			wheel.rotation.x = targetRotation
+			atRotation = true
 	else:
 		wheel = $"Chain Wheel/RotationPoint"
 		targetRotation = origWheelRotation
 
 func use():
-	if(active && wheel.rotation.x == targetRotation):
+	if(active && atRotation):
 		parent.use()
 		targetRotation = -targetRotation
+		atRotation = false
+	else:
+		print("asdasd")
 
 func deactivate():
 	active = false

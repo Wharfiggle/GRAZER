@@ -26,13 +26,13 @@ animation = &"Idle (Still)_liz "
 animation = &"BANDIT_Drag_Liz"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hwepf"]
-animation = &"BANDIT_DownIdle_Liz"
+animation = &"Ground_Hope"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gs3ig"]
-animation = &"BANDIT_SHOVED_Liz"
+animation = &"KnockedOver_Down_Hope"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bftif"]
-animation = &"BANDIT_stand up_Liz"
+animation = &"KnockedOver_Up_Hope"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v3fgg"]
 animation = &"Idle (Still)_liz "
@@ -73,7 +73,7 @@ animation = &"Walk_Liz"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_e7ome"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qt1bu"]
-graph_offset = Vector2(396.46, 60.9883)
+graph_offset = Vector2(571.367, 427.743)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_fvgf6")
 nodes/Animation/position = Vector2(480, 380)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_oy2ry")
@@ -96,10 +96,10 @@ nodes/DeathBlend/node = SubResource("AnimationNodeBlend2_bs44u")
 nodes/DeathBlend/position = Vector2(2120, 120)
 nodes/DeathSeek/node = SubResource("AnimationNodeTimeSeek_ic56y")
 nodes/DeathSeek/position = Vector2(1620, 500)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_apvqe")
-nodes/OneShot/position = Vector2(1040, 528)
-"nodes/OneShot 2/node" = SubResource("AnimationNodeOneShot_4vida")
-"nodes/OneShot 2/position" = Vector2(1264, 496)
+nodes/GetUpOneShot/node = SubResource("AnimationNodeOneShot_4vida")
+nodes/GetUpOneShot/position = Vector2(1280, 500)
+nodes/KnockDownOneShot/node = SubResource("AnimationNodeOneShot_apvqe")
+nodes/KnockDownOneShot/position = Vector2(1040, 528)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gj1ff")
 nodes/TimeScale/position = Vector2(460, -20)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_hxatp")
@@ -117,7 +117,7 @@ nodes/walkDrag/node = SubResource("AnimationNodeBlend2_k3imc")
 nodes/walkDrag/position = Vector2(720, -40)
 nodes/walkPushed/node = SubResource("AnimationNodeBlend2_e7ome")
 nodes/walkPushed/position = Vector2(1480, 160)
-node_connections = [&"output", 0, &"DeathBlend", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"Death", 0, &"Animation 7", &"Death", 1, &"DeathSeek", &"DeathBlend", 0, &"walkPushed", &"DeathBlend", 1, &"TimeScale 3", &"DeathSeek", 0, &"deathAnim", &"OneShot", 0, &"Animation 4", &"OneShot", 1, &"Animation 5", &"OneShot 2", 0, &"OneShot", &"OneShot 2", 1, &"Animation 6", &"TimeScale", 0, &"walk", &"TimeScale 2", 0, &"Animation 3", &"TimeScale 3", 0, &"Death", &"idleWalk", 0, &"walkDrag", &"idleWalk", 1, &"Blend2", &"walkDrag", 0, &"TimeScale", &"walkDrag", 1, &"TimeScale 2", &"walkPushed", 0, &"idleWalk", &"walkPushed", 1, &"OneShot 2"]
+node_connections = [&"output", 0, &"DeathBlend", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"Death", 0, &"Animation 7", &"Death", 1, &"DeathSeek", &"DeathBlend", 0, &"walkPushed", &"DeathBlend", 1, &"TimeScale 3", &"DeathSeek", 0, &"deathAnim", &"GetUpOneShot", 0, &"KnockDownOneShot", &"GetUpOneShot", 1, &"Animation 6", &"KnockDownOneShot", 0, &"Animation 4", &"KnockDownOneShot", 1, &"Animation 5", &"TimeScale", 0, &"walk", &"TimeScale 2", 0, &"Animation 3", &"TimeScale 3", 0, &"Death", &"idleWalk", 0, &"walkDrag", &"idleWalk", 1, &"Blend2", &"walkDrag", 0, &"TimeScale", &"walkDrag", 1, &"TimeScale 2", &"walkPushed", 0, &"idleWalk", &"walkPushed", 1, &"GetUpOneShot"]
 
 [node name="Bandit2" instance=ExtResource("1_pqrtw")]
 
@@ -198,7 +198,7 @@ bones/58/position = Vector3(48.9124, -20.2087, -165.894)
 bones/58/rotation = Quaternion(-0.0118319, -2.30163e-22, 0.99993, 0)
 
 [node name="horns" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.0166, -3.23011e-10, -7.99982e-11, 3.44871e-10, 1.0166, 4.54927e-07, 9.90851e-11, -4.62974e-07, 1.0166, -2.80549, -1.09634, -7.52898)
+transform = Transform3D(1.0166, -5.31003e-10, 1.56612e-10, 4.97428e-10, 1.0166, 2.793e-07, -1.9941e-10, -2.87347e-07, 1.0166, -2.80549, -1.09635, -7.52946)
 bone_idx = 6
 
 [node name="horns" parent="Armature/Skeleton3D/horns" index="0"]
@@ -206,7 +206,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="loSkullNoRings1" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(22.7319, -7.39084e-09, -8.62659e-10, 7.71162e-09, 22.5501, -2.86983, 2.21563e-09, 2.86983, 22.5501, -0.00851919, 4.26025, -190.944)
+transform = Transform3D(22.7319, -1.13366e-08, 4.97299e-09, 1.11229e-08, 22.5501, -2.86984, -4.45897e-09, 2.86983, 22.5501, -0.00851921, 4.26027, -190.944)
 bone_idx = 7
 
 [node name="loSkullNoRings1" parent="Armature/Skeleton3D/loSkullNoRings1" index="0"]
@@ -214,7 +214,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth1" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(1.59172, -0.866756, -0.218933, 0.486443, 2.53027, -0.609316, 0.266411, 0.558524, 2.42061, -6.52692, 10.7286, -172.003)
+transform = Transform3D(1.59172, -0.866756, -0.218933, 0.486443, 2.53027, -0.609316, 0.266411, 0.558525, 2.42061, -6.52692, 10.7286, -172.004)
 bone_idx = 8
 
 [node name="tooth1" parent="Armature/Skeleton3D/tooth1" index="0"]
@@ -222,7 +222,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth2" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(1.65015, -0.557243, -1.86899e-08, 0.335686, 2.61199, -0.540101, 0.0740986, 0.576566, 2.4468, -7.32651, 13.5577, -171.121)
+transform = Transform3D(1.65015, -0.557243, -1.80099e-08, 0.335686, 2.61199, -0.540102, 0.0740986, 0.576566, 2.4468, -7.32651, 13.5577, -171.121)
 bone_idx = 9
 
 [node name="tooth2" parent="Armature/Skeleton3D/tooth2" index="0"]
@@ -230,7 +230,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth3" parent="Armature/Skeleton3D" index="4"]
-transform = Transform3D(-1.28475, -0.223447, 5.91796e-08, -0.182185, 1.57494, -0.035673, -0.00408421, 0.0353073, 1.59125, 7.58042, 22.191, -169.346)
+transform = Transform3D(-1.28475, -0.223447, 5.95573e-08, -0.182185, 1.57494, -0.0356733, -0.00408424, 0.0353075, 1.59125, 7.58042, 22.191, -169.346)
 bone_idx = 10
 
 [node name="tooth3" parent="Armature/Skeleton3D/tooth3" index="0"]
@@ -238,7 +238,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth4" parent="Armature/Skeleton3D" index="5"]
-transform = Transform3D(1.5714, -0.959793, -0.218933, -0.610087, -2.45889, -0.609317, -0.0114455, -0.705762, 2.42061, 6.19841, 10.7286, -172.003)
+transform = Transform3D(1.5714, -0.959793, -0.218933, -0.610087, -2.45889, -0.609317, -0.0114456, -0.705763, 2.42061, 6.19841, 10.7286, -172.004)
 bone_idx = 11
 
 [node name="tooth4" parent="Armature/Skeleton3D/tooth4" index="0"]
@@ -246,7 +246,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth5" parent="Armature/Skeleton3D" index="6"]
-transform = Transform3D(-1.64108, 0.624541, 7.46549e-08, 0.376257, 2.59744, -0.540101, 0.0830541, 0.573351, 2.4468, 7.70483, 13.5577, -171.121)
+transform = Transform3D(-1.64108, 0.624541, 7.53348e-08, 0.376257, 2.59744, -0.540101, 0.0830542, 0.573352, 2.4468, 7.70483, 13.5577, -171.121)
 bone_idx = 12
 
 [node name="tooth5" parent="Armature/Skeleton3D/tooth5" index="0"]
@@ -254,7 +254,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth6" parent="Armature/Skeleton3D" index="7"]
-transform = Transform3D(-1.67661, 0.23924, -1.91838e-08, 0.170773, 2.23968, -0.554374, 0.0376959, 0.494382, 2.51146, 7.64653, 16.1566, -170.274)
+transform = Transform3D(-1.67661, 0.23924, -1.84858e-08, 0.170773, 2.23968, -0.554375, 0.037696, 0.494382, 2.51146, 7.64653, 16.1566, -170.274)
 bone_idx = 13
 
 [node name="tooth6" parent="Armature/Skeleton3D/tooth6" index="0"]
@@ -262,7 +262,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth7" parent="Armature/Skeleton3D" index="8"]
-transform = Transform3D(-1.68571, -6.70448e-10, -9.17813e-11, -5.71863e-10, 2.0555, -0.22039, -1.64302e-10, 0.220314, 2.05621, 7.77121, 18.9543, -169.521)
+transform = Transform3D(-1.68571, -1.03972e-09, 4.31889e-10, -8.24832e-10, 2.0555, -0.220391, 3.3066e-10, 0.220315, 2.05621, 7.77121, 18.9543, -169.521)
 bone_idx = 14
 
 [node name="tooth7" parent="Armature/Skeleton3D/tooth7" index="0"]
@@ -270,7 +270,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth8" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(1.68557, -6.76477e-10, -1.72765e-11, 5.71817e-10, 2.01868, -0.445753, 1.64289e-10, 0.445599, 2.01938, -7.8789, 18.9543, -169.521)
+transform = Transform3D(1.68557, -9.8578e-10, 5.43929e-10, 8.24765e-10, 2.01868, -0.445753, -3.30633e-10, 0.4456, 2.01938, -7.8789, 18.9543, -169.521)
 bone_idx = 15
 
 [node name="tooth8" parent="Armature/Skeleton3D/tooth8" index="0"]
@@ -278,7 +278,7 @@ material_override = ExtResource("2_648ch")
 material_overlay = ExtResource("2_7mw86")
 
 [node name="tooth9" parent="Armature/Skeleton3D" index="10"]
-transform = Transform3D(1.68557, -7.54608e-10, -2.14866e-11, 5.71817e-10, 2.25183, -0.554374, 1.64289e-10, 0.497064, 2.51146, -7.8789, 16.1566, -170.274)
+transform = Transform3D(1.68557, -1.09963e-09, 6.76475e-10, 8.24765e-10, 2.25183, -0.554375, -3.30633e-10, 0.497065, 2.51146, -7.8789, 16.1566, -170.274)
 bone_idx = 16
 
 [node name="tooth9" parent="Armature/Skeleton3D/tooth9" index="0"]
@@ -318,10 +318,10 @@ parameters/Death/active = false
 parameters/Death/request = 0
 parameters/DeathBlend/blend_amount = 0.0
 parameters/DeathSeek/seek_request = -1.0
-parameters/OneShot/active = false
-parameters/OneShot/request = 0
-"parameters/OneShot 2/active" = false
-"parameters/OneShot 2/request" = 0
+parameters/GetUpOneShot/active = false
+parameters/GetUpOneShot/request = 0
+parameters/KnockDownOneShot/active = false
+parameters/KnockDownOneShot/request = 0
 parameters/TimeScale/scale = 1.35
 "parameters/TimeScale 2/scale" = -1.35
 "parameters/TimeScale 3/scale" = 2.0
