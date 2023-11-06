@@ -17,12 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://8v4p26gkfffe" path="res://Prefabs/PauseMenuUI.tscn" id="16_6i4tb"]
 [ext_resource type="Environment" uid="uid://5rhjn7giur73" path="res://default_env.tres" id="16_leqkn"]
 [ext_resource type="FontFile" uid="uid://claanka6fj8mt" path="res://Assets/Font/Bronco Valley/OpenType-TT/Bronco.ttf" id="18_a0jb1"]
-[ext_resource type="Texture2D" uid="uid://0ham40sftave" path="res://Assets/Images/NewUI/Asset_25.png" id="19_qyj2t"]
+[ext_resource type="Texture2D" uid="uid://0ham40sftave" path="res://Assets/Images/Asset_25.png" id="19_qyj2t"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="19_u5bqv"]
 [ext_resource type="Texture2D" uid="uid://b6rj3oryih1lm" path="res://Assets/Images/NewUI/Asset_49.png" id="20_1eh4x"]
 [ext_resource type="PackedScene" uid="uid://dcspo5f48r7j0" path="res://Prefabs/ElixirGunMenu.tscn" id="20_bkmh5"]
 [ext_resource type="Texture2D" uid="uid://v8aklukrmm5a" path="res://Assets/Images/NewUI/Asset_22.png" id="20_r434f"]
-[ext_resource type="Texture2D" uid="uid://170a46wq3c72" path="res://Assets/Images/NewUI/Asset_26.png" id="21_0kux6"]
+[ext_resource type="Texture2D" uid="uid://170a46wq3c72" path="res://Assets/Images/Asset_26.png" id="21_0kux6"]
 [ext_resource type="Texture2D" uid="uid://bgkgyixrdi7u7" path="res://Assets/Images/NewUI/Asset_24.png" id="21_tsuee"]
 [ext_resource type="Texture2D" uid="uid://dxwuux8ks7kqy" path="res://Assets/Images/NewUI/Asset_23.png" id="22_usm5n"]
 [ext_resource type="Script" path="res://Scripts/DeathMenu.gd" id="23_5p5jq"]
@@ -255,6 +255,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="WinMenu" type="Panel" parent="."]
+visible = false
 z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
