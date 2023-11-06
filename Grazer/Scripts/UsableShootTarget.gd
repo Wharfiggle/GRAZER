@@ -13,5 +13,5 @@ func _process(delta):
 func damage_taken(damage:float, from:String, inCritHit:bool = false, inBullet:Node = null) -> bool:
 	if(parent.shootable && parent.active && from == "player"):
 		print("bullet hit the thing")
-		parent.parent.use()
+		parent.use()
 	return true

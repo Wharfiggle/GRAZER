@@ -22,7 +22,7 @@ func use():
 		if(!raisable):
 			var usable = get_node(NodePath("./Usable"))
 			if(usable != null):
-				usable.active = false
+				usable.deactivate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -30,7 +30,9 @@ func _process(delta):
 		lowerTimer -= delta
 		var t = max(0, lowerTimer / lowerTime)
 		if(lowered):
-			t = smoothstep(0, 1, 1.0 - t)
+		#	t = smoothstep(0, 1, 1.0 - t)
+			t = pow(1.0 - t, 3)
 		else:
 			t = smoothstep(0, 1, t)
+		#	t = sqrt(t)
 		rotate.rotation.x = lerpf(startAngle, endAngle, t)

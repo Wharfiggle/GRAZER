@@ -1,27 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dr0rxuflnul8b"]
+[gd_scene load_steps=8 format=3 uid="uid://dr0rxuflnul8b"]
 
-[ext_resource type="Script" path="res://Scripts/Usable.gd" id="1_ctyoi"]
-[ext_resource type="Texture2D" uid="uid://b86jfncuxpn5s" path="res://Assets/Images/interactPrompt.png" id="2_h82n6"]
-[ext_resource type="Script" path="res://Scripts/UsableShootTarget.gd" id="3_yskis"]
+[ext_resource type="Script" path="res://Scripts/UsableWinch.gd" id="1_m5dml"]
+[ext_resource type="PackedScene" uid="uid://xgq534rybvo5" path="res://Prefabs/Usable.tscn" id="1_mk60r"]
 [ext_resource type="PackedScene" uid="uid://uirbplu35drr" path="res://Assets/Models/Levers/Chain Drum/chain_wheel.tscn" id="4_tlw0a"]
 [ext_resource type="PackedScene" uid="uid://d2thhb72o7cqo" path="res://Assets/Models/Levers/Chain Drum/chain_wheel holder.tscn" id="5_gj74c"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_djqmi"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptetw"]
-render_priority = 10
-transparency = 1
-no_depth_test = true
-shading_mode = 0
-albedo_texture = ExtResource("2_h82n6")
-billboard_mode = 1
-billboard_keep_scale = true
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_u0le3"]
 radius = 2.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kchx1"]
-size = Vector3(2.1611, 4, 1.16609)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4iwrr"]
 size = Vector3(7, 3, 3)
@@ -29,28 +14,19 @@ size = Vector3(7, 3, 3)
 [sub_resource type="BoxMesh" id="BoxMesh_x1gnm"]
 size = Vector3(1, 4, 1)
 
-[node name="Usable" type="Area3D"]
-script = ExtResource("1_ctyoi")
+[node name="WinchUsable" type="Node3D"]
+script = ExtResource("1_m5dml")
+
+[node name="Usable" parent="." instance=ExtResource("1_mk60r")]
 interactable = false
 shootable = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.12132, -0.896508, 1.92257, 0, 2.71892, 1.26785, -2.12132, -0.896508, 1.92257, 0, 3, 0)
+[node name="MeshInstance3D" parent="Usable" index="0"]
 visible = false
-mesh = SubResource("QuadMesh_djqmi")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_ptetw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Usable/StaticBodyForShooting" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2, -16)
 shape = SubResource("SphereShape3D_u0le3")
-
-[node name="StaticBodyForShooting" type="StaticBody3D" parent="."]
-script = ExtResource("3_yskis")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBodyForShooting"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_kchx1")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.8, 0)
@@ -71,12 +47,11 @@ skeleton = NodePath("../..")
 transform = Transform3D(0.619, 0, 0, 0, 0.619, 0, 0, 0, 0.619, 0, 0, 0)
 
 [node name="RotationPoint" type="Node3D" parent="Chain Wheel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25353, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 5.56284e-07, 0, -5.56284e-07, 1, 0, 1.25353, 0)
 
 [node name="Chain Wheel" parent="Chain Wheel/RotationPoint" instance=ExtResource("4_tlw0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.24546, 0)
 
 [node name="Chain Wheel Holder" parent="Chain Wheel" instance=ExtResource("5_gj74c")]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[editable path="Usable"]

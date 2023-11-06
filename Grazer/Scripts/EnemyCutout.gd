@@ -2,7 +2,7 @@
 extends RigidBody3D
 
 var parent
-@export var knockbackStrength = 100
+@export var knockbackStrength = 500
 var used = false
 
 func _ready():
