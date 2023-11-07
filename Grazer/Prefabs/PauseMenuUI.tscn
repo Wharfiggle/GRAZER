@@ -224,21 +224,36 @@ offset_right = 1069.0
 offset_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.89, 0.89)
+scale = Vector2(0.75, 0.75)
 texture = SubResource("GradientTexture2D_fi7mb")
 
 [node name="ControlsGradient" type="TextureRect" parent="ControlsGraphic"]
 layout_mode = 1
-offset_left = 1.1235
-offset_right = 1922.12
-offset_bottom = 1086.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -784.0
+offset_top = -442.0
+offset_right = 1137.0
+offset_bottom = 644.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ControlsGraphicText" type="TextureRect" parent="ControlsGraphic/ControlsGradient"]
-layout_mode = 0
-offset_left = 143.071
-offset_top = 23.97
-offset_right = 1651.08
-offset_bottom = 995.97
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -818.005
+offset_top = -486.0
+offset_right = 690.004
+offset_bottom = 486.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("14_byldi")
 
 [node name="BackButton" type="TextureButton" parent="ControlsGraphic/ControlsGradient"]
@@ -248,9 +263,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -138.0
+offset_left = -143.333
 offset_top = -118.21
-offset_right = 138.0
+offset_right = 132.667
 offset_bottom = -51.2097
 grow_horizontal = 2
 grow_vertical = 0

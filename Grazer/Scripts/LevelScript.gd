@@ -151,20 +151,20 @@ class Item:
 			cost = 2
 		elif(wepLevel == 3):
 			cost = 3
-		if(id == 0 || id == 1 || id == 2): #revolverCapacity, revolverDamage, revolverReload
-			if(id == 0):
-				description = "Upgraded Revolver Capacity to LVL: " + str(wepLevel)
-			elif(id == 1):
-				description = "Upgraded Revolver Damage to Level: " + str(wepLevel)
-			elif(id == 2):
-				description = "Upgraded Revolver Reload to Level: " + str(wepLevel)
-		elif(id == 3 || id == 4 || id == 5): #shotgunCapacity, shotgunDamage, shotgunReload
-			if(id == 3):
-				description = "Upgraded Shotgun Capacity to Level: " + str(wepLevel)
-			elif(id == 4):
-				description = "Upgraded Shotgun Damage to Level: " + str(wepLevel)
-			elif(id == 5):
-				description = "Upgraded Shotgun Reload to Level: " + str(wepLevel)
+		if(id >= 0 && id <= 5): #revolverCapacity, revolverDamage, revolverReload, shotgunCapacity, shotgunDamage, shotgunReload
+			if(id < 3):
+				description = "Revolver Upgrade: "
+			else:
+				description = "Shotgun Upgrade: "
+			if(id % 3 == 0):
+				description += "Capacity LVL. "
+			elif(id % 3 == 1):
+				description += "Damage LVL. "
+			elif(id % 3 == 2):
+				description += "Reload LVL. "
+			for i in wepLevel:
+				description += "I"
+			
 	func use(useOrUndo:bool = true):
 		var undoMod = 1
 		if(!useOrUndo): undoMod = -1

@@ -24,7 +24,7 @@ var tVelocity = Vector3(0,0,0)
 var dodgeVel = Vector3(0,0,0)
 @export var dodgeTime = 0.65
 var dodgeTimer = 0.0
-@export var dodgeCooldownTime = 0.7
+@export var dodgeCooldownTime = 0.85
 var dodgeCooldownTimer = 0.0
 @export var dodgeBufferTime = 0.1
 var dodgeBufferTimer = 0.0
@@ -256,11 +256,16 @@ func _process(delta):
 	#zoom in to make action more prominent
 	if(camera != null):
 		var enemies = get_tree().get_nodes_in_group("Enemy")
+		var level = get_node(NodePath("/root/Level"))
+		if(level.currentMusic == 1):
+			camera.set_idle_sway_speed(8.0)
+		else:
+			camera.set_idle_sway_speed(2.0)
 		var farthest = null
 		var maxDistance = (maxZoom / 2) / cos(55.0 * PI / 180.0)
 		var minDistance = (minZoom / 2) / cos(55.0 * PI / 180.0)
 		for i in enemies:
-			var dist = (position - i.position).length()
+			var dist = (position - i.position).length() + 2.0
 			if(dist < maxDistance || i.draggedCow != null):
 				if(farthest == null || dist > farthest):
 					farthest = min(max(dist, minDistance), maxDistance)
@@ -651,6 +656,8 @@ func usePotion(ind:int):
 			potionTimer = 1.0
 		elif(ind == 3):
 			potionTimer = discombobulateTime
+		elif(ind == 4):
+			potionTimer = 15.0
 		potionUsed = potions[ind]
 
 func startReload():
@@ -718,8 +725,7 @@ func _physics_process(delta):
 			var terrain = get_node("../AllTerrain")
 			if(terrain.real):
 				animation.set("parameters/DeathTime/scale", 0)
-		print(deathBlend)
-		deathBlend = lerpf(deathBlend, 1, 0.1)
+		deathBlend = lerpf(deathBlend, 1.0, 0.1)
 		animation.set("parameters/DeathBlend/blend_amount", deathBlend)
 	
 	#swap weapon
@@ -1161,7 +1167,7 @@ func die():
 	var terrain = get_node("../AllTerrain")
 	deathTimer = 1.8
 	if(hitpoints == 0):
-		deathTimer = 3.0
+		deathTimer = 2.4
 	if(terrain.real):
 		#if(russelOrRay == "Ray"):
 		#	deathTimer = 2.5

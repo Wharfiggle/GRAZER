@@ -18,6 +18,7 @@ var numElixirTypes = [0, 0, 0, 0, 0, 0]
 var elixirCosts = [0, 0, 0, 0, 0, 0]
 @export var maxElixirs = 3
 var parent = null
+var prevActive = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -34,6 +35,9 @@ func _process(delta):
 			menus[i].find_child("Icon2").texture = potion.icon
 			menus[i].find_child("Desc").text = str(potion.description)
 	if(parent.active && visible):
+		if(!prevActive):
+			updateNumElixirTypes()
+			prevActive = true
 		var mousePos = parent.viewport.get_mouse_position()
 		var screen = parent.viewport.get_visible_rect()
 		if(mousePos.x < screen.size.x - parent.widthOffset
@@ -43,6 +47,8 @@ func _process(delta):
 		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact"))
 		&& hovered != -1):
 			select(hovered)
+	else:
+		prevActive = false
 		
 func _physics_process(_delta):
 	if(selected != -1 && parent.active && visible):

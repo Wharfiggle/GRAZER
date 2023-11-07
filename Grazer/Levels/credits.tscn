@@ -419,5 +419,7 @@ transform = Transform3D(0.38433, -0.0636661, 0.920998, 0, 0.997619, 0.0689627, -
 projection = 0
 fov = 50.0
 idleSway = 1.0
+noTarget = true
 
 [connection signal="pressed" from="Panel/Back" to="." method="_on_button_pressed"]
+[connection signal="finished" from="CreditsMusic" to="CreditsMusic" method="_on_finished"]

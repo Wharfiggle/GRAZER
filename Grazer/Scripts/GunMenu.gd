@@ -15,6 +15,7 @@ var selected = -1
 var upgrades = []
 var gunCosts = [0, 0, 0, 0, 0, 0]
 var parent = null
+var prevActive = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -22,6 +23,9 @@ func _process(delta):
 		parent = get_parent()
 		updateUpgrades()
 	if(parent.active && visible):
+		if(prevActive == false):
+			updateUpgrades()
+			prevActive = true
 		var mousePos = parent.viewport.get_mouse_position()
 		var screen = parent.viewport.get_visible_rect()
 		if(mousePos.x < screen.size.x - parent.widthOffset
@@ -31,6 +35,8 @@ func _process(delta):
 		if((Input.is_action_just_pressed("shoot") || Input.is_action_just_pressed("Interact"))
 		&& hovered != -1):
 			select(hovered)
+	else:
+		prevActive = false
 			
 #func _physics_process(_delta):
 #	if(selected != -1 && parent.active && visible):
