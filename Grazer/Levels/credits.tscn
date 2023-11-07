@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvjq6phlh0ivv"]
+[gd_scene load_steps=18 format=3 uid="uid://cvjq6phlh0ivv"]
 
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_5pel6"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="2_ao8ti"]
@@ -9,14 +9,24 @@
 [ext_resource type="Script" path="res://Scripts/LoopSound.gd" id="4_w3c7c"]
 [ext_resource type="Texture2D" uid="uid://6lvj2u6mxwda" path="res://Assets/Images/NewUI/Asset_18.png" id="5_ia1tg"]
 [ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="5_kuaad"]
+[ext_resource type="PackedScene" uid="uid://bo1oa8u3wydbq" path="res://Levels/TutorialLevelScreenshots.tscn" id="10_5iy25"]
+[ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="11_hd2nt"]
 
-[sub_resource type="Gradient" id="Gradient_35e5v"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jd2rm"]
+
+[sub_resource type="Gradient" id="Gradient_1s24r"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.161458, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.0377095, 1.10821e-05, 0.197584, 0.196078)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.0682214, 0.000880639, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aepjf"]
+gradient = SubResource("Gradient_1s24r")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yggjc"]
-gradient = SubResource("Gradient_35e5v")
+gradient = SubResource("Gradient_1s24r")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
@@ -50,8 +60,25 @@ script = ExtResource("1_5pel6")
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jd2rm")
+
+[node name="Vignette2" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_aepjf")
 
 [node name="Vignette" type="TextureRect" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -384,5 +411,13 @@ script = ExtResource("4_w3c7c")
 [node name="UICursor" parent="." instance=ExtResource("5_kuaad")]
 top_level = true
 active = true
+
+[node name="Level" parent="." instance=ExtResource("10_5iy25")]
+
+[node name="Camera3D" parent="." instance=ExtResource("11_hd2nt")]
+transform = Transform3D(0.38433, -0.0636661, 0.920998, 0, 0.997619, 0.0689627, -0.923196, -0.0265044, 0.383415, 50.2963, 2.0774, 12.8068)
+projection = 0
+fov = 50.0
+idleSway = 1.0
 
 [connection signal="pressed" from="Panel/Back" to="." method="_on_button_pressed"]

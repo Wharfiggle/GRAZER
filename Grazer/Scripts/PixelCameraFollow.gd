@@ -14,7 +14,7 @@ var pos
 @export var maxOffset = 1.0
 
 @export var traumaReducRate = 1.0
-var idleSway = 0.5
+@export var idleSway = 0.5
 var trauma = 0.0
 
 @export var maxX = 10.0
@@ -29,6 +29,8 @@ var timeIdle = 0.0
 
 @onready var camera = self
 @onready var initialRotation = camera.rotation as Vector3
+
+@export var noTarget = false
 
 #@onready var uiCam = $"SubViewportContainer/SubViewport/3DUICamera"
 
@@ -76,8 +78,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if(followTarget == null):
+	if(followTarget == null && !noTarget):
 		followTarget = get_node(targetNodePath)
+		return
+	elif(noTarget):
 		return
 		
 	pos = lerp(pos, followTarget.global_position, lerpSpeed * delta)

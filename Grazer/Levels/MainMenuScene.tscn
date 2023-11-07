@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dnd6srcpx5l7x"]
+[gd_scene load_steps=31 format=3 uid="uid://dnd6srcpx5l7x"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenuScript.gd" id="1_daij6"]
 [ext_resource type="Texture2D" uid="uid://d2m0o42qas5dn" path="res://Assets/Images/hud/OneDrive_1_4-12-2023/grzrMenuScreenLogo.png" id="2_0g8jf"]
@@ -23,14 +23,27 @@
 [ext_resource type="Texture2D" uid="uid://x0jdtik81t7a" path="res://Assets/Images/NewUI/Asset_38.png" id="12_d8x3c"]
 [ext_resource type="Texture2D" uid="uid://b6ekrc057tuyg" path="res://Assets/Images/NewUI/Asset_41.png" id="13_en27c"]
 [ext_resource type="Texture2D" uid="uid://cfnjbq10fomka" path="res://Assets/Images/NewUI/Asset_40.png" id="14_3y7k3"]
+[ext_resource type="PackedScene" uid="uid://bo1oa8u3wydbq" path="res://Levels/TutorialLevelScreenshots.tscn" id="24_6bl7x"]
+[ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="25_w0pmm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bybe"]
-bg_color = Color(0.158067, 0.2, 0.126, 1)
+bg_color = Color(0.156863, 0.2, 0.12549, 0)
+
+[sub_resource type="Gradient" id="Gradient_ollal"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.161458, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7vksj"]
+gradient = SubResource("Gradient_ollal")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_j3f67"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.161458, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.0377095, 1.10821e-05, 0.197584, 0.196078)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.0666667, 0, 0.392157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ebvue"]
 gradient = SubResource("Gradient_j3f67")
@@ -50,6 +63,40 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8bybe")
 script = ExtResource("1_daij6")
 
 [node name="Vignette" type="TextureRect" parent="Panel"]
+visible = false
+z_index = 100
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_7vksj")
+
+[node name="Vignette3" type="TextureRect" parent="Panel"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ebvue")
+
+[node name="Vignette2" type="TextureRect" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -237,6 +284,14 @@ offset_top = 532.0
 offset_right = 780.0
 offset_bottom = 572.0
 active = true
+
+[node name="Level" parent="." instance=ExtResource("24_6bl7x")]
+
+[node name="Camera3D" parent="." instance=ExtResource("25_w0pmm")]
+transform = Transform3D(0.38433, -0.0636661, 0.920998, 0, 0.997619, 0.0689627, -0.923196, -0.0265044, 0.383415, 50.2963, 2.0774, 12.8068)
+projection = 0
+fov = 50.0
+idleSway = 1.0
 
 [connection signal="pressed" from="Panel/playButton" to="Panel" method="_on_button_pressed"]
 [connection signal="pressed" from="Panel/tutorialButton" to="Panel" method="_on_tutorial_button_pressed"]
