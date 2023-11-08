@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvjq6phlh0ivv"]
+[gd_scene load_steps=22 format=3 uid="uid://cvjq6phlh0ivv"]
 
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_5pel6"]
 [ext_resource type="FontFile" uid="uid://nabevsfcidt2" path="res://Assets/Font/DINCondensed-Bold.ttf" id="2_ao8ti"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://6lvj2u6mxwda" path="res://Assets/Images/NewUI/Asset_18.png" id="5_ia1tg"]
 [ext_resource type="PackedScene" uid="uid://cuxvl0rlaxfi3" path="res://Prefabs/UICursor.tscn" id="5_kuaad"]
 [ext_resource type="PackedScene" uid="uid://bo1oa8u3wydbq" path="res://Levels/TutorialLevelScreenshots.tscn" id="10_5iy25"]
+[ext_resource type="PackedScene" uid="uid://bxmokm0w5pjrq" path="res://Prefabs/fog_volume.tscn" id="11_35ikf"]
 [ext_resource type="PackedScene" uid="uid://d371hc6ubydla" path="res://Prefabs/Camera.tscn" id="11_hd2nt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jd2rm"]
@@ -17,7 +18,7 @@
 [sub_resource type="Gradient" id="Gradient_1s24r"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.161458, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0.0682214, 0.000880639, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.588235)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_aepjf"]
 gradient = SubResource("Gradient_1s24r")
@@ -46,6 +47,17 @@ font_size = 42
 outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x8mej"]
+
+[sub_resource type="Gradient" id="Gradient_a2ki7"]
+offsets = PackedFloat32Array(0.0104167, 1)
+colors = PackedColorArray(0, 0, 0, 0.156863, 0, 0, 0, 0.862745)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ev61"]
+gradient = SubResource("Gradient_a2ki7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="credits" type="Control"]
 modulate = Color(1, 0.975, 0.85, 1)
 layout_mode = 3
@@ -63,6 +75,7 @@ offset_bottom = 720.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jd2rm")
 
 [node name="Vignette2" type="TextureRect" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -374,6 +387,7 @@ theme_override_font_sizes/font_size = 20
 text = " Preproduction"
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -385,6 +399,16 @@ offset_bottom = 904.0
 grow_horizontal = 2
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_2opgv")
+
+[node name="BlackVignette" type="TextureRect" parent="Panel"]
+material = SubResource("ShaderMaterial_x8mej")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_6ev61")
 
 [node name="Back" type="TextureButton" parent="Panel"]
 z_index = 10
@@ -414,8 +438,11 @@ active = true
 
 [node name="Level" parent="." instance=ExtResource("10_5iy25")]
 
+[node name="FogVolume2" parent="Level" instance=ExtResource("11_35ikf")]
+transform = Transform3D(0.155857, 0, 1.73964, 0, 1, 0, -1.65003, 0, 0.164322, 96.9056, -9.21592, -147.398)
+
 [node name="Camera3D" parent="." instance=ExtResource("11_hd2nt")]
-transform = Transform3D(0.38433, -0.0636661, 0.920998, 0, 0.997619, 0.0689627, -0.923196, -0.0265044, 0.383415, 50.2963, 2.0774, 12.8068)
+transform = Transform3D(0.783683, -0.421282, 0.456467, 0, 0.734862, 0.678217, -0.621161, -0.531507, 0.575899, 143.657, 9.03522, -93.9404)
 projection = 0
 fov = 50.0
 idleSway = 1.0

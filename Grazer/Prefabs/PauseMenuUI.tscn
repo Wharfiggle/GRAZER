@@ -20,12 +20,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g20qm"]
 
-[sub_resource type="Gradient" id="Gradient_a2ki7"]
+[sub_resource type="Gradient" id="Gradient_yfbjd"]
 offsets = PackedFloat32Array(0.0104167, 1)
 colors = PackedColorArray(0, 0, 0, 0.156863, 0, 0, 0, 0.862745)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xnckx"]
-gradient = SubResource("Gradient_a2ki7")
+gradient = SubResource("Gradient_yfbjd")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -249,9 +249,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -818.005
-offset_top = -486.0
+offset_top = -551.778
 offset_right = 690.004
-offset_bottom = 486.0
+offset_bottom = 420.222
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("14_byldi")
@@ -264,9 +264,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -143.333
-offset_top = -118.21
+offset_top = -63.0985
 offset_right = 132.667
-offset_bottom = -51.2097
+offset_bottom = 3.90186
 grow_horizontal = 2
 grow_vertical = 0
 texture_normal = ExtResource("15_77wtn")

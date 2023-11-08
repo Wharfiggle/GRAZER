@@ -46,6 +46,8 @@ func _ready():
 #					_on_ray_button_pressed()
 
 func _on_button_pressed():
+	if(!tutorial):
+		WorldSave.cows = [0, 0, 0, 0, 0]
 	var charSelect = $CharacterSelect
 	charSelect.visible = true
 	charSelect.get_child(0).disabled = false
