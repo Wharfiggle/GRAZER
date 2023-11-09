@@ -13,7 +13,7 @@ func _ready():
 	
 func _process(delta):
 	if(lever != null):
-		lever.rotation.x = lerpf(lever.rotation.x, targetRotation, 0.3)
+		lever.rotation.x = lerpf(lever.rotation.x, targetRotation, 9 * delta)
 	else:
 		lever = $Lever/Lever
 		origLeverRotation = lever.rotation.x

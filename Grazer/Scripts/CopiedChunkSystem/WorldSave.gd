@@ -6,6 +6,8 @@ var russelOrRay = "Russel"
 var difficulty = 1
 var fullscreen = null
 var cows = [0, 0, 0, 0, 0]
+var elixirs = [0, 0, 0, 0, 0, 0]
+var upgrades = null
 
 #Coordinates are stored in chunk coords, so like (1,0,1) NOT (16,0,16)!
 

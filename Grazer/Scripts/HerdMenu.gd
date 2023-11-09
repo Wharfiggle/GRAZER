@@ -98,7 +98,7 @@ func _process(delta):
 		&& hovered != -1):
 			select(hovered)
 		
-		if(Input.is_action_just_pressed("dodge")):
+		if(Input.is_action_just_pressed("dodge") || player.dead):
 			if(trading):
 				stopTrade()
 			else:

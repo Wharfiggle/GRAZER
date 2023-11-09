@@ -25,6 +25,9 @@ var selected = false
 var tutorial = false
 
 func _ready():
+	WorldSave.cows = [0, 0, 0, 0, 0]
+	WorldSave.elixirs = [0, 0, 0, 0, 0, 0]
+	WorldSave.upgrades = null
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	if(WorldSave.fullscreen == null):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

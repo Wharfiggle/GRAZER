@@ -12,6 +12,7 @@ var rng = RandomNumberGenerator.new()
 @export var timeDelay:float
 @export var spawnAtEdgeOfScreen:bool
 @export var sentryMode:bool
+@export var canDropItems:bool = true
 var levelScript
 var timer = -1.0
 var chanceMod = 0
@@ -54,19 +55,27 @@ func spawnEnemy():
 	var rn = rng.randf()
 	if(rn <= spawnChance * chanceMod):
 		rn = rng.randf()
+		var enemy
 		if(spawnAtEdgeOfScreen):
-			levelScript.spawnMarauder(rn <= gunmanSpawnChance)
+			enemy = levelScript.spawnMarauder(rn <= gunmanSpawnChance)
 			print("spawning instance successful")
+			if(!canDropItems):
+				enemy.itemDropChance = 0
 		else:
-			var instance
 			if(rn <= gunmanSpawnChance):
-				instance = prefabs[0].instantiate()
+				enemy = prefabs[0].instantiate()
 			else:
-				instance = prefabs[1].instantiate()
-			get_node("/root/Level").add_child(instance)
-			if(instance != null):
-				instance.global_position = global_position
-				instance.sentryMode = sentryMode
+				enemy = prefabs[1].instantiate()
+			get_node("/root/Level").add_child(enemy)
+			if(enemy != null):
+				enemy.global_position = global_position
+				enemy.sentryMode = sentryMode
+				if(!canDropItems):
+					enemy.itemDropChance = 0
 				print("spawning instance successful")
 			else:
 				print("spawning instance unsuccessful")
+		if(enemy != null):
+			var parent = get_parent()
+			if(parent.has_method("passEnemy")):
+				parent.passEnemy(enemy)

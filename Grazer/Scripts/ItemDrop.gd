@@ -64,3 +64,4 @@ func _on_body_entered(body):
 			else:
 				item.use(true)
 			killTimer = killTime
+			visible = false

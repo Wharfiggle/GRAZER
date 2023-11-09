@@ -17,3 +17,5 @@ func _on_body_entered(body):
 		body.checkpointCowAmmount = body.herd.getNumCows()
 		if(body.checkpointCowAmmount < minimumCows):
 			body.checkpointCowAmmount = minimumCows
+		body.checkpointElixirs = body.inventory
+		body.checkpointUpgrades = body.gunStats

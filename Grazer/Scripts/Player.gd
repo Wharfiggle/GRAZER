@@ -181,6 +181,8 @@ var dead = false
 @export var canHaveNoCows = false
 @onready var checkpoint = position
 var checkpointCowAmmount = 0
+var checkpointElixirs = [0, 0, 0, 0, 0, 0]
+var checkpointUpgrades = null
 @export var noRevolver = false
 @export var noShotgun = false
 @onready var healthPulse = $"../HealthPulse".material
@@ -212,6 +214,8 @@ func _ready():
 	gunStats[3] = shotgunClipSize
 	gunStats[4] = shotgunDamage
 	gunStats[5] = shotgunReloadTime
+	
+	checkpointUpgrades = gunStats
 	
 	get_node(NodePath("./Russel")).visible = false
 	get_node(NodePath("./"+russelOrRay)).visible = true
@@ -309,6 +313,9 @@ func _process(delta):
 			var newCows = WorldSave.cows
 			for i in len(newCows):
 				herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), newCows[i])
+			inventory = WorldSave.elixirs
+			if(WorldSave.upgrades != null):
+				gunStats = WorldSave.upgrades
 #		for i in 6:
 #			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), i)
 #		for i in 5:
@@ -1199,6 +1206,8 @@ func die():
 			checkpointCowAmmount = 1
 		for i in checkpointCowAmmount:
 			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() - 0.5), position.y, position.z + (rng.randf() - 0.5)), 0)
+		inventory = checkpointElixirs
+		gunStats = checkpointUpgrades
 		deathTimer = 0
 		animation.set("parameters/DeathTime/scale", 1.5)
 		animation.set("parameters/DeathBlend/blend_amount", 0.0)

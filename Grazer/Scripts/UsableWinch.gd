@@ -14,8 +14,8 @@ func _ready():
 	
 func _process(delta):
 	if(wheel != null):
-		wheel.rotation.x = lerpf(wheel.rotation.x, targetRotation, 0.3)
-		if(abs(wheel.rotation.x - targetRotation) < 0.1):
+		wheel.rotation.x = lerpf(wheel.rotation.x, targetRotation, 6 * delta)
+		if(abs(wheel.rotation.x - targetRotation) < 0.01):
 			wheel.rotation.x = targetRotation
 			atRotation = true
 	else:

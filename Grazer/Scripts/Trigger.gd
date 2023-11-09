@@ -59,6 +59,11 @@ func _physics_process(delta):
 		if(allNull):
 			queue_free()
 
+func passEnemy(enemy):
+	var parent = get_parent()
+	if(parent != null && parent.has_method("passEnemy")):
+		parent.passEnemy(enemy)
+
 func _on_body_entered(body):
 	if(body.is_in_group('Player') && timer == -1):
 		timer = timeDelay

@@ -85,7 +85,7 @@ func _ready():
 	genPlayerPoints()
 	loadChunk(playerPoints)
 
-func spawnMarauder(gunman:bool):
+func spawnMarauder(gunman:bool) -> Node3D:
 	#screen height and width in units, 15.0 = camera.size()
 	var camSize = 15.0
 	if(camera != null):
@@ -112,6 +112,7 @@ func spawnMarauder(gunman:bool):
 		cos(-PI/4.0) * enemy.position.x - sin(-PI/4.0) * enemy.position.z, 0,
 		sin(-PI/4.0) * enemy.position.x + cos(-PI/4.0) * enemy.position.z)
 	get_node(NodePath("/root/Level")).add_child(enemy)
+	return enemy
 
 func _process(_delta):
 	if(camera == null):
