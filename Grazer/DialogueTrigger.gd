@@ -11,6 +11,8 @@ var stage = 0
 @onready var textBox = $TextBox
 @onready var player = get_node("/root/Level/Player")
 @onready var usable = $Usable
+var time = 0
+@onready var textBoxOrigPos = textBox.position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +34,10 @@ func use():
 		else:
 			textBox.visible = true
 			textBox.set_texture(stages[stage][index])
+
+func _process(delta):
+	time += delta
+	textBox.position.y = textBoxOrigPos.y + sin(time * 4.0) * 0.1
 
 func setStage(s):
 	stage = s

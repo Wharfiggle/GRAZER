@@ -3,8 +3,10 @@ extends Area3D
 var parent
 @onready var interactGraphic = get_child(0)
 @onready var exclamation = $Exclamation
+@onready var exclamationOrigPos = exclamation.position
 var inRange = false
 var active = true
+var time = 0
 @onready var player = get_node(NodePath("/root/Level/Player"))
 @export var interactable = true
 @export var shootable = false
@@ -33,8 +35,10 @@ func _process(delta):
 		targAlpha = 1.0
 	interactGraphic.transparency = lerpf(interactGraphic.transparency, targAlpha, 9 * delta)
 	if(important):
+		time += delta
 		exclamation.visible = true
 		exclamation.transparency = 1.0 - interactGraphic.transparency
+		exclamation.position.y = exclamationOrigPos.y + sin(time * 4.0) * 0.1
 	else:
 		exclamation.visible = false
 

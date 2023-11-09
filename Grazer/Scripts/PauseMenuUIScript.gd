@@ -59,7 +59,10 @@ func _ready():
 		fullscreenButton.texture_normal = toggleTrue
 	else:
 		fullscreen = WorldSave.fullscreen
-		fullscreenButton.texture_normal = toggleFalse
+		if(fullscreen):
+			fullscreenButton.texture_normal = toggleTrue
+		else:
+			fullscreenButton.texture_normal = toggleFalse
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

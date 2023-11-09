@@ -16,6 +16,5 @@ double_sided = false
 texture = ExtResource("2_t288n")
 
 [node name="Usable" parent="." instance=ExtResource("3_mr0eh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 useOnEnter = true
 important = true
