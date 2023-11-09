@@ -191,4 +191,4 @@ timeDelay = 0.5
 [node name="ItemSpawner" parent="." instance=ExtResource("17_w5b0g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75247, 0.0499992, -20.0579)
 elixirVsUpgradeChance = 0.5
-spawnChance = 0.75
+spawnChance = 0.2

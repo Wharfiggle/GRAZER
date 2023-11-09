@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://baia22mlx2ndf"]
+[gd_scene load_steps=35 format=3 uid="uid://baia22mlx2ndf"]
 
 [ext_resource type="PackedScene" uid="uid://d0xfwabed5xb8" path="res://Assets/FloorTiles/!Prefabs!/Walls/rock_wall_decimated.tscn" id="12_xvcqw"]
 [ext_resource type="PackedScene" uid="uid://dmombb06cyng6" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone12.tscn" id="13_f34wr"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dur5c8rol4408" path="res://Assets/Models/Porch Man/porch_man.tscn" id="23_u5ktt"]
 [ext_resource type="PackedScene" uid="uid://c37okwagmeuxb" path="res://Assets/FloorTiles/!Prefabs!/Bushes/wiryBush.tscn" id="24_8050b"]
 [ext_resource type="PackedScene" uid="uid://v00bm1qrsgji" path="res://Assets/FloorTiles/!Prefabs!/Rusted Car/rustedcarCream.tscn" id="24_jsn0s"]
+[ext_resource type="PackedScene" uid="uid://cc5k6p4dqt4g1" path="res://Assets/Models/NPC/npc 1.tscn" id="25_0gw8w"]
 [ext_resource type="PackedScene" uid="uid://8khtr2r30nb0" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6_noColl.tscn" id="25_ykmj6"]
 [ext_resource type="PackedScene" uid="uid://cawfrcqgihwhd" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cactiNopal.tscn" id="26_m6hao"]
 [ext_resource type="PackedScene" uid="uid://b7e7blxb0y6yc" path="res://Assets/FloorTiles/!Prefabs!/Cacti/cacti1.tscn" id="27_ivust"]
@@ -407,3 +408,6 @@ transform = Transform3D(0.993278, 0, 0.115752, 0, 1, 0, -0.115752, 0, 0.993278, 
 
 [node name="sign" parent="." instance=ExtResource("30_ymou4")]
 transform = Transform3D(0.384231, 0, 0.923237, 0, 1, 0, -0.923237, 0, 0.384231, 16.9064, 0.0499992, -27.5494)
+
+[node name="NPC" parent="." instance=ExtResource("25_0gw8w")]
+transform = Transform3D(1.13072, -0.126761, 0.381322, -0.0624281, 1.06949, 0.540643, -0.396961, -0.529266, 1.00115, 16.736, 0.525696, -7.64052)
