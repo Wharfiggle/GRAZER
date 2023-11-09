@@ -1,3 +1,5 @@
+#Elijah Southman, Ian Anderson
+
 extends CharacterBody3D
 
 @onready var player = get_node("/root/Level/Player")
@@ -412,6 +414,7 @@ func _physics_process(delta):
 #			knockbackIFramesTimer = 0
 
 func delete(actuallyDelete:bool = true):
+	print("enemy deleted")
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	var enemyCount = 0
 	for i in enemies:

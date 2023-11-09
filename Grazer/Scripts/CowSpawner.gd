@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var spawnChance:float
-enum cowTypes {common, red, lucky, grandRed, ironhide, moxie}
+enum cowTypes {common, red, lucky, grandRed, ironhide, moxie, checkpointMarker}
 @export var cowType:cowTypes
 var rng = RandomNumberGenerator.new()
 var herd
@@ -35,7 +35,11 @@ func spawn(inChanceMod:float, _inPrefabs:Array):
 	for i in spawnChance + 1 as int:
 		if(spawnChance >= i + 1 || rn < fmod(spawnChance, 1.0)):
 			var offset = Vector3(rng.randf() - 0.5, 0, rng.randf() - 0.5)
-			var cow = herd.spawnStrayCow(global_position + offset, cowType)
+			var cow
+			if(cowType != cowTypes.checkpointMarker):
+				cow = herd.spawnStrayCow(global_position + offset, cowType)
+			else:
+				cow = herd.spawnCheckpointMarker(global_position + offset)
 			cow.rotation.y = rotation.y
 			if(!strayMoo):
 				cow.mooIndicatorTime = -1

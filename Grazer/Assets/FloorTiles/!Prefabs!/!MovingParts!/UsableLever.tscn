@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bch55q5sk81g0"]
 
 [ext_resource type="Script" path="res://Scripts/UsableLever.gd" id="1_k8bny"]
-[ext_resource type="PackedScene" uid="uid://xgq534rybvo5" path="res://Prefabs/Usable.tscn" id="2_31snp"]
+[ext_resource type="PackedScene" uid="uid://c7he0l80c7dlx" path="res://Prefabs/Usable.tscn" id="2_31snp"]
 [ext_resource type="PackedScene" uid="uid://b68hec6f4c67" path="res://Assets/Models/Levers/Lever/leverBase.tscn" id="4_prf5x"]
 [ext_resource type="PackedScene" uid="uid://bctnikfwr5pae" path="res://Assets/Models/Levers/Lever/lever.tscn" id="5_bq4ea"]
 
@@ -15,7 +15,7 @@ size = Vector3(1, 1, 4)
 script = ExtResource("1_k8bny")
 
 [node name="Usable" parent="." instance=ExtResource("2_31snp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+important = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.2, 0)

@@ -6,6 +6,7 @@ extends Node3D
 @onready var player = get_node(NodePath("/root/Level/Player"))
 @onready var cowCounter = get_node(NodePath("/root/Level/Cow Counter"))
 var cowPrefab = preload("res://Prefabs/NewCow.tscn")
+var checkpointMarkerPrefab = preload("res://Prefabs/CheckpointMarker.tscn")
 var cows = []
 #number of total cows
 var numCows = 0
@@ -139,6 +140,16 @@ func spawnCowAtPos(pos:Vector3, type:int = -1) -> Node:
 func spawnStrayCow(pos:Vector3, type:int = -1) -> Node:
 	var cow = cowPrefab.instantiate()
 	cow.setType(type)
+	add_child(cow)
+	cow.position = pos
+	cow.stray = true
+	cow.add_to_group('DespawnAtCheckpoint')
+	return cow
+
+func spawnCheckpointMarker(pos:Vector3) -> Node:
+	var cow = checkpointMarkerPrefab.instantiate()
+	cow.checkpointMarker = true
+	cow.setType(0)
 	add_child(cow)
 	cow.position = pos
 	cow.stray = true

@@ -323,8 +323,8 @@ func _process(delta):
 	if(player == null):
 		player = get_node(NodePath("/root/Level/Player"))
 	
-	if(Input.is_action_just_pressed("debug1")):
-		broadcastMessage("mumu", 1.0)
+	#if(Input.is_action_just_pressed("debug1")):
+	#	broadcastMessage("mumu", 1.0)
 	
 	#make broadcast message move smoothly on and off screen
 	if(broadcastTimer > 0):

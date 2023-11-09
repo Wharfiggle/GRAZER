@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bp3w668uq45mn"]
+[gd_scene load_steps=11 format=3 uid="uid://bl50qrtg4u7em"]
 
 [ext_resource type="Texture2D" uid="uid://civcl7lceyskj" path="res://Assets/Models/tutorialSign/sign4Albedo.png" id="2_35u7a"]
 [ext_resource type="Texture2D" uid="uid://dvkwku0ujkrps" path="res://Assets/Models/tutorialSign/sign4Normal.png" id="3_rosj3"]
@@ -7,7 +7,6 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnhsv"]
 resource_name = "standardSurface1"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1d4ic"]

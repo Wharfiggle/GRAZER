@@ -1,3 +1,5 @@
+#Elijah Southman
+
 extends StaticBody3D
 
 @export var time = 1.0

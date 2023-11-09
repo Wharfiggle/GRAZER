@@ -1,3 +1,5 @@
+#Elijah Southman
+
 extends StaticBody3D
 
 var waited = false

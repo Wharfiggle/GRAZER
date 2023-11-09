@@ -244,10 +244,12 @@ func generateStructures():
 			if(placed):
 				if(l == numLevels):
 					addStructure(4, origin) #final field
+					addStructure(5, originLeft)
+					addStructure(6, originRight)
 				else:
 					addStructure(0, origin)
-				addStructure(1, originLeft)
-				addStructure(2, originRight)
+					addStructure(1, originLeft)
+					addStructure(2, originRight)
 				print("added checkpoint at " + str(origin))
 			else:
 				print("failed to place checkpoint " + str(l + 1))
@@ -269,7 +271,7 @@ func generateStructures():
 			var loops = 50
 			var origin = Vector3()
 			#TODO Maybe change from complete random to a more balenced spread of structures?
-			var id = randi_range(5, structureTypes.size() - 1)
+			var id = randi_range(7, structureTypes.size() - 1)
 			var structureInfo = structureTypes[id]
 			while(!placed and !failed):
 				origin.x = randi_range(-mapWidth + 1 , mapWidth - structureInfo[1])

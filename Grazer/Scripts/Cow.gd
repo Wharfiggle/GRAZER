@@ -110,6 +110,8 @@ var deathTimer = 0
 @export var waitToDie = 0.1
 var waitToDieTimer = 0
 
+var checkpointMarker = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SceneCounter.cows += 1
@@ -147,8 +149,9 @@ func _ready():
 		setType()
 	
 func makeMoo():
-	Vocal.stream = moo
-	Vocal.play()
+	if(!checkpointMarker):
+		Vocal.stream = moo
+		Vocal.play()
 	
 func setType(ind:int = -1):
 	model = get_node(NodePath("./Model"))
@@ -263,6 +266,7 @@ func damage_taken(_damage:float, from:String, _inCritHit:bool = false, bullet:No
 		return true
 
 func delete():
+	print("cow deleted")
 	if(isDragged):
 		herd.cowsBeingStolen -= 1
 	if(herd != null):
@@ -273,7 +277,9 @@ func delete():
 			herd.removeCow(self)
 		else:
 			push_error("could not find herd to remove deleted cow from")
+	offscreenIndicator.visible = false
 	if(offscreenIndicator != null):
+		print("indicator destroyed")
 		offscreenIndicator.queue_free()
 	SceneCounter.cows -= 1
 	queue_free()
@@ -461,7 +467,7 @@ func _physics_process(delta):
 					if(t == -1):
 						animationBlend = -1
 					animation.set("parameters/Movement/BlendMove/blend_amount", t)
-		elif(stray && abs((position - herd.player.position).length()) < 2.5):
+		elif(stray && abs((position - herd.player.position).length()) < 2.5 && !checkpointMarker):
 			Vocal.volume_db = vocalVol
 			herd.addCow(self, true)
 			stray = false
@@ -580,7 +586,8 @@ func _physics_process(delta):
 	if(draggers.is_empty()):
 		set_velocity(totalVelocity * potionSpeedup)
 	set_up_direction(Vector3.UP)
-	move_and_slide()
+	if(!checkpointMarker):
+		move_and_slide()
 	
 	if(position.y < -0.01):
 		if(fallTimer == 0):
@@ -597,7 +604,7 @@ func _physics_process(delta):
 	
 	var separated = !stray && draggers.is_empty() && follow #if cow goes offscreen, isn't a stray, and isn't being stolen, we want to teleport it back to the player on the edge of the screen.
 	#section for calculating where the offscreen indicators should go on the edge of the screen
-	if(( separated || !draggers.is_empty() || mooIndicatorTimer > 0 ) && offscreenIndicator != null && camera != null):
+	if(( separated || !draggers.is_empty() || mooIndicatorTimer > 0 || checkpointMarker) && offscreenIndicator != null && camera != null):
 		#if cow is not being dragged and goes far enough off screen (indctrdff.length() > ~7) then teleport to where new indicator location would be (with edgeMargin = ~-2) and initiate enemy relocation procedure to see if it's a valid location
 		var mooInd = offscreenIndicator.get_child(0)
 		var stealInd = offscreenIndicator.get_child(1)
@@ -695,39 +702,40 @@ func _physics_process(delta):
 			maxDist = 100.0
 		var size = max(0.5, 1.0 - (indctrDiff.length() / maxDist))
 		offscreenIndicator.scale = Vector3(size, size, size)
-			
-		if(mooIndicatorTimer > 0):
-			mooIndicatorTimer -= delta
-			var mooMat = mooInd.get_surface_override_material(0).duplicate()
-			if(mooIndicatorTimer <= 0):
-				mooIndicatorTimer = 0
-				mooInd.visible = false
-				mooMat.albedo_color = Color(1, 0, 0, 1)
-			else:
-#				var newMooPos = Vector2(0, 0)
-#				if(indctrDiff.x > 0):
-#					newMooPos.x -= edgeMargin * 1.0 / mooInd.scale.x
-#				elif(indctrDiff.x < 0):
-#					newMooPos.x += edgeMargin * 1.0 / mooInd.scale.x
-#				if(indctrDiff.y > 0):
-#					newMooPos.y -= edgeMargin * 1.0 / mooInd.scale.x
-#				elif(indctrDiff.y < 0):
-#					newMooPos.y += edgeMargin * 1.0 / mooInd.scale.x
-#				mooInd.position = Vector3( #rotate by 45 degrees to compensate for camera angle yaw
-#					cos(0) * newMooPos.x - sin(0) * newMooPos.y, 0,
-#					sin(0) * newMooPos.x + cos(0) * newMooPos.y)
-				mooInd.visible = true
-				var t = 0
-				if(mooIndicatorTimer > mooIndicatorTime / 2.0): 
-					t = 1.0 - (mooIndicatorTimer - mooIndicatorTime / 2.0) / (mooIndicatorTime / 2.0)
+		
+		if(!checkpointMarker):
+			if(mooIndicatorTimer > 0):
+				mooIndicatorTimer -= delta
+				var mooMat = mooInd.get_surface_override_material(0).duplicate()
+				if(mooIndicatorTimer <= 0):
+					mooIndicatorTimer = 0
+					mooInd.visible = false
+					mooMat.albedo_color = Color(1, 0, 0, 1)
 				else:
-					t = mooIndicatorTimer / (mooIndicatorTime / 2.0)
-				mooMat.albedo_color = Color(1, 1, 1, sqrt(t))
-			mooInd.set_surface_override_material(0, mooMat)
-		else:
-			redPulseTime += delta
-			size = (1.0 / size) * 0.5 + abs(sin(redPulseTime * 5))
-			mooInd.scale = Vector3(size, size, size) / 2.0
+	#				var newMooPos = Vector2(0, 0)
+	#				if(indctrDiff.x > 0):
+	#					newMooPos.x -= edgeMargin * 1.0 / mooInd.scale.x
+	#				elif(indctrDiff.x < 0):
+	#					newMooPos.x += edgeMargin * 1.0 / mooInd.scale.x
+	#				if(indctrDiff.y > 0):
+	#					newMooPos.y -= edgeMargin * 1.0 / mooInd.scale.x
+	#				elif(indctrDiff.y < 0):
+	#					newMooPos.y += edgeMargin * 1.0 / mooInd.scale.x
+	#				mooInd.position = Vector3( #rotate by 45 degrees to compensate for camera angle yaw
+	#					cos(0) * newMooPos.x - sin(0) * newMooPos.y, 0,
+	#					sin(0) * newMooPos.x + cos(0) * newMooPos.y)
+					mooInd.visible = true
+					var t = 0
+					if(mooIndicatorTimer > mooIndicatorTime / 2.0): 
+						t = 1.0 - (mooIndicatorTimer - mooIndicatorTime / 2.0) / (mooIndicatorTime / 2.0)
+					else:
+						t = mooIndicatorTimer / (mooIndicatorTime / 2.0)
+					mooMat.albedo_color = Color(1, 1, 1, sqrt(t))
+				mooInd.set_surface_override_material(0, mooMat)
+			else:
+				redPulseTime += delta
+				size = (1.0 / size) * 0.5 + abs(sin(redPulseTime * 5))
+				mooInd.scale = Vector3(size, size, size) / 2.0
 			
 #		var fromCenter = global_position - (camera.position - camera.camOffset)
 #		fromCenter.y = 0
@@ -736,6 +744,9 @@ func _physics_process(delta):
 #		var toEdge = Vector3(fromCenter.normalized().x * radx, 0, fromCenter.normalized().y * rady)
 #		if(fromCenter.length() < toEdge.length()):
 #			offscreenIndicator.global_position = toEdge
+		if(checkpointMarker):
+			mooInd.visible = true
+			stealInd.visible = false
 	elif(offscreenIndicator == null):
 		offscreenIndicator = find_child("OffscreenIndicator")
 		if(offscreenIndicator != null):

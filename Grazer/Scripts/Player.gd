@@ -254,8 +254,8 @@ func _process(delta):
 	else:
 		healthPulse = $"../HealthPulse".material
 	
-	if(Input.is_action_just_pressed("printSceneCounter")):
-		SceneCounter.printCounters()
+	#if(Input.is_action_just_pressed("printSceneCounter")):
+	#	SceneCounter.printCounters()
 	
 	#zoom in to make action more prominent
 	if(camera != null):
@@ -269,7 +269,7 @@ func _process(delta):
 		var maxDistance = (maxZoom / 2) / cos(55.0 * PI / 180.0)
 		var minDistance = (minZoom / 2) / cos(55.0 * PI / 180.0)
 		for i in enemies:
-			var dist = (position - i.position).length() + 2.0
+			var dist = abs((position - i.position)).length() + 2.0
 			if(dist < maxDistance || i.draggedCow != null):
 				if(farthest == null || dist > farthest):
 					farthest = min(max(dist, minDistance), maxDistance)
@@ -279,9 +279,9 @@ func _process(delta):
 			targetZoom = maxZoom
 			
 		if(targetZoom > camera.size):
-			camera.size = lerpf(camera.size, targetZoom, 0.2)
+			camera.size = lerpf(camera.size, targetZoom, 8 * delta)
 		else:
-			camera.size = lerpf(camera.size, targetZoom, 0.01)
+			camera.size = lerpf(camera.size, targetZoom, 2 * delta)
 	
 	#set up list of potions and cow types, only happens once after level is done initializing
 	if(potions == null):
@@ -583,9 +583,9 @@ func _process(delta):
 	worldCursor.global_position = position + cursorPos
 
 	if(herd != null):
-		for i in 6:
-			if(Input.is_action_just_pressed("debug" + str(i + 1))):
-				herd.spawnCow(i)
+		#for i in 6:
+		#	if(Input.is_action_just_pressed("debug" + str(i + 1))):
+		#		herd.spawnCow(i)
 		
 		if(Input.is_action_just_pressed("Follow Wait") && active):
 			Vocal.stream = whistle2
@@ -976,9 +976,9 @@ func _physics_process(delta):
 		#gravity
 		tVelocity.y -= GRAVITY * delta
 		var grounded = is_on_floor()
-		if(Input.is_action_just_pressed("jump") and grounded):
-			tVelocity.y += 15
-		elif(grounded):
+		#if(Input.is_action_just_pressed("jump") and grounded):
+		#	tVelocity.y += 15
+		if(grounded):
 			tVelocity.y = -0.1
 		elif(position.y < -10.0):
 			updateHealth(hitpoints - 4)

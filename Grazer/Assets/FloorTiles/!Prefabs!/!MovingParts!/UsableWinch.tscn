@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dr0rxuflnul8b"]
 
 [ext_resource type="Script" path="res://Scripts/UsableWinch.gd" id="1_m5dml"]
-[ext_resource type="PackedScene" uid="uid://xgq534rybvo5" path="res://Prefabs/Usable.tscn" id="1_mk60r"]
+[ext_resource type="PackedScene" uid="uid://c7he0l80c7dlx" path="res://Prefabs/Usable.tscn" id="1_mk60r"]
 [ext_resource type="PackedScene" uid="uid://uirbplu35drr" path="res://Assets/Models/Levers/Chain Drum/chain_wheel.tscn" id="4_tlw0a"]
 [ext_resource type="PackedScene" uid="uid://d2thhb72o7cqo" path="res://Assets/Models/Levers/Chain Drum/chain_wheel holder.tscn" id="5_gj74c"]
 
@@ -20,12 +20,13 @@ script = ExtResource("1_m5dml")
 [node name="Usable" parent="." instance=ExtResource("1_mk60r")]
 interactable = false
 shootable = true
+important = true
 
 [node name="MeshInstance3D" parent="Usable" index="0"]
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Usable/StaticBodyForShooting" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("SphereShape3D_u0le3")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]

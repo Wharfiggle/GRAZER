@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cvrmy4nr00d0u"]
+[gd_scene load_steps=68 format=3 uid="uid://cvrmy4nr00d0u"]
 
 [ext_resource type="PackedScene" uid="uid://cc5k6p4dqt4g1" path="res://Assets/Models/NPC/npc 1.tscn" id="1_v0ixf"]
 [ext_resource type="PackedScene" uid="uid://cjft8hs811nlf" path="res://Assets/Models/NPC/npc 2.tscn" id="2_264nt"]
@@ -37,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://dydccapu44wlg" path="res://Assets/Models/Fence Textures/Fence Corner Post/Fence_Post_Corner_lambert1_Height.png" id="32_5sjuv"]
 [ext_resource type="PackedScene" uid="uid://dlqd077gajlyo" path="res://Assets/FloorTiles/!Prefabs!/Rocks/new/stone11_dec.tscn" id="32_h3qtd"]
 [ext_resource type="PackedScene" uid="uid://1qwkqwx15xpq" path="res://Assets/FloorTiles/!Prefabs!/Rocks/stone6.tscn" id="33_buvc7"]
-[ext_resource type="PackedScene" uid="uid://xgq534rybvo5" path="res://Prefabs/Usable.tscn" id="33_gy2ln"]
+[ext_resource type="PackedScene" uid="uid://c7he0l80c7dlx" path="res://Prefabs/Usable.tscn" id="33_gy2ln"]
 [ext_resource type="Texture2D" uid="uid://binwm06odh7pn" path="res://Assets/Models/Fence Textures/Fence_Post_lambert1_Normal.png" id="33_x76t2"]
 [ext_resource type="Script" path="res://Scripts/ElixirGunMenuPrompt.gd" id="34_4fg7e"]
 [ext_resource type="PackedScene" uid="uid://d2nunlkp588c1" path="res://Assets/FloorTiles/!Prefabs!/windmill.tscn" id="34_4kvkg"]
@@ -48,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://dur5c8rol4408" path="res://Assets/Models/Porch Man/porch_man.tscn" id="37_xieb1"]
 [ext_resource type="PackedScene" uid="uid://bb6mal2lx7yeq" path="res://Assets/Models/Cattle Keeper/temp.tscn" id="38_71ovh"]
 [ext_resource type="Script" path="res://Scripts/LevelTransition.gd" id="39_uyplk"]
+[ext_resource type="PackedScene" uid="uid://cbpv2inhhvl2i" path="res://Assets/FloorTiles/!Prefabs!/!Spawners!/CowSpawner.tscn" id="49_pj3df"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(32.6413, 0.1, 48)
@@ -244,6 +245,7 @@ script = ExtResource("32_3db60")
 
 [node name="Usable" parent="ShopRV/HerdMenuPrompt" instance=ExtResource("33_gy2ln")]
 transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 70.8097, -0.904791, -24.5809)
+important = true
 
 [node name="ElixirGunMenuPrompt" type="Node3D" parent="ShopRV"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5824, 0, 21.4415)
@@ -251,6 +253,7 @@ script = ExtResource("34_4fg7e")
 
 [node name="Usable" parent="ShopRV/ElixirGunMenuPrompt" instance=ExtResource("33_gy2ln")]
 transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 68.0398, -0.90479, -20.474)
+important = true
 
 [node name="Porch" parent="ShopRV" instance=ExtResource("35_3hk6l")]
 transform = Transform3D(0.899247, 0, -0.633526, 0, 1.1, 0, 0.633526, 0, 0.899247, 1.35512, 0.0499973, -2.95367)
@@ -835,3 +838,7 @@ transform = Transform3D(-0.115601, 0.00563385, 0.0954185, -0.0104232, -0.149589,
 
 [node name="stone38" parent="campfire" instance=ExtResource("32_h3qtd")]
 transform = Transform3D(-0.393251, 0.0256627, 0.068519, -0.0277952, -0.398905, -0.0101216, 0.067682, -0.014712, 0.393958, 78.8852, 0.0980487, -31.5575)
+
+[node name="CowSpawner" parent="." instance=ExtResource("49_pj3df")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.4193, 0.0500002, -1.41898)
+cowType = 6

@@ -1,3 +1,5 @@
+#Elijah Southman
+
 extends Area3D
 var triggered = false
 @onready var winScreen = get_node(NodePath("/root/Level/WinMenu"))

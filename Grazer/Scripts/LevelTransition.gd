@@ -34,6 +34,8 @@ func use():
 	player.position.z -= 7
 	if(!exit):
 		var delete = get_tree().get_nodes_in_group("DespawnAtCheckpoint")
+		var toDelete = []
+		var toQueueFree = []
 		for i in delete:
 			if(!i.has_method("delete")):
 				i.queue_free()

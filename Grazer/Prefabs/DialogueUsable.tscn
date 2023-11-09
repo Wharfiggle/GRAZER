@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bribybkarixfu"]
+
+[ext_resource type="Script" path="res://DialogueTrigger.gd" id="1_cvhhh"]
+[ext_resource type="Texture2D" uid="uid://dqdirxdkdiyl" path="res://Assets/Images/NewUI/Asset_50.png" id="2_t288n"]
+[ext_resource type="PackedScene" uid="uid://c7he0l80c7dlx" path="res://Prefabs/Usable.tscn" id="3_mr0eh"]
+
+[node name="DialogueUsable" type="Node3D"]
+script = ExtResource("1_cvhhh")
+
+[node name="TextBox" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+cast_shadow = 0
+centered = false
+billboard = 1
+double_sided = false
+texture = ExtResource("2_t288n")
+
+[node name="Usable" parent="." instance=ExtResource("3_mr0eh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+useOnEnter = true
+important = true
