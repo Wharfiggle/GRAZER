@@ -316,6 +316,7 @@ func _process(delta):
 			inventory = WorldSave.elixirs
 			if(WorldSave.upgrades != null):
 				gunStats = WorldSave.upgrades
+				updateGunStats()
 #		for i in 6:
 #			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() * 2 - 1) - 1, position.y, position.z + (rng.randf() * 2 - 1) - 4), i)
 #		for i in 5:

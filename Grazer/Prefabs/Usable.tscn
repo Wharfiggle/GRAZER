@@ -23,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
 script = ExtResource("1_02raw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.12132, -0.896508, 1.92257, 0, 2.71892, 1.26785, -2.12132, -0.896508, 1.92257, 0, 3, 0)
+transform = Transform3D(2.12132, -0.8218, 1.92257, 0, 2.49235, 1.26786, -2.12132, -0.8218, 1.92257, 0, 3, 0)
 mesh = SubResource("QuadMesh_djqmi")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ptetw")
