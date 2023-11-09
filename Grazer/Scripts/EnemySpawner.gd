@@ -59,8 +59,6 @@ func spawnEnemy():
 		if(spawnAtEdgeOfScreen):
 			enemy = levelScript.spawnMarauder(rn <= gunmanSpawnChance)
 			print("spawning instance successful")
-			if(!canDropItems):
-				enemy.itemDropChance = 0
 		else:
 			if(rn <= gunmanSpawnChance):
 				enemy = prefabs[0].instantiate()
@@ -69,13 +67,13 @@ func spawnEnemy():
 			get_node("/root/Level").add_child(enemy)
 			if(enemy != null):
 				enemy.global_position = global_position
-				enemy.sentryMode = sentryMode
-				if(!canDropItems):
-					enemy.itemDropChance = 0
 				print("spawning instance successful")
 			else:
 				print("spawning instance unsuccessful")
 		if(enemy != null):
+			enemy.sentryMode = sentryMode
+			if(!canDropItems):
+				enemy.itemDropChance = 0
 			var parent = get_parent()
 			if(parent.has_method("passEnemy")):
 				parent.passEnemy(enemy)

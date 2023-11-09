@@ -14,9 +14,9 @@ func use():
 	player.active = false
 	await Fade.fade_out(1).finished
 	var cows = player.herd.getCows()
-	WorldSave.cows = [0, 0, 0, 0, 0, 0]
+	WorldSave.cows = []
 	for i in cows.size():
-		WorldSave.cows[cows[i].cowTypeInd] += 1
+		WorldSave.cows.append(cows[i].cowTypeInd)
 	WorldSave.elixirs = player.inventory
 	WorldSave.upgrades = player.gunStats
 	get_tree().change_scene_to_file("res://Levels/Level.tscn")

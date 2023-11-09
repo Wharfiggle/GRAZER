@@ -138,11 +138,8 @@ func _ready():
 		baseSpeed = startSpeed
 	if(revolver != null):
 		shootingPoint = revolver.find_child("ShootingPoint")
-	
+		
 	rng.randomize()
-	var rn = rng.randf()
-	if(rn <= itemDropChance):
-		itemDrop = itemDropPrefab.instantiate()
 		
 	hitFlash.set_shader_parameter("color", hitColor)
 	animation.set("parameters/walkshoot/blend_amount", 0 )
@@ -151,6 +148,9 @@ func _ready():
 func _physics_process(delta):
 	if(waited == false && terrain.real): #only happens once after _ready() is complete
 		level = get_node(NodePath("/root/Level"))
+		var rnid = rng.randf()
+		if(rnid <= itemDropChance):
+			itemDrop = itemDropPrefab.instantiate()
 		waited = true
 		var origPos = position
 		var displaceDir = origPos - player.position
@@ -195,11 +195,12 @@ func _physics_process(delta):
 					print("couldn't find valid location for enemy to spawn in, deleting")
 					queue_free()
 	elif(waited == false):
+		var rn = rng.randf()
+		if(rn <= itemDropChance):
+			itemDrop = itemDropPrefab.instantiate()
 		defaultFollowDistance = 3.0 + randf_range(-0.5, 0.5)
-		itemDropChance = 0.0
 		if(!sentryMode):
 			followDistance = defaultFollowDistance
-			itemDropChance = 0.0
 		waited = true
 	
 	if(hitFlashAmount > 0.1):
@@ -340,7 +341,7 @@ func _physics_process(delta):
 	else:
 		lastGroundedPosition = Vector3(position.x, 0, position.z)
 	
-	if(position.y < -0.5):
+	if(position.y < -0.5 && itemDropChance > 0):
 		#print("no silhouette for me: " + str(position.y))
 		silhouette.set_albedo(Color(0, 0, 0, 0))
 #		if(revolver != null):

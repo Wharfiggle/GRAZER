@@ -1208,6 +1208,8 @@ func die():
 			herd.spawnCowAtPos(Vector3(position.x + (rng.randf() - 0.5), position.y, position.z + (rng.randf() - 0.5)), 0)
 		inventory = checkpointElixirs
 		gunStats = checkpointUpgrades
+		print(inventory)
+		print(gunStats)
 		deathTimer = 0
 		animation.set("parameters/DeathTime/scale", 1.5)
 		animation.set("parameters/DeathBlend/blend_amount", 0.0)
