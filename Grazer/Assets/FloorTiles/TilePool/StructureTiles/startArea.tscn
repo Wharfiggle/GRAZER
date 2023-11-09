@@ -394,3 +394,16 @@ transform = Transform3D(1.13072, -0.126761, 0.381322, -0.0624281, 1.06949, 0.540
 [node name="DialogueUsable" parent="." instance=ExtResource("24_tbl4s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2099, 0, -8.397)
 stage1 = Array[String](["res://Assets/Images/NewUI/Dialogue/Asset_78.png", "res://Assets/Images/NewUI/Dialogue/Asset_79.png", "res://Assets/Images/NewUI/Dialogue/Asset_84.png", "res://Assets/Images/NewUI/Dialogue/Asset_81.png", "res://Assets/Images/NewUI/Dialogue/Asset_82.png"])
+
+[node name="Usable" parent="DialogueUsable" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32865, 0.318363, 0.367662)
+useOnEnter = false
+
+[node name="Exclamation" parent="DialogueUsable/Usable" index="1"]
+transform = Transform3D(0.123744, -0.298836, 0.160214, 0, 0.906308, 0.105655, -0.123744, -0.298836, 0.160214, -0.00691605, 3.53587, -0.15124)
+
+[node name="CollisionShape3D" parent="DialogueUsable/Usable" index="2"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
+
+[editable path="DialogueUsable"]
+[editable path="DialogueUsable/Usable"]

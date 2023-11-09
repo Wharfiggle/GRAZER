@@ -244,16 +244,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5423, 0, 21.3879)
 script = ExtResource("32_3db60")
 
 [node name="Usable" parent="ShopRV/HerdMenuPrompt" instance=ExtResource("33_gy2ln")]
-transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 70.8097, -0.904791, -24.5809)
-important = true
+transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 70.239, 0.543185, -24.1355)
 
 [node name="ElixirGunMenuPrompt" type="Node3D" parent="ShopRV"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5824, 0, 21.4415)
 script = ExtResource("34_4fg7e")
 
 [node name="Usable" parent="ShopRV/ElixirGunMenuPrompt" instance=ExtResource("33_gy2ln")]
-transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 68.0398, -0.90479, -20.474)
-important = true
+transform = Transform3D(1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, 1, 67.6649, 0.343048, -20.4745)
 
 [node name="Porch" parent="ShopRV" instance=ExtResource("35_3hk6l")]
 transform = Transform3D(0.899247, 0, -0.633526, 0, 1.1, 0, 0.633526, 0, 0.899247, 1.35512, 0.0499973, -2.95367)
@@ -840,5 +838,7 @@ transform = Transform3D(-0.115601, 0.00563385, 0.0954185, -0.0104232, -0.149589,
 transform = Transform3D(-0.393251, 0.0256627, 0.068519, -0.0277952, -0.398905, -0.0101216, 0.067682, -0.014712, 0.393958, 78.8852, 0.0980487, -31.5575)
 
 [node name="CowSpawner" parent="." instance=ExtResource("49_pj3df")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.4193, 0.0500002, -1.41898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.0106, 5.67315, -10.6578)
 cowType = 6
+
+[editable path="ShopRV/HerdMenuPrompt/Usable"]
